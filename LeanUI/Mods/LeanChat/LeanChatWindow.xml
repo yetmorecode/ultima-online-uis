@@ -1,0 +1,128 @@
+<Interface xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../Interface.xsd">
+    <Scripts>
+        <Script file="LeanChatWindow.lua" />
+    </Scripts>
+    <Windows>
+        <VerticalResizeImage name="LeanChatScrollThumb" texture="UO_Core" texturescale="0.25">
+            <Size>
+                <AbsPoint x="12" y="6" />
+            </Size>
+            <Sizes top="6" middle="6" bottom="10" />
+            <TexCoords>
+                <Top x="244" y="159" />
+                <Middle x="244" y="171" />
+                <Bottom x="244" y="183" />
+            </TexCoords>
+        </VerticalResizeImage>
+        
+        <Window name="LeanChatWindow" movable="true" layer="background">
+            <Size>
+                <AbsPoint x="500" y="305" />
+            </Size>
+            <EventHandlers>
+                <EventHandler event="OnInitialize" function="LeanChatWindow.Initialize" />
+                <EventHandler event="OnShutdown" function="LeanChatWindow.Shutdown" />
+            </EventHandlers>
+            <Windows>
+                <!-- Body background -->
+                <FullResizeImage name="$parentWindowBackground" alpha="0.5" inherits="UO_Simple_Black_Background">
+                    <Anchors>
+                        <Anchor point="topleft" relativePoint="topleft"/>
+                        <Anchor point="bottomright" relativePoint="bottomright"/>
+                    </Anchors>
+                </FullResizeImage>
+                
+                <!-- Resize handle -->
+                <Button name="LeanChatResizeButton" inherits="CoreWindowResizeButtonTopRight" layer="popup" >
+                    <Anchors>
+                        <Anchor point="topright" relativePoint="topright" relativeTo="$parentWindowBackground" >
+                            <AbsPoint x="-1" y="5" />
+                        </Anchor>
+                    </Anchors>
+                    <EventHandlers>
+                        <EventHandler event="OnLButtonDown" function="LeanChatWindow.OnResizeBegin" />
+                    </EventHandlers>
+                </Button>
+                
+                <!-- Log display for messages -->
+                <LogDisplay name="LeanChatLogDisplay" font="UO_ChatText" scrollbar="LeanChatLogDisplayScrollbar" scrollbarPosition="left" textFadeTime="0" background="" maxchars="4092" >
+                    <Anchors>
+                        <Anchor point="topleft" relativePoint="topleft">
+                            <AbsPoint x="0" y="4"/>
+                        </Anchor>
+                        <Anchor point="bottomright" relativePoint="bottomright">
+                            <AbsPoint x="-2" y="-25"/>
+                        </Anchor>
+                    </Anchors>
+                    <Windows>
+                        <VerticalScrollbar name="LeanChatLogDisplayScrollbar" thumb="LeanChatScrollThumb" gutter="StandardVertScrollGutter" layer="popup">
+                            <Anchors>
+                                <Anchor point="topleft" relativePoint="topleft">
+                                    <AbsPoint x="5" y="0"/>
+                                </Anchor>
+                                <Anchor point="bottomleft" relativePoint="bottomright">
+                                    <AbsPoint x="0" y="0"/>
+                                </Anchor>
+                            </Anchors>
+                            <ActiveZoneOffset x="500" y="500" />
+                            <ThumbOffset x="0" y="0" />
+                        </VerticalScrollbar>
+                    </Windows>
+                    <TextOffset x="12" y="2" />
+                </LogDisplay>
+                
+                <!-- Current channel prompt -->
+                <Label name="LeanChatPrompt" font="UO_ChatText" wordwrap="false" autoresizewidth="true" maxchars="10" textalign="left" sticky="false">
+                    <Size>
+                        <AbsPoint x="50" y="25" />
+                    </Size>
+                    <Anchors>
+                        <Anchor point="bottomleft" relativePoint="topleft" relativeTo="LeanChatLogDisplay" >
+                            <AbsPoint x="15" y="0" />
+                        </Anchor>
+                    </Anchors>
+                </Label>
+                
+                <!-- Text input box -->
+                <EditBox name="LeanChatInput" maxchars="256" scrolling="horz" font="UO_ChatText" history="15" layer="popup" sticky="false">
+                    <TextOffset x="5" y="0" />
+                    <Size>
+                        <AbsPoint x="440" y="25" />
+                    </Size>
+                    <Anchors>
+                        <Anchor point="topright" relativePoint="topleft" relativeTo="LeanChatPrompt" >
+                            <AbsPoint x="0" y="0" />
+                        </Anchor>
+                    </Anchors>
+                    <EventHandlers>
+                        <EventHandler event="OnKeyEnter" function="LeanChatWindow.OnKeyEnter" />
+                        <EventHandler event="OnKeyEscape" function="LeanChatWindow.OnKeyEscape" />
+                        <EventHandler event="OnKeyTab" function="LeanChatWindow.OnKeyTab" />
+                    </EventHandlers>
+                </EditBox>
+                
+                <!-- Options button -->
+                <Button name="LeanChatOptions" alpha="0.4" layer="secondary" sticky="true" backgroundtexture="UO_Core" highlighttexture="UO_Core" texturescale="0.8">
+                    <Size>
+                        <AbsPoint x="24" y="24" />
+                    </Size>
+                    <Anchors>
+                        <Anchor point="bottomright" relativePoint="bottomright" relativeTo="LeanChatLogDisplay" >
+                            <AbsPoint x="0" y="22" />
+                        </Anchor>
+                    </Anchors>
+                    <TexCoords>
+                        <Normal x="188" y="482" />
+                        <NormalHighlit x="188" y="452" />
+                        <Pressed x="188" y="452" />
+                        <PressedHighlit x="188" y="452" />
+                    </TexCoords>            
+                    <EventHandlers>
+                        <EventHandler event="OnRButtonUp" function="LeanChatWindow.OnOptions" />             
+                    </EventHandlers>
+                </Button>
+            </Windows>
+        </Window>
+        
+    </Windows>
+</Interface>

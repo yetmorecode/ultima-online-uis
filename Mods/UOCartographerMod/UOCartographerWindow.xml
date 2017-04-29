@@ -1,0 +1,22 @@
+<Interface xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:noNamespaceSchemaLocation="../Interface.xsd">
+    <Scripts>
+        <Script file="UOCartographerWindow.lua" />
+    </Scripts>
+    <Windows>
+        <Window name="UOCartographerWindow" movable="false" layer="background">
+            <Size>
+                <AbsPoint x="1" y="1" />
+            </Size>
+            <Anchors>
+                <Anchor point="topleft" relativePoint="topleft" relativeTo="">
+                    <AbsPoint x="0" y="0" />
+                </Anchor>
+            </Anchors>
+            <EventHandlers>
+                <EventHandler event="OnInitialize" function="UOCartographerWindow.Initialize" />
+                <EventHandler event="OnShutdown" function="UOCartographerWindow.Shutdown" />
+            </EventHandlers>
+        </Window>
+    </Windows>
+</Interface>

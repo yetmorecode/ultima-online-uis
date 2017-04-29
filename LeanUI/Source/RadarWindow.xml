@@ -1,0 +1,49 @@
+<Interface xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../Interface.xsd">
+  <Scripts>
+    <Script file="Source/RadarWindow.lua" />
+  </Scripts>
+  <Windows>
+    <Window name="RadarWindow" alpha="0.6" movable="true"  >
+      <Size>
+        <AbsPoint x="235" y="235" />
+      </Size>
+      <Anchors>
+        <Anchor point="topright" relativePoint="topright" relativeTo="">
+          <AbsPoint x="0" y="0" />
+        </Anchor>
+      </Anchors>
+      <EventHandlers>
+        <EventHandler event="OnInitialize" function="RadarWindow.Initialize" />
+        <EventHandler event="OnShutdown" function="RadarWindow.Shutdown" />
+        <EventHandler event="OnMouseWheel" function="RadarWindow.RadarOnMouseWheel" />
+        <EventHandler event="OnLButtonDblClk" function="RadarWindow.RadarOnLButtonDblClk" />
+      </EventHandlers>
+      <Windows>
+        <CircleImage name="$parentMap" numsegments="16" texturescale="1.0" layer="default">
+          <Size>
+            <AbsPoint x="200" y="200" />
+          </Size>
+          <Anchors>
+            <Anchor point="center" relativePoint="center">
+              <AbsPoint x="0" y="0" />
+            </Anchor>
+          </Anchors>
+          <TexCoords x="128" y="128" />
+        </CircleImage>
+
+        <Button name="$parentCloseButton" alpha="0.5" inherits="UO_Default_Close_Button" texturescale="1.05" layer="overlay">
+          <Anchors>
+            <Anchor point="topright" relativePoint="topright" relativeTo="">
+              <AbsPoint x="-70" y="15" />
+            </Anchor>
+          </Anchors>
+          <EventHandlers>
+            <EventHandler event="OnLButtonUp" function="RadarWindow.CloseMap" />
+            <EventHandler event="OnMouseOver" function="RadarWindow.CloseMapOnMouseOver" />
+          </EventHandlers>
+        </Button>
+
+      </Windows>
+    </Window>
+  </Windows>
+</Interface>

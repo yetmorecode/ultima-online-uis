@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Interface xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../../Interface.xsd">
+	<Scripts>
+		<Script file="HeraldGump.lua" />
+	</Scripts>
+	
+	<Windows>
+<!-- Main Window -->
+		<Window name="HeraldGump" movable="true">
+			<Size>
+				<AbsPoint x="635" y="400" />
+			</Size>
+			<Anchors>
+				<Anchor point="center" relativePoint="center" />	
+			</Anchors>
+			<EventHandlers>
+				<EventHandler event="OnInitialize" function="HeraldGump.Initialize" />
+				<EventHandler event="OnShutdown" function="HeraldGump.Shutdown" />
+				<EventHandler event="OnRButtonUp" function="UO_DefaultWindow.CloseDialog" />
+			</EventHandlers>
+			<Windows>
+				<!-- Default chrome. Alter this at your own peril. --> 
+				<Window name="$parentChrome" inherits="UO_DefaultWindow"> 
+					<Anchors> 
+						<Anchor point="topleft" relativePoint="topleft" /> 
+						<Anchor point="bottomright" relativePoint="bottomright"/> 
+					</Anchors> 
+				</Window>                      
+				<!-- End of default chrome boilerplate code -->
+
+			</Windows>
+		</Window>
+	</Windows>
+</Interface>
+

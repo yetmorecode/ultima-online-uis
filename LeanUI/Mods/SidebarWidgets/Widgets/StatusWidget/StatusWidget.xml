@@ -1,0 +1,114 @@
+<Interface xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:noNamespaceSchemaLocation="../../Interface.xsd">
+	<Windows>
+		<Window name="StatusWidgetTemplate">
+			<Size>
+				<AbsPoint x="350" y="150" />
+			</Size>
+			<Windows>
+				<!-- <FullResizeImage name="$parentChrome" alpha="0.8" inherits="UO_Simple_Black_Background"> 
+					<Anchors> <Anchor point="topleft" relativePoint="topleft" /> <Anchor point="bottomright" 
+					relativePoint="bottomright" /> </Anchors> </FullResizeImage> -->
+				<CircleImage name="$parentPortrait" numsegments="16"
+					texturescale="1.0" layer="background" popable="false" handleinput="false">
+					<Size>
+						<AbsPoint x="75" y="75" />
+					</Size>
+					<Anchors>
+						<Anchor point="topleft" relativePoint="topleft">
+							<AbsPoint x="10" y="20" />
+						</Anchor>
+					</Anchors>
+				</CircleImage>
+
+				<!-- Base stats -->
+				<Label name="$parentHP" font="myriad_16" maxchars="64"
+					textalign="left">
+					<Size>
+						<AbsPoint x="70" y="25" />
+					</Size>
+					<Anchors>
+						<Anchor point="topleft" relativePoint="topleft">
+							<AbsPoint x="105" y="25" />
+						</Anchor>
+					</Anchors>
+					<Color r="255" g="0" b="0" />
+				</Label>
+				<Label name="$parentMana" font="myriad_16" maxchars="64"
+					textalign="left">
+					<Size>
+						<AbsPoint x="80" y="25" />
+					</Size>
+					<Anchors>
+						<Anchor point="topright" relativePoint="topleft"
+							relativeTo="$parentHP">
+							<AbsPoint x="10" y="0" />
+						</Anchor>
+					</Anchors>
+					<Color r="120" g="120" b="255" />
+				</Label>
+				<Label name="$parentStam" font="myriad_16" maxchars="64"
+					textalign="left">
+					<Size>
+						<AbsPoint x="80" y="25" />
+					</Size>
+					<Anchors>
+						<Anchor point="topright" relativePoint="topleft"
+							relativeTo="$parentMana">
+							<AbsPoint x="10" y="0" />
+						</Anchor>
+					</Anchors>
+					<Color r="255" g="255" b="0" />
+				</Label>
+				<Label name="$parentMelee" font="myriad_16" maxchars="256">
+					<Size>
+						<AbsPoint x="270" y="25" />
+					</Size>
+					<Anchors>
+						<Anchor point="topleft" relativePoint="topleft"
+							relativeTo="$parentHP">
+							<AbsPoint x="0" y="25" />
+						</Anchor>
+					</Anchors>
+					<Color r="150" g="150" b="150" />
+				</Label>
+				<Label name="$parentCasting" font="myriad_16" maxchars="256">
+                    <Size>
+                        <AbsPoint x="270" y="25" />
+                    </Size>
+                    <Anchors>
+                        <Anchor point="topleft" relativePoint="topleft"
+                            relativeTo="$parentMelee">
+                            <AbsPoint x="0" y="25" />
+                        </Anchor>
+                    </Anchors>
+                    <Color r="150" g="150" b="150" />
+                </Label>
+                <Label name="$parentRegen" font="myriad_16" maxchars="256">
+                    <Size>
+                        <AbsPoint x="270" y="25" />
+                    </Size>
+                    <Anchors>
+                        <Anchor point="topleft" relativePoint="topleft"
+                            relativeTo="$parentCasting">
+                            <AbsPoint x="0" y="25" />
+                        </Anchor>
+                    </Anchors>
+                    <Color r="150" g="150" b="150" />
+                </Label>
+                <Label name="$parentResists" font="myriad_16" maxchars="256">
+                    <Size>
+                        <AbsPoint x="270" y="25" />
+                    </Size>
+                    <Anchors>
+                        <Anchor point="topleft" relativePoint="topleft"
+                            relativeTo="$parentRegen">
+                            <AbsPoint x="0" y="25" />
+                        </Anchor>
+                    </Anchors>
+                    <Color r="230" g="230" b="230" />
+                </Label>
+			</Windows>
+		</Window>
+	</Windows>
+</Interface>

@@ -1,0 +1,213 @@
+<Interface xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:noNamespaceSchemaLocation="../../Interface.xsd">
+	<Scripts>
+		<Script file="TradeQuestWindow.lua" />
+	</Scripts>
+	<Windows>
+		<Window name="TradeQuestItemTemplate">
+			<Size>
+				<AbsPoint x="230" y="20" />
+			</Size>
+			<Windows>
+				<Label name="$parentPos" font="myriad_16" textalign="center">
+					<Size>
+						<AbsPoint x="50" y="20" />
+					</Size>
+					<Anchors>
+						<Anchor point="topleft" relativePoint="topleft">
+							<AbsPoint x="5" y="0" />
+						</Anchor>
+					</Anchors>
+				</Label>
+				<Label name="$parentName" font="myriad_16" textalign="leftcenter">
+					<Size>
+						<AbsPoint x="130" y="20" />
+					</Size>
+					<Anchors>
+						<Anchor point="topleft" relativePoint="topleft">
+							<AbsPoint x="50" y="0" />
+						</Anchor>
+					</Anchors>
+				</Label>
+				<Label name="$parentQty" font="myriad_16" textalign="center">
+					<Size>
+						<AbsPoint x="60" y="20" />
+					</Size>
+					<Anchors>
+						<Anchor point="topleft" relativePoint="topleft">
+							<AbsPoint x="160" y="0" />
+						</Anchor>
+					</Anchors>
+				</Label>
+				<Label name="$parentShop" font="myriad_16" textalign="center">
+					<Size>
+						<AbsPoint x="60" y="20" />
+					</Size>
+					<Anchors>
+						<Anchor point="topleft" relativePoint="topleft">
+							<AbsPoint x="190" y="0" />
+						</Anchor>
+					</Anchors>
+				</Label>
+			</Windows>
+		</Window>
+		<Window name="TradeQuestWindow" movable="true" layer="background">
+			<Size>
+				<AbsPoint x="300" y="280" />
+			</Size>
+			<EventHandlers>
+				<EventHandler event="OnInitialize" function="TradeQuestWindow.Initialize" />
+			</EventHandlers>
+			<Windows>
+				<!-- Body background -->
+				<FullResizeImage name="$parentWindowBackground"
+					alpha="0.5" inherits="UO_Simple_Black_Background">
+					<Anchors>
+						<Anchor point="topleft" relativePoint="topleft" />
+						<Anchor point="bottomright" relativePoint="bottomright" />
+					</Anchors>
+				</FullResizeImage>
+
+				<!-- Container icon -->
+				<Button name="$parentIcon" inherits="UO_Default_Spring_Button">
+					<Size>
+						<AbsPoint x="50" y="50" />
+					</Size>
+					<Anchors>
+						<Anchor point="topleft" relativePoint="topleft">
+							<AbsPoint x="10" y="10" />
+						</Anchor>
+					</Anchors>
+				</Button>
+
+				<!-- Title -->
+				<Label name="$parentTitle" font="myriad_18" textalign="center">
+					<Size>
+						<AbsPoint x="240" y="25" />
+					</Size>
+					<Anchors>
+						<Anchor point="topleft" relativePoint="topleft">
+							<AbsPoint x="50" y="10" />
+						</Anchor>
+					</Anchors>
+				</Label>
+
+				<!-- Current action -->
+				<Label name="$parentAction" font="myriad_14" textalign="center">
+					<Size>
+						<AbsPoint x="150" y="25" />
+					</Size>
+					<Anchors>
+						<Anchor point="topleft" relativePoint="topleft">
+							<AbsPoint x="70" y="35" />
+						</Anchor>
+					</Anchors>
+				</Label>
+
+				<!-- Status lines -->
+				<Label name="$parentStatus1" font="myriad_16" textalign="center">
+					<Size>
+						<AbsPoint x="50" y="20" />
+					</Size>
+					<Anchors>
+						<Anchor point="topleft" relativePoint="topleft">
+							<AbsPoint x="10" y="60" />
+						</Anchor>
+					</Anchors>
+				</Label>
+				<Label name="$parentStatus2" font="myriad_16" textalign="left">
+					<Size>
+						<AbsPoint x="50" y="20" />
+					</Size>
+					<Anchors>
+						<Anchor point="topleft" relativePoint="topleft">
+							<AbsPoint x="10" y="85" />
+						</Anchor>
+					</Anchors>
+				</Label>
+
+
+				<!-- Items -->
+				<Window name="$parentItem1" inherits="TradeQuestItemTemplate">
+					<Anchors>
+						<Anchor point="topleft" relativePoint="topleft">
+							<AbsPoint x="60" y="60" />
+						</Anchor>
+					</Anchors>
+				</Window>
+				<Window name="$parentItem2" inherits="TradeQuestItemTemplate">
+					<Anchors>
+						<Anchor point="topleft" relativePoint="topleft">
+							<AbsPoint x="60" y="80" />
+						</Anchor>
+					</Anchors>
+				</Window>
+				<Window name="$parentItem3" inherits="TradeQuestItemTemplate">
+					<Anchors>
+						<Anchor point="topleft" relativePoint="topleft">
+							<AbsPoint x="60" y="100" />
+						</Anchor>
+					</Anchors>
+				</Window>
+				<Window name="$parentItem4" inherits="TradeQuestItemTemplate">
+					<Anchors>
+						<Anchor point="topleft" relativePoint="topleft">
+							<AbsPoint x="60" y="120" />
+						</Anchor>
+					</Anchors>
+				</Window>
+				<Window name="$parentItem5" inherits="TradeQuestItemTemplate">
+					<Anchors>
+						<Anchor point="topleft" relativePoint="topleft">
+							<AbsPoint x="60" y="140" />
+						</Anchor>
+					</Anchors>
+				</Window>
+				
+				<Button name="$parentStartButton" inherits="UO_Default_GumpButton" >
+                    <Anchors>
+                        <Anchor point="bottomright" relativePoint="bottomright">
+                            <AbsPoint x="-95" y="-10" />
+                        </Anchor>
+                    </Anchors>
+                    <EventHandlers>
+                        <EventHandler event="OnLButtonUp" function="TradeQuestWindow.OnStart" />
+                    </EventHandlers>
+                </Button>
+                
+                <Button name="$parentStopButton" inherits="UO_Default_GumpButton" >
+                    <Anchors>
+                        <Anchor point="bottomright" relativePoint="bottomright">
+                            <AbsPoint x="-10" y="-10" />
+                        </Anchor>
+                    </Anchors>
+                    <EventHandlers>
+                        <EventHandler event="OnLButtonUp" function="TradeQuestWindow.OnStop" />
+                    </EventHandlers>
+                </Button>
+                
+                <Button name="$parentMoveButton" inherits="UO_Default_GumpButton" >
+                    <Anchors>
+                        <Anchor point="bottomright" relativePoint="bottomright">
+                            <AbsPoint x="-180" y="-10" />
+                        </Anchor>
+                    </Anchors>
+                    <EventHandlers>
+                        <EventHandler event="OnLButtonUp" function="TradeQuestWindow.OnMoveToContainer" />
+                    </EventHandlers>
+                </Button>
+                
+                <Button name="$parentRateButton" inherits="UO_Default_GumpButton" >
+                    <Anchors>
+                        <Anchor point="bottomright" relativePoint="bottomright">
+                            <AbsPoint x="-10" y="-50" />
+                        </Anchor>
+                    </Anchors>
+                    <EventHandlers>
+                        <EventHandler event="OnLButtonUp" function="TradeQuestWindow.OnRateScrolls" />
+                    </EventHandlers>
+                </Button>
+			</Windows>
+		</Window>
+	</Windows>
+</Interface>

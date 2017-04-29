@@ -1,0 +1,26 @@
+<Interface xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:noNamespaceSchemaLocation="../../Interface.xsd">
+	<Scripts>
+		<Script file="SidebarWindow.lua" />
+	</Scripts>
+	<Windows>
+		<Window name="SidebarWindow" layer="overlay">
+			<Size>
+				<AbsPoint x="300" y="1280" />
+			</Size>
+			<EventHandlers>
+				<EventHandler event="OnInitialize" function="SidebarWindow.Initialize" />
+				<EventHandler event="OnShutdown" function="SidebarWindow.Shutdown" />
+			</EventHandlers>
+			<Windows>
+				<FullResizeImage name="$parentChrome" alpha="0.75"
+					inherits="UO_Simple_Black_Background">
+					<Anchors>
+						<Anchor point="topleft" relativePoint="topleft" />
+						<Anchor point="bottomright" relativePoint="bottomright" />
+					</Anchors>
+				</FullResizeImage>
+			</Windows>
+		</Window>
+	</Windows>
+</Interface>

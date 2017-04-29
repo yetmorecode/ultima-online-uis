@@ -1,0 +1,872 @@
+<Interface xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:noNamespaceSchemaLocation="../../Interface.xsd">
+	<Windows>
+
+		<Button name="LootConfigurationTabButton" font="myriad_16">
+			<Size>
+				<AbsPoint x="120" y="32" />
+			</Size>
+			<TextColors>
+				<Normal r="90" g="60" b="30" a="255" />
+				<!-- THIS IS USED AS THE UNSELECTED COLOR FOR SOME REASON -->
+				<NormalHighlit r="120" g="90" b="60" a="255" />
+				<!-- THIS IS USED AS THE MOUSEOVER COLOR -->
+				<Pressed r="90" g="60" b="30" a="255" />
+				<PressedHighlit r="90" g="60" b="30" a="255" />
+				<Disabled r="0" g="0" b="0" a="255" />
+				<!-- THIS IS USED AS THE SELECTED COLOR FOR SOME REASON -->
+			</TextColors>
+			<TextOffset x="0" y="-10" />
+			<Windows>
+				<HorizontalResizeImage name="$parentInactive"
+					inherits="UO_Default_Medium_Tab_Disabled">
+					<Size>
+						<AbsPoint x="120" y="32" />
+					</Size>
+				</HorizontalResizeImage>
+				<HorizontalResizeImage name="$parentActive"
+					inherits="UO_Default_Medium_Tab_Enabled">
+					<Size>
+						<AbsPoint x="120" y="32" />
+					</Size>
+				</HorizontalResizeImage>
+			</Windows>
+		</Button>
+
+		<HorizontalResizeImage name="TabRuleTemplate">
+			<Size>
+				<AbsPoint x="300" y="2" />
+			</Size>
+			<Sizes left="0" middle="26" right="0" />
+
+		</HorizontalResizeImage>
+
+		<Window name="LootConfigurationWindow" movable="true">
+			<Size>
+				<AbsPoint x="760" y="660" />
+			</Size>
+			<Anchors>
+				<Anchor point="center" relativePoint="center" />
+			</Anchors>
+			<EventHandlers>
+				<EventHandler event="OnInitialize" function="LootConfiguration.Initialize" />
+				<EventHandler event="OnShutdown" function="LootConfiguration.Shutdown" />
+			</EventHandlers>
+			<Windows>
+				<FullResizeImage name="$parentWindowBackground"
+					alpha="0.5" inherits="UO_Simple_Black_Background">
+					<Anchors>
+						<Anchor point="topleft" relativePoint="topleft" />
+						<Anchor point="bottomright" relativePoint="bottomright" />
+					</Anchors>
+				</FullResizeImage>
+
+
+
+
+				<Window name="LootConfigurationSettingsContainer" popable="false">
+					<Size>
+						<AbsPoint x="400" y="300" />
+					</Size>
+					<Anchors>
+						<Anchor point="topleft" relativePoint="topleft">
+							<AbsPoint x="0" y="60" />
+						</Anchor>
+						<Anchor point="bottomright" relativePoint="bottomright" />
+					</Anchors>
+					<Windows>
+
+						<Label name="LootConfigurationSettingsTitle" inherits="UO_Default_Label_Color"
+							font="font_header16" maxchars="256" textalign="left" handleinput="false"
+							layer="default" autoresizewidth="false">
+							<Size>
+								<AbsPoint x="260" y="30" />
+							</Size>
+							<Anchors>
+								<Anchor point="topleft" relativePoint="topleft">
+									<AbsPoint x="30" y="60" />
+								</Anchor>
+							</Anchors>
+						</Label>
+						<HorizontalResizeImage name="$parentHRule"
+							layer="secondary" handleinput="false">
+							<Size>
+								<AbsPoint x="300" y="8" />
+							</Size>
+							<Anchors>
+								<Anchor point="topleft" relativePoint="topleft">
+									<AbsPoint x="30" y="80" />
+								</Anchor>
+							</Anchors>
+						</HorizontalResizeImage>
+
+						<Label name="LootConfigurationSettingsMuteLabel" inherits="UO_Default_Label_Color"
+							font="myriad_16" maxchars="256" textalign="left" handleinput="false"
+							layer="default" autoresizewidth="false">
+							<Size>
+								<AbsPoint x="260" y="30" />
+							</Size>
+							<Anchors>
+								<Anchor point="topleft" relativePoint="topleft"
+									relativeTo="LootConfigurationSettingsTitle">
+									<AbsPoint x="0" y="30" />
+								</Anchor>
+							</Anchors>
+						</Label>
+
+
+						<Label name="LootConfigurationSettingsMuteCheck">
+							<Size>
+								<AbsPoint x="16" y="16" />
+							</Size>
+							<Anchors>
+								<Anchor point="topleft" relativePoint="topleft"
+									relativeTo="LootConfigurationSettingsMuteLabel">
+									<AbsPoint x="260" y="0" />
+								</Anchor>
+							</Anchors>
+							<EventHandlers>
+								<EventHandler event="OnLButtonUp"
+									function="LootConfiguration.MuteCheckToggle" />
+							</EventHandlers>
+						</Label>
+
+
+
+
+					</Windows>
+				</Window>
+
+				<Window name="LootConfigurationRuleContainer" popable="false">
+					<Size>
+						<AbsPoint x="400" y="300" />
+					</Size>
+					<Anchors>
+						<Anchor point="topleft" relativePoint="topleft">
+							<AbsPoint x="0" y="60" />
+						</Anchor>
+						<Anchor point="bottomright" relativePoint="bottomright" />
+					</Anchors>
+					<Windows>
+						<Label name="LootConfigurationRulesTitle" inherits="UO_Default_Label_Color"
+							font="myriad_16" maxchars="256" textalign="left" handleinput="false"
+							layer="default" autoresizewidth="false">
+							<Size>
+								<AbsPoint x="300" y="30" />
+							</Size>
+							<Anchors>
+								<Anchor point="topleft" relativePoint="topleft">
+									<AbsPoint x="30" y="60" />
+								</Anchor>
+							</Anchors>
+						</Label>
+						<Button name="$parentAddRule" inherits="UO_Default_GumpButton">
+							<Size>
+								<AbsPoint x="24" y="24" />
+							</Size>
+							<Anchors>
+								<Anchor point="topleft" relativePoint="topleft"
+									relativeTo="LootConfigurationRulesTitle">
+									<AbsPoint x="280" y="0" />
+								</Anchor>
+							</Anchors>
+							<TexCoords>
+								<Normal x="128" y="64" />
+								<NormalHighlit x="160" y="64" />
+								<Pressed x="128" y="64" />
+							</TexCoords>
+							<EventHandlers>
+								<EventHandler event="OnLButtonUp" function="LootConfiguration.AddRule" />
+								<!--<EventHandler event="OnMouseOver" function="LootConfiguration.AddRuleTooltip" 
+									/> -->
+							</EventHandlers>
+						</Button>
+						<HorizontalResizeImage name="$parentHRule"
+							layer="secondary" handleinput="false">
+							<Size>
+								<AbsPoint x="300" y="8" />
+							</Size>
+							<Anchors>
+								<Anchor point="topleft" relativePoint="topleft">
+									<AbsPoint x="30" y="80" />
+								</Anchor>
+							</Anchors>
+						</HorizontalResizeImage>
+
+						<ScrollWindow name="RuleScrollWindow"
+							childscrollwindow="RuleScrollWindowScrollChild" scrollbar="RuleScrollWindowScrollbar"
+							lineheight="18" autoHideScrollBar="true">
+							<Size>
+								<AbsPoint x="330" y="480" />
+							</Size>
+							<Anchors>
+								<Anchor point="topleft" relativePoint="topleft"
+									relativeTo="LootConfigurationRulesTitle">
+									<AbsPoint x="0" y="30" />
+								</Anchor>
+							</Anchors>
+							<Windows>
+								<VerticalScrollbar name="$parentScrollbar"
+									inherits="StandardVertScroll" layer="overlay">
+								</VerticalScrollbar>
+								<Window name="$parentScrollChild">
+									<Size>
+										<AbsPoint x="300" y="0" />
+									</Size>
+									<Anchors>
+										<Anchor point="topleft" relativePoint="topleft">
+										</Anchor>
+									</Anchors>
+								</Window>
+							</Windows>
+						</ScrollWindow>
+
+					</Windows>
+				</Window>
+
+				<Window name="LootConfigurationDetailContainer" popable="false">
+					<Size>
+						<AbsPoint x="400" y="330" />
+					</Size>
+					<Anchors>
+						<Anchor point="topleft" relativePoint="topleft">
+							<AbsPoint x="400" y="60" />
+						</Anchor>
+						<Anchor point="bottomright" relativePoint="bottomright" />
+					</Anchors>
+					<Windows>
+
+						<Label name="LootConfigurationDetailTitle" inherits="UO_Default_Label_Color"
+							font="font_header16" maxchars="256" textalign="left" handleinput="false"
+							layer="default" autoresizewidth="false">
+							<Size>
+								<AbsPoint x="260" y="30" />
+							</Size>
+							<Anchors>
+								<Anchor point="topleft" relativePoint="topleft">
+									<AbsPoint x="0" y="60" />
+								</Anchor>
+							</Anchors>
+						</Label>
+						<Button name="LootConfigurationEditRuleName" inherits="UO_Default_GumpButton">
+							<Size>
+								<AbsPoint x="24" y="24" />
+							</Size>
+							<Anchors>
+								<Anchor point="topleft" relativePoint="topleft"
+									relativeTo="LootConfigurationDetailTitle">
+									<AbsPoint x="280" y="0" />
+								</Anchor>
+							</Anchors>
+							<EventHandlers>
+								<EventHandler event="OnLButtonUp"
+									function="LootConfiguration.EditRuleName" />
+								<!--<EventHandler event="OnMouseOver" function="ContainerWindow.LockTooltip" 
+									/> -->
+							</EventHandlers>
+						</Button>
+						<HorizontalResizeImage name="$parentHRule"
+							layer="secondary" handleinput="false">
+							<Size>
+								<AbsPoint x="300" y="8" />
+							</Size>
+							<Anchors>
+								<Anchor point="topleft" relativePoint="topleft">
+									<AbsPoint x="0" y="80" />
+								</Anchor>
+							</Anchors>
+						</HorizontalResizeImage>
+
+						<Label name="LootConfigurationItemHueLabel" inherits="UO_Default_Label_Color"
+							font="font_body16" maxchars="256" textalign="left" handleinput="false"
+							layer="default" autoresizewidth="false">
+							<Size>
+								<AbsPoint x="300" y="20" />
+							</Size>
+							<Anchors>
+								<Anchor point="topleft" relativePoint="topleft">
+									<AbsPoint x="10" y="100" />
+								</Anchor>
+							</Anchors>
+						</Label>
+
+						<DynamicImage name="LootConfigurationItemHue">
+							<Size>
+								<AbsPoint x="24" y="24" />
+							</Size>
+							<TexCoords x="0" y="0" />
+							<Anchors>
+								<Anchor point="topleft" relativePoint="topleft"
+									relativeTo="LootConfigurationItemHueLabel">
+									<AbsPoint x="160" y="0" />
+								</Anchor>
+							</Anchors>
+							<EventHandlers>
+								<EventHandler event="OnLButtonDown" function="LootConfiguration.PickItemHue" />
+							</EventHandlers>
+						</DynamicImage>
+
+						<Label name="LootConfigurationBorderHueLabel" inherits="UO_Default_Label_Color"
+							font="font_body16" maxchars="256" textalign="left" handleinput="false"
+							layer="default" autoresizewidth="false">
+							<Size>
+								<AbsPoint x="300" y="20" />
+							</Size>
+							<Anchors>
+								<Anchor point="topleft" relativePoint="topleft">
+									<AbsPoint x="10" y="130" />
+								</Anchor>
+							</Anchors>
+						</Label>
+
+						<DynamicImage name="LootConfigurationBorderHue"
+							layer="popup">
+							<Size>
+								<AbsPoint x="24" y="24" />
+							</Size>
+							<TexCoords x="0" y="0" />
+							<Anchors>
+								<Anchor point="topleft" relativePoint="topleft"
+									relativeTo="LootConfigurationBorderHueLabel">
+									<AbsPoint x="160" y="0" />
+								</Anchor>
+							</Anchors>
+							<EventHandlers>
+								<EventHandler event="OnLButtonDown" function="LootConfiguration.PickItemHue" />
+							</EventHandlers>
+						</DynamicImage>
+
+						<SliderBar name="LootConfigurationBorderHueAlpha"
+							inherits="UO_Default_Horizontal_SliderBar" locktoticks="true"
+							numticks="10">
+							<Size>
+								<AbsPoint x="100" y="20" />
+							</Size>
+							<Anchors>
+								<Anchor point="topleft" relativePoint="topleft"
+									relativeTo="LootConfigurationBorderHue">
+									<AbsPoint x="30" y="0" />
+								</Anchor>
+							</Anchors>
+							<EventHandlers>
+								<EventHandler event="OnSlide" function="LootConfiguration.AlphaPicked" />
+							</EventHandlers>
+						</SliderBar>
+
+						<Label name="LootConfigurationBackgroundHueLabel" inherits="UO_Default_Label_Color"
+							font="font_body16" maxchars="256" textalign="left" handleinput="false"
+							layer="default" autoresizewidth="false">
+							<Size>
+								<AbsPoint x="300" y="20" />
+							</Size>
+							<Anchors>
+								<Anchor point="topleft" relativePoint="topleft">
+									<AbsPoint x="10" y="160" />
+								</Anchor>
+							</Anchors>
+						</Label>
+
+						<DynamicImage name="LootConfigurationBackgroundHue"
+							layer="popup">
+							<Size>
+								<AbsPoint x="24" y="24" />
+							</Size>
+							<Anchors>
+								<Anchor point="topleft" relativePoint="topleft"
+									relativeTo="LootConfigurationBackgroundHueLabel">
+									<AbsPoint x="160" y="0" />
+								</Anchor>
+							</Anchors>
+							<EventHandlers>
+								<EventHandler event="OnLButtonDown" function="LootConfiguration.PickItemHue" />
+							</EventHandlers>
+						</DynamicImage>
+
+						<SliderBar name="LootConfigurationBackgroundHueAlpha"
+							inherits="UO_Default_Horizontal_SliderBar" locktoticks="true"
+							numticks="10">
+							<Size>
+								<AbsPoint x="100" y="20" />
+							</Size>
+							<Anchors>
+								<Anchor point="topleft" relativePoint="topleft"
+									relativeTo="LootConfigurationBackgroundHue">
+									<AbsPoint x="30" y="0" />
+								</Anchor>
+							</Anchors>
+							<EventHandlers>
+								<EventHandler event="OnSlide" function="LootConfiguration.AlphaPicked" />
+							</EventHandlers>
+						</SliderBar>
+
+						<Label name="LootConfigurationPreviewLabel" inherits="UO_Default_Label_Color"
+							font="font_body16" maxchars="256" textalign="left" handleinput="false"
+							layer="default" autoresizewidth="false">
+							<Size>
+								<AbsPoint x="300" y="20" />
+							</Size>
+							<Anchors>
+								<Anchor point="topleft" relativePoint="topleft">
+									<AbsPoint x="10" y="190" />
+								</Anchor>
+							</Anchors>
+						</Label>
+
+						<Button name="LootConfigurationPreview" inherits="GridViewSocketTemplate">
+							<Size>
+								<AbsPoint x="54" y="54" />
+							</Size>
+							<Anchors>
+								<Anchor point="topleft" relativePoint="topleft"
+									relativeTo="LootConfigurationPreviewLabel">
+									<AbsPoint x="160" y="0" />
+								</Anchor>
+							</Anchors>
+							<EventHandlers>
+								<EventHandler event="OnLButtonDown" function="" />
+								<EventHandler event="OnLButtonDblClk" function="" />
+								<EventHandler event="OnLButtonUp" function="" />
+								<EventHandler event="OnMouseOver" function="" />
+								<EventHandler event="OnMouseOverEnd" function="" />
+								<EventHandler event="OnRButtonDown" function="" />
+								<EventHandler event="OnRButtonUp" function="" />
+							</EventHandlers>
+						</Button>
+
+					</Windows>
+				</Window>
+
+				<Window name="LootConfigurationConditionContainer" popable="false">
+					<Size>
+						<AbsPoint x="400" y="300" />
+					</Size>
+					<Anchors>
+						<Anchor point="topleft" relativePoint="topleft">
+							<AbsPoint x="400" y="320" />
+						</Anchor>
+						<Anchor point="bottomright" relativePoint="bottomright" />
+					</Anchors>
+					<Windows>
+						<Label name="LootConfigurationConditionsTitle" inherits="UO_Default_Label_Color"
+							font="font_header16" maxchars="256" textalign="left" handleinput="false"
+							layer="default" autoresizewidth="false">
+							<Size>
+								<AbsPoint x="300" y="30" />
+							</Size>
+							<Anchors>
+								<Anchor point="topleft" relativePoint="topleft">
+									<AbsPoint x="0" y="0" />
+								</Anchor>
+							</Anchors>
+						</Label>
+
+						<HorizontalResizeImage name="$parentHRule2"
+							layer="secondary" handleinput="false">
+							<Size>
+								<AbsPoint x="300" y="8" />
+							</Size>
+							<Anchors>
+								<Anchor point="topleft" relativePoint="topleft">
+									<AbsPoint x="0" y="20" />
+								</Anchor>
+							</Anchors>
+						</HorizontalResizeImage>
+						<Button name="LootConfigurationAddCondition">
+							<Size>
+								<AbsPoint x="24" y="24" />
+							</Size>
+							<Anchors>
+								<Anchor point="topleft" relativePoint="topleft"
+									relativeTo="LootConfigurationConditionsTitle">
+									<AbsPoint x="280" y="0" />
+								</Anchor>
+							</Anchors>
+							<EventHandlers>
+								<EventHandler event="OnLButtonUp"
+									function="LootConfiguration.AddCondition" />
+								<!--<EventHandler event="OnMouseOver" function="ContainerWindow.LockTooltip" 
+									/> -->
+							</EventHandlers>
+						</Button>
+						<ScrollWindow name="ConditionScrollWindow"
+							childscrollwindow="ConditionScrollWindowScrollChild" scrollbar="ConditionScrollWindowScrollbar"
+							lineheight="18" autoHideScrollBar="true">
+							<Size>
+								<AbsPoint x="330" y="300" />
+							</Size>
+							<Anchors>
+								<Anchor point="topleft" relativePoint="topleft"
+									relativeTo="LootConfigurationConditionsTitle">
+									<AbsPoint x="0" y="30" />
+								</Anchor>
+							</Anchors>
+							<Windows>
+								<VerticalScrollbar name="$parentScrollbar"
+									inherits="StandardVertScroll" layer="overlay" />
+								<Window name="$parentScrollChild">
+									<Size>
+										<AbsPoint x="400" y="0" />
+									</Size>
+									<Anchors>
+										<Anchor point="topleft" relativePoint="topleft" />
+									</Anchors>
+								</Window>
+							</Windows>
+						</ScrollWindow>
+
+					</Windows>
+				</Window>
+
+
+
+
+
+				<Window name="LootConfigurationComposeContainer">
+					<Size>
+						<AbsPoint x="400" y="360" />
+					</Size>
+					<Anchors>
+						<Anchor point="topleft" relativePoint="topleft">
+							<AbsPoint x="400" y="320" />
+						</Anchor>
+					</Anchors>
+					<Windows>
+
+						<Label name="LootConfigurationComposeTitle" inherits="UO_Default_Label_Color"
+							font="font_header16" maxchars="256" textalign="left" handleinput="false"
+							layer="default" autoresizewidth="false">
+							<Size>
+								<AbsPoint x="400" y="30" />
+							</Size>
+							<Anchors>
+								<Anchor point="topleft" relativePoint="topleft">
+									<AbsPoint x="0" y="0" />
+								</Anchor>
+							</Anchors>
+						</Label>
+						<HorizontalResizeImage name="$parentHRule"
+							layer="secondary" handleinput="false">
+							<Size>
+								<AbsPoint x="300" y="8" />
+							</Size>
+							<Anchors>
+								<Anchor point="topleft" relativePoint="topleft">
+									<AbsPoint x="0" y="20" />
+								</Anchor>
+							</Anchors>
+						</HorizontalResizeImage>
+
+						<ComboBox name="LootConfigurationPropertyCombo" inherits="UO_Default_LongComboBox">
+							<Anchors>
+								<Anchor point="topleft" relativePoint="topleft"
+									relativeTo="LootConfigurationComposeTitle">
+									<AbsPoint x="0" y="30" />
+								</Anchor>
+							</Anchors>
+							<EventHandlers>
+								<EventHandler event="OnSelChanged"
+									function="LootConfiguration.PropertyComboChanged" />
+							</EventHandlers>
+						</ComboBox>
+
+						<ComboBox name="LootConfigurationOperatorCombo" inherits="UO_Default_LongComboBox">
+							<Anchors>
+								<Anchor point="topleft" relativePoint="topleft"
+									relativeTo="LootConfigurationPropertyCombo">
+									<AbsPoint x="0" y="30" />
+								</Anchor>
+							</Anchors>
+							<EventHandlers>
+							</EventHandlers>
+						</ComboBox>
+
+						<ComboBox name="LootConfigurationValueCombo" inherits="UO_Default_LongComboBox">
+							<Anchors>
+								<Anchor point="topleft" relativePoint="topleft"
+									relativeTo="LootConfigurationOperatorCombo">
+									<AbsPoint x="0" y="30" />
+								</Anchor>
+							</Anchors>
+							<EventHandlers>
+							</EventHandlers>
+						</ComboBox>
+
+						<!--<Button name="LootConfigurationSaveCondition" backgroundtexture="mytexture" 
+							highlighttexture="mytexture" texturescale=".75"> <Size> <AbsPoint x="24" 
+							y="24" /> </Size> <Anchors> <Anchor point="topright" relativePoint="topright" 
+							relativeTo="LootConfigurationValueCombo"> <AbsPoint x="-30" y="30" /> </Anchor> 
+							</Anchors> <TexCoords> <Normal x="128" y="64" /> <NormalHighlit x="160" y="64" 
+							/> <Pressed x="128" y="64" /> </TexCoords> <EventHandlers> <EventHandler 
+							event="OnLButtonUp" function="LootConfiguration.SaveCondition" /> </EventHandlers> 
+							</Button> -->
+
+						<Label name="LootConfigurationSaveCondition">
+							<Size>
+								<AbsPoint x="16" y="16" />
+							</Size>
+							<Anchors>
+								<Anchor point="bottomright" relativePoint="bottomright"
+									relativeTo="LootConfigurationValueCombo">
+									<AbsPoint x="-48" y="30" />
+								</Anchor>
+							</Anchors>
+							<EventHandlers>
+								<EventHandler event="OnLButtonUp"
+									function="LootConfiguration.SaveCondition" />
+								<EventHandler event="OnMouseOver" function="ContainerWindow.GenericOver" />
+								<EventHandler event="OnMouseOverEnd"
+									function="ContainerWindow.GenericOverEnd" />
+							</EventHandlers>
+						</Label>
+
+						<Label name="LootConfigurationCancelSaveCondition">
+							<Size>
+								<AbsPoint x="16" y="16" />
+							</Size>
+							<Anchors>
+								<Anchor point="topright" relativePoint="topleft"
+									relativeTo="LootConfigurationSaveCondition">
+									<AbsPoint x="16" y="0" />
+								</Anchor>
+							</Anchors>
+							<EventHandlers>
+								<EventHandler event="OnLButtonUp"
+									function="LootConfiguration.CancelSaveCondition" />
+								<EventHandler event="OnMouseOver" function="ContainerWindow.GenericOver" />
+								<EventHandler event="OnMouseOverEnd"
+									function="ContainerWindow.GenericOverEnd" />
+							</EventHandlers>
+						</Label>
+
+					</Windows>
+				</Window>
+
+				<!--TABS ===================================================================================================== -->
+				<!--Draw this last so they are always on the top layer... -->
+				<HorizontalResizeImage name="$parentTabRule"
+					inherits="TabRuleTemplate">
+					<Size>
+						<AbsPoint x="700" y="2" />
+					</Size>
+					<Anchors>
+						<Anchor point="bottomleft" relativePoint="bottomleft"
+							relativeTo="$parentRulesTab">
+							<AbsPoint x="-10" y="0" />
+						</Anchor>
+					</Anchors>
+				</HorizontalResizeImage>
+				<Button name="$parentRulesTab" inherits="LootConfigurationTabButton">
+					<Anchors>
+						<Anchor point="topleft" relativePoint="topleft">
+							<AbsPoint x="30" y="60" />
+						</Anchor>
+					</Anchors>
+					<EventHandlers>
+						<EventHandler event="OnLButtonUp" function="LootConfiguration.ShowRules" />
+					</EventHandlers>
+				</Button>
+
+				<Button name="$parentSettingsTab" inherits="LootConfigurationTabButton">
+					<Anchors>
+						<Anchor point="topright" relativePoint="topleft"
+							relativeTo="$parentRulesTab">
+							<AbsPoint x="0" y="0" />
+						</Anchor>
+					</Anchors>
+					<EventHandlers>
+						<EventHandler event="OnLButtonUp" function="LootConfiguration.ShowSettings" />
+					</EventHandlers>
+				</Button>
+
+			</Windows>
+		</Window>
+
+		<Window name="RuleDisplayTemplate">
+			<Size>
+				<AbsPoint x="300" y="32" />
+			</Size>
+			<Windows>
+
+				<HorizontalResizeImage name="$parentBackground"
+					layer="background">
+					<Size>
+						<AbsPoint x="640" y="32" />
+					</Size>
+					<Sizes left="0" middle="640" right="0" />
+					<Anchors>
+						<Anchor point="topleft" relativePoint="topleft">
+						</Anchor>
+						<Anchor point="bottomright" relativePoint="bottomright" />
+					</Anchors>
+					<TexCoords>
+						<Left x="0" y="0" />
+						<Middle x="0" y="0" />
+						<Right x="0" y="0" />
+					</TexCoords>
+				</HorizontalResizeImage>
+
+
+				<Label name="$parentName" inherits="UO_Default_Label_Color"
+					font="font_body16" maxchars="256" textalign="leftcenter"
+					handleinput="false" layer="default" autoresizewidth="false">
+					<Size>
+						<AbsPoint x="180" y="32" />
+					</Size>
+					<Anchors>
+						<Anchor point="leftcenter" relativePoint="leftcenter"
+							relativeTo="$parent">
+							<AbsPoint x="10" y="0" />
+						</Anchor>
+					</Anchors>
+				</Label>
+
+				<Button name="$parentEdit">
+					<Size>
+						<AbsPoint x="24" y="24" />
+					</Size>
+					<Anchors>
+						<Anchor point="left" relativePoint="left" relativeTo="$parentName">
+							<AbsPoint x="190" y="0" />
+						</Anchor>
+					</Anchors>
+					<TexCoords>
+						<Normal x="256" y="64" />
+						<NormalHighlit x="288" y="64" />
+						<Pressed x="256" y="64" />
+					</TexCoords>
+					<EventHandlers>
+						<EventHandler event="OnLButtonUp" function="LootConfiguration.EditRule" />
+						<!--<EventHandler event="OnMouseOver" function="ContainerWindow.LockTooltip" 
+							/> -->
+					</EventHandlers>
+				</Button>
+				<Button name="$parentDecrease">
+					<Size>
+						<AbsPoint x="24" y="24" />
+					</Size>
+					<Anchors>
+						<Anchor point="topleft" relativePoint="topleft" relativeTo="$parentEdit">
+							<AbsPoint x="24" y="0" />
+						</Anchor>
+					</Anchors>
+					<TexCoords>
+						<Normal x="448" y="32" />
+						<NormalHighlit x="480" y="32" />
+						<Pressed x="448" y="32" />
+					</TexCoords>
+					<EventHandlers>
+						<EventHandler event="OnLButtonUp"
+							function="LootConfiguration.DecreasePriority" />
+						<!--<EventHandler event="OnMouseOver" function="ContainerWindow.LockTooltip" 
+							/> -->
+					</EventHandlers>
+				</Button>
+
+				<Button name="$parentIncrease">
+					<Size>
+						<AbsPoint x="24" y="24" />
+					</Size>
+					<Anchors>
+						<Anchor point="topleft" relativePoint="topleft" relativeTo="$parentDecrease">
+							<AbsPoint x="24" y="0" />
+						</Anchor>
+					</Anchors>
+					<TexCoords>
+						<Normal x="384" y="32" />
+						<NormalHighlit x="416" y="32" />
+						<Pressed x="384" y="32" />
+					</TexCoords>
+					<EventHandlers>
+						<EventHandler event="OnLButtonUp"
+							function="LootConfiguration.IncreasePriority" />
+						<!--<EventHandler event="OnMouseOver" function="ContainerWindow.LockTooltip" 
+							/> -->
+					</EventHandlers>
+				</Button>
+				<Button name="$parentDelete">
+					<Size>
+						<AbsPoint x="24" y="24" />
+					</Size>
+					<Anchors>
+						<Anchor point="topleft" relativePoint="topleft" relativeTo="$parentIncrease">
+							<AbsPoint x="24" y="0" />
+						</Anchor>
+					</Anchors>
+					<TexCoords>
+						<Normal x="128" y="32" />
+						<NormalHighlit x="160" y="32" />
+						<Pressed x="128" y="32" />
+					</TexCoords>
+					<EventHandlers>
+						<EventHandler event="OnLButtonUp" function="LootConfiguration.DeleteRule" />
+						<!--<EventHandler event="OnMouseOver" function="ContainerWindow.LockTooltip" 
+							/> -->
+					</EventHandlers>
+				</Button>
+			</Windows>
+		</Window>
+
+		<Window name="ConditionDisplayTemplate">
+			<Size>
+				<AbsPoint x="300" y="32" />
+			</Size>
+			<Windows>
+
+				<HorizontalResizeImage name="$parentBackground"
+					layer="background">
+					<Size>
+						<AbsPoint x="640" y="32" />
+					</Size>
+					<Sizes left="0" middle="640" right="0" />
+					<Anchors>
+						<Anchor point="topleft" relativePoint="topleft">
+						</Anchor>
+						<Anchor point="bottomright" relativePoint="bottomright" />
+					</Anchors>
+					<TexCoords>
+						<Left x="0" y="0" />
+						<Middle x="0" y="0" />
+						<Right x="0" y="0" />
+					</TexCoords>
+				</HorizontalResizeImage>
+
+				<Label name="$parentName" inherits="UO_Default_Label_Color"
+					font="myriad_16" maxchars="256" textalign="leftcenter" handleinput="false"
+					layer="default" autoresizewidth="false">
+					<Size>
+						<AbsPoint x="240" y="30" />
+					</Size>
+					<Anchors>
+						<Anchor point="left" relativePoint="left">
+							<AbsPoint x="10" y="0" />
+						</Anchor>
+					</Anchors>
+				</Label>
+				<Button name="$parentDelete" inherits="UO_Default_GumpButton">
+					<Size>
+						<AbsPoint x="24" y="24" />
+					</Size>
+					<Anchors>
+						<Anchor point="left" relativePoint="left">
+							<AbsPoint x="270" y="0" />
+						</Anchor>
+					</Anchors>
+					<TexCoords>
+						<Normal x="128" y="32" />
+						<NormalHighlit x="160" y="32" />
+						<Pressed x="128" y="32" />
+					</TexCoords>
+					<EventHandlers>
+						<EventHandler event="OnLButtonUp"
+							function="LootConfiguration.DeleteCondition" />
+						<!--<EventHandler event="OnMouseOver" function="ContainerWindow.LockTooltip" 
+							/> -->
+					</EventHandlers>
+				</Button>
+			</Windows>
+		</Window>
+
+
+
+	</Windows>
+</Interface>

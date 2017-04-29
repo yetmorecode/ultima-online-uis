@@ -1,0 +1,1 @@
+LoadResources( "./UserInterface/"..SystemData.Settings.Interface.customUiName.."/Mods/UOCartographerMod", "UOCartographerWindow.xml", "UOCartographerWindow.xml" )

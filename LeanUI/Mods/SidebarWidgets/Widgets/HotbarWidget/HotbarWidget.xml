@@ -1,0 +1,139 @@
+<Interface xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:noNamespaceSchemaLocation="../../Interface.xsd">
+    <Windows>
+    	
+    	<!-- Button template for a single hotbar button -->
+    	<Button alpha="0.7" name="HotbarWidgetButtonDef" inherits="ActionButtonDef" sticky="false">
+            <Size>
+                <AbsPoint x="50" y="50" />
+            </Size>
+            <Anchors>
+                <Anchor point="middle" relativePoint="middle" relativeTo="$parentHorizHandle">
+                    <AbsPoint x="20" y="0"/>
+                </Anchor>
+            </Anchors>
+            <EventHandlers>
+                <EventHandler event="OnLButtonDown" function="HotbarWidget.ItemLButtonDown" />
+                <EventHandler event="OnLButtonUp" function="HotbarWidget.ItemLButtonUp" />
+                <EventHandler event="OnRButtonUp" function="HotbarWidget.ItemRButtonUp" />
+                <EventHandler event="OnMouseOver" function="HotbarWidget.ItemMouseOver" />
+                <EventHandler event="OnMouseOverEnd" function="ItemProperties.ClearMouseOverItem" />
+            </EventHandlers>
+        </Button>
+        
+        <!-- A single hotbar row of six buttons -->
+        <Window name="HotbarWidgetRowTemplate">
+            <Size>
+                <AbsPoint x="100" y="110" />
+            </Size>
+            <Windows>
+                <Button name="$parentButton1" inherits="HotbarWidgetButtonDef" id="1">
+                    <Anchors>
+                        <Anchor point="topleft" relativePoint="topleft">
+                            <AbsPoint x="16" y="0" />
+                        </Anchor>
+                    </Anchors>
+                </Button>
+                <Button name="$parentButton2" inherits="HotbarWidgetButtonDef" id="2" >
+                    <Anchors>
+                        <Anchor point="topright" relativePoint="topleft" relativeTo="$parentButton1">
+                            <AbsPoint x="5" y="0" />
+                        </Anchor>
+                    </Anchors>              
+                </Button>
+                <Button name="$parentButton3" inherits="HotbarWidgetButtonDef" id="3" >
+                    <Anchors>
+                        <Anchor point="topright" relativePoint="topleft" relativeTo="$parentButton2">
+                            <AbsPoint x="5" y="0" />
+                        </Anchor>
+                    </Anchors>                              
+                </Button>
+                <Button name="$parentButton4" inherits="HotbarWidgetButtonDef" id="4" >
+                    <Anchors>
+                        <Anchor point="topright" relativePoint="topleft" relativeTo="$parentButton3">
+                            <AbsPoint x="5" y="0" />
+                        </Anchor>
+                    </Anchors>                              
+                </Button>
+                <Button name="$parentButton5" inherits="HotbarWidgetButtonDef" id="5" >
+                    <Anchors>
+                        <Anchor point="topright" relativePoint="topleft" relativeTo="$parentButton4">
+                            <AbsPoint x="5" y="0" />
+                        </Anchor>
+                    </Anchors>                              
+                </Button>
+                <Button name="$parentButton6" inherits="HotbarWidgetButtonDef" id="6" >
+                    <Anchors>
+                        <Anchor point="topright" relativePoint="topleft" relativeTo="$parentButton5">
+                        	<AbsPoint x="5" y="0" />
+                        </Anchor>
+                    </Anchors>                              
+                </Button>
+                
+                
+                <Button name="$parentButton7" inherits="HotbarWidgetButtonDef" id="7" >
+                    <Anchors>
+                        <Anchor point="topleft" relativePoint="topleft" relativeTo="$parentButton1">
+                            <AbsPoint x="0" y="56" />
+                        </Anchor>
+                    </Anchors>                              
+                </Button>
+                <Button name="$parentButton8" inherits="HotbarWidgetButtonDef" id="8" >
+                    <Anchors>
+                        <Anchor point="topright" relativePoint="topleft" relativeTo="$parentButton7">
+                            <AbsPoint x="5" y="0" />
+                        </Anchor>
+                    </Anchors>                              
+                </Button>
+                <Button name="$parentButton9" inherits="HotbarWidgetButtonDef" id="9" >
+                    <Anchors>
+                        <Anchor point="topright" relativePoint="topleft" relativeTo="$parentButton8">
+                            <AbsPoint x="5" y="0" />
+                        </Anchor>
+                    </Anchors>                              
+                </Button>
+                <Button name="$parentButton10" inherits="HotbarWidgetButtonDef" id="10" >
+                    <Anchors>
+                        <Anchor point="topright" relativePoint="topleft" relativeTo="$parentButton9">
+                            <AbsPoint x="5" y="0" />
+                        </Anchor>
+                    </Anchors>                              
+                </Button>
+                <Button name="$parentButton11" inherits="HotbarWidgetButtonDef" id="11" >
+                    <Anchors>
+                        <Anchor point="topright" relativePoint="topleft" relativeTo="$parentButton10">
+                            <AbsPoint x="5" y="0" />
+                        </Anchor>
+                    </Anchors>                              
+                </Button>
+                <Button name="$parentButton12" inherits="HotbarWidgetButtonDef" id="12" >
+                    <Anchors>
+                        <Anchor point="topright" relativePoint="topleft" relativeTo="$parentButton11">
+                            <AbsPoint x="5" y="0" />
+                        </Anchor>
+                    </Anchors>                              
+                </Button>
+                                
+            </Windows>
+        </Window>
+        
+        <!-- A hotbar widget with two hotbar rows -->
+        <Window name="HotbarWidgetTemplate">
+        	<Size>
+                <AbsPoint x="100" y="220" />
+            </Size>
+        	<Windows>
+        		<Window name="HotbarWidgetRow1" inherits="HotbarWidgetRowTemplate">
+        			
+        		</Window>
+        		<Window name="HotbarWidgetRow2" inherits="HotbarWidgetRowTemplate">
+                    <Anchors>
+                        <Anchor point="topleft" relativePoint="topleft" relativeTo="HotbarWidgetRow1">
+                            <AbsPoint x="0" y="110" />
+                        </Anchor>
+                    </Anchors>  
+                </Window>
+        	</Windows>
+        </Window>
+    </Windows>
+</Interface>

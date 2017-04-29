@@ -1,0 +1,154 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Interface xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../Interface.xsd">
+
+	<!-- Assets -->
+	<Include file="Textures/Textures.xml" />
+	<Include file="Fonts/Fonts.xml" />
+	<Include file="Icons/Icons.xml" />
+	
+	<Assets>
+        <Texture name="lean_new_box_background" file="Textures/box_background_new.dds" />
+    </Assets>
+	
+	<!-- Custom Assets -->
+	<Include file="Fonts.xml" />
+	
+
+	<!-- Templates -->
+	<Include file="Source/VerticalScrollBarTemplates.xml" />
+	<Include file="Source/HorizontalScrollBarTemplates.xml" />
+	<Include file="Source/WindowFrameTemplates.xml" />
+	<Include file="Source/legacy-ui-templates.xml"/>
+	<Include file="Source/StatusBarTemplates.xml" />
+	<Include file="Source/UO_Housing_Templates.xml" />
+    <Include file="Source/MapCommon.xml" />
+
+	<!-- Core Usage UIs -->
+	<Include file="Source/ResizeWindow.xml"/>
+	<Include file="Source/MenuBarWindow.xml" />
+	<Include file="Source/MainMenuWindow.xml" />
+	<Include file="Source/SettingsWindow.xml" />
+	<Include file="Source/ObjectHandle.xml" />
+
+	<!-- Basic UIs -->
+	<Include file="Source/ContextMenu.xml" />
+	<Include file="Source/DamageWindow.xml" />
+	<Include file="Source/ItemProperties.xml" />
+	<Include file="Source/CharacterAbilities.xml" />
+	<Include file="Source/GenericQuantity.xml" />
+	<Include file="Source/DragWindow.xml" />
+	<Include file="Source/TargetWindow.xml" />
+	<Include file="Source/ActionOverrides.xml" />
+	
+	<!-- Uncritical UIs -->
+	<Include file="Source/ChannelWindow.xml" />
+	<Include file="Source/QueryWindow.xml" />
+	<Include file="Source/MacroWindow.xml" />
+	<Include file="Source/ActionsWindow.xml" />
+	<Include file="Source/ActionEditWindow.xml" />
+	<Include file="Source/MacroEditWindow.xml" />
+	<Include file="Source/MacroPickerWindow.xml" />
+	<Include file="Source/LegacyRunebook.xml"/>
+	<Include file="Source/Spellbook.xml" />
+	<Include file="Source/BookTemplate.xml" />
+	<Include file="Source/CharacterSheet.xml" />
+	<Include file="Source/Organizer.xml" />
+	<Include file="Source/CustomizeHouseWindow.xml" />
+	<Include file="Source/HuePickerWindow.xml" />
+	<Include file="Source/CourseMapWindow.xml" />
+	
+	<!-- UOSA default -->
+	<Include file="Source/Hotbar.xml" />
+	<Include file="Source/ContainerWindow.xml" />
+	<Include file="Source/Windows/StaticTextWindow.xml" />
+	<Include file="Source/OverheadText.xml" />
+	<Include file="Source/StatusWindow.xml" />
+	<Include file="Source/PaperdollWindow.xml" />
+	<Include file="Source/MobileHealthBar.xml" />
+	<Include file="Source/TrackingPointer.xml" /> <!-- for map -->
+	<Include file="Source/MapWindow.xml" />
+	<Include file="Source/RadarWindow.xml" />
+	<Include file="Source/PetWindow.xml" />
+	<Include file="Source/SkillsWindow.xml" />
+	<Include file="Source/SkillsTracker.xml" />
+	
+	<!-- Extra UIs -->
+	<Include file="Source/Shopkeeper.xml" />
+	<Include file="Source/BuffDebuffWindow.xml" />
+	<Include file="Source/AdvancedBuff.xml" />
+	<Include file="Source/TradeWindow.xml" />
+	
+	<Include file="Source/SingleLineTextEntry.xml" />
+	<Include file="Source/Generic/TwoButtonDialog.xml" />
+	<Include file="Source/GenericGump.xml" />
+
+	<!-- Remove this one once all the gumps are fixed -->
+	<!--<Include file="Source/Generic/KnownBrokenGump.xml" />-->
+
+	<!-- Script Files -->
+	<Scripts>
+		<Script file="Interface.lua" />
+		<Script file="Source/InterfaceAPI.lua" />
+		<Script file="Source/Helper/BitOperations.lua" />
+		<Script file="Source/StringUtils.lua" />
+		<Script file="Source/GGManager.lua" />
+		<Script file="Source/Generic/UO_GenericGump.lua" />
+		<Script file="Source/DamageWindow.lua" />
+		<Script file="Source/HotbarSystem.lua" />
+		<Script file="Source/OverheadText.lua" />
+		<Script file="Source/ObjectHandle.lua" />
+		<Script file="Source/HealthBarColor.lua" />
+		<Script file="Source/NameColor.lua" />
+		<Script file="Source/Windows/StaticTextWindow.lua"/>
+		<Script file="Source/HealthBarManager.lua"/>
+		<Script file="Source/GumpsParsing.lua"/>
+		
+		<Script file="Source/Exploit/vaarg.lua" />
+		
+		<!-- Passive -->
+		<Script file="Source/Actions.lua"/>
+		<Script file="Source/ActionEditWindow.lua" />
+		<Script file="Source/ActionsWindow.lua" />
+		<Script file="Source/MacroEditWindow.lua" />
+		<Script file="Source/MacroPickerWindow.lua" />
+		<Script file="Source/MacroWindow.lua" />
+		<Script file="Source/LegacyRunebook.lua"/>
+		<Script file="Source/LegacyRunebookLoader.lua"/>
+		<Script file="Source/ContextMenu.lua" />
+		<Script file="Source/MiniTextuePack.lua" />
+		<Script file="Source/HuePickerWindow.lua" />
+		<Script file="Source/ChannelWindow.lua" />
+		<Script file="Source/CharacterSheet.lua" />
+		<Script file="Source/CreaturesDB.lua" />
+		<Script file="Source/OrganizerMain.lua" />
+		<Script file="Source/Organizer.lua" />
+		<Script file="Source/CourseMapWindow.lua" />
+		
+		<Script file="Source/Services/Player.lua" />
+		<Script file="Source/Services/Item.lua" />
+        
+		<!-- Extra UI -->
+		<Script file="Source/StatusWindow.lua" />
+		<Script file="Source/AdvancedBuff.lua" />
+		<Script file="Source/BuffDebuffWindow.lua" />
+		<Script file="Source/StatusWindow.lua" />
+		<Script file="Source/TargetWindow.lua" />
+		<Script file="Source/CharacterAbilities.lua" />
+		<Script file="Source/PaperdollWindow.lua" />
+		<Script file="Source/MobileHealthBar.lua" />
+		<Script file="Source/TrackingPointer.lua" />
+		<Script file="Source/Waypoints.lua" />
+		<Script file="Source/MapCommon.lua" />
+		<Script file="Source/MapWindow.lua" />
+		<Script file="Source/RadarWindow.lua" />
+		<Script file="Source/PetWindow.lua" />
+		<Script file="Source/SkillsWindow.lua" />
+		<Script file="Source/Skillstracker.lua" />
+		<Script file="Source/BookTemplate.lua" />
+		<Script file="Source/TradeWindow.lua" />
+		
+		<Script file="test.lua" />
+		
+	</Scripts>
+
+</Interface>

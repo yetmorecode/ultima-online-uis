@@ -1,0 +1,222 @@
+<Interface xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:noNamespaceSchemaLocation="../../Interface.xsd">
+	<Scripts>
+		<Script file="Source/MapWindow.lua" />
+	</Scripts>
+	<Windows>
+
+		<Window name="MapLegendItemTemplate">
+			<Size>
+				<AbsPoint x="250" y="60" />
+			</Size>
+			<EventHandlers>
+				<EventHandler event="OnLButtonUp" function="MapWindow.LegendIconOnLButtonUp" />
+			</EventHandlers>
+			<Windows>
+				<DynamicImage name="$parentIcon">
+					<Anchors>
+						<Anchor point="topleft" relativePoint="center" relativeTo="">
+							<AbsPoint x="25" y="30" />
+						</Anchor>
+					</Anchors>
+				</DynamicImage>
+				<Label name="$parentText" font="UO_DefaultText" linespacing="20"
+					maxchars="30" textalign="left" autoresize="true" handleinput="false"
+					wordwrap="true">
+					<Size>
+						<AbsPoint x="150" y="10" />
+					</Size>
+					<Anchors>
+						<Anchor point="left" relativePoint="left" relativeTo="">
+							<AbsPoint x="60" y="0" />
+						</Anchor>
+					</Anchors>
+					<Color r="255" g="255" b="255" a="255" />
+				</Label>
+			</Windows>
+		</Window>
+
+		<!-- MAP WINDOW -->
+		<Window name="MapWindow" movable="true">
+			<Size>
+				<AbsPoint x="716" y="776" />
+			</Size>
+			<Anchors>
+				<Anchor point="center" relativePoint="center" relativeTo="">
+					<AbsPoint x="0" y="0" />
+				</Anchor>
+			</Anchors>
+			<EventHandlers>
+				<EventHandler event="OnInitialize" function="MapWindow.Initialize" />
+				<EventHandler event="OnShutdown" function="MapWindow.Shutdown" />
+				<EventHandler event="OnShown" function="MapWindow.OnShown" />
+				<EventHandler event="OnHidden" function="MapWindow.OnHidden" />
+				<EventHandler event="OnUpdate" function="MapWindow.OnUpdate" />
+				<EventHandler event="OnRButtonUp" function="UO_DefaultWindow.CloseDialog" />
+			</EventHandlers>
+			<Windows>
+
+				<!-- Default chrome. Alter this at your own peril. -->
+				<FullResizeImage name="$parentChrome" alpha="0.7"
+					inherits="UO_Simple_Black_Background">
+					<Anchors>
+						<Anchor point="topleft" relativePoint="topleft" />
+						<Anchor point="bottomright" relativePoint="bottomright" />
+					</Anchors>
+				</FullResizeImage>
+				<!-- End of default chrome boilerplate code -->
+
+				<Window name="$parentTitle">
+					<Size>
+						<AbsPoint x="250" y="25" />
+					</Size>
+					<Anchors>
+						<Anchor point="topleft" relativePoint="topleft">
+							<AbsPoint x="0" y="0" />
+						</Anchor>
+					</Anchors>
+					<Windows>
+						<Label name="$parentLabel" font="myriad_18">
+							<Size>
+								<AbsPoint x="250" y="25" />
+							</Size>
+							<Anchors>
+								<Anchor point="topleft" relativePoint="topleft">
+									<AbsPoint x="10" y="8" />
+								</Anchor>
+							</Anchors>
+							<Color r="255" g="215" b="0" />
+
+						</Label>
+
+					</Windows>
+					<EventHandlers>
+						<EventHandler event="OnRButtonUp" function="MapWindow.ShowFacetSelection" />
+					</EventHandlers>
+				</Window>
+
+				<Window name="$parentSubTitle">
+					<Size>
+						<AbsPoint x="250" y="25" />
+					</Size>
+					<Anchors>
+						<Anchor point="bottomleft" relativePoint="topleft"
+							relativeTo="$parentTitle">
+							<AbsPoint x="0" y="3" />
+						</Anchor>
+					</Anchors>
+					<Windows>
+						<Label name="$parentLabel" font="myriad_16">
+							<Size>
+								<AbsPoint x="250" y="25" />
+							</Size>
+							<Anchors>
+								<Anchor point="topleft" relativePoint="topleft">
+									<AbsPoint x="10" y="8" />
+								</Anchor>
+							</Anchors>
+							<Color r="212" g="175" b="55" />
+						</Label>
+					</Windows>
+					<EventHandlers>
+						<EventHandler event="OnRButtonUp" function="MapWindow.ShowAreaSelection" />
+					</EventHandlers>
+				</Window>
+
+				<MaskWindow alpha="0.9" name="Map" movable="false"
+					popable="false" layer="default" handleinput="true">
+					<Size>
+						<AbsPoint x="690" y="665" />
+					</Size>
+					<Anchors>
+						<Anchor point="topleft" relativePoint="topleft">
+							<AbsPoint x="1" y="60" />
+						</Anchor>
+					</Anchors>
+					<EventHandlers>
+						<EventHandler event="OnMouseWheel" function="MapWindow.MapOnMouseWheel" />
+					</EventHandlers>
+					<Windows>
+						<DynamicImage name="$parentImage" handleinput="true"
+							layer="default" scaleAnchor="center">
+							<Size>
+								<AbsPoint x="1100" y="1100" />
+							</Size>
+							<Anchors>
+								<Anchor point="center" relativePoint="center" />
+							</Anchors>
+							<EventHandlers>
+								<EventHandler event="OnLButtonDown" function="MapWindow.MapOnLButtonDown" />
+								<EventHandler event="OnLButtonUp" function="MapWindow.MapOnLButtonUp" />
+								<EventHandler event="OnRButtonUp" function="MapWindow.MapOnRButtonUp" />
+								<EventHandler event="OnLButtonDblClk" function="MapWindow.MapOnLButtonDblClk" />
+								<EventHandler event="OnMouseDrag" function="MapWindow.MapMouseDrag" />
+								<EventHandler event="OnMouseOver" function="MapWindow.OnMouseOver" />
+								<EventHandler event="OnMouseOverEnd" function="MapWindow.OnMouseOverEnd" />
+							</EventHandlers>
+						</DynamicImage>
+					</Windows>
+				</MaskWindow>
+
+				<Label name="$parentCoordsText" font="UO_DefaultText"
+					maxchars="64" textalign="left" handleinput="false">
+					<Size>
+						<AbsPoint x="200" y="32" />
+					</Size>
+					<Anchors>
+						<Anchor point="topleft" relativePoint="topleft" relativeTo="Map">
+							<AbsPoint x="5" y="5" />
+						</Anchor>
+					</Anchors>
+				</Label>
+
+
+				<Button name="$parentResizeButton" inherits="CoreWindowResizeButtonBottomRight"
+					layer="popup">
+					<Anchors>
+						<Anchor point="bottomright" relativePoint="bottomright"
+							relativeTo="">
+							<AbsPoint x="0" y="0" />
+						</Anchor>
+					</Anchors>
+					<EventHandlers>
+						<EventHandler event="OnLButtonDown" function="MapWindow.OnResizeBegin" />
+					</EventHandlers>
+				</Button>
+
+			</Windows>
+		</Window>
+
+		<Window name="LegendWindow" movable="false">
+			<Size>
+				<AbsPoint x="250" y="740" />
+			</Size>
+			<Anchors>
+				<Anchor point="right" relativePoint="left" relativeTo="MapWindow">
+					<AbsPoint x="0" y="10" />
+				</Anchor>
+			</Anchors>
+			<Windows>
+				<!-- Body background -->
+				<FullResizeImage name="$parent_UO_DefaultWindowBackground"
+					inherits="UO_Default_Black_Background" handleinput="false">
+					<Anchors>
+						<Anchor point="topleft" relativePoint="topleft" />
+						<Anchor point="bottomright" relativePoint="bottomright" />
+					</Anchors>
+				</FullResizeImage>
+
+				<!-- Inner Frame Boilerplate -->
+				<FullResizeImage name="$parentFrame"
+					inherits="UO_Default_Inner_Window_Frame">
+					<Anchors>
+						<Anchor point="topleft" relativePoint="topleft" />
+						<Anchor point="bottomright" relativePoint="bottomright" />
+					</Anchors>
+				</FullResizeImage>
+				<!-- End of Inner Frame Boilerplate -->
+			</Windows>
+		</Window>
+
+	</Windows>
+</Interface>

@@ -1,0 +1,119 @@
+<Interface xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:noNamespaceSchemaLocation="../../Interface.xsd">
+    <Scripts>
+        <Script file="LeanWindowOverview.lua" />
+    </Scripts>
+    <Windows>
+    	<Window name="LeanWindowOverviewTemplate">
+            <Size>
+                <AbsPoint x="500" y="40" />
+            </Size>
+            <EventHandlers>
+            	<EventHandler event="OnLButtonDown" function="LeanWindowOverview.OnItemClicked" />
+            </EventHandlers>
+            <Windows>
+                <Label name="$parentName" font="myriad_18" maxchars="64" textalign="left" draganddrop="true">
+                    <Size>
+                        <AbsPoint x="500" y="20" />
+                    </Size> 
+                    <Anchors>
+                        <Anchor point="topleft" relativePoint="topleft">
+                        	<AbsPoint x="20" y="15" />
+                        </Anchor>
+                    </Anchors>
+                </Label>
+            </Windows>
+        </Window>
+    	
+    	<VerticalResizeImage name="LeanWindowOverviewScrollThumb" texture="UO_Core" alpha="0.5" texturescale="0.33">
+            <Size>
+                <AbsPoint x="12" y="6" />
+            </Size>
+            <Sizes top="6" middle="6" bottom="10" />
+            <TexCoords>
+                <Top x="244" y="159" />
+                <Middle x="244" y="171" />
+                <Bottom x="244" y="183" />
+            </TexCoords>
+        </VerticalResizeImage>
+        
+        <Window name="LeanWindowOverview" movable="true" layer="background">
+            <Size>
+                <AbsPoint x="500" y="400" />
+            </Size>
+            
+            <EventHandlers>
+                <EventHandler event="OnInitialize" function="LeanWindowOverview.Initialize" />
+                <EventHandler event="OnRButtonUp" function="UO_DefaultWindow.CloseDialog" />
+            </EventHandlers>
+            <Windows>
+                <!-- Body background -->
+                <FullResizeImage name="$parentWindowBackground"
+                    alpha="0.5" inherits="UO_Simple_Black_Background">
+                    <Anchors>
+                        <Anchor point="topleft" relativePoint="topleft" />
+                        <Anchor point="bottomright" relativePoint="bottomright" />
+                    </Anchors>
+                </FullResizeImage>
+                
+                <!-- Window title -->
+                <Label name="$parentTitle" font="myriad_19" textalign="center">
+                    <Size>
+                        <AbsPoint x="500" y="20" />
+                    </Size>
+                    <Anchors>
+                        <Anchor point="topleft" relativePoint="topleft">
+                            <AbsPoint x="0" y="15" />
+                        </Anchor>
+                    </Anchors>
+                </Label>
+                
+                <!-- Scrolled area -->
+                <ScrollWindow name="$parentScroll" childscrollwindow="LeanWindowOverviewScrollChild" scrollbar="LeanWindowOverviewScrollbar" lineheight="60"  draganddrop="true" autoHideScrollBar="true" popable="false">
+                    <Anchors>
+                        <Anchor point="topleft" relativePoint="topleft">
+                            <AbsPoint x="0" y="45" />
+                        </Anchor>
+                        <Anchor point="bottomright" relativePoint="bottomright"/>
+                    </Anchors>
+                    <EventHandlers>
+                    </EventHandlers>
+                    <Windows>           
+                        <Window name="LeanWindowOverviewScrollChild" popable="false">
+                            <Anchors>
+                                <Anchor point="topleft" relativePoint="topleft">
+                                    <AbsPoint x="0" y="0" />
+                                </Anchor>
+                                <Anchor point="bottomright" relativePoint="bottomright"/>
+                            </Anchors>
+                            <Windows>
+                            	<Window name="$parentWindow">
+                            		<Size>
+                                        <AbsPoint x="100" y="2000" />
+                                    </Size>
+                                    <Anchors>
+                                        <Anchor point="topleft" relativePoint="topleft">
+                                            <AbsPoint x="0" y="10" />
+                                        </Anchor>
+                                    </Anchors>
+                            	</Window>
+                            </Windows>
+                        </Window>
+                        <VerticalScrollbar name="LeanWindowOverviewScrollbar" alpha="0.5" thumb="LeanWindowOverviewScrollThumb">
+                            <Anchors>
+                                <Anchor point="topright" relativePoint="topleft">
+                                    <AbsPoint x="-7" y="0"/>
+                                </Anchor>
+                                <Anchor point="bottomright" relativePoint="bottomright">
+                                    <AbsPoint x="0" y="0"/>
+                                </Anchor>
+                            </Anchors>
+                            <ActiveZoneOffset x="500" y="500" />
+                            <ThumbOffset x="0" y="0" />
+                        </VerticalScrollbar>
+                    </Windows>
+                </ScrollWindow>
+            </Windows>
+        </Window>
+    </Windows>
+</Interface>

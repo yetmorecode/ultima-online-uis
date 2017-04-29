@@ -1,0 +1,159 @@
+<Interface xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:noNamespaceSchemaLocation="../../Interface.xsd">
+	<Windows>
+		<Label name="SettingsWidgetLabel" font="myriad_16" linespacing="20" autoresize="true" wordwrap="true" maxchars="64" textalign="left">
+            <Color r="255" g="255" b="255" a="255" />
+        </Label>
+        
+		<Window name="SettingsWidgetCheckButton">
+			<Size>
+				<AbsPoint x="350" y="32" />
+			</Size>
+			<Windows>
+				<Button name="$parentButton" inherits="UO_Default_Check_Button">
+					<Anchors>
+						<Anchor point="left" relativePoint="left">
+							<AbsPoint x="5" y="0" />
+						</Anchor>
+					</Anchors>
+				</Button>
+				<Label name="$parentLabel" inherits="SettingsWidgetLabel">
+					<Size>
+						<AbsPoint x="700" y="16" />
+					</Size>
+					<Anchors>
+						<Anchor point="right" relativePoint="left" relativeTo="$parentButton">
+							<AbsPoint x="5" y="0" />
+						</Anchor>
+					</Anchors>
+					<Color r="255" g="255" b="255" a="255" />
+				</Label>
+			</Windows>
+		</Window>
+		<Window name="SettingsWidgetTemplate">
+			<Size>
+				<AbsPoint x="100" y="350" />
+			</Size>
+			<Windows>
+			     <!-- 
+				<FullResizeImage name="$parentChrome" alpha="0.8"
+					inherits="UO_Simple_Black_Background">
+					<Anchors>
+						<Anchor point="topleft" relativePoint="topleft" />
+						<Anchor point="bottomright" relativePoint="bottomright" />
+					</Anchors>
+				</FullResizeImage>
+				 -->
+				<Label name="$parentTitle" font="UO_DefaultText" maxchars="64"
+					textalign="left">
+					<Size>
+						<AbsPoint x="300" y="25" />
+					</Size>
+					<Anchors>
+						<Anchor point="topleft" relativePoint="topleft">
+							<AbsPoint x="25" y="10" />
+						</Anchor>
+					</Anchors>
+				</Label>
+				<Window name="$parentLegacyContainers" inherits="SettingsWidgetCheckButton">
+					<Anchors>
+						<Anchor point="topleft" relativePoint="topleft" relativeTo="$parentTitle">
+							<AbsPoint x="10" y="25" />
+						</Anchor>
+					</Anchors>
+					<EventHandlers>
+                        <EventHandler event="OnLButtonUp" function="SettingsWidget.ToggleLegacyContainers" />
+                    </EventHandlers>
+				</Window>
+				<Window name="$parentQuickLoot" inherits="SettingsWidgetCheckButton">
+					<Anchors>
+						<Anchor point="bottomleft" relativePoint="topleft"
+							relativeTo="$parentLegacyContainers">
+							<AbsPoint x="0" y="0" />
+						</Anchor>
+					</Anchors>
+					<EventHandlers>
+                        <EventHandler event="OnLButtonUp" function="SettingsWidget.ToggleQuickLoot" />
+                    </EventHandlers>
+				</Window>
+				<Window name="$parentHideBlues" inherits="SettingsWidgetCheckButton">
+                    <Anchors>
+                        <Anchor point="bottomleft" relativePoint="topleft"
+                            relativeTo="$parentQuickLoot">
+                            <AbsPoint x="0" y="0" />
+                        </Anchor>
+                    </Anchors>
+                    <EventHandlers>
+                        <EventHandler event="OnLButtonUp" function="SettingsWidget.TogglePlayerNames" />
+                    </EventHandlers>
+                </Window>
+                <Window name="$parentLootWindow" inherits="SettingsWidgetCheckButton">
+                    <Anchors>
+                        <Anchor point="bottomleft" relativePoint="topleft"
+                            relativeTo="$parentHideBlues">
+                            <AbsPoint x="0" y="0" />
+                        </Anchor>
+                    </Anchors>
+                    <EventHandlers>
+                        <EventHandler event="OnLButtonUp" function="SettingsWidget.ToggleLootWindow" />
+                    </EventHandlers>
+                </Window>
+                <Window name="$parentEncyclopedia" inherits="SettingsWidgetCheckButton">
+                    <Anchors>
+                        <Anchor point="bottomleft" relativePoint="topleft"
+                            relativeTo="$parentLootWindow">
+                            <AbsPoint x="0" y="0" />
+                        </Anchor>
+                    </Anchors>
+                    <EventHandlers>
+                        <EventHandler event="OnLButtonUp" function="SettingsWidget.ToggleEncyclopedia" />
+                    </EventHandlers>
+                </Window>
+                <Window name="$parentStatusWindow" inherits="SettingsWidgetCheckButton">
+                    <Anchors>
+                        <Anchor point="bottomleft" relativePoint="topleft"
+                            relativeTo="$parentEncyclopedia">
+                            <AbsPoint x="0" y="0" />
+                        </Anchor>
+                    </Anchors>
+                    <EventHandlers>
+                        <EventHandler event="OnLButtonUp" function="SettingsWidget.ToggleStatusWindow" />
+                    </EventHandlers>
+                </Window>
+                <Window name="$parentScan" inherits="SettingsWidgetCheckButton">
+                    <Anchors>
+                        <Anchor point="bottomleft" relativePoint="topleft"
+                            relativeTo="$parentStatusWindow">
+                            <AbsPoint x="0" y="0" />
+                        </Anchor>
+                    </Anchors>
+                    <EventHandlers>
+                        <EventHandler event="OnLButtonUp" function="SettingsWidget.ToggleScan" />
+                    </EventHandlers>
+                </Window>
+                <Window name="$parentMenubar" inherits="SettingsWidgetCheckButton">
+                    <Anchors>
+                        <Anchor point="bottomleft" relativePoint="topleft"
+                            relativeTo="$parentScan">
+                            <AbsPoint x="0" y="0" />
+                        </Anchor>
+                    </Anchors>
+                    <EventHandlers>
+                        <EventHandler event="OnLButtonUp" function="SettingsWidget.ToggleMenubar" />
+                    </EventHandlers>
+                </Window>
+                <Window name="$parentTradeQuest" inherits="SettingsWidgetCheckButton">
+                    <Anchors>
+                        <Anchor point="bottomleft" relativePoint="topleft"
+                            relativeTo="$parentMenubar">
+                            <AbsPoint x="0" y="0" />
+                        </Anchor>
+                    </Anchors>
+                    <EventHandlers>
+                        <EventHandler event="OnLButtonUp" function="SettingsWidget.ToggleTradeQuest" />
+                    </EventHandlers>
+                </Window>
+			</Windows>
+		</Window>
+	</Windows>
+</Interface>

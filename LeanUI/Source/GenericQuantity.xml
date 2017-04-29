@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Interface xmlns:xsi="http://www.w3.org/1001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../Interface.xsd">
+  <Scripts>
+    <Script file="Source/GenericQuantity.lua" />
+  </Scripts>
+  <Windows>
+    <Window name="GenericQuantityWindowTemplate" movable="true"  >
+      <Size>
+        <AbsPoint x="160" y="80" />
+      </Size>
+      <EventHandlers>
+        <EventHandler event="OnInitialize" function="GenericQuantity.Initialize" />
+        <EventHandler event="OnShutdown" function="GenericQuantity.Shutdown" />
+        <EventHandler event="OnMouseWheel" function="GenericQuantity.OnMouseWheel" />
+        <EventHandler event="OnLButtonDblClk" function="GenericQuantity.OnKeyEnter" />
+        <EventHandler event="OnKeyEscape" function="GenericQuantity.OnKeyEscape"/>
+      </EventHandlers>
+      <Windows>
+        <!-- Default chrome. Alter this at your own peril. --> 
+        <FullResizeImage alpha="0.5" name="$parentChrome" inherits="UO_Simple_Black_Background" > 
+          <Anchors> 
+            <Anchor point="topleft" relativePoint="topleft"/> 
+            <Anchor point="bottomright" relativePoint="bottomright"/> 
+          </Anchors> 
+        </FullResizeImage>
+        <FullResizeImage alpha="0.5" name="$parentFrame" inherits="UO_Simple_Frame" layer="background" frameonly="false">
+          <Anchors>
+            <Anchor point="topleft" relativePoint="topleft" />
+            <Anchor point="bottomright" relativePoint="bottomright" />
+          </Anchors>
+        </FullResizeImage>
+        <!-- End of default chrome boilerplate code -->
+        
+        <Window name="$parentAmount" movable="false"  >
+          <Size>
+            <AbsPoint x="50" y="25" />
+          </Size>
+          <Anchors>
+            <Anchor point="topleft" relativePoint="topleft">
+              <AbsPoint x="10" y="10" />
+            </Anchor>
+          </Anchors>
+          <Windows>
+            <EditBox name="$parentInput" font="UO_DefaultText" maxchars="16" scrolling="horz" history="false" taborder="0" input="numbers" >
+              <Size>
+                <AbsPoint x="50" y="30" />
+              </Size>
+              <Anchors>
+                <Anchor point="topleft" relativePoint="topleft" >
+                  <AbsPoint x="0" y="0" />
+                </Anchor>
+              </Anchors>
+              <EventHandlers>
+                <EventHandler event="OnTextChanged" function="GenericQuantity.OnTextChanged" />
+                <EventHandler event="OnKeyEnter" function="GenericQuantity.OnKeyEnter" />
+              </EventHandlers>
+            </EditBox>
+          </Windows>
+        </Window>
+        
+        <SliderBar name="$parentSliderBar" inherits="UO_Default_Horizontal_SliderBar" >
+          <Size>
+            <AbsPoint x="75" y="20" />
+          </Size>
+          <Anchors>
+            <Anchor point="topright" relativePoint="topright">
+              <AbsPoint x="-10" y="10" />
+            </Anchor>
+          </Anchors>
+          <EventHandlers>
+            <EventHandler event="OnSlide" function="GenericQuantity.UpdateQuantity" />
+          </EventHandlers>
+        </SliderBar>
+        
+        <Button name="$parentButton" text="ok" sticky="false" textalign="top" 
+                texturescale="0.75" backgroundtexture="UO_Core" highlighttexture="UO_Core"   
+                font="UO_Default_Small_Button_Text">
+          <Size>
+            <AbsPoint x="63" y="28" />
+          </Size>
+          <Anchors>
+            <Anchor point="bottom" relativePoint="bottom">
+              <AbsPoint x="0" y="-10" />
+            </Anchor>
+          </Anchors>
+          <TextColors>
+            <Normal  r="23" g="24" b="19" a="255" />
+            <NormalHighlit r="23" g="24" b="19" a="255" />
+            <Pressed r="23" g="24" b="19" a="255" />
+            <PressedHighlit r="23" g="24" b="19" a="255" />
+            <PressedHighlit r="23" g="24" b="19" a="255" />
+            <Disabled r="23" g="24" b="19" a="255" />
+          </TextColors>
+          <TextOffset x="0" y="8" />
+          <TexCoords>
+            <Normal x="0" y="244" />
+            <NormalHighlit x="85" y="244" />
+            <Pressed x="85" y="244" />
+            <PressedHighlit x="85" y="244" />
+            <Disabled x="0" y="244" />
+          </TexCoords>
+          <EventHandlers>
+            <EventHandler event="OnLButtonUp" function="GenericQuantity.OnOkay"/>
+          </EventHandlers>
+        </Button>
+      </Windows>
+    </Window>
+  </Windows>
+</Interface>

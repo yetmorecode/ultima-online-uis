@@ -1,0 +1,499 @@
+<Interface xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:noNamespaceSchemaLocation="../../Interface.xsd">
+	<Windows>
+		<Button name="MainMenuWidgetButton" sticky="false"
+			backgroundtexture="hud_image" highlighttexture="hud_image"
+			overlaytexture="hud_image" overlayhighlighttexture="hud_image"
+			texturescale="0.7">
+			<Size>
+				<AbsPoint x="34" y="32" />
+			</Size>
+			<Anchors>
+				<Anchor point="topleft" relativePoint="topleft">
+					<AbsPoint x="0" y="0" />
+				</Anchor>
+			</Anchors>
+		</Button>
+
+
+		<Window name="MainMenuWidgetItem">
+			<Size>
+				<AbsPoint x="130" y="32" />
+			</Size>
+		</Window>
+
+		<Window name="MainMenuWidgetTemplate">
+			<Size>
+				<AbsPoint x="100" y="280" />
+			</Size>
+			<Windows>
+				<!-- <FullResizeImage name="$parentChrome" alpha="0.8" inherits="UO_Simple_Black_Background"> 
+					<Anchors> <Anchor point="topleft" relativePoint="topleft" /> <Anchor point="bottomright" 
+					relativePoint="bottomright" /> </Anchors> </FullResizeImage> -->
+				<Window name="$parentToggleProfile" inherits="MainMenuWidgetItem">
+					<Windows>
+						<Button name="$parentButton" inherits="MainMenuWidgetButton">
+							<OverlayTexCoords>
+								<Normal x="0" y="596" />
+								<NormalHighlit x="0" y="596" />
+								<Pressed x="53" y="596" />
+								<PressedHighlit x="53" y="596" />
+								<Disabled x="0" y="596" />
+							</OverlayTexCoords>
+						</Button>
+						<Label name="$parentLabel" font="myriad_16">
+							<Size>
+								<AbsPoint x="100" y="32" />
+							</Size>
+							<Anchors>
+								<Anchor point="topleft" relativePoint="topleft">
+									<AbsPoint x="44" y="10" />
+								</Anchor>
+							</Anchors>
+						</Label>
+					</Windows>
+					<Anchors>
+						<Anchor point="topleft" relativePoint="topleft">
+							<AbsPoint x="30" y="10" />
+						</Anchor>
+					</Anchors>
+					<EventHandlers>
+						<EventHandler event="OnLButtonUp" function="SidebarMainMenuWidget.OnPaperdoll" />
+					</EventHandlers>
+				</Window>
+
+				<Window name="$parentToggleMap" inherits="MainMenuWidgetItem">
+					<Anchors>
+						<Anchor point="topright" relativePoint="topleft"
+							relativeTo="$parentToggleProfile">
+							<AbsPoint x="20" y="0" />
+						</Anchor>
+					</Anchors>
+					<Windows>
+						<Button name="$parentButton" inherits="MainMenuWidgetButton">
+							<OverlayTexCoords>
+								<Normal x="0" y="326" />
+								<NormalHighlit x="0" y="326" />
+								<Pressed x="53" y="326" />
+								<PressedHighlit x="53" y="326" />
+								<Disabled x="0" y="326" />
+							</OverlayTexCoords>
+						</Button>
+						<Label name="$parentLabel" font="myriad_16">
+							<Size>
+								<AbsPoint x="100" y="32" />
+							</Size>
+							<Anchors>
+								<Anchor point="topleft" relativePoint="topleft">
+									<AbsPoint x="44" y="10" />
+								</Anchor>
+							</Anchors>
+						</Label>
+					</Windows>
+					<EventHandlers>
+                        <EventHandler event="OnLButtonUp" function="SidebarMainMenuWidget.OnMap" />
+                    </EventHandlers>
+				</Window>
+
+				<Window name="$parentToggleSkills" inherits="MainMenuWidgetItem">
+					<Windows>
+						<Button name="$parentButton" inherits="MainMenuWidgetButton">
+							<OverlayTexCoords>
+								<Normal x="0" y="650" />
+								<NormalHighlit x="53" y="650" />
+								<Pressed x="53" y="650" />
+								<PressedHighlit x="53" y="650" />
+								<Disabled x="0" y="650" />
+							</OverlayTexCoords>
+						</Button>
+						<Label name="$parentLabel" font="myriad_16">
+							<Size>
+								<AbsPoint x="100" y="32" />
+							</Size>
+							<Anchors>
+								<Anchor point="topleft" relativePoint="topleft">
+									<AbsPoint x="44" y="10" />
+								</Anchor>
+							</Anchors>
+						</Label>
+					</Windows>
+					<Anchors>
+						<Anchor point="bottomleft" relativePoint="topleft"
+							relativeTo="$parentToggleProfile">
+							<AbsPoint x="0" y="5" />
+						</Anchor>
+					</Anchors>
+					<EventHandlers>
+                        <EventHandler event="OnLButtonUp" function="SidebarMainMenuWidget.OnSkills" />
+                    </EventHandlers>
+				</Window>
+
+				<Window name="$parentToggleQuests" inherits="MainMenuWidgetItem">
+					<Anchors>
+						<Anchor point="topright" relativePoint="topleft"
+							relativeTo="$parentToggleSkills">
+							<AbsPoint x="20" y="0" />
+						</Anchor>
+					</Anchors>
+					<Windows>
+						<Button name="$parentButton" inherits="MainMenuWidgetButton">
+							<OverlayTexCoords>
+								<Normal x="0" y="434" />
+								<NormalHighlit x="53" y="434" />
+								<Pressed x="53" y="434" />
+								<PressedHighlit x="53" y="434" />
+								<Disabled x="0" y="434" />
+							</OverlayTexCoords>
+						</Button>
+						<Label name="$parentLabel" font="myriad_16">
+							<Size>
+								<AbsPoint x="100" y="32" />
+							</Size>
+							<Anchors>
+								<Anchor point="topleft" relativePoint="topleft">
+									<AbsPoint x="44" y="10" />
+								</Anchor>
+							</Anchors>
+						</Label>
+					</Windows>
+					<EventHandlers>
+                        <EventHandler event="OnLButtonUp" function="SidebarMainMenuWidget.OnQuests" />
+                    </EventHandlers>
+				</Window>
+
+				<Window name="$parentToggleVirtues" inherits="MainMenuWidgetItem">
+					<Windows>
+						<Button name="$parentButton" inherits="MainMenuWidgetButton">
+							<OverlayTexCoords>
+								<Normal x="0" y="489" />
+								<NormalHighlit x="0" y="489" />
+								<Pressed x="53" y="489" />
+								<PressedHighlit x="53" y="489" />
+								<Disabled x="0" y="489" />
+							</OverlayTexCoords>
+						</Button>
+						<Label name="$parentLabel" font="myriad_16">
+							<Size>
+								<AbsPoint x="100" y="32" />
+							</Size>
+							<Anchors>
+								<Anchor point="topleft" relativePoint="topleft">
+									<AbsPoint x="44" y="10" />
+								</Anchor>
+							</Anchors>
+						</Label>
+					</Windows>
+					<Anchors>
+						<Anchor point="bottomleft" relativePoint="topleft"
+							relativeTo="$parentToggleSkills">
+							<AbsPoint x="0" y="5" />
+						</Anchor>
+					</Anchors>
+					<EventHandlers>
+                        <EventHandler event="OnLButtonUp" function="SidebarMainMenuWidget.OnVirtues" />
+                    </EventHandlers>
+				</Window>
+
+				<Window name="$parentToggleHelp" inherits="MainMenuWidgetItem">
+					<Anchors>
+						<Anchor point="topright" relativePoint="topleft"
+							relativeTo="$parentToggleVirtues">
+							<AbsPoint x="20" y="0" />
+						</Anchor>
+					</Anchors>
+					<Windows>
+						<Button name="$parentButton" inherits="MainMenuWidgetButton">
+							<OverlayTexCoords>
+								<Normal x="0" y="434" />
+								<NormalHighlit x="53" y="434" />
+								<Pressed x="53" y="434" />
+								<PressedHighlit x="53" y="434" />
+								<Disabled x="0" y="434" />
+							</OverlayTexCoords>
+						</Button>
+						<Label name="$parentLabel" font="myriad_16">
+							<Size>
+								<AbsPoint x="100" y="32" />
+							</Size>
+							<Anchors>
+								<Anchor point="topleft" relativePoint="topleft">
+									<AbsPoint x="44" y="10" />
+								</Anchor>
+							</Anchors>
+						</Label>
+					</Windows>
+					<EventHandlers>
+                        <EventHandler event="OnLButtonUp" function="SidebarMainMenuWidget.OnHelp" />
+                    </EventHandlers>
+				</Window>
+
+                <Window name="$parentToggleChat" inherits="MainMenuWidgetItem">
+                    <Windows>
+                        <Button name="$parentButton" inherits="MainMenuWidgetButton">
+                            <OverlayTexCoords>
+                                <Normal         x="107" y="435" />
+                                <NormalHighlit  x="107" y="489" />
+                                <Pressed        x="107" y="489" />
+                                <PressedHighlit x="107" y="489" />
+                                <Disabled       x="107" y="435" />
+                            </OverlayTexCoords>
+                        </Button>
+                        <Label name="$parentLabel" font="myriad_16">
+                            <Size>
+                                <AbsPoint x="100" y="32" />
+                            </Size>
+                            <Anchors>
+                                <Anchor point="topleft" relativePoint="topleft">
+                                    <AbsPoint x="44" y="10" />
+                                </Anchor>
+                            </Anchors>
+                        </Label>
+                    </Windows>
+                    <Anchors>
+                        <Anchor point="bottomleft" relativePoint="topleft"
+                            relativeTo="$parentToggleVirtues">
+                            <AbsPoint x="0" y="5" />
+                        </Anchor>
+                    </Anchors>
+                    <EventHandlers>
+                        <EventHandler event="OnLButtonUp" function="SidebarMainMenuWidget.OnChat" />
+                    </EventHandlers>
+                </Window>
+
+                <Window name="$parentToggleGuild" inherits="MainMenuWidgetItem">
+                    <Anchors>
+                        <Anchor point="topright" relativePoint="topleft"
+                            relativeTo="$parentToggleChat">
+                            <AbsPoint x="20" y="0" />
+                        </Anchor>
+                    </Anchors>
+                    <Windows>
+                        <Button name="$parentButton" inherits="MainMenuWidgetButton">
+                            <OverlayTexCoords>
+                                <Normal         x="0"   y="542" />
+                                <NormalHighlit  x="53"  y="542" />
+                                <Pressed        x="53"  y="542" />
+                                <PressedHighlit x="53"  y="542" />
+                                <Disabled       x="0"   y="542" />
+                            </OverlayTexCoords>
+                        </Button>
+                        <Label name="$parentLabel" font="myriad_16">
+                            <Size>
+                                <AbsPoint x="100" y="32" />
+                            </Size>
+                            <Anchors>
+                                <Anchor point="topleft" relativePoint="topleft">
+                                    <AbsPoint x="44" y="10" />
+                                </Anchor>
+                            </Anchors>
+                        </Label>
+                    </Windows>
+                    <EventHandlers>
+                        <EventHandler event="OnLButtonUp" function="SidebarMainMenuWidget.OnGuild" />
+                    </EventHandlers>
+                </Window>
+
+
+				<Window name="$parentToggleSettings" inherits="MainMenuWidgetItem">
+					<Windows>
+						<Button name="$parentButton" inherits="MainMenuWidgetButton">
+							<OverlayTexCoords>
+								<Normal x="0" y="380" />
+								<NormalHighlit x="0" y="380" />
+								<Pressed x="53" y="380" />
+								<PressedHighlit x="53" y="380" />
+								<Disabled x="0" y="380" />
+							</OverlayTexCoords>
+						</Button>
+						<Label name="$parentLabel" font="myriad_16">
+							<Size>
+								<AbsPoint x="100" y="32" />
+							</Size>
+							<Anchors>
+								<Anchor point="topleft" relativePoint="topleft">
+									<AbsPoint x="44" y="10" />
+								</Anchor>
+							</Anchors>
+						</Label>
+					</Windows>
+					<Anchors>
+						<Anchor point="bottomleft" relativePoint="topleft"
+							relativeTo="$parentToggleChat">
+							<AbsPoint x="0" y="20" />
+						</Anchor>
+					</Anchors>
+					<EventHandlers>
+                        <EventHandler event="OnLButtonUp" function="SidebarMainMenuWidget.OnSettings" />
+                    </EventHandlers>
+				</Window>
+
+				<Window name="$parentToggleActions" inherits="MainMenuWidgetItem">
+					<Anchors>
+						<Anchor point="topright" relativePoint="topleft"
+							relativeTo="$parentToggleSettings">
+							<AbsPoint x="20" y="0" />
+						</Anchor>
+					</Anchors>
+					<Windows>
+						<Button name="$parentButton" inherits="MainMenuWidgetButton">
+							<OverlayTexCoords>
+								<Normal x="0" y="434" />
+								<NormalHighlit x="53" y="434" />
+								<Pressed x="53" y="434" />
+								<PressedHighlit x="53" y="434" />
+								<Disabled x="0" y="434" />
+							</OverlayTexCoords>
+						</Button>
+						<Label name="$parentLabel" font="myriad_16">
+							<Size>
+								<AbsPoint x="100" y="32" />
+							</Size>
+							<Anchors>
+								<Anchor point="topleft" relativePoint="topleft">
+									<AbsPoint x="44" y="10" />
+								</Anchor>
+							</Anchors>
+						</Label>
+					</Windows>
+					<EventHandlers>
+                        <EventHandler event="OnLButtonUp" function="SidebarMainMenuWidget.OnActions" />
+                    </EventHandlers>
+				</Window>
+
+				<Window name="$parentToggleMacros" inherits="MainMenuWidgetItem">
+					<Windows>
+						<Button name="$parentButton" inherits="MainMenuWidgetButton">
+							<OverlayTexCoords>
+								<Normal x="0" y="380" />
+								<NormalHighlit x="0" y="380" />
+								<Pressed x="53" y="380" />
+								<PressedHighlit x="53" y="380" />
+								<Disabled x="0" y="380" />
+							</OverlayTexCoords>
+						</Button>
+						<Label name="$parentLabel" font="myriad_16">
+							<Size>
+								<AbsPoint x="100" y="32" />
+							</Size>
+							<Anchors>
+								<Anchor point="topleft" relativePoint="topleft">
+									<AbsPoint x="44" y="10" />
+								</Anchor>
+							</Anchors>
+						</Label>
+					</Windows>
+					<Anchors>
+						<Anchor point="bottomleft" relativePoint="topleft"
+							relativeTo="$parentToggleSettings">
+							<AbsPoint x="0" y="5" />
+						</Anchor>
+					</Anchors>
+					<EventHandlers>
+                        <EventHandler event="OnLButtonUp" function="SidebarMainMenuWidget.OnMacros" />
+                    </EventHandlers>
+				</Window>
+
+				<Window name="$parentToggleAgents" inherits="MainMenuWidgetItem">
+					<Anchors>
+						<Anchor point="topright" relativePoint="topleft"
+							relativeTo="$parentToggleMacros">
+							<AbsPoint x="20" y="0" />
+						</Anchor>
+					</Anchors>
+					<Windows>
+						<Button name="$parentButton" inherits="MainMenuWidgetButton">
+							<OverlayTexCoords>
+								<Normal x="0" y="434" />
+								<NormalHighlit x="53" y="434" />
+								<Pressed x="53" y="434" />
+								<PressedHighlit x="53" y="434" />
+								<Disabled x="0" y="434" />
+							</OverlayTexCoords>
+						</Button>
+						<Label name="$parentLabel" font="myriad_16">
+							<Size>
+								<AbsPoint x="100" y="32" />
+							</Size>
+							<Anchors>
+								<Anchor point="topleft" relativePoint="topleft">
+									<AbsPoint x="44" y="10" />
+								</Anchor>
+							</Anchors>
+						</Label>
+					</Windows>
+					<EventHandlers>
+                        <EventHandler event="OnLButtonUp" function="SidebarMainMenuWidget.OnAgents" />
+                    </EventHandlers>
+				</Window>
+
+
+				<Window name="$parentLogout" inherits="MainMenuWidgetItem">
+					<Windows>
+						<Button name="$parentButton" inherits="MainMenuWidgetButton">
+							<OverlayTexCoords>
+								<Normal x="0" y="380" />
+								<NormalHighlit x="0" y="380" />
+								<Pressed x="53" y="380" />
+								<PressedHighlit x="53" y="380" />
+								<Disabled x="0" y="380" />
+							</OverlayTexCoords>
+						</Button>
+						<Label name="$parentLabel" font="myriad_16">
+							<Size>
+								<AbsPoint x="100" y="32" />
+							</Size>
+							<Anchors>
+								<Anchor point="topleft" relativePoint="topleft">
+									<AbsPoint x="44" y="10" />
+								</Anchor>
+							</Anchors>
+						</Label>
+					</Windows>
+					<Anchors>
+						<Anchor point="bottomleft" relativePoint="topleft"
+							relativeTo="$parentToggleMacros">
+							<AbsPoint x="0" y="5" />
+						</Anchor>
+					</Anchors>
+					<EventHandlers>
+                        <EventHandler event="OnLButtonUp" function="SidebarMainMenuWidget.OnLogout" />
+                    </EventHandlers>
+				</Window>
+
+				<Window name="$parentExit" inherits="MainMenuWidgetItem">
+					<Anchors>
+						<Anchor point="topright" relativePoint="topleft"
+							relativeTo="$parentLogout">
+							<AbsPoint x="20" y="0" />
+						</Anchor>
+					</Anchors>
+					<Windows>
+						<Button name="$parentButton" inherits="MainMenuWidgetButton">
+							<OverlayTexCoords>
+								<Normal x="0" y="434" />
+								<NormalHighlit x="53" y="434" />
+								<Pressed x="53" y="434" />
+								<PressedHighlit x="53" y="434" />
+								<Disabled x="0" y="434" />
+							</OverlayTexCoords>
+						</Button>
+						<Label name="$parentLabel" font="myriad_16">
+							<Size>
+								<AbsPoint x="100" y="32" />
+							</Size>
+							<Anchors>
+								<Anchor point="topleft" relativePoint="topleft">
+									<AbsPoint x="44" y="10" />
+								</Anchor>
+							</Anchors>
+						</Label>
+					</Windows>
+					<EventHandlers>
+                        <EventHandler event="OnLButtonUp" function="InterfaceCore.OnExitGame" />
+                    </EventHandlers>
+				</Window>
+
+			</Windows>
+		</Window>
+	</Windows>
+</Interface>

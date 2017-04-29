@@ -1,0 +1,103 @@
+<Interface xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../Interface.xsd">
+	<Scripts>
+		<Script file="Source/TargetWindow.lua" />
+	</Scripts>
+	<Windows>		
+		<Window name="TargetWindow" movable="true" draganddrop="true">
+			<Size>
+				<!--<AbsPoint x="295" y="90" />-->
+				<AbsPoint x="289" y="82" />
+			</Size>
+			<Anchors>
+				<Anchor point="center" relativePoint="center" relativeTo="">
+					<AbsPoint x="0" y="-484" />
+				</Anchor>
+			</Anchors>
+			<EventHandlers>
+				<EventHandler event="OnInitialize" function="TargetWindow.Initialize" />
+				<EventHandler event="OnShutdown" function="TargetWindow.Shutdown" />
+				
+				<EventHandler event="OnLButtonUp" function="TargetWindow.OnLClick" />
+				<EventHandler event="OnRButtonUp" function="TargetWindow.OnRClick" />
+				<EventHandler event="OnMouseOver" function="TargetWindow.OnMouseOver" />
+				<EventHandler event="OnMouseOverEnd" function="TargetWindow.OnMouseOverEnd" />
+			</EventHandlers>
+			<Windows>
+				<!-- Target  image -->
+				<CircleImage name="$parentPortrait" layer="popup" texture="target_portrait" numsegments="16" texturescale="0.843">
+					<Size>
+						<AbsPoint x="50" y="50" />				
+					</Size>
+					<Anchors>
+						<Anchor point="topleft" relativePoint="topleft">
+							<AbsPoint x="22" y="18" />
+						</Anchor>
+					</Anchors>
+					<TexCoords x="32" y="32" />
+					<EventHandlers>
+                        <EventHandler event="OnRButtonUp" function="TargetWindow.OnPortraitRClick" />
+                    </EventHandlers>
+				</CircleImage>
+				
+				<DynamicImage name="$parentObject" texture="" alpha="0.5" texturescale="1.0">
+					<Size>
+						<AbsPoint x="50" y="50" />				
+					</Size>
+					<Anchors>
+						<Anchor point="center" relativePoint="center" relativeTo="$parentPortrait">
+							<AbsPoint x="0" y="0" />
+						</Anchor>
+					</Anchors>
+					<TexCoords x="0" y="0" />
+				</DynamicImage>
+				
+				<!-- Name -->
+				<Label name="$parentName" font="UO_DefaultText" maxchars="64" textalign="center"   handleinput="false" wordwrap="true" linespacing="18">
+					<Size>
+						<AbsPoint x="200" y="32" />
+					</Size>
+					<Anchors>
+						<Anchor point="center" relativePoint="center">
+							<AbsPoint x="15" y="-7" />
+						</Anchor>
+					</Anchors>
+					<Color r="255" g="255" b="255" a="255" />
+				</Label>
+				
+				<!-- Name background area -->
+				<DynamicImage name="$parentImage" alpha="0.5" texture="hud_image" handleinput="false" layer="background" >
+					<Size>
+						<!--<AbsPoint x="295" y="90" />-->
+						<AbsPoint x="289" y="82" />
+					</Size>
+					<TexCoords x="0" y="144"/>
+				</DynamicImage>
+				
+				<DynamicImage name="$parentDisabled" texture="housing" handleinput="false" layer="background">
+					<Size>
+						<AbsPoint x="271" y="54" />
+					</Size>
+					<Anchors>
+						<Anchor point="topleft" relativePoint="topleft" relativeTo="">
+							<AbsPoint x="23" y="13" />
+						</Anchor>
+					</Anchors>
+					<TexCoords x="235" y="302" />
+				</DynamicImage>
+				
+				<!-- Bottom health bar -->
+				<StatusBar name="$parentHealthBar" alpha="0.5" inherits="TargetStatusBar">
+					<Size>
+						<AbsPoint x="242" y="7" />
+					</Size>					
+					<Anchors>				
+						<Anchor point="topleft" relativePoint="topleft">
+							<!--<AbsPoint x="45" y="71" />-->
+							<AbsPoint x="38" y="68" />
+						</Anchor>
+					</Anchors>					
+				</StatusBar>				
+			</Windows>
+		</Window>
+	</Windows>
+</Interface>

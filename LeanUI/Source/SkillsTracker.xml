@@ -1,0 +1,68 @@
+<Interface xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../Interface.xsd">
+  <Scripts>
+    <Script file="Source/SkillsTracker.lua" />
+  </Scripts>
+  <Windows>
+    <Window name="SkillsTrackerSkillTemplate" movable="false">
+      <Size>
+        <AbsPoint x="250" y="16" />
+      </Size>
+      <Windows>
+        <Label name="$parentName" font="UO_DefaultText" maxchars="64" textalign="left" handleinput="false">
+          <Size>
+            <AbsPoint x="150" y="16" />
+          </Size>
+          <Anchors>
+            <Anchor point="topleft" relativePoint="topleft" />
+          </Anchors>
+        </Label>
+        <Label name="$parentValue" font="UO_DefaultText" maxchars="64" textalign="right" handleinput="false">
+          <Size>
+            <AbsPoint x="100" y="16" />
+          </Size>
+          <Anchors>
+            <Anchor point="topright" relativePoint="topleft" relativeTo="$parentName" />
+          </Anchors>
+        </Label>
+      </Windows>
+    </Window>
+    
+    <Window name="SkillsTrackerWindow" movable="true">
+      <Size>
+        <AbsPoint x="250" y="15" />
+      </Size>
+      <Anchors>
+        <Anchor point="right" relativePoint="right">
+          <AbsPoint x="0" y="0" />
+        </Anchor>
+      </Anchors>
+      <EventHandlers>
+        <EventHandler event="OnInitialize" function="SkillsTracker.Initialize" />
+        <EventHandler event="OnShutdown" function="SkillsTracker.Shutdown" />
+        <EventHandler event="OnMouseOver" function="SkillsTracker.OnMouseOver"/>
+        <EventHandler event="OnMouseOverEnd" function="SkillsTracker.OnMouseLeave"/>
+      </EventHandlers>
+      <Windows>
+        <!-- The handle to drag the skills tracker around --> 
+        <FullResizeImage name="$parentDragHandle" alpha="0.3" inherits="UO_Simple_Black_Background">
+          <Anchors>
+            <Anchor point="topleft" relativePoint="topleft"/>
+            <Anchor point="bottomright" relativePoint="bottomright" />
+          </Anchors>
+        </FullResizeImage>
+        
+        
+        <Label name="$parentInfoText" font="UO_DefaultText" textalign="left" handleinput="false" wordwrap="true">
+          <Size>
+            <AbsPoint x="300" y="200" />
+          </Size>
+          <Anchors>
+            <Anchor point="bottomright" relativePoint="topright" relativeTo="$parentDragHandle" />
+          </Anchors>
+        </Label>
+        
+        <!-- Single skills line items are inserted dynamically by LUA -->
+      </Windows>
+    </Window>
+  </Windows>
+</Interface>

@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Interface xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../Interface.xsd">
+    <Assets>
+        
+
+        <Font name="UO_Default_Status_Window_Text" height="12" texsize="256" antialias="true" hinting="false" autohinting="true" outline="true" shadow="false"/>
+        <Font name="UO_Default_Small_Button_Text" face="MyriadPro" file="fonts/MyriadPro-Regular.ttf" height="12" texsize="256" antialias="true" hinting="false" autohinting="true" outline="false" shadow="false"/>
+        
+        <Font name="myriad_12" face="MyriadPro" file="fonts/MyriadPro-Regular.ttf" height="12" texsize="256" antialias="true" hinting="false" autohinting="true" outline="false" shadow="false"/>
+        <Font name="myriad_13" face="MyriadPro" file="fonts/MyriadPro-Regular.ttf" height="13" texsize="256" antialias="true" hinting="false" autohinting="true" outline="false" shadow="false"/>
+        <Font name="myriad_14" face="MyriadPro" file="fonts/MyriadPro-Regular.ttf" height="14" texsize="256" antialias="true" hinting="false" autohinting="true" outline="false" shadow="false"/>
+        <Font name="myriad_15" face="MyriadPro" file="fonts/MyriadPro-Regular.ttf" height="15" texsize="256" antialias="true" hinting="false" autohinting="true" outline="false" shadow="false"/>
+        <Font name="myriad_16" face="MyriadPro" file="fonts/MyriadPro-Regular.ttf" height="16" texsize="256" antialias="true" hinting="false" autohinting="true" outline="false" shadow="false"/>
+        <Font name="myriad_18" face="MyriadPro" file="fonts/MyriadPro-Regular.ttf" height="18" texsize="256" antialias="true" hinting="false" autohinting="true" outline="false" shadow="false"/>
+        <Font name="myriad_19" face="MyriadPro" file="fonts/MyriadPro-Regular.ttf" height="19" texsize="256" antialias="true" hinting="false" autohinting="true" outline="false" shadow="false"/>
+        <Font name="myriad_20" face="MyriadPro" file="fonts/MyriadPro-Regular.ttf" height="20" texsize="256" antialias="true" hinting="false" autohinting="true" outline="false" shadow="false"/>
+        <Font name="myriad_21" face="MyriadPro" file="fonts/MyriadPro-Regular.ttf" height="21" texsize="256" antialias="true" hinting="false" autohinting="true" outline="false" shadow="false"/>
+        <Font name="myriad_22" face="MyriadPro" file="fonts/MyriadPro-Regular.ttf" height="22" texsize="256" antialias="true" hinting="false" autohinting="true" outline="false" shadow="false"/>
+        
+        
+        
+        <Font name="UO_Lean_Small_Button_Text" face="MyriadPro" file="fonts/MyriadPro-Regular.ttf" height="12" texsize="256" antialias="true" hinting="false" autohinting="true" outline="false" shadow="false"/>
+        <Font name="UO_Lean_Medium_Button_Text" face="MyriadPro" file="fonts/MyriadPro-Regular.ttf" height="14" texsize="256" antialias="true" hinting="false" autohinting="true" outline="false" shadow="false"/>
+
+        <Font name="UO_Lean_Hotbar_Hotkey" face="MyriadPro" file="fonts/MyriadPro-Regular.ttf" height="14" texsize="256" antialias="true" hinting="false" autohinting="true" outline="true" shadow="false"/>
+        <Font name="UO_Lean_Hotbar_Quantity" face="MyriadPro" file="fonts/MyriadPro-Regular.ttf" height="17" texsize="256" antialias="true" hinting="false" autohinting="true" outline="false" shadow="false"/>
+        
+        <Font name="font_verdana_13" face="Verdana" file="fonts/verdana.ttf"
+            height="13" texsize="256" antialias="true" hinting="false"
+            autohinting="true" outline="false" shadow="false" bold="false" />
+        
+        <!-- <Font name="font_arialblack16" face="Arial Black" file="fonts/ariblk.ttf" height="16" texsize="512" antialias="true" hinting="true" autohinting="true" outline="false" shadow="true" shadowsize="1" /> -->
+        <!--  ****************************************  -->
+    </Assets>
+</Interface>

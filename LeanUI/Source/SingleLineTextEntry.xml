@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Interface xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../../Interface.xsd">
+	<Scripts>
+		<Script file="Source/SingleLineTextEntry.lua"/>
+	</Scripts>
+	<Windows>		
+		<EditBox name="SLTextEntrySingleLineEditBox" font="UO_DefaultText" background="UO_Simple_Black_Background"  maxchars="200" history="true" >	
+			<Size>
+				<AbsPoint x="470" y="40" />
+			</Size>
+			<TextOffset x="5" y="5" />
+			<Windows>	
+				<!-- Inner Frame Boilerplate -->
+				<FullResizeImage name="$parentFrame" inherits="UO_Default_Inner_Window_Frame" layer="popup">
+					<Anchors>
+						<Anchor point="topleft" relativePoint="topleft" />
+						<Anchor point="bottomright" relativePoint="bottomright" />
+					</Anchors>
+				</FullResizeImage>
+				<!-- End of Inner Frame Boilerplate -->
+			</Windows>
+		</EditBox>
+		
+		<Window name="SingleLineTextEntry" movable="true" >
+			<Size>
+				<AbsPoint x="530" y="200" />
+			</Size>
+			<Anchors>
+				<Anchor point="top" relativePoint="top">
+					<AbsPoint x="0" y="250" />
+				</Anchor>
+			</Anchors>
+			<EventHandlers>
+				<EventHandler event="OnInitialize" function="SingleLineTextEntry.Initialize"/>
+				<EventHandler event="OnShutdown" function="SingleLineTextEntry.Shutdown"/>
+				<EventHandler event="OnKeyEnter" function="SingleLineTextEntry.OnSubmit"/>
+				<EventHandler event="OnKeyEscape" function="SingleLineTextEntry.OnCancel" />
+				
+			</EventHandlers>
+			<Windows>
+				<!-- Default chrome. Alter this at your own peril. -->
+				<FullResizeImage alpha="0.4" name="$parentChrome" inherits="UO_Simple_Black_Background" > 
+					<Anchors> 
+						<Anchor point="topleft" relativePoint="topleft"/> 
+						<Anchor point="bottomright" relativePoint="bottomright"/> 
+					</Anchors> 
+				</FullResizeImage>
+				<FullResizeImage alpha="0.5" name="$parentFrame" inherits="UO_Simple_Frame" layer="background" frameonly="false">
+					<Anchors>
+						<Anchor point="topleft" relativePoint="topleft" />
+						<Anchor point="bottomright" relativePoint="bottomright" />
+					</Anchors>
+				</FullResizeImage>
+				<!-- End of default chrome boilerplate code -->
+				
+				<Label name="$parentSubtitle1" inherits="UO_Default_Label_Color" font="UO_Subtitle" textalign="center" autoresize="true" maxchars="1000" linespacing="20" wordwrap="true" >
+					<Size>
+						<AbsPoint x="480" y="0"/>
+					</Size>
+					<Anchors>
+						<Anchor point="topleft" relativePoint="topleft">
+							<AbsPoint x="20" y="20"/>
+						</Anchor>
+					</Anchors>
+				</Label>
+				
+				<Label name="$parentSubtitle2" inherits="UO_Default_Label_Color" font="UO_DefaultText" textalign="left" autoresize="true" maxchars="1000" linespacing="20" wordwrap="true" >
+					<Size>
+						<AbsPoint x="580" y="0"/>
+					</Size>
+					<Anchors>
+						<Anchor point="topleft" relativePoint="topleft" >
+							<AbsPoint x="25" y="120"/>
+						</Anchor>
+					</Anchors>
+				</Label>
+				
+				<EditBox name="$parentTextEntryBox" inherits="SLTextEntrySingleLineEditBox">
+					<Anchors>
+						<Anchor point="topleft" relativePoint="topleft" >
+							<AbsPoint x="25" y="80" />
+						</Anchor>
+					</Anchors>
+				</EditBox>
+				
+				<Button name="$parentSubmitButton" inherits="UO_Default_GumpButton" taborder="2" >
+					<Anchors>
+						<Anchor point="bottomleft" relativePoint="bottomleft" >
+							<AbsPoint x="120" y="-15" />
+						</Anchor>
+					</Anchors>
+					<EventHandlers>
+						<EventHandler event="OnLButtonUp" function="SingleLineTextEntry.OnSubmit"/>
+					</EventHandlers>
+				</Button>
+				<Button name="$parentCancelButton" inherits="UO_Default_GumpButton" taborder="3" >
+					<Anchors>
+						<Anchor point="bottomright" relativePoint="bottomright" >
+							<AbsPoint x="-120" y="-15" />
+						</Anchor>
+					</Anchors>
+					<EventHandlers>
+						<EventHandler event="OnLButtonUp" function="SingleLineTextEntry.OnCancel" />
+					</EventHandlers>
+				</Button>
+			</Windows>
+		</Window>
+	</Windows>
+</Interface>

@@ -20,6 +20,7 @@
 		<Script file="GameServices/StaticTextService/StaticTextService.lua" />
 		<Script file="GameServices/OverheadTextService/OverheadTextService.lua" />
 		<Script file="GameServices/MainMenuService/MainMenuService.lua" />
+		<Script file="GameServices/ClientService/Client.lua" />
 		
 		<!-- from default UI / port it.. -->
 		

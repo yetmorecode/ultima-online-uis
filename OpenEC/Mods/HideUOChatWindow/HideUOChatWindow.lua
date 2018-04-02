@@ -1,7 +1,5 @@
-HideUOChatWindow = {
-  FixedChat = false,
-  
+HideUOChatWindow = Class.define({
   Initialize = function () 
-    DebugService.PrintToChat("Hidechat")
+    --ModuleSetEnabled("UO_ChatWindow", false)
   end
-}
+})

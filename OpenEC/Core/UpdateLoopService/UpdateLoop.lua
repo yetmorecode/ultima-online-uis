@@ -17,9 +17,8 @@ UpdateLoop = Class.extend(UOObject, {
   
   Execute = function (self, timePassed) 
     if (self.deltaTime + timePassed * 1000 > self.interval) then 
-      
-      for k, v in pairs (self.callbacks) do
-        v (self)
+      for k, callback in pairs (self.callbacks) do
+        callback (self)
       end
       self.deltaTime = 0
     else

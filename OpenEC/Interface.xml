@@ -6,7 +6,10 @@
 		<Script file="Interface.lua" />
 
         <!-- class system -->
-        <Script file="Core/Class.lua" />		
+        <Script file="Core/Bootstrap/Bootstrap.lua" />
+		<Script file="Core/Bootstrap/Services.lua" />
+		
+        <Script file="Core/Bootstrap/Class.lua" />		
 		<Script file="Core/UOObject.lua" />
 		
 		<!-- Debug service -->
@@ -15,7 +18,9 @@
 		<!-- UpdateLoop service -->
 		<Script file="Core/UpdateLoopService/UpdateLoop.lua" />
 		<Script file="Core/UpdateLoopService/UpdateLoopService.lua" />
-		<Script file="Core/UpdateLoopService/Interface.lua" />
+		
+		<Script file="GameServices/StaticTextService/StaticTextService.lua" />
+		<Script file="GameServices/OverheadTextService/OverheadTextService.lua" />
 	</Scripts>
 
 </Interface>

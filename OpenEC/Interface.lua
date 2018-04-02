@@ -22,6 +22,14 @@ function Interface.CreatePlayWindowSet()
   OverheadTextService:AddChatListener("test", function (mobileId, text, extra)
     DebugService.PrintToChat(L"Chat: " .. text .. L" (" .. mobileId .. L")")
   end)
+  
+  MainMenuService:AddMainMenuListener("test", function (event)
+    if event == MainMenuService.EVENT_MENU_SHOW then
+      DebugService.PrintToChat("MainMenu shown..")
+    else
+      DebugService.PrintToChat("MainMenu hidden..")
+    end
+  end)
 end
 
 function Interface.Update(timePassed)

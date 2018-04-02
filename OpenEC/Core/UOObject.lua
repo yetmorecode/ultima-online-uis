@@ -1,5 +1,5 @@
-UOObject = {}
-
-function UOObject:toString ()
-  return "UOObject"
-end
+UOObject = Class.define({
+  toString = function (self)
+    return "UOObject"
+  end
+})

@@ -33,7 +33,7 @@ OverheadTextService = Class.define({
   Initialize = function (self)
     ModuleSetEnabled("UO_ChatWindow", true)
     LoadResources( 
-      "./UserInterface/"..SystemData.Settings.Interface.customUiName.."/Core/Game/OverheadTextService", 
+      "./UserInterface/"..SystemData.Settings.Interface.customUiName.."/GameServices/OverheadTextService", 
       "OverheadText.xml", 
       "OverheadText.xml" 
     )

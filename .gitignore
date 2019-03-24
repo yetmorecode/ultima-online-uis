@@ -2,3 +2,6 @@
 .settings
 .project
 .buildpath
+/Default
+/Default.zip
+/Custom_UI*

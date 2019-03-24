@@ -11,6 +11,7 @@
 		<Script file="Core/Bootstrap/Services.lua" />
 		<Script file="Core/Bootstrap/Class.lua" />
 		<Script file="Core/UOObject.lua" />
+		<Script file="Core/EC.lua" />
 		<Script file="Core/OpenEC.lua" />
 
 		<Script file="Core/DebugService/DebugService.lua" />

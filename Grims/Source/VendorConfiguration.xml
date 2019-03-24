@@ -1,0 +1,344 @@
+<Interface xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../Interface.xsd">
+  <Windows>
+
+    <Button name="VendorConfigurationTabButton" font="font_header16">
+      <Size>
+        <AbsPoint x="120" y="32" />
+      </Size>
+      <TextColors>
+        <Normal r="90" g="60" b="30" a="255" />
+        <!-- THIS IS USED AS THE UNSELECTED COLOR FOR SOME REASON-->
+        <NormalHighlit  r="120" g="90" b="60" a="255" />
+        <!-- THIS IS USED AS THE MOUSEOVER COLOR -->
+        <Pressed r="90" g="60" b="30" a="255" />
+        <PressedHighlit r="90" g="60" b="30" a="255" />
+        <Disabled r="0" g="0" b="0" a="255"  />
+        <!-- THIS IS USED AS THE SELECTED COLOR FOR SOME REASON -->
+      </TextColors>
+      <TextOffset x="0" y="-10" />
+      <Windows>
+        <HorizontalResizeImage name="$parentInactive" inherits="UO_Default_Medium_Tab_Disabled">
+          <Size>
+            <AbsPoint x="120" y="32" />
+          </Size>
+        </HorizontalResizeImage>
+        <HorizontalResizeImage name="$parentActive" inherits="UO_Default_Medium_Tab_Enabled" >
+          <Size>
+            <AbsPoint x="120" y="32" />
+          </Size>
+        </HorizontalResizeImage>
+      </Windows>
+    </Button>
+
+    <HorizontalResizeImage name="TabItemTemplate" texture="mytab">
+      <Size>
+        <AbsPoint x="300" y="2" />
+      </Size>
+      <Sizes left="0" middle="26" right="0" />
+      <TexCoords>
+        <Middle x="35" y="30" />
+      </TexCoords>
+    </HorizontalResizeImage>
+
+    <Window name="VendorConfiguration" movable="true" layer="popup">
+      <Size>
+        <AbsPoint x="760" y="660" />
+      </Size>
+      <Anchors>
+        <Anchor point="center" relativePoint="center" />
+      </Anchors>
+      <EventHandlers>
+        <EventHandler event="OnInitialize" function="VendorConfiguration.Initialize" />
+        <EventHandler event="OnShutdown" function="VendorConfiguration.Shutdown" />
+      </EventHandlers>
+      <Windows>
+        <!-- Default chrome. Alter this at your own peril. -->
+        <Window name="$parentChrome" inherits="UO_DefaultWindow">
+          <Anchors>
+            <Anchor point="topleft" relativePoint="topleft"/>
+            <Anchor point="bottomright" relativePoint="bottomright"/>
+          </Anchors>
+        </Window>
+
+
+
+
+        <Window name="VendorConfigurationSettingsContainer" popable="false">
+          <Size>
+            <AbsPoint x="400" y="300" />
+          </Size>
+          <Anchors>
+            <Anchor point="topleft" relativePoint="topleft">
+              <AbsPoint x="0" y="60"/>
+            </Anchor>
+            <Anchor point="bottomright" relativePoint="bottomright"/>
+          </Anchors>
+          <Windows>
+
+            <Label name="VendorConfigurationSettingsTitle" inherits="UO_Default_Label_Color" font="font_header16" maxchars="256" textalign="left" handleinput="false" layer="default" autoresizewidth="false">
+              <Size>
+                <AbsPoint x="260" y="30"/>
+              </Size>
+              <Anchors>
+                <Anchor point="topleft" relativePoint="topleft">
+                  <AbsPoint x="30" y="60" />
+                </Anchor>
+              </Anchors>
+            </Label>
+            <HorizontalResizeImage name="$parentHRule" inherits="MyHR" layer="secondary" handleinput="false">
+              <Size>
+                <AbsPoint x="300" y="8" />
+              </Size>
+              <Anchors>
+                <Anchor point="topleft" relativePoint="topleft">
+                  <AbsPoint x="30" y="80" />
+                </Anchor>
+              </Anchors>
+            </HorizontalResizeImage>
+
+           
+
+          </Windows>
+        </Window>
+
+        <Window name="VendorConfigurationItemContainer" popable="false">
+          <Size>
+            <AbsPoint x="700" y="300" />
+          </Size>
+          <Anchors>
+            <Anchor point="topleft" relativePoint="topleft">
+              <AbsPoint x="0" y="60"/>
+            </Anchor>
+            <Anchor point="bottomright" relativePoint="bottomright"/>
+          </Anchors>
+          <Windows>
+            <Label name="VendorConfigurationItemsTitle" inherits="UO_Default_Label_Color" font="font_header16" maxchars="256" textalign="left" handleinput="false" layer="default" autoresizewidth="false">
+              <Size>
+                <AbsPoint x="300" y="30"/>
+              </Size>
+              <Anchors>
+                <Anchor point="topleft" relativePoint="topleft">
+                  <AbsPoint x="30" y="60" />
+                </Anchor>
+              </Anchors>
+            </Label>
+            <Button name="$parentAddItem" backgroundtexture="mytexture" highlighttexture="mytexture" texturescale=".75" layer="popup" >
+              <Size>
+                <AbsPoint x="24" y="24" />
+              </Size>
+              <Anchors>
+                <Anchor point="topleft" relativePoint="topleft" relativeTo="VendorConfigurationItemsTitle">
+                  <AbsPoint x="630" y="0" />
+                </Anchor>
+              </Anchors>
+              <TexCoords>
+                <Normal x="128" y="64" />
+                <NormalHighlit x="160" y="64" />
+                <Pressed x="128" y="64"  />
+              </TexCoords>
+              <EventHandlers>
+                <EventHandler event="OnLButtonUp" function="VendorConfiguration.AddItem" />
+                <!--<EventHandler event="OnMouseOver" function="VendorConfiguration.AddItemTooltip" />-->
+              </EventHandlers>
+            </Button>
+            <HorizontalResizeImage name="$parentHItem" inherits="MyHR" layer="secondary" handleinput="false">
+              <Size>
+                <AbsPoint x="660" y="8" />
+              </Size>
+              <Anchors>
+                <Anchor point="topleft" relativePoint="topleft">
+                  <AbsPoint x="30" y="80" />
+                </Anchor>
+              </Anchors>
+            </HorizontalResizeImage>
+
+            <ScrollWindow name="ItemScrollWindow" childscrollwindow="ItemScrollWindowScrollChild" scrollbar="ItemScrollWindowScrollbar" lineheight="18" autoHideScrollBar="true">
+              <Size>
+                <AbsPoint x="660" y="480" />
+              </Size>
+              <Anchors>
+                <Anchor point="topleft" relativePoint="topleft" relativeTo="VendorConfigurationItemsTitle">
+                  <AbsPoint x="0" y="30" />
+                </Anchor>
+              </Anchors>
+              <Windows>
+                <VerticalScrollbar name="$parentScrollbar" inherits="StandardVertScroll" layer="overlay">
+                </VerticalScrollbar>
+                <Window name="$parentScrollChild" >
+                  <Size>
+                    <AbsPoint x="660" y="0"/>
+                  </Size>
+                  <Anchors>
+                    <Anchor point="topleft" relativePoint="topleft">
+                    </Anchor>
+                  </Anchors>
+                </Window>
+              </Windows>
+            </ScrollWindow>
+
+          </Windows>
+        </Window>
+
+
+
+
+
+        <!--TABS =====================================================================================================-->
+        <!--Draw this last so they are always on the top layer...-->
+        <HorizontalResizeImage name="$parentTabItem" inherits="TabItemTemplate">
+          <Size>
+            <AbsPoint x="700" y="2"/>
+          </Size>
+          <Anchors>
+            <Anchor point="bottomleft" relativePoint="bottomleft" relativeTo="$parentItemsTab" >
+              <AbsPoint x="-10" y="0" />
+            </Anchor>
+          </Anchors>
+        </HorizontalResizeImage>
+        <Button name="$parentItemsTab" inherits="VendorConfigurationTabButton" >
+          <Anchors>
+            <Anchor point="topleft" relativePoint="topleft" >
+              <AbsPoint x="30" y="60" />
+            </Anchor>
+          </Anchors>
+          <EventHandlers>
+            <EventHandler event="OnLButtonUp" function="VendorConfiguration.ShowItems" />
+          </EventHandlers>
+        </Button>
+
+        <Button name="$parentSettingsTab" inherits="VendorConfigurationTabButton" >
+          <Anchors>
+            <Anchor point="topright" relativePoint="topleft" relativeTo="$parentItemsTab" >
+              <AbsPoint x="0" y="0" />
+            </Anchor>
+          </Anchors>
+          <EventHandlers>
+            <EventHandler event="OnLButtonUp" function="VendorConfiguration.ShowSettings" />
+          </EventHandlers>
+        </Button>
+
+      </Windows>
+    </Window>
+
+    <Window name="ItemDisplayTemplate">
+      <Size>
+        <AbsPoint x="660" y="32"/>
+      </Size>
+      <Windows>
+
+        <HorizontalResizeImage name="$parentBackground" texture="myrowbackground2" layer="background">
+          <Size>
+            <AbsPoint x="660" y="32" />
+          </Size>
+          <Sizes left="0" middle="640" right="0" />
+          <Anchors>
+            <Anchor point="topleft" relativePoint="topleft">
+            </Anchor>
+            <Anchor point="bottomright" relativePoint="bottomright"/>
+          </Anchors>
+          <TexCoords>
+            <Left x="0" y="0" />
+            <Middle x="0" y="0" />
+            <Right x="0" y="0" />
+          </TexCoords>
+        </HorizontalResizeImage>
+
+
+        <Label name="$parentName" inherits="UO_Default_Label_Color" font="font_body16" maxchars="256" textalign="leftcenter" handleinput="false" layer="default" autoresizewidth="false">
+          <Size>
+            <AbsPoint x="180" y="32"/>
+          </Size>
+          <Anchors>
+            <Anchor point="leftcenter" relativePoint="leftcenter" relativeTo="$parent">
+              <AbsPoint x="10" y="0" />
+            </Anchor>
+          </Anchors>
+        </Label>
+
+        <Label name="$parentPrice" inherits="UO_Default_Label_Color" font="font_body16" maxchars="256" textalign="rightcenter" handleinput="false" layer="default" autoresizewidth="false">
+          <Size>
+            <AbsPoint x="180" y="32"/>
+          </Size>
+          <Anchors>
+            <Anchor point="leftcenter" relativePoint="leftcenter" relativeTo="$parent">
+              <AbsPoint x="160" y="0" />
+            </Anchor>
+          </Anchors>
+        </Label>
+
+        <Label name="$parentDescription" inherits="UO_Default_Label_Color" font="font_body16" maxchars="256" textalign="leftcenter" handleinput="false" layer="default" autoresizewidth="false">
+          <Size>
+            <AbsPoint x="180" y="32"/>
+          </Size>
+          <Anchors>
+            <Anchor point="leftcenter" relativePoint="leftcenter" relativeTo="$parent">
+              <AbsPoint x="360" y="0" />
+            </Anchor>
+          </Anchors>
+        </Label>
+
+        <Button name="$parentSearch" backgroundtexture="mytexture" highlighttexture="mytexture" texturescale=".75">
+          <Size>
+            <AbsPoint x="24" y="24" />
+          </Size>
+          <Anchors>
+            <Anchor point="right" relativePoint="right" relativeTo="$parent">
+              <AbsPoint x="-60" y="0" />
+            </Anchor>
+          </Anchors>
+          <TexCoords>
+            <Normal x="320" y="32" />
+            <NormalHighlit x="352" y="32" />
+            <Pressed x="320" y="32"  />
+          </TexCoords>
+          <EventHandlers>
+            <EventHandler event="OnLButtonUp" function="VendorConfiguration.SearchItem" />
+            <!--<EventHandler event="OnMouseOver" function="ContainerWindow.LockTooltip" />-->
+          </EventHandlers>
+        </Button>
+
+        <Button name="$parentEdit" backgroundtexture="mytexture" highlighttexture="mytexture" texturescale=".75">
+          <Size>
+            <AbsPoint x="24" y="24" />
+          </Size>
+          <Anchors>
+            <Anchor point="right" relativePoint="right" relativeTo="$parent">
+              <AbsPoint x="-30" y="0" />
+            </Anchor>
+          </Anchors>
+          <TexCoords>
+            <Normal x="256" y="64" />
+            <NormalHighlit x="288" y="64" />
+            <Pressed x="256" y="64"  />
+          </TexCoords>
+          <EventHandlers>
+            <EventHandler event="OnLButtonUp" function="VendorConfiguration.EditItem" />
+            <!--<EventHandler event="OnMouseOver" function="ContainerWindow.LockTooltip" />-->
+          </EventHandlers>
+        </Button>
+      
+        <Button name="$parentDelete" backgroundtexture="mytexture" highlighttexture="mytexture" texturescale=".75" layer="default" >
+          <Size>
+            <AbsPoint x="24" y="24" />
+          </Size>
+          <Anchors>
+            <Anchor point="right" relativePoint="right" relativeTo="$parent">
+              <AbsPoint x="0" y="0" />
+            </Anchor>
+          </Anchors>
+          <TexCoords>
+            <Normal x="128" y="32" />
+            <NormalHighlit x="160" y="32" />
+            <Pressed x="128" y="32"  />
+          </TexCoords>
+          <EventHandlers>
+            <EventHandler event="OnLButtonUp" function="VendorConfiguration.DeleteItem" />
+            <!--<EventHandler event="OnMouseOver" function="ContainerWindow.LockTooltip" />-->
+          </EventHandlers>
+        </Button>
+      </Windows>
+    </Window>
+
+
+  </Windows>
+</Interface>

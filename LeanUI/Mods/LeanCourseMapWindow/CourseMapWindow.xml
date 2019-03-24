@@ -1,0 +1,142 @@
+<Interface xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:noNamespaceSchemaLocation="../../Interface.xsd">
+	<Windows>
+		<Window name="MapPoint" popable="false" alpha="0.6">
+			<Size>
+				<AbsPoint x="20" y="20" />
+			</Size>
+			<Windows>
+				<DynamicImage name="$parentPoint" texture="MapX">
+					<Size>
+						<AbsPoint x="20" y="20" />
+					</Size>
+					<Anchors>
+						<Anchor point="center" relativePoint="center" relativeTo="">
+							<AbsPoint x="0" y="0" />
+						</Anchor>
+					</Anchors>
+					<EventHandlers>
+						<EventHandler event="OnLButtonDown"
+							function="CourseMapWindow.MapPoint_OnLButtonDown" />
+					</EventHandlers>
+					<TexCoords x="0" y="0" />
+				</DynamicImage>
+				<Label name="$parentName" font="UO_DefaultText" maxchars="2"
+					textalign="right">
+					<Size>
+						<AbsPoint x="20" y="20" />
+					</Size>
+					<Anchors>
+						<Anchor point="left" relativePoint="right" relativeTo="$parentPoint" />
+					</Anchors>
+				</Label>
+			</Windows>
+		</Window>
+
+		<Window name="CourseMapWindow" movable="true">
+			<Size>
+				<AbsPoint x="10" y="10" />
+			</Size>
+			<Anchors>
+				<Anchor point="center" relativePoint="center" relativeTo="">
+					<AbsPoint x="0" y="0" />
+				</Anchor>
+			</Anchors>
+			<EventHandlers>
+				<EventHandler event="OnInitialize" function="CourseMapWindow.Initialize" />
+				<EventHandler event="OnShutdown" function="CourseMapWindow.Shutdown" />
+				<EventHandler event="OnUpdate" function="CourseMapWindow.OnUpdate" />
+				<EventHandler event="OnRButtonUp" function="UO_DefaultWindow.CloseDialog" />
+			</EventHandlers>
+			<Windows>
+				<FullResizeImage name="$parentChrome" alpha="0.7"
+					inherits="UO_Simple_Black_Background">
+					<Anchors>
+						<Anchor point="topleft" relativePoint="topleft" />
+						<Anchor point="bottomright" relativePoint="bottomright" />
+					</Anchors>
+				</FullResizeImage>
+
+				<Window name="$parentTitle">
+					<Size>
+						<AbsPoint x="280" y="20" />
+					</Size>
+					<Anchors>
+						<Anchor point="topleft" relativePoint="topleft">
+							<AbsPoint x="0" y="0" />
+						</Anchor>
+					</Anchors>
+					<Windows>
+						<Label name="$parentLabel" font="myriad_16" wordwrap="true" linespacing="26">
+							<Size>
+								<AbsPoint x="280" y="20" />
+							</Size>
+							<Anchors>
+								<Anchor point="topleft" relativePoint="topleft">
+									<AbsPoint x="10" y="8" />
+								</Anchor>
+							</Anchors>
+							<Color r="255" g="215" b="0" />
+
+						</Label>
+					</Windows>
+				</Window>
+
+                <Window name="$parentSubtitle">
+                    <Size>
+                        <AbsPoint x="280" y="20" />
+                    </Size>
+                    <Anchors>
+                        <Anchor point="topleft" relativePoint="topleft">
+                            <AbsPoint x="0" y="20" />
+                        </Anchor>
+                    </Anchors>
+                    <Windows>
+                        <Label name="$parentLabel" font="myriad_16" wordwrap="true" linespacing="26">
+                            <Size>
+                                <AbsPoint x="280" y="20" />
+                            </Size>
+                            <Anchors>
+                                <Anchor point="topleft" relativePoint="topleft">
+                                    <AbsPoint x="10" y="8" />
+                                </Anchor>
+                            </Anchors>
+                            <Color r="212" g="175" b="55" />
+
+                        </Label>
+                    </Windows>
+                </Window>
+
+				<MaskWindow alpha="0.9" name="$parentMask" movable="false"
+					popable="false" layer="default" handleinput="true">
+					<Anchors>
+						<Anchor point="topleft" relativePoint="topleft">
+							<AbsPoint x="0" y="50" />
+						</Anchor>
+						<Anchor point="bottomright" relativePoint="bottomright" />
+					</Anchors>
+					<EventHandlers>
+						<EventHandler event="OnMouseWheel" function="CourseMapWindow.MapOnMouseWheel" />
+					</EventHandlers>
+					<Windows>
+						<DynamicImage name="$parentTexture" popable="false">
+							<Size>
+								<AbsPoint x="0" y="0" />
+							</Size>
+							<Anchors>
+								<Anchor point="center" relativePoint="center" />
+							</Anchors>
+							<EventHandlers>
+								<EventHandler event="OnLButtonDown"
+									function="CourseMapWindow.Map_OnLButtonDown" />
+								<EventHandler event="OnLButtonUp"
+									function="CourseMapWindow.Map_OnLButtonUp" />
+							</EventHandlers>
+							<TexCoords x="0" y="0" />
+						</DynamicImage>
+					</Windows>
+				</MaskWindow>
+			</Windows>
+		</Window>
+	</Windows>
+</Interface>

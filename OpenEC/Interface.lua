@@ -15,6 +15,9 @@ function Interface.CreatePlayWindowSet()
   -- Register OpenEC standard services
   Bootstrap.InitializeServices()
   
+  
+  -- EXAMPLES -- debugging --
+  
   -- Listen to mobile name and chat updates..
   OverheadTextService:AddNameListener("test", function (mobileId, name)
     DebugService.PrintToChat(L"You see: " .. name .. L" (" .. mobileId .. L")")

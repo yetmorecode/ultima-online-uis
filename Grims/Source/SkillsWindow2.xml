@@ -1,0 +1,330 @@
+<Interface xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../Interface.xsd">
+  <Windows>
+
+    <Button name="MyIconBorder" layer="popup" backgroundtexture="mytexture" highlighttexture="mytexture" texturescale=".75">
+      <Size>
+        <AbsPoint x="24 " y="24" />
+      </Size>
+      <TexCoords>
+        <Normal x="0" y="0" />
+        <NormalHighlit x="0" y="0" />
+        <Pressed x="0" y="0"  />
+        <PressedHighlit x="0" y="0" />
+      </TexCoords>
+    </Button>
+
+    <Button name="MyIconBlah">
+      <Size>
+        <AbsPoint x="24 " y="24" />
+      </Size>
+      <Windows>
+      </Windows>
+    </Button>
+
+    <FullResizeImage name="Blah" layer="background" handleinput="false" texture="mytexture">
+      <Sizes>
+        <TopLeft x="4" y="4" />
+        <Middle x="4" y="4" />
+        <BottomRight x="4" y="4" />
+      </Sizes>
+      <TexCoords>
+        <TopLeft x="0" y="2" />
+        <TopCenter x="2" y="2" />
+        <TopRight x="28" y="2" />
+        <MiddleLeft x="0" y="6" />
+        <MiddleCenter x="4" y="6" />
+        <MiddleRight x="28" y="6" />
+        <BottomLeft x="0" y="26" />
+        <BottomCenter x="4" y="26" />
+        <BottomRight x="28" y="26" />
+      </TexCoords>
+      <Anchors>
+        <Anchor point="topleft" relativePoint="topleft"/>
+        <Anchor point="bottomright" relativePoint="bottomright"/>
+      </Anchors>
+    </FullResizeImage>
+
+    <Window name="SkillsWindow2" movable="true">
+      <Size>
+        <AbsPoint x="800" y="660" />
+      </Size>
+      <Anchors>
+        <Anchor point="center" relativePoint="center" />
+      </Anchors>
+      <EventHandlers>
+        <EventHandler event="OnInitialize" function="SkillsWindow2.Initialize" />
+        <!--<EventHandler event="OnShutdown" function="SkillsWindow2.Shutdown" />
+				<EventHandler event="OnUpdate" function="SkillsWindow2.OnUpdate" />-->
+      </EventHandlers>
+      <Windows>
+        <!-- Default chrome. Alter this at your own peril. -->
+        <Window name="$parentChrome" inherits="UO_DefaultWindow">
+          <Anchors>
+            <Anchor point="topleft" relativePoint="topleft"/>
+            <Anchor point="bottomright" relativePoint="bottomright"/>
+          </Anchors>
+        </Window>
+        <!-- End of default chrome boilerplate code -->
+        <!-- BUG: Figure out why wrapping tabs in a window breaks events...-->
+
+
+        
+        
+        <!--<Button name="bleh" inherits="MyIconBlah">
+          <Size>
+            <AbsPoint x="32" y="24" />
+          </Size>
+          <Windows>
+            <FullResizeImage name="x" inherits="Blah" />
+            <DynamicImage name="y" texturescale="1.0" handleinput="false" layer="background" texture="mytexture">
+              <Size>
+                <AbsPoint x="32" y="32" />
+              </Size>
+              <TexCoords x="32" y="32" />
+              <Anchors>
+                <Anchor point="topleft" relativePoint="topleft"/>
+              </Anchors>
+            </DynamicImage>
+          </Windows>
+          <EventHandlers>
+            <EventHandler event="OnLButtonUp" function="SkillsWindow2.Fuu" />
+          </EventHandlers>
+        </Button>-->
+
+        <Button name="TabAll" backgroundtexture="mytexture" highlighttexture="mytexture" texturescale="1.25" handleinput = "true" >
+          <Size>
+            <AbsPoint x="40" y="40" />
+          </Size>
+          <Anchors>
+            <Anchor point="topleft" relativePoint="topleft">
+              <AbsPoint x="100" y="50" />
+            </Anchor>
+          </Anchors>
+          <TexCoords>
+            <Normal x="0" y="64" />
+            <NormalHighlit x="32" y="64" />
+            <Pressed x="0" y="64"  />
+          </TexCoords>
+          <EventHandlers>
+            <EventHandler event="OnLButtonUp" function="SkillsWindow2.TabChange" />
+          </EventHandlers>
+        </Button>
+        <Button name="TabUsed" backgroundtexture="mytexture" highlighttexture="mytexture" texturescale="1.25" handleinput = "true" >
+          <Size>
+            <AbsPoint x="40 " y="40" />
+          </Size>
+          <Anchors>
+            <Anchor point="topleft" relativePoint="topleft">
+              <AbsPoint x="150" y="50" />
+            </Anchor>
+          </Anchors>
+          <TexCoords>
+            <Normal x="64" y="64" />
+            <NormalHighlit x="96" y="64" />
+            <Pressed x="64" y="64"  />
+          </TexCoords>
+          <EventHandlers>
+            <EventHandler event="OnLButtonUp" function="SkillsWindow2.TabChange" />
+          </EventHandlers>
+        </Button>
+
+        <ScrollWindow name="SkillsScrollWindow" childscrollwindow="SkillsScrollWindowScrollChild" scrollbar="SkillsScrollWindowScrollbar" lineheight="18" autoHideScrollBar="true">
+          <Size>
+            <AbsPoint x="700" y="500" />
+          </Size>
+          <Anchors>
+            <Anchor point="topleft" relativePoint="topleft">
+              <AbsPoint x="16" y="128" />
+            </Anchor>
+          </Anchors>
+          <Windows>
+            <VerticalScrollbar name="$parentScrollbar" inherits="StandardVertScroll" />
+            <Window name="$parentScrollChild" >
+              <Size>
+                <AbsPoint x="305" y="0"/>
+              </Size>
+              <Anchors>
+                <Anchor point="topleft" relativePoint="topleft"/>
+              </Anchors>
+            </Window>
+          </Windows>
+        </ScrollWindow>
+      </Windows>
+    </Window>
+
+
+
+    <Button name="SkillTemplate" draganddrop="false">
+      <Size>
+        <AbsPoint x="700" y="100" />
+      </Size>
+      <Windows>
+        <Button name="$parentButton" texturescale="1" drawchildrenfirst="true">
+          <Size>
+            <AbsPoint x="64" y="64" />
+          </Size>
+          <Windows>
+            <DynamicImage name="$parentIcon" texturescale="1.0" handleinput="false" layer="background">
+              <Size>
+                <AbsPoint x="64" y="64" />
+              </Size>
+              <Anchors>
+                <Anchor point="topleft" relativePoint="topleft"/>
+              </Anchors>
+            </DynamicImage>
+          </Windows>
+          <Anchors>
+            <Anchor point="topleft" relativePoint="topleft" relativeTo="$parent">
+              <AbsPoint x="0" y="0" />
+            </Anchor>
+          </Anchors>
+          <EventHandlers>
+            <EventHandler event="OnLButtonDown" function="SkillsWindow2.SkillLButtonDown" />
+            <EventHandler event="OnLButtonUp" function="SkillsWindow2.SkillLButtonUp" />
+            <EventHandler event="OnRButtonUp" function="SkillsWindow2.SkillRButtonUp" />
+            <EventHandler event="OnMouseOver" function="SkillsWindow2.SkillMouseOver" />
+            <EventHandler event="OnMouseOverEnd" function="ItemProperties2.ClearMouseOverItem" />
+          </EventHandlers>
+        </Button>
+
+
+        <Label name="$parentSkillName" font="font_hightower18" maxchars="100" textalign="left" autoresize="true" wordwrap="false" layer="popup" handleinput="false">
+          <Size>
+            <AbsPoint x="300" y="15" />
+          </Size>
+          <Anchors>
+            <Anchor point="topleft" relativePoint="topleft">
+              <AbsPoint x="100" y="0" />
+            </Anchor>
+          </Anchors>
+          <Color r="60" g="30" b="0" a="255" />
+        </Label>
+        <Label name="$parentSkillValue" font="font_calli12" maxchars="8" textalign="left" autoresize="true" wordwrap="false" layer="popup" handleinput="false">
+          <Size>
+            <AbsPoint x="100" y="15" />
+          </Size>
+          <Anchors>
+            <Anchor point="topleft" relativePoint="topleft">
+              <AbsPoint x="300" y="30" />
+            </Anchor>
+          </Anchors>
+          <Color r="60" g="30" b="0" a="255" />
+        </Label>
+
+        <HorizontalResizeImage name="$parentProgressBarFilled" texture="progressbar">
+          <Sizes left="1" middle="2" right="1" />
+          <Anchors>
+            <Anchor point="topleft" relativePoint="topleft">
+              <AbsPoint x="100" y="30" />
+            </Anchor>
+          </Anchors>
+          <TexCoords>
+            <Left x="0" y="0" />
+            <Middle x="1" y="0" />
+            <Right x="63" y="0" />
+          </TexCoords>
+        </HorizontalResizeImage>
+        <HorizontalResizeImage name="$parentProgressBarEmpty" texture="progressbar" layer="background">
+          <Sizes left="1" middle="2" right="1" />
+          <Anchors>
+            <Anchor point="topleft" relativePoint="topleft">
+              <AbsPoint x="100" y="30" />
+            </Anchor>
+          </Anchors>
+          <TexCoords>
+            <Left x="0" y="0" />
+            <Middle x="32" y="0" />
+            <Right x="63" y="0" />
+          </TexCoords>
+        </HorizontalResizeImage>
+
+
+
+        <Button name="$parentLock" backgroundtexture="mytexture" highlighttexture="mytexture" texturescale="1">
+          <Size>
+            <AbsPoint x="32 " y="32" />
+          </Size>
+          <Anchors>
+            <Anchor point="topleft" relativePoint="topleft">
+              <AbsPoint x="100" y="50" />
+            </Anchor>
+          </Anchors>
+          <TexCoords>
+            <Normal x="64" y="32" />
+            <NormalHighlit x="96" y="32" />
+            <Pressed x="64" y="32" />
+          </TexCoords>
+          <EventHandlers>
+            <EventHandler event="OnLButtonUp" function="SkillsWindow2.Lock" />
+            <!--<EventHandler event="OnMouseOver" function="SkillsWindow2.LockTooltip" />-->
+          </EventHandlers>
+        </Button>
+
+
+        <Button name="$parentUp" backgroundtexture="mytexture" highlighttexture="mytexture" texturescale="1">
+          <Size>
+            <AbsPoint x="32 " y="32" />
+          </Size>
+          <Anchors>
+            <Anchor point="topleft" relativePoint="topleft">
+              <AbsPoint x="140" y="50" />
+            </Anchor>
+          </Anchors>
+          <TexCoords>
+            <Normal x="384" y="32" />
+            <NormalHighlit x="416" y="32" />
+            <Pressed x="384" y="32" />
+          </TexCoords>
+          <EventHandlers>
+            <EventHandler event="OnLButtonUp" function="SkillsWindow2.Up" />
+            <!--<EventHandler event="OnMouseOver" function="SkillsWindow2.LockTooltip" />-->
+          </EventHandlers>
+        </Button>
+
+
+        <Button name="$parentDown" backgroundtexture="mytexture" highlighttexture="mytexture" texturescale="1">
+          <Size>
+            <AbsPoint x="32 " y="32" />
+          </Size>
+          <Anchors>
+            <Anchor point="topleft" relativePoint="topleft">
+              <AbsPoint x="180" y="50" />
+            </Anchor>
+          </Anchors>
+          <TexCoords>
+            <Normal x="448" y="32" />
+            <NormalHighlit x="480" y="32" />
+            <Pressed x="448" y="32" />
+          </TexCoords>
+          <EventHandlers>
+            <EventHandler event="OnLButtonUp" function="SkillsWindow2.Down" />
+            <!--<EventHandler event="OnMouseOver" function="SkillsWindow2.Hover" />
+            <EventHandler event="OnMouseOverEnd" function="SkillsWindow2.HoverEnd" />-->
+            <!--<EventHandler event="OnMouseOver" function="SkillsWindow2.LockTooltip" />-->
+          </EventHandlers>
+        </Button>
+
+      </Windows>
+
+      <!--<TexCoords>
+        <Normal texture="mygridsocket" x="0" y="0" />
+        -->
+      <!--<NormalHighlit texture="default_grid_backpack" x="50" y="0" />
+				<Disabled texture="default_grid_backpack" x="0" y="0" />
+				<Pressed texture="default_grid_backpack" x="0" y="0" />
+				<PressedHighlit texture="default_grid_backpack" x="50" y="0" />-->
+      <!--
+      </TexCoords>-->
+      <EventHandlers>
+        <!--<EventHandler event="OnLButtonDown" function="ContainerWindow.OnItemClicked" />
+            <EventHandler event="OnLButtonDblClk" function="ContainerWindow.OnItemDblClicked" />
+            <EventHandler event="OnLButtonUp" function="ContainerWindow.OnItemRelease" />
+            <EventHandler event="OnMouseOver" function="ContainerWindow.ItemMouseOver" />
+            <EventHandler event="OnMouseOverEnd" function="ItemProperties.ClearMouseOverItem" />
+            <EventHandler event="OnRButtonDown" function="ContainerWindow.OnItemGet" />
+            <EventHandler event="OnRButtonUp" function="ContainerWindow.OnItemRButtonUp" />-->
+      </EventHandlers>
+    </Button>
+
+  </Windows>
+</Interface>

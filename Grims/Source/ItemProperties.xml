@@ -1,0 +1,34 @@
+<Interface xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../Interface.xsd">
+   <Scripts>
+		<Script file="Source/ItemProperties.lua" />
+   </Scripts>	
+	<Windows>	
+		<Label name="ItemPropItemDef" font="font_body18" maxchars="768" textalign="center" autoresize="true" wordwrap="true">
+			<Size>
+				<AbsPoint x="300" y="64" />
+			</Size>
+		</Label>
+
+		<Window name="ItemProperties" movable="true" layer="overlay">
+			<Size>
+				<AbsPoint x="0" y="0" />
+			</Size>
+			<EventHandlers>
+				<EventHandler event="OnInitialize" function="ItemProperties.Initialize" />
+				<EventHandler event="OnShutdown" function="ItemProperties.Shutdown" />
+			</EventHandlers>
+			<Windows>
+
+				<!-- Inner Frame Boilerplate -->
+				<FullResizeImage name="$parentFrame" inherits="UO_Default_Inner_Window_Frame" frameonly="false">
+					<Anchors>
+						<Anchor point="topleft" relativePoint="topleft" />
+						<Anchor point="bottomright" relativePoint="bottomright" />
+					</Anchors>
+				</FullResizeImage>
+				<!-- End of Inner Frame Boilerplate -->
+			</Windows>
+		</Window>
+
+	</Windows>
+</Interface>

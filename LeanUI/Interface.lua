@@ -141,6 +141,7 @@ function Interface.Update(timePassed)
 		Interface.threeThreshold = 0
 		
 		PetWindow.UpdateTimes()
+
 	end 
 	
 	-- Post runs

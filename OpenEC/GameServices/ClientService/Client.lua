@@ -6,6 +6,6 @@ Client = Class.define({
   
   Logout = function ()
     BroadcastEvent (SystemData.Events.LOG_OUT)
-  end
+  end,
   
 })

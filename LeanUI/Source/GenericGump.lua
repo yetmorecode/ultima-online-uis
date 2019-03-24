@@ -85,8 +85,10 @@ function GenericGump.OnMouseOver()
   
     
 	objectId = GenericGumpGetItemPropertiesId(gumpId, windowName)
+
 	--Debug.PrintToChat(L"GenericGumpGetItemPropertiesId("..gumpId..L", "..StringToWString(windowName)..L") = "..objectId)
   if objectId ~= nil and objectId ~= 0 then
+	Debug.PrintToChat("object id = "..objectId)
     local itemData = { 
       windowName = dialog,
       itemId = objectId,

@@ -43,7 +43,7 @@ OverheadTextService = Class.define({
     OverheadText = {}
     OverheadText.Initialize = function () 
       self:InitializeWindow() 
-      DestroyWindow("OverheadTextWindow_"..SystemData.DynamicWindowId)
+      --DestroyWindow("OverheadTextWindow_"..SystemData.DynamicWindowId)
     end
     OverheadText.Shutdown = function () 
       self:ShutdownWindow() 

@@ -6,10 +6,6 @@
         <Files>
             <File name="GumpExplorer.lua" />
         </Files>
-          
-        <Dependencies>
-            <Dependency name="LeanWindowManager" />
-        </Dependencies>
         
         <OnInitialize>
             <CallFunction name="GumpExplorer.Initialize" />

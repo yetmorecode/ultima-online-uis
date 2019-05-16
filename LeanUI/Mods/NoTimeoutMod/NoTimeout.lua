@@ -12,7 +12,7 @@ NoTimeout = {
     NoTimeout.timePassed = NoTimeout.timePassed + timePassed
     if NoTimeout.timePassed > INTERVAL then
       NoTimeout.timePassed = 0
-      SendChat(CHANNEL, MESSAGE)
+      --SendChat(CHANNEL, MESSAGE)
     end
   end
 }

@@ -148,24 +148,6 @@ function Interface.Update(timePassed)
 	timePassed = 0.0001
 	ContextMenu.Update(timePassed)
 	ContainerWindow.UpdatePickupTimer(timePassed)
-	
-	
-	-- Single time chat override fix
-	if Interface.FixedChat then
-		return
-	end
-	
-	if ChatWindow ~= nil then
-		--WindowSetShowing("ChatWindow", false)
-		
-		WindowUnregisterEventHandler("ChatWindow", SystemData.Events.CHAT_ENTER_START)
-		WindowUnregisterEventHandler("ChatWindow", SystemData.Events.TEXT_ARRIVED)
-		LogDisplayRemoveLog("ChatWindowChatLogDisplay", "Chat")
-		DestroyWindow("ChatWindow")
-		DestroyWindow("ChatWindowInputTextButton")
-		
-		Interface.FixedChat = true
-	end
 end
 
 function Interface.Shutdown()

@@ -29,7 +29,6 @@ end
 
 function this.Update (timePassed)
 	local this = LootManager
-	
 	if this.checkLocationTimer > this.checkLocationDelay then
 		this.CheckLocation()
 		this.checkLocationTimer = 0

@@ -78,6 +78,8 @@ function OverheadText.Initialize()
 	local mobileId = SystemData.DynamicWindowId
 
 	WindowSetId(this, mobileId)
+	Debug.PrintToChat("Overhead text" .. mobileId)
+	
 	
 	OverheadText.FadeTimeId[mobileId] = OverheadText.AlphaStart
 	OverheadText.TimePassed[mobileId] = 0
@@ -162,7 +164,7 @@ end
 function OverheadText.UpdateName(mobileId)
 	-- Player and object names are not displayed
 	if( OverheadText.ChatData[mobileId] == nil ) then
-		--return
+		return
 	end
 	
 	if( OverheadText.ChatData[mobileId].showName == false ) then

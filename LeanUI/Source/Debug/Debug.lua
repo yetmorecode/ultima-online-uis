@@ -6,6 +6,13 @@ Debug = {}
 Debug.Stringable = { ["nil"]=1, ["string"]=1, ["number"]=1, ["bool"]=1 }
 
 function Debug.PrintToChat( text )
+
+  if text == nil then
+    text = "(nil)"
+  end
+  if type(text) == "number" then
+   text = "" .. text
+  end
 	if type(text) == "string" then
 		text = StringToWString(text)
 	end

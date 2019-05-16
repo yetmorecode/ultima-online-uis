@@ -23,22 +23,23 @@ function this.Initialize()
   local idx = 1
   local parent = windowName.."ScrollWindowScrollChild"
   
+  
   for i = a, z do
-    for monsterName, data in pairs(Index[i]) do
-      data.monsterName = monsterName
-      this.Index[idx] = data
+    --for monsterName, data in pairs(Index[i]) do
+    --  data.monsterName = monsterName
+    --  this.Index[idx] = data
       
-      local name = windowName.."ListItemLabel"..idx    
-      local label = CreateWindowFromTemplate(name, windowName.."LabelTemplate", parent)
+    --  local name = windowName.."ListItemLabel"..idx    
+    --  local label = CreateWindowFromTemplate(name, windowName.."LabelTemplate", parent)
       
-      LabelSetText(name.."Name", StringToWString(monsterName))
-      WindowClearAnchors(name)
-      WindowAddAnchor(name, "topleft", parent, "topleft", 0, (idx-1)  * this.ListItemHeight)
-      WindowSetShowing(name, true)
-      WindowSetId(name.."Name", idx)
+    --  LabelSetText(name.."Name", StringToWString(monsterName))
+    --  WindowClearAnchors(name)
+    --  WindowAddAnchor(name, "topleft", parent, "topleft", 0, (idx-1)  * this.ListItemHeight)
+    --  WindowSetShowing(name, true)
+    --  WindowSetId(name.."Name", idx)
       
-      idx = idx + 1
-    end
+      --idx = idx + 1
+    --end
   end 
 end
 

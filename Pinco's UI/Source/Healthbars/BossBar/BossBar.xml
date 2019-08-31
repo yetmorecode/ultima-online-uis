@@ -1,0 +1,161 @@
+<Interface xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../Interface.xsd">
+  <Windows>
+    <HorizontalResizeImage name="BossBarFill" texture="BossBarFill" layer="default">
+      <Size>
+        <AbsPoint x="427" y="40" />
+      </Size>
+      <Sizes left="540" middle="0" right="0" />
+      <TexCoords>
+        <Left x="112" y="0" />
+        <Middle x="213" y="0" />
+        <Right x="540" y="0" />
+      </TexCoords>
+    </HorizontalResizeImage>
+    
+    <Window name="BossBarWindow" movable="false" layer="background"  sticky="true"  popable="false" >
+      <Size>
+        <AbsPoint x="652" y="85" />
+      </Size>
+      <Anchors>
+        <Anchor point="top" relativePoint="top" relativeTo="ResizeWindow">
+          <AbsPoint x="0" y="0" />
+        </Anchor>
+      </Anchors>
+
+      <EventHandlers>
+        <EventHandler event="OnInitialize" function="BossBar.Initialize" />
+      </EventHandlers>
+      
+      <Windows>
+        <CircleImage name="$parentPortraitBg" texture="hbblackBg" numsegments="16" texturescale="10.95" layer="background" popable="false" handleinput="false">
+          <Size>
+            <AbsPoint x="65" y="65" />
+          </Size>
+          <Anchors>
+            <Anchor point="topleft" relativePoint="topleft"  relativeTo="$parent">
+              <AbsPoint x="35" y="11" />
+            </Anchor>
+          </Anchors>
+          <TexCoords x="10" y="10" />
+        </CircleImage>
+
+        <DynamicImage name="$parentName" texture="BossBarName" layer="background">
+          <Size>
+            <AbsPoint x="314" y="52" />
+          </Size>
+          <Anchors>
+            <Anchor point="top" relativePoint="top" relativeTo="$parent">
+              <AbsPoint x="0" y="30" />
+            </Anchor>
+          </Anchors>
+          <TexCoords x="0" y="0" />
+        </DynamicImage>
+        
+        <DynamicImage name="$parentBG" texture="BossBarBG"  layer="background">
+          <Size>
+            <AbsPoint x="652" y="85" />
+          </Size>
+          <Anchors>
+            <Anchor point="top" relativePoint="top" relativeTo="$parent">
+              <AbsPoint x="0" y="0" />
+            </Anchor>
+          </Anchors>
+          <TexCoords x="0" y="0" />
+        </DynamicImage>
+
+        <StatusBar name="$parentFill" foreground="BossBarFill" layer="default">
+          <Size>
+            <AbsPoint x="427" y="40" />
+          </Size>
+          <Anchors>
+            <Anchor point="top" relativePoint="top" relativeTo="$parent">
+              <AbsPoint x="2" y="0" />
+            </Anchor>
+          </Anchors>
+        </StatusBar>
+
+        <DynamicImage name="$parentOverlay" texture="BossBarOverlay" layer="secondary">
+          <Size>
+            <AbsPoint x="652" y="40"  />
+          </Size>
+          <Anchors>
+            <Anchor point="top" relativePoint="top" relativeTo="$parent">
+              <AbsPoint x="2" y="0" />
+            </Anchor>
+          </Anchors>
+          <TexCoords x="0" y="0" />
+        </DynamicImage>
+
+        <CircleImage name="$parentPortrait" numsegments="16" texturescale="1.0" layer="default" popable="false" handleinput="false" >
+          <Size>
+            <AbsPoint x="65" y="65" />
+          </Size>
+          <Anchors>
+            <Anchor point="center" relativePoint="center" relativeTo="$parentPortraitBg">
+              <AbsPoint x="0" y="0" />
+            </Anchor>
+          </Anchors>
+        </CircleImage>
+
+        <Label name="$parentHealthPerc" inherits="StatusWindowWhite" font="Arial_Black_Shadow_16" maxchars="100" textalign="center" autoresize="true" wordwrap="true" layer="overlay" handleinput="false">
+          <Size>
+            <AbsPoint x="100" y="60" />
+          </Size>
+          <Anchors>
+            <Anchor point="center" relativePoint="center" relativeTo="$parentFill">
+              <AbsPoint x="0" y="-3" />
+            </Anchor>
+          </Anchors>
+        </Label>
+
+        <Label name="$parentNameLabel" inherits="StatusWindowWhite" font="Arial_Black_Shadow_16" maxchars="100" textalign="center" autoresize="true" wordwrap="true" layer="overlay" handleinput="false">
+          <Size>
+            <AbsPoint x="314" y="40" />
+          </Size>
+          <Anchors>
+            <Anchor point="center" relativePoint="center" relativeTo="$parentName">
+              <AbsPoint x="0" y="-5" />
+            </Anchor>
+          </Anchors>
+        </Label>
+
+        <Window name="$parentClickableRegion1" layer="overlay" draganddrop="false" popable="false">
+          <Size>
+            <AbsPoint x="75" y="75" />
+          </Size>
+          <Anchors>
+            <Anchor point="center" relativePoint="center" relativeTo="$parentPortrait">
+              <AbsPoint x="0" y="0" />
+            </Anchor>
+          </Anchors>
+          <EventHandlers>
+            <EventHandler event="OnMouseOver" function="BossBar.OnMouseOver" />
+            <EventHandler event="OnMouseOverEnd" function="BossBar.OnMouseOverEnd" />
+            <EventHandler event="OnLButtonDown" function="BossBar.OnClick" />
+            <EventHandler event="OnLButtonUp" function="WindowUtils.EndDrag" />
+            <EventHandler event="OnLButtonDblClk" function="BossBar.OnDBLClick" />
+          </EventHandlers>
+        </Window>
+
+        <Window name="$parentClickableRegion2" layer="overlay" draganddrop="false" popable="false">
+          <Size>
+            <AbsPoint x="427" y="40" />
+          </Size>
+          <Anchors>
+            <Anchor point="topleft" relativePoint="topleft" relativeTo="$parentFill">
+              <AbsPoint x="0" y="0" />
+            </Anchor>
+          </Anchors>
+          <EventHandlers>
+            <EventHandler event="OnMouseOver" function="BossBar.OnMouseOver" />
+            <EventHandler event="OnMouseOverEnd" function="BossBar.OnMouseOverEnd" />
+            <EventHandler event="OnLButtonDown" function="BossBar.OnClick" />
+            <EventHandler event="OnLButtonUp" function="WindowUtils.EndDrag" />
+            <EventHandler event="OnLButtonDblClk" function="BossBar.OnDBLClick" />
+          </EventHandlers>
+        </Window>
+       
+      </Windows>
+    </Window>
+  </Windows>
+</Interface>

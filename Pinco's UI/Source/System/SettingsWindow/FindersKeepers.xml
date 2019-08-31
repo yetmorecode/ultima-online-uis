@@ -1,0 +1,326 @@
+<Interface xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../Interface.xsd">
+	<Windows>
+		<Label name="FindersKeepers_Label" font="Arial_Black_15" linespacing="20" autoresizewidth="true" autoresize="true" wordwrap="true" maxchars="256" textalign="left">
+			<Color r="255" g="255" b="255" a="255" />
+		</Label>
+
+		<Label name="FindersKeepers_LabelButton" font="Arial_Black_15" linespacing="20" autoresizewidth="true" autoresize="true" wordwrap="true" maxchars="256" textalign="left">
+			<Color r="255" g="231" b="132" a="255" />
+			<EventHandlers>
+				<EventHandler event="OnMouseOver" function="FindersKeepers.LabelOnMouseOver" />
+				<EventHandler event="OnMouseOverEnd" function="FindersKeepers.LabelOnMouseOverEnd" />
+			</EventHandlers>
+		</Label>
+
+		<Label name="FindersKeepers_LabelError" font="Arial_Black_15" linespacing="20" autoresizewidth="true" autoresize="true" wordwrap="true" maxchars="256" textalign="left">
+			<Color r="255" g="0" b="0" a="255" />
+		</Label>
+		
+		<Window name="FindersKeepers_LabelCheckButton">
+			<Size>
+				<AbsPoint x="350" y="32" />
+			</Size>
+			<EventHandlers>
+				<EventHandler event="OnMouseOver" function="FindersKeepers.TrashTooltip" />
+			</EventHandlers>
+			<Windows>
+				<Button name="$parentButton" inherits="UO_Default_Check_Button">
+					<Anchors>
+						<Anchor point="left" relativePoint="left">
+							<AbsPoint x="5" y="0"/>
+						</Anchor>
+					</Anchors>
+					<EventHandlers>
+						<EventHandler event="OnMouseOver" function="FindersKeepers.TrashTooltip" />
+					</EventHandlers>
+				</Button>
+				<Label name="$parentLabel" inherits="Settings_ItemTitle">
+					<Size>
+						<AbsPoint x="700" y="16" />
+					</Size>
+					<Anchors>
+						<Anchor point="right" relativePoint="left" relativeTo="$parentButton">
+							<AbsPoint x="5" y="0" />
+						</Anchor>
+					</Anchors>
+					<EventHandlers>
+						<EventHandler event="OnMouseOver" function="FindersKeepers.TrashTooltip" />
+					</EventHandlers>
+					<Color r="255" g="255" b="255" a="255" />
+				</Label>
+			</Windows>
+		</Window>
+
+		<Window name="FindersKeepers_TextBox_Text" >
+			<Windows>
+				<EditBox name="$parentText" font="MyriadPro_16" taborder="1" maxchars="20" scrolling="horz" layer="overlay" >
+					<Anchors>
+						<Anchor point="topleft" relativePoint="topleft" />
+						<Anchor point="bottomright" relativePoint="bottomright" />
+					</Anchors>
+				</EditBox>
+				<Window name="$parentBorder" handleinput="false">
+					<Anchors>
+						<Anchor point="topleft" relativePoint="topleft" relativeTo="$parentText" >
+							<AbsPoint x="-5" y="-5" />
+						</Anchor>
+						<Anchor point="bottomright" relativePoint="bottomright" relativeTo="$parentText" >
+							<AbsPoint x="5" y="5" />
+						</Anchor>
+					</Anchors>
+					<Windows>
+						<!-- Inner Frame Boilerplate -->
+						<FullResizeImage name="$parentBorder" inherits="UO_Simple_Black_Background">
+							<Anchors>
+								<Anchor point="topleft" relativePoint="topleft" />
+								<Anchor point="bottomright" relativePoint="bottomright" />
+							</Anchors>
+						</FullResizeImage>
+						<FullResizeImage name="$parentFrame" inherits="UO_Default_Inner_Window_Frame">
+							<Anchors>
+								<Anchor point="topleft" relativePoint="topleft" />
+								<Anchor point="bottomright" relativePoint="bottomright" />
+							</Anchors>
+						</FullResizeImage>
+						<!-- End of Inner Frame Boilerplate -->
+					</Windows>
+				</Window>
+			</Windows>
+		</Window>
+
+		<Window name="FindersKeepers_TextBox_Numbers" >
+			<Windows>
+				<EditBox name="$parentText" font="MyriadPro_16" taborder="1" maxchars="20" scrolling="horz" layer="overlay" input="numbers">
+					<Anchors>
+						<Anchor point="topleft" relativePoint="topleft" />
+						<Anchor point="bottomright" relativePoint="bottomright" />
+					</Anchors>
+				</EditBox>
+				<Window name="$parentBorder" handleinput="false">
+					<Anchors>
+						<Anchor point="topleft" relativePoint="topleft" relativeTo="$parentText" >
+							<AbsPoint x="-5" y="-5" />
+						</Anchor>
+						<Anchor point="bottomright" relativePoint="bottomright" relativeTo="$parentText" >
+							<AbsPoint x="5" y="5" />
+						</Anchor>
+					</Anchors>
+					<Windows>
+						<!-- Inner Frame Boilerplate -->
+						<FullResizeImage name="$parentBG" inherits="UO_Simple_Black_Background">
+							<Anchors>
+								<Anchor point="topleft" relativePoint="topleft" />
+								<Anchor point="bottomright" relativePoint="bottomright" />
+							</Anchors>
+						</FullResizeImage>
+						<FullResizeImage name="$parentFrame" inherits="UO_Default_Inner_Window_Frame">
+							<Anchors>
+								<Anchor point="topleft" relativePoint="topleft" />
+								<Anchor point="bottomright" relativePoint="bottomright" />
+							</Anchors>
+						</FullResizeImage>
+						<!-- End of Inner Frame Boilerplate -->
+					</Windows>
+				</Window>
+			</Windows>
+		</Window>
+
+		<Window name="FindersKeepers_PropBox" >
+			<Size>
+				<AbsPoint x="400" y="30" />
+			</Size>
+
+			<Windows>
+				<ComboBox name="$parentProp" inherits="UO_Default_LongComboBox" >
+					<Anchors>
+						<Anchor point="topleft" relativePoint="topleft" relativeTo="$parent" />
+					</Anchors>
+					<EventHandlers>
+						<EventHandler event="OnSelChanged" function="FindersKeepers.PropSelected" />
+					</EventHandlers>
+				</ComboBox>
+
+				<Label name="$parentSign" inherits="FindersKeepers_Label" >
+					<Size>
+						<AbsPoint x="40" y="20" />
+					</Size>
+					<Anchors>
+						<Anchor point="topright" relativePoint="topleft" relativeTo="$parentProp">
+							<AbsPoint x="10" y="0" />
+						</Anchor>
+					</Anchors>
+				</Label>
+				<Window name="$parentValue" inherits="FindersKeepers_TextBox_Numbers" >
+					<Size>
+						<AbsPoint x="80" y="20" />
+					</Size>
+					<Anchors>
+						<Anchor point="topright" relativePoint="topleft" relativeTo="$parentSign">
+							<AbsPoint x="20" y="5" />
+						</Anchor>
+					</Anchors>
+				</Window>
+
+			</Windows>
+		</Window>
+
+		<Window name="FindersKeepers" movable="true" layer="default">
+			<Size>
+				<AbsPoint x="500" y="680" />
+			</Size>
+			<Anchors>
+				<Anchor point="center" relativePoint="center" relativeTo="ResizeWindow">
+					<AbsPoint x="0" y="0"/>
+				</Anchor>
+			</Anchors>
+			<EventHandlers>
+				<EventHandler event="OnInitialize" function="FindersKeepers.Initialize" />
+				<EventHandler event="OnShown" function="FindersKeepers.OnShown" />
+				<EventHandler event="OnUpdate" function="FindersKeepers.OnUpdate" />
+			</EventHandlers>
+			<Windows>
+				<!-- Default chrome. Alter this at your own peril. -->
+				<Window name="$parentChrome" inherits="UO_DefaultWindow" frameonly="false">
+					<Anchors>
+						<Anchor point="topleft" relativePoint="topleft" />
+						<Anchor point="bottomright" relativePoint="bottomright"/>
+					</Anchors>
+				</Window>
+
+				<Label name="$parentDescription" inherits="FindersKeepers_Label" >
+					<Size>
+						<AbsPoint x="160" y="20" />
+					</Size>
+					<Anchors>
+						<Anchor point="topleft" relativePoint="topleft" relativeTo="$parent">
+							<AbsPoint x="30" y="50" />
+						</Anchor>
+					</Anchors>
+				</Label>
+
+				<Window name="$parentDescriptionText" inherits="FindersKeepers_TextBox_Text" >
+					<Size>
+						<AbsPoint x="300" y="20" />
+					</Size>
+					<Anchors>
+						<Anchor point="topright" relativePoint="topleft" relativeTo="$parentDescription">
+							<AbsPoint x="20" y="0" />
+						</Anchor>
+					</Anchors>
+				</Window>
+
+				<Label name="$parentError" inherits="FindersKeepers_LabelError" >
+					<Size>
+						<AbsPoint x="300" y="20" />
+					</Size>
+					<Anchors>
+						<Anchor point="bottomleft" relativePoint="topleft" relativeTo="$parentDescriptionText">
+							<AbsPoint x="0" y="10" />
+						</Anchor>
+					</Anchors>
+				</Label>
+
+				<Label name="$parentType" inherits="FindersKeepers_Label" >
+					<Size>
+						<AbsPoint x="160" y="20" />
+					</Size>
+					<Anchors>
+						<Anchor point="bottomleft" relativePoint="topleft" relativeTo="$parentDescription">
+							<AbsPoint x="0" y="70" />
+						</Anchor>
+					</Anchors>
+				</Label>
+				<ComboBox name="$parentItemType" inherits="UO_Default_LongComboBox" >
+					<Anchors>
+						<Anchor point="bottomleft" relativePoint="topleft" relativeTo="$parentDescriptionText">
+							<AbsPoint x="-5" y="60" />
+						</Anchor>
+					</Anchors>
+					<EventHandlers>
+						<EventHandler event="OnSelChanged" function="FindersKeepers.TypeChanged" />
+					</EventHandlers>
+				</ComboBox>
+
+				<DynamicImage name="$parentIcon" >
+					<Size>
+						<AbsPoint x="56" y="56" />
+					</Size>
+					<Anchors>
+						<Anchor point="right" relativePoint="left"  relativeTo="$parentItemType">
+							<AbsPoint x="0" y="0" />
+						</Anchor>
+					</Anchors>
+				</DynamicImage>
+
+				<Label name="$parentColor" inherits="FindersKeepers_Label" >
+					<Size>
+						<AbsPoint x="160" y="20" />
+					</Size>
+					<Anchors>
+						<Anchor point="bottomleft" relativePoint="topleft" relativeTo="$parentType">
+							<AbsPoint x="0" y="42" />
+						</Anchor>
+					</Anchors>
+				</Label>
+
+				<Window name="$parentFKColor" inherits="Settings_ColorButton">
+					<Anchors>
+						<Anchor point="right" relativePoint="left" relativeTo="$parentColor">
+							<AbsPoint x="10" y="-5" />
+						</Anchor>
+					</Anchors>
+				</Window>
+
+				<Window name="$parentSetTrash" inherits="FindersKeepers_LabelCheckButton" >
+					<Size>
+						<AbsPoint x="150" y="32" />
+					</Size>
+					<Anchors>
+						<Anchor point="topleft" relativePoint="topleft" relativeTo="$parentColor">
+							<AbsPoint x="20" y="40" />
+						</Anchor>
+					</Anchors>
+				</Window>
+
+				<Label name="$parentAddProp" inherits="FindersKeepers_LabelButton" >
+					<Size>
+						<AbsPoint x="160" y="20" />
+					</Size>
+					<Anchors>
+						<Anchor point="bottomleft" relativePoint="topleft" relativeTo="$parentColor">
+							<AbsPoint x="0" y="70" />
+						</Anchor>
+					</Anchors>
+					<EventHandlers>
+						<EventHandler event="OnMouseOver" function="FindersKeepers.LabelOnMouseOver" />
+						<EventHandler event="OnMouseOverEnd" function="FindersKeepers.LabelOnMouseOverEnd" />
+						<EventHandler event="OnLButtonUp" function="FindersKeepers.AddProp" />
+					</EventHandlers>
+				</Label>
+
+				<Button name="$parentSubmit" inherits="UO_Default_Medium_Select_Button">
+					<Anchors>
+						<Anchor point="bottomleft" relativePoint="bottomleft" relativeTo="$parent">
+							<AbsPoint x="60" y="-30" />
+						</Anchor>
+					</Anchors>
+					<EventHandlers>
+						<EventHandler event="OnLButtonUp" function="FindersKeepers.OnSubmit"/>
+					</EventHandlers>
+				</Button>
+				<Button name="$parentCancel" inherits="UO_Default_Medium_Select_Button" >
+					<Anchors>
+						<Anchor point="right" relativePoint="left" relativeTo="$parentSubmit">
+							<AbsPoint x="35" y="0" />
+						</Anchor>
+					</Anchors>
+					<EventHandlers>
+						<EventHandler event="OnLButtonUp" function="FindersKeepers.OnCancel"/>
+					</EventHandlers>
+				</Button>
+
+			</Windows>
+		</Window>
+
+	</Windows>
+</Interface>

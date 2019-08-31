@@ -1,0 +1,316 @@
+<Interface xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../Interface.xsd">
+	<Windows>
+		<!-- MAIN WINDOW DEFINITION -->
+		<Window name="ItemPreview" movable="true" layer="overlay">
+			<Size>
+				<AbsPoint x="450" y="450"/>
+			</Size>
+			<Anchors>
+				<Anchor point="center" relativePoint="center" relativeTo="">
+					<AbsPoint x="0" y="0"/>
+				</Anchor>
+			</Anchors>
+			<EventHandlers>
+				<EventHandler event="OnInitialize" function="ItemPreview.Initialize"/>
+				<EventHandler event="OnShutdown" function="ItemPreview.Shutdown"/>
+				<EventHandler event="OnRButtonUp" function="ItemPreview.OnRClick" />
+				<EventHandler event="OnMouseWheel" function="ItemPreview.ChangeId" />
+			</EventHandlers>
+			<Windows>
+				<!-- General Window Settings -->
+				<DynamicImage name="$parentBackground" texture="UO_ResizeFrame" layer="background">
+					<Anchors>
+						<Anchor point="topleft" relativePoint="topleft" relativeTo=""/>
+						<Anchor point="bottomright" relativePoint="bottomright" relativeTo=""/>
+					</Anchors>
+				</DynamicImage>
+				<FullResizeImage name="$parentFrame" inherits="UO_Default_Inner_Window_Frame" layer="default">
+					<Size>
+						<AbsPoint x="10" y="10"/>
+					</Size>
+					<Anchors>
+						<Anchor point="topleft" relativePoint="topleft" />
+						<Anchor point="bottomright" relativePoint="bottomright" />
+					</Anchors>
+				</FullResizeImage>
+
+				<EditBox name="$parentSearchBox" font="MyriadPro_16" taborder="1" maxchars="20" scrolling="horz" layer="overlay" input="numbers">
+					<Size>
+						<AbsPoint x="200" y="20" />
+					</Size>
+					<Anchors>
+						<Anchor point="topleft" relativePoint="topleft" relativeTo="$parent">
+							<AbsPoint x="100" y="40" />
+						</Anchor>
+					</Anchors>
+					<EventHandlers>
+						<EventHandler event="OnKeyEnter" function="ItemPreview.OnLButtonUpSearch" />
+					</EventHandlers>
+				</EditBox>
+				<Window name="$parentSearchBoxBG" handleinput="false">
+					<Size>
+						<AbsPoint x="200" y="30" />
+					</Size>
+					<Anchors>
+						<Anchor point="topleft" relativePoint="topleft" relativeTo="$parentSearchBox" >
+							<AbsPoint x="-5" y="-5" />
+						</Anchor>
+					</Anchors>
+					<Windows>
+						<!-- Inner Frame Boilerplate -->
+						<FullResizeImage name="$parentBG" inherits="UO_Simple_Black_Background">
+							<Anchors>
+								<Anchor point="topleft" relativePoint="topleft" />
+								<Anchor point="bottomright" relativePoint="bottomright" />
+							</Anchors>
+						</FullResizeImage>
+						<FullResizeImage name="$parentFrame" inherits="UO_Default_Inner_Window_Frame">
+							<Anchors>
+								<Anchor point="topleft" relativePoint="topleft" />
+								<Anchor point="bottomright" relativePoint="bottomright" />
+							</Anchors>
+						</FullResizeImage>
+						<!-- End of Inner Frame Boilerplate -->
+					</Windows>
+				</Window>
+				<Button name="$parentNextButton" inherits="UO_Default_SmallNextButton">
+					<Anchors>
+						<Anchor point="bottomright" relativePoint="bottomleft" relativeTo="$parentSearchBoxBG">
+							<AbsPoint x="5" y="-3" />
+						</Anchor>
+					</Anchors>
+					<EventHandlers>
+						<EventHandler event="OnLButtonUp" function="ItemPreview.OnLButtonUpSearch" />
+					</EventHandlers>
+				</Button>
+				<Label name="$parentSearchText" font="Arial_Black_16" textalign="right" handleinput="false" wordwrap="true">
+					<Size>
+						<AbsPoint x="80" y="20" />
+					</Size>
+					<Anchors>
+						<Anchor point="topleft" relativePoint="topright" relativeTo="$parentSearchBox" >
+							<AbsPoint x="-10" y="-10" />
+						</Anchor>
+					</Anchors>
+					<Color r="255" g="255" b="0" a="255" />
+				</Label>
+
+				<Button name="$parentPlus" inherits="UO_Default_Plus_Button" texturescale="1.2" layer="overlay">
+					<Size>
+						<AbsPoint x="32" y="32" />
+					</Size>
+					<Anchors>
+						<Anchor point="bottomleft" relativePoint="topleft" relativeTo="$parentSearchBoxBG">
+							<AbsPoint x="0" y="0" />
+						</Anchor>
+					</Anchors>
+					<EventHandlers>
+						<EventHandler event="OnLButtonDown" function="ItemPreview.Plus" />
+					</EventHandlers>
+				</Button>
+
+				<Button name="$parentMinus" inherits="UO_Default_Minus_Button" texturescale="1.2" layer="overlay">
+					<Size>
+						<AbsPoint x="32" y="32" />
+					</Size>
+					<Anchors>
+						<Anchor point="topright" relativePoint="topleft" relativeTo="$parentPlus">
+							<AbsPoint x="0" y="0" />
+						</Anchor>
+					</Anchors>
+					<EventHandlers>
+						<EventHandler event="OnLButtonDown" function="ItemPreview.Minus" />
+					</EventHandlers>
+				</Button>
+
+				<EditBox name="$parentHueBox" font="MyriadPro_16" taborder="1" maxchars="20" scrolling="horz" layer="overlay" input="numbers">
+					<Size>
+						<AbsPoint x="200" y="20" />
+					</Size>
+					<Anchors>
+						<Anchor point="bottomleft" relativePoint="topleft" relativeTo="$parentPlus">
+							<AbsPoint x="5" y="10" />
+						</Anchor>
+					</Anchors>
+					<EventHandlers>
+						<EventHandler event="OnKeyEnter" function="ItemPreview.OnLButtonUpSearch" />
+					</EventHandlers>
+				</EditBox>
+				<Window name="$parentHueBoxBG" handleinput="false">
+					<Size>
+						<AbsPoint x="200" y="30" />
+					</Size>
+					<Anchors>
+						<Anchor point="topleft" relativePoint="topleft" relativeTo="$parentHueBox" >
+							<AbsPoint x="-5" y="-5" />
+						</Anchor>
+					</Anchors>
+					<Windows>
+						<!-- Inner Frame Boilerplate -->
+						<FullResizeImage name="$parentBG" inherits="UO_Simple_Black_Background">
+							<Anchors>
+								<Anchor point="topleft" relativePoint="topleft" />
+								<Anchor point="bottomright" relativePoint="bottomright" />
+							</Anchors>
+						</FullResizeImage>
+						<FullResizeImage name="$parentFrame" inherits="UO_Default_Inner_Window_Frame">
+							<Anchors>
+								<Anchor point="topleft" relativePoint="topleft" />
+								<Anchor point="bottomright" relativePoint="bottomright" />
+							</Anchors>
+						</FullResizeImage>
+						<!-- End of Inner Frame Boilerplate -->
+					</Windows>
+				</Window>
+				<Button name="$parentokHueButton" inherits="UO_Default_SmallNextButton">
+					<Anchors>
+						<Anchor point="bottomright" relativePoint="bottomleft" relativeTo="$parentHueBoxBG">
+							<AbsPoint x="5" y="-3" />
+						</Anchor>
+					</Anchors>
+					<EventHandlers>
+						<EventHandler event="OnLButtonUp" function="ItemPreview.OnLButtonUpSearch" />
+					</EventHandlers>
+				</Button>
+				<Label name="$parentHueText" font="Arial_Black_16" textalign="right" handleinput="false" wordwrap="true">
+					<Size>
+						<AbsPoint x="80" y="20" />
+					</Size>
+					<Anchors>
+						<Anchor point="topleft" relativePoint="topright" relativeTo="$parentHueBox" >
+							<AbsPoint x="-10" y="-5" />
+						</Anchor>
+					</Anchors>
+					<Color r="255" g="255" b="0" a="255" />
+				</Label>
+
+				<DynamicImage name="$parentIcon" texture="">
+					<Anchors>
+						<Anchor point="center" relativePoint="center" relativeTo="$parentBackground">
+							<AbsPoint x="0" y="30" />
+						</Anchor>
+					</Anchors>
+				</DynamicImage>
+
+			</Windows>
+		</Window>
+
+		<DynamicImage name="ItemPreviewImageTemplate" texture="">
+			<Size>
+				<AbsPoint x="90" y="90"/>
+			</Size>
+			<EventHandlers>
+				<EventHandler event="OnMouseOver" function="ItemPreview.ItemTooltip"/>
+				<EventHandler event="OnLButtonUp" function="ItemPreview.ShowSingle" />
+			</EventHandlers>
+		</DynamicImage>
+
+		<Window name="ItemPreviewGrid" movable="true">
+			<Size>
+				<AbsPoint x="900" y="1000"/>
+			</Size>
+			<Anchors>
+				<Anchor point="center" relativePoint="center" relativeTo="">
+					<AbsPoint x="0" y="0"/>
+				</Anchor>
+			</Anchors>
+			<EventHandlers>
+				<EventHandler event="OnInitialize" function="ItemPreview.InitializeGrid"/>
+				<EventHandler event="OnShutdown" function="ItemPreview.ShutdownGrid"/>
+				<EventHandler event="OnRButtonUp" function="ItemPreview.OnRClickGrid" />
+				<EventHandler event="OnMouseWheel" function="ItemPreview.ChangeIdGrid" />
+			</EventHandlers>
+			<Windows>
+				<!-- General Window Settings -->
+				<DynamicImage name="$parentBackground" texture="UO_ResizeFrame" layer="background">
+					<Anchors>
+						<Anchor point="topleft" relativePoint="topleft" relativeTo=""/>
+						<Anchor point="bottomright" relativePoint="bottomright" relativeTo=""/>
+					</Anchors>
+				</DynamicImage>
+				<FullResizeImage name="$parentFrame" inherits="UO_Default_Inner_Window_Frame" layer="default">
+					<Size>
+						<AbsPoint x="10" y="10"/>
+					</Size>
+					<Anchors>
+						<Anchor point="topleft" relativePoint="topleft" />
+						<Anchor point="bottomright" relativePoint="bottomright" />
+					</Anchors>
+				</FullResizeImage>
+
+				<EditBox name="$parentSearchBox" font="MyriadPro_16" taborder="1" maxchars="20" scrolling="horz" layer="overlay" input="numbers">
+					<Size>
+						<AbsPoint x="200" y="20" />
+					</Size>
+					<Anchors>
+						<Anchor point="top" relativePoint="top" relativeTo="$parent">
+							<AbsPoint x="0" y="40" />
+						</Anchor>
+					</Anchors>
+					<EventHandlers>
+						<EventHandler event="OnKeyEnter" function="ItemPreview.OnLButtonUpSearchGrid" />
+					</EventHandlers>
+				</EditBox>
+				<Window name="$parentSearchBoxBG" handleinput="false">
+					<Size>
+						<AbsPoint x="200" y="30" />
+					</Size>
+					<Anchors>
+						<Anchor point="topleft" relativePoint="topleft" relativeTo="$parentSearchBox" >
+							<AbsPoint x="-5" y="-5" />
+						</Anchor>
+					</Anchors>
+					<Windows>
+						<!-- Inner Frame Boilerplate -->
+						<FullResizeImage name="$parentBG" inherits="UO_Simple_Black_Background">
+							<Anchors>
+								<Anchor point="topleft" relativePoint="topleft" />
+								<Anchor point="bottomright" relativePoint="bottomright" />
+							</Anchors>
+						</FullResizeImage>
+						<FullResizeImage name="$parentFrame" inherits="UO_Default_Inner_Window_Frame">
+							<Anchors>
+								<Anchor point="topleft" relativePoint="topleft" />
+								<Anchor point="bottomright" relativePoint="bottomright" />
+							</Anchors>
+						</FullResizeImage>
+						<!-- End of Inner Frame Boilerplate -->
+					</Windows>
+				</Window>
+				<Label name="$parentSearchText" font="Arial_Black_16" textalign="right" handleinput="false" wordwrap="true">
+					<Size>
+						<AbsPoint x="250" y="20" />
+					</Size>
+					<Anchors>
+						<Anchor point="top" relativePoint="bottom" relativeTo="$parentSearchBox" >
+							<AbsPoint x="-50" y="-10" />
+						</Anchor>
+					</Anchors>
+					<Color r="255" g="255" b="0" a="255" />
+				</Label>
+
+				<Button name="$parentNextButton" inherits="UO_Default_SmallNextButton">
+					<Anchors>
+						<Anchor point="bottomright" relativePoint="bottomleft" relativeTo="$parentSearchBoxBG">
+							<AbsPoint x="5" y="-3" />
+						</Anchor>
+					</Anchors>
+					<EventHandlers>
+						<EventHandler event="OnLButtonUp" function="ItemPreview.OnLButtonUpGridNext" />
+					</EventHandlers>
+				</Button>
+
+				<Button name="$parentPrevButton" inherits="UO_Default_SmallPreviousButton">
+					<Anchors>
+						<Anchor point="bottomleft" relativePoint="bottomright" relativeTo="$parentSearchBoxBG">
+							<AbsPoint x="-5" y="-3" />
+						</Anchor>
+					</Anchors>
+					<EventHandlers>
+						<EventHandler event="OnLButtonUp" function="ItemPreview.OnLButtonUpGridPrev" />
+					</EventHandlers>
+				</Button>
+			</Windows>
+		</Window>
+	</Windows>
+</Interface>

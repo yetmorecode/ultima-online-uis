@@ -1,0 +1,142 @@
+<Interface xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../Interface.xsd">
+
+  <Windows>
+    <Button name="UO_Secondary_GumpButton" sticky="false" backgroundtexture="Default_Gump_Button" highlighttexture="Default_Gump_Button"   font="Arial_Black_14" textalign="top">
+      <Size>
+        <AbsPoint x="84" y="38" />
+      </Size>
+      <TextColors>
+        <Normal r="2" g="6" b="20" a="255" />
+        <!-- THIS IS USED AS THE UNSELECTED COLOR FOR SOME REASON-->
+        <NormalHighlit  r="255" g="255" b="255" a="255" />
+        <!-- THIS IS USED AS THE MOUSEOVER COLOR -->
+        <Pressed r="206" g="217" b="242" a="255" />
+        <PressedHighlit r="255" g="255" b="255" a="255" />
+        <Disabled r="30" g="30" b="30" a="255"  />
+        <!-- THIS IS USED AS THE SELECTED COLOR FOR SOME REASON -->
+      </TextColors>
+      <TextOffset x="0" y="7" />
+      <TexCoords>
+        <Normal x="0" y="0" />
+        <NormalHighlit x="85" y="0" />
+        <Pressed x="85" y="0" />
+        <PressedHighlit x="85" y="0" />
+      </TexCoords>
+    </Button>
+    <Button name="DialogButtonTemplate" inherits="UO_Secondary_GumpButton" >
+      <EventHandlers>
+        <EventHandler event="OnLButtonUp" function="UO_StandardDialog.OnLButtonUp"/>
+      </EventHandlers>
+    </Button>
+
+    <Window name="UO_StandardDialog_Passcode_Template">
+      <Size>
+        <AbsPoint x="200" y="30" />
+      </Size>
+      <Windows>
+        
+        <EditBox name="$parentTextBox" font="MyriadPro_16" taborder="1" maxchars="22">
+          <Size>
+            <AbsPoint x="200" y="20" />
+          </Size>
+          <EventHandlers>
+            <EventHandler event="OnTextChanged" function="UO_StandardDialog.TextChanged" />
+          </EventHandlers>
+        </EditBox>
+        
+        <Window name="$parentFrame" handleinput="false">
+          <Size>
+            <AbsPoint x="200" y="30" />
+          </Size>
+          <Anchors>
+            <Anchor point="topleft" relativePoint="topleft" relativeTo="$parentTextBox" >
+              <AbsPoint x="-5" y="-5" />
+            </Anchor>
+          </Anchors>
+          <Windows>
+            <!-- Inner Frame Boilerplate -->
+            <FullResizeImage name="$parentFrame" inherits="UO_Default_Inner_Window_Frame">
+              <Anchors>
+                <Anchor point="topleft" relativePoint="topleft" />
+                <Anchor point="bottomright" relativePoint="bottomright" />
+              </Anchors>
+            </FullResizeImage>
+            <!-- End of Inner Frame Boilerplate -->
+          </Windows>
+        </Window>
+        
+      </Windows>
+    </Window>
+
+
+    <Window name="UO_StandardDialog" movable="true" layer="popup">
+      <Size>
+        <AbsPoint x="350" y="400"/>
+      </Size>
+      <Anchors>
+        <Anchor point="center" relativePoint="center">
+          <AbsPoint x="0" y="0" />
+        </Anchor>
+      </Anchors>
+      <EventHandlers>
+        <EventHandler event="OnInitialize" function="UO_StandardDialog.Initialize" />
+        <EventHandler event="OnShutdown" function="UO_StandardDialog.Shutdown" />
+        <EventHandler event="OnKeyEnter" function="UO_StandardDialog.OnKeyEnter" />
+        <EventHandler event="OnKeyEscape" function="UO_StandardDialog.OnKeyEscape" />
+      </EventHandlers>
+      <Windows>
+        <!-- Default chrome. Alter this at your own peril. -->
+        <Window name="$parentChrome" inherits="UO_DefaultWindow">
+          <Anchors>
+            <Anchor point="topleft" relativePoint="topleft" />
+            <Anchor point="bottomright" relativePoint="bottomright"/>
+          </Anchors>
+        </Window>
+        <!-- End of default chrome boilerplate code -->
+
+        <ScrollWindow name="$parentScrolled" childscrollwindow="$parentChild" scrollbar="$parentScrollbar" lineheight="60"  draganddrop="true" autoHideScrollBar="true">
+          <Size>
+            <AbsPoint x="315" y="350" />
+          </Size>
+          <Anchors>
+            <Anchor point="topleft" relativePoint="topleft">
+              <AbsPoint x="20" y="55" />
+            </Anchor>
+          </Anchors>
+          <Windows>
+            <VerticalScrollbar name="$parentScrollbar" inherits="StandardVertScroll" />
+
+            <Window name ="$parentChild" >
+              <Size>
+                <AbsPoint x="315" y="0"/>
+              </Size>
+              <Windows>
+                <Label name="$parentText" inherits="UO_Default_Label_With_Links" font="MyriadPro_16" textalign="left" autoresize="true" maxchars="1024" linespacing="20" wordwrap="true" >
+                  <Size>
+                    <AbsPoint x="315" y="0" />
+                  </Size>
+                  <Anchors>
+                    <Anchor point="topleft" relativePoint="topleft">
+                    </Anchor>
+                  </Anchors>
+                  <Color r="255" g="255" b="255" a="255" />
+                </Label>
+              </Windows>
+            </Window>
+          </Windows>
+        </ScrollWindow>
+        <Label name="$parentNormalText" inherits="UO_Default_Label_With_Links" font="MyriadPro_16" textalign="left" autoresize="true" maxchars="1024" linespacing="20" wordwrap="true">
+          <Size>
+            <AbsPoint x="315" y="0" />
+          </Size>
+          <Anchors>
+            <Anchor point="topleft" relativePoint="topleft">
+              <AbsPoint x="20" y="55" />
+            </Anchor>
+          </Anchors>
+          <Color r="255" g="255" b="255" a="255" />
+        </Label>
+      </Windows>
+    </Window>
+  </Windows>
+</Interface>

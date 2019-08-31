@@ -1,0 +1,406 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Interface xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../Interface.xsd">
+	<Windows>		
+		<!-- Combo Box -->
+		<Button name="UO_Login_ComboBoxSelectedButton" texturescale="1.0" backgroundtexture="Login_CoreTextures" highlighttexture="Login_CoreTextures" font="UO_DefaultText" textalign="left">
+		<Size>
+			<AbsPoint x="181" y="27" />
+		</Size>
+		<TexCoords>
+			<Normal x="0" y="458" />
+			<NormalHighlit x="0" y="485" />
+			<Pressed x="0" y="485" />
+			<PressedHighlit x="0" y="485" />
+			<Disabled x="0" y="485" />
+		</TexCoords>
+		<TextColors>
+			<Normal r="255" g="255" b="255" a="255" />
+			<NormalHighlit r="250" g="213" b="63" a="255" />
+			<Pressed r="250" g="213" b="63" a="255" />
+			<PressedHighlit r="250" g="213" b="63" a="255" />
+			<Disabled r="92" g="92" b="92" a="255" />
+		</TextColors>
+		<TextOffset x="10" y="5" />
+		</Button>
+
+		<Button name="UO_Login_ComboBoxMenuItemButton" font="UO_DefaultText" textalign="left" >
+		<Size>
+			<AbsPoint x="140" y="25" />
+		</Size>
+		<TextColors>
+			<Normal r="255" g="255" b="255" a="255" />
+			<NormalHighlit r="250" g="213" b="63" a="255" />
+			<Pressed r="250" g="213" b="63" a="255" />
+			<PressedHighlit r="250" g="213" b="63" a="255" />
+			<Disabled r="92" g="92" b="92" a="255" />
+		</TextColors>
+		<TextOffset x="10" y="7" />
+		</Button>
+
+		<ComboBox name="UO_Login_ComboBox" selectedbutton="UO_Login_ComboBoxSelectedButton" menubackground="UO_Login_Black_Background" menuitembutton="UO_Login_ComboBoxMenuItemButton" scrollbar="ComboBoxStandardVertScroll" maxvisibleitems="10">
+			<Size>
+				<AbsPoint x="181" y="27" />
+			</Size>
+			<MenuButtonOffset x="5" y="5" />
+		</ComboBox>
+		<!-- STANDARD SCROLL BAR !!! -->
+		<VerticalScrollbar name="LoginVertScroll" up="LoginVertScrollUpBtn" down="LoginVertScrollDownBtn" thumb="LoginVertScrollThumb" gutter="LoginVertScrollGutter" >
+			<Anchors>
+				<Anchor point="topright" relativePoint="topleft">
+					<AbsPoint x="-11" y="5"/>
+				</Anchor>
+				<Anchor point="bottomright" relativePoint="bottomright">
+				<AbsPoint x="0" y="-5"/>
+			</Anchor>
+			</Anchors>
+			<ActiveZoneOffset x="500" y="500" />			
+			<ThumbOffset x="-1" y="0" />
+		</VerticalScrollbar>
+
+		<VerticalScrollbar name="ComboBoxLoginVertScroll" up="LoginVertScrollUpBtn" down="LoginVertScrollDownBtn" thumb="LoginVertScrollThumb" gutter="LoginVertScrollGutter" >
+			<Size>
+				<AbsPoint x="10" y="0" />
+			</Size>
+			<ActiveZoneOffset x="500" y="500" />
+			<ThumbOffset x="-1" y="0" />
+		</VerticalScrollbar>
+
+		<Button name="LoginVertScrollUpBtn" backgroundtexture="Login_CoreTextures" highlighttexture="Login_CoreTextures">
+			<Size>			
+				<AbsPoint x="11" y="11" />
+			</Size>
+			<TexCoords>
+				<Normal x="205" y="159" />
+				<NormalHighlit x="218" y="159" />
+				<Pressed x="218" y="159" />
+				<PressedHighlit x="218" y="159" />
+			</TexCoords>
+		</Button>
+		<Button name="LoginVertScrollDownBtn" backgroundtexture="Login_CoreTextures" highlighttexture="Login_CoreTextures">
+			<Size>
+				<AbsPoint x="11" y="11" />
+			</Size>
+			<TexCoords>
+				<Normal x="205" y="171" />
+				<NormalHighlit x="218" y="171" />
+				<Pressed x="218" y="171" />
+				<PressedHighlit x="218" y="171" />
+			</TexCoords>
+		</Button>
+		<VerticalResizeImage name="LoginVertScrollThumb" texture="Login_CoreTextures">
+			<Size>
+				<AbsPoint x="12" y="12" />
+			</Size>
+			<Sizes top="2" middle="2" bottom="10" />
+			<TexCoords>
+				<Top x="244" y="159" />
+				<Middle x="244" y="171" />
+				<Bottom x="244" y="183" />
+			</TexCoords>
+		</VerticalResizeImage>
+		<VerticalResizeImage name="LoginVertScrollGutter" texture="Login_CoreTextures">
+			<Size>			
+				<AbsPoint x="11" y="11" />
+			</Size>
+			<Sizes top="9" middle="5" bottom="9"/>
+			<TexCoords>
+				<Top x="231" y="159" />
+				<Middle x="231" y="166" />
+				<Bottom x="231" y="188" />
+			</TexCoords>
+		</VerticalResizeImage>
+		<!--Default Close Button -->
+		<Button name="UO_Login_Close_Button" backgroundtexture="Login_CoreTextures" highlighttexture="Login_CoreTextures" texturescale="1.1" layer="popup">
+			<Size>
+				<AbsPoint x="22" y="22" />
+			</Size>
+			<EventHandlers>
+				<EventHandler event="OnLButtonUp" function="UO_DefaultWindow.CloseDialog" />
+				<EventHandler event="OnMouseOver" function="UO_DefaultWindow.CloseTooltip" />
+			</EventHandlers>
+			<TexCoords>
+				<Normal x="184" y="0" />
+				<NormalHighlit x="226" y="0" />
+				<Pressed x="205" y="0"  />
+				<PressedHighlit x="205" y="0" />
+				<Disabled x="163" y="0" />
+			</TexCoords>
+		</Button>
+		<!-- Default Title Bar -->
+		<HorizontalResizeImage name="UO_Login_Title_Bar" texture="Login_CoreTextures">
+			<Size>			
+				<AbsPoint x="10" y="26" />
+			</Size>			
+			<Sizes left="10" middle="100" right="10" />
+			<TexCoords>
+				<Left x="0" y="18" />
+				<Middle x="10" y="18" />
+				<Right x="150" y="18" />
+			</TexCoords>
+		</HorizontalResizeImage>
+		<!-- Default Black Background -->
+		<FullResizeImage name="UO_Login_Black_Background" layer="background" handleinput="false" texture="UO_Login_Background">
+			<Sizes>
+				<TopLeft x="42" y="48" />
+				<Middle x="42" y="36" />
+				<BottomRight x="42" y="42" />
+			</Sizes>
+			<TexCoords>
+				<TopLeft x="0" y="0" />
+				<TopCenter x="42" y="0" />
+				<TopRight x="85" y="0" />
+				<MiddleLeft x="0" y="48" />
+				<MiddleCenter x="42" y="48" />
+				<MiddleRight x="85" y="48" />
+				<BottomLeft x="0" y="85" />
+				<BottomCenter x="42" y="85" />
+				<BottomRight x="85" y="85" />
+			</TexCoords>
+		</FullResizeImage>
+		<Button name="UO_Login_SmallPreviousButton" backgroundtexture="Login_CoreTextures" highlighttexture="Login_CoreTextures">
+			<Size>
+				<AbsPoint x="30" y="24" />
+			</Size>
+			<TexCoords>
+				<Normal x="222" y="439" />
+				<NormalHighlit x="222" y="462" />
+				<Pressed x="222" y="462" />
+				<PressedHighlit x="222" y="462" />
+				<Disabled x="222" y="485" />
+			</TexCoords>
+		</Button>
+
+		<Button name="UO_Login_SmallNextButton" backgroundtexture="Login_CoreTextures" highlighttexture="Login_CoreTextures">
+			<Size>
+				<AbsPoint x="30" y="24" />
+			</Size>
+			<TexCoords>
+				<Normal x="222" y="367" />
+				<NormalHighlit x="222" y="391" />
+				<Pressed x="222" y="391" />
+				<PressedHighlit x="222" y="391" />
+				<Disabled x="222" y="414" />
+			</TexCoords>
+		</Button>
+		<Button name="UO_Login_GumpButton" sticky="false" backgroundtexture="Login_CoreTextures" highlighttexture="Login_CoreTextures"   font="UO_GoldButtonText" textalign="top">
+			<Size>
+				<AbsPoint x="84" y="38" />
+			</Size>
+			<TextColors>
+				<Normal  r="23" g="24" b="19" a="255" />
+				<NormalHighlit r="23" g="24" b="19" a="255" />
+				<Pressed r="23" g="24" b="19" a="255" />
+				<PressedHighlit r="23" g="24" b="19" a="255" />
+				<PressedHighlit r="23" g="24" b="19" a="255" />
+				<Disabled r="23" g="24" b="19" a="255" />
+			</TextColors>
+			<TextOffset x="0" y="8" />
+			<TexCoords>
+				<Normal x="0" y="244" />
+				<NormalHighlit x="85" y="244" />
+				<Pressed x="85" y="244" />
+				<PressedHighlit x="85" y="244" />
+				<Disabled x="0" y="244" />
+			</TexCoords>
+		</Button>
+		<Button name="UO_Login_Medium_Select_Button" sticky="false" backgroundtexture="Login_CoreTextures" highlighttexture="Login_CoreTextures" textalign="top"  font="UO_GoldButtonText">
+			<Size>
+				<AbsPoint x="169" y="39" />
+			</Size>
+			<TexCoords>
+				<Normal x="0" y="166" />
+				<NormalHighlit x="0" y="166" />
+				<Pressed x="0" y="205" />
+				<PressedHighlit x="0" y="205" />
+			</TexCoords>
+			<TextOffset x="0" y="3"/>
+			<TextColors>
+				<Normal r="2" g="6" b="20" a="255" />
+				<!-- THIS IS USED AS THE UNSELECTED COLOR FOR SOME REASON-->
+				<NormalHighlit  r="255" g="255" b="255" a="255" />
+				<!-- THIS IS USED AS THE MOUSEOVER COLOR -->
+				<Pressed r="206" g="217" b="242" a="255" />
+				<PressedHighlit r="255" g="255" b="255" a="255" />
+				<Disabled r="30" g="30" b="30" a="255"  />
+				<!-- THIS IS USED AS THE SELECTED COLOR FOR SOME REASON -->
+			</TextColors>
+			<TextOffset x="5" y="6" />
+		</Button>
+		<!-- Inner Frame Template -->
+		<FullResizeImage name="UO_Login_Inner_Window_Frame" layer="background" handleinput="false" texture="Login_CoreTextures" frameonly="true">
+			<Sizes>
+				<TopLeft x="10" y="10" />
+				<Middle x="40" y="10" />
+				<BottomRight x="10" y="10" />
+			</Sizes>
+			<TexCoords>
+				<TopLeft x="128" y="49" />
+				<TopCenter x="139" y="49" />
+				<TopRight x="246" y="49" />
+				<MiddleLeft x="128" y="60" />
+				<MiddleCenter x="139" y="60" />
+				<MiddleRight x="246" y="60" />
+				<BottomLeft x="128" y="147" />
+				<BottomCenter x="139" y="147" />
+				<BottomRight x="246" y="147" />
+			</TexCoords>
+		</FullResizeImage>
+		<!-- Default Outer Frame Template -->
+		<FullResizeImage name="UO_Login_Outer_Window_Frame" layer="background" handleinput="false" texture="Login_CoreTextures" frameonly="true">
+			<Sizes>
+				<TopLeft x="20" y="18" />
+				<Middle x="20" y="60" />
+				<BottomRight x="20" y="36" />
+			</Sizes>
+			<TexCoords>
+				<TopLeft x="0" y="49" />
+				<TopCenter x="60" y="49" />
+				<TopRight x="106" y="49" />
+				<MiddleLeft x="0" y="67" />
+				<MiddleCenter x="60" y="67" />
+				<MiddleRight x="106" y="67" />
+				<BottomLeft x="0" y="127" />
+				<BottomCenter x="60" y="127" />
+				<BottomRight x="106" y="127" />
+			</TexCoords>
+		</FullResizeImage>
+		<Button name="UO_Login_Account_Button" sticky="false" backgroundtexture="Login_Buttons" highlighttexture="Login_Buttons" textalign="top"  font="UO_Title_Large_2">
+		<Size>
+			<AbsPoint x="201" y="206" /><!-- Area/Size of image-->
+				</Size>
+			<TexCoords>
+				<Normal x="1302" y="21" /><!-- Location within backgroundtexture-->
+				<NormalHighlit x="792" y="21" />
+				<Pressed x="1047" y="21" />
+				<PressedHighlit x="1047" y="21" />
+			</TexCoords>
+			<TextColors>
+				<Normal r="255" g="254" b="157" a="255" />
+				<NormalHighlit  r="255" g="254" b="157" a="255"/>
+				<Pressed r="247" g="254" b="208" a="255" />
+				<PressedHighlit r="247" g="254" b="208" a="255" />
+				<Disabled r="30" g="30" b="30" a="255"  />			
+			</TextColors>			
+			<TextOffset x="15" y="70"/>
+		</Button>
+		<Button name="UO_Login_UO_Button" sticky="false" backgroundtexture="Login_Buttons" highlighttexture="Login_Buttons" textalign="top"  font="UO_Title_Large_2">
+		<Size>
+			<AbsPoint x="175" y="187" /><!-- Area/Size of image-->
+				</Size>
+			<TexCoords>
+				<Normal x="1315" y="301" /><!-- Location within backgroundtexture-->
+				<NormalHighlit x="805" y="301" />
+				<Pressed x="1060" y="301" />
+				<PressedHighlit x="1060" y="301" />
+			</TexCoords>
+			<TextColors>
+				<Normal r="255" g="254" b="157" a="255" />
+				<NormalHighlit  r="255" g="254" b="157" a="255"/>
+				<Pressed r="247" g="254" b="208" a="255" />
+				<PressedHighlit r="247" g="254" b="208" a="255" />
+				<Disabled r="30" g="30" b="30" a="255"  />			
+			</TextColors>			
+			<TextOffset x="22" y="68"/>
+		</Button>
+
+		<Button name="UO_Login_Quit_Button" sticky="false" backgroundtexture="Login_Buttons" highlighttexture="Login_Buttons" textalign="top"  font="UO_Title_Large_2">
+		<Size>
+			<AbsPoint x="139" y="154" /><!-- Area/Size of image-->
+				</Size>
+			<TexCoords>
+				<Normal x="871" y="522" /><!-- Location within backgroundtexture-->
+				<NormalHighlit x="529" y="522" />
+				<Pressed x="700" y="522" />
+				<PressedHighlit x="700" y="522" />
+			</TexCoords>
+			<TextColors>
+				<Normal r="255" g="254" b="157" a="255" />
+				<NormalHighlit  r="255" g="254" b="157" a="255"/>
+				<Pressed r="247" g="254" b="208" a="255" />
+				<PressedHighlit r="247" g="254" b="208" a="255" />
+				<Disabled r="30" g="30" b="30" a="255"  />			
+			</TextColors>			
+			<TextOffset x="14" y="52"/>
+		</Button>
+
+		<Button name="UO_Login_Login_Button" sticky="false" backgroundtexture="Login_Buttons" highlighttexture="Login_Buttons" textalign="top"  font="UO_Title_Large_2">
+		<Size>
+			<AbsPoint x="147" y="49" /><!-- Area/Size of image-->
+				</Size>
+			<TexCoords>
+				<Normal x="867" y="696" /><!-- Location within backgroundtexture-->
+				<NormalHighlit x="525" y="696" />
+				<Pressed x="696" y="696" />
+				<PressedHighlit x="696" y="696" />
+			</TexCoords>
+			<TextColors>
+				<Normal r="255" g="255" b="255" a="255" />
+				<NormalHighlit  r="255" g="254" b="157" a="255"/>
+				<Pressed r="247" g="254" b="208" a="255" />
+				<PressedHighlit r="247" g="254" b="208" a="255" />
+				<Disabled r="30" g="30" b="30" a="255"  />			
+			</TextColors>			
+			<TextOffset x="6" y="8"/>
+		</Button>
+
+		<Button name="UO_Login_Help_Button" sticky="false" backgroundtexture="Login_Buttons" highlighttexture="Login_Buttons" textalign="top"  font="UO_Title_Large_2">
+		<Size>
+			<AbsPoint x="175" y="60" /><!-- Area/Size of image-->
+				</Size>
+			<TexCoords>
+				<Normal x="985" y="775" /><!-- Location within backgroundtexture-->
+				<NormalHighlit x="595" y="775" />
+				<Pressed x="790" y="775" />
+				<PressedHighlit x="790" y="775" />
+			</TexCoords>
+			<TextColors>
+				<Normal r="255" g="255" b="255" a="255" />
+				<NormalHighlit  r="255" g="254" b="157" a="255"/>
+				<Pressed r="247" g="254" b="208" a="255" />
+				<PressedHighlit r="247" g="254" b="208" a="255" />
+				<Disabled r="30" g="30" b="30" a="255"  />			
+			</TextColors>			
+			<TextOffset x="0" y="12"/>
+		</Button>
+
+		<Button name="UO_Login_Credits_Button" sticky="false" backgroundtexture="Login_Buttons" highlighttexture="Login_Buttons" textalign="top"  font="UO_Title_Large_2">
+		<Size>
+			<AbsPoint x="175" y="60" /><!-- Area/Size of image-->
+				</Size>
+			<TexCoords>
+				<Normal x="985" y="865" /><!-- Location within backgroundtexture-->
+				<NormalHighlit x="595" y="865" />
+				<Pressed x="790" y="865" />
+				<PressedHighlit x="790" y="865" />
+			</TexCoords>
+			<TextColors>
+				<Normal r="255" g="255" b="255" a="255" />
+				<NormalHighlit  r="255" g="254" b="157" a="255"/>
+				<Pressed r="247" g="254" b="208" a="255" />
+				<PressedHighlit r="247" g="254" b="208" a="255" />
+				<Disabled r="30" g="30" b="30" a="255"  />			
+			</TextColors>			
+			<TextOffset x="0" y="12"/>
+		</Button>
+
+		<Button name="UO_Login_CustomUI_Button" sticky="false" backgroundtexture="Login_Buttons" highlighttexture="Login_Buttons" textalign="top"  font="UO_Title_Large_2">
+		<Size>
+			<AbsPoint x="175" y="60" /><!-- Area/Size of image-->
+				</Size>
+			<TexCoords>
+				<Normal x="1427" y="616" /><!-- Location within backgroundtexture-->
+				<NormalHighlit x="1037" y="616" />
+				<Pressed x="1232" y="616" />
+				<PressedHighlit x="1232" y="616" />
+			</TexCoords>
+			<TextColors>
+				<Normal r="255" g="255" b="255" a="255" />
+				<NormalHighlit  r="255" g="254" b="157" a="255"/>
+				<Pressed r="247" g="254" b="208" a="255" />
+				<PressedHighlit r="247" g="254" b="208" a="255" />
+				<Disabled r="30" g="30" b="30" a="255"  />			
+			</TextColors>			
+			<TextOffset x="0" y="12"/>
+		</Button>
+	</Windows>
+</Interface>

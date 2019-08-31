@@ -20,4 +20,5 @@
     
     <Include file="OpenUI/Windows/MainMenu/MainMenuWindow.xml" />
     <Include file="OpenUI/Windows/OverheadText/OverheadWindow.xml" />
+    <Include file="OpenUI/Windows/Hotbar/HotbarWindow.xml" />
 </Interface>

@@ -1,0 +1,331 @@
+<Interface xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../Interface.xsd">
+	<Windows>
+
+		<!-- MAP WINDOW -->
+		<Window name="MapWindow" movable="false" sticky="false" popable="true" >
+			<Size>
+				<AbsPoint x="350" y="350" />
+			</Size>
+			<Anchors>
+				<Anchor point="topright" relativePoint="topleft" relativeTo="ResizeWindow">
+					<AbsPoint x="0" y="0" />
+				</Anchor>
+			</Anchors>
+			<EventHandlers>
+				<EventHandler event="OnInitialize" function="MapWindow.Initialize" />
+				<EventHandler event="OnShutdown" function="MapWindow.Shutdown" />
+				<EventHandler event="OnShown" function="MapWindow.OnShown" />
+				<EventHandler event="OnLButtonDown" function="MapWindow.OnMouseDrag" />
+				<EventHandler event="OnMouseWheel" function="WindowUtils.Scale" />
+				<EventHandler event="OnRButtonUp" function="UO_DefaultWindow.CloseDialog" />
+        <EventHandler event="OnUpdate" function="MapWindow.OnUpdate" />
+			</EventHandlers>
+			<Windows>
+        
+				<FullResizeImage name="$parentBg" texture="TMapBG" handleinput="false" layer="background">
+					<Anchors>
+						<Anchor point="topleft" relativePoint="topleft"/>
+						<Anchor point="bottomright" relativePoint="bottomright"/>
+					</Anchors>
+					<Sizes>
+						<TopLeft x="70" y="70" />
+						<BottomRight x="70" y="70" />
+						<Middle x="70" y="70" />
+					</Sizes>
+					<TexCoords>
+						<TopLeft x="0" y="0" />
+						<TopCenter x="70" y="0" />
+						<TopRight x="140" y="0" />
+						<MiddleLeft x="0" y="70" />
+						<MiddleCenter x="70" y="70" />
+						<MiddleRight x="140" y="70" />
+						<BottomLeft x="0" y="140" />
+						<BottomCenter x="70" y="140" />
+						<BottomRight x="140" y="140" />
+					</TexCoords>
+				</FullResizeImage>
+
+        <MaskWindow name="$parentMap" movable="false" popable="false" layer="background" handleinput="true">
+          <Size>
+            <!--AbsPoint x="690" y="665" /-->
+            <AbsPoint x="310" y="260" />
+          </Size>
+          <Anchors>
+            <Anchor point="topleft" relativePoint="topleft" relativeTo="$parent">
+              <AbsPoint x="25" y="25" />
+            </Anchor>
+          </Anchors>
+          <EventHandlers>
+            <EventHandler event="OnMouseWheel" function="MapCommon.MapOnMouseWheel" />
+          </EventHandlers>
+          <Windows>
+            <DynamicImage name="$parentImage" handleinput="true" layer="default" scaleAnchor="center" texturescale ="20" sticky="false">
+              <Size>
+                <AbsPoint x="1100" y="1100" />
+              </Size>
+              <Anchors>
+                <Anchor point="center" relativePoint="center"/>
+              </Anchors>
+            </DynamicImage>
+          </Windows>
+        </MaskWindow>
+
+        <DynamicImage name="$parentCompass" texture="CompassTexture" texturescale="0.64">
+          <Size>
+            <AbsPoint x="85" y="85" />
+          </Size>
+          <TexCoords x="0" y="0"/>
+          <Anchors>
+            <Anchor point="bottomright" relativePoint="bottomright" relativeTo="$parentMap">
+              <AbsPoint x="0" y="0" />
+            </Anchor>
+          </Anchors>
+          <EventHandlers>
+            <EventHandler event="OnLButtonUp" function="MapCommon.TiltMap" />
+            <EventHandler event="OnMouseOver" function="MapCommon.TiltMapTooltip" />
+          </EventHandlers>
+        </DynamicImage>
+
+        <FullResizeImage name="$parentOverlay" texture="TMapOverlay" handleinput="false">
+          <Anchors>
+            <Anchor point="topleft" relativePoint="topleft" relativeTo="$parentMap">
+              <AbsPoint x="-8" y="-8" />
+            </Anchor>
+            <Anchor point="bottomright" relativePoint="bottomright" relativeTo="$parentMap">
+              <AbsPoint x="8" y="8" />
+            </Anchor>
+          </Anchors>
+          <Sizes>
+            <TopLeft x="70" y="70" />
+            <BottomRight x="70" y="70" />
+            <Middle x="70" y="70" />
+          </Sizes>
+          <TexCoords>
+            <TopLeft x="0" y="0" />
+            <TopCenter x="70" y="0" />
+            <TopRight x="140" y="0" />
+            <MiddleLeft x="0" y="70" />
+            <MiddleCenter x="70" y="70" />
+            <MiddleRight x="140" y="70" />
+            <BottomLeft x="0" y="140" />
+            <BottomCenter x="70" y="140" />
+            <BottomRight x="140" y="140" />
+          </TexCoords>
+        </FullResizeImage>
+
+        <DynamicImage name="$parentMapNameBG" texture="map_parchment_widgets" texturescale="1">
+          <Size>
+            <AbsPoint x="182" y="45" />
+          </Size>
+          <Anchors>
+            <Anchor point="top" relativePoint="top" relativeTo="$parent">
+              <AbsPoint x="10" y="5" />
+            </Anchor>
+          </Anchors>
+          <TexCoords x="0" y="4"/>
+        </DynamicImage>
+        
+        <Label name="$parentMapName" font="UO_NeueText_16" linespacing="20" maxchars="64" textalign="center" textAutoFitMinScale="true" wordwrap="true" >
+          <Size>
+            <AbsPoint x="182" y="45" />
+          </Size>
+          <Anchors>
+            <Anchor point="top" relativePoint="top" relativeTo="$parent">
+              <AbsPoint x="10" y="7" />
+            </Anchor>
+          </Anchors>
+          <Color r="0" g="50" b="0" a="255" />
+        </Label>
+        
+        <VerticalResizeImage name="$parentLeft" texture="MapVerticalBorders" handleinput="false">
+          <Size>
+            <AbsPoint x="45" y="526" />
+          </Size>
+          <Anchors>
+            <Anchor point="topleft" relativePoint="topleft" relativeTo="$parent">
+              <AbsPoint x="-5" y="-2" />
+            </Anchor>
+            <Anchor point="bottomleft" relativePoint="bottomleft" relativeTo="$parent">
+              <AbsPoint x="-5" y="8" />
+            </Anchor>
+          </Anchors>
+          <Sizes top="60" middle="65" bottom="55"/>
+          <TexCoords>
+            <Top x="1" y="0" />
+            <Middle x="1" y="60" />
+            <Bottom x="2" y="175" />
+          </TexCoords>
+        </VerticalResizeImage>
+
+        <VerticalResizeImage name="$parentRight" texture="MapVerticalBorders" textureScale="1.5" handleinput="false">
+          <Size>
+            <AbsPoint x="28" y="526" />
+          </Size>
+          <Anchors>
+            <Anchor point="topright" relativePoint="topright" relativeTo="$parentBg">
+              <AbsPoint x="7" y="-5" />
+            </Anchor>
+            <Anchor point="bottomright" relativePoint="bottomright" relativeTo="$parentBg">
+              <AbsPoint x="7" y="12" />
+            </Anchor>
+          </Anchors>
+          <Sizes top="60" middle="55" bottom="55"/>
+          <TexCoords>
+            <Top x="68" y="0" />
+            <Middle x="68" y="60" />
+            <Bottom x="68" y="175" />
+          </TexCoords>
+        </VerticalResizeImage>
+
+				<Button name="$parentLock" texturescale="0.8">
+					<Size>
+						<AbsPoint x="25" y="25" />
+					</Size>
+          <Anchors>
+            <Anchor point="right" relativePoint="left" relativeTo="$parentMapNameBG">
+              <AbsPoint x="5" y="-2" />
+            </Anchor>
+          </Anchors>
+					<EventHandlers>
+						<EventHandler event="OnLButtonUp" function="MapWindow.Lock" />
+						<EventHandler event="OnMouseOver" function="MapWindow.LockTooltip" />
+					</EventHandlers>
+				</Button>
+     
+				<Label name="$parentPlayerCoordsText" font="Arial_Black_12" maxchars="128" textalign="left" handleinput="false" wordwrap ="true">
+					<Size>
+						<AbsPoint x="320" y="15" />
+					</Size>
+					<Anchors>
+						<Anchor point="bottomleft" relativePoint="topleft" relativeTo="$parentMap">
+							<AbsPoint x="10" y="10" />
+						</Anchor>
+					</Anchors>
+          <Color r="0" g="0" b="0" a="255" />
+				</Label>
+
+        <Button name="$parentWPOnPlayerLocButton" inherits="UO_Default_Parch_Plus_Button" texturescale="0.5" layer="overlay">
+          <Size>
+            <AbsPoint x="20" y="20" />
+          </Size>
+          <Anchors>
+            <Anchor point="topleft" relativePoint="topright" relativeTo="$parentPlayerCoordsText">
+              <AbsPoint x="0" y="0" />
+            </Anchor>
+          </Anchors>
+          <EventHandlers>
+            <EventHandler event="OnLButtonUp" function="AtlasWindow.WPOnPlayerLocation" />
+            <EventHandler event="OnMouseOver" function="MapCommon.WPPlayerLocOnMouseOver" />
+          </EventHandlers>
+        </Button>
+
+        <Label name="$parentDestinationText" font="Arial_Black_12" maxchars="128" textalign="leftcenter" handleinput="false" wordwrap ="true">
+          <Size>
+            <AbsPoint x="320" y="30" />
+          </Size>
+          <Anchors>
+            <Anchor point="bottomleft" relativePoint="topleft" relativeTo="$parentPlayerCoordsText">
+              <AbsPoint x="30" y="2" />
+            </Anchor>
+          </Anchors>
+          <Color r="0" g="0" b="0" a="255" />
+        </Label>
+
+        <Button name="$parentZoomInButton" inherits="UO_Default_Parch_Plus_Button" texturescale="0.5" layer="overlay">
+          <Size>
+            <AbsPoint x="20" y="20" />
+          </Size>
+          <Anchors>
+            <Anchor point="topright" relativePoint="topright" relativeTo="$parentMap">
+              <AbsPoint x="0" y="0" />
+            </Anchor>
+          </Anchors>
+          <EventHandlers>
+            <EventHandler event="OnLButtonUp" function="MapCommon.ZoomInOnLButtonUp" />
+            <EventHandler event="OnMouseOver" function="MapCommon.ZoomInOnMouseOver" />
+          </EventHandlers>
+        </Button>
+
+        <Button name="$parentZoomOutButton" inherits="UO_Default_Parch_Minus_Button" texturescale="0.5" layer="overlay">
+          <Size>
+            <AbsPoint x="20" y="20" />
+          </Size>
+          <Anchors>
+            <Anchor point="bottom" relativePoint="top" relativeTo="$parentZoomInButton">
+              <AbsPoint x="0" y="0" />
+            </Anchor>
+          </Anchors>
+          <EventHandlers>
+            <EventHandler event="OnLButtonUp" function="MapCommon.ZoomOutOnLButtonUp" />
+            <EventHandler event="OnMouseOver" function="MapCommon.ZoomOutOnMouseOver" />
+          </EventHandlers>
+        </Button>
+
+        <Button name="$parentWPFiltertButton" inherits="UO_Default_Parch_Tick_Button" texturescale="0.6" layer="overlay">
+          <Size>
+            <AbsPoint x="20" y="20" />
+          </Size>
+          <Anchors>
+            <Anchor point="bottom" relativePoint="top" relativeTo="$parentZoomOutButton">
+              <AbsPoint x="2" y="2" />
+            </Anchor>
+          </Anchors>
+          <EventHandlers>
+            <EventHandler event="OnLButtonUp" function="MapCommon.WPFilterOnLButtonUp" />
+            <EventHandler event="OnMouseOver" function="MapCommon.WPFilterTooltip" />
+          </EventHandlers>
+        </Button>
+
+        <Button name="$parentAtlas" sticky="false" backgroundtexture="map_parchment_widgets" highlighttexture="map_parchment_widgets" >
+          <Size>
+            <AbsPoint x="58" y="54" />
+          </Size>
+          <TexCoords>
+            <Normal x="209" y="227" />
+            <NormalHighlit x="264" y="227" />
+            <Pressed x="264" y="227" />
+            <PressedHighlit x="264" y="227" />
+          </TexCoords>
+          <Anchors>
+            <Anchor point="left" relativePoint="right" relativeTo="$parentMapNameBG">
+              <AbsPoint x="-5" y="5" />
+            </Anchor>
+          </Anchors>
+          <EventHandlers>
+            <EventHandler event="OnLButtonUp" function="MapWindow.AtlasOnLButtonUp" />
+            <EventHandler event="OnMouseOver" function="MapWindow.AtlasOnMouseOver" />
+          </EventHandlers>
+        </Button>
+
+        <DynamicImage name="$parentNavigator" texture="navigator" texturescale="1">
+          <Size>
+            <AbsPoint x="35" y="35" />
+          </Size>
+          <TexCoords x="0" y="0"/>
+          <Anchors>
+            <Anchor point="bottomleft" relativePoint="bottomleft" relativeTo="$parent">
+              <AbsPoint x="25" y="-3" />
+            </Anchor>
+          </Anchors>
+          <EventHandlers>
+            <EventHandler event="OnLButtonUp" function="MapWindow.LocateCompass" />
+            <EventHandler event="OnRButtonUp" function="MapWindow.CloseCompass" />
+            <EventHandler event="OnMouseOver" function="MapWindow.NavigatorTooltip" />
+          </EventHandlers>
+        </DynamicImage>
+
+        <Button name="$parentResizeButton" inherits="CoreWindowResizeButtonBottomRight" layer="popup" >
+          <Anchors>
+            <Anchor point="bottomright" relativePoint="bottomright" relativeTo="" >
+              <AbsPoint x="0" y="0" />
+            </Anchor>
+          </Anchors>
+          <EventHandlers>
+            <EventHandler event="OnLButtonDown" function="MapWindow.OnResizeBegin" />
+          </EventHandlers>
+        </Button>
+        
+      </Windows>
+		</Window>
+	</Windows>
+</Interface>

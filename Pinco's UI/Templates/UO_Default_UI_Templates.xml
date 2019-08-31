@@ -1,0 +1,456 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Interface xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../Interface.xsd">
+  <Windows>
+
+    <!-- Horizontal Gold Line Template -->
+    <FullResizeImage name="UO_Default_Horizontal_Gold_Line" layer="background" handleinput="false" texture="HLine">
+      <Sizes>
+        <TopLeft x="1" y="1" />
+        <Middle x="1" y="1" />
+        <BottomRight x="1" y="1" />
+      </Sizes>
+      <TexCoords>
+        <TopLeft x="0" y="0" />
+        <TopCenter x="0" y="0" />
+        <TopRight x="0" y="0" />
+        <MiddleLeft x="0" y="0" />
+        <MiddleCenter x="0" y="0" />
+        <MiddleRight x="0" y="0" />
+        <BottomLeft x="0" y="0" />
+        <BottomCenter x="0" y="0" />
+        <BottomRight x="0" y="0" />
+      </TexCoords>
+      <TintColor r="50" g="50"  b="50" a="255"/>
+    </FullResizeImage>
+
+
+
+    <Button name="UO_Default_Small_Select_Button" sticky="false" backgroundtexture="Samll_Select" highlighttexture="Samll_Select" textalign="center"  font="Arial_Black_16">
+      <Size>
+        <AbsPoint x="57" y="18" />
+      </Size>
+      <TexCoords>
+        <Normal x="0" y="0" />
+        <NormalHighlit x="112" y="0" />
+        <Pressed x="57" y="0" />
+        <PressedHighlit x="0" y="0" />
+        <Disabled x="168" y="0" />
+      </TexCoords>
+      <TextOffset x="0" y="-3"/>
+      <TextColors>
+        <Normal r="40" g="17" b="0" a="255" />
+        <NormalHighlit r="60" g="37" b="1" a="255" />
+        <Pressed r="250" g="213" b="255" a="255" />
+        <PressedHighlit r="250" g="213" b="255" a="255" />
+        <Disabled r="92" g="92" b="92" a="255" />
+      </TextColors>
+    </Button>
+
+
+
+    <VerticalResizeImage name="UO_Default_Vertical_Rule" handleinput="false" texture="VLine">
+      <Size>
+        <AbsPoint x="1" y="69" />
+      </Size>
+      <Sizes middle="1" />
+      <TexCoords>
+        <Middle x="0" y="0" />
+      </TexCoords>
+      <TintColor r="50" g="50"  b="50" a="255"/>
+    </VerticalResizeImage>
+
+    <!-- Default Slot Default -->
+    <FullResizeImage name="UO_Default_Slot_Normal" layer="background" handleinput="false" texture="Default_Slot">
+      <Sizes>
+        <TopLeft x="10" y="10" />
+        <Middle x="10" y="14" />
+        <BottomRight x="10" y="10" />
+      </Sizes>
+      <TexCoords>
+        <TopLeft x="0" y="0" />
+        <TopCenter x="10" y="0" />
+        <TopRight x="20" y="0" />
+        <MiddleLeft x="0" y="11" />
+        <MiddleCenter x="10" y="11" />
+        <MiddleRight x="20" y="11" />
+        <BottomLeft x="0" y="14" />
+        <BottomCenter x="10" y="14" />
+        <BottomRight x="20" y="14" />
+      </TexCoords>
+    </FullResizeImage>
+
+
+    <HorizontalResizeImage name="UO_Default_Horizontal_Rule" handleinput="false" texture="HLine">
+      <Size>
+        <AbsPoint x="155" y="1" />
+      </Size>
+      <Sizes middle="1" />
+      <TexCoords>
+        <Middle x="0" y="0" />
+      </TexCoords>
+      <TintColor r="50" g="50"  b="50" a="255"/>
+    </HorizontalResizeImage>
+
+    <Label name="UO_Default_Label_Color">
+      <Color r="206" g="217" b="242" a="255"/>
+    </Label>
+
+    <Label name="UO_Default_Label_With_Links">
+      <EventHandlers>
+        <EventHandler event="OnHyperLinkClicked" function="WindowUtils.ProcessLink" />
+      </EventHandlers>
+      <LinkColor r="155" g="0" b="0" a="255"/>
+      <LinkHighlightColor r="255" g="85" b="0" a="255"/>
+    </Label>
+
+    <Button name="UO_Default_BigPreviousButton" backgroundtexture="Big_Prev_Button" highlighttexture="Big_Prev_Button" font="Arial_Black_16" textalign="left">
+      <Size>
+        <AbsPoint x="38" y="21" />
+      </Size>
+      <TexCoords>
+        <Normal x="0" y="0" />
+        <NormalHighlit x="0" y="24" />
+        <Pressed x="0" y="24" />
+        <PressedHighlit x="0" y="27" />
+        <Disabled x="0" y="48" />
+      </TexCoords>
+      <TextColors>
+        <Normal r="253" g="210" b="69" a="255" />
+        <NormalHighlit r="253" g="210" b="69" a="255" />
+        <Pressed r="23" g="24" b="19" a="255" />
+        <PressedHighlit r="23" g="24" b="19" a="255" />
+        <Disabled r="73" g="59" b="14" a="255" />
+      </TextColors>
+      <TextOffset x="0" y="0" />
+    </Button>
+
+    <Button name="UO_Default_BigNextButton" backgroundtexture="Big_Next_Button" highlighttexture="Big_Next_Button" font="Arial_Black_16" textalign="left">
+      <Size>
+        <AbsPoint x="38" y="21" />
+      </Size>
+      <TexCoords>
+        <Normal x="0" y="0" />
+        <NormalHighlit x="0" y="24" />
+        <Pressed x="0" y="24" />
+        <PressedHighlit x="0" y="27" />
+        <Disabled x="0" y="48" />
+      </TexCoords>
+      <TextColors>
+        <Normal r="253" g="210" b="69" a="255" />
+        <NormalHighlit r="253" g="210" b="69" a="255" />
+        <Pressed r="23" g="24" b="19" a="255" />
+        <PressedHighlit r="23" g="24" b="19" a="255" />
+        <Disabled r="73" g="59" b="14" a="255" />
+      </TextColors>
+      <TextOffset x="0" y="0" />
+    </Button>
+
+    <Button name="UO_Default_Radio_Button" sticky="false" backgroundtexture="RadioButton" highlighttexture="RadioButton" texturescale=".9">
+      <Size>
+        <AbsPoint x="18" y="18" />
+      </Size>
+      <TexCoords>
+        <Normal x="0" y="23" />
+        <NormalHighlit x="0" y="23" />
+        <Pressed x="0" y="0" />
+        <PressedHighlit x="0" y="0" />
+        <Disabled x="0" y="0" />
+      </TexCoords>
+    </Button>
+
+    <Button name="UO_Default_Spring_Button" sticky="false" backgroundtexture="Swirl_Button" highlighttexture="Swirl_Button">
+      <Size>
+        <AbsPoint x="20" y="20" />
+      </Size>
+      <TexCoords>
+        <Normal x="0" y="0" />
+        <NormalHighlit x="0" y="23" />
+        <Pressed x="0" y="23" />
+        <PressedHighlit x="0" y="23" />
+        <Disabled x="0" y="23" />
+      </TexCoords>
+    </Button>
+
+    <Button name="UO_Default_Plus_Button" sticky="false" backgroundtexture="Plus" highlighttexture="Plus" >
+      <Size>
+        <AbsPoint x="23" y="23" />
+      </Size>
+      <TexCoords>
+        <Normal x="0" y="0" />
+        <NormalHighlit x="0" y="27" />
+        <Pressed x="0" y="27" />
+        <PressedHighlit x="0" y="27" />
+      </TexCoords>
+    </Button>
+
+    <Button name="UO_Default_Minus_Button" sticky="false" backgroundtexture="Minus" highlighttexture="Minus" >
+      <Size>
+        <AbsPoint x="23" y="23" />
+      </Size>
+      <TexCoords>
+        <Normal x="0" y="0" />
+        <NormalHighlit x="0" y="27" />
+        <Pressed x="0" y="27" />
+        <PressedHighlit x="0" y="27" />
+      </TexCoords>
+    </Button>
+
+    <Button name="UO_Default_Parch_Plus_Button" sticky="false" texturescale="0.5" backgroundtexture="map_parchment_widgets" highlighttexture="map_parchment_widgets" >
+      <Size>
+        <AbsPoint x="20" y="20" />
+      </Size>
+      <TexCoords>
+        <Normal x="331" y="2" />
+        <NormalHighlit x="372" y="2" />
+        <Pressed x="372" y="2" />
+        <PressedHighlit x="372" y="2" />
+      </TexCoords>
+    </Button>
+
+    <Button name="UO_Default_Parch_Minus_Button" sticky="false" texturescale="0.5" backgroundtexture="map_parchment_widgets" highlighttexture="map_parchment_widgets" >
+      <Size>
+        <AbsPoint x="23" y="23" />
+      </Size>
+      <TexCoords>
+        <Normal x="249" y="2" />
+        <NormalHighlit x="291" y="2" />
+        <Pressed x="291" y="2" />
+        <PressedHighlit x="291" y="2" />
+      </TexCoords>
+    </Button>
+
+    <Button name="UO_Default_Parch_Tick_Button" sticky="false" texturescale="0.5" backgroundtexture="map_parchment_widgets" highlighttexture="map_parchment_widgets" >
+      <Size>
+        <AbsPoint x="16" y="15" />
+      </Size>
+      <TexCoords>
+        <Normal x="256" y="62" />
+        <NormalHighlit x="256" y="62" />
+        <Pressed x="256" y="62" />
+        <PressedHighlit x="256" y="62" />
+      </TexCoords>
+    </Button>
+
+    <Button name="UO_Default_Parch_Title_Button" sticky="false" backgroundtexture="map_parchment_widgets" highlighttexture="map_parchment_widgets" >
+      <Size>
+        <AbsPoint x="182" y="45" />
+      </Size>
+      <TexCoords>
+        <Normal x="0" y="4" />
+        <NormalHighlit x="0" y="51" />
+        <Pressed x="0" y="51" />
+        <PressedHighlit x="0" y="51" />
+      </TexCoords>
+    </Button>
+
+    <Button name="UO_Default_Small_Right_Left_Arrow_Button" sticky="false" backgroundtexture="Arrow_Button_Right" highlighttexture="Arrow_Button_Right" >
+      <Size>
+        <AbsPoint x="23" y="23" />
+      </Size>
+      <TexCoords>
+        <Normal x="0" y="0" />
+        <NormalHighlit x="0" y="27" />
+        <Pressed x="0" y="27" />
+        <PressedHighlit x="0" y="27" />
+      </TexCoords>
+    </Button>
+
+    <Button name="UO_Default_Small_Left_Right_Arrow_Button" sticky="false" backgroundtexture="Arrow_Button_Left" highlighttexture="Arrow_Button_Left" >
+      <Size>
+        <AbsPoint x="23" y="23" />
+      </Size>
+      <TexCoords>
+        <Normal x="0" y="0" />
+        <NormalHighlit x="0" y="27" />
+        <Pressed x="0" y="27" />
+        <PressedHighlit x="0" y="27" />
+      </TexCoords>
+    </Button>
+
+    <!-- Currently used for the runebook diamond buttons -->
+    <Button name="PurpleDiamond" texture="Purple_Diamond">
+      <Size>
+        <AbsPoint x="28" y="28" />
+      </Size>
+      <TexCoords>
+        <Normal texture="Purple_Diamond" x="0" y="0" />
+        <Pressed texture="Purple_Diamond" x="29" y="0" />
+        <Disabled texture="Purple_Diamond" x="60" y="0" />
+      </TexCoords>
+    </Button>
+
+    <Button name="YellowDiamond" texture="Yellow_Diamond" >
+      <Size>
+        <AbsPoint x="28" y="28" />
+      </Size>
+      <TexCoords>
+        <Normal texture="Yellow_Diamond" x="0" y="0" />
+        <Pressed texture="Yellow_Diamond" x="29" y="0" />
+        <Disabled texture="Yellow_Diamond" x="60" y="0" />
+      </TexCoords>
+    </Button>
+
+    <Button name="TorquoiseDiamond" texture="Torquoise_Diamond" >
+      <Size>
+        <AbsPoint x="28" y="28" />
+      </Size>
+      <TexCoords>
+        <Normal texture="Torquoise_Diamond" x="0" y="0" />
+        <Pressed texture="Torquoise_Diamond" x="29" y="0" />
+        <Disabled texture="Torquoise_Diamond" x="60" y="0" />
+      </TexCoords>
+    </Button>
+
+    <Button name="GrayDiamond" texture="Gray_Diamond" >
+      <Size>
+        <AbsPoint x="28" y="28" />
+      </Size>
+      <TexCoords>
+        <Normal texture="Gray_Diamond" x="0" y="0" />
+        <Pressed texture="Gray_Diamond" x="29" y="0" />
+        <Disabled texture="Gray_Diamond" x="60" y="0" />
+      </TexCoords>
+    </Button>
+
+    <Button name="GreenDiamond" texture="Green_Diamond" >
+      <Size>
+        <AbsPoint x="28" y="28" />
+      </Size>
+      <TexCoords>
+        <Normal texture="Green_Diamond" x="0" y="0" />
+        <Pressed texture="Green_Diamond" x="29" y="0" />
+        <Disabled texture="Green_Diamond" x="60" y="0" />
+      </TexCoords>
+    </Button>
+
+    <Button name="BrownDiamond" texture="Brown_Diamond" >
+      <Size>
+        <AbsPoint x="28" y="28" />
+      </Size>
+      <TexCoords>
+        <Normal texture="Brown_Diamond" x="0" y="0" />
+        <Pressed texture="Brown_Diamond" x="29" y="0" />
+        <Disabled texture="Brown_Diamond" x="60" y="0" />
+      </TexCoords>
+    </Button>
+
+    <Button name="CircleSelectionButton" texture="Circle_Selection" >
+      <Size>
+        <AbsPoint x="23" y="23" />
+      </Size>
+      <TexCoords>
+        <Normal texture="Circle_Selection" x="23" y="0" />
+        <NormalHighlit texture="Circle_Selection"  x="0" y="0"/>
+        <Pressed texture="Circle_Selection" x="0" y="0" />
+        <PressedHighlit texture="Circle_Selection" x="45" y="0" />
+        <Disabled texture="Circle_Selection" x="69" y="0" />
+      </TexCoords>
+    </Button>
+
+    <!--Template for Medium sized new tab button -->
+    <Button name="UO_Default_PaperDollTabButton" drawchildrenfirst="true" font="Arial_Black_12" textalign="center">
+      <Size>
+        <AbsPoint x="100" y="24" />
+      </Size>
+      <TextColors>
+        <Normal r="2" g="6" b="20" a="255" />
+        <!-- THIS IS USED AS THE UNSELECTED COLOR FOR SOME REASON-->
+        <NormalHighlit  r="255" g="255" b="255" a="255" />
+        <!-- THIS IS USED AS THE MOUSEOVER COLOR -->
+        <Pressed r="206" g="217" b="242" a="255" />
+        <PressedHighlit r="255" g="255" b="255" a="255" />
+        <Disabled r="30" g="30" b="30" a="255"  />
+        <!-- THIS IS USED AS THE SELECTED COLOR FOR SOME REASON -->
+      </TextColors>
+      <TextOffset x="0" y="-5"/>
+    </Button>
+
+    <!--Template for Medium sized new tab enabled -->
+    <HorizontalResizeImage name="UO_Default_Medium_Tab_Enabled" texture="Tab_Button" highlighttexture="Tab_Button" textalign="center" font="Arial_Black_12">
+      <Size>
+        <AbsPoint x="77" y="30" />
+      </Size>
+      <Sizes left="12" middle="56" right="9" />
+      <TexCoords>
+        <Left x="0" y="0" />
+        <Middle x="11" y="0" />
+        <Right x="67" y="0" />
+      </TexCoords>
+      <!--<TextColors>s
+			<Normal r="255" g="255" b="255" a="255" />
+			<NormalHighlit  r="33" g="20" b="0" a="255" />	
+			<Pressed r="255" g="255" b="255" a="255" />
+			<PressedHighlit r="33" g="20" b="0" a="255" />
+			<Disabled r="255" g="255" b="255" a="255"  />
+		</TextColors>-->
+      <TextColors>
+        <Normal r="255" g="0" b="0" a="255" />
+        <NormalHighlit  r="255" g="255" b="255" a="255" />
+        <Pressed r="0" g="255" b="0" a="255" />
+        <PressedHighlit r="0" g="0" b="255" a="255" />
+        <Disabled r="0" g="0" b="0" a="255"  />
+      </TextColors>
+    </HorizontalResizeImage>
+
+    <!-- Template for Medium sized new tab disabled -->
+    <HorizontalResizeImage name="UO_Default_Medium_Tab_Disabled" texture="Tab_Button" highlighttexture="Tab_Button" textalign="center" font="Arial_Black_12">
+      <Size>
+        <AbsPoint x="77" y="30" />
+      </Size>
+      <Sizes left="13" middle="56" right="9" />
+      <TexCoords>
+        <Left x="0" y="35" />
+        <Middle x="13" y="35" />
+        <Right x="67" y="35" />
+      </TexCoords>
+      <TextColors>
+        <Normal r="255" g="255" b="255" a="100" />
+        <NormalHighlit  r="33" g="20" b="0" a="100" />
+        <Pressed r="255" g="255" b="255" a="100" />
+        <PressedHighlit r="33" g="20" b="0" a="100" />
+        <Disabled r="255" g="255" b="255" a="100"  />
+      </TextColors>
+    </HorizontalResizeImage>
+
+    <Button name="UpArrow" texture="arrowup" >
+      <Size>
+        <AbsPoint x="21" y="27" />
+      </Size>
+      <TexCoords>
+        <Normal texture="arrowup" x="0" y="0" />
+        <NormalHighlit texture="arrowup" x="22" y="0" />
+      </TexCoords>
+    </Button>
+
+    <Button name="DownArrow" texture="arrowdown" >
+      <Size>
+        <AbsPoint x="21" y="27" />
+      </Size>
+      <TexCoords>
+        <Normal texture="arrowdown" x="0" y="0" />
+        <NormalHighlit texture="arrowdown" x="22" y="0" />
+      </TexCoords>
+    </Button>
+
+    <Button name="Lock" texture="Lock_Button" >
+      <Size>
+        <AbsPoint x="21" y="27" />
+      </Size>
+      <TexCoords>
+        <Normal x="68" y="338" />
+        <NormalHighlit x="92" y="338" />
+      </TexCoords>
+    </Button>
+
+    <Button name="LargeCloseButton" texture="Large_Close_Button" >
+      <Size>
+        <AbsPoint x="28" y="31" />
+      </Size>
+      <TexCoords>
+        <Normal texture="Large_Close_Button" x="0" y="0" />
+        <NormalHighlit texture="Large_Close_Button" x="28" y="0" />
+      </TexCoords>
+    </Button>
+
+  </Windows>
+</Interface>

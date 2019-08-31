@@ -1,0 +1,507 @@
+<Interface xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../Interface.xsd">
+  <Windows>
+
+    <Window name="DockspotSettingsWindow" moveable="true" sticky="true">
+      <Size>
+        <AbsPoint x="320" y="300" />
+      </Size>
+
+      <EventHandlers>
+        <EventHandler event="OnLButtonDown" function="MobileBarsDockspot.OnMouseDrag" />
+        <EventHandler event="OnShutdown" function="MobileBarsDockspot.SettingsShutdown" />
+      </EventHandlers>
+
+      <Windows>
+        <FullResizeImage name="$parentBG" inherits="UO_Default_Black_BackgroundNEW" handleinput="false">
+          <Anchors>
+            <Anchor point="topleft" relativePoint="topleft">
+              <AbsPoint x="4" y="26" />
+            </Anchor>
+            <Anchor point="bottomright" relativePoint="bottomright">
+              <AbsPoint x="-4" y="-1" />
+            </Anchor>
+          </Anchors>
+        </FullResizeImage>
+
+        <HorizontalResizeImage name="$parentTitleBG" inherits="UO_Default_Title_BarNEW" handleinput="true" popable="false">
+          <Anchors>
+            <Anchor point="topleft" relativePoint="topleft" >
+              <AbsPoint x="5" y="0" />
+            </Anchor>
+            <Anchor point="topright" relativePoint="topright" >
+              <AbsPoint x="-5" y="0" />
+            </Anchor>
+          </Anchors>
+
+          <EventHandlers>
+            <EventHandler event="OnRButtonUp" function="UO_DefaultWindow.CloseDialog" />
+          </EventHandlers>
+        </HorizontalResizeImage>
+
+        <Label name="$parentTitle" inherits="UO_Default_Label_Color"  font="Arial_Black_18" maxchars="256" handleinput="false" layer="popup" autoresizewidth="true">
+          <Size>
+            <AbsPoint x="0" y="24"/>
+          </Size>
+          <Anchors>
+            <Anchor point="center" relativePoint="center" relativeTo="$parentTitleBG">
+              <AbsPoint x="-15" y="0" />
+            </Anchor>
+          </Anchors>
+          <Color r="159" g="177" b="189"/>
+        </Label>
+
+        <Button name="$parentCloseButton" inherits="UO_Default_Close_ButtonNEW">
+          <Anchors>
+            <Anchor point="topright" relativePoint="topright" relativeTo="$parentTitleBG">
+              <AbsPoint x="-5" y="3" />
+            </Anchor>
+          </Anchors>
+        </Button>
+
+      </Windows>
+    </Window>
+
+    <Window name="SavedFiltersTemplate" layer="secondary">
+      <Size>
+        <AbsPoint x="275" y="32"/>
+      </Size>
+      <Windows>
+        
+        <ComboBox name="$parentCombo" inherits="UO_Default_MediumComboBox" >
+          <Anchors>
+            <Anchor point="bottomleft" relativePoint="topleft" relativeTo="VendorSearchSW">
+              <AbsPoint x="15" y="10" />
+            </Anchor>
+          </Anchors>
+          <EventHandlers>
+            <EventHandler event="OnSelChanged" function="MobileBarsDockspot.ComboFilterListSelect"/>
+          </EventHandlers>
+        </ComboBox>
+
+        <Button name="$parentDeleteFilter" layer="overlay" backgroundtexture="MapX" highlighttexture="MapX" texturescale="1.2">
+          <Size>
+            <AbsPoint x="22" y="22" />
+          </Size>
+          <TexCoords>
+            <Normal  x="0" y="0" />
+            <NormalHighlit x="0" y="0" />
+            <Pressed x="0" y="0" />
+            <PressedHighlit x="0" y="0" />
+            <Disabled x="0" y="0" />
+          </TexCoords>
+          <Anchors>
+            <Anchor point="right" relativePoint="left" relativeTo="$parentCombo">
+              <AbsPoint x="0" y="0" />
+            </Anchor>
+          </Anchors>
+          <EventHandlers>
+            <EventHandler event="OnLButtonUp" function="MobileBarsDockspot.DeleteFilter" />
+            <EventHandler event="OnMouseOver" function="MobileBarsDockspot.DeleteFilterTooltip" />
+          </EventHandlers>
+        </Button>
+
+        <Button name="$parentSaveFilter" layer="overlay" backgroundtexture="Save" highlighttexture="Save" texturescale="0.8">
+          <Size>
+            <AbsPoint x="22" y="22" />
+          </Size>
+          <TexCoords>
+            <Normal  x="0" y="0" />
+            <NormalHighlit x="0" y="0" />
+            <Pressed x="0" y="0" />
+            <PressedHighlit x="0" y="0" />
+            <Disabled x="0" y="0" />
+          </TexCoords>
+          <Anchors>
+            <Anchor point="right" relativePoint="left" relativeTo="$parentDeleteFilter">
+              <AbsPoint x="5" y="-3" />
+            </Anchor>
+          </Anchors>
+          <EventHandlers>
+            <EventHandler event="OnLButtonUp" function="MobileBarsDockspot.CreateFilter" />
+            <EventHandler event="OnMouseOver" function="MobileBarsDockspot.CreateFilterTooltip" />
+          </EventHandlers>
+        </Button>
+      </Windows>
+    </Window>
+    
+    <Window name="DockspotSubSectionLabelTemplate">
+      <Size>
+        <AbsPoint x="270" y="25"/>
+      </Size>
+      <Windows>
+        <Label name="$parentLabel" font="MyriadPro_16">
+          <Size>
+            <AbsPoint x="270" y="20"/>
+          </Size>
+          <Anchors>
+            <Anchor point="topleft" relativePoint="topleft" />
+          </Anchors>
+          <Color r="255" g="231" b="132" a="255" />
+        </Label>
+
+        <HorizontalResizeImage name="$parentGoldLine" inherits="UO_Default_Horizontal_Rule" >
+          <Size>
+            <AbsPoint x="270" y="2" />
+          </Size>
+          <Anchors>
+            <Anchor point="topleft" relativePoint="bottomleft" relativeTo="$parentLabel">
+              <AbsPoint x="0" y="30" />
+            </Anchor>
+          </Anchors>
+        </HorizontalResizeImage>
+      </Windows>
+    </Window>
+
+    <Window name="DockspotLabelCheckButton">
+      <Size>
+        <AbsPoint x="270" y="32" />
+      </Size>
+      <Windows>
+        <Button name="$parentButton" inherits="UO_Default_Check_Button">
+          <Anchors>
+            <Anchor point="left" relativePoint="left">
+              <AbsPoint x="5" y="0"/>
+            </Anchor>
+          </Anchors>
+          <EventHandlers>
+            <EventHandler event="OnLButtonDown" function="MobileBarsDockspot.SettingsCheckEnable" />
+          </EventHandlers>
+        </Button>
+        <Label name="$parentLabel" inherits="Settings_ItemTitle">
+          <Size>
+            <AbsPoint x="270" y="16" />
+          </Size>
+          <Anchors>
+            <Anchor point="right" relativePoint="left" relativeTo="$parentButton">
+              <AbsPoint x="5" y="0" />
+            </Anchor>
+          </Anchors>
+          <Color r="255" g="255" b="255" a="255" />
+          <EventHandlers>
+            <EventHandler event="OnLButtonDown" function="MobileBarsDockspot.SettingsCheck" />
+            <EventHandler event="OnMouseOver" function="SettingsWindow.LabelOnMouseOver" />
+          </EventHandlers>
+        </Label>
+      </Windows>
+    </Window>
+
+    <Window name="DockspotLabelCombo" layer="secondary">
+      <Size>
+        <AbsPoint x="270" y="32" />
+      </Size>
+      <Windows>
+        <Label name="$parentLabel" inherits="Settings_ItemTitle" >
+          <Size>
+            <AbsPoint x="80" y="20" />
+          </Size>
+          <Anchors>
+            <Anchor point="left" relativePoint="left">
+              <AbsPoint x="0" y="0"/>
+            </Anchor>
+          </Anchors>
+          <Color r="255" g="255" b="255" a="255" />
+          <EventHandlers>
+            <EventHandler event="OnMouseOver" function="SettingsWindow.LabelOnMouseOver" />
+          </EventHandlers>
+        </Label>
+        <ComboBox name="$parentCombo" inherits="UO_Default_ComboBox" handleinput="true">
+          <Anchors>
+            <Anchor point="right" relativePoint="left" relativeTo="$parentLabel">
+              <AbsPoint x="5" y="0" />
+            </Anchor>
+          </Anchors>
+          <EventHandlers>
+            <EventHandler event="OnSelChanged" function="MobileBarsDockspot.SettingsOnSelChanged" />
+          </EventHandlers>
+        </ComboBox>
+      </Windows>
+    </Window>
+
+    <Window name="DockspotSliderItemTemplate">
+      <Size>
+        <AbsPoint x="270" y="22" />
+      </Size>
+      <Windows>
+
+        <Label name="$parentLabel" font="MyriadPro_16" maxchars="64" textalign="left" handleinput="true">
+          <Size>
+            <AbsPoint x="150" y="16"/>
+          </Size>
+          <Anchors>
+            <Anchor point="topleft" relativePoint="topleft" >
+              <AbsPoint x="0" y="0" />
+            </Anchor>
+          </Anchors>
+          <EventHandlers>
+            <EventHandler event="OnMouseOver" function="SettingsWindow.LabelOnMouseOver" />
+          </EventHandlers>
+          <Color r="255" g="255" b="255" a="255" />
+        </Label>
+
+        <Label name="$parentMinusButton" font="Arial_Black_16" maxchars="1" textalign="left" autoresizewidth="true" >
+          <Size>
+            <AbsPoint x="16" y="16" />
+          </Size>
+          <Anchors>
+            <Anchor point="right" relativePoint="left" relativeTo="$parentLabel">
+              <AbsPoint x="10" y="-3" />
+            </Anchor>
+          </Anchors>
+          <EventHandlers>
+            <EventHandler event="OnLButtonUp" function="MobileBarsDockspot.AlterSlider" />
+            <EventHandler event="OnMouseOver" function="SettingsWindow.MinusItemMouseOver" />
+            <EventHandler event="OnMouseOverEnd" function="SettingsWindow.ClearMouseOverItem" />
+          </EventHandlers>
+        </Label>
+
+        <SliderBar name="$parentSliderBar" inherits="UO_Default_Horizontal_SliderBar" numticks="20">
+          <Size>
+            <AbsPoint x="80" y="16" />
+          </Size>
+          <Anchors>
+            <Anchor point="topright" relativePoint="topleft" relativeTo="$parentMinusButton">
+              <AbsPoint x="5" y="3" />
+            </Anchor>
+          </Anchors>
+          <EventHandlers>
+            <EventHandler event="OnSlide" function="MobileBarsDockspot.UpdateSliderSettings" />
+          </EventHandlers>
+        </SliderBar>
+
+        <Label name="$parentPlusButton" font="Arial_Black_16" maxchars="1" textalign="left" autoresizewidth="true">
+          <Size>
+            <AbsPoint x="16" y="16" />
+          </Size>
+          <Anchors>
+            <Anchor point="right" relativePoint="left" relativeTo="$parentSliderBar">
+              <AbsPoint x="5" y="-5" />
+            </Anchor>
+          </Anchors>
+          <EventHandlers>
+            <EventHandler event="OnLButtonUp" function="MobileBarsDockspot.AlterSlider" />
+            <EventHandler event="OnMouseOver" function="SettingsWindow.PlusItemMouseOver" />
+            <EventHandler event="OnMouseOverEnd" function="SettingsWindow.ClearMouseOverItem" />
+          </EventHandlers>
+        </Label>
+
+      </Windows>
+    </Window>
+
+    <Button name="SettingsButtonDockspotTemplate" backgroundtexture="Settings" highlighttexture="Settings" texturescale="1" >
+      <Size>
+        <AbsPoint x="32" y="32" />
+      </Size>
+      <TexCoords>
+        <Normal x="0" y="0" />
+        <NormalHighlit x="0" y="0" />
+        <Pressed x="0" y="0" />
+        <PressedHighlit x="0" y="0" />
+      </TexCoords>
+      <EventHandlers>
+        <EventHandlers>
+          <EventHandler event="OnLButtonDown" function="MobileBarsDockspot.OpenSettings" />
+        </EventHandlers>
+      </EventHandlers>
+    </Button>
+
+    <Button name="ToggleSearchButtonTemplate" backgroundtexture="Search" highlighttexture="Search" texturescale="1.0">
+      <Size>
+        <AbsPoint x="32" y="32"/>
+      </Size>
+      <TexCoords>
+        <Normal x="32" y="0" />
+        <NormalHighlit x="32" y="0" />
+        <Pressed x="32" y="0" />
+        <PressedHighlit x="32" y="0" />
+      </TexCoords>
+    </Button>
+
+    <Button name="ShowButtonTemplate" inherits="UO_Default_SmallNextButton">
+      <Size>
+        <AbsPoint x="32" y="23" />
+      </Size>
+      <EventHandlers>
+        <EventHandler event="OnLButtonUp" function="MobileBarsDockspot.OpenDockspot" />
+        <EventHandler event="OnMouseOver" function="MobileBarsDockspot.ShowToolTip" />
+        <EventHandler event="OnMouseOverEnd" function="MobileBarsDockspot.ShowToolTipEnd" />
+      </EventHandlers>
+    </Button>
+
+    <Button name="ShowButtonTemplateR" inherits="UO_Default_SmallPreviousButton">
+      <Size>
+        <AbsPoint x="32" y="23" />
+      </Size>
+      <EventHandlers>
+        <EventHandler event="OnLButtonUp" function="MobileBarsDockspot.OpenDockspot" />
+        <EventHandler event="OnMouseOver" function="MobileBarsDockspot.ShowToolTip" />
+        <EventHandler event="OnMouseOverEnd" function="MobileBarsDockspot.ShowToolTipEnd" />
+      </EventHandlers>
+    </Button>
+
+    <Button name="HideButtonTemplate" inherits="UO_Default_SmallPreviousButton">
+      <Size>
+        <AbsPoint x="32" y="23" />
+      </Size>
+      <EventHandlers>
+        <EventHandler event="OnLButtonUp" function="MobileBarsDockspot.CloseDockspot" />
+        <EventHandler event="OnMouseOver" function="MobileBarsDockspot.HideToolTip" />
+        <EventHandler event="OnMouseOverEnd" function="MobileBarsDockspot.HideToolTipEnd" />
+      </EventHandlers>
+    </Button>
+
+    <Button name="HideButtonTemplateR" inherits="UO_Default_SmallNextButton">
+      <Size>
+        <AbsPoint x="32" y="23" />
+      </Size>
+      <EventHandlers>
+        <EventHandler event="OnLButtonUp" function="MobileBarsDockspot.CloseDockspot" />
+        <EventHandler event="OnMouseOver" function="MobileBarsDockspot.HideToolTip" />
+        <EventHandler event="OnMouseOverEnd" function="MobileBarsDockspot.HideToolTipEnd" />
+      </EventHandlers>
+    </Button>
+
+    <Window name="MobileBarsDockspotGridSlotTemplate" handleInput="false" movable="false" alpha="0.5">
+      <Size>
+        <AbsPoint x="160" y="35" />
+      </Size>
+      <Windows>
+        <FullResizeImage name="$parentFrameHighlight" inherits="UO_Default_Inner_Window_Frame" layer="background" frameonly="false">
+          <Anchors>
+            <Anchor point="topleft" relativePoint="topleft" >
+              <AbsPoint x="0" y="0" />
+            </Anchor>
+            <Anchor point="bottomright" relativePoint="bottomright" >
+              <AbsPoint x="0" y="0" />
+            </Anchor>
+          </Anchors>
+        </FullResizeImage>
+      </Windows>
+    </Window>
+
+    <Window name="MobileBarsDockspotTemplate" layer="background" movable="false" sticky="true" draganddrop="true">
+      <Size>
+        <AbsPoint x="160" y="37" />
+      </Size>
+
+      <EventHandlers>
+        <EventHandler event="OnShutdown" function="MobileBarsDockspot.Shutdown" />
+        <EventHandler event="OnLButtonDown" function="MobileBarsDockspot.OnMouseDrag" />
+        <EventHandler event="OnMouseWheel" function="WindowUtils.Scale" />
+      </EventHandlers>
+      <Windows>
+
+        <!-- HIDDEN WINDOW MODE -->
+        <Window name="$parentHiddenView" moveable="false" >
+          <Size>
+            <AbsPoint x="80" y="37" />
+          </Size>
+          <Anchors>
+            <Anchor point="topleft" relativePoint="topleft">
+              <AbsPoint x="0" y="0" />
+            </Anchor>
+          </Anchors>
+
+          <Windows>
+            <Button name="$parentShowButton" inherits="ShowButtonTemplate">
+              <Anchors>
+                <Anchor point="topleft" relativePoint="topleft">
+                  <AbsPoint x="10" y="7" />
+                </Anchor>
+              </Anchors>
+            </Button>
+
+            <Button name="$parentShowButtonR" inherits="ShowButtonTemplateR">
+              <Anchors>
+                <Anchor point="topright" relativePoint="topright">
+                  <AbsPoint x="-5" y="7" />
+                </Anchor>
+              </Anchors>
+            </Button>
+
+            <Button name="$parentSettings" inherits="SettingsButtonDockspotTemplate">
+              <Anchors>
+                <Anchor point="topright" relativePoint="topleft" relativeTo="$parentShowButton">
+                  <AbsPoint x="2" y="-5" />
+                </Anchor>
+              </Anchors>
+            </Button>
+
+            <Label name="$parentName" font="Arial_Black_Shadow_12" maxchars="25" textalign="left" handleinput="false" wordwrap="true" linespacing="18" autoresize="true" autoresizewidth="true">
+              <Size>
+                <AbsPoint x="120" y="0" />
+              </Size>
+              <Anchors>
+                <Anchor point="bottomleft" relativePoint="topleft" relativeTo="$parent">
+                  <AbsPoint x="10" y="-20" />
+                </Anchor>
+              </Anchors>
+            </Label>
+
+          </Windows>
+        </Window>
+
+        <!-- VISIBLE WINDOW MODE -->
+        <Window name="$parentVisibleView" layer="default" movable="false" >
+          <Size>
+            <AbsPoint x="160" y="37" />
+          </Size>
+          <Anchors>
+            <Anchor point="topleft" relativePoint="topleft">
+              <AbsPoint x="0" y="0" />
+            </Anchor>
+          </Anchors>
+
+          <Windows>
+            <DynamicImage name="$parentBG" texture="mobilebarDockspot_big" layer="background" alpha="0.8" textureScale="1.47" handleinput="false" >
+              <Size>
+                <AbsPoint x="160" y="37" />
+              </Size>
+              <Anchors>
+                <Anchor point="topleft" relativePoint="topleft" relativeTo="$parent"  />
+                <Anchor point="bottomright" relativePoint="bottomright" relativeTo="$parent"  />
+              </Anchors>
+            </DynamicImage>
+
+            <Label name="$parentName" font="Arial_Black_Shadow_12" maxchars="25" textalign="left" handleinput="false" wordwrap="false" linespacing="18">
+              <Size>
+                <AbsPoint x="120" y="10" />
+              </Size>
+              <Anchors>
+                <Anchor point="top" relativePoint="top">
+                  <AbsPoint x="-10" y="7" />
+                </Anchor>
+              </Anchors>
+            </Label>
+
+            <Button name="$parentHideButton" inherits="HideButtonTemplate" >
+              <Anchors>
+                <Anchor point="topright" relativePoint="topleft">
+                  <AbsPoint x="-37" y="7" />
+                </Anchor>
+              </Anchors>
+            </Button>
+
+            <Button name="$parentHideButtonR" inherits="HideButtonTemplateR" >
+              <Anchors>
+                <Anchor point="topright" relativePoint="topleft">
+                  <AbsPoint x="-37" y="7" />
+                </Anchor>
+              </Anchors>
+            </Button>
+
+            <Button name="$parentSettings" inherits="SettingsButtonDockspotTemplate">
+              <Anchors>
+                <Anchor point="topleft" relativePoint="topright" relativeTo="$parentHideButton">
+                  <AbsPoint x="-5" y="-5" />
+                </Anchor>
+              </Anchors>
+            </Button>
+
+          </Windows>
+        </Window>
+
+      </Windows>
+    </Window>
+
+  </Windows>
+</Interface>

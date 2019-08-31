@@ -1,0 +1,1004 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Interface xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../Interface.xsd">
+  <Assets>
+
+    <!--  *************** Examples ( These are defined in the CoreInterface ) ***************  -->
+    <!-- <Texture name="shield_texture" file="Textures/ShieldButton.dds" /> -->
+    <!-- <Texture name="buttons" file="Textures/Buttons.dds" />	-->
+    <!--  *********************************************************************************** -->
+
+    <!-- UOKR Specific Textures -->
+    <Texture name="hud_image" file="Textures/defaultCore/00000020_Hud.dds" />
+    <Texture name="hud_image2" file="Textures/defaultCore/HUD2.dds" />
+    <Texture name="housing" file="Textures/defaultCore/housing.dds" />
+    <Texture name="chat" file="Textures/defaultCore/chat.dds" />
+    <Texture name="map_parchment_widgets" file="Textures/defaultCore/UO_parchment.dds" />
+
+
+    <!-- SHOPKEEPER  Textures -->
+    <Texture name="ShopBG" file="Textures/shopkeeper/shopbg.dds"/>
+    <Texture name="PetsListBG" file="Textures/shopkeeper/shopbgPetList.dds"/>
+    <Texture name="CoinPurse" file="Textures/shopkeeper/coins.dds"/>
+
+
+    <!-- NEW CHAT Textures -->
+    <Texture name="Filter_IMG" file="Textures/newChat/filter.dds"/>
+    <Texture name="Rubber_IMG" file="Textures/newChat/rubber.dds"/>
+    <Texture name="Font_IMG" file="Textures/newChat/font.dds"/>
+    <Texture name="FontSize_IMG" file="Textures/newChat/fontsize.dds"/>
+    <Texture name="FontColor_IMG" file="Textures/newChat/fontcolor.dds"/>
+    <Texture name="ChatSettings_IMG" file="Textures/newChat/chatsettings.dds"/>
+    <Texture name="Bookmark_IMG" file="Textures/newChat/bookmark.dds"/>
+
+
+    <!-- BUTTONS Textures -->
+    <Texture name="guards" file="Textures/buttons/guards.dds"/>
+    <Texture name="Loot_ALL" file="Textures/buttons/lootall.dds" />
+    <Texture name="Loot_Sort" file="Textures/buttons/lootSort.dds" />
+    <Texture name="Search" file="Textures/buttons/search.dds" />
+    <Texture name="Settings" file="Textures/buttons/settings.dds" />
+    <Texture name="Save" file="Textures/buttons/save.dds" />
+    <Texture name="WOD" file="Textures/buttons/wod.dds"/>
+    <Texture name="bod" file="Textures/buttons/bod.dds"/>
+    <Texture name="talk" file="Textures/buttons/talk.dds"/>
+    <Texture name="bpack" file="Textures/buttons/backpack.dds"/>
+    <Texture name="bank" file="Textures/buttons/bankbox.dds"/>
+    <Texture name="Help" file="Textures/buttons/help.dds"/>
+    <Texture name="ExtractLeft" file="Textures/buttons/ExtractLeft.dds"/>
+    <Texture name="ExtractRight" file="Textures/buttons/ExtractRight.dds"/>
+    <Texture name="updown" file="Textures/buttons/updown.dds"/>
+    <Texture name="CloseButton" file="Textures/buttons/closeX.dds" />
+    <Texture name="WarShield" file="Textures/buttons/warShield.dds" />
+    <Texture name="SimpleTab" file="Textures/buttons/emptyTab.dds"/>
+    <Texture name="SmallRoundButton" file="Textures/buttons/smallRoundButton.dds"/>
+    <Texture name="AutoButton" file="Textures/buttons/auto.dds"/>
+    <Texture name="PinRed" file="Textures/buttons/pin_red.dds"/>
+    <Texture name="PinGreen" file="Textures/buttons/pin_green.dds"/>
+    <Texture name="blueButton" file="Textures/buttons/blueButton.dds"/>
+    <Texture name="redButton" file="Textures/buttons/redButton.dds"/>
+    <Texture name="greenButton" file="Textures/buttons/greenButton.dds"/>
+    <Texture name="goldButton" file="Textures/buttons/goldButton.dds"/>
+    <Texture name="purpleButton" file="Textures/buttons/purpleButton.dds"/>
+
+    <!-- AGENTS Textures -->
+    <Texture name="Restock" file="Textures/agents/restock.dds"/>
+    <Texture name="Organizer" file="Textures/agents/organizer.dds"/>
+    <Texture name="BuyAgent" file="Textures/agents/buy.dds"/>
+    <Texture name="SellAgent" file="Textures/agents/sell.dds"/>
+
+    <!-- ANIMATIONS Textures -->
+    <Texture name="OverheadArrow" file="Textures/animations/MobileArrow.dds"/>
+    <Texture name="CircleEffect" file="Textures/animations/CircleEffect.dds" />
+    <Texture name="anim_highlight_glow" file="Textures/animations/highlight_glow01.dds" />
+    <Texture name="anim_highlight_glow2" file="Textures/animations/highlight_glow02.dds" />
+    <Texture name="ZzZ" file="Textures/animations/sleepeffect.dds" />
+    <Texture name="cooldown" file="Textures/animations/cooldown.dds"/>
+    <Texture name="QuestMarker" file="Textures/animations/QuestMarker.dds"/>
+    <Texture name="QuestMarker_Grayed" file="Textures/animations/QuestMarker_grayed.dds"/>
+    <Texture name="RewardMarker" file="Textures/animations/RewardMarker.dds"/>
+    <Texture name="RewardMarker_Grayed" file="Textures/animations/RewardMarker_grayed.dds"/>
+    <Texture name="EscortMarker" file="Textures/animations/escortMarker.dds"/>
+    <Texture name="KillMarker" file="Textures/animations/killMarker.dds"/>
+    <Texture name="LoadingUO" file="Textures/animations/LoadingUO.dds"/>
+    <Texture name="Bleed" file="Textures/animations/bleed.dds" />
+    <Texture name="Medit" file="Textures/animations/Meditation.dds" />
+    <Texture name="MindRot" file="Textures/animations/mindRot.dds" />
+    <Texture name="BloodOath" file="Textures/animations/bloodOath.dds" />
+
+    <!-- HEALTHBARS Textures -->
+    <Texture name="HealthbarBg" file="Textures/healthbars/hbbg.dds"/>
+    <Texture name="MobHBHighlight" file="Textures/healthbars/curr_tgt.dds"/>
+    <Texture name="leader" file="Textures/healthbars/partyleader.dds" />
+    <Texture name="mobileBar" file="Textures/healthbars/mobileBar.dds"/>
+    <Texture name="mobilebarDockspot_big" file="Textures/healthbars/mobilebarDockspot_big.dds"/>
+    <Texture name="faceFrame" file="Textures/healthbars/faceFrame.dds"/>
+    <Texture name="targetWindowBG" file="Textures/healthbars/targetwindow.dds"/>
+    <Texture name="status" file="Textures/healthbars/status.dds"/>
+    <Texture name="bars" file="Textures/healthbars/bars.dds"/>
+    <Texture name="Vbar" file="Textures/healthbars/Vbar.dds"/>
+    <Texture name="hbblackBg" file="Textures/healthbars/blackBg.dds"/>
+    <Texture name="HPBg" file="Textures/healthbars/Health_Bar.dds"/>
+    <Texture name="HPFill" file="Textures/healthbars/Health_Bar_Fill.dds"/>
+    <Texture name="HPOverlay" file="Textures/healthbars/Health_Bar_Overlay.dds"/>
+    <Texture name="ManaBg" file="Textures/healthbars/Mana_Bar.dds"/>
+    <Texture name="ManaFill" file="Textures/healthbars/Mana_Bar_Fill.dds"/>
+    <Texture name="ManaOverlay" file="Textures/healthbars/Mana_Bar_Overlay.dds"/>
+    <Texture name="StamBg" file="Textures/healthbars/Stamina_Bar.dds"/>
+    <Texture name="StamFill" file="Textures/healthbars/Stamina_Bar_Fill.dds"/>
+    <Texture name="StamOverlay" file="Textures/healthbars/Stamina_Bar_Overlay.dds"/>
+    <Texture name="dead" file="Textures/healthbars/Spirit_Ghost.dds"/>
+    <Texture name="LatencyBar" file="Textures/healthbars/Latency_Bar_Fill.dds"/>
+    <Texture name="TargetBar" file="Textures/healthbars/targetBar.dds"/>
+    <Texture name="PartyBars" file="Textures/healthbars/partyBars.dds"/>
+    <Texture name="BloodSmear" file="Textures/healthbars/BloodSmear.dds"/>
+    <Texture name="diablo_health" file="Textures/healthbars/DiabloHealth.dds" />
+    <Texture name="StoneBackground" file="Textures/healthbars/StoneBackground.dds" />
+    <Texture name="diablo_stamina" file="Textures/healthbars/stamina.dds" />
+    <Texture name="DiabloStatus" file="Textures/healthbars/diabloStatus.dds"/>
+    <Texture name="AlwaysRun" file="Textures/healthbars/alwaysrun.dds" />
+    <Texture name="CircleBorder" file="Textures/healthbars/CircleBorder.dds"/>
+    <Texture name="CastBar" file="Textures/healthbars/CastBar.dds"/>
+    <Texture name="CastBarFill" file="Textures/healthbars/CastBarFill.dds"/>
+
+    <!-- BOSS BAR -->
+    <Texture name="BossBarBG" file="Textures/healthbars/Boss_Bar.dds"/>
+    <Texture name="BossBarFill" file="Textures/healthbars/Boss_Bar_Fill.dds"/>
+    <Texture name="BossBarOverlay" file="Textures/healthbars/Boss_Bar_Overlay.dds"/>
+    <Texture name="BossBarName" file="Textures/healthbars/Boss_Bar_Name.dds"/>
+
+
+    <!-- MAP Textures -->
+    <Texture name="CompassTexture" file="Textures/map/Compass.dds" />
+    <Texture name="compass" file="Textures/map/compassFrame.dds" />
+    <Texture name="compassNeedle" file="Textures/map/compassneedle.dds" />
+    <Texture name="TMapBG" file="Textures/map/mapBG.dds"/>
+    <Texture name="TMapOverlay" file="Textures/map/mapOverlay.dds"/>
+    <Texture name="MapX" file="Textures/map/mapX.dds"/>
+    <Texture name="MapVerticalBorders" file="Textures/map/mapVerticalBorders.dds"/>
+    <Texture name="navigator" file="Textures/map/navigator.dds" />
+
+
+    <!-- HOTBARS Textures -->
+    <Texture name="hotbaralert" file="Textures/hotbars/hotbaralert.dds"/>
+    <Texture name="BrightHandle" file="Textures/hotbars/Handles.dds"/>
+
+    <!-- HOTBARS SLOT Textures -->
+    <Texture name="Button_Frame_01" file="Textures/miniTexturePack/hotbarFrames/Button_Frame_01.dds"/>
+    <Texture name="Button_Frame_02" file="Textures/miniTexturePack/hotbarFrames/Button_Frame_02.dds"/>
+    <Texture name="Button_Frame_03" file="Textures/miniTexturePack/hotbarFrames/Button_Frame_03.dds"/>
+    <Texture name="Button_Frame_04" file="Textures/miniTexturePack/hotbarFrames/Button_Frame_04.dds"/>
+    <Texture name="Button_Frame_05" file="Textures/miniTexturePack/hotbarFrames/Button_Frame_05.dds"/>
+    <Texture name="Button_Frame_06" file="Textures/miniTexturePack/hotbarFrames/Button_Frame_06.dds"/>
+    <Texture name="Button_Frame_07" file="Textures/miniTexturePack/hotbarFrames/Button_Frame_07.dds"/>
+    <Texture name="Button_Frame_08" file="Textures/miniTexturePack/hotbarFrames/Button_Frame_08.dds"/>
+    <Texture name="Button_Frame_09" file="Textures/miniTexturePack/hotbarFrames/Button_Frame_09.dds"/>
+    <Texture name="Button_Frame_10" file="Textures/miniTexturePack/hotbarFrames/Button_Frame_10.dds"/>
+
+    <!-- PAPERDOLL Textures -->
+    <Texture name="paperdollBG" file="Textures/paperdoll/paperdollFrame_New.dds"/>
+    <Texture name="paperdollLock" file="Textures/paperdoll/paperdollLock.dds"/>
+    <Texture name="paperdollAbilities" file="Textures/paperdoll/paperdollAbilities.dds"/>
+    <Texture name="paperdollSheet" file="Textures/paperdoll/paperdollSheet.dds"/>
+    <Texture name="paperdollInventory" file="Textures/paperdoll/paperdollInventory.dds"/>
+    <Texture name="profileButton" file="Textures/paperdoll/profileButton.dds"/>
+    <Texture name="Seal_IMG" file="Textures/paperdoll/seal.dds"/>
+    <Texture name="Line_IMG" file="Textures/paperdoll/line.dds"/>
+
+    <!-- BUFF DEBUFF Textures -->
+    <Texture name="AdvancedBuffDockspot" file="Textures/buffDebuff/advancedBuffDockspot.dds"/>
+    <Texture name="AdvancedBuffButton" file="Textures/buffDebuff/advancedBuffButton.dds"/>
+
+    <!-- CONTAINERS Textures -->
+    <Texture name="colored_grid_backpack" file="Textures/containers/Colored Grid Backpack.dds" />
+    <Texture name="default_grid_backpack" file="Textures/containers/Default Grid Backpack.dds" />
+
+    <!-- GUMPS Textures -->
+    <Texture name="Legacy_Buttons" file="Textures/gumps/LegacyRunebook/legacy-buttons.dds" />
+    <Texture name="Legacy_Gumps_Runebook" file="Textures/gumps/LegacyRunebook/legacy-gumps-runebook.dds" />
+    <Texture name="craftingGumpBG" file="Textures/gumps/craftingGumpBG.dds" />
+
+    <!-- GENERIC Textures -->
+    <Texture name="disabled" file="Textures/generic/disabled.dds"/>
+    <Texture name="tcTools" file="Textures/generic/tcTools.dds"/>
+    <Texture name="Danger" file="Textures/generic/danger.dds"/>
+
+    <!-- Slots Backgrounds -->
+    <Texture name="SilverIcon" file="Textures/miniTexturePack/IconBGs/Default.dds"/>
+    <Texture name="OldUIIcon" file="Textures/miniTexturePack/IconBGs/OldUI.dds" />
+    <Texture name="GoldenIcon" file="Textures/miniTexturePack/IconBGs/golden.dds" />
+    <Texture name="DermottCopperIcon" file="Textures/miniTexturePack/IconBGs/DermottCopper.dds" />
+    <Texture name="DecorsGrayIcon" file="Textures/miniTexturePack/IconBGs/DecorsGray.dds" />
+    <Texture name="NalifParchmentIcon" file="Textures/miniTexturePack/IconBGs/NalifParchment.dds" />
+    <Texture name="UndeadIcon" file="Textures/miniTexturePack/IconBGs/Bones.dds" />
+    <Texture name="PinkIcon" file="Textures/miniTexturePack/IconBGs/pink.dds" />
+    <Texture name="NightBlueIcon" file="Textures/miniTexturePack/IconBGs/NightBlue.dds" />
+    <Texture name="NoxGreenIcon" file="Textures/miniTexturePack/IconBGs/NoxGreen.dds" />
+    <Texture name="BloodRedIcon" file="Textures/miniTexturePack/IconBGs/BloodRed.dds" />
+    <Texture name="ParchmentIcon" file="Textures/miniTexturePack/IconBGs/parchment.dds" />
+    <Texture name="GlassIcon" file="Textures/miniTexturePack/IconBGs/Glass.dds" />
+    <Texture name="CrystalIcon" file="Textures/miniTexturePack/IconBGs/Crystal.dds" />
+    <Texture name="DarkstoneIcon" file="Textures/miniTexturePack/IconBGs/Dermottdarkstone.dds" />
+    <Texture name="LeatherIcon" file="Textures/miniTexturePack/IconBGs/Dermottleather.dds" />
+    <Texture name="WoodIcon" file="Textures/miniTexturePack/IconBGs/DermottWood.dds" />
+    <Texture name="TDIcon" file="Textures/miniTexturePack/IconBGs/DermottTD.dds" />
+    <Texture name="StoneIcon" file="Textures/miniTexturePack/IconBGs/DermottStone.dds" />
+    <Texture name="BrightGreenIcon" file="Textures/miniTexturePack/IconBGs/BrightGreen.dds" />
+    <Texture name="BlackIcon" file="Textures/miniTexturePack/IconBGs/Black.dds" />
+
+    <!-- Paperdoll Labels -->
+    <Texture name="SilverLabel" file="Textures/miniTexturePack/PaperdollLabel/Default.dds" />
+    <Texture name="GoldenLabel" file="Textures/miniTexturePack/PaperdollLabel/OldUI.dds" />
+    <Texture name="OldUILabel" file="Textures/miniTexturePack/PaperdollLabel/OldUI.dds" />
+    <Texture name="DecorsGrayLabel" file="Textures/miniTexturePack/PaperdollLabel/DecorsGray.dds" />
+    <Texture name="DermottCopperLabel" file="Textures/miniTexturePack/PaperdollLabel/DermottCopper.dds" />
+    <Texture name="NalifParchmentLabel" file="Textures/miniTexturePack/PaperdollLabel/NalifParchment.dds" />
+    <Texture name="UndeadLabel" file="Textures/miniTexturePack/PaperdollLabel/Bones.dds" />
+    <Texture name="PinkLabel" file="Textures/miniTexturePack/PaperdollLabel/pink.dds" />
+    <Texture name="ParchmentLabel" file="Textures/miniTexturePack/PaperdollLabel/parchment.dds" />
+    <Texture name="GlassLabel" file="Textures/miniTexturePack/PaperdollLabel/Glass.dds" />
+    <Texture name="CrystalLabel" file="Textures/miniTexturePack/PaperdollLabel/Crystal.dds" />
+    <Texture name="NoxGreenLabel" file="Textures/miniTexturePack/PaperdollLabel/NoxGreen.dds" />
+    <Texture name="NightBlueLabel" file="Textures/miniTexturePack/PaperdollLabel/NightBlue.dds" />
+    <Texture name="BloodRedLabel" file="Textures/miniTexturePack/PaperdollLabel/BloodRed.dds" />
+    <Texture name="DarkstoneLabel" file="Textures/miniTexturePack/PaperdollLabel/Dermottdarkstone.dds" />
+    <Texture name="LeatherLabel" file="Textures/miniTexturePack/PaperdollLabel/Dermottleather.dds" />
+    <Texture name="WoodLabel" file="Textures/miniTexturePack/PaperdollLabel/DermottWood.dds" />
+    <Texture name="TDLabel" file="Textures/miniTexturePack/PaperdollLabel/DermottTD.dds" />
+    <Texture name="StoneLabel" file="Textures/miniTexturePack/PaperdollLabel/DermottStone.dds" />
+    <Texture name="BrightGreenLabel" file="Textures/miniTexturePack/PaperdollLabel/BrightGreen.dds" />
+    <Texture name="BlackLabel" file="Textures/miniTexturePack/PaperdollLabel/Black.dds" />
+
+
+    <!-- Paperdoll backgrounds -->
+    <Texture name="blackBG" file="Textures/paperdoll/paperdollBGs/default.dds"/>
+    <Texture name="wildBG" file="Textures/paperdoll/paperdollBGs/wild.dds"/>
+    <Texture name="caveBG" file="Textures/paperdoll/paperdollBGs/cave.dds"/>
+    <Texture name="moongateBG" file="Textures/paperdoll/paperdollBGs/moongate.dds"/>
+    <Texture name="cityBG" file="Textures/paperdoll/paperdollBGs/city.dds"/>
+    <Texture name="graveyardBG" file="Textures/paperdoll/paperdollBGs/graveyard.dds"/>
+    <Texture name="shrineBG" file="Textures/paperdoll/paperdollBGs/shrine.dds"/>
+    <Texture name="championBG" file="Textures/paperdoll/paperdollBGs/champion.dds"/>
+    <Texture name="twistedwealdBG" file="Textures/paperdoll/paperdollBGs/twistedweald.dds"/>
+    <Texture name="blooddungeonBG" file="Textures/paperdoll/paperdollBGs/blooddungeon.dds"/>
+    <Texture name="blightedgroveBG" file="Textures/paperdoll/paperdollBGs/blightedgrove.dds"/>
+    <Texture name="sanctuaryBG" file="Textures/paperdoll/paperdollBGs/sanctuary.dds"/>
+    <Texture name="wrongBG" file="Textures/paperdoll/paperdollBGs/wrong.dds"/>
+    <Texture name="iceBG" file="Textures/paperdoll/paperdollBGs/ice.dds"/>
+    <Texture name="corgulBG" file="Textures/paperdoll/paperdollBGs/corgul.dds"/>
+    <Texture name="tavernBG" file="Textures/paperdoll/paperdollBGs/tavern.dds"/>
+    <Texture name="seaBG" file="Textures/paperdoll/paperdollBGs/sea.dds"/>
+    <Texture name="shopBG" file="Textures/paperdoll/paperdollBGs/shop.dds"/>
+    <Texture name="heartwoodBG" file="Textures/paperdoll/paperdollBGs/heartwood.dds"/>
+    <Texture name="bankBG" file="Textures/paperdoll/paperdollBGs/bank.dds"/>
+    <Texture name="docksBG" file="Textures/paperdoll/paperdollBGs/docks.dds"/>
+    <Texture name="bridgeBG" file="Textures/paperdoll/paperdollBGs/bridge.dds"/>
+    <Texture name="casinoBG" file="Textures/paperdoll/paperdollBGs/casino.dds"/>
+
+    <!-- Paperdoll slots -->
+    <Texture name="slot_1" file="Textures/paperdoll/paperdollSlots/eqi_slot_Head.dds"/>
+    <Texture name="slot_2" file="Textures/paperdoll/paperdollSlots/eqi_slot_Neck.dds"/>
+    <Texture name="slot_3" file="Textures/paperdoll/paperdollSlots/eqi_slot_Sleeves.dds"/>
+    <Texture name="slot_4" file="Textures/paperdoll/paperdollSlots/eqi_slot_RightHand.dds"/>
+    <Texture name="slot_5" file="Textures/paperdoll/paperdollSlots/eqi_slot_Ring.dds"/>
+    <Texture name="slot_6" file="Textures/paperdoll/paperdollSlots/eqi_slot_LegArmor.dds"/>
+    <Texture name="slot_7" file="Textures/paperdoll/paperdollSlots/eqi_slot_Ears.dds"/>
+    <Texture name="slot_8" file="Textures/paperdoll/paperdollSlots/eqi_slot_ChestArmor.dds"/>
+    <Texture name="slot_9" file="Textures/paperdoll/paperdollSlots/eqi_slot_Bracelet.dds"/>
+    <Texture name="slot_10" file="Textures/paperdoll/paperdollSlots/eqi_slot_LeftHand.dds"/>
+    <Texture name="slot_11" file="Textures/paperdoll/paperdollSlots/eqi_slot_Gloves.dds"/>
+    <Texture name="slot_11_garg" file="Textures/paperdoll/paperdollSlots/eqi_slot_Kilt.dds"/>
+    <Texture name="slot_12_round" file="Textures/paperdoll/paperdollSlots/eqi_slot_Talisman.dds"/>
+    <Texture name="slot_12" file="Textures/paperdoll/paperdollSlots/eqi_slot_Talisman_square.dds"/>
+    <Texture name="slot_13" file="Textures/paperdoll/paperdollSlots/eqi_slot_Footware.dds"/>
+    <Texture name="slot_13_garg" file="Textures/paperdoll/paperdollSlots/eqi_slot_Claw.dds"/>
+    <Texture name="slot_14" file="Textures/paperdoll/paperdollSlots/eqi_slot_InnerTorso.dds"/>
+    <Texture name="slot_15" file="Textures/paperdoll/paperdollSlots/eqi_slot_Belt.dds"/>
+    <Texture name="slot_16" file="Textures/paperdoll/paperdollSlots/eqi_slot_OuterTorso.dds"/>
+    <Texture name="slot_16_garg" file="Textures/paperdoll/paperdollSlots/eqi_slot_Wing.dds"/>
+    <Texture name="slot_17" file="Textures/paperdoll/paperdollSlots/eqi_slot_Shoulder.dds"/>
+    <Texture name="slot_18" file="Textures/paperdoll/paperdollSlots/eqi_slot_Back.dds"/>
+    <Texture name="slot_19" file="Textures/paperdoll/paperdollSlots/eqi_slot_OuterLegs.dds"/>
+    <Texture name="square_damage" file="Textures/paperdoll/paperdollSlots/eqi_state_Damage.dds"/>
+    <Texture name="round_damage" file="Textures/paperdoll/paperdollSlots/eqi_state_Damage_R.dds"/>
+    <Texture name="square_damage_FULL" file="Textures/paperdoll/paperdollSlots/eqi_state_Damage_FULL.dds"/>
+    <Texture name="round_damage_FULL" file="Textures/paperdoll/paperdollSlots/eqi_state_Damage_R_FULL.dds"/>
+    <Texture name="square_broken" file="Textures/paperdoll/paperdollSlots/eqi_state_Broken.dds"/>
+    <Texture name="round_broken" file="Textures/paperdoll/paperdollSlots/eqi_state_Broken_R.dds"/>
+    <Texture name="blackened_slot" file="Textures/paperdoll/paperdollSlots/eqi_slot_Black.dds"/>
+
+    <!-- CENTER SCREEN TEXT -->
+    <Texture name="CST_Artifact" file="Textures/centerScreenText/CST_Artifact.dds"/>
+    <Texture name="CST_BackpackFull" file="Textures/centerScreenText/CST_BackpackFull.dds"/>
+    <Texture name="CST_BattleBegins" file="Textures/centerScreenText/CST_BattleBegins.dds"/>
+    <Texture name="CST_BattleLost" file="Textures/centerScreenText/CST_BattleLost.dds"/>
+    <Texture name="CST_Beacon" file="Textures/centerScreenText/CST_BeaconVulnerable.dds"/>
+    <Texture name="CST_BloodOath" file="Textures/centerScreenText/CST_BloodOath.dds"/>
+    <Texture name="CST_BoneMacheteIsGone" file="Textures/centerScreenText/CST_BoneMachete.dds"/>
+    <Texture name="CST_Disarmed" file="Textures/centerScreenText/CST_Disarmed.dds"/>
+    <Texture name="CST_GMArrived" file="Textures/centerScreenText/CST_GMArrived.dds"/>
+    <Texture name="CST_GorgonLensesAreGone" file="Textures/centerScreenText/CST_GorgonLenses.dds"/>
+    <Texture name="CST_HonorWearsOff" file="Textures/centerScreenText/CST_HonorOff.dds"/>
+    <Texture name="CST_LowLife" file="Textures/centerScreenText/CST_LowLife.dds"/>
+    <Texture name="CST_LowPetLife" file="Textures/centerScreenText/CST_LowPetLife.dds"/>
+    <Texture name="CST_Panic" file="Textures/centerScreenText/CST_Panic.dds"/>
+    <Texture name="CST_ServerDown" file="Textures/centerScreenText/CST_ServerDown.dds"/>
+    <Texture name="CST_SlowedDown" file="Textures/centerScreenText/CST_SlowedDown.dds"/>
+    <Texture name="CST_Stoned" file="Textures/centerScreenText/CST_Stoned.dds"/>
+    <Texture name="CST_Webbed" file="Textures/centerScreenText/CST_Webbed.dds"/>
+    <Texture name="CST_YouAreFree" file="Textures/centerScreenText/CST_YouFree.dds"/>
+    <Texture name="CST_Treat" file="Textures/centerScreenText/CST_Treat.dds"/>
+    <Texture name="CST_LavaRock" file="Textures/centerScreenText/CST_LavaRock.dds"/>
+    <Texture name="CST_Eruption" file="Textures/centerScreenText/CST_Eruption.dds"/>
+    <Texture name="CST_Calmed" file="Textures/centerScreenText/CST_Calmed.dds"/>
+    <Texture name="CST_LuckRunOut" file="Textures/centerScreenText/CST_LuckRunOut.dds"/>
+    <Texture name="CST_PetalsWoreOff" file="Textures/centerScreenText/cst_PetalsWoreOff.dds"/>
+    <Texture name="CST_Stripped" file="Textures/centerScreenText/cst_Stripped.dds"/>
+    <Texture name="CST_Revealed" file="Textures/centerScreenText/CST_Revealed.dds"/>
+    <Texture name="CST_HiddenCache" file="Textures/centerScreenText/CST_HiddenCache.dds"/>
+    <Texture name="CST_Ambush" file="Textures/centerScreenText/CST_Ambush.dds"/>
+    <Texture name="CST_Krampus" file="Textures/centerScreenText/CST_Krampus.dds"/>
+    <Texture name="CST_CargoCrate" file="Textures/centerScreenText/CST_cargocrate.dds"/>
+
+    <!-- ITEM PROPERTIES -->
+    <Texture name="PROPS_Description" file="Textures/itemProperties/description.dds"/>
+    <Texture name="PROPS_Gain" file="Textures/itemProperties/gaining.dds"/>
+    <Texture name="PROPS_Lose" file="Textures/itemProperties/losing.dds"/>
+    <Texture name="PROPS_Equal" file="Textures/itemProperties/equal.dds"/>
+    <Texture name="PROPS_SpellChanneling" file="Textures/itemProperties/spellchanneling.dds"/>
+    <Texture name="PROPS_Medable" file="Textures/itemProperties/medable.dds"/>
+    <Texture name="PROPS_Deny" file="Textures/itemProperties/deny.dds"/>
+    <Texture name="PROPS_Cursed" file="Textures/itemProperties/cursed.dds"/>
+    <Texture name="PROPS_Blessed" file="Textures/itemProperties/blessed.dds"/>
+    <Texture name="PROPS_Tamed" file="Textures/itemProperties/tamed.dds"/>
+    <Texture name="PROPS_BadBlessed" file="Textures/itemProperties/badblessed.dds"/>
+    <Texture name="PROPS_Insured" file="Textures/itemProperties/insured.dds"/>
+    <Texture name="PROPS_Quester" file="Textures/itemProperties/quester.dds"/>
+    <Texture name="PROPS_Weight" file="Textures/itemProperties/weight.dds"/>
+    <Texture name="PROPS_WeightWarning" file="Textures/itemProperties/weightWarning.dds"/>
+    <Texture name="PROPS_Str" file="Textures/itemProperties/str.dds"/>
+    <Texture name="PROPS_StrWarning" file="Textures/itemProperties/strWarning.dds"/>
+    <Texture name="PROPS_StrWarningBase" file="Textures/itemProperties/strWarningBase.dds"/>
+    <Texture name="PROPS_Human" file="Textures/itemProperties/human.dds"/>
+    <Texture name="PROPS_NoHuman" file="Textures/itemProperties/nohuman.dds"/>
+    <Texture name="PROPS_BadHuman" file="Textures/itemProperties/badhuman.dds"/>
+    <Texture name="PROPS_Elf" file="Textures/itemProperties/elf.dds"/>
+    <Texture name="PROPS_NoElf" file="Textures/itemProperties/noelf.dds"/>
+    <Texture name="PROPS_BadElf" file="Textures/itemProperties/badelf.dds"/>
+    <Texture name="PROPS_Gargoyle" file="Textures/itemProperties/gargoyle.dds"/>
+    <Texture name="PROPS_NoGargoyle" file="Textures/itemProperties/nogargoyle.dds"/>
+    <Texture name="PROPS_BadGargoyle" file="Textures/itemProperties/badgargoyle.dds"/>
+    <Texture name="PROPS_DurBar" file="Textures/itemProperties/durBar.dds"/>
+    <Texture name="PROPS_DurBar_Fill" file="Textures/itemProperties/durBar_Fill.dds"/>
+    <Texture name="PROPS_Charges" file="Textures/itemProperties/charges.dds"/>
+    <Texture name="PROPS_1Star" file="Textures/itemProperties/1Star.dds"/>
+    <Texture name="PROPS_2Star" file="Textures/itemProperties/2Star.dds"/>
+    <Texture name="PROPS_3Star" file="Textures/itemProperties/3Star.dds"/>
+    <Texture name="PROPS_4Star" file="Textures/itemProperties/4Star.dds"/>
+    <Texture name="PROPS_5Star" file="Textures/itemProperties/5Star.dds"/>
+    <Texture name="PROPS_Brittle" file="Textures/itemProperties/brittle.dds"/>
+    <Texture name="PROPS_Imbued" file="Textures/itemProperties/imbued.dds"/>
+    <Texture name="PROPS_ChaosDamage" file="Textures/itemProperties/chaosDamage.dds"/>
+
+    <!-- ITEM PROPERTIES STEREOTYPES -->
+    <Texture name="STEREOTYPE_Sword" file="Textures/itemProperties/stereotype/sword.dds"/>
+    <Texture name="STEREOTYPE_Dagger" file="Textures/itemProperties/stereotype/dagger.dds"/>
+    <Texture name="STEREOTYPE_Mace" file="Textures/itemProperties/stereotype/mace.dds"/>
+    <Texture name="STEREOTYPE_Axe" file="Textures/itemProperties/stereotype/axe.dds"/>
+    <Texture name="STEREOTYPE_Polearm" file="Textures/itemProperties/stereotype/polearm.dds"/>
+    <Texture name="STEREOTYPE_Bow" file="Textures/itemProperties/stereotype/bow.dds"/>
+    <Texture name="STEREOTYPE_Boomerang" file="Textures/itemProperties/stereotype/boomerang.dds"/>
+    <Texture name="STEREOTYPE_Spellbook" file="Textures/itemProperties/stereotype/spellbook.dds"/>
+    <Texture name="STEREOTYPE_FishingPole" file="Textures/itemProperties/stereotype/fishingpole.dds"/>
+
+    <Texture name="STEREOTYPE_Helm" file="Textures/itemProperties/stereotype/helm.dds"/>
+    <Texture name="STEREOTYPE_Hat" file="Textures/itemProperties/stereotype/hat.dds"/>
+    <Texture name="STEREOTYPE_Necklace" file="Textures/itemProperties/stereotype/necklace.dds"/>
+    <Texture name="STEREOTYPE_Bracelet" file="Textures/itemProperties/stereotype/bracelet.dds"/>
+    <Texture name="STEREOTYPE_Ring" file="Textures/itemProperties/stereotype/ring.dds"/>
+    <Texture name="STEREOTYPE_Earrings" file="Textures/itemProperties/stereotype/earrings.dds"/>
+    <Texture name="STEREOTYPE_Shield" file="Textures/itemProperties/stereotype/shield.dds"/>
+    <Texture name="STEREOTYPE_slot_2" file="Textures/itemProperties/stereotype/eqi_slot_Neck.dds"/>
+    <Texture name="STEREOTYPE_slot_3" file="Textures/itemProperties/stereotype/eqi_slot_Sleeves.dds"/>
+    <Texture name="STEREOTYPE_slot_6" file="Textures/itemProperties/stereotype/eqi_slot_LegArmor.dds"/>
+    <Texture name="STEREOTYPE_slot_8" file="Textures/itemProperties/stereotype/eqi_slot_ChestArmor.dds"/>
+    <Texture name="STEREOTYPE_slot_11" file="Textures/itemProperties/stereotype/eqi_slot_Gloves.dds"/>
+    <Texture name="STEREOTYPE_slot_11_garg" file="Textures/itemProperties/stereotype/eqi_slot_Kilt.dds"/>
+    <Texture name="STEREOTYPE_slot_12" file="Textures/itemProperties/stereotype/eqi_slot_Talisman.dds"/>
+    <Texture name="STEREOTYPE_slot_13" file="Textures/itemProperties/stereotype/eqi_slot_Footware.dds"/>
+    <Texture name="STEREOTYPE_slot_13_garg" file="Textures/itemProperties/stereotype/eqi_slot_Claw.dds"/>
+    <Texture name="STEREOTYPE_slot_14" file="Textures/itemProperties/stereotype/eqi_slot_InnerTorso.dds"/>
+    <Texture name="STEREOTYPE_slot_15" file="Textures/itemProperties/stereotype/eqi_slot_Belt.dds"/>
+    <Texture name="STEREOTYPE_slot_16" file="Textures/itemProperties/stereotype/eqi_slot_Back.dds"/>
+    <Texture name="STEREOTYPE_slot_16_garg" file="Textures/itemProperties/stereotype/eqi_slot_Wing.dds"/>
+    <Texture name="STEREOTYPE_slot_17" file="Textures/itemProperties/stereotype/eqi_slot_Shoulder.dds"/>
+    <Texture name="STEREOTYPE_slot_18" file="Textures/itemProperties/stereotype/eqi_slot_OuterTorso.dds"/>
+    <Texture name="STEREOTYPE_slot_19" file="Textures/itemProperties/stereotype/eqi_slot_OuterLegs.dds"/>
+    <Texture name="STEREOTYPE_Tool" file="Textures/itemProperties/stereotype/tools.dds"/>
+    <Texture name="STEREOTYPE_Container" file="Textures/itemProperties/stereotype/containers.dds"/>
+    <Texture name="STEREOTYPE_Materials" file="Textures/itemProperties/stereotype/materials.dds"/>
+    <Texture name="STEREOTYPE_BossKey" file="Textures/itemProperties/stereotype/bosskey.dds"/>
+    <Texture name="STEREOTYPE_MusicalInstrument" file="Textures/itemProperties/stereotype/instrument.dds"/>
+    <Texture name="STEREOTYPE_Coins" file="Textures/itemProperties/stereotype/coins.dds"/>
+    <Texture name="STEREOTYPE_Reagent" file="Textures/itemProperties/stereotype/Reagents.dds"/>
+    <Texture name="STEREOTYPE_Misc" file="Textures/itemProperties/stereotype/misc.dds"/>
+    <Texture name="STEREOTYPE_Glasses" file="Textures/itemProperties/stereotype/glasses.dds"/>
+
+    <!-- PINCO -->
+    <Texture name="MenuAddon1_IMG" file="Textures/Pinco/menuaddon1.dds"/>
+    <Texture name="MenuAddon2_IMG" file="Textures/Pinco/menuaddon2.dds"/>
+    <Texture name="MenuAddon3_IMG" file="Textures/Pinco/menuaddon3.dds"/>
+    <Texture name="MenuShade" file="Textures/Pinco/menushade.dds"/>
+    <Texture name="Logo" file="Textures/Pinco/logo.dds"/>
+    <Texture name="CascadeSetting" file="Textures/Pinco/cascadeSetting.dds"/>
+    <Texture name="LoadingLogo" file="Textures/Pinco/Loading.dds"/>
+    <Texture name="AnniversaryParty" file="Textures/Pinco/party.dds"/>
+    <Texture name="Star" file="Textures/Pinco/star.dds"/>
+    <Texture name="Wreath" file="Textures/Pinco/wreath.dds"/>
+
+    <!-- ANIMAL LORE -->
+    <Texture name="wonderfully_happy" file="Textures/animallore/wonderfully_happy.dds"/>
+    <Texture name="extremely_happy" file="Textures/animallore/extremely_happy.dds"/>
+    <Texture name="very_happy" file="Textures/animallore/very_happy.dds"/>
+    <Texture name="rather_happy" file="Textures/animallore/rather_happy.dds"/>
+    <Texture name="happy" file="Textures/animallore/happy.dds"/>
+    <Texture name="content" file="Textures/animallore/content.dds"/>
+    <Texture name="content_Isuppose" file="Textures/animallore/content_Isuppose.dds"/>
+    <Texture name="unhappy" file="Textures/animallore/unhappy.dds"/>
+    <Texture name="rather_unhappy" file="Textures/animallore/rather_unhappy.dds"/>
+    <Texture name="extermely_unhappy" file="Textures/animallore/extermely_unhappy.dds"/>
+    <Texture name="confused" file="Textures/animallore/confused.dds"/>
+    <Texture name="wild" file="Textures/animallore/wild.dds"/>
+    <Texture name="hpr" file="Textures/animallore/hpr.dds"/>
+    <Texture name="mr" file="Textures/animallore/mr.dds"/>
+    <Texture name="sr" file="Textures/animallore/sr.dds"/>
+    <Texture name="numberHighlight" file="Textures/animallore/numberHighlight.dds"/>
+    <Texture name="damageBar" file="Textures/animallore/damageBar.dds"/>
+    <Texture name="bdiff" file="Textures/animallore/bdiff.dds"/>
+    <Texture name="food" file="Textures/animallore/food.dds"/>
+    <Texture name="packInstinct" file="Textures/animallore/packinstinct.dds"/>
+    <Texture name="petSlots" file="Textures/animallore/petslots.dds"/>
+    <Texture name="controlChance" file="Textures/animallore/controlchance.dds"/>
+    <Texture name="rating" file="Textures/animallore/rating.dds"/>
+    <Texture name="ratingBG" file="Textures/animallore/ratingBG.dds"/>
+    <Texture name="cap" file="Textures/animallore/cap.dds"/>
+
+
+    <!-- CONTRIBUTORS PORTRAIT -->
+    <Texture name="pincoPortrait" file="Textures/portraits/pinco.dds"/>
+    <Texture name="vegasPortrait" file="Textures/portraits/vegas.dds"/>
+
+
+  </Assets>
+  <Windows>
+    <Window name="QuestMarker" handleinput="false" layer="background">
+      <Size>
+        <AbsPoint x="9" y="33" />
+      </Size>
+      <Windows>
+        <DynamicImage name="$parentQuest" texture="QuestMarker" layer="background" popable="false" handleinput="false" textureScale="0.4">
+          <Size>
+            <AbsPoint x="9" y="33" />
+          </Size>
+          <TexCoords x="0" y="0" />
+        </DynamicImage>
+        <DynamicImage name="$parentQuest_Grayed" texture="QuestMarker_Grayed" layer="background" popable="false" handleinput="false" textureScale="0.4">
+          <Size>
+            <AbsPoint x="9" y="33" />
+          </Size>
+          <TexCoords x="0" y="0" />
+        </DynamicImage>
+        <DynamicImage name="$parentReward" texture="RewardMarker" layer="background" popable="false" handleinput="false" textureScale="0.6">
+          <Size>
+            <AbsPoint x="37" y="59" />
+          </Size>
+          <TexCoords x="0" y="0" />
+          <Anchors>
+            <Anchor point="topleft" relativePoint="topleft">
+              <AbsPoint x="-10" y="-20" />
+            </Anchor>
+          </Anchors>
+        </DynamicImage>
+        <DynamicImage name="$parentReward_Grayed" texture="RewardMarker_Grayed" layer="background" popable="false" handleinput="false" textureScale="0.6">
+          <Size>
+            <AbsPoint x="37" y="59" />
+          </Size>
+          <TexCoords x="0" y="0" />
+          <Anchors>
+            <Anchor point="topleft" relativePoint="topleft">
+              <AbsPoint x="-10" y="-20" />
+            </Anchor>
+          </Anchors>
+        </DynamicImage>
+        <DynamicImage name="$parentEscort" texture="EscortMarker" layer="background" popable="false" handleinput="false" textureScale="0.6">
+          <Size>
+            <AbsPoint x="53" y="60" />
+          </Size>
+          <TexCoords x="0" y="0" />
+          <Anchors>
+            <Anchor point="topleft" relativePoint="topleft">
+              <AbsPoint x="-25" y="-15" />
+            </Anchor>
+          </Anchors>
+        </DynamicImage>
+        <DynamicImage name="$parentKill" texture="KillMarker" layer="background" popable="false" handleinput="false" textureScale="0.6">
+          <Size>
+            <AbsPoint x="50" y="58" />
+          </Size>
+          <TexCoords x="0" y="0" />
+          <Anchors>
+            <Anchor point="topleft" relativePoint="topleft">
+              <AbsPoint x="-25" y="-15" />
+            </Anchor>
+          </Anchors>
+        </DynamicImage>
+      </Windows>
+    </Window>
+    <Window name="MobileArrow" handleinput="false" layer="popup">
+      <Size>
+        <AbsPoint x="180" y="300" />
+      </Size>
+      <Windows>
+        <AnimatedImage name="$parentAnim" fps="15" texture="OverheadArrow">
+          <Size>
+            <AbsPoint x="180" y="300"/>
+          </Size>
+          <Anchors>
+            <Anchor point="topleft" relativePoint="topleft">
+              <AbsPoint x="0" y="0" />
+            </Anchor>
+          </Anchors>
+          <AnimFrames>
+            <AnimFrame id="1" x="0" y="0" />
+            <AnimFrame id="2" x="190" y="0" />
+            <AnimFrame id="3" x="380" y="0" />
+            <AnimFrame id="4" x="570" y="0" />
+            <AnimFrame id="5" x="760" y="0" />
+            <AnimFrame id="6" x="950" y="0" />
+            <AnimFrame id="7" x="1140" y="0" />
+            <AnimFrame id="8" x="1330" y="0" />
+            <AnimFrame id="9" x="1520" y="0" />
+            <AnimFrame id="10" x="1710" y="0" />
+            <AnimFrame id="11" x="1900" y="0" />
+            <AnimFrame id="12" x="2090" y="0" />
+            <AnimFrame id="13" x="2280" y="0" />
+            <AnimFrame id="14" x="2470" y="0" />
+            <AnimFrame id="15" x="2660" y="0" />
+            <AnimFrame id="16" x="2850" y="0" />
+            <AnimFrame id="17" x="3040" y="0" />
+            <AnimFrame id="18" x="3230" y="0" />
+            <AnimFrame id="19" x="3420" y="0" />
+            <AnimFrame id="20" x="3610" y="0" />
+            <AnimFrame id="21" x="3800" y="0" />
+            <AnimFrame id="22" x="3990" y="0" />
+            <AnimFrame id="23" x="4180" y="0" />
+            <AnimFrame id="24" x="4370" y="0" />
+            <AnimFrame id="25" x="4560" y="0" />
+            <AnimFrame id="26" x="4750" y="0" />
+            <AnimFrame id="27" x="4940" y="0" />
+            <AnimFrame id="28" x="5130" y="0" />
+            <AnimFrame id="29" x="5320" y="0" />
+            <AnimFrame id="30" x="5510" y="0" />
+            <AnimFrame id="31" x="0" y="310" />
+            <AnimFrame id="32" x="190" y="310" />
+            <AnimFrame id="33" x="380" y="310" />
+            <AnimFrame id="34" x="570" y="310" />
+            <AnimFrame id="35" x="760" y="310" />
+            <AnimFrame id="36" x="950" y="310" />
+          </AnimFrames>
+        </AnimatedImage>
+      </Windows>
+    </Window>
+
+    <AnimatedImage name="StatusGlowingEffect" fps="10" texture="anim_highlight_glow2" movable="false" handleinput="false" layer="overlay" poppable="false" sticky="false" textureScale="1.5">
+      <Size>
+        <AbsPoint x="220" y="220"/>
+      </Size>
+      <Anchors>
+        <Anchor point="center" relativePoint="center">
+          <AbsPoint x="0" y="0" />
+        </Anchor>
+      </Anchors>
+      <AnimFrames>
+        <AnimFrame id="1" x="0" y="0" />
+        <AnimFrame id="2" x="128" y="0" />
+        <AnimFrame id="3" x="256" y="0" />
+        <AnimFrame id="4" x="384" y="0" />
+        <AnimFrame id="5" x="0" y="128" />
+        <AnimFrame id="6" x="128" y="128" />
+        <AnimFrame id="7" x="256" y="128" />
+        <AnimFrame id="8" x="384" y="128" />
+        <AnimFrame id="9" x="0" y="256" />
+        <AnimFrame id="10" x="128" y="256" />
+        <AnimFrame id="11" x="256" y="256" />
+        <AnimFrame id="12" x="384" y="256" />
+        <AnimFrame id="13" x="0" y="384" />
+        <AnimFrame id="14" x="128" y="384" />
+        <AnimFrame id="15" x="256" y="384" />
+        <AnimFrame id="16" x="384" y="384" />
+      </AnimFrames>
+    </AnimatedImage>
+    <AnimatedImage name="CursorWarningEffect" fps="18" texture="CircleEffect" movable="false" handleinput="false" layer="overlay" poppable="false" sticky="false" textureScale="1">
+      <Size>
+        <AbsPoint x="100" y="100"/>
+      </Size>
+      <AnimFrames>
+        <AnimFrame id="1" x="0" y="0" />
+        <AnimFrame id="2" x="100" y="0" />
+        <AnimFrame id="3" x="200" y="0" />
+        <AnimFrame id="4" x="300" y="0" />
+        <AnimFrame id="5" x="400" y="0" />
+        <AnimFrame id="6" x="0" y="100" />
+        <AnimFrame id="7" x="100" y="100" />
+        <AnimFrame id="8" x="200" y="100" />
+        <AnimFrame id="9" x="300" y="100" />
+        <AnimFrame id="10" x="400" y="100" />
+        <AnimFrame id="11" x="0" y="200" />
+        <AnimFrame id="12" x="100" y="200" />
+        <AnimFrame id="13" x="200" y="200" />
+        <AnimFrame id="14" x="300" y="200" />
+        <AnimFrame id="15" x="400" y="200" />
+        <AnimFrame id="16" x="0" y="300" />
+        <AnimFrame id="17" x="100" y="300" />
+        <AnimFrame id="18" x="200" y="300" />
+        <AnimFrame id="19" x="300" y="300" />
+        <AnimFrame id="20" x="400" y="300" />
+        <AnimFrame id="21" x="0" y="400" />
+        <AnimFrame id="22" x="100" y="400" />
+        <AnimFrame id="23" x="200" y="400" />
+        <AnimFrame id="24" x="300" y="400" />
+      </AnimFrames>
+    </AnimatedImage>
+    <AnimatedImage name="MobHBHighlightEffect" fps="24" texture="MobHBHighlight" movable="false" handleinput="false" layer="popup" poppable="false" sticky="false">
+      <Size>
+        <AbsPoint x="190" y="50"/>
+      </Size>
+      <Anchors>
+        <Anchor point="center" relativePoint="center">
+          <AbsPoint x="0" y="0" />
+        </Anchor>
+      </Anchors>
+      <AnimFrames>
+        <AnimFrame id="1" x="0" y="0" />
+        <AnimFrame id="2" x="200" y="0" />
+        <AnimFrame id="3" x="400" y="0" />
+        <AnimFrame id="4" x="600" y="0" />
+        <AnimFrame id="5" x="800" y="0" />
+        <AnimFrame id="6" x="1000" y="0" />
+        <AnimFrame id="7" x="1200" y="0" />
+        <AnimFrame id="8" x="1400" y="0" />
+        <AnimFrame id="9" x="1600" y="0" />
+        <AnimFrame id="10" x="1800" y="0" />
+        <AnimFrame id="11" x="2000" y="0" />
+        <AnimFrame id="12" x="2200" y="0" />
+        <AnimFrame id="13" x="2400" y="0" />
+        <AnimFrame id="14" x="2600" y="0" />
+        <AnimFrame id="15" x="2800" y="0" />
+        <AnimFrame id="16" x="3000" y="0" />
+        <AnimFrame id="17" x="3200" y="0" />
+        <AnimFrame id="18" x="3400" y="0" />
+        <AnimFrame id="19" x="3600" y="0" />
+        <AnimFrame id="20" x="3800" y="0" />
+        <AnimFrame id="21" x="4000" y="0" />
+        <AnimFrame id="22" x="4200" y="0" />
+        <AnimFrame id="23" x="4400" y="0" />
+        <AnimFrame id="24" x="4600" y="0" />
+        <AnimFrame id="25" x="4800" y="0" />
+        <AnimFrame id="26" x="5000" y="0" />
+        <AnimFrame id="27" x="5200" y="0" />
+        <AnimFrame id="28" x="5400" y="0" />
+        <AnimFrame id="29" x="5600" y="0" />
+        <AnimFrame id="30" x="5800" y="0" />
+        <AnimFrame id="31" x="0" y="60" />
+        <AnimFrame id="32" x="200" y="60" />
+        <AnimFrame id="33" x="400" y="60" />
+        <AnimFrame id="34" x="600" y="60" />
+        <AnimFrame id="35" x="800" y="60" />
+        <AnimFrame id="36" x="1000" y="60" />
+        <AnimFrame id="37" x="1200" y="60" />
+        <AnimFrame id="38" x="1400" y="60" />
+        <AnimFrame id="39" x="1600" y="60" />
+        <AnimFrame id="40" x="1800" y="60" />
+
+
+      </AnimFrames>
+    </AnimatedImage>
+
+    <AnimatedImage name="StatusGlowingEffect" fps="10" texture="anim_highlight_glow2" movable="false" handleinput="false" layer="overlay" poppable="false" sticky="false" textureScale="1.5">
+      <Size>
+        <AbsPoint x="220" y="220"/>
+      </Size>
+      <Anchors>
+        <Anchor point="center" relativePoint="center">
+          <AbsPoint x="0" y="0" />
+        </Anchor>
+      </Anchors>
+      <AnimFrames>
+        <AnimFrame id="1" x="0" y="0" />
+        <AnimFrame id="2" x="128" y="0" />
+        <AnimFrame id="3" x="256" y="0" />
+        <AnimFrame id="4" x="384" y="0" />
+        <AnimFrame id="5" x="0" y="128" />
+        <AnimFrame id="6" x="128" y="128" />
+        <AnimFrame id="7" x="256" y="128" />
+        <AnimFrame id="8" x="384" y="128" />
+        <AnimFrame id="9" x="0" y="256" />
+        <AnimFrame id="10" x="128" y="256" />
+        <AnimFrame id="11" x="256" y="256" />
+        <AnimFrame id="12" x="384" y="256" />
+        <AnimFrame id="13" x="0" y="384" />
+        <AnimFrame id="14" x="128" y="384" />
+        <AnimFrame id="15" x="256" y="384" />
+        <AnimFrame id="16" x="384" y="384" />
+      </AnimFrames>
+    </AnimatedImage>
+
+    <AnimatedImage name="SleepEffect" fps="20" texture="ZzZ" movable="false" handleinput="false" layer="popup" poppable="false" sticky="false">
+      <Size>
+        <AbsPoint x="100" y="200"/>
+      </Size>
+      <AnimFrames>
+        <AnimFrame id="1" x="0" y="0" />
+        <AnimFrame id="2" x="110" y="0" />
+        <AnimFrame id="3" x="220" y="0" />
+        <AnimFrame id="4" x="330" y="0" />
+        <AnimFrame id="5" x="440" y="0" />
+        <AnimFrame id="6" x="550" y="0" />
+        <AnimFrame id="7" x="660" y="0" />
+        <AnimFrame id="8" x="770" y="0" />
+        <AnimFrame id="9" x="880" y="0" />
+        <AnimFrame id="10" x="990" y="0" />
+        <AnimFrame id="11" x="1100" y="0" />
+        <AnimFrame id="12" x="1210" y="0" />
+        <AnimFrame id="13" x="1320" y="0" />
+        <AnimFrame id="14" x="1430" y="0" />
+        <AnimFrame id="15" x="1540" y="0" />
+        <AnimFrame id="16" x="1650" y="0" />
+        <AnimFrame id="17" x="1760" y="0" />
+        <AnimFrame id="18" x="1870" y="0" />
+        <AnimFrame id="19" x="1980" y="0" />
+        <AnimFrame id="20" x="2090" y="0" />
+        <AnimFrame id="21" x="2200" y="0" />
+        <AnimFrame id="22" x="2310" y="0" />
+        <AnimFrame id="23" x="2420" y="0" />
+        <AnimFrame id="24" x="2530" y="0" />
+        <AnimFrame id="25" x="2640" y="0" />
+        <AnimFrame id="26" x="2750" y="0" />
+        <AnimFrame id="27" x="2860" y="0" />
+        <AnimFrame id="28" x="2970" y="0" />
+        <AnimFrame id="29" x="3080" y="0" />
+        <AnimFrame id="30" x="3190" y="0" />
+        <AnimFrame id="31" x="0" y="210" />
+        <AnimFrame id="32" x="110" y="210" />
+        <AnimFrame id="33" x="220" y="210" />
+        <AnimFrame id="34" x="330" y="210" />
+        <AnimFrame id="35" x="440" y="210" />
+        <AnimFrame id="36" x="550" y="210" />
+        <AnimFrame id="37" x="660" y="210" />
+        <AnimFrame id="38" x="770" y="210" />
+        <AnimFrame id="39" x="880" y="210" />
+        <AnimFrame id="40" x="990" y="210" />
+        <AnimFrame id="41" x="1100" y="210" />
+        <AnimFrame id="42" x="1210" y="210" />
+        <AnimFrame id="43" x="1320" y="210" />
+        <AnimFrame id="44" x="1430" y="210" />
+        <AnimFrame id="45" x="1540" y="210" />
+        <AnimFrame id="46" x="1650" y="210" />
+        <AnimFrame id="47" x="1760" y="210" />
+        <AnimFrame id="48" x="1870" y="210" />
+        <AnimFrame id="49" x="1980" y="210" />
+        <AnimFrame id="50" x="2090" y="210" />
+        <AnimFrame id="51" x="2200" y="210" />
+        <AnimFrame id="52" x="2310" y="210" />
+        <AnimFrame id="53" x="2420" y="210" />
+        <AnimFrame id="54" x="2530" y="210" />
+        <AnimFrame id="55" x="2640" y="210" />
+        <AnimFrame id="56" x="2750" y="210" />
+        <AnimFrame id="57" x="2860" y="210" />
+        <AnimFrame id="58" x="2970" y="210" />
+        <AnimFrame id="59" x="3080" y="210" />
+        <AnimFrame id="60" x="3190" y="210" />
+      </AnimFrames>
+    </AnimatedImage>
+
+    <AnimatedImage name="LoadingEffect" fps="5" texture="LoadingUO" movable="false" handleinput="false" layer="popup" poppable="false" sticky="false">
+      <Size>
+        <AbsPoint x="181" y="216"/>
+      </Size>
+      <AnimFrames>
+        <AnimFrame id="1" x="0" y="0" />
+        <AnimFrame id="2" x="181" y="0" />
+        <AnimFrame id="3" x="362" y="0" />
+        <AnimFrame id="4" x="543" y="0" />
+        <AnimFrame id="5" x="724" y="0" />
+        <AnimFrame id="6" x="905" y="0" />
+        <AnimFrame id="7" x="1086" y="0" />
+        <AnimFrame id="8" x="1267" y="0" />
+      </AnimFrames>
+    </AnimatedImage>
+
+    <AnimatedImage name="BloodOathEffect" fps="24" texture="BloodOath" movable="false" handleinput="false" layer="popup" poppable="false" sticky="false">
+      <Size>
+        <AbsPoint x="232" y="188"/>
+      </Size>
+      <AnimFrames>
+        <AnimFrame id="1" x="0" y="0" />
+        <AnimFrame id="2" x="242" y="0" />
+        <AnimFrame id="3" x="484" y="0" />
+        <AnimFrame id="4" x="726" y="0" />
+        <AnimFrame id="5" x="968" y="0" />
+        <AnimFrame id="6" x="1210" y="0" />
+        <AnimFrame id="7" x="1452" y="0" />
+        <AnimFrame id="8" x="1694" y="0" />
+        <AnimFrame id="9" x="1936" y="0" />
+        <AnimFrame id="10" x="2178" y="0" />
+        <AnimFrame id="11" x="2420" y="0" />
+        <AnimFrame id="12" x="2662" y="0" />
+        <AnimFrame id="13" x="2904" y="0" />
+        <AnimFrame id="14" x="3146" y="0" />
+        <AnimFrame id="15" x="3388" y="0" />
+        <AnimFrame id="16" x="3630" y="0" />
+        <AnimFrame id="17" x="3872" y="0" />
+        <AnimFrame id="18" x="4114" y="0" />
+        <AnimFrame id="19" x="4356" y="0" />
+        <AnimFrame id="20" x="4598" y="0" />
+        <AnimFrame id="21" x="4840" y="0" />
+        <AnimFrame id="22" x="5082" y="0" />
+        <AnimFrame id="23" x="5324" y="0" />
+        <AnimFrame id="24" x="5566" y="0" />
+        <AnimFrame id="25" x="5808" y="0" />
+        <AnimFrame id="26" x="6050" y="0" />
+        <AnimFrame id="27" x="6292" y="0" />
+        <AnimFrame id="28" x="6534" y="0" />
+        <AnimFrame id="29" x="6776" y="0" />
+        <AnimFrame id="30" x="7018" y="0" />
+        <AnimFrame id="31" x="0" y="198" />
+        <AnimFrame id="32" x="242" y="198" />
+        <AnimFrame id="33" x="484" y="198" />
+        <AnimFrame id="34" x="726" y="198" />
+        <AnimFrame id="35" x="968" y="198" />
+        <AnimFrame id="36" x="1210" y="198" />
+        <AnimFrame id="37" x="1452" y="198" />
+        <AnimFrame id="38" x="1694" y="198" />
+        <AnimFrame id="39" x="1936" y="198" />
+        <AnimFrame id="40" x="2178" y="198" />
+        <AnimFrame id="41" x="2420" y="198" />
+        <AnimFrame id="42" x="2662" y="198" />
+        <AnimFrame id="43" x="2904" y="198" />
+        <AnimFrame id="44" x="3146" y="198" />
+        <AnimFrame id="45" x="3388" y="198" />
+        <AnimFrame id="46" x="3630" y="198" />
+        <AnimFrame id="47" x="3872" y="198" />
+        <AnimFrame id="48" x="4114" y="198" />
+        <AnimFrame id="49" x="4356" y="198" />
+        <AnimFrame id="50" x="4598" y="198" />
+      </AnimFrames>
+    </AnimatedImage>
+
+    <AnimatedImage name="MindRotEffect" fps="24" texture="MindRot" movable="false" handleinput="false" layer="popup" poppable="false" sticky="false">
+      <Size>
+        <AbsPoint x="232" y="188"/>
+      </Size>
+      <AnimFrames>
+        <AnimFrame id="1" x="0" y="0" />
+        <AnimFrame id="2" x="242" y="0" />
+        <AnimFrame id="3" x="484" y="0" />
+        <AnimFrame id="4" x="726" y="0" />
+        <AnimFrame id="5" x="968" y="0" />
+        <AnimFrame id="6" x="1210" y="0" />
+        <AnimFrame id="7" x="1452" y="0" />
+        <AnimFrame id="8" x="1694" y="0" />
+        <AnimFrame id="9" x="1936" y="0" />
+        <AnimFrame id="10" x="2178" y="0" />
+        <AnimFrame id="11" x="2420" y="0" />
+        <AnimFrame id="12" x="2662" y="0" />
+        <AnimFrame id="13" x="2904" y="0" />
+        <AnimFrame id="14" x="3146" y="0" />
+        <AnimFrame id="15" x="3388" y="0" />
+        <AnimFrame id="16" x="3630" y="0" />
+        <AnimFrame id="17" x="3872" y="0" />
+        <AnimFrame id="18" x="4114" y="0" />
+        <AnimFrame id="19" x="4356" y="0" />
+        <AnimFrame id="20" x="4598" y="0" />
+        <AnimFrame id="21" x="4840" y="0" />
+        <AnimFrame id="22" x="5082" y="0" />
+        <AnimFrame id="23" x="5324" y="0" />
+        <AnimFrame id="24" x="5566" y="0" />
+        <AnimFrame id="25" x="5808" y="0" />
+        <AnimFrame id="26" x="6050" y="0" />
+        <AnimFrame id="27" x="6292" y="0" />
+        <AnimFrame id="28" x="6534" y="0" />
+        <AnimFrame id="29" x="6776" y="0" />
+        <AnimFrame id="30" x="7018" y="0" />
+        <AnimFrame id="31" x="0" y="198" />
+        <AnimFrame id="32" x="242" y="198" />
+        <AnimFrame id="33" x="484" y="198" />
+        <AnimFrame id="34" x="726" y="198" />
+        <AnimFrame id="35" x="968" y="198" />
+        <AnimFrame id="36" x="1210" y="198" />
+        <AnimFrame id="37" x="1452" y="198" />
+        <AnimFrame id="38" x="1694" y="198" />
+        <AnimFrame id="39" x="1936" y="198" />
+        <AnimFrame id="40" x="2178" y="198" />
+        <AnimFrame id="41" x="2420" y="198" />
+        <AnimFrame id="42" x="2662" y="198" />
+        <AnimFrame id="43" x="2904" y="198" />
+        <AnimFrame id="44" x="3146" y="198" />
+        <AnimFrame id="45" x="3388" y="198" />
+        <AnimFrame id="46" x="3630" y="198" />
+        <AnimFrame id="47" x="3872" y="198" />
+        <AnimFrame id="48" x="4114" y="198" />
+        <AnimFrame id="49" x="4356" y="198" />
+        <AnimFrame id="50" x="4598" y="198" />
+      </AnimFrames>
+    </AnimatedImage>
+
+    <AnimatedImage name="MeditEffect" fps="24" texture="Medit" movable="false" handleinput="false" layer="popup" poppable="false" sticky="false">
+      <Size>
+        <AbsPoint x="232" y="188"/>
+      </Size>
+      <AnimFrames>
+        <AnimFrame id="1" x="0" y="0" />
+        <AnimFrame id="2" x="242" y="0" />
+        <AnimFrame id="3" x="484" y="0" />
+        <AnimFrame id="4" x="726" y="0" />
+        <AnimFrame id="5" x="968" y="0" />
+        <AnimFrame id="6" x="1210" y="0" />
+        <AnimFrame id="7" x="1452" y="0" />
+        <AnimFrame id="8" x="1694" y="0" />
+        <AnimFrame id="9" x="1936" y="0" />
+        <AnimFrame id="10" x="2178" y="0" />
+        <AnimFrame id="11" x="2420" y="0" />
+        <AnimFrame id="12" x="2662" y="0" />
+        <AnimFrame id="13" x="2904" y="0" />
+        <AnimFrame id="14" x="3146" y="0" />
+        <AnimFrame id="15" x="3388" y="0" />
+        <AnimFrame id="16" x="3630" y="0" />
+        <AnimFrame id="17" x="3872" y="0" />
+        <AnimFrame id="18" x="4114" y="0" />
+        <AnimFrame id="19" x="4356" y="0" />
+        <AnimFrame id="20" x="4598" y="0" />
+        <AnimFrame id="21" x="4840" y="0" />
+        <AnimFrame id="22" x="5082" y="0" />
+        <AnimFrame id="23" x="5324" y="0" />
+        <AnimFrame id="24" x="5566" y="0" />
+        <AnimFrame id="25" x="5808" y="0" />
+        <AnimFrame id="26" x="6050" y="0" />
+        <AnimFrame id="27" x="6292" y="0" />
+        <AnimFrame id="28" x="6534" y="0" />
+        <AnimFrame id="29" x="6776" y="0" />
+        <AnimFrame id="30" x="7018" y="0" />
+        <AnimFrame id="31" x="0" y="198" />
+        <AnimFrame id="32" x="242" y="198" />
+        <AnimFrame id="33" x="484" y="198" />
+        <AnimFrame id="34" x="726" y="198" />
+        <AnimFrame id="35" x="968" y="198" />
+        <AnimFrame id="36" x="1210" y="198" />
+        <AnimFrame id="37" x="1452" y="198" />
+        <AnimFrame id="38" x="1694" y="198" />
+        <AnimFrame id="39" x="1936" y="198" />
+        <AnimFrame id="40" x="2178" y="198" />
+        <AnimFrame id="41" x="2420" y="198" />
+        <AnimFrame id="42" x="2662" y="198" />
+        <AnimFrame id="43" x="2904" y="198" />
+        <AnimFrame id="44" x="3146" y="198" />
+        <AnimFrame id="45" x="3388" y="198" />
+        <AnimFrame id="46" x="3630" y="198" />
+        <AnimFrame id="47" x="3872" y="198" />
+        <AnimFrame id="48" x="4114" y="198" />
+        <AnimFrame id="49" x="4356" y="198" />
+        <AnimFrame id="50" x="4598" y="198" />
+      </AnimFrames>
+    </AnimatedImage>
+    <AnimatedImage name="BleedEffect" fps="12" texture="Bleed" movable="false" handleinput="false" layer="popup" poppable="false" sticky="false">
+      <Size>
+        <AbsPoint x="232" y="188"/>
+      </Size>
+      <AnimFrames>
+        <AnimFrame id="1" x="0" y="0" />
+        <AnimFrame id="2" x="242" y="0" />
+        <AnimFrame id="3" x="484" y="0" />
+        <AnimFrame id="4" x="726" y="0" />
+        <AnimFrame id="5" x="968" y="0" />
+        <AnimFrame id="6" x="1210" y="0" />
+        <AnimFrame id="7" x="1452" y="0" />
+        <AnimFrame id="8" x="1694" y="0" />
+        <AnimFrame id="9" x="1936" y="0" />
+        <AnimFrame id="10" x="2178" y="0" />
+        <AnimFrame id="11" x="2420" y="0" />
+        <AnimFrame id="12" x="2662" y="0" />
+        <AnimFrame id="13" x="2904" y="0" />
+        <AnimFrame id="14" x="3146" y="0" />
+        <AnimFrame id="15" x="3388" y="0" />
+        <AnimFrame id="16" x="3630" y="0" />
+        <AnimFrame id="17" x="3872" y="0" />
+        <AnimFrame id="18" x="4114" y="0" />
+        <AnimFrame id="19" x="4356" y="0" />
+        <AnimFrame id="20" x="4598" y="0" />
+        <AnimFrame id="21" x="4840" y="0" />
+        <AnimFrame id="22" x="5082" y="0" />
+        <AnimFrame id="23" x="5324" y="0" />
+        <AnimFrame id="24" x="5566" y="0" />
+      </AnimFrames>
+    </AnimatedImage>
+  </Windows>
+</Interface>

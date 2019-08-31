@@ -78,7 +78,7 @@ function OverheadText.Initialize()
 	local mobileId = SystemData.DynamicWindowId
 
 	WindowSetId(this, mobileId)
-	Debug.PrintToChat("Overhead text" .. mobileId)
+	--Debug.PrintToChat("Overhead text" .. mobileId)
 	
 	
 	OverheadText.FadeTimeId[mobileId] = OverheadText.AlphaStart

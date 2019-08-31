@@ -1,0 +1,2388 @@
+<Interface xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../Interface.xsd">
+	<Windows>
+		<Label name="ItemPropItemDef" font="MyriadPro_16" maxchars="768" textalign="center" autoresize="true" wordwrap="true">
+			<Size>
+				<AbsPoint x="300" y="64" />
+			</Size>
+		</Label>
+
+    <DynamicImage name="MarkerLine" texturescale="3" layer="overlay" popable="false" texture="HLine">
+      <Size>
+        <AbsPoint x="1" y="1" />
+      </Size>
+      <TexCoords x="0" y="0" />
+    </DynamicImage>
+
+		<Window name="ItemProperties" movable="true" layer="overlay" handleinput="false" sticky="true">
+			<Size>
+				<AbsPoint x="0" y="0" />
+			</Size>
+			<EventHandlers>
+				<EventHandler event="OnInitialize" function="ItemProperties.Initialize" />
+				<EventHandler event="OnShutdown" function="ItemProperties.Shutdown" />
+			</EventHandlers>
+			<Windows>
+				<!-- Body background -->
+				<FullResizeImage name="$parentWindowBackground" inherits="UO_Simple_Black_Background">
+					<Anchors>
+						<Anchor point="topleft" relativePoint="topleft"/>
+						<Anchor point="bottomright" relativePoint="bottomright"/>
+					</Anchors>
+				</FullResizeImage>
+
+				<!-- Inner Frame Boilerplate -->
+				<FullResizeImage name="$parentFrame" inherits="UO_Default_Inner_Window_Frame" >
+					<Anchors>
+						<Anchor point="topleft" relativePoint="topleft" />
+						<Anchor point="bottomright" relativePoint="bottomright" />
+					</Anchors>
+				</FullResizeImage>
+				<!-- End of Inner Frame Boilerplate -->
+			</Windows>
+		</Window>
+
+    <Window name="SpecialItemProperties" movable="true" layer="overlay" handleinput="false" sticky="true">
+      <Size>
+        <AbsPoint x="0" y="0" />
+      </Size>
+      <Windows>
+        <!-- Body background -->
+        <FullResizeImage name="$parentWindowBackground" inherits="UO_Simple_Black_Background">
+          <Anchors>
+            <Anchor point="topleft" relativePoint="topleft"/>
+            <Anchor point="bottomright" relativePoint="bottomright"/>
+          </Anchors>
+        </FullResizeImage>
+
+        <!-- Inner Frame Boilerplate -->
+        <FullResizeImage name="$parentFrame" inherits="UO_Default_Inner_Window_Frame" >
+          <Anchors>
+            <Anchor point="topleft" relativePoint="topleft" />
+            <Anchor point="bottomright" relativePoint="bottomright" />
+          </Anchors>
+        </FullResizeImage>
+        <!-- End of Inner Frame Boilerplate -->
+      </Windows>
+    </Window>
+
+		<Window name="NewItemPropItemDef" movable="false" layer="overlay" handleinput="false">
+			<Size>
+				<AbsPoint x="425" y="25" />
+			</Size>
+			<Windows>
+
+				<DynamicImage name="$parentDot" texturescale="0.8" layer="overlay" popable="false">
+					<Size>
+						<AbsPoint x="16" y="16" />
+					</Size>
+					<Anchors>
+						<Anchor point="topleft" relativePoint="topleft" relativeTo="$parent">
+							<AbsPoint x="0" y="0" />
+						</Anchor>
+					</Anchors>
+				</DynamicImage>
+				<Label name="$parentText" font="MyriadPro_16" maxchars="1500" textalign="left" autoresizewidth="false"  autoresize="true" wordwrap="true">
+					<Size>
+						<AbsPoint x="290" y="16" />
+					</Size>
+					<Anchors>
+						<Anchor point="topright" relativePoint="topleft" relativeTo="$parentDot">
+							<AbsPoint x="5" y="-2.5" />
+						</Anchor>
+					</Anchors>
+
+				</Label>
+				<Label name="$parentCap" font="MyriadPro_14" maxchars="8" textalign="left" autoresizewidth="false"  autoresize="false" wordwrap="false">
+					<Size>
+						<AbsPoint x="60" y="14" />
+					</Size>
+					<Anchors>
+						<Anchor point="topright" relativePoint="topleft" relativeTo="$parentText">
+							<AbsPoint x="15" y="2" />
+						</Anchor>
+					</Anchors>
+					<Color r="125" g="125" b="125" a="255" />
+				</Label>
+				<Label name="$parentChange" font="MyriadPro_14" maxchars="10" textalign="left" autoresizewidth="false"  autoresize="false" wordwrap="false">
+					<Size>
+						<AbsPoint x="60" y="14" />
+					</Size>
+					<Anchors>
+						<Anchor point="topright" relativePoint="topleft" relativeTo="$parentCap">
+							<AbsPoint x="0" y="0" />
+						</Anchor>
+					</Anchors>
+					<Color r="125" g="125" b="125" a="255" />
+				</Label>
+
+			</Windows>
+		</Window>
+
+		<Window name="WeaponPropertiesTemplate" movable="true" layer="overlay" handleinput="false">
+			<Size>
+				<AbsPoint x="450" y="500" />
+			</Size>
+			<Windows>
+				<FullResizeImage name="$parentWindowBackground" inherits="UO_Simple_Black_Background">
+					<Anchors>
+						<Anchor point="topleft" relativePoint="topleft"/>
+						<Anchor point="bottomright" relativePoint="bottomright"/>
+					</Anchors>
+				</FullResizeImage>
+
+				<FullResizeImage name="$parentFrame" inherits="UO_Default_Inner_Window_Frame" >
+					<Anchors>
+						<Anchor point="topleft" relativePoint="topleft" />
+						<Anchor point="bottomright" relativePoint="bottomright" />
+					</Anchors>
+				</FullResizeImage>
+
+				<DynamicImage name="$parentStereotype" texturescale="1" layer="secondary" popable="false">
+					<Size>
+						<AbsPoint x="64" y="64" />
+					</Size>
+					<Anchors>
+						<Anchor point="topleft" relativePoint="topleft" relativeTo="$parent">
+							<AbsPoint x="8" y="20" />
+						</Anchor>
+					</Anchors>
+				</DynamicImage>
+
+				<DynamicImage name="$parentStars" texturescale="1" layer="overlay" popable="false">
+					<Size>
+						<AbsPoint x="64" y="64" />
+					</Size>
+					<Anchors>
+						<Anchor point="topleft" relativePoint="topleft" relativeTo="$parentStereotype">
+							<AbsPoint x="0" y="0" />
+						</Anchor>
+					</Anchors>
+				</DynamicImage>
+
+				<DynamicImage name="$parentImbued" texturescale="0.85" layer="overlay" popable="false" texture="PROPS_Imbued">
+					<Size>
+						<AbsPoint x="64" y="10" />
+					</Size>
+					<Anchors>
+						<Anchor point="bottom" relativePoint="top" relativeTo="$parentStereotype">
+							<AbsPoint x="0" y="0" />
+						</Anchor>
+					</Anchors>
+					<TexCoords x="0" y="0" />
+				</DynamicImage>
+				
+				<DynamicImage name="$parentBrittle" texturescale="0.85" layer="overlay" popable="false" texture="PROPS_Brittle">
+					<Size>
+						<AbsPoint x="64" y="10" />
+					</Size>
+					<Anchors>
+						<Anchor point="bottom" relativePoint="top" relativeTo="$parentImbued">
+							<AbsPoint x="0" y="5" />
+						</Anchor>
+					</Anchors>
+					<TexCoords x="0" y="0" />
+				</DynamicImage>
+
+				<Label name="$parentItemName" font="Arial_Black_20" maxchars="100" textalign="left" autoresizewidth="false" autoresize="true" wordwrap="true">
+					<Size>
+						<AbsPoint x="362" y="48" />
+					</Size>
+					<Anchors>
+						<Anchor point="topleft" relativePoint="topleft" relativeTo="$parent">
+							<AbsPoint x="80" y="20" />
+						</Anchor>
+					</Anchors>
+					<Color r="153" g="153" b="153" a="255" />
+				</Label>
+
+				<Label name="$parentEngrave" font="MyriadPro_14" maxchars="100" textalign="left" autoresizewidth="false" autoresize="true" wordwrap="true">
+					<Size>
+						<AbsPoint x="372" y="14" />
+					</Size>
+					<Anchors>
+						<Anchor point="bottomleft" relativePoint="topleft" relativeTo="$parentItemName">
+							<AbsPoint x="0" y="10" />
+						</Anchor>
+					</Anchors>
+					<Color r="255" g="204" b="51" a="255" />
+				</Label>
+
+				<DynamicImage name="$parentSpellChanneling" texturescale="1" layer="default" popable="false" texture="PROPS_SpellChanneling">
+					<Size>
+						<AbsPoint x="13" y="20" />
+					</Size>
+					<Anchors>
+						<Anchor point="bottomleft" relativePoint="topleft" relativeTo="$parentEngrave">
+							<AbsPoint x="0" y="5" />
+						</Anchor>
+					</Anchors>
+				</DynamicImage>
+
+				<DynamicImage name="$parentSpellChannelingDeny" texturescale="0.3" layer="overlay" popable="false" texture="PROPS_Deny">
+					<Size>
+						<AbsPoint x="20" y="20" />
+					</Size>
+					<Anchors>
+						<Anchor point="topleft" relativePoint="topleft" relativeTo="$parentSpellChanneling">
+							<AbsPoint x="-3" y="1" />
+						</Anchor>
+					</Anchors>
+				</DynamicImage>
+
+				<Label name="$parentItemType" font="MyriadPro_14" maxchars="100" textalign="left" autoresizewidth="true" autoresize="false" wordwrap="false">
+					<Size>
+						<AbsPoint x="372" y="14" />
+					</Size>
+					<Anchors>
+						<Anchor point="topright" relativePoint="topleft" relativeTo="$parentSpellChanneling">
+							<AbsPoint x="10" y="-4" />
+						</Anchor>
+					</Anchors>
+					<Color r="153" g="153" b="153" a="255" />
+				</Label>
+
+				<Label name="$parentMaterialType" font="MyriadPro_14" maxchars="100" textalign="left" autoresizewidth="true" autoresize="false" wordwrap="false">
+					<Size>
+						<AbsPoint x="372" y="14" />
+					</Size>
+					<Anchors>
+						<Anchor point="bottomleft" relativePoint="topleft" relativeTo="$parentItemType">
+							<AbsPoint x="0" y="3" />
+						</Anchor>
+					</Anchors>
+					<Color r="153" g="153" b="153" a="255" />
+				</Label>
+
+				<Label name="$parentHands" font="MyriadPro_14" maxchars="100" textalign="left" autoresizewidth="true" autoresize="false" wordwrap="false">
+					<Size>
+						<AbsPoint x="372" y="14" />
+					</Size>
+					<Anchors>
+						<Anchor point="topright" relativePoint="topright" relativeTo="$parent">
+							<AbsPoint x="-15" y="5" />
+						</Anchor>
+					</Anchors>
+					<Color r="153" g="153" b="153" a="255" />
+				</Label>
+
+				<Label name="$parentCraftedBy" font="MyriadPro_Condensed_16" maxchars="100" textalign="left" autoresizewidth="false" autoresize="false" wordwrap="false">
+					<Size>
+						<AbsPoint x="372" y="14" />
+					</Size>
+					<Anchors>
+						<Anchor point="bottomleft" relativePoint="topleft" relativeTo="$parentSpellChanneling">
+							<AbsPoint x="0" y="8" />
+						</Anchor>
+					</Anchors>
+					<Color r="153" g="153" b="153" a="255" />
+				</Label>
+
+				<DynamicImage name="$parentStatus" texturescale="0.5" layer="default" popable="false">
+					<Size>
+						<AbsPoint x="32" y="32" />
+					</Size>
+					<Anchors>
+						<Anchor point="bottomright" relativePoint="topright" relativeTo="$parentEngrave">
+							<AbsPoint x="-10" y="15" />
+						</Anchor>
+					</Anchors>
+				</DynamicImage>
+
+				<DynamicImage name="$parentLine1" texturescale="3" layer="overlay" popable="false" texture="HLine">
+					<Size>
+						<AbsPoint x="445" y="2" />
+					</Size>
+					<Anchors>
+						<Anchor point="bottomleft" relativePoint="topleft" relativeTo="$parentCraftedBy">
+							<AbsPoint x="-78" y="10" />
+						</Anchor>
+					</Anchors>
+					<TexCoords x="0" y="0" />
+				</DynamicImage>
+
+				<DynamicImage name="$parentPhysical" texturescale="1" layer="overlay" popable="false" texture="icon000748">
+					<Size>
+						<AbsPoint x="32" y="32" />
+					</Size>
+					<Anchors>
+						<Anchor point="bottomleft" relativePoint="topleft" relativeTo="$parentLine1">
+							<AbsPoint x="30" y="10" />
+						</Anchor>
+					</Anchors>
+				</DynamicImage>
+
+				<Label name="$parentPhysicalDamage" font="MyriadPro_14" maxchars="6" textalign="center" autoresizewidth="true" autoresize="false" wordwrap="false">
+					<Size>
+						<AbsPoint x="50" y="14" />
+					</Size>
+					<Anchors>
+						<Anchor point="bottom" relativePoint="top" relativeTo="$parentPhysical">
+							<AbsPoint x="2" y="5" />
+						</Anchor>
+					</Anchors>
+					<Color r="153" g="153" b="153" a="255" />
+				</Label>
+
+				<DynamicImage name="$parentFire" texturescale="1" layer="overlay" popable="false" texture="icon000740">
+					<Size>
+						<AbsPoint x="32" y="32" />
+					</Size>
+					<Anchors>
+						<Anchor point="topright" relativePoint="topleft" relativeTo="$parentPhysical">
+							<AbsPoint x="40" y="0" />
+						</Anchor>
+					</Anchors>
+				</DynamicImage>
+
+				<Label name="$parentFireDamage" font="MyriadPro_14" maxchars="6" textalign="center" autoresizewidth="true" autoresize="false" wordwrap="false">
+					<Size>
+						<AbsPoint x="50" y="14" />
+					</Size>
+					<Anchors>
+						<Anchor point="bottom" relativePoint="top" relativeTo="$parentFire">
+							<AbsPoint x="4" y="5" />
+						</Anchor>
+					</Anchors>
+					<Color r="153" g="153" b="153" a="255" />
+				</Label>
+
+				<DynamicImage name="$parentCold" texturescale="1" layer="overlay" popable="false" texture="icon000735">
+					<Size>
+						<AbsPoint x="32" y="32" />
+					</Size>
+					<Anchors>
+						<Anchor point="topright" relativePoint="topleft" relativeTo="$parentFire">
+							<AbsPoint x="40" y="0" />
+						</Anchor>
+					</Anchors>
+				</DynamicImage>
+
+				<Label name="$parentColdDamage" font="MyriadPro_14" maxchars="6" textalign="center" autoresizewidth="true" autoresize="false" wordwrap="false">
+					<Size>
+						<AbsPoint x="50" y="14" />
+					</Size>
+					<Anchors>
+						<Anchor point="bottom" relativePoint="top" relativeTo="$parentCold">
+							<AbsPoint x="4" y="5" />
+						</Anchor>
+					</Anchors>
+					<Color r="153" g="153" b="153" a="255" />
+				</Label>
+
+				<DynamicImage name="$parentPoison" texturescale="1" layer="overlay" popable="false" texture="icon000749">
+					<Size>
+						<AbsPoint x="32" y="32" />
+					</Size>
+					<Anchors>
+						<Anchor point="topright" relativePoint="topleft" relativeTo="$parentCold">
+							<AbsPoint x="40" y="0" />
+						</Anchor>
+					</Anchors>
+				</DynamicImage>
+
+				<Label name="$parentPoisonDamage" font="MyriadPro_14" maxchars="6" textalign="center" autoresizewidth="true" autoresize="false" wordwrap="false">
+					<Size>
+						<AbsPoint x="50" y="14" />
+					</Size>
+					<Anchors>
+						<Anchor point="bottom" relativePoint="top" relativeTo="$parentPoison">
+							<AbsPoint x="3" y="5" />
+						</Anchor>
+					</Anchors>
+					<Color r="153" g="153" b="153" a="255" />
+				</Label>
+
+				<DynamicImage name="$parentEnergy" texturescale="1" layer="overlay" popable="false" texture="icon000739">
+					<Size>
+						<AbsPoint x="32" y="32" />
+					</Size>
+					<Anchors>
+						<Anchor point="topright" relativePoint="topleft" relativeTo="$parentPoison">
+							<AbsPoint x="40" y="0" />
+						</Anchor>
+					</Anchors>
+				</DynamicImage>
+
+				<Label name="$parentEnergyDamage" font="MyriadPro_14" maxchars="6" textalign="center" autoresizewidth="true" autoresize="false" wordwrap="false">
+					<Size>
+						<AbsPoint x="50" y="14" />
+					</Size>
+					<Anchors>
+						<Anchor point="bottom" relativePoint="top" relativeTo="$parentEnergy">
+							<AbsPoint x="0" y="5" />
+						</Anchor>
+					</Anchors>
+					<Color r="153" g="153" b="153" a="255" />
+				</Label>
+
+				<DynamicImage name="$parentChaos" texturescale="1" layer="overlay" popable="false" texture="PROPS_ChaosDamage">
+					<Size>
+						<AbsPoint x="32" y="32" />
+					</Size>
+					<Anchors>
+						<Anchor point="topright" relativePoint="topleft" relativeTo="$parentEnergy">
+							<AbsPoint x="40" y="0" />
+						</Anchor>
+					</Anchors>
+				</DynamicImage>
+
+				<Label name="$parentChaosDamage" font="MyriadPro_14" maxchars="6" textalign="center" autoresizewidth="true" autoresize="false" wordwrap="false">
+					<Size>
+						<AbsPoint x="50" y="14" />
+					</Size>
+					<Anchors>
+						<Anchor point="bottom" relativePoint="top" relativeTo="$parentChaos">
+							<AbsPoint x="3" y="5" />
+						</Anchor>
+					</Anchors>
+					<Color r="153" g="153" b="153" a="255" />
+				</Label>
+
+				<Label name="$parentDPSName" font="Arial_Black_36" maxchars="100" textalign="left" autoresizewidth="true" autoresize="true" wordwrap="true">
+					<Size>
+						<AbsPoint x="100" y="20" />
+					</Size>
+					<Anchors>
+						<Anchor point="bottomleft" relativePoint="topleft" relativeTo="$parentLine1">
+							<AbsPoint x="10" y="70" />
+						</Anchor>
+					</Anchors>
+					<Color r="153" g="153" b="153" a="255" />
+				</Label>
+
+				<Label name="$parentDPSValue" font="Arial_Black_36" maxchars="100" textalign="left" autoresizewidth="true" autoresize="true" wordwrap="true">
+					<Size>
+						<AbsPoint x="120" y="20" />
+					</Size>
+					<Anchors>
+						<Anchor point="topright" relativePoint="topleft" relativeTo="$parentDPSName">
+							<AbsPoint x="20" y="0" />
+						</Anchor>
+					</Anchors>
+					<Color r="255" g="255" b="255" a="255" />
+				</Label>
+
+				<Label name="$parentDPSChange" font="Arial_Black_16" maxchars="50" textalign="left" autoresizewidth="true" autoresize="false" wordwrap="false">
+					<Size>
+						<AbsPoint x="80" y="16" />
+					</Size>
+					<Anchors>
+						<Anchor point="bottomright" relativePoint="bottomleft" relativeTo="$parentDPSValue">
+							<AbsPoint x="10" y="0" />
+						</Anchor>
+					</Anchors>
+					<Color r="125" g="125" b="125" a="255" />
+				</Label>
+
+				<Label name="$parentWeaponDamageName" font="MyriadPro_Condensed_16" maxchars="100" textalign="right" autoresizewidth="true" autoresize="true" wordwrap="false">
+					<Size>
+						<AbsPoint x="100" y="14" />
+					</Size>
+					<Anchors>
+						<Anchor point="topright" relativePoint="topleft" relativeTo="$parentLine1">
+							<AbsPoint x="-160" y="82" />
+						</Anchor>
+					</Anchors>
+					<Color r="153" g="153" b="153" a="255" />
+				</Label>
+
+				<Label name="$parentWeaponDamageValue" font="MyriadPro_Condensed_16" maxchars="100" textalign="left" autoresizewidth="true" autoresize="true" wordwrap="false">
+					<Size>
+						<AbsPoint x="100" y="14" />
+					</Size>
+					<Anchors>
+						<Anchor point="topright" relativePoint="topleft" relativeTo="$parentWeaponDamageName">
+							<AbsPoint x="10" y="0" />
+						</Anchor>
+					</Anchors>
+					<Color r="255" g="255" b="255" a="255" />
+				</Label>
+
+				<Label name="$parentWeaponSpeedName" font="MyriadPro_Condensed_16" maxchars="100" textalign="right" autoresizewidth="true" autoresize="true" wordwrap="false">
+					<Size>
+						<AbsPoint x="100" y="14" />
+					</Size>
+					<Anchors>
+						<Anchor point="bottomright" relativePoint="topright" relativeTo="$parentWeaponDamageName">
+							<AbsPoint x="0" y="5" />
+						</Anchor>
+					</Anchors>
+					<Color r="153" g="153" b="153" a="255" />
+				</Label>
+
+				<Label name="$parentWeaponSpeedValue" font="MyriadPro_Condensed_16" maxchars="100" textalign="left" autoresizewidth="true" autoresize="true" wordwrap="false">
+					<Size>
+						<AbsPoint x="100" y="14" />
+					</Size>
+					<Anchors>
+						<Anchor point="topright" relativePoint="topleft" relativeTo="$parentWeaponSpeedName">
+							<AbsPoint x="10" y="0" />
+						</Anchor>
+					</Anchors>
+					<Color r="255" g="255" b="255" a="255" />
+				</Label>
+
+				<Label name="$parentWeaponRangeName" font="MyriadPro_Condensed_16" maxchars="100" textalign="right" autoresizewidth="true" autoresize="true" wordwrap="false">
+					<Size>
+						<AbsPoint x="100" y="14" />
+					</Size>
+					<Anchors>
+						<Anchor point="bottomright" relativePoint="topright" relativeTo="$parentWeaponSpeedName">
+							<AbsPoint x="0" y="5" />
+						</Anchor>
+					</Anchors>
+					<Color r="153" g="153" b="153" a="255" />
+				</Label>
+
+				<Label name="$parentWeaponRangeValue" font="MyriadPro_Condensed_16" maxchars="100" textalign="left" autoresizewidth="true" autoresize="true" wordwrap="false">
+					<Size>
+						<AbsPoint x="100" y="14" />
+					</Size>
+					<Anchors>
+						<Anchor point="topright" relativePoint="topleft" relativeTo="$parentWeaponRangeName">
+							<AbsPoint x="10" y="0" />
+						</Anchor>
+					</Anchors>
+					<Color r="255" g="255" b="255" a="255" />
+				</Label>
+
+				<Label name="$parentSpecialAttacks" font="MyriadPro_14" maxchars="100" textalign="right" autoresizewidth="true" autoresize="true" wordwrap="false">
+					<Size>
+						<AbsPoint x="100" y="14" />
+					</Size>
+					<Anchors>
+						<Anchor point="topleft" relativePoint="topleft" relativeTo="$parentLine1">
+							<AbsPoint x="15" y="150" />
+						</Anchor>
+					</Anchors>
+					<Color r="153" g="153" b="153" a="255" />
+				</Label>
+
+				<DynamicImage name="$parentSpecial1" texturescale="0.78" layer="overlay" popable="false">
+					<Size>
+						<AbsPoint x="50" y="50" />
+					</Size>
+					<Anchors>
+						<Anchor point="topright" relativePoint="topleft" relativeTo="$parentSpecialAttacks">
+							<AbsPoint x="10" y="-20" />
+						</Anchor>
+					</Anchors>
+				</DynamicImage>
+
+				<DynamicImage name="$parentSpecial2" texturescale="0.78" layer="overlay" popable="false">
+					<Size>
+						<AbsPoint x="50" y="50" />
+					</Size>
+					<Anchors>
+						<Anchor point="topright" relativePoint="topleft" relativeTo="$parentSpecial1">
+							<AbsPoint x="10" y="0" />
+						</Anchor>
+					</Anchors>
+				</DynamicImage>
+
+				<DynamicImage name="$parentLine2" layer="overlay" popable="false" texture="HLine">
+					<Size>
+						<AbsPoint x="170" y="1" />
+					</Size>
+					<Anchors>
+						<Anchor point="bottomright" relativePoint="topleft" relativeTo="$parentLine1">
+							<AbsPoint x="-180" y="150" />
+						</Anchor>
+					</Anchors>
+					<TexCoords x="0" y="0" />
+				</DynamicImage>
+
+				<Label name="$parentWeaponSkill" font="MyriadPro_14" maxchars="100" textalign="center" autoresizewidth="false" autoresize="true" wordwrap="false">
+					<Size>
+						<AbsPoint x="200" y="14" />
+					</Size>
+					<Anchors>
+						<Anchor point="bottom" relativePoint="top" relativeTo="$parentLine2">
+							<AbsPoint x="-5" y="20" />
+						</Anchor>
+					</Anchors>
+					<Color r="153" g="153" b="153" a="255" />
+				</Label>
+
+				<Label name="$parentUBWS" font="MyriadPro_14" maxchars="100" textalign="center" autoresizewidth="true" autoresize="true" wordwrap="false">
+					<Size>
+						<AbsPoint x="100" y="14" />
+					</Size>
+					<Anchors>
+						<Anchor point="bottom" relativePoint="top" relativeTo="$parentWeaponSkill">
+							<AbsPoint x="0" y="5" />
+						</Anchor>
+					</Anchors>
+					<Color r="255" g="255" b="255" a="255" />
+				</Label>
+
+				<DynamicImage name="$parentLine3" layer="overlay" popable="false" texture="HLine">
+					<Size>
+						<AbsPoint x="445" y="2" />
+					</Size>
+					<Anchors>
+						<Anchor point="bottomleft" relativePoint="topleft" relativeTo="$parentLine1">
+							<AbsPoint x="0" y="200" />
+						</Anchor>
+					</Anchors>
+					<TexCoords x="0" y="0" />
+				</DynamicImage>
+
+				<DynamicImage name="$parentLine4" layer="overlay" popable="false" texture="HLine">
+					<Size>
+						<AbsPoint x="445" y="2" />
+					</Size>
+					<Anchors>
+						<Anchor point="bottomleft" relativePoint="topleft" relativeTo="$parentLine3">
+							<AbsPoint x="0" y="0" />
+						</Anchor>
+					</Anchors>
+					<TexCoords x="0" y="0" />
+				</DynamicImage>
+
+				<Label name="$parentWeightValue" font="MyriadPro_16" maxchars="8" textalign="left" autoresizewidth="true" autoresize="true" wordwrap="false">
+					<Size>
+						<AbsPoint x="20" y="16" />
+					</Size>
+					<Anchors>
+						<Anchor point="bottomright" relativePoint="topright" relativeTo="$parentLine4">
+							<AbsPoint x="-20" y="25" />
+						</Anchor>
+					</Anchors>
+					<Color r="255" g="255" b="255" a="255" />
+				</Label>
+
+				<DynamicImage name="$parentWeight" texturescale="0.8" layer="overlay" popable="false">
+					<Size>
+						<AbsPoint x="38" y="38" />
+					</Size>
+					<Anchors>
+						<Anchor point="left" relativePoint="right" relativeTo="$parentWeightValue">
+							<AbsPoint x="-10" y="0" />
+						</Anchor>
+					</Anchors>
+				</DynamicImage>
+
+				<Label name="$parentStrValue" font="MyriadPro_16" maxchars="8" textalign="left" autoresizewidth="true" autoresize="true" wordwrap="false">
+					<Size>
+						<AbsPoint x="20" y="14" />
+					</Size>
+					<Anchors>
+						<Anchor point="left" relativePoint="left" relativeTo="$parentWeight">
+							<AbsPoint x="-40" y="" />
+						</Anchor>
+					</Anchors>
+					<Color r="255" g="255" b="255" a="255" />
+				</Label>
+
+				<DynamicImage name="$parentStr" texturescale="0.8" layer="overlay" popable="false">
+					<Size>
+						<AbsPoint x="38" y="38" />
+					</Size>
+					<Anchors>
+						<Anchor point="left" relativePoint="right" relativeTo="$parentStrValue">
+							<AbsPoint x="-10" y="0" />
+						</Anchor>
+					</Anchors>
+				</DynamicImage>
+
+				<DynamicImage name="$parentHuman" texturescale="1" layer="overlay" popable="false" texture="PROPS_Human">
+					<Size>
+						<AbsPoint x="48" y="48" />
+					</Size>
+					<Anchors>
+						<Anchor point="bottomleft" relativePoint="topleft" relativeTo="$parentLine4">
+							<AbsPoint x="20" y="10" />
+						</Anchor>
+					</Anchors>
+					<TexCoords x="0" y="0" />
+				</DynamicImage>
+
+				<DynamicImage name="$parentElf" texturescale="1" layer="overlay" popable="false" texture="PROPS_Elf">
+					<Size>
+						<AbsPoint x="48" y="48" />
+					</Size>
+					<Anchors>
+						<Anchor point="right" relativePoint="left" relativeTo="$parentHuman">
+							<AbsPoint x="20" y="0" />
+						</Anchor>
+					</Anchors>
+					<TexCoords x="0" y="0" />
+				</DynamicImage>
+
+				<DynamicImage name="$parentGargoyle" texturescale="1" layer="overlay" popable="false" texture="PROPS_Gargoyle">
+					<Size>
+						<AbsPoint x="48" y="48" />
+					</Size>
+					<Anchors>
+						<Anchor point="right" relativePoint="left" relativeTo="$parentElf">
+							<AbsPoint x="20" y="0" />
+						</Anchor>
+					</Anchors>
+					<TexCoords x="0" y="0" />
+				</DynamicImage>
+
+				<DynamicImage name="$parentHue" texturescale="1" layer="overlay" popable="false" >
+					<Size>
+						<AbsPoint x="32" y="32" />
+					</Size>
+					<Anchors>
+						<Anchor point="bottomleft" relativePoint="topleft" relativeTo="$parentHuman">
+							<AbsPoint x="-5" y="15" />
+						</Anchor>
+					</Anchors>
+				</DynamicImage>
+
+				<Label name="$parentHueValue" font="MyriadPro_Condensed_16" maxchars="100" textalign="left" autoresizewidth="false" autoresize="false" wordwrap="true">
+					<Size>
+						<AbsPoint x="280" y="32" />
+					</Size>
+					<Anchors>
+						<Anchor point="right" relativePoint="left" relativeTo="$parentHue">
+							<AbsPoint x="0" y="-10" />
+						</Anchor>
+					</Anchors>
+					<Color r="153" g="153" b="153" a="255" />
+				</Label>
+
+				<DynamicImage name="$parentCharges" texturescale="0.5" layer="overlay" popable="false"  texture="PROPS_Charges">
+					<Size>
+						<AbsPoint x="32" y="32" />
+					</Size>
+					<Anchors>
+						<Anchor point="bottomleft" relativePoint="topleft" relativeTo="$parentWeight">
+							<AbsPoint x="0" y="10" />
+						</Anchor>
+					</Anchors>
+					<TexCoords x="0" y="0" />
+				</DynamicImage>
+
+				<Label name="$parentChargesValue" font="MyriadPro_16" maxchars="4" textalign="left" autoresizewidth="false" autoresize="false" wordwrap="false">
+					<Size>
+						<AbsPoint x="50" y="16" />
+					</Size>
+					<Anchors>
+						<Anchor point="right" relativePoint="left" relativeTo="$parentCharges">
+							<AbsPoint x="5" y="0" />
+						</Anchor>
+					</Anchors>
+					<Color r="255" g="255" b="255" a="255" />
+				</Label>
+
+				<DynamicImage name="$parentDurBar" texturescale="1" layer="background" popable="false" texture="PROPS_DurBar">
+					<Size>
+						<AbsPoint x="350" y="46" />
+					</Size>
+					<Anchors>
+						<Anchor point="bottomleft" relativePoint="topleft" relativeTo="$parentHue">
+							<AbsPoint x="35" y="-10" />
+						</Anchor>
+					</Anchors>
+					<TexCoords x="0" y="0" />
+				</DynamicImage>
+
+				<HorizontalResizeImage name="$parentDurBarFill" texture="PROPS_DurBar_Fill" layer="background">
+					<Size>
+						<AbsPoint x="348" y="37" />
+					</Size>
+					<Sizes left="348" middle="0" right="0" />
+					<TexCoords>
+						<Left x="0" y="0" />
+						<Middle x="174" y="0" />
+						<Right x="348" y="0" />
+					</TexCoords>
+					<Anchors>
+						<Anchor point="topleft" relativePoint="topleft" relativeTo="$parentDurBar">
+							<AbsPoint x="2" y="5" />
+						</Anchor>
+					</Anchors>
+					<TexCoords x="0" y="0" />
+				</HorizontalResizeImage>
+
+				<Label name="$parentDurBarValue" font="Arial_Black_Shadow_16" maxchars="10" textalign="center" autoresizewidth="false" autoresize="false" wordwrap="false" layer="overlay">
+					<Size>
+						<AbsPoint x="350" y="16" />
+					</Size>
+					<Anchors>
+						<Anchor point="topleft" relativePoint="topleft" relativeTo="$parentDurBar" >
+							<AbsPoint x="10" y="0" />
+						</Anchor>
+						<Anchor point="bottomright" relativePoint="bottomright" relativeTo="$parentDurBar" >
+							<AbsPoint x="0" y="-7" />
+						</Anchor>
+					</Anchors>
+					<Color r="255" g="255" b="255" a="255" />
+				</Label>
+
+				<Window name="$parentHotbarData" movable="false" layer="background" handleinput="false">
+					<Size>
+						<AbsPoint x="350" y="80" />
+					</Size>
+					<Anchors>
+						<Anchor point="bottomleft" relativePoint="topleft">
+							<AbsPoint x="50" y="0" />
+						</Anchor>
+					</Anchors>
+					<Windows>
+						<FullResizeImage name="$parentWindowBackground" inherits="UO_Simple_Black_Background">
+							<Anchors>
+								<Anchor point="topleft" relativePoint="topleft"/>
+								<Anchor point="bottomright" relativePoint="bottomright"/>
+							</Anchors>
+						</FullResizeImage>
+
+						<FullResizeImage name="$parentFrame" inherits="UO_Default_Inner_Window_Frame" >
+							<Anchors>
+								<Anchor point="topleft" relativePoint="topleft" />
+								<Anchor point="bottomright" relativePoint="bottomright" />
+							</Anchors>
+						</FullResizeImage>
+
+
+						<Label name="$parentBinding" font="Arial_Black_Shadow_16" maxchars="500" textalign="center" autoresizewidth="false" autoresize="false" wordwrap="false" layer="overlay">
+							<Size>
+								<AbsPoint x="320" y="16" />
+							</Size>
+							<Anchors>
+								<Anchor point="topleft" relativePoint="topleft" relativeTo="$parent" >
+									<AbsPoint x="10" y="10" />
+								</Anchor>
+							</Anchors>
+							<Color r="255" g="255" b="255" a="255" />
+						</Label>
+
+						<Label name="$parentTarget" font="Arial_Black_Shadow_16" maxchars="500" textalign="center" autoresizewidth="false" autoresize="false" wordwrap="false" layer="overlay">
+							<Size>
+								<AbsPoint x="320" y="16" />
+							</Size>
+							<Anchors>
+								<Anchor point="bottomleft" relativePoint="topleft" relativeTo="$parentBinding" >
+									<AbsPoint x="0" y="10" />
+								</Anchor>
+							</Anchors>
+							<Color r="255" g="255" b="255" a="255" />
+						</Label>
+					</Windows>
+				</Window>
+
+			</Windows>
+		</Window>
+
+
+		<Window name="SpellbookPropertiesTemplate" movable="true" layer="overlay" handleinput="false">
+			<Size>
+				<AbsPoint x="450" y="500" />
+			</Size>
+			<Windows>
+				<FullResizeImage name="$parentWindowBackground" inherits="UO_Simple_Black_Background">
+					<Anchors>
+						<Anchor point="topleft" relativePoint="topleft"/>
+						<Anchor point="bottomright" relativePoint="bottomright"/>
+					</Anchors>
+				</FullResizeImage>
+
+				<FullResizeImage name="$parentFrame" inherits="UO_Default_Inner_Window_Frame" >
+					<Anchors>
+						<Anchor point="topleft" relativePoint="topleft" />
+						<Anchor point="bottomright" relativePoint="bottomright" />
+					</Anchors>
+				</FullResizeImage>
+
+				<DynamicImage name="$parentStereotype" texturescale="1" layer="secondary" popable="false">
+					<Size>
+						<AbsPoint x="64" y="64" />
+					</Size>
+					<Anchors>
+						<Anchor point="topleft" relativePoint="topleft" relativeTo="$parent">
+							<AbsPoint x="8" y="20" />
+						</Anchor>
+					</Anchors>
+				</DynamicImage>
+
+				<DynamicImage name="$parentStars" texturescale="1" layer="overlay" popable="false">
+					<Size>
+						<AbsPoint x="64" y="64" />
+					</Size>
+					<Anchors>
+						<Anchor point="topleft" relativePoint="topleft" relativeTo="$parentStereotype">
+							<AbsPoint x="0" y="0" />
+						</Anchor>
+					</Anchors>
+				</DynamicImage>
+
+				<DynamicImage name="$parentImbued" texturescale="0.85" layer="overlay" popable="false" texture="PROPS_Imbued">
+					<Size>
+						<AbsPoint x="64" y="10" />
+					</Size>
+					<Anchors>
+						<Anchor point="bottom" relativePoint="top" relativeTo="$parentStereotype">
+							<AbsPoint x="0" y="0" />
+						</Anchor>
+					</Anchors>
+					<TexCoords x="0" y="0" />
+				</DynamicImage>
+
+				<DynamicImage name="$parentBrittle" texturescale="0.85" layer="overlay" popable="false" texture="PROPS_Brittle">
+					<Size>
+						<AbsPoint x="64" y="10" />
+					</Size>
+					<Anchors>
+						<Anchor point="bottom" relativePoint="top" relativeTo="$parentImbued">
+							<AbsPoint x="0" y="5" />
+						</Anchor>
+					</Anchors>
+					<TexCoords x="0" y="0" />
+				</DynamicImage>
+
+				<Label name="$parentItemName" font="Arial_Black_20" maxchars="100" textalign="left" autoresizewidth="false" autoresize="true" wordwrap="true">
+					<Size>
+						<AbsPoint x="362" y="48" />
+					</Size>
+					<Anchors>
+						<Anchor point="topleft" relativePoint="topleft" relativeTo="$parent">
+							<AbsPoint x="80" y="20" />
+						</Anchor>
+					</Anchors>
+					<Color r="153" g="153" b="153" a="255" />
+				</Label>
+
+				<Label name="$parentEngrave" font="MyriadPro_14" maxchars="300" textalign="left" autoresizewidth="false" autoresize="true" wordwrap="true">
+					<Size>
+						<AbsPoint x="362" y="14" />
+					</Size>
+					<Anchors>
+						<Anchor point="bottomleft" relativePoint="topleft" relativeTo="$parentItemName">
+							<AbsPoint x="0" y="10" />
+						</Anchor>
+					</Anchors>
+					<Color r="255" g="204" b="51" a="255" />
+				</Label>
+
+				<DynamicImage name="$parentSpellChanneling" texturescale="1" layer="default" popable="false" texture="PROPS_SpellChanneling">
+					<Size>
+						<AbsPoint x="13" y="20" />
+					</Size>
+					<Anchors>
+						<Anchor point="bottomleft" relativePoint="topleft" relativeTo="$parentEngrave">
+							<AbsPoint x="0" y="10" />
+						</Anchor>
+					</Anchors>
+				</DynamicImage>
+
+				<DynamicImage name="$parentSpellChannelingDeny" texturescale="0.3" layer="overlay" popable="false" texture="PROPS_Deny">
+					<Size>
+						<AbsPoint x="20" y="20" />
+					</Size>
+					<Anchors>
+						<Anchor point="topleft" relativePoint="topleft" relativeTo="$parentSpellChanneling">
+							<AbsPoint x="-3" y="1" />
+						</Anchor>
+					</Anchors>
+				</DynamicImage>
+
+				<Label name="$parentItemType" font="MyriadPro_14" maxchars="100" textalign="left" autoresizewidth="true" autoresize="false" wordwrap="false">
+					<Size>
+						<AbsPoint x="372" y="14" />
+					</Size>
+					<Anchors>
+						<Anchor point="topright" relativePoint="topleft" relativeTo="$parentSpellChanneling">
+							<AbsPoint x="10" y="-4" />
+						</Anchor>
+					</Anchors>
+					<Color r="153" g="153" b="153" a="255" />
+				</Label>
+
+				<Label name="$parentMaterialType" font="MyriadPro_14" maxchars="100" textalign="left" autoresizewidth="true" autoresize="false" wordwrap="false">
+					<Size>
+						<AbsPoint x="372" y="14" />
+					</Size>
+					<Anchors>
+						<Anchor point="bottomleft" relativePoint="topleft" relativeTo="$parentItemType">
+							<AbsPoint x="0" y="3" />
+						</Anchor>
+					</Anchors>
+					<Color r="153" g="153" b="153" a="255" />
+				</Label>
+
+				<Label name="$parentHands" font="MyriadPro_14" maxchars="100" textalign="left" autoresizewidth="true" autoresize="false" wordwrap="false">
+					<Size>
+						<AbsPoint x="372" y="14" />
+					</Size>
+					<Anchors>
+						<Anchor point="topright" relativePoint="topright" relativeTo="$parent">
+							<AbsPoint x="-15" y="5" />
+						</Anchor>
+					</Anchors>
+					<Color r="153" g="153" b="153" a="255" />
+				</Label>
+
+				<Label name="$parentCraftedBy" font="MyriadPro_Condensed_16" maxchars="100" textalign="left" autoresizewidth="false" autoresize="false" wordwrap="false">
+					<Size>
+						<AbsPoint x="372" y="14" />
+					</Size>
+					<Anchors>
+						<Anchor point="bottomleft" relativePoint="topleft" relativeTo="$parentSpellChanneling">
+							<AbsPoint x="0" y="8" />
+						</Anchor>
+					</Anchors>
+					<Color r="153" g="153" b="153" a="255" />
+				</Label>
+
+				<DynamicImage name="$parentStatus" texturescale="0.5" layer="default" popable="false">
+					<Size>
+						<AbsPoint x="32" y="32" />
+					</Size>
+					<Anchors>
+						<Anchor point="bottomright" relativePoint="topright" relativeTo="$parentEngrave">
+							<AbsPoint x="-10" y="15" />
+						</Anchor>
+					</Anchors>
+				</DynamicImage>
+
+				<DynamicImage name="$parentLine1" texturescale="3" layer="overlay" popable="false" texture="HLine">
+					<Size>
+						<AbsPoint x="445" y="2" />
+					</Size>
+					<Anchors>
+						<Anchor point="bottomleft" relativePoint="topleft" relativeTo="$parentCraftedBy">
+							<AbsPoint x="-78" y="10" />
+						</Anchor>
+					</Anchors>
+					<TexCoords x="0" y="0" />
+				</DynamicImage>
+
+				<DynamicImage name="$parentLine4" layer="overlay" popable="false" texture="HLine">
+					<Size>
+						<AbsPoint x="445" y="2" />
+					</Size>
+					<Anchors>
+						<Anchor point="bottomleft" relativePoint="topleft" relativeTo="$parentLine1">
+							<AbsPoint x="0" y="0" />
+						</Anchor>
+					</Anchors>
+					<TexCoords x="0" y="0" />
+				</DynamicImage>
+
+				<Label name="$parentWeightValue" font="MyriadPro_16" maxchars="8" textalign="left" autoresizewidth="true" autoresize="true" wordwrap="false">
+					<Size>
+						<AbsPoint x="20" y="14" />
+					</Size>
+					<Anchors>
+						<Anchor point="bottomright" relativePoint="topright" relativeTo="$parentLine4">
+							<AbsPoint x="-20" y="25" />
+						</Anchor>
+					</Anchors>
+					<Color r="255" g="255" b="255" a="255" />
+				</Label>
+
+				<DynamicImage name="$parentWeight" texturescale="0.8" layer="overlay" popable="false">
+					<Size>
+						<AbsPoint x="38" y="38" />
+					</Size>
+					<Anchors>
+						<Anchor point="left" relativePoint="right" relativeTo="$parentWeightValue">
+							<AbsPoint x="-10" y="0" />
+						</Anchor>
+					</Anchors>
+				</DynamicImage>
+
+				<Label name="$parentStrValue" font="MyriadPro_16" maxchars="8" textalign="left" autoresizewidth="true" autoresize="true" wordwrap="false">
+					<Size>
+						<AbsPoint x="20" y="14" />
+					</Size>
+					<Anchors>
+						<Anchor point="left" relativePoint="left" relativeTo="$parentWeight">
+							<AbsPoint x="-40" y="" />
+						</Anchor>
+					</Anchors>
+					<Color r="255" g="255" b="255" a="255" />
+				</Label>
+
+				<DynamicImage name="$parentStr" texturescale="0.8" layer="overlay" popable="false">
+					<Size>
+						<AbsPoint x="38" y="38" />
+					</Size>
+					<Anchors>
+						<Anchor point="left" relativePoint="right" relativeTo="$parentStrValue">
+							<AbsPoint x="-10" y="0" />
+						</Anchor>
+					</Anchors>
+				</DynamicImage>
+
+				<DynamicImage name="$parentHue" texturescale="1" layer="overlay" popable="false" >
+					<Size>
+						<AbsPoint x="32" y="32" />
+					</Size>
+					<Anchors>
+						<Anchor point="bottomleft" relativePoint="topleft" relativeTo="$parentLine4">
+							<AbsPoint x="15" y="15" />
+						</Anchor>
+					</Anchors>
+				</DynamicImage>
+
+				<Label name="$parentHueValue" font="MyriadPro_Condensed_16" maxchars="100" textalign="left" autoresizewidth="false" autoresize="false" wordwrap="true">
+					<Size>
+						<AbsPoint x="280" y="32" />
+					</Size>
+					<Anchors>
+						<Anchor point="right" relativePoint="left" relativeTo="$parentHue">
+							<AbsPoint x="0" y="-10" />
+						</Anchor>
+					</Anchors>
+					<Color r="153" g="153" b="153" a="255" />
+				</Label>
+
+				<DynamicImage name="$parentCharges" texturescale="0.5" layer="overlay" popable="false"  texture="PROPS_Charges">
+					<Size>
+						<AbsPoint x="32" y="32" />
+					</Size>
+					<Anchors>
+						<Anchor point="bottomleft" relativePoint="topleft" relativeTo="$parentWeight">
+							<AbsPoint x="5" y="15" />
+						</Anchor>
+					</Anchors>
+					<TexCoords x="0" y="0" />
+				</DynamicImage>
+
+				<Label name="$parentChargesValue" font="MyriadPro_16" maxchars="4" textalign="left" autoresizewidth="false" autoresize="false" wordwrap="false">
+					<Size>
+						<AbsPoint x="50" y="16" />
+					</Size>
+					<Anchors>
+						<Anchor point="right" relativePoint="left" relativeTo="$parentCharges">
+							<AbsPoint x="5" y="0" />
+						</Anchor>
+					</Anchors>
+					<Color r="255" g="255" b="255" a="255" />
+				</Label>
+
+				<DynamicImage name="$parentDurBar" texturescale="1" layer="background" popable="false" texture="PROPS_DurBar">
+					<Size>
+						<AbsPoint x="350" y="46" />
+					</Size>
+					<Anchors>
+						<Anchor point="bottomleft" relativePoint="topleft" relativeTo="$parentHue">
+							<AbsPoint x="35" y="0" />
+						</Anchor>
+					</Anchors>
+					<TexCoords x="0" y="0" />
+				</DynamicImage>
+
+				<HorizontalResizeImage name="$parentDurBarFill" texture="PROPS_DurBar_Fill" layer="background">
+					<Size>
+						<AbsPoint x="348" y="37" />
+					</Size>
+					<Sizes left="348" middle="0" right="0" />
+					<TexCoords>
+						<Left x="0" y="0" />
+						<Middle x="174" y="0" />
+						<Right x="348" y="0" />
+					</TexCoords>
+					<Anchors>
+						<Anchor point="topleft" relativePoint="topleft" relativeTo="$parentDurBar">
+							<AbsPoint x="2" y="5" />
+						</Anchor>
+					</Anchors>
+					<TexCoords x="0" y="0" />
+				</HorizontalResizeImage>
+
+				<Label name="$parentDurBarValue" font="Arial_Black_Shadow_16" maxchars="10" textalign="center" autoresizewidth="false" autoresize="false" wordwrap="false" layer="overlay">
+					<Size>
+						<AbsPoint x="350" y="16" />
+					</Size>
+					<Anchors>
+						<Anchor point="topleft" relativePoint="topleft" relativeTo="$parentDurBar" >
+							<AbsPoint x="10" y="0" />
+						</Anchor>
+						<Anchor point="bottomright" relativePoint="bottomright" relativeTo="$parentDurBar" >
+							<AbsPoint x="0" y="-7" />
+						</Anchor>
+					</Anchors>
+					<Color r="255" g="255" b="255" a="255" />
+				</Label>
+
+				<Window name="$parentHotbarData" movable="false" layer="background" handleinput="false">
+					<Size>
+						<AbsPoint x="350" y="80" />
+					</Size>
+					<Anchors>
+						<Anchor point="bottomleft" relativePoint="topleft">
+							<AbsPoint x="50" y="0" />
+						</Anchor>
+					</Anchors>
+					<Windows>
+						<FullResizeImage name="$parentWindowBackground" inherits="UO_Simple_Black_Background">
+							<Anchors>
+								<Anchor point="topleft" relativePoint="topleft"/>
+								<Anchor point="bottomright" relativePoint="bottomright"/>
+							</Anchors>
+						</FullResizeImage>
+
+						<FullResizeImage name="$parentFrame" inherits="UO_Default_Inner_Window_Frame" >
+							<Anchors>
+								<Anchor point="topleft" relativePoint="topleft" />
+								<Anchor point="bottomright" relativePoint="bottomright" />
+							</Anchors>
+						</FullResizeImage>
+
+
+						<Label name="$parentBinding" font="Arial_Black_Shadow_16" maxchars="500" textalign="center" autoresizewidth="false" autoresize="false" wordwrap="false" layer="overlay">
+							<Size>
+								<AbsPoint x="320" y="16" />
+							</Size>
+							<Anchors>
+								<Anchor point="topleft" relativePoint="topleft" relativeTo="$parent" >
+									<AbsPoint x="10" y="10" />
+								</Anchor>
+							</Anchors>
+							<Color r="255" g="255" b="255" a="255" />
+						</Label>
+
+						<Label name="$parentTarget" font="Arial_Black_Shadow_16" maxchars="500" textalign="center" autoresizewidth="false" autoresize="false" wordwrap="false" layer="overlay">
+							<Size>
+								<AbsPoint x="320" y="16" />
+							</Size>
+							<Anchors>
+								<Anchor point="bottomleft" relativePoint="topleft" relativeTo="$parentBinding" >
+									<AbsPoint x="0" y="10" />
+								</Anchor>
+							</Anchors>
+							<Color r="255" g="255" b="255" a="255" />
+						</Label>
+					</Windows>
+				</Window>
+
+			</Windows>
+		</Window>
+
+		<Window name="OtherPropertiesTemplate" movable="true" layer="overlay" handleinput="false" sticky="true">
+			<Size>
+				<AbsPoint x="450" y="500" />
+			</Size>
+			<Windows>
+				<FullResizeImage name="$parentWindowBackground" inherits="UO_Simple_Black_Background">
+					<Anchors>
+						<Anchor point="topleft" relativePoint="topleft"/>
+						<Anchor point="bottomright" relativePoint="bottomright"/>
+					</Anchors>
+				</FullResizeImage>
+
+				<FullResizeImage name="$parentFrame" inherits="UO_Default_Inner_Window_Frame" >
+					<Anchors>
+						<Anchor point="topleft" relativePoint="topleft" />
+						<Anchor point="bottomright" relativePoint="bottomright" />
+					</Anchors>
+				</FullResizeImage>
+
+				<DynamicImage name="$parentStereotype" texturescale="1" layer="secondary" popable="false">
+					<Size>
+						<AbsPoint x="64" y="64" />
+					</Size>
+					<Anchors>
+						<Anchor point="topleft" relativePoint="topleft" relativeTo="$parent">
+							<AbsPoint x="8" y="20" />
+						</Anchor>
+					</Anchors>
+				</DynamicImage>
+
+				<DynamicImage name="$parentStars" texturescale="1" layer="overlay" popable="false">
+					<Size>
+						<AbsPoint x="64" y="64" />
+					</Size>
+					<Anchors>
+						<Anchor point="topleft" relativePoint="topleft" relativeTo="$parentStereotype">
+							<AbsPoint x="0" y="0" />
+						</Anchor>
+					</Anchors>
+				</DynamicImage>
+
+				<DynamicImage name="$parentImbued" texturescale="0.85" layer="overlay" popable="false" texture="PROPS_Imbued">
+					<Size>
+						<AbsPoint x="64" y="10" />
+					</Size>
+					<Anchors>
+						<Anchor point="bottom" relativePoint="top" relativeTo="$parentStereotype">
+							<AbsPoint x="0" y="0" />
+						</Anchor>
+					</Anchors>
+					<TexCoords x="0" y="0" />
+				</DynamicImage>
+
+				<DynamicImage name="$parentBrittle" texturescale="0.85" layer="overlay" popable="false" texture="PROPS_Brittle">
+					<Size>
+						<AbsPoint x="64" y="10" />
+					</Size>
+					<Anchors>
+						<Anchor point="bottom" relativePoint="top" relativeTo="$parentImbued">
+							<AbsPoint x="0" y="5" />
+						</Anchor>
+					</Anchors>
+					<TexCoords x="0" y="0" />
+				</DynamicImage>
+
+				<Label name="$parentItemName" font="Arial_Black_20" maxchars="100" textalign="left" autoresizewidth="false" autoresize="true" wordwrap="true">
+					<Size>
+						<AbsPoint x="362" y="48" />
+					</Size>
+					<Anchors>
+						<Anchor point="topleft" relativePoint="topleft" relativeTo="$parent">
+							<AbsPoint x="80" y="20" />
+						</Anchor>
+					</Anchors>
+					<Color r="153" g="153" b="153" a="255" />
+				</Label>
+
+				<Label name="$parentEngrave" font="MyriadPro_14" maxchars="255" textalign="left" autoresizewidth="false" autoresize="true" wordwrap="true">
+					<Size>
+						<AbsPoint x="362" y="14" />
+					</Size>
+					<Anchors>
+						<Anchor point="bottomleft" relativePoint="topleft" relativeTo="$parentItemName">
+							<AbsPoint x="0" y="10" />
+						</Anchor>
+					</Anchors>
+					<Color r="255" g="204" b="51" a="255" />
+				</Label>
+
+				<DynamicImage name="$parentMedable" texturescale="1" layer="default" popable="false" texture="PROPS_Medable">
+					<Size>
+						<AbsPoint x="32" y="32" />
+					</Size>
+					<Anchors>
+						<Anchor point="bottomleft" relativePoint="topleft" relativeTo="$parentEngrave">
+							<AbsPoint x="0" y="8" />
+						</Anchor>
+					</Anchors>
+				</DynamicImage>
+
+				<DynamicImage name="$parentMedableDeny" texturescale="0.5" layer="overlay" popable="false" texture="PROPS_Deny">
+					<Size>
+						<AbsPoint x="32" y="32" />
+					</Size>
+					<Anchors>
+						<Anchor point="topleft" relativePoint="topleft" relativeTo="$parentMedable">
+							<AbsPoint x="0" y="1" />
+						</Anchor>
+					</Anchors>
+				</DynamicImage>
+
+				<Label name="$parentItemType" font="MyriadPro_14" maxchars="100" textalign="left" autoresizewidth="true" autoresize="false" wordwrap="false">
+					<Size>
+						<AbsPoint x="372" y="14" />
+					</Size>
+					<Anchors>
+						<Anchor point="right" relativePoint="left" relativeTo="$parentMedable">
+							<AbsPoint x="10" y="-10" />
+						</Anchor>
+					</Anchors>
+					<Color r="153" g="153" b="153" a="255" />
+				</Label>
+
+				<Label name="$parentMaterialType" font="MyriadPro_14" maxchars="100" textalign="left" autoresizewidth="true" autoresize="false" wordwrap="false">
+					<Size>
+						<AbsPoint x="372" y="14" />
+					</Size>
+					<Anchors>
+						<Anchor point="bottomleft" relativePoint="topleft" relativeTo="$parentItemType">
+							<AbsPoint x="0" y="3" />
+						</Anchor>
+					</Anchors>
+					<Color r="153" g="153" b="153" a="255" />
+				</Label>
+
+				<Label name="$parentCraftedBy" font="MyriadPro_Condensed_16" maxchars="100" textalign="left" autoresizewidth="false" autoresize="true" wordwrap="false">
+					<Size>
+						<AbsPoint x="365" y="16" />
+					</Size>
+					<Anchors>
+						<Anchor point="bottomleft" relativePoint="topleft" relativeTo="$parentMedable">
+							<AbsPoint x="0" y="8" />
+						</Anchor>
+					</Anchors>
+					<Color r="153" g="153" b="153" a="255" />
+				</Label>
+
+				<DynamicImage name="$parentStatus" texturescale="0.5" layer="default" popable="false">
+					<Size>
+						<AbsPoint x="32" y="32" />
+					</Size>
+					<Anchors>
+						<Anchor point="bottomright" relativePoint="topright" relativeTo="$parentEngrave">
+							<AbsPoint x="-10" y="15" />
+						</Anchor>
+					</Anchors>
+				</DynamicImage>
+
+				<DynamicImage name="$parentLine1" texturescale="3" layer="overlay" popable="false" texture="HLine">
+					<Size>
+						<AbsPoint x="445" y="2" />
+					</Size>
+					<Anchors>
+						<Anchor point="bottomleft" relativePoint="topleft" relativeTo="$parentCraftedBy">
+							<AbsPoint x="-78" y="10" />
+						</Anchor>
+					</Anchors>
+					<TexCoords x="0" y="0" />
+				</DynamicImage>
+
+				<DynamicImage name="$parentPhysical" texturescale="1" layer="overlay" popable="false" texture="icon000748">
+					<Size>
+						<AbsPoint x="32" y="32" />
+					</Size>
+					<Anchors>
+						<Anchor point="bottomleft" relativePoint="topleft" relativeTo="$parentLine1">
+							<AbsPoint x="60" y="10" />
+						</Anchor>
+					</Anchors>
+				</DynamicImage>
+
+				<Label name="$parentPhysicalResist" font="Arial_Black_18" maxchars="6" textalign="center" autoresizewidth="true" autoresize="false" wordwrap="false">
+					<Size>
+						<AbsPoint x="50" y="18" />
+					</Size>
+					<Anchors>
+						<Anchor point="bottom" relativePoint="top" relativeTo="$parentPhysical">
+							<AbsPoint x="0" y="0" />
+						</Anchor>
+					</Anchors>
+					<Color r="153" g="153" b="153" a="255" />
+				</Label>
+
+				<Label name="$parentPhysicalResistCap" font="MyriadPro_14" maxchars="10" textalign="center" autoresizewidth="true" autoresize="false" wordwrap="false">
+					<Size>
+						<AbsPoint x="50" y="14" />
+					</Size>
+					<Anchors>
+						<Anchor point="bottom" relativePoint="top" relativeTo="$parentPhysicalResist">
+							<AbsPoint x="0" y="10" />
+						</Anchor>
+					</Anchors>
+					<Color r="153" g="153" b="153" a="255" />
+				</Label>
+
+				<Label name="$parentPhysicalResistChange" font="MyriadPro_14" maxchars="10" textalign="center" autoresizewidth="true" autoresize="false" wordwrap="false">
+					<Size>
+						<AbsPoint x="50" y="14" />
+					</Size>
+					<Anchors>
+						<Anchor point="bottom" relativePoint="top" relativeTo="$parentPhysicalResistCap">
+							<AbsPoint x="0" y="5" />
+						</Anchor>
+					</Anchors>
+					<Color r="153" g="153" b="153" a="255" />
+				</Label>
+
+				<DynamicImage name="$parentFire" texturescale="1" layer="overlay" popable="false" texture="icon000740">
+					<Size>
+						<AbsPoint x="32" y="32" />
+					</Size>
+					<Anchors>
+						<Anchor point="topright" relativePoint="topleft" relativeTo="$parentPhysical">
+							<AbsPoint x="40" y="0" />
+						</Anchor>
+					</Anchors>
+				</DynamicImage>
+
+				<Label name="$parentFireResist" font="Arial_Black_18" maxchars="6" textalign="center" autoresizewidth="true" autoresize="false" wordwrap="false">
+					<Size>
+						<AbsPoint x="50" y="18" />
+					</Size>
+					<Anchors>
+						<Anchor point="bottom" relativePoint="top" relativeTo="$parentFire">
+							<AbsPoint x="4" y="0" />
+						</Anchor>
+					</Anchors>
+					<Color r="153" g="153" b="153" a="255" />
+				</Label>
+
+				<Label name="$parentFireResistCap" font="MyriadPro_14" maxchars="10" textalign="center" autoresizewidth="true" autoresize="false" wordwrap="false">
+					<Size>
+						<AbsPoint x="50" y="14" />
+					</Size>
+					<Anchors>
+						<Anchor point="bottom" relativePoint="top" relativeTo="$parentFireResist">
+							<AbsPoint x="0" y="10" />
+						</Anchor>
+					</Anchors>
+					<Color r="153" g="153" b="153" a="255" />
+				</Label>
+
+				<Label name="$parentFireResistChange" font="MyriadPro_14" maxchars="10" textalign="center" autoresizewidth="true" autoresize="false" wordwrap="false">
+					<Size>
+						<AbsPoint x="50" y="14" />
+					</Size>
+					<Anchors>
+						<Anchor point="bottom" relativePoint="top" relativeTo="$parentFireResistCap">
+							<AbsPoint x="0" y="5" />
+						</Anchor>
+					</Anchors>
+					<Color r="153" g="153" b="153" a="255" />
+				</Label>
+
+				<DynamicImage name="$parentCold" texturescale="1" layer="overlay" popable="false" texture="icon000735">
+					<Size>
+						<AbsPoint x="32" y="32" />
+					</Size>
+					<Anchors>
+						<Anchor point="topright" relativePoint="topleft" relativeTo="$parentFire">
+							<AbsPoint x="40" y="0" />
+						</Anchor>
+					</Anchors>
+				</DynamicImage>
+
+				<Label name="$parentColdResist" font="Arial_Black_18" maxchars="6" textalign="center" autoresizewidth="true" autoresize="false" wordwrap="false">
+					<Size>
+						<AbsPoint x="50" y="18" />
+					</Size>
+					<Anchors>
+						<Anchor point="bottom" relativePoint="top" relativeTo="$parentCold">
+							<AbsPoint x="4" y="0" />
+						</Anchor>
+					</Anchors>
+					<Color r="153" g="153" b="153" a="255" />
+				</Label>
+
+				<Label name="$parentColdResistCap" font="MyriadPro_14" maxchars="10" textalign="center" autoresizewidth="true" autoresize="false" wordwrap="false">
+					<Size>
+						<AbsPoint x="50" y="14" />
+					</Size>
+					<Anchors>
+						<Anchor point="bottom" relativePoint="top" relativeTo="$parentColdResist">
+							<AbsPoint x="0" y="10" />
+						</Anchor>
+					</Anchors>
+					<Color r="153" g="153" b="153" a="255" />
+				</Label>
+
+				<Label name="$parentColdResistChange" font="MyriadPro_14" maxchars="10" textalign="center" autoresizewidth="true" autoresize="false" wordwrap="false">
+					<Size>
+						<AbsPoint x="50" y="14" />
+					</Size>
+					<Anchors>
+						<Anchor point="bottom" relativePoint="top" relativeTo="$parentColdResistCap">
+							<AbsPoint x="0" y="5" />
+						</Anchor>
+					</Anchors>
+					<Color r="153" g="153" b="153" a="255" />
+				</Label>
+
+				<DynamicImage name="$parentPoison" texturescale="1" layer="overlay" popable="false" texture="icon000749">
+					<Size>
+						<AbsPoint x="32" y="32" />
+					</Size>
+					<Anchors>
+						<Anchor point="topright" relativePoint="topleft" relativeTo="$parentCold">
+							<AbsPoint x="40" y="0" />
+						</Anchor>
+					</Anchors>
+				</DynamicImage>
+
+				<Label name="$parentPoisonResist" font="Arial_Black_18" maxchars="6" textalign="center" autoresizewidth="true" autoresize="false" wordwrap="false">
+					<Size>
+						<AbsPoint x="50" y="18" />
+					</Size>
+					<Anchors>
+						<Anchor point="bottom" relativePoint="top" relativeTo="$parentPoison">
+							<AbsPoint x="3" y="0" />
+						</Anchor>
+					</Anchors>
+					<Color r="153" g="153" b="153" a="255" />
+				</Label>
+
+				<Label name="$parentPoisonResistCap" font="MyriadPro_14" maxchars="10" textalign="center" autoresizewidth="true" autoresize="false" wordwrap="false">
+					<Size>
+						<AbsPoint x="50" y="14" />
+					</Size>
+					<Anchors>
+						<Anchor point="bottom" relativePoint="top" relativeTo="$parentPoisonResist">
+							<AbsPoint x="0" y="10" />
+						</Anchor>
+					</Anchors>
+					<Color r="153" g="153" b="153" a="255" />
+				</Label>
+
+				<Label name="$parentPoisonResistChange" font="MyriadPro_14" maxchars="10" textalign="center" autoresizewidth="true" autoresize="false" wordwrap="false">
+					<Size>
+						<AbsPoint x="50" y="14" />
+					</Size>
+					<Anchors>
+						<Anchor point="bottom" relativePoint="top" relativeTo="$parentPoisonResistCap">
+							<AbsPoint x="0" y="5" />
+						</Anchor>
+					</Anchors>
+					<Color r="153" g="153" b="153" a="255" />
+				</Label>
+
+				<DynamicImage name="$parentEnergy" texturescale="1" layer="overlay" popable="false" texture="icon000739">
+					<Size>
+						<AbsPoint x="32" y="32" />
+					</Size>
+					<Anchors>
+						<Anchor point="topright" relativePoint="topleft" relativeTo="$parentPoison">
+							<AbsPoint x="40" y="0" />
+						</Anchor>
+					</Anchors>
+				</DynamicImage>
+
+				<Label name="$parentEnergyResist" font="Arial_Black_18" maxchars="6" textalign="center" autoresizewidth="true" autoresize="false" wordwrap="false">
+					<Size>
+						<AbsPoint x="50" y="18" />
+					</Size>
+					<Anchors>
+						<Anchor point="bottom" relativePoint="top" relativeTo="$parentEnergy">
+							<AbsPoint x="0" y="0" />
+						</Anchor>
+					</Anchors>
+					<Color r="153" g="153" b="153" a="255" />
+				</Label>
+
+				<Label name="$parentEnergyResistCap" font="MyriadPro_14" maxchars="10" textalign="center" autoresizewidth="true" autoresize="false" wordwrap="false">
+					<Size>
+						<AbsPoint x="50" y="14" />
+					</Size>
+					<Anchors>
+						<Anchor point="bottom" relativePoint="top" relativeTo="$parentEnergyResist">
+							<AbsPoint x="0" y="10" />
+						</Anchor>
+					</Anchors>
+					<Color r="153" g="153" b="153" a="255" />
+				</Label>
+
+				<Label name="$parentEnergyResistChange" font="MyriadPro_14" maxchars="10" textalign="center" autoresizewidth="true" autoresize="false" wordwrap="false">
+					<Size>
+						<AbsPoint x="50" y="14" />
+					</Size>
+					<Anchors>
+						<Anchor point="bottom" relativePoint="top" relativeTo="$parentEnergyResistCap">
+							<AbsPoint x="0" y="5" />
+						</Anchor>
+					</Anchors>
+					<Color r="153" g="153" b="153" a="255" />
+				</Label>
+
+				<DynamicImage name="$parentLine3" layer="overlay" popable="false" texture="HLine">
+					<Size>
+						<AbsPoint x="445" y="2" />
+					</Size>
+					<Anchors>
+						<Anchor point="bottomleft" relativePoint="topleft" relativeTo="$parentLine1">
+							<AbsPoint x="0" y="180" />
+						</Anchor>
+					</Anchors>
+					<TexCoords x="0" y="0" />
+				</DynamicImage>
+
+				<DynamicImage name="$parentLine4" layer="overlay" popable="false" texture="HLine">
+					<Size>
+						<AbsPoint x="445" y="2" />
+					</Size>
+					<Anchors>
+						<Anchor point="bottomleft" relativePoint="topleft" relativeTo="$parentLine3">
+							<AbsPoint x="0" y="0" />
+						</Anchor>
+					</Anchors>
+					<TexCoords x="0" y="0" />
+				</DynamicImage>
+
+				<Label name="$parentTotalResistName" font="MyriadPro_14" maxchars="100" textalign="right" autoresizewidth="true" autoresize="true" wordwrap="false">
+					<Size>
+						<AbsPoint x="100" y="14" />
+					</Size>
+					<Anchors>
+						<Anchor point="topright" relativePoint="topleft" relativeTo="$parentLine3">
+							<AbsPoint x="-160" y="-30" />
+						</Anchor>
+					</Anchors>
+					<Color r="153" g="153" b="153" a="255" />
+				</Label>
+
+				<Label name="$parentTotalResistValue" font="MyriadPro_14" maxchars="100" textalign="left" autoresizewidth="true" autoresize="true" wordwrap="false">
+					<Size>
+						<AbsPoint x="100" y="14" />
+					</Size>
+					<Anchors>
+						<Anchor point="topright" relativePoint="topleft" relativeTo="$parentTotalResistName">
+							<AbsPoint x="10" y="0" />
+						</Anchor>
+					</Anchors>
+					<Color r="255" g="255" b="255" a="255" />
+				</Label>
+
+				<Label name="$parentTotalResistChange" font="MyriadPro_14" maxchars="100" textalign="right" autoresizewidth="true" autoresize="true" wordwrap="false">
+					<Size>
+						<AbsPoint x="100" y="14" />
+					</Size>
+					<Anchors>
+						<Anchor point="topright" relativePoint="topleft" relativeTo="$parentTotalResistValue">
+							<AbsPoint x="10" y="0" />
+						</Anchor>
+					</Anchors>
+					<Color r="153" g="153" b="153" a="255" />
+				</Label>
+
+				<Label name="$parentWeightValue" font="MyriadPro_16" maxchars="8" textalign="left" autoresizewidth="true" autoresize="true" wordwrap="false">
+					<Size>
+						<AbsPoint x="20" y="14" />
+					</Size>
+					<Anchors>
+						<Anchor point="bottomright" relativePoint="topright" relativeTo="$parentLine4">
+							<AbsPoint x="-20" y="25" />
+						</Anchor>
+					</Anchors>
+					<Color r="255" g="255" b="255" a="255" />
+				</Label>
+
+				<DynamicImage name="$parentWeight" texturescale="0.8" layer="overlay" popable="false">
+					<Size>
+						<AbsPoint x="38" y="38" />
+					</Size>
+					<Anchors>
+						<Anchor point="left" relativePoint="right" relativeTo="$parentWeightValue">
+							<AbsPoint x="-10" y="0" />
+						</Anchor>
+					</Anchors>
+				</DynamicImage>
+
+				<Label name="$parentStrValue" font="MyriadPro_16" maxchars="8" textalign="left" autoresizewidth="true" autoresize="true" wordwrap="false">
+					<Size>
+						<AbsPoint x="20" y="14" />
+					</Size>
+					<Anchors>
+						<Anchor point="left" relativePoint="left" relativeTo="$parentWeight">
+							<AbsPoint x="-40" y="0" />
+						</Anchor>
+					</Anchors>
+					<Color r="255" g="255" b="255" a="255" />
+				</Label>
+
+				<DynamicImage name="$parentStr" texturescale="0.8" layer="overlay" popable="false">
+					<Size>
+						<AbsPoint x="38" y="38" />
+					</Size>
+					<Anchors>
+						<Anchor point="left" relativePoint="right" relativeTo="$parentStrValue">
+							<AbsPoint x="-10" y="0" />
+						</Anchor>
+					</Anchors>
+				</DynamicImage>
+
+				<DynamicImage name="$parentHuman" texturescale="1" layer="overlay" popable="false" texture="PROPS_Human">
+					<Size>
+						<AbsPoint x="48" y="48" />
+					</Size>
+					<Anchors>
+						<Anchor point="bottomleft" relativePoint="topleft" relativeTo="$parentLine4">
+							<AbsPoint x="20" y="10" />
+						</Anchor>
+					</Anchors>
+					<TexCoords x="0" y="0" />
+				</DynamicImage>
+
+				<DynamicImage name="$parentElf" texturescale="1" layer="overlay" popable="false" texture="PROPS_Elf">
+					<Size>
+						<AbsPoint x="48" y="48" />
+					</Size>
+					<Anchors>
+						<Anchor point="right" relativePoint="left" relativeTo="$parentHuman">
+							<AbsPoint x="20" y="0" />
+						</Anchor>
+					</Anchors>
+					<TexCoords x="0" y="0" />
+				</DynamicImage>
+
+				<DynamicImage name="$parentGargoyle" texturescale="1" layer="overlay" popable="false" texture="PROPS_Gargoyle">
+					<Size>
+						<AbsPoint x="48" y="48" />
+					</Size>
+					<Anchors>
+						<Anchor point="right" relativePoint="left" relativeTo="$parentElf">
+							<AbsPoint x="20" y="0" />
+						</Anchor>
+					</Anchors>
+					<TexCoords x="0" y="0" />
+				</DynamicImage>
+
+				<DynamicImage name="$parentHue" texturescale="1" layer="overlay" popable="false" >
+					<Size>
+						<AbsPoint x="32" y="32" />
+					</Size>
+					<Anchors>
+						<Anchor point="bottomleft" relativePoint="topleft" relativeTo="$parentHuman">
+							<AbsPoint x="-5" y="15" />
+						</Anchor>
+					</Anchors>
+				</DynamicImage>
+
+				<Label name="$parentHueValue" font="MyriadPro_Condensed_16" maxchars="100" textalign="left" autoresizewidth="false" autoresize="false" wordwrap="true">
+					<Size>
+						<AbsPoint x="280" y="32" />
+					</Size>
+					<Anchors>
+						<Anchor point="right" relativePoint="left" relativeTo="$parentHue">
+							<AbsPoint x="0" y="-10" />
+						</Anchor>
+					</Anchors>
+					<Color r="153" g="153" b="153" a="255" />
+				</Label>
+
+				<DynamicImage name="$parentCharges" texturescale="0.5" layer="overlay" popable="false"  texture="PROPS_Charges">
+					<Size>
+						<AbsPoint x="32" y="32" />
+					</Size>
+					<Anchors>
+						<Anchor point="bottomleft" relativePoint="topleft" relativeTo="$parentWeight">
+							<AbsPoint x="0" y="10" />
+						</Anchor>
+					</Anchors>
+					<TexCoords x="0" y="0" />
+				</DynamicImage>
+
+				<Label name="$parentChargesValue" font="MyriadPro_16" maxchars="4" textalign="left" autoresizewidth="false" autoresize="false" wordwrap="false">
+					<Size>
+						<AbsPoint x="50" y="16" />
+					</Size>
+					<Anchors>
+						<Anchor point="right" relativePoint="left" relativeTo="$parentCharges">
+							<AbsPoint x="5" y="0" />
+						</Anchor>
+					</Anchors>
+					<Color r="255" g="255" b="255" a="255" />
+				</Label>
+
+				<DynamicImage name="$parentDurBar" texturescale="1" layer="background" popable="false" texture="PROPS_DurBar">
+					<Size>
+						<AbsPoint x="350" y="46" />
+					</Size>
+					<Anchors>
+						<Anchor point="bottomleft" relativePoint="topleft" relativeTo="$parentHue">
+							<AbsPoint x="35" y="-10" />
+						</Anchor>
+					</Anchors>
+					<TexCoords x="0" y="0" />
+				</DynamicImage>
+
+				<HorizontalResizeImage name="$parentDurBarFill" texture="PROPS_DurBar_Fill" layer="background">
+					<Size>
+						<AbsPoint x="348" y="37" />
+					</Size>
+					<Sizes left="348" middle="0" right="0" />
+					<TexCoords>
+						<Left x="0" y="0" />
+						<Middle x="174" y="0" />
+						<Right x="348" y="0" />
+					</TexCoords>
+					<Anchors>
+						<Anchor point="topleft" relativePoint="topleft" relativeTo="$parentDurBar">
+							<AbsPoint x="2" y="5" />
+						</Anchor>
+					</Anchors>
+					<TexCoords x="0" y="0" />
+				</HorizontalResizeImage>
+
+				<Label name="$parentDurBarValue" font="Arial_Black_Shadow_16" maxchars="10" textalign="center" autoresizewidth="false" autoresize="false" wordwrap="false" layer="overlay">
+					<Size>
+						<AbsPoint x="350" y="16" />
+					</Size>
+					<Anchors>
+						<Anchor point="topleft" relativePoint="topleft" relativeTo="$parentDurBar" >
+							<AbsPoint x="10" y="" />
+						</Anchor>
+						<Anchor point="bottomright" relativePoint="bottomright" relativeTo="$parentDurBar" >
+							<AbsPoint x="0" y="-7" />
+						</Anchor>
+					</Anchors>
+					<Color r="255" g="255" b="255" a="255" />
+				</Label>
+
+				<Window name="$parentHotbarData" movable="false" layer="background" handleinput="false">
+					<Size>
+						<AbsPoint x="350" y="80" />
+					</Size>
+					<Anchors>
+						<Anchor point="bottomleft" relativePoint="topleft">
+							<AbsPoint x="50" y="0" />
+						</Anchor>
+					</Anchors>
+					<Windows>
+						<FullResizeImage name="$parentWindowBackground" inherits="UO_Simple_Black_Background">
+							<Anchors>
+								<Anchor point="topleft" relativePoint="topleft"/>
+								<Anchor point="bottomright" relativePoint="bottomright"/>
+							</Anchors>
+						</FullResizeImage>
+
+						<FullResizeImage name="$parentFrame" inherits="UO_Default_Inner_Window_Frame" >
+							<Anchors>
+								<Anchor point="topleft" relativePoint="topleft" />
+								<Anchor point="bottomright" relativePoint="bottomright" />
+							</Anchors>
+						</FullResizeImage>
+
+
+						<Label name="$parentBinding" font="Arial_Black_Shadow_16" maxchars="500" textalign="center" autoresizewidth="false" autoresize="false" wordwrap="false" layer="overlay">
+							<Size>
+								<AbsPoint x="320" y="16" />
+							</Size>
+							<Anchors>
+								<Anchor point="topleft" relativePoint="topleft" relativeTo="$parent" >
+									<AbsPoint x="10" y="10" />
+								</Anchor>
+							</Anchors>
+							<Color r="255" g="255" b="255" a="255" />
+						</Label>
+
+						<Label name="$parentTarget" font="Arial_Black_Shadow_16" maxchars="500" textalign="center" autoresizewidth="false" autoresize="false" wordwrap="false" layer="overlay">
+							<Size>
+								<AbsPoint x="320" y="16" />
+							</Size>
+							<Anchors>
+								<Anchor point="bottomleft" relativePoint="topleft" relativeTo="$parentBinding" >
+									<AbsPoint x="0" y="10" />
+								</Anchor>
+							</Anchors>
+							<Color r="255" g="255" b="255" a="255" />
+						</Label>
+					</Windows>
+				</Window>
+
+			</Windows>
+		</Window>
+
+		<Window name="MobilePropertiesTemplate" movable="true" layer="overlay" handleinput="false">
+			<Size>
+				<AbsPoint x="450" y="500" />
+			</Size>
+			<Windows>
+				<FullResizeImage name="$parentWindowBackground" inherits="UO_Simple_Black_Background">
+					<Anchors>
+						<Anchor point="topleft" relativePoint="topleft"/>
+						<Anchor point="bottomright" relativePoint="bottomright"/>
+					</Anchors>
+				</FullResizeImage>
+
+				<FullResizeImage name="$parentFrame" inherits="UO_Default_Inner_Window_Frame" >
+					<Anchors>
+						<Anchor point="topleft" relativePoint="topleft" />
+						<Anchor point="bottomright" relativePoint="bottomright" />
+					</Anchors>
+				</FullResizeImage>
+
+				<CircleImage name="$parentStereotype" layer="secondary" popable="false"  numsegments="16" texturescale="0.843">
+					<Size>
+						<AbsPoint x="50" y="50" />
+					</Size>
+					<Anchors>
+						<Anchor point="topleft" relativePoint="topleft" relativeTo="$parent">
+							<AbsPoint x="18" y="20" />
+						</Anchor>
+					</Anchors>
+				</CircleImage>
+				<!--
+				<FullResizeImage name="$parentFrameT" inherits="UO_Default_Inner_Window_Frame" >
+					<Anchors>
+						<Anchor point="topleft" relativePoint="topleft" relativeTo="$parentStereotype" />
+						<Anchor point="bottomright" relativePoint="bottomright" relativeTo="$parentStereotype" />
+					</Anchors>
+				</FullResizeImage>
+				-->
+				<DynamicImage name="$parentStars" texturescale="1" layer="overlay" popable="false">
+					<Size>
+						<AbsPoint x="64" y="64" />
+					</Size>
+					<Anchors>
+						<Anchor point="topleft" relativePoint="topleft" relativeTo="$parentStereotype">
+							<AbsPoint x="0" y="0" />
+						</Anchor>
+					</Anchors>
+				</DynamicImage>
+
+				
+				<Label name="$parentMobileName" font="Arial_Black_20" maxchars="200" textalign="left" autoresizewidth="false" autoresize="true" wordwrap="true">
+					<Size>
+						<AbsPoint x="362" y="48" />
+					</Size>
+					<Anchors>
+						<Anchor point="topleft" relativePoint="topleft" relativeTo="$parent">
+							<AbsPoint x="80" y="20" />
+						</Anchor>
+					</Anchors>
+					<Color r="153" g="153" b="153" a="255" />
+				</Label>
+
+        <Label name="$parentNotoriety" font="MyriadPro_14" maxchars="255" textalign="left" autoresizewidth="false" autoresize="false" wordwrap="true">
+          <Size>
+            <AbsPoint x="362" y="14" />
+          </Size>
+          <Anchors>
+            <Anchor point="bottomleft" relativePoint="topleft" relativeTo="$parentMobileName">
+              <AbsPoint x="0" y="10" />
+            </Anchor>
+          </Anchors>
+          <Color r="255" g="204" b="51" a="255" />
+        </Label>
+        
+				<Label name="$parentEngrave" font="MyriadPro_14" maxchars="255" textalign="left" autoresizewidth="false" autoresize="false" wordwrap="true">
+					<Size>
+						<AbsPoint x="362" y="16" />
+					</Size>
+					<Anchors>
+						<Anchor point="bottomleft" relativePoint="topleft" relativeTo="$parentNotoriety">
+							<AbsPoint x="0" y="5" />
+						</Anchor>
+					</Anchors>
+					<Color r="255" g="204" b="51" a="255" />
+				</Label>
+
+        <Label name="$parentBodyID" font="MyriadPro_14" maxchars="100" textalign="left" autoresizewidth="true" autoresize="false" wordwrap="false">
+           <Size>
+            <AbsPoint x="372" y="14" />
+          </Size>
+          <Anchors>
+            <Anchor point="bottomleft" relativePoint="topleft" relativeTo="$parentEngrave">
+              <AbsPoint x="0" y="5" />
+            </Anchor>
+          </Anchors>
+          <Color r="153" g="153" b="153" a="255" />
+        </Label>
+
+				<DynamicImage name="$parentTamable" texturescale="0.5" layer="default" popable="false" texture="icon002004">
+					<Size>
+						<AbsPoint x="32" y="32" />
+					</Size>
+					<Anchors>
+						<Anchor point="bottomleft" relativePoint="topleft" relativeTo="$parentNotoriety">
+							<AbsPoint x="0" y="8" />
+						</Anchor>
+					</Anchors>
+				</DynamicImage>
+
+				<DynamicImage name="$parentTamableDeny" texturescale="0.5" layer="overlay" popable="false" texture="PROPS_Deny">
+					<Size>
+						<AbsPoint x="32" y="32" />
+					</Size>
+					<Anchors>
+						<Anchor point="topleft" relativePoint="topleft" relativeTo="$parentTamable">
+							<AbsPoint x="0" y="1" />
+						</Anchor>
+					</Anchors>
+				</DynamicImage>
+
+				<Label name="$parentTamingSkill" font="MyriadPro_14" maxchars="100" textalign="left" autoresizewidth="true" autoresize="false" wordwrap="false">
+					<Size>
+						<AbsPoint x="372" y="14" />
+					</Size>
+					<Anchors>
+						<Anchor point="topright" relativePoint="topleft" relativeTo="$parentTamable">
+							<AbsPoint x="10" y="-4" />
+						</Anchor>
+					</Anchors>
+					<Color r="153" g="153" b="153" a="255" />
+				</Label>
+
+				<Label name="$parentTamingChance" font="MyriadPro_14" maxchars="100" textalign="left" autoresizewidth="true" autoresize="false" wordwrap="false">
+					<Size>
+						<AbsPoint x="372" y="14" />
+					</Size>
+					<Anchors>
+						<Anchor point="bottomleft" relativePoint="topleft" relativeTo="$parentTamingSkill">
+							<AbsPoint x="0" y="3" />
+						</Anchor>
+					</Anchors>
+					<Color r="153" g="153" b="153" a="255" />
+				</Label>
+
+				<DynamicImage name="$parentStatus" texturescale="0.5" layer="default" popable="false">
+					<Size>
+						<AbsPoint x="32" y="32" />
+					</Size>
+					<Anchors>
+						<Anchor point="bottomright" relativePoint="topright" relativeTo="$parentMobileName">
+							<AbsPoint x="-10" y="10" />
+						</Anchor>
+					</Anchors>
+				</DynamicImage>
+
+				<DynamicImage name="$parentLine1" texturescale="3" layer="overlay" popable="false" texture="HLine">
+					<Size>
+						<AbsPoint x="445" y="2" />
+					</Size>
+					<Anchors>
+						<Anchor point="bottomleft" relativePoint="topleft" relativeTo="$parentTamable">
+							<AbsPoint x="-78" y="10" />
+						</Anchor>
+					</Anchors>
+					<TexCoords x="0" y="0" />
+				</DynamicImage>
+
+				<DynamicImage name="$parentPhysical" texturescale="1" layer="overlay" popable="false" texture="icon000748">
+					<Size>
+						<AbsPoint x="32" y="32" />
+					</Size>
+					<Anchors>
+						<Anchor point="bottomleft" relativePoint="topleft" relativeTo="$parentLine1">
+							<AbsPoint x="60" y="10" />
+						</Anchor>
+					</Anchors>
+				</DynamicImage>
+
+				<Label name="$parentPhysicalResist" font="MyriadPro_14" maxchars="6" textalign="center" autoresizewidth="true" autoresize="true" wordwrap="false">
+					<Size>
+						<AbsPoint x="50" y="14" />
+					</Size>
+					<Anchors>
+						<Anchor point="bottom" relativePoint="top" relativeTo="$parentPhysical">
+							<AbsPoint x="0" y="5" />
+						</Anchor>
+					</Anchors>
+					<Color r="153" g="153" b="153" a="255" />
+				</Label>
+
+				<Label name="$parentPhysicalResistCap" font="MyriadPro_14" maxchars="10" textalign="center" autoresizewidth="true" autoresize="false" wordwrap="false">
+					<Size>
+						<AbsPoint x="50" y="14" />
+					</Size>
+					<Anchors>
+						<Anchor point="bottom" relativePoint="top" relativeTo="$parentPhysicalResist">
+							<AbsPoint x="0" y="5" />
+						</Anchor>
+					</Anchors>
+					<Color r="153" g="153" b="153" a="255" />
+				</Label>
+
+				<DynamicImage name="$parentFire" texturescale="1" layer="overlay" popable="false" texture="icon000740">
+					<Size>
+						<AbsPoint x="32" y="32" />
+					</Size>
+					<Anchors>
+						<Anchor point="topright" relativePoint="topleft" relativeTo="$parentPhysical">
+							<AbsPoint x="40" y="0" />
+						</Anchor>
+					</Anchors>
+				</DynamicImage>
+
+				<Label name="$parentFireResist" font="MyriadPro_14" maxchars="6" textalign="center" autoresizewidth="true" autoresize="true" wordwrap="false">
+					<Size>
+						<AbsPoint x="50" y="14" />
+					</Size>
+					<Anchors>
+						<Anchor point="bottom" relativePoint="top" relativeTo="$parentFire">
+							<AbsPoint x="4" y="5" />
+						</Anchor>
+					</Anchors>
+					<Color r="153" g="153" b="153" a="255" />
+				</Label>
+
+				<Label name="$parentFireResistCap" font="MyriadPro_14" maxchars="10" textalign="center" autoresizewidth="true" autoresize="false" wordwrap="false">
+					<Size>
+						<AbsPoint x="50" y="14" />
+					</Size>
+					<Anchors>
+						<Anchor point="bottom" relativePoint="top" relativeTo="$parentFireResist">
+							<AbsPoint x="0" y="5" />
+						</Anchor>
+					</Anchors>
+					<Color r="153" g="153" b="153" a="255" />
+				</Label>
+
+				<DynamicImage name="$parentCold" texturescale="1" layer="overlay" popable="false" texture="icon000735">
+					<Size>
+						<AbsPoint x="32" y="32" />
+					</Size>
+					<Anchors>
+						<Anchor point="topright" relativePoint="topleft" relativeTo="$parentFire">
+							<AbsPoint x="40" y="0" />
+						</Anchor>
+					</Anchors>
+				</DynamicImage>
+
+				<Label name="$parentColdResist" font="MyriadPro_14" maxchars="6" textalign="center" autoresizewidth="true" autoresize="true" wordwrap="false">
+					<Size>
+						<AbsPoint x="50" y="14" />
+					</Size>
+					<Anchors>
+						<Anchor point="bottom" relativePoint="top" relativeTo="$parentCold">
+							<AbsPoint x="4" y="5" />
+						</Anchor>
+					</Anchors>
+					<Color r="153" g="153" b="153" a="255" />
+				</Label>
+
+				<Label name="$parentColdResistCap" font="MyriadPro_14" maxchars="10" textalign="center" autoresizewidth="true" autoresize="false" wordwrap="false">
+					<Size>
+						<AbsPoint x="50" y="14" />
+					</Size>
+					<Anchors>
+						<Anchor point="bottom" relativePoint="top" relativeTo="$parentColdResist">
+							<AbsPoint x="0" y="5" />
+						</Anchor>
+					</Anchors>
+					<Color r="153" g="153" b="153" a="255" />
+				</Label>
+
+				<DynamicImage name="$parentPoison" texturescale="1" layer="overlay" popable="false" texture="icon000749">
+					<Size>
+						<AbsPoint x="32" y="32" />
+					</Size>
+					<Anchors>
+						<Anchor point="topright" relativePoint="topleft" relativeTo="$parentCold">
+							<AbsPoint x="40" y="0" />
+						</Anchor>
+					</Anchors>
+				</DynamicImage>
+
+				<Label name="$parentPoisonResist" font="MyriadPro_14" maxchars="6" textalign="center" autoresizewidth="true" autoresize="true" wordwrap="false">
+					<Size>
+						<AbsPoint x="50" y="14" />
+					</Size>
+					<Anchors>
+						<Anchor point="bottom" relativePoint="top" relativeTo="$parentPoison">
+							<AbsPoint x="3" y="5" />
+						</Anchor>
+					</Anchors>
+					<Color r="153" g="153" b="153" a="255" />
+				</Label>
+
+				<Label name="$parentPoisonResistCap" font="MyriadPro_14" maxchars="10" textalign="center" autoresizewidth="true" autoresize="false" wordwrap="false">
+					<Size>
+						<AbsPoint x="50" y="14" />
+					</Size>
+					<Anchors>
+						<Anchor point="bottom" relativePoint="top" relativeTo="$parentPoisonResist">
+							<AbsPoint x="0" y="5" />
+						</Anchor>
+					</Anchors>
+					<Color r="153" g="153" b="153" a="255" />
+				</Label>
+
+				<DynamicImage name="$parentEnergy" texturescale="1" layer="overlay" popable="false" texture="icon000739">
+					<Size>
+						<AbsPoint x="32" y="32" />
+					</Size>
+					<Anchors>
+						<Anchor point="topright" relativePoint="topleft" relativeTo="$parentPoison">
+							<AbsPoint x="40" y="0" />
+						</Anchor>
+					</Anchors>
+				</DynamicImage>
+
+				<Label name="$parentEnergyResist" font="MyriadPro_14" maxchars="6" textalign="center" autoresizewidth="true" autoresize="true" wordwrap="false">
+					<Size>
+						<AbsPoint x="50" y="14" />
+					</Size>
+					<Anchors>
+						<Anchor point="bottom" relativePoint="top" relativeTo="$parentEnergy">
+							<AbsPoint x="0" y="5" />
+						</Anchor>
+					</Anchors>
+					<Color r="153" g="153" b="153" a="255" />
+				</Label>
+
+				<Label name="$parentEnergyResistCap" font="MyriadPro_14" maxchars="10" textalign="center" autoresizewidth="true" autoresize="false" wordwrap="false">
+					<Size>
+						<AbsPoint x="50" y="14" />
+					</Size>
+					<Anchors>
+						<Anchor point="bottom" relativePoint="top" relativeTo="$parentEnergyResist">
+							<AbsPoint x="0" y="5" />
+						</Anchor>
+					</Anchors>
+					<Color r="153" g="153" b="153" a="255" />
+				</Label>
+
+				<DynamicImage name="$parentLine3" layer="overlay" popable="false" texture="HLine">
+					<Size>
+						<AbsPoint x="445" y="2" />
+					</Size>
+					<Anchors>
+						<Anchor point="bottomleft" relativePoint="topleft" relativeTo="$parentLine1">
+							<AbsPoint x="0" y="150" />
+						</Anchor>
+					</Anchors>
+					<TexCoords x="0" y="0" />
+				</DynamicImage>
+
+				<DynamicImage name="$parentLine4" layer="overlay" popable="false" texture="HLine">
+					<Size>
+						<AbsPoint x="445" y="2" />
+					</Size>
+					<Anchors>
+						<Anchor point="bottomleft" relativePoint="topleft" relativeTo="$parentLine3">
+							<AbsPoint x="0" y="0" />
+						</Anchor>
+					</Anchors>
+					<TexCoords x="0" y="0" />
+				</DynamicImage>
+
+        <DynamicImage name="$parentHue" texturescale="1" layer="overlay" popable="false" >
+          <Size>
+            <AbsPoint x="32" y="32" />
+          </Size>
+          <Anchors>
+            <Anchor point="bottomleft" relativePoint="topleft" relativeTo="$parentLine3">
+              <AbsPoint x="-5" y="15" />
+            </Anchor>
+          </Anchors>
+        </DynamicImage>
+
+        <Label name="$parentHueValue" font="MyriadPro_Condensed_16" maxchars="100" textalign="left" autoresizewidth="false" autoresize="false" wordwrap="true">
+          <Size>
+            <AbsPoint x="280" y="32" />
+          </Size>
+          <Anchors>
+            <Anchor point="right" relativePoint="left" relativeTo="$parentLine4">
+              <AbsPoint x="0" y="-10" />
+            </Anchor>
+          </Anchors>
+          <Color r="153" g="153" b="153" a="255" />
+        </Label>
+
+				<DynamicImage name="$parentHPBar" texturescale="1" layer="background" popable="false" texture="PROPS_DurBar">
+					<Size>
+						<AbsPoint x="350" y="46" />
+					</Size>
+					<Anchors>
+						<Anchor point="bottomleft" relativePoint="topleft" relativeTo="$parentLine4">
+							<AbsPoint x="45" y="10" />
+						</Anchor>
+					</Anchors>
+					<TexCoords x="0" y="0" />
+				</DynamicImage>
+
+				<HorizontalResizeImage name="$parentHPBarFill" texture="PROPS_DurBar_Fill" layer="background">
+					<Size>
+						<AbsPoint x="348" y="37" />
+					</Size>
+					<Sizes left="348" middle="0" right="0" />
+					<TexCoords>
+						<Left x="0" y="0" />
+						<Middle x="174" y="0" />
+						<Right x="348" y="0" />
+					</TexCoords>
+					<Anchors>
+						<Anchor point="topleft" relativePoint="topleft" relativeTo="$parentHPBar">
+							<AbsPoint x="2" y="5" />
+						</Anchor>
+					</Anchors>
+					<TexCoords x="0" y="0" />
+				</HorizontalResizeImage>
+
+				<Label name="$parentHPBarValue" font="Arial_Black_Shadow_16" maxchars="4" textalign="center" autoresizewidth="false" autoresize="false" wordwrap="false" layer="overlay">
+					<Size>
+						<AbsPoint x="350" y="16" />
+					</Size>
+					<Anchors>
+						<Anchor point="topleft" relativePoint="topleft" relativeTo="$parentHPBar" >
+							<AbsPoint x="10" y="0" />
+						</Anchor>
+						<Anchor point="bottomright" relativePoint="bottomright" relativeTo="$parentHPBar" >
+							<AbsPoint x="0" y="-7" />
+						</Anchor>
+					</Anchors>
+					<Color r="255" g="255" b="255" a="255" />
+				</Label>
+
+			</Windows>
+		</Window>
+
+	</Windows>
+</Interface>

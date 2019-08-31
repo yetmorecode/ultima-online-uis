@@ -1,0 +1,511 @@
+<Interface xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../Interface.xsd">
+
+  <Windows>
+
+    <Window name="DiabloStatusWindow" movable="false" layer="default">
+      <Size>
+        <AbsPoint x="144" y="125" />
+      </Size>
+      <Anchors>
+        <Anchor point="Bottom" relativePoint="Bottom" relativeTo="">
+          <AbsPoint x="0" y="-57" />
+        </Anchor>
+      </Anchors>
+      <EventHandlers>
+        <EventHandler event="OnMouseWheel" function="WindowUtils.Scale" />
+      </EventHandlers>
+      <Windows>
+        <DynamicImage name="$parentBG" texture="DiabloStatus" layer="background" popable="false" handleinput="false">
+          <Size>
+            <AbsPoint x="144" y="125" />
+          </Size>
+          <TexCoords x="1" y="1" />
+          <Anchors>
+            <Anchor point="topleft" relativePoint="topleft" relativeTo="$parent"/>
+          </Anchors>
+        </DynamicImage>
+        <Window name="$parentClickableRegion1" layer="default" popable="false">
+          <Size>
+            <AbsPoint x="144" y="108" />
+          </Size>
+          <Anchors>
+            <Anchor point="topleft" relativePoint="topleft" relativeTo="$parent">
+              <AbsPoint x="0" y="0" />
+            </Anchor>
+          </Anchors>
+          <EventHandlers>
+            <EventHandler event="OnMouseOver" function="StatusWindow.OnMouseOver" />
+            <EventHandler event="OnMouseOverEnd" function="StatusWindow.OnMouseOverEnd" />
+            <EventHandler event="OnLButtonUp" function="StatusWindow.OnLButtonUp" />
+            <EventHandler event="OnLButtonDown" function="StatusWindow.OnLButtonDown" />
+            <EventHandler event="OnRButtonUp" function="StatusWindow.OnRButtonUp" />
+            <EventHandler event="OnLButtonDblClk" function="StatusWindow.OnMouseDlbClk" />
+            <EventHandler event="OnMouseWheel" function="WindowUtils.Scale" />
+            <EventHandler event="OnShutdown" function="StatusWindow.Shutdown" />
+          </EventHandlers>
+        </Window>
+
+        <CircleImage name="$parentPortraitBg" texture="hud_image" numsegments="16" texturescale="1.95" layer="background" popable="false" handleinput="false">
+          <Size>
+            <AbsPoint x="75" y="75" />
+          </Size>
+          <Anchors>
+            <Anchor point="topleft" relativePoint="topleft" relativeTo="$parent">
+              <AbsPoint x="34" y="10" />
+            </Anchor>
+          </Anchors>
+          <TexCoords x="398" y="50" />
+        </CircleImage>
+
+        <CircleImage name="$parentPortrait" numsegments="16" texturescale="1.0" layer="background" popable="false" handleinput="false" >
+          <Size>
+            <AbsPoint x="75" y="75" />
+          </Size>
+          <Anchors>
+            <Anchor point="center" relativePoint="center" relativeTo="$parentPortraitBg">
+              <AbsPoint x="0" y="0" />
+            </Anchor>
+          </Anchors>
+        </CircleImage>
+        <CircleImage name="$parentDead" numsegments="16" texturescale="1.0" layer="background" popable="false" handleinput="false" texture="dead">
+          <Size>
+            <AbsPoint x="75" y="75" />
+          </Size>
+          <TexCoords x="-32" y="-30" />
+          <Anchors>
+            <Anchor point="center" relativePoint="center" relativeTo="$parentPortraitBg">
+              <AbsPoint x="0" y="0" />
+            </Anchor>
+          </Anchors>
+        </CircleImage>
+        <DynamicImage name="$parentImage" texture="CircleBorder" layer="background" popable="false" handleinput="false">
+          <Size>
+            <AbsPoint x="82" y="82" />
+          </Size>
+          <Anchors>
+            <Anchor point="center" relativePoint="center" relativeTo="$parentPortraitBg">
+              <AbsPoint x="0" y="0" />
+            </Anchor>
+          </Anchors>
+        </DynamicImage>
+
+        <Button name="$parentRedButton" backgroundtexture="redButton" highlighttexture="redButton" texturescale="1">
+          <Size>
+            <AbsPoint x="17" y="17" />
+          </Size>
+          <Anchors>
+            <Anchor point="BottomLeft" relativePoint="BottomLeft" relativeTo="$parent">
+              <AbsPoint x="10" y="-13" />
+            </Anchor>
+          </Anchors>
+          <TexCoords>
+            <Normal  x="0" y="0" />
+            <NormalHighlit x="18" y="0" />
+            <Pressed x="18" y="0" />
+            <PressedHighlit x="18" y="0" />
+          </TexCoords>
+          <EventHandlers>
+            <EventHandler event="OnRButtonUp" function="MobileHealthBar.SpellChangeContext" />
+            <EventHandler event="OnLButtonUp" function="MobileHealthBar.OnButtonClick" />
+            <EventHandler event="OnMouseOver" function="MobileHealthBar.OnMouseOver" />
+            <EventHandler event="OnMouseOverEnd" function="ItemProperties.ClearMouseOverItem" />
+          </EventHandlers>
+        </Button>
+        <Button name="$parentGreenButton" backgroundtexture="greenButton" highlighttexture="greenButton"  texturescale="1">
+          <Size>
+            <AbsPoint x="17" y="17" />
+          </Size>
+          <Anchors>
+            <Anchor point="topleft" relativePoint="topleft"  relativeTo="$parentRedButton">
+              <AbsPoint x="20" y="0" />
+            </Anchor>
+          </Anchors>
+          <TexCoords>
+            <Normal  x="0" y="0" />
+            <NormalHighlit x="18" y="0" />
+            <Pressed x="18" y="0" />
+            <PressedHighlit x="18" y="0" />
+          </TexCoords>
+          <EventHandlers>
+            <EventHandler event="OnRButtonUp" function="MobileHealthBar.SpellChangeContext" />
+            <EventHandler event="OnLButtonUp" function="MobileHealthBar.OnButtonClick" />
+            <EventHandler event="OnMouseOver" function="MobileHealthBar.OnMouseOver" />
+            <EventHandler event="OnMouseOverEnd" function="ItemProperties.ClearMouseOverItem" />
+          </EventHandlers>
+        </Button>
+        <Button name="$parentBlueButton" backgroundtexture="blueButton" highlighttexture="blueButton"  texturescale="1">
+          <Size>
+            <AbsPoint x="17" y="17" />
+          </Size>
+          <Anchors>
+            <Anchor point="topleft" relativePoint="topleft"  relativeTo="$parentGreenButton">
+              <AbsPoint x="20" y="0" />
+            </Anchor>
+          </Anchors>
+          <TexCoords>
+            <Normal  x="0" y="0" />
+            <NormalHighlit x="18" y="0" />
+            <Pressed x="18" y="0" />
+            <PressedHighlit x="18" y="0" />
+          </TexCoords>
+          <EventHandlers>
+            <EventHandler event="OnRButtonUp" function="MobileHealthBar.SpellChangeContext" />
+            <EventHandler event="OnLButtonUp" function="MobileHealthBar.OnButtonClick" />
+            <EventHandler event="OnMouseOver" function="MobileHealthBar.OnMouseOver" />
+            <EventHandler event="OnMouseOverEnd" function="ItemProperties.ClearMouseOverItem" />
+          </EventHandlers>
+        </Button>
+
+        <Button name="$parentGuardsButton" backgroundtexture="guards" highlighttexture="guards"  texturescale="1">
+          <Size>
+            <AbsPoint x="57" y="17" />
+          </Size>
+          <Anchors>
+            <Anchor point="topleft" relativePoint="topleft"  relativeTo="$parentBlueButton">
+              <AbsPoint x="20" y="0" />
+            </Anchor>
+          </Anchors>
+          <TexCoords>
+            <Normal  x="0" y="0" />
+            <NormalHighlit x="57" y="0" />
+            <Pressed x="57" y="0" />
+            <PressedHighlit x="57" y="0" />
+          </TexCoords>
+          <EventHandlers>
+            <EventHandler event="OnLButtonUp" function="StatusWindow.GuardsButton_OnLButtonUp" />
+            <EventHandler event="OnMouseOver" function="StatusWindow.GuardsButton_OnMouseOver" />
+            <EventHandler event="OnMouseOverEnd" function="ItemProperties.ClearMouseOverItem" />
+          </EventHandlers>
+        </Button>
+
+        <Button name="$parentMenu"  backgroundtexture="arrowdown" highlighttexture="arrowdown" layer="popup">
+          <Size>
+            <AbsPoint x="25" y="25" />
+          </Size>
+          <EventHandlers>
+            <EventHandler event="OnLButtonUp" function="StatusWindow.Menu" />
+            <EventHandler event="OnMouseOver" function="StatusWindow.MenuTooltip" />
+          </EventHandlers>
+          <Anchors>
+            <Anchor point="left" relativePoint="left"  relativeTo="$parent">
+              <AbsPoint x="0" y="-10" />
+            </Anchor>
+          </Anchors>
+          <TexCoords>
+            <Normal  x="0" y="0" />
+            <NormalHighlit x="22" y="0" />
+            <Pressed x="22" y="0" />
+            <PressedHighlit x="22" y="0" />
+          </TexCoords>
+        </Button>
+
+        <Button name="$parentLock" layer="popup" backgroundtexture="Lock" highlighttexture="Lock" textureScale="0.7">
+          <Size>
+            <AbsPoint x="22" y="22" />
+          </Size>
+          <TexCoords>
+            <Normal x="0" y="0" />
+            <NormalHighlit x="0" y="0" />
+            <Pressed x="0" y="0" />
+            <PressedHighlit x="0" y="0" />
+            <Disabled x="0" y="0" />
+          </TexCoords>
+          <EventHandlers>
+            <EventHandler event="OnLButtonUp" function="StatusWindow.Lock" />
+            <EventHandler event="OnMouseOver" function="StatusWindow.LockTooltip" />
+          </EventHandlers>
+          <Anchors>
+            <Anchor point="right" relativePoint="right"  relativeTo="$parent">
+              <AbsPoint x="0" y="-10" />
+            </Anchor>
+          </Anchors>
+        </Button>
+        <HorizontalResizeImage name="$parentLagBar" texture="LatencyBar" layer="background">
+          <Size>
+            <AbsPoint x="140" y="8"  />
+          </Size>
+          <Anchors>
+            <Anchor point="bottomleft" relativePoint="topleft" relativeTo="$parent">
+              <AbsPoint x="0" y="-10" />
+            </Anchor>
+          </Anchors>
+          <Sizes left="148" middle="0" right="0" />
+          <TexCoords>
+            <Left x="0" y="0" />
+            <Middle x="74" y="0" />
+            <Right x="148" y="0" />
+          </TexCoords>
+          <EventHandlers>
+            <EventHandler event="OnMouseOver" function="StatusWindow.Latency_OnMouseOver" />
+          </EventHandlers>
+        </HorizontalResizeImage>
+        <Window name="$parentClickableRegion2" layer="default" draganddrop="true" popable="false">
+          <Size>
+            <AbsPoint x="140" y="8" />
+          </Size>
+          <Anchors>
+            <Anchor point="topleft" relativePoint="topleft" relativeTo="$parentLagBar">
+              <AbsPoint x="0" y="0" />
+            </Anchor>
+          </Anchors>
+          <EventHandlers>
+            <EventHandler event="OnMouseOver" function="StatusWindow.Latency_OnMouseOver" />
+          </EventHandlers>
+        </Window>
+      </Windows>
+    </Window>
+    <DynamicImage name="DiabloBottomBorder" texture="StoneBackground" layer="background" poppable="false"  sticky="true" handleinput="false">
+      <Size>
+        <AbsPoint x="5000" y="47" />
+      </Size>
+      <TexCoords x="0" y="0" />
+      <Anchors>
+        <Anchor point="bottomLeft" relativePoint="bottomLeft" relativeTo="">
+          <AbsPoint x="0" y="0" />
+        </Anchor>
+      </Anchors>
+    </DynamicImage>
+
+    <Button name="DiabloAlwaysRun" backgroundtexture="AlwaysRun" highlighttexture="AlwaysRun" layer="background" poppable="false"  sticky="true">
+      <Size>
+        <AbsPoint x="28" y="35" />
+      </Size>
+      <TexCoords>
+        <Normal  x="0" y="0" />
+        <NormalHighlit x="38" y="0" />
+        <Pressed x="38" y="0" />
+        <PressedHighlit x="38" y="0" />
+      </TexCoords>
+      <Anchors>
+        <Anchor point="left" relativePoint="left" relativeTo="DiabloSTAM">
+          <AbsPoint x="-35" y="0" />
+        </Anchor>
+      </Anchors>
+      <EventHandlers>
+        <EventHandler event="OnLButtonUp" function="StatusWindow.RunButton_OnLButtonUp" />
+        <EventHandler event="OnMouseOver" function="StatusWindow.RunButton_OnMouseOver" />
+        <EventHandler event="OnMouseOverEnd" function="ItemProperties.ClearMouseOverItem" />
+        <EventHandler event="OnRButtonUp" function="StatusWindow.AlwaysRunContext" />
+      </EventHandlers>
+    </Button>
+
+    <HorizontalResizeImage name="Diablo_Staminabar" texture="diablo_stamina">
+      <Size>
+        <AbsPoint x="300" y="31" />
+      </Size>
+      <Sizes left="300" middle="0" right="0" />
+      <TexCoords>
+        <Left x="5" y="88" />
+        <Middle x="155" y="88" />
+        <Right x="305" y="88" />
+      </TexCoords>
+    </HorizontalResizeImage>
+
+    <Window name="DiabloSTAM" layer="default" handleinput="false" poppable="false" sticky="true" >
+      <Size>
+        <AbsPoint x="304" y="44" />
+      </Size>
+      <Anchors>
+        <Anchor point="bottom" relativePoint="bottom" relativeTo="">
+          <AbsPoint x="0" y="0" />
+        </Anchor>
+      </Anchors>
+
+      <Windows>
+        <DynamicImage name="$parentBG" texture="diablo_stamina" layer="overlay">
+          <Size>
+            <AbsPoint x="300" y="35" />
+          </Size>
+          <Anchors>
+            <Anchor point="topleft" relativePoint="topleft" relativeTo="$parent">
+              <AbsPoint x="0" y="2" />
+            </Anchor>
+          </Anchors>
+          <TexCoords x="2" y="2" />
+        </DynamicImage>
+
+        <StatusBar name="$parentFill" foreground="Diablo_Staminabar" handleinput="false">
+          <Size>
+            <AbsPoint x="295" y="29" />
+          </Size>
+          <Anchors>
+            <Anchor point="topleft" relativePoint="topleft" relativeTo="$parentBG">
+              <AbsPoint x="3" y="3" />
+            </Anchor>
+          </Anchors>
+        </StatusBar>
+
+        <DynamicImage name="$parentTop" texture="diablo_stamina">
+          <Size>
+            <AbsPoint x="297" y="30" />
+          </Size>
+          <Anchors>
+            <Anchor point="topleft" relativePoint="topleft" relativeTo="$parentBG">
+              <AbsPoint x="1" y="3" />
+            </Anchor>
+          </Anchors>
+          <TexCoords x="5" y="47" />
+        </DynamicImage>
+
+        <Label name="$parentLabel" font="Arial_Black_Shadow_20" textalign="center"   handleinput="false" wordwrap="true" linespacing="18">
+          <Size>
+            <AbsPoint x="150" y="20" />
+          </Size>
+          <Anchors>
+            <Anchor point="top" relativePoint="top" relativeTo="$parentBG">
+              <AbsPoint x="0" y="2" />
+            </Anchor>
+          </Anchors>
+          <Color r="0" g="132" b="33" a="255" />
+        </Label>
+
+      </Windows>
+    </Window>
+
+    <Window name="DiabloHP" layer="default" handleinput="false">
+      <Size>
+        <AbsPoint x="232" y="188" />
+      </Size>
+
+      <Anchors>
+        <Anchor point="bottomleft" relativePoint="bottomleft" relativeTo="Root">
+          <AbsPoint x="0" y="0" />
+        </Anchor>
+      </Anchors>
+      <Windows>
+
+        <VerticalResizeImage name="$parentFrame" texture="diablo_health" reverseFill="true">
+          <Size>
+            <AbsPoint x="226" y="202" />
+          </Size>
+          <Anchors>
+            <Anchor point="bottomleft" relativePoint="bottomleft" relativeTo="$parent">
+              <AbsPoint x="0" y="0" />
+            </Anchor>
+          </Anchors>
+          <Sizes top="1" middle="200" bottom="1" />
+          <TexCoords>
+            <Left x="280" y="0" />
+            <Middle x="280" y="1" />
+            <Right x="280" y="187" />
+          </TexCoords>
+        </VerticalResizeImage>
+        <VerticalResizeImage name="$parentFill" texture="diablo_health" reverseFill="true">
+          <Size>
+            <AbsPoint x="190" y="177" />
+          </Size>
+          <Anchors>
+            <Anchor point="bottomleft" relativePoint="bottomleft" relativeTo="$parent">
+              <AbsPoint x="51" y="-16" />
+            </Anchor>
+          </Anchors>
+          <Sizes top="1" middle="243" bottom="1" />
+          <TexCoords>
+            <Left x="340" y="204" />
+            <Middle x="308" y="153" />
+            <Right x="340" y="356" />
+          </TexCoords>
+        </VerticalResizeImage>
+        <VerticalResizeImage name="$parentFillPoison" texture="diablo_health" reverseFill="true">
+          <Size>
+            <AbsPoint x="190" y="177" />
+          </Size>
+          <Anchors>
+            <Anchor point="bottomleft" relativePoint="bottomleft" relativeTo="$parent">
+              <AbsPoint x="51" y="-16" />
+            </Anchor>
+          </Anchors>
+          <Sizes top="1" middle="243" bottom="1" />
+          <TexCoords>
+            <Left x="340" y="204" />
+            <Middle x="308" y="153" />
+            <Right x="340" y="356" />
+          </TexCoords>
+        </VerticalResizeImage>
+        <DynamicImage name="$parentTextBackground" texture="UO_ResizeFrame" layer="background">
+          <Anchors>
+            <Anchor point="top" relativePoint="top" relativeTo="$parent">
+              <AbsPoint x="25" y="-75" />
+            </Anchor>
+          </Anchors>
+        </DynamicImage>
+        <Label name="$parentLabel" font="Arial_Black_Shadow_24" textalign="center"   handleinput="false" wordwrap="true" linespacing="18">
+          <Size>
+            <AbsPoint x="150" y="20" />
+          </Size>
+          <Anchors>
+            <Anchor point="top" relativePoint="top" relativeTo="$parent">
+              <AbsPoint x="20" y="-50" />
+            </Anchor>
+          </Anchors>
+          <Color r="0" g="132" b="33" a="255" />
+        </Label>
+      </Windows>
+
+    </Window>
+
+    <Window name="DiabloMANA" layer="default" handleinput="false">
+      <Size>
+        <AbsPoint x="232" y="188" />
+      </Size>
+      <Anchors>
+        <Anchor point="bottomright" relativePoint="bottomright" relativeTo="Root">
+          <AbsPoint x="0" y="0" />
+        </Anchor>
+      </Anchors>
+      <Windows>
+        <VerticalResizeImage name="$parentFrame" texture="diablo_health" reverseFill="true">
+          <Size>
+            <AbsPoint x="228" y="203" />
+          </Size>
+          <Anchors>
+            <Anchor point="bottomright" relativePoint="bottomright" relativeTo="$parent">
+              <AbsPoint x="0" y="2" />
+            </Anchor>
+          </Anchors>
+          <Sizes top="1" middle="200" bottom="1" />
+          <TexCoords>
+            <Left x="0" y="0" />
+            <Middle x="0" y="1" />
+            <Right x="0" y="187" />
+          </TexCoords>
+        </VerticalResizeImage>
+        <VerticalResizeImage name="$parentFill" texture="diablo_health" reverseFill="true">
+          <Size>
+            <AbsPoint x="192" y="177" />
+          </Size>
+          <Anchors>
+            <Anchor point="bottomright" relativePoint="bottomright" relativeTo="$parent">
+              <AbsPoint x="-48" y="-12" />
+            </Anchor>
+          </Anchors>
+          <Sizes top="1" middle="176" bottom="1" />
+          <TexCoords>
+            <Left x="14" y="204" />
+            <Middle x="8" y="220" />
+            <Right x="14" y="356" />
+          </TexCoords>
+          <TintColor r="0" g="80" b="232" />
+        </VerticalResizeImage>
+        <DynamicImage name="$parentTextBackground" texture="UO_ResizeFrame" layer="background">
+          <Anchors>
+            <Anchor point="top" relativePoint="top" relativeTo="$parent">
+              <AbsPoint x="-25" y="-75" />
+            </Anchor>
+          </Anchors>
+        </DynamicImage>
+        <Label name="$parentLabel" font="Arial_Black_Shadow_24" textalign="center"   handleinput="false" wordwrap="true" linespacing="18">
+          <Size>
+            <AbsPoint x="150" y="20" />
+          </Size>
+          <Anchors>
+            <Anchor point="top" relativePoint="top" relativeTo="$parent">
+              <AbsPoint x="-25" y="-50" />
+            </Anchor>
+          </Anchors>
+          <Color r="0" g="132" b="33" a="255" />
+        </Label>
+      </Windows>
+    </Window>
+  </Windows>
+</Interface>

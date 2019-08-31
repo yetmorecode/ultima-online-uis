@@ -1,0 +1,54 @@
+<?xml version="1.0"encoding="utf-8"?>
+<ManagedTextures xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"xsi:noNamespaceSchemaLocation="ManagedTextures.xsd">
+
+	<!--
+	<TextureTypes>
+		<!-- These types are enumerated in UITextureManager.cpp and are here for reference -- >
+		<TextureType typeid="1"					name="PORTRAIT" />
+		<TextureType typeid="2"					name="GENERAL" />
+	</TextureTypes>
+	-->
+
+	<Textures>
+
+		<!-- General Textures -->
+		<Texture id="1001"	typeid="2" file="portraits/gwen.dds"		name="Gwen" />
+		<Texture id="1002"	typeid="2" file="defaultCore/gwen.dds"							name="NewGwen" />
+		<Texture id="11413"	typeid="2" file="defaultCore/tapestryofsosaria.dds"	name="Tapestry of Sosaria" />
+		<Texture id="1417"	typeid="2" file="defaultCore/pot.dds"								name="Pot" />
+		<Texture id="2324"	typeid="2" file="defaultCore/pot_dirt.dds"					name="Potted Dirt" />
+		<Texture id="11414"	typeid="2" file="misc/aquarium.tga"			name="Aquarium" />
+		<Texture id="11415"	typeid="2" file="defaultCore/mapofbrittania.dds"		name="Map of Brittania" />
+
+		<!-- Tarot Card (General) Textures -->
+		<Texture id="30501"	typeid="2" file="misc/Tarot_Death.tga"										name="Death" />
+		<Texture id="30503"	typeid="2" file="misc/Tarot_Justice.tga"									name="Justice" />
+		<Texture id="30506"	typeid="2" file="misc/Tarot_Priestess.tga"								name="The High Priestess" />
+		<Texture id="30504"	typeid="2" file="misc/Tarot_TheFool.tga"									name="The Fool" />
+		<Texture id="30505"	typeid="2" file="misc/Tarot_TheHangedMan.tga"							name="The Hanged Man" />
+		<Texture id="30507"	typeid="2" file="misc/Tarot_TheMage.tga"									name="The Magus" />
+		<Texture id="30508"	typeid="2" file="misc/Tarot_TheStar.tga"									name="The Star" />
+		<Texture id="30509"	typeid="2" file="misc/Tarot_TheTower.tga"									name="The Tower" />
+		<Texture id="30510"	typeid="2" file="misc/Tarot_TheWorld.tga"									name="The World" />
+		<Texture id="30502"	typeid="2" file="misc/Tarot_WheelOfFortune.tga"						name="The Wheel Of Fortune" />
+
+		<!-- Inverted Tarot Cards -->
+		<Texture id="30511"	typeid="2" file="misc/Tarot_Death_inverted.tga"						name="Death Inverted" />
+		<Texture id="30513"	typeid="2" file="misc/Tarot_Justice_inverted.tga"					name="Inverted Justice" />
+		<Texture id="30516"	typeid="2" file="misc/Tarot_Priestess_inverted.tga"				name="The Inverted High Priestess" />
+		<Texture id="30514"	typeid="2" file="misc/Tarot_TheFool_inverted.tga"					name="The Inverted Fool" />
+		<Texture id="30515"	typeid="2" file="misc/Tarot_TheHangedMan_inverted.tga"		name="The Inverted Hanged Man" />
+		<Texture id="30517"	typeid="2" file="misc/Tarot_TheMage_inverted.tga"					name="The Inverted Magus" />
+		<Texture id="30518"	typeid="2" file="misc/Tarot_TheStar_inverted.tga"					name="The Inverted Star" />
+		<Texture id="30519"	typeid="2" file="misc/Tarot_TheTower_inverted.tga"				name="The Inverted Tower" />
+		<Texture id="30520"	typeid="2" file="misc/Tarot_TheWorld_inverted.tga"				name="The Inverted World" />
+		<Texture id="30512"	typeid="2" file="misc/Tarot_WheelOfFortune_inverted.tga"	name="The Inverted Wheel" />
+
+		<!-- Container Medallions -->
+		<Texture id="100001" typeid="2" file="containers/Hud01_medallion.dds" name="Medallions 1" />
+		<Texture id="100002" typeid="2" file="containers/Hud02_medallion.dds" name="Medallions 2" />
+		<Texture id="100003" typeid="2" file="containers/Hud03_medallion.dds" name="Medallions 3" />
+
+	</Textures>
+</ManagedTextures>
+

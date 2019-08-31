@@ -1,0 +1,158 @@
+<Interface xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../Interface.xsd">
+	<Windows>
+		<Window name="ItemTemplatePR"  draganddrop="true">
+			<Size>
+				<AbsPoint x="250" y="60" />
+			</Size>
+			<EventHandlers>
+
+				<EventHandler event="OnMouseOver" function="PropertiesInfo.ItemMouseOver"/>
+				<EventHandler event="OnMouseOverEnd" function="ItemProperties.ClearMouseOverItem"/>
+			</EventHandlers>
+			<Windows>
+				<DynamicImage name="$parentIcon" texture=""  texturescale="2.0" draganddrop="true">
+					<Size>
+						<AbsPoint x="45" y="45" />
+					</Size>
+					<Anchors>
+						<Anchor point="topleft" relativePoint="topleft" >
+							<AbsPoint x="0" y="0" />
+						</Anchor>
+					</Anchors>
+					<EventHandlers>
+						<EventHandler event="OnMouseOver" function="PropertiesInfo.ItemMouseOver"/>
+						<EventHandler event="OnMouseOverEnd" function="ItemProperties.ClearMouseOverItem"/>
+					</EventHandlers>
+				</DynamicImage>
+				<CircleImage name="$parentDisabled" texture="disabled" texturescale="40.0" handleinput="false" layer="default" numsegments="16">
+					<Size>
+						<AbsPoint x="45" y="45" />
+					</Size>
+					<Anchors>
+						<Anchor point="topleft" relativePoint="topleft" >
+							<AbsPoint x="0" y="0" />
+						</Anchor>
+					</Anchors>
+					<TexCoords x="44" y="278" />
+				</CircleImage>
+
+				<Label name="$parentName" font="Arial_Black_12" maxchars="64" textalign="left" draganddrop="true" wordwrap="true">
+					<Size>
+						<AbsPoint x="230" y="16" />
+					</Size>
+					<Anchors>
+						<Anchor point="topright" relativePoint="topleft" relativeTo="$parentIcon">
+							<AbsPoint x="5" y="5" />
+						</Anchor>
+					</Anchors>
+					<Color r="255" g="255" b="255" a="255" />
+				</Label>
+			</Windows>
+		</Window>
+
+		<Window name="PropertiesInfoWindow" movable="true">
+			<Size>
+				<AbsPoint x="300" y="330" />
+			</Size>
+			<Anchors>
+				<Anchor point="center" relativePoint="center" relativeTo="ResizeWindow">
+					<AbsPoint x="0" y="0" />
+				</Anchor>
+			</Anchors>
+			<EventHandlers>
+				<EventHandler event="OnInitialize" function="PropertiesInfo.Initialize" />
+				<EventHandler event="OnShutdown" function="PropertiesInfo.Shutdown" />
+				<EventHandler event="OnRButtonUp" function="UO_DefaultWindow.CloseDialog" />
+			</EventHandlers>
+			<Windows>
+				<FullResizeImage name="$parentBackground" inherits="UO_Simple_Black_Background" layer="background" alpha="0.2">
+					<Anchors>
+						<Anchor point="topleft" relativePoint="topleft" />
+						<Anchor point="bottomright" relativePoint="bottomright" />
+					</Anchors>
+				</FullResizeImage>
+				<FullResizeImage name="$parentFrame" inherits="UO_Simple_Frame" layer="background" frameonly="false">
+					<Anchors>
+						<Anchor point="topleft" relativePoint="topleft" />
+						<Anchor point="bottomright" relativePoint="bottomright" />
+					</Anchors>
+				</FullResizeImage>
+
+        <Window name="$parentSearchBox" inherits="SearchBoxNoNext_MEDIUM" >
+          <Anchors>
+            <Anchor point="topleft" relativePoint="topleft" relativeTo="$parent">
+              <AbsPoint x="45" y="40" />
+            </Anchor>
+          </Anchors>
+        </Window>
+
+				<Label name="$parentInfoText" font="Arial_Black_18" textalign="center" handleinput="false" wordwrap="true">
+					<Size>
+						<AbsPoint x="300" y="20" />
+					</Size>
+					<Anchors>
+						<Anchor point="topleft" relativePoint="topleft" relativeTo="$parent" />
+					</Anchors>
+					<Color r="255" g="255" b="0" a="255" />
+				</Label>
+				<Label name="$parentTotal" font="Arial_Black_12" maxchars="100" textalign="right" draganddrop="false">
+					<Size>
+						<AbsPoint x="160" y="16" />
+					</Size>
+					<Anchors>
+						<Anchor point="bottomright" relativePoint="bottomright" relativeTo="$parent">
+							<AbsPoint x="-5" y="-8" />
+						</Anchor>
+					</Anchors>
+					<Color r="255" g="255" b="255" a="255" />
+				</Label>
+				<ScrollWindow name="PropertiesInfoSW" childscrollwindow="PropertiesInfoSWScrollChild" scrollbar="PropertiesInfoSWScrollbar" lineheight="18" autoHideScrollBar="true" >
+					<Size>
+						<AbsPoint x="350" y="200" />
+					</Size>
+					<Anchors>
+						<Anchor point="topleft" relativePoint="topleft" relativeTo="$parent" >
+							<AbsPoint x="5" y="70" />
+						</Anchor>
+						<Anchor point="bottomright" relativePoint="bottomright" relativeTo="$parent" >
+							<AbsPoint x="-5" y="-30" />
+						</Anchor>
+					</Anchors>
+					<EventHandlers>
+						<!--
+						<EventHandler event="OnLButtonDown" function="NewChatWindow.OnLButtonDownJW" />
+						<EventHandler event="OnLButtonUp" function="NewChatWindow.OnLButtonUpJW" />
+						<EventHandler event="OnMouseOver" function="NewChatWindow.ShowAgain" />-->
+					</EventHandlers>
+					<Windows>
+						<VerticalScrollbar name="$parentScrollbar" inherits="StandardVertScroll" layer="secondary"/>
+						<FullResizeImage name="$parentBackground" inherits="UO_Simple_Black_Background" layer="background" alpha="0.2">
+							<Anchors>
+								<Anchor point="topleft" relativePoint="topleft" />
+								<Anchor point="bottomright" relativePoint="bottomright" />
+							</Anchors>
+						</FullResizeImage>
+						<FullResizeImage name="$parentFrame" inherits="UO_Simple_Frame" layer="background" frameonly="false">
+							<Anchors>
+								<Anchor point="topleft" relativePoint="topleft" />
+								<Anchor point="bottomright" relativePoint="bottomright" />
+							</Anchors>
+						</FullResizeImage>
+						<Window name="$parentScrollChild" popable="false">
+							<Size>
+								<AbsPoint x="290" y="200"/>
+							</Size>
+							<Anchors>
+								<Anchor point="topleft" relativePoint="topleft">
+									<AbsPoint x="5" y="5" />
+								</Anchor>
+							</Anchors>
+
+						</Window>
+					</Windows>
+				</ScrollWindow>
+
+			</Windows>
+		</Window>
+	</Windows>
+</Interface>

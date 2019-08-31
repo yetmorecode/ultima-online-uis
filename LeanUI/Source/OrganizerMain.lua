@@ -49,6 +49,34 @@ Organizer.Scavenger = {} -- each item: { name=L"", type=NNNN, hue=NNNN, id="id v
 -- Local Variables
 ----------------------------------------------------------------
 
+
+function A()
+  RequestTargetInfo()
+  WindowRegisterEventHandler("Root", SystemData.Events.TARGET_SEND_ID_CLIENT, "B")
+end
+
+function B()
+  WindowUnregisterEventHandler("Root", SystemData.Events.TARGET_SEND_ID_CLIENT)
+  local id = SystemData.RequestInfo.ObjectId 
+  if id == 0 or id == nil then return end
+  
+  local info = WindowData.ObjectInfo[id]  
+  if info == nil then
+    RegisterWindowData(WindowData.ObjectInfo.Type, id)
+    info = WindowData.ObjectInfo[id]  
+  end
+  
+  Debug.PrintToChat("---")
+  Debug.PrintToChat(info["name"])
+  
+  local data = ItemProperties.GetObjectPropertiesArray(id, "caller")
+  for k,v in pairs(data["PropertiesList"]) do
+    Debug.PrintToChat(v)
+  end
+  Debug.PrintToChat("---")
+end 
+
+
 function Organizer.GetOrganizerName(i)
 	local name = L" Organizer " .. i
 	if (Organizer.Organizers_Desc[i] ~= L"") then

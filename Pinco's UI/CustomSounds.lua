@@ -1,0 +1,4 @@
+CustomSounds = {}
+
+CustomSounds.Sounds = {
+}

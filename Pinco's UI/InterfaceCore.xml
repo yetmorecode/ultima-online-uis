@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Interface xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../Interface.xsd">
+  <Scripts>
+    <Script file="Source/System/Utilities/LuaUtils.lua" />
+    <Script file="Source/System/Utilities/WindowUtils.lua" />
+    <Script file="Source/System/Utilities/StringUtils.lua" />
+    <Script file="Source/System/Utilities/CSVUtilities.lua" />
+    <Script file="Source/System/Utilities/EquipmentData.lua" />
+    <Script file="Source/System/Utilities/CoreFunctions.lua" />
+    <Script file="Source/System/DebugWindow/Debug.lua" />
+    <Script file="Source/System/DebugWindow/DebugWindow.lua" />
+    <Script file="Source/System/Tooltips/Tooltips.lua" />
+    <Script file="Source/System/ColorPickerWindow/ColorPickerWindow.lua" />
+    <Script file="Templates/UO_DefaultWindow.lua" />
+    <Script file="Source/System/UO_StandardDialog/UO_StandardDialog.lua" />
+  </Scripts>
+
+  <!-- Assets -->
+  <Include file="Textures/CoreTextures.xml" />
+
+  <!-- Templates -->
+  <Include file="Templates/UO_DefaultWindow.xml" />
+  <Include file="Templates/UO_Default_UI_Templates.xml" />
+  <Include file="Templates/CoreWindowTemplates.xml" />
+
+  <!-- Windows -->
+  <Include file="Source/System/UO_StandardDialog/UO_StandardDialog.xml"/>
+  <Include file="Source/System/ColorPickerWindow/ColorPickerWindow.xml" />
+  <Include file="Source/System/DebugWindow/DebugWindow.xml" />
+  <Include file="Source/System/Tooltips/Tooltips.xml" />
+</Interface>

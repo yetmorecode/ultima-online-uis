@@ -1,0 +1,770 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Interface xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../Interface.xsd">
+	<Windows>
+    <Window name="SearchBoxNoNext" movable="false" layer="secondary" savesettings="false" >
+      <Size>
+        <AbsPoint x="360" y="20" />
+      </Size>
+      <EventHandlers>
+        <EventHandler event="OnInitialize" function="SearchBox.Initialize" />
+        <EventHandler event="OnUpdate" function="SearchBox.SearchBoxStatus" />
+      </EventHandlers>
+      <Windows>
+
+        <EditBox name="$parentFilter" font="MyriadPro_16" taborder="1" maxchars="35" scrolling="horz" layer="popup">
+          <Size>
+            <AbsPoint x="325" y="20" />
+          </Size>
+          <Anchors>
+            <Anchor point="topleft" relativePoint="topleft" relativeTo="$parent">
+              <AbsPoint x="35" y="0" />
+            </Anchor>
+          </Anchors>
+          <EventHandlers>
+            <EventHandler event="OnTextChanged" function="SearchBox.TextChanged" />
+            <EventHandler event="OnKeyEscape" function="SearchBox.ResetSearch" />
+            <EventHandler event="OnKeyEnter" function="SearchBox.Search" />
+          </EventHandlers>
+        </EditBox>
+
+        <Label name="$parentDesc" font="MyriadPro_16" maxchars="80" textalign="left" autoresizewidth="true" layer="popup" handleInput="false">
+          <Size>
+            <AbsPoint x="150" y="26"/>
+          </Size>
+          <Anchors>
+            <Anchor point="topleft" relativePoint="topleft" relativeTo="$parentFilter">
+              <AbsPoint x="0" y="0" />
+            </Anchor>
+          </Anchors>
+          <Color r="80" g="80" b="80" a="255" />
+        </Label>
+
+        <Window name="$parentFrame" handleinput="false">
+          <Size>
+            <AbsPoint x="325" y="30" />
+          </Size>
+          <Anchors>
+            <Anchor point="topleft" relativePoint="topleft" relativeTo="$parentFilter" >
+              <AbsPoint x="-35" y="-5" />
+            </Anchor>
+          </Anchors>
+          <Windows>
+            <!-- Inner Frame Boilerplate -->
+            <FullResizeImage name="$parentFrame" inherits="UO_Default_Inner_Window_Frame">
+              <Anchors>
+                <Anchor point="topleft" relativePoint="topleft" />
+                <Anchor point="bottomright" relativePoint="bottomright" />
+              </Anchors>
+            </FullResizeImage>
+            <!-- End of Inner Frame Boilerplate -->
+          </Windows>
+        </Window>
+
+        <DynamicImage name="$parentReset" texture="MapX" >
+          <Size>
+            <AbsPoint x="18" y="18"/>
+          </Size>
+          <Anchors>
+            <Anchor point="topleft" relativePoint="topright" relativeTo="$parentFilter">
+              <AbsPoint x="-7" y="0" />
+            </Anchor>
+          </Anchors>
+          <EventHandlers>
+            <EventHandler event="OnMouseOver" function="SearchBox.RemoveFiltersTooltip" />
+            <EventHandler event="OnLButtonDown" function="SearchBox.ResetSearch" />
+          </EventHandlers>
+          <TexCoords x="0" y="0"/>
+        </DynamicImage>
+
+        <DynamicImage name="$parentIcon" texture="Search"  texturescale="1.0">
+          <Size>
+            <AbsPoint x="32" y="32"/>
+          </Size>
+          <Anchors>
+            <Anchor point="topleft" relativePoint="topright" relativeTo="$parentFilter">
+              <AbsPoint x="-3" y="-7" />
+            </Anchor>
+          </Anchors>
+          <TexCoords x="0" y="0"/>
+        </DynamicImage>
+      </Windows>
+    </Window>
+    
+    <Window name="SearchBoxNoNext_MEDIUM" movable="false" layer="secondary" savesettings="false" >
+      <Size>
+        <AbsPoint x="250" y="20" />
+      </Size>
+      <EventHandlers>
+        <EventHandler event="OnInitialize" function="SearchBox.Initialize" />
+        <EventHandler event="OnUpdate" function="SearchBox.SearchBoxStatus" />
+      </EventHandlers>
+      <Windows>
+
+        <EditBox name="$parentFilter" font="MyriadPro_16" taborder="1" maxchars="35" scrolling="horz" layer="popup">
+          <Size>
+            <AbsPoint x="215" y="20" />
+          </Size>
+          <Anchors>
+            <Anchor point="topleft" relativePoint="topleft" relativeTo="$parent">
+              <AbsPoint x="35" y="0" />
+            </Anchor>
+          </Anchors>
+          <EventHandlers>
+            <EventHandler event="OnTextChanged" function="SearchBox.TextChanged" />
+            <EventHandler event="OnKeyEscape" function="SearchBox.ResetSearch" />
+            <EventHandler event="OnKeyEnter" function="SearchBox.Search" />
+          </EventHandlers>
+        </EditBox>
+
+        <Label name="$parentDesc" font="MyriadPro_16" maxchars="80" textalign="left" autoresizewidth="true" layer="popup" handleInput="false">
+          <Size>
+            <AbsPoint x="150" y="26"/>
+          </Size>
+          <Anchors>
+            <Anchor point="topleft" relativePoint="topleft" relativeTo="$parentFilter">
+              <AbsPoint x="0" y="0" />
+            </Anchor>
+          </Anchors>
+          <Color r="80" g="80" b="80" a="255" />
+        </Label>
+
+        <Window name="$parentFrame" handleinput="false">
+          <Size>
+            <AbsPoint x="215" y="30" />
+          </Size>
+          <Anchors>
+            <Anchor point="topleft" relativePoint="topleft" relativeTo="$parentFilter" >
+              <AbsPoint x="-35" y="-5" />
+            </Anchor>
+          </Anchors>
+          <Windows>
+            <!-- Inner Frame Boilerplate -->
+            <FullResizeImage name="$parentFrame" inherits="UO_Default_Inner_Window_Frame">
+              <Anchors>
+                <Anchor point="topleft" relativePoint="topleft" />
+                <Anchor point="bottomright" relativePoint="bottomright" />
+              </Anchors>
+            </FullResizeImage>
+            <!-- End of Inner Frame Boilerplate -->
+          </Windows>
+        </Window>
+
+        <DynamicImage name="$parentReset" texture="MapX" >
+          <Size>
+            <AbsPoint x="18" y="18"/>
+          </Size>
+          <Anchors>
+            <Anchor point="topleft" relativePoint="topright" relativeTo="$parentFilter">
+              <AbsPoint x="-7" y="0" />
+            </Anchor>
+          </Anchors>
+          <EventHandlers>
+            <EventHandler event="OnMouseOver" function="SearchBox.RemoveFiltersTooltip" />
+            <EventHandler event="OnLButtonDown" function="SearchBox.ResetSearch" />
+          </EventHandlers>
+          <TexCoords x="0" y="0"/>
+        </DynamicImage>
+
+        <DynamicImage name="$parentIcon" texture="Search"  texturescale="1.0">
+          <Size>
+            <AbsPoint x="32" y="32"/>
+          </Size>
+          <Anchors>
+            <Anchor point="topleft" relativePoint="topright" relativeTo="$parentFilter">
+              <AbsPoint x="-3" y="-7" />
+            </Anchor>
+          </Anchors>
+          <TexCoords x="0" y="0"/>
+        </DynamicImage>
+      </Windows>
+    </Window>
+
+    <Window name="SearchBoxNoNext_Parch_MEDIUM" movable="false" layer="secondary" savesettings="false" >
+      <Size>
+        <AbsPoint x="250" y="20" />
+      </Size>
+      <EventHandlers>
+        <EventHandler event="OnInitialize" function="SearchBox.Initialize" />
+        <EventHandler event="OnUpdate" function="SearchBox.SearchBoxStatus" />
+      </EventHandlers>
+      <Windows>
+
+        <EditBox name="$parentFilter" font="Arial_Black_14" taborder="1" maxchars="20" scrolling="horz" layer="popup">
+          <Size>
+            <AbsPoint x="215" y="20" />
+          </Size>
+          <Anchors>
+            <Anchor point="topleft" relativePoint="topleft" relativeTo="$parent">
+              <AbsPoint x="35" y="0" />
+            </Anchor>
+          </Anchors>
+          <EventHandlers>
+            <EventHandler event="OnTextChanged" function="SearchBox.TextChanged" />
+            <EventHandler event="OnKeyEscape" function="SearchBox.ResetSearch" />
+            <EventHandler event="OnKeyEnter" function="SearchBox.Search" />
+          </EventHandlers>
+          <TextColor r="0" g="0" b="0" a="255" />
+        </EditBox>
+
+        <Label name="$parentDesc" font="Arial_Black_14" maxchars="80" textalign="left" autoresizewidth="true" layer="popup" handleInput="false">
+          <Size>
+            <AbsPoint x="150" y="26"/>
+          </Size>
+          <Anchors>
+            <Anchor point="topleft" relativePoint="topleft" relativeTo="$parentFilter">
+              <AbsPoint x="0" y="0" />
+            </Anchor>
+          </Anchors>
+          <Color r="31" g="53" b="30" a="255" />
+        </Label>
+
+        <Window name="$parentFrame" handleinput="false">
+          <Size>
+            <AbsPoint x="215" y="30" />
+          </Size>
+          <Anchors>
+            <Anchor point="topleft" relativePoint="topleft" relativeTo="$parentFilter" >
+              <AbsPoint x="-35" y="-5" />
+            </Anchor>
+          </Anchors>
+          <Windows>
+            <!-- Inner Frame Boilerplate -->
+            <FullResizeImage name="$parentFrame" inherits="UO_TXT_Parch_Background">
+              <Anchors>
+                <Anchor point="topleft" relativePoint="topleft" />
+                <Anchor point="bottomright" relativePoint="bottomright" />
+              </Anchors>
+            </FullResizeImage>
+            <!-- End of Inner Frame Boilerplate -->
+          </Windows>
+        </Window>
+
+        <DynamicImage name="$parentReset" texture="MapX" >
+          <Size>
+            <AbsPoint x="18" y="18"/>
+          </Size>
+          <Anchors>
+            <Anchor point="topleft" relativePoint="topright" relativeTo="$parentFilter">
+              <AbsPoint x="-7" y="0" />
+            </Anchor>
+          </Anchors>
+          <EventHandlers>
+            <EventHandler event="OnMouseOver" function="SearchBox.RemoveFiltersTooltip" />
+            <EventHandler event="OnLButtonDown" function="SearchBox.ResetSearch" />
+          </EventHandlers>
+          <TexCoords x="0" y="0"/>
+        </DynamicImage>
+
+        <DynamicImage name="$parentIcon" texture="Search"  texturescale="1.0">
+          <Size>
+            <AbsPoint x="32" y="32"/>
+          </Size>
+          <Anchors>
+            <Anchor point="topleft" relativePoint="topright" relativeTo="$parentFilter">
+              <AbsPoint x="-3" y="-7" />
+            </Anchor>
+          </Anchors>
+          <TexCoords x="0" y="0"/>
+        </DynamicImage>
+      </Windows>
+    </Window>
+
+    <Window name="SearchBoxNoNext_SMALL" movable="false" layer="secondary" savesettings="false" >
+      <Size>
+        <AbsPoint x="160" y="20" />
+      </Size>
+      <EventHandlers>
+        <EventHandler event="OnInitialize" function="SearchBox.Initialize" />
+        <EventHandler event="OnUpdate" function="SearchBox.SearchBoxStatus" />
+      </EventHandlers>
+      <Windows>
+
+        <DynamicImage name="$parentBG" texture="mobilebarDockspot_big" layer="background" alpha="0.8" textureScale="1.47" handleinput="false" >
+          <Size>
+            <AbsPoint x="160" y="37" />
+          </Size>
+          <Anchors>
+            <Anchor point="topleft" relativePoint="topleft" relativeTo="$parent"  >
+              <AbsPoint x="0" y="-8" />
+            </Anchor>
+            <Anchor point="bottomright" relativePoint="bottomright" relativeTo="$parent"  >
+              <AbsPoint x="0" y="9" />
+            </Anchor>
+          </Anchors>
+        </DynamicImage>
+        
+        <EditBox name="$parentFilter" font="MyriadPro_16" taborder="1" maxchars="35" scrolling="horz" layer="popup">
+          <Size>
+            <AbsPoint x="160" y="20" />
+          </Size>
+          <Anchors>
+            <Anchor point="topleft" relativePoint="topleft" relativeTo="$parent">
+              <AbsPoint x="35" y="0" />
+            </Anchor>
+          </Anchors>
+          <EventHandlers>
+            <EventHandler event="OnTextChanged" function="SearchBox.TextChanged" />
+            <EventHandler event="OnKeyEscape" function="SearchBox.ResetSearch" />
+            <EventHandler event="OnKeyEnter" function="SearchBox.Search" />
+          </EventHandlers>
+        </EditBox>
+
+        <Label name="$parentDesc" font="MyriadPro_16" maxchars="40" textalign="left" autoresizewidth="true" layer="popup" handleInput="false">
+          <Size>
+            <AbsPoint x="50" y="26"/>
+          </Size>
+          <Anchors>
+            <Anchor point="topleft" relativePoint="topleft" relativeTo="$parentFilter">
+              <AbsPoint x="0" y="0" />
+            </Anchor>
+          </Anchors>
+          <Color r="180" g="180" b="180" a="255" />
+        </Label>
+
+        <Window name="$parentFrame" handleinput="false">
+          <Size>
+            <AbsPoint x="160" y="30" />
+          </Size>
+          <Anchors>
+            <Anchor point="topleft" relativePoint="topleft" relativeTo="$parentFilter" >
+              <AbsPoint x="-35" y="-5" />
+            </Anchor>
+          </Anchors>
+          <Windows>
+            <!-- Inner Frame Boilerplate -->
+            <FullResizeImage name="$parentFrame" inherits="UO_Default_Inner_Window_Frame">
+              <Anchors>
+                <Anchor point="topleft" relativePoint="topleft" />
+                <Anchor point="bottomright" relativePoint="bottomright" />
+              </Anchors>
+            </FullResizeImage>
+            <!-- End of Inner Frame Boilerplate -->
+          </Windows>
+        </Window>
+
+        <DynamicImage name="$parentReset" texture="MapX" >
+          <Size>
+            <AbsPoint x="18" y="18"/>
+          </Size>
+          <Anchors>
+            <Anchor point="topleft" relativePoint="topright" relativeTo="$parentFilter">
+              <AbsPoint x="-7" y="0" />
+            </Anchor>
+          </Anchors>
+          <EventHandlers>
+            <EventHandler event="OnMouseOver" function="SearchBox.RemoveFiltersTooltip" />
+            <EventHandler event="OnLButtonDown" function="SearchBox.ResetSearch" />
+          </EventHandlers>
+          <TexCoords x="0" y="0"/>
+        </DynamicImage>
+
+        <DynamicImage name="$parentIcon" texture="Search"  texturescale="1.0">
+          <Size>
+            <AbsPoint x="32" y="32"/>
+          </Size>
+          <Anchors>
+            <Anchor point="topleft" relativePoint="topright" relativeTo="$parentFilter">
+              <AbsPoint x="-3" y="-7" />
+            </Anchor>
+          </Anchors>
+          <TexCoords x="0" y="0"/>
+        </DynamicImage>
+      </Windows>
+    </Window>
+
+    <Window name="SearchBoxNoNext_Parch_SMALL" movable="false" layer="secondary" savesettings="false" >
+      <Size>
+        <AbsPoint x="160" y="20" />
+      </Size>
+      <EventHandlers>
+        <EventHandler event="OnInitialize" function="SearchBox.Initialize" />
+        <EventHandler event="OnUpdate" function="SearchBox.SearchBoxStatus" />
+      </EventHandlers>
+      <Windows>
+
+        <Window name="$parentFrame" handleinput="false">
+          <Size>
+            <AbsPoint x="160" y="30" />
+          </Size>
+          <Anchors>
+            <Anchor point="topleft" relativePoint="topleft" relativeTo="$parentFilter" >
+              <AbsPoint x="-35" y="-5" />
+            </Anchor>
+          </Anchors>
+          <Windows>
+            <!-- Inner Frame Boilerplate -->
+            <FullResizeImage name="$parentFrame" inherits="UO_TXT_Parch_Background">
+              <Anchors>
+                <Anchor point="topleft" relativePoint="topleft" />
+                <Anchor point="bottomright" relativePoint="bottomright" />
+              </Anchors>
+            </FullResizeImage>
+            <!-- End of Inner Frame Boilerplate -->
+          </Windows>
+        </Window>
+
+        <EditBox name="$parentFilter" font="Arial_Black_14" taborder="1" maxchars="14" scrolling="horz" layer="popup">
+          <Size>
+            <AbsPoint x="160" y="20" />
+          </Size>
+          <Anchors>
+            <Anchor point="topleft" relativePoint="topleft" relativeTo="$parent">
+              <AbsPoint x="35" y="0" />
+            </Anchor>
+          </Anchors>
+          <EventHandlers>
+            <EventHandler event="OnTextChanged" function="SearchBox.TextChanged" />
+            <EventHandler event="OnKeyEscape" function="SearchBox.ResetSearch" />
+            <EventHandler event="OnKeyEnter" function="SearchBox.Search" />
+          </EventHandlers>
+          <TextColor r="0" g="0" b="0" a="255" />
+        </EditBox>
+
+        <Label name="$parentDesc" font="Arial_Black_14" maxchars="40" textalign="left" autoresizewidth="true" layer="popup" handleInput="false">
+          <Size>
+            <AbsPoint x="50" y="26"/>
+          </Size>
+          <Anchors>
+            <Anchor point="topleft" relativePoint="topleft" relativeTo="$parentFilter">
+              <AbsPoint x="0" y="0" />
+            </Anchor>
+          </Anchors>
+          <Color r="31" g="53" b="30" a="255" />
+        </Label>
+
+        <DynamicImage name="$parentReset" texture="MapX" >
+          <Size>
+            <AbsPoint x="18" y="18"/>
+          </Size>
+          <Anchors>
+            <Anchor point="topleft" relativePoint="topright" relativeTo="$parentFilter">
+              <AbsPoint x="-7" y="0" />
+            </Anchor>
+          </Anchors>
+          <EventHandlers>
+            <EventHandler event="OnMouseOver" function="SearchBox.RemoveFiltersTooltip" />
+            <EventHandler event="OnLButtonDown" function="SearchBox.ResetSearch" />
+          </EventHandlers>
+          <TexCoords x="0" y="0"/>
+        </DynamicImage>
+
+        <DynamicImage name="$parentIcon" texture="Search"  texturescale="1.0">
+          <Size>
+            <AbsPoint x="32" y="32"/>
+          </Size>
+          <Anchors>
+            <Anchor point="topleft" relativePoint="topright" relativeTo="$parentFilter">
+              <AbsPoint x="-3" y="-7" />
+            </Anchor>
+          </Anchors>
+          <TexCoords x="0" y="0"/>
+        </DynamicImage>
+      </Windows>
+    </Window>
+
+    <Window name="SearchBoxNext" movable="false" layer="secondary" savesettings="false" >
+      <Size>
+        <AbsPoint x="360" y="20" />
+      </Size>
+      <EventHandlers>
+        <EventHandler event="OnInitialize" function="SearchBox.Initialize" />
+        <EventHandler event="OnUpdate" function="SearchBox.SearchBoxStatus" />
+      </EventHandlers>
+      <Windows>
+
+        <EditBox name="$parentFilter" font="MyriadPro_16" taborder="1" maxchars="35" scrolling="horz" layer="popup">
+          <Size>
+            <AbsPoint x="290" y="20" />
+          </Size>
+          <Anchors>
+            <Anchor point="topleft" relativePoint="topleft" relativeTo="$parent">
+              <AbsPoint x="35" y="0" />
+            </Anchor>
+          </Anchors>
+          <EventHandlers>
+            <EventHandler event="OnTextChanged" function="SearchBox.TextChanged" />
+            <EventHandler event="OnKeyEscape" function="SearchBox.ResetSearch" />
+            <EventHandler event="OnKeyEnter" function="SearchBox.Search" />
+          </EventHandlers>
+        </EditBox>
+
+        <Label name="$parentDesc" font="MyriadPro_16" maxchars="80" textalign="left" autoresizewidth="true" layer="popup" handleInput="false">
+          <Size>
+            <AbsPoint x="150" y="26"/>
+          </Size>
+          <Anchors>
+            <Anchor point="topleft" relativePoint="topleft" relativeTo="$parentFilter">
+              <AbsPoint x="0" y="0" />
+            </Anchor>
+          </Anchors>
+          <Color r="80" g="80" b="80" a="255" />
+        </Label>
+
+        <Window name="$parentFrame" handleinput="false">
+          <Size>
+            <AbsPoint x="325" y="30" />
+          </Size>
+          <Anchors>
+            <Anchor point="topleft" relativePoint="topleft" relativeTo="$parentFilter" >
+              <AbsPoint x="-35" y="-5" />
+            </Anchor>
+          </Anchors>
+          <Windows>
+            <!-- Inner Frame Boilerplate -->
+            <FullResizeImage name="$parentFrame" inherits="UO_Default_Inner_Window_Frame">
+              <Anchors>
+                <Anchor point="topleft" relativePoint="topleft" />
+                <Anchor point="bottomright" relativePoint="bottomright" />
+              </Anchors>
+            </FullResizeImage>
+            <!-- End of Inner Frame Boilerplate -->
+          </Windows>
+        </Window>
+
+        <Button name="$parenthNext" inherits="UO_Default_SmallNextButton" layer="overlay" handleinput="true">
+          <Anchors>
+            <Anchor point="bottomright" relativePoint="bottomleft" relativeTo="$parentFrame">
+              <AbsPoint x="5" y="-3" />
+            </Anchor>
+          </Anchors>
+          <EventHandlers>
+            <EventHandler event="OnMouseOver" function="SearchBox.SearchTooltip" />
+            <EventHandler event="OnLButtonUp" function="SearchBox.Search" />
+          </EventHandlers>
+        </Button>
+
+        <DynamicImage name="$parentReset" texture="MapX" >
+          <Size>
+            <AbsPoint x="18" y="18"/>
+          </Size>
+          <Anchors>
+            <Anchor point="topleft" relativePoint="topright" relativeTo="$parentFilter">
+              <AbsPoint x="-7" y="0" />
+            </Anchor>
+          </Anchors>
+          <EventHandlers>
+            <EventHandler event="OnMouseOver" function="SearchBox.RemoveFiltersTooltip" />
+            <EventHandler event="OnLButtonDown" function="SearchBox.ResetSearch" />
+          </EventHandlers>
+          <TexCoords x="0" y="0"/>
+        </DynamicImage>
+
+        <DynamicImage name="$parentIcon" texture="Search"  texturescale="1.0">
+          <Size>
+            <AbsPoint x="32" y="32"/>
+          </Size>
+          <Anchors>
+            <Anchor point="topleft" relativePoint="topright" relativeTo="$parentFilter">
+              <AbsPoint x="-3" y="-7" />
+            </Anchor>
+          </Anchors>
+          <TexCoords x="0" y="0"/>
+        </DynamicImage>
+      </Windows>
+    </Window>
+
+    <Window name="SearchBoxNext_PARCH" movable="false" layer="secondary" savesettings="false" >
+      <Size>
+        <AbsPoint x="360" y="20" />
+      </Size>
+      <EventHandlers>
+        <EventHandler event="OnInitialize" function="SearchBox.Initialize" />
+        <EventHandler event="OnUpdate" function="SearchBox.SearchBoxStatus" />
+      </EventHandlers>
+      <Windows>
+
+        <EditBox name="$parentFilter" font="Arial_Black_14" taborder="1" maxchars="35" scrolling="horz" layer="popup">
+          <Size>
+            <AbsPoint x="290" y="20" />
+          </Size>
+          <Anchors>
+            <Anchor point="topleft" relativePoint="topleft" relativeTo="$parent">
+              <AbsPoint x="35" y="0" />
+            </Anchor>
+          </Anchors>
+          <EventHandlers>
+            <EventHandler event="OnTextChanged" function="SearchBox.TextChanged" />
+            <EventHandler event="OnKeyEscape" function="SearchBox.ResetSearch" />
+            <EventHandler event="OnKeyEnter" function="SearchBox.Search" />
+          </EventHandlers>
+          <TextColor r="0" g="0" b="0" a="255" />
+        </EditBox>
+
+        <Label name="$parentDesc" font="Arial_Black_14" maxchars="80" textalign="left" autoresizewidth="true" layer="popup" handleInput="false">
+          <Size>
+            <AbsPoint x="150" y="26"/>
+          </Size>
+          <Anchors>
+            <Anchor point="topleft" relativePoint="topleft" relativeTo="$parentFilter">
+              <AbsPoint x="0" y="0" />
+            </Anchor>
+          </Anchors>
+          <Color r="31" g="53" b="30" a="255" />
+        </Label>
+
+        <Window name="$parentFrame" handleinput="false">
+          <Size>
+            <AbsPoint x="325" y="30" />
+          </Size>
+          <Anchors>
+            <Anchor point="topleft" relativePoint="topleft" relativeTo="$parentFilter" >
+              <AbsPoint x="-35" y="-5" />
+            </Anchor>
+          </Anchors>
+          <Windows>
+            <!-- Inner Frame Boilerplate -->
+            <FullResizeImage name="$parentFrame" inherits="UO_TXT_Parch_Background">
+              <Anchors>
+                <Anchor point="topleft" relativePoint="topleft" />
+                <Anchor point="bottomright" relativePoint="bottomright" />
+              </Anchors>
+            </FullResizeImage>
+            <!-- End of Inner Frame Boilerplate -->
+          </Windows>
+        </Window>
+
+        <Button name="$parenthNext" inherits="UO_Default_SmallNextButton" layer="overlay" handleinput="true">
+          <Anchors>
+            <Anchor point="bottomright" relativePoint="bottomleft" relativeTo="$parentFrame">
+              <AbsPoint x="5" y="-3" />
+            </Anchor>
+          </Anchors>
+          <EventHandlers>
+            <EventHandler event="OnMouseOver" function="SearchBox.SearchTooltip" />
+            <EventHandler event="OnLButtonUp" function="SearchBox.Search" />
+          </EventHandlers>
+        </Button>
+
+        <DynamicImage name="$parentReset" texture="MapX" >
+          <Size>
+            <AbsPoint x="18" y="18"/>
+          </Size>
+          <Anchors>
+            <Anchor point="topleft" relativePoint="topright" relativeTo="$parentFilter">
+              <AbsPoint x="-7" y="0" />
+            </Anchor>
+          </Anchors>
+          <EventHandlers>
+            <EventHandler event="OnMouseOver" function="SearchBox.RemoveFiltersTooltip" />
+            <EventHandler event="OnLButtonDown" function="SearchBox.ResetSearch" />
+          </EventHandlers>
+          <TexCoords x="0" y="0"/>
+        </DynamicImage>
+
+        <DynamicImage name="$parentIcon" texture="Search"  texturescale="1.0">
+          <Size>
+            <AbsPoint x="32" y="32"/>
+          </Size>
+          <Anchors>
+            <Anchor point="topleft" relativePoint="topright" relativeTo="$parentFilter">
+              <AbsPoint x="-3" y="-7" />
+            </Anchor>
+          </Anchors>
+          <TexCoords x="0" y="0"/>
+        </DynamicImage>
+      </Windows>
+    </Window>
+
+    <Window name="SearchBoxNext_MEDIUM" movable="false" layer="secondary" savesettings="false" >
+      <Size>
+        <AbsPoint x="250" y="20" />
+      </Size>
+      <EventHandlers>
+        <EventHandler event="OnInitialize" function="SearchBox.Initialize" />
+        <EventHandler event="OnUpdate" function="SearchBox.SearchBoxStatus" />
+      </EventHandlers>
+      <Windows>
+
+        <EditBox name="$parentFilter" font="MyriadPro_16" taborder="1" maxchars="35" scrolling="horz" layer="default">
+          <Size>
+            <AbsPoint x="180" y="20" />
+          </Size>
+          <Anchors>
+            <Anchor point="topleft" relativePoint="topleft" relativeTo="$parent">
+              <AbsPoint x="35" y="0" />
+            </Anchor>
+          </Anchors>
+          <EventHandlers>
+            <EventHandler event="OnTextChanged" function="SearchBox.TextChanged" />
+            <EventHandler event="OnKeyEscape" function="SearchBox.ResetSearch" />
+            <EventHandler event="OnKeyEnter" function="SearchBox.Search" />
+          </EventHandlers>
+        </EditBox>
+
+        <Label name="$parentDesc" font="MyriadPro_16" maxchars="80" textalign="left" autoresizewidth="true" layer="popup" handleInput="false">
+          <Size>
+            <AbsPoint x="150" y="26"/>
+          </Size>
+          <Anchors>
+            <Anchor point="topleft" relativePoint="topleft" relativeTo="$parentFilter">
+              <AbsPoint x="0" y="0" />
+            </Anchor>
+          </Anchors>
+          <Color r="80" g="80" b="80" a="255" />
+        </Label>
+
+        <Window name="$parentFrame" handleinput="false">
+          <Size>
+            <AbsPoint x="215" y="30" />
+          </Size>
+          <Anchors>
+            <Anchor point="topleft" relativePoint="topleft" relativeTo="$parentFilter" >
+              <AbsPoint x="-35" y="-5" />
+            </Anchor>
+          </Anchors>
+          <Windows>
+            <!-- Inner Frame Boilerplate -->
+            <FullResizeImage name="$parentFrame" inherits="UO_Default_Inner_Window_Frame">
+              <Anchors>
+                <Anchor point="topleft" relativePoint="topleft" />
+                <Anchor point="bottomright" relativePoint="bottomright" />
+              </Anchors>
+            </FullResizeImage>
+            <!-- End of Inner Frame Boilerplate -->
+          </Windows>
+        </Window>
+
+        <Button name="$parenthNext" inherits="UO_Default_SmallNextButton" layer="overlay" handleinput="true">
+          <Anchors>
+            <Anchor point="bottomright" relativePoint="bottomleft" relativeTo="$parentFrame">
+              <AbsPoint x="5" y="-3" />
+            </Anchor>
+          </Anchors>
+          <EventHandlers>
+            <EventHandler event="OnMouseOver" function="SearchBox.SearchTooltip" />
+            <EventHandler event="OnLButtonUp" function="SearchBox.Search" />
+          </EventHandlers>
+        </Button>
+
+        <DynamicImage name="$parentReset" texture="MapX" >
+          <Size>
+            <AbsPoint x="18" y="18"/>
+          </Size>
+          <Anchors>
+            <Anchor point="topleft" relativePoint="topright" relativeTo="$parentFilter">
+              <AbsPoint x="-7" y="0" />
+            </Anchor>
+          </Anchors>
+          <EventHandlers>
+            <EventHandler event="OnMouseOver" function="SearchBox.RemoveFiltersTooltip" />
+            <EventHandler event="OnLButtonDown" function="SearchBox.ResetSearch" />
+          </EventHandlers>
+          <TexCoords x="0" y="0"/>
+        </DynamicImage>
+
+        <DynamicImage name="$parentIcon" texture="Search"  texturescale="1.0">
+          <Size>
+            <AbsPoint x="32" y="32"/>
+          </Size>
+          <Anchors>
+            <Anchor point="topleft" relativePoint="topright" relativeTo="$parentFilter">
+              <AbsPoint x="-3" y="-7" />
+            </Anchor>
+          </Anchors>
+          <TexCoords x="0" y="0"/>
+        </DynamicImage>
+      </Windows>
+    </Window>
+
+	</Windows>
+</Interface>

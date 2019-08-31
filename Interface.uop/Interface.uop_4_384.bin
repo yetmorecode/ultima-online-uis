@@ -1,0 +1,1605 @@
+<Interface xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../Interface.xsd">
+	<Scripts>
+		<Script file="Source/CharacterCreation.lua" />
+	</Scripts>
+
+	<Windows>
+		
+
+		<!-- SET UP CHARACTER CREATION UI TEMPLATES FIRST -->
+		<HorizontalResizeImage name="CC_SliderBackground" texture="Login_Character_Widgets">
+			<Size>
+				<AbsPoint x="90" y="5" />
+			</Size>
+			<Sizes left="20" middle="81" right="20" />
+			<TexCoords>
+				<Left x="290" y="225" />
+				<Middle x="310" y="225" />
+				<Right x="391" y="225" />
+			</TexCoords>
+		</HorizontalResizeImage>
+
+		<Button name="CC_SliderButton" backgroundtexture="Login_Character_Widgets" highlighttexture="Login_Character_Widgets" >
+			<Size>
+				<AbsPoint x="5" y="12" />
+			</Size>
+			<TexCoords>
+				<Normal x="330" y="187" />
+				<NormalHighlit x="330" y="187" />
+				<Pressed x="330" y="187" />
+				<PressedHighlit x="330" y="187" />
+				<Disabled x="330" y="187" />
+			</TexCoords>
+		</Button>
+
+		<SliderBar name="CC_Horizontal_SliderBar" inherits="UO_Default_Horizontal_SliderBar" background="CC_SliderBackground"> <!-- background="CC_SliderBackground" sliderbutton="CC_SliderButton"-->
+			<Size>
+				<AbsPoint x="111" y="12" />
+			</Size>
+			<EventHandlers>
+				<EventHandler event="OnSlide" function="CharacterCreation.UpdateSkillsAndStats" />
+			</EventHandlers>
+		</SliderBar>
+
+		<Button name="ChangeSkillButtonTemplate" inherits="UO_Default_GenericTextButton">
+			<EventHandlers>
+				<EventHandler event="OnLButtonUp" function="CharacterCreation.ChangeSkill" />
+			</EventHandlers>
+		</Button>
+
+		<Window name="SliderItemTemplate">
+			<Size>
+				<AbsPoint x="405" y="23" />
+			</Size>
+			<Windows>
+				<FullResizeImage name="$parentBackground" inherits="UO_Login_Inner_Window_Frame" layer="background">
+					<Anchors>
+						<Anchor point="topleft" relativePoint="topleft" >
+							<AbsPoint x="-2" y="-2" />
+						</Anchor>
+						<Anchor point="bottomright" relativePoint="bottomright" >
+							<AbsPoint x="2" y="1" />
+						</Anchor>
+					</Anchors>
+				</FullResizeImage>
+				<Button name="$parentText" inherits="ChangeSkillButtonTemplate">
+					<Size>
+						<AbsPoint x="215" y="20" />
+					</Size>
+					<Anchors>
+						<Anchor point="left" relativePoint="left">
+							<AbsPoint x="5" y="0" />
+						</Anchor>
+					</Anchors>
+				</Button>
+				<Label name="$parentVal" font="UO_DefaultText" maxchars="64" textalign="right" autoresize="true" handleinput="false">
+					<Size>
+						<AbsPoint x="20" y="20"/>
+					</Size>
+					<Anchors>
+						<Anchor point="right" relativePoint="right">
+							<AbsPoint x="-5" y="0" />
+						</Anchor>
+					</Anchors>
+					<Color r="255" g="255" b="255" a="255" />
+				</Label>
+				<SliderBar name="$parentSliderBar" inherits="CC_Horizontal_SliderBar" layer="popup">
+					<Anchors>
+						<Anchor point="left" relativePoint="right" relativeTo="$parentVal">
+							<AbsPoint x="-10" y="0" />
+						</Anchor>
+					</Anchors>
+				</SliderBar>
+			</Windows>
+		</Window>
+
+		<Window name="CCBorderLabelTemplate">
+			<Size>
+				<AbsPoint x="270" y="50" />
+			</Size>
+			<DynamicImage name="$parentBackground" texture="CC_Background" layer="background">
+				<Anchors>
+					<Anchor point="topleft" relativePoint="topleft" />
+				</Anchors>
+				<Size>
+					<AbsPoint x="261" y="42" />
+				</Size>
+				<TexCoords x="0" y="167"/>
+			</DynamicImage>
+			<Label name="$parentText" font="UO_DefaultText" linespacing="20" maxchars="64" textalign="left" autoresize="true" handleinput="false" wordwrap="true" >
+				<Size>
+					<AbsPoint x="100" y="20" />
+				</Size>
+				<Anchors>
+					<Anchor point="topleft" relativePoint="topleft">
+						<AbsPoint x="10" y="10"/>
+					</Anchor>
+				</Anchors>
+				<Color r="255" g="255" b="255" a="255" />
+			</Label>
+		</Window>
+
+		<Button name="ProfessionButtonTemplate" inherits="UO_Default_GenericTextButton">
+			<Size>
+				<AbsPoint x="230" y="20" />
+			</Size>
+			<EventHandlers>
+				<EventHandler event="OnLButtonUp" function="CharacterCreation.ToggleProfession" />
+			</EventHandlers>
+		</Button>
+
+		<Button name="SkillButtonTemplate" inherits="UO_Default_GenericTextButton">
+			<Size>
+				<AbsPoint x="230" y="20" />
+			</Size>
+			<EventHandlers>
+				<EventHandler event="OnLButtonUp" function="CharacterCreation.ToggleSkill" />
+			</EventHandlers>
+		</Button>
+
+		<Button name="CCRightButton" backgroundtexture="Login_Character_Widgets" highlighttexture="Login_Character_Widgets" textalign="center" font="UO_GoldButtonText">
+			<Size>
+				<AbsPoint x="30" y="30" />
+			</Size>
+			<TexCoords>
+				<Normal x="321" y="125" />
+				<NormalHighlit x="381" y="125" />
+				<Pressed x="351" y="125" />
+				<PressedHighlit x="351" y="125" />
+				<Disabled x="291" y="125" />
+			</TexCoords>
+			<TextColors>
+				<Normal r="253" g="210" b="69" a="255" />
+				<NormalHighlit r="253" g="210" b="69" a="255" />
+				<Pressed r="23" g="24" b="19" a="255" />
+				<PressedHighlit r="23" g="24" b="19" a="255" />
+				<Disabled r="73" g="59" b="14" a="255" />
+			</TextColors>
+			<EventHandlers>
+				<EventHandler event="OnLButtonUp" function="CharacterCreation.ToggleAppearanceItemUp" />
+			</EventHandlers>
+		</Button>
+
+		<Button name="CCLeftButton" inherits="CCRightButton">
+			<TexCoords>
+				<Normal x="321" y="156" />
+				<NormalHighlit x="381" y="156" />
+				<Pressed x="351" y="156" />
+				<PressedHighlit x="351" y="156" />
+				<Disabled x="291" y="156" />
+			</TexCoords>
+			<EventHandlers>
+				<EventHandler event="OnLButtonUp" function="CharacterCreation.ToggleAppearanceItemDown" />
+			</EventHandlers>
+		</Button>
+
+		<Button name="CCSmallRightButton" backgroundtexture="Login_Character_Widgets" highlighttexture="Login_Character_Widgets" textalign="center" font="UO_GoldButtonText">
+			<Size>
+				<AbsPoint x="30" y="30" />
+			</Size>
+			<TexCoords>
+				<Normal x="321" y="125" />
+				<NormalHighlit x="381" y="125" />
+				<Pressed x="351" y="125" />
+				<PressedHighlit x="351" y="125" />
+				<Disabled x="291" y="125" />
+			</TexCoords>
+			<TextColors>
+				<Normal r="253" g="210" b="69" a="255" />
+				<NormalHighlit r="253" g="210" b="69" a="255" />
+				<Pressed r="23" g="24" b="19" a="255" />
+				<PressedHighlit r="23" g="24" b="19" a="255" />
+				<Disabled r="73" g="59" b="14" a="255" />
+			</TextColors>
+			<EventHandlers>
+				<EventHandler event="OnLButtonUp" function="CharacterCreation.ToggleAppearanceItemUp" />
+			</EventHandlers>
+		</Button>
+
+		<DynamicImage name="CCButtonClickableItemBackground" texture="Login_Character_Widgets" handleinput="false">
+			<Size>
+				<AbsPoint x="289" y="40" />
+			</Size>
+			<TexCoords x="0" y="125" />
+		</DynamicImage>
+
+		<Window name="CCItemBackground">
+			<Size>
+				<AbsPoint x="261" y="42" />
+			</Size>
+			<Windows>
+				<FullResizeImage name="$parentWindowFrame" inherits="UO_Login_Inner_Window_Frame">
+					<Anchors>
+						<Anchor point="topleft" relativePoint="topleft" />
+						<Anchor point="bottomright" relativePoint="bottomright" />
+					</Anchors>
+				</FullResizeImage>
+			</Windows>
+		</Window>
+
+		<Window name="CCColorSelectItemTemplate">
+			<Size>
+				<AbsPoint x="257" y="46" />
+			</Size>
+			<Windows>
+				<DynamicImage name="$parentBar" texture="Login_Character_Widgets" handleinput="true">
+					<Size>
+						<AbsPoint x="253" y="34" />
+					</Size>
+					<Anchors>
+						<Anchor point="topleft" relativePoint="topleft" >
+							<AbsPoint x="2" y="2" />
+						</Anchor>
+					</Anchors>
+					<TexCoords x="0" y="251" />
+					<EventHandlers>
+						<EventHandler event="OnLButtonUp" function="CharacterCreation.ShowColorPicker" />
+					</EventHandlers>
+				</DynamicImage>
+				<FullResizeImage name="$parentFrame" inherits="UO_Login_Inner_Window_Frame" layer="overlay">
+					<Anchors>
+						<Anchor point="topleft" relativePoint="topleft" />
+						<Anchor point="bottomright" relativePoint="bottomright" relativeTo="$parentBar" >
+							<AbsPoint x="2" y="2" />
+						</Anchor>
+					</Anchors>
+				</FullResizeImage>
+			</Windows>
+		</Window>
+
+		<Window name="CCAppearanceItemTemplate" >
+			<Size>
+				<AbsPoint x="580" y="60" />
+			</Size>
+
+			<Windows>
+				<DynamicImage name="$parentBackground" inherits="CCButtonClickableItemBackground">
+					<Anchors>
+						<Anchor point="bottomleft" relativePoint="bottomleft" />
+					</Anchors>
+				</DynamicImage>
+
+				<Label name="$parentLabel" font="UO_DefaultText" maxchars="64" textalign="center" >
+					<Size>
+						<AbsPoint x="200" y="20"/>
+					</Size>
+					<Anchors>
+						<Anchor point="center" relativePoint="center" relativeTo="$parentBackground">
+							<AbsPoint x="0" y="-30" />
+						</Anchor>
+					</Anchors>
+					<Color r="255" g="255" b="255" a="255" />
+				</Label>
+
+				<Label name="$parentStyle" font="UO_DefaultText" maxchars="64" textalign="center" >
+					<Size>
+						<AbsPoint x="200" y="20"/>
+					</Size>
+					<Anchors>
+						<Anchor point="center" relativePoint="center" relativeTo="$parentBackground"/>
+					</Anchors>
+					<Color r="255" g="255" b="255" a="255" />
+				</Label>
+
+				<Button name="$parentUpButton" inherits="CCRightButton" >
+					<Anchors>
+						<Anchor point="topright" relativePoint="topright" relativeTo="$parentBackground">
+							<AbsPoint x="-5" y="6" />
+						</Anchor>
+					</Anchors>
+				</Button>
+
+				<Button name="$parentDownButton" inherits="CCLeftButton" >
+					<Anchors>
+						<Anchor point="topleft" relativePoint="topleft" relativeTo="$parentBackground">
+							<AbsPoint x="5" y="6" />
+						</Anchor>
+					</Anchors>
+				</Button>
+
+				<Window name="$parentColor" inherits="CCColorSelectItemTemplate" handleinput="true">
+					<Anchors>
+						<Anchor point="topright" relativePoint="topleft" relativeTo="$parentBackground">
+							<AbsPoint x="30" y="0" />
+						</Anchor>
+					</Anchors>
+				</Window>
+
+				<Label name="$parentColorLabel" font="UO_DefaultText" maxchars="64" textalign="center" >
+					<Size>
+						<AbsPoint x="200" y="20"/>
+					</Size>
+					<Anchors>
+						<Anchor point="center" relativePoint="center" relativeTo="$parentColor">
+							<AbsPoint x="0" y="-35" />
+						</Anchor>
+					</Anchors>
+					<Color r="255" g="255" b="255" a="255" />
+				</Label>
+
+			</Windows>
+		</Window>
+
+		<Button name="CCTabButton" sticky="false" backgroundtexture="Login_Character_Widgets" highlighttexture="Login_Character_Widgets" textalign="center" font="UO_GoldButtonText">
+			<TextColors>
+				<Normal r="253" g="210" b="69" a="255" />
+				<NormalHighlit r="253" g="210" b="69" a="255" />
+				<Pressed r="23" g="24" b="19" a="255" />
+				<PressedHighlit r="23" g="24" b="19" a="255" />
+				<Disabled r="73" g="59" b="14" a="255" />
+			</TextColors>
+		</Button>
+
+		<Button name="CCTabWindow" movable="false" popable="false">
+			<Size>
+				<AbsPoint x="675" y="600" />
+			</Size>
+		</Button>
+
+		<Button name="CCStartingLocationButton" backgroundtexture="UO_Core" highlighttexture="UO_Core" popable="false" movable="false">
+			<Size>
+				<AbsPoint x="24" y="33" />
+			</Size>
+			<TexCoords>
+				<Normal x="271" y="357" />
+				<Disabled x="271" y="357" />
+				<Pressed x="271" y="318" />
+				<PressedHighlit x="271" y="318" />
+			</TexCoords>	
+			<EventHandlers>
+				<EventHandler event="OnLButtonUp" function="CharacterCreation.StartingLocation_OnLButtonUp" />
+				<EventHandler event="OnMouseOver" function="CharacterCreation.StartingLocation_OnMouseOver" />
+			</EventHandlers>		
+		</Button>
+
+		<Window name="CCWorldMapTemplate" handleinput="true" movable="false" popable="false">
+			<Size>
+				<AbsPoint x="383" y="383" />
+			</Size>
+			<Windows>
+				<DynamicImage name="$parentImage" texture="" layer="background">
+					<Anchors>
+						<Anchor point="topleft" relativePoint="topleft" />
+						<Anchor point="bottomright" relativePoint="bottomright" />
+					</Anchors>
+					<TexCoords x="0" y="0"/>
+				</DynamicImage>
+
+				<FullResizeImage name="$parentFrame" inherits="UO_Login_Inner_Window_Frame" frameonly="true" layer="overlay" handleinput="false">
+					<Anchors>
+						<Anchor point="topleft" relativePoint="topleft" >
+							<AbsPoint x="-1" y="-1" />
+						</Anchor>
+						<Anchor point="bottomright" relativePoint="bottomright" >
+							<AbsPoint x="1" y="1" />
+						</Anchor>
+					</Anchors>
+				</FullResizeImage>
+			</Windows>
+		</Window>
+		
+		<Window name="CCWindowFrameTemplate" layer="background" popable="false" movable="false">
+			<Anchors>
+				<Anchor point="topleft" relativePoint="topleft" />
+				<Anchor point="bottomright" relativePoint="bottomright" />
+			</Anchors>
+			<Windows>
+				<FullResizeImage name="$parentBackground" inherits="UO_Login_Black_Background" layer="background">
+					<Anchors>
+						<Anchor point="topleft" relativePoint="topleft" />
+						<Anchor point="bottomright" relativePoint="bottomright" />
+					</Anchors>
+				</FullResizeImage>
+				<!-- TO DO: REPLACE THIS FRAME WITH CC FRAME -->
+				<FullResizeImage name="$parentWindowFrame" inherits="UO_Login_Inner_Window_Frame" frameonly="true">
+					<Anchors>
+						<Anchor point="topleft" relativePoint="topleft" />
+						<Anchor point="bottomright" relativePoint="bottomright" />
+					</Anchors>
+				</FullResizeImage>
+			</Windows>
+		</Window>
+
+		<!-- MAIN CHARACTER CREATION STARTS HERE !!! -->
+		<Window name="CharacterCreation" movable="false" popable="false">
+			<Size>
+				<AbsPoint x="965" y="700" />
+			</Size>
+			<Anchors>
+				<Anchor point="center" relativePoint="center">
+					<AbsPoint x="0" y="0" />
+				</Anchor>
+			</Anchors>
+			<EventHandlers>
+				<EventHandler event="OnInitialize" function="CharacterCreation.Initialize" />
+				<EventHandler event="OnShutdown" function="CharacterCreation.Shutdown" />
+			</EventHandlers>
+
+			<Windows>
+				<Window name="CCTabButtonContainer" movable="false" popable="false" layer="popup">
+					<Size>
+						<AbsPoint x="900" y="36" />
+					</Size>
+					<Anchors>
+						<Anchor point="top" relativePoint="top" />
+					</Anchors>
+					<Windows>
+						<Button name="RaceTabButton" inherits="CCTabButton">
+							<Anchors>
+								<Anchor point="topleft" relativePoint="topleft">
+									<AbsPoint x="5" y="0" />
+								</Anchor>
+							</Anchors>
+							<Size>
+								<AbsPoint x="108" y="39" />
+							</Size>
+							<TexCoords>
+								<Normal x="0" y="86" />
+								<NormalHighlit x="0" y="86" />
+								<Pressed x="0" y="41" />
+								<PressedHighlit x="0" y="41" />
+								<Disabled x="0" y="0" />
+							</TexCoords>
+							<EventHandlers>
+								<EventHandler event="OnLButtonUp" function="CharacterCreation.ShowRaceWindow" />
+							</EventHandlers>
+						</Button>
+
+						<Button name="ProfessionTabButton" inherits="CCTabButton" >
+							<Anchors>
+								<Anchor point="topright" relativePoint="topleft" relativeTo="RaceTabButton">
+									<AbsPoint x="5" y="0" />
+								</Anchor>
+							</Anchors>
+							<Size>
+								<AbsPoint x="172" y="39" />
+							</Size>
+							<TexCoords>
+								<Normal x="109" y="86" />
+								<NormalHighlit x="109" y="86" />
+								<Pressed x="109" y="41" />
+								<PressedHighlit x="109" y="41" />
+								<Disabled x="109" y="0" />
+							</TexCoords>
+							<EventHandlers>
+								<EventHandler event="OnLButtonUp" function="CharacterCreation.ShowProfessionWindow" />
+							</EventHandlers>
+						</Button>
+
+						<Button name="AppearanceTabButton" inherits="CCTabButton" >
+							<Anchors>
+								<Anchor point="topright" relativePoint="topleft" relativeTo="ProfessionTabButton">
+									<AbsPoint x="5" y="0" />
+								</Anchor>
+							</Anchors>
+							<Size>
+								<AbsPoint x="182" y="39" />
+							</Size>
+							<TexCoords>
+								<Normal x="282" y="86" />
+								<NormalHighlit x="282" y="86" />
+								<Pressed x="282" y="41" />
+								<PressedHighlit x="282" y="41" />
+								<Disabled x="282" y="0" />
+							</TexCoords>
+							<EventHandlers>
+								<EventHandler event="OnLButtonUp" function="CharacterCreation.ShowAppearanceWindow" />
+							</EventHandlers>
+						</Button>
+
+						<Button name="LocationTabButton" inherits="CCTabButton" >
+							<Anchors>
+								<Anchor point="topright" relativePoint="topleft" relativeTo="AppearanceTabButton">
+									<AbsPoint x="5" y="0" />
+								</Anchor>
+							</Anchors>
+							<Size>
+								<AbsPoint x="182" y="39" />
+							</Size>
+							<TexCoords>
+								<Normal x="282" y="86" />
+								<NormalHighlit x="282" y="86" />
+								<Pressed x="282" y="41" />
+								<PressedHighlit x="282" y="41" />
+								<Disabled x="282" y="0" />
+							</TexCoords>
+							<EventHandlers>
+								<EventHandler event="OnLButtonUp" function="CharacterCreation.ShowLocationWindow" />
+							</EventHandlers>
+						</Button>
+
+						<Button name="ApproveTabButton" inherits="CCTabButton" >
+							<Anchors>
+								<Anchor point="topright" relativePoint="topleft" relativeTo="LocationTabButton">
+									<AbsPoint x="5" y="0" />
+								</Anchor>
+							</Anchors>
+							<Size>
+								<AbsPoint x="135" y="39" />
+							</Size>
+							<TexCoords>
+								<Normal x="465" y="86" />
+								<NormalHighlit x="465" y="86" />
+								<Pressed x="465" y="41" />
+								<PressedHighlit x="465" y="41" />
+								<Disabled x="465" y="0" />
+							</TexCoords>
+							<EventHandlers>
+								<EventHandler event="OnLButtonUp" function="CharacterCreation.ShowApproveWindow" />
+							</EventHandlers>
+						</Button>
+					</Windows>
+				</Window>
+
+				<DynamicImage name="$parentFrame" texture="CC_Frame" layer="background">
+					<Anchors>
+						<Anchor point="bottomleft" relativePoint="topleft" relativeTo="CCTabButtonContainer" />
+					</Anchors>
+					<Size>
+						<AbsPoint x="965" y="685" />
+					</Size>
+					<TexCoords x="21" y="266"/>
+				</DynamicImage>
+
+				<Button name="PrevButton" sticky="false" backgroundtexture="UO_Login" highlighttexture="UO_Login" textalign="center"  font="UO_GoldButtonText">
+					<Anchors>
+						<Anchor point="bottom" relativePoint="bottom" relativeTo="CharacterCreationFrame">
+							<AbsPoint x="-77" y="-20" />
+						</Anchor>
+					</Anchors>
+					<Size>
+						<AbsPoint x="124" y="56" />
+					</Size>
+					<TexCoords>
+						<Normal x="0" y="235" />
+						<NormalHighlit x="0" y="293" />
+						<Pressed x="0" y="293" />
+						<PressedHighlit x="0" y="293" />
+						<Disabled x="0" y="235" />
+					</TexCoords>
+					<EventHandlers>
+						<EventHandler event="OnLButtonUp" function="CharacterCreation.TogglePrev" />
+					</EventHandlers>
+				</Button>
+
+				<Button name="NextButton" sticky="false" backgroundtexture="UO_Login" highlighttexture="UO_Login" textalign="center"  font="UO_GoldButtonText">
+					<Anchors>
+						<Anchor point="bottom" relativePoint="bottom" relativeTo="CharacterCreationFrame">
+							<AbsPoint x="77" y="-20" />
+						</Anchor>
+					</Anchors>
+					<Size>
+						<AbsPoint x="124" y="56" />
+					</Size>
+					<TexCoords>
+						<Normal x="277" y="235" />
+						<NormalHighlit x="277" y="293" />
+						<Pressed x="277" y="293" />
+						<PressedHighlit x="277" y="293" />
+						<Disabled x="277" y="235" />
+					</TexCoords>
+					<EventHandlers>
+						<EventHandler event="OnLButtonUp" function="CharacterCreation.ToggleNext" />
+					</EventHandlers>
+				</Button>
+
+				<Window name="RaceWindow" >
+					<Size>
+						<AbsPoint x="665" y="600" />
+					</Size>
+					<Anchors>
+						<Anchor point="bottomleft" relativePoint="topleft" relativeTo="CCTabButtonContainer" />
+					</Anchors>
+
+					<Windows>
+						<Window name="RaceDescriptionWindow" >
+							<Size>
+								<AbsPoint x="500" y="400" />
+							</Size>
+							<Anchors>
+								<Anchor point="center" relativePoint="center" relativeTo="RaceWindow">
+									<AbsPoint x="0" y="10" />
+								</Anchor>
+							</Anchors>
+							<Windows>
+								<Window name="$parentFrame" inherits="CCWindowFrameTemplate" />
+
+								<Label name="$parentText" font="UO_DefaultText" linespacing="20" maxchars="1024" textalign="left" autoresize="true" handleinput="false" wordwrap="true" >
+									<Size>
+										<AbsPoint x="460" y="0" />
+									</Size>
+									<Anchors>
+										<Anchor point="topleft" relativePoint="topleft">
+											<AbsPoint x="20" y="20" />
+										</Anchor>
+									</Anchors>
+									<Color r="255" g="255" b="255" a="255" />
+								</Label>
+							</Windows>
+						</Window>
+
+						<Window name="RaceSelectionWindow" >
+							<Size>
+								<AbsPoint x="300" y="50" />
+							</Size>
+							<Anchors>
+								<Anchor point="top" relativePoint="bottom" relativeTo="RaceDescriptionWindow">
+									<AbsPoint x="0" y="-10" />
+								</Anchor>
+							</Anchors>
+							<Windows>
+
+								<DynamicImage name="$parentBackground" inherits="CCButtonClickableItemBackground">
+									<Anchors>
+										<Anchor point="topleft" relativePoint="topleft" />
+									</Anchors>
+								</DynamicImage>
+
+								<Button name="RaceUpButton" inherits="CCRightButton" >
+									<Anchors>
+										<Anchor point="topright" relativePoint="topright" >
+											<AbsPoint x="-15" y="6" />
+										</Anchor>
+									</Anchors>
+									<EventHandlers>
+										<EventHandler event="OnLButtonUp" function="CharacterCreation.ToggleRaceUp" />
+									</EventHandlers>
+								</Button>
+
+								<Button name="RaceDownButton" inherits="CCLeftButton" >
+									<Anchors>
+										<Anchor point="topleft" relativePoint="topleft" >
+											<AbsPoint x="5" y="6" />
+										</Anchor>
+									</Anchors>
+									<EventHandlers>
+										<EventHandler event="OnLButtonUp" function="CharacterCreation.ToggleRaceDown" />
+									</EventHandlers>
+								</Button>
+
+								<Label name="$parentText" font="UO_DefaultText" linespacing="20" maxchars="64" textalign="center" autoresize="true" handleinput="false" wordwrap="false" >
+									<Size>
+										<AbsPoint x="100" y="20" />
+									</Size>
+									<Anchors>
+										<Anchor point="top" relativePoint="top" >
+											<AbsPoint x="-5" y="10" />
+										</Anchor>
+									</Anchors>
+									<Color r="255" g="255" b="255" a="255" />
+								</Label>
+							</Windows>
+						</Window>
+
+						<Button name="MaleButton" inherits="RaceUpButton" >
+							<Anchors>
+								<Anchor point="bottom" relativePoint="bottom" >
+									<AbsPoint x="-140" y="-40" />
+								</Anchor>
+							</Anchors>
+							<Size>
+								<AbsPoint x="35" y="35" />
+							</Size>
+							<TexCoords>
+								<Normal  x="412" y="125" />
+								<NormalHighlit x="412" y="125" />
+								<Pressed x="412" y="158" />
+								<PressedHighlit x="412" y="158" />
+								<Disabled x="412" y="125" />
+							</TexCoords>
+							<EventHandlers>
+								<EventHandler event="OnLButtonUp" function="CharacterCreation.ToggleMale" />
+							</EventHandlers>
+						</Button>
+
+						<Label name="MaleText" font="UO_DefaultText" maxchars="64" textalign="left" autoresize="true" >
+							<Size>
+								<AbsPoint x="60" y="0"/>
+							</Size>
+							<Anchors>
+								<Anchor point="right" relativePoint="left" relativeTo="MaleButton" >
+									<AbsPoint x="10" y="0" />
+								</Anchor>
+							</Anchors>
+							<Color r="255" g="255" b="255" a="255" />
+						</Label>
+
+						<Button name="FemaleButton" inherits="MaleButton" >
+							<Anchors>
+								<Anchor point="bottom" relativePoint="bottom" >
+									<AbsPoint x="60" y="-40" />
+								</Anchor>
+							</Anchors>
+							<EventHandlers>
+								<EventHandler event="OnLButtonUp" function="CharacterCreation.ToggleFemale" />
+							</EventHandlers>
+						</Button>
+
+						<Label name="FemaleText" font="UO_DefaultText" maxchars="64" textalign="left" autoresize="true" >
+							<Size>
+								<AbsPoint x="80" y="0"/>
+							</Size>
+							<Anchors>
+								<Anchor point="right" relativePoint="left" relativeTo="FemaleButton" >
+									<AbsPoint x="10" y="0" />
+								</Anchor>
+							</Anchors>
+							<Color r="255" g="255" b="255" a="255" />
+						</Label>
+
+					</Windows>
+				</Window>
+
+				<Window name="ProfessionWindow" inherits="RaceWindow" >
+					<EventHandlers>
+						<EventHandler event="OnInitialize" function="CharacterCreation.InitializeDefaultProfessions" />
+					</EventHandlers>
+
+					<Windows>
+						<Window name="ProfessionList">
+							<Size>
+								<AbsPoint x="245" y="0" />
+							</Size>
+							<Anchors>
+								<Anchor point="topleft" relativePoint="topleft">
+									<AbsPoint x="30" y="40" />
+								</Anchor>
+								<Anchor point="bottomleft" relativePoint="bottomleft">
+									<AbsPoint x="30" y="-40" />
+								</Anchor>
+							</Anchors>
+							<Windows>
+								<Window name="$parentFrame" inherits="CCWindowFrameTemplate" />
+									
+								<ScrollWindow name="ProfessionListScrollWindow" childscrollwindow="ProfessionListScrollChild" scrollbar="ProfessionListScrollbar" lineheight="18" autoHideScrollBar="true">
+									<Size>
+										<AbsPoint x="230" y="540" />
+									</Size>
+									<Anchors>
+										<Anchor point="topleft" relativePoint="topleft" >
+											<AbsPoint x="0" y="15" />
+										</Anchor>
+										<Anchor point="bottomright" relativePoint="bottomright" >
+											<AbsPoint x="-8" y="-65" />
+										</Anchor>
+									</Anchors>
+									<Windows>
+										<VerticalScrollbar name="ProfessionListScrollbar" inherits="LoginVertScroll" />
+										
+										<Window name="ProfessionListScrollChild" >
+											<Size>
+												<AbsPoint x="0" y="0" />
+											</Size>
+											<Anchors>
+												<Anchor point="topleft" relativePoint="topleft" >
+													<AbsPoint x="10" y="0" />
+												</Anchor>
+												<Anchor point="bottomright" relativePoint="bottomright" >
+													<AbsPoint x="-20" y="0" />
+												</Anchor>
+											</Anchors>
+										</Window>
+									</Windows>
+								</ScrollWindow>
+							</Windows>
+						</Window>
+						
+						<Window name="SkillList" inherits="ProfessionList">
+							<Anchors>
+								<Anchor point="topleft" relativePoint="topleft" relativeTo="ProfessionList"/>
+								<Anchor point="bottomright" relativePoint="bottomright" relativeTo="ProfessionList"/>
+							</Anchors>
+							<Windows>
+								<Window name="$parentFrame" inherits="CCWindowFrameTemplate" />
+
+								<ScrollWindow name="SkillListScrollWindow" inherits="ProfessionListScrollWindow" childscrollwindow="SkillListScrollChild" scrollbar="SkillListScrollbar" lineheight="18" autoHideScrollBar="true">
+									<EventHandlers>
+										<EventHandler event="OnInitialize" function="CharacterCreation.InitializeSkillList" />
+									</EventHandlers>
+									<Windows>
+										<VerticalScrollbar name="SkillListScrollbar" inherits="ProfessionListScrollbar" />
+										<Window name="SkillListScrollChild" inherits="ProfessionListScrollChild" />
+									</Windows>
+								</ScrollWindow>
+							</Windows>
+						</Window>
+
+						<Window name="StatsWindow">
+							<Size>
+								<AbsPoint x="0" y="127" />
+							</Size>
+							<Anchors>
+								<Anchor point="topright" relativePoint="topleft" relativeTo="ProfessionList">
+									<AbsPoint x="20" y="0" />
+								</Anchor>
+								<Anchor point="topright" relativePoint="topright" >
+									<AbsPoint x="-30" y="0" />
+								</Anchor>
+							</Anchors>
+
+							<Windows>
+								<Window name="$parentFrame" inherits="CCWindowFrameTemplate" />
+								
+								<Label name="$parentTitle" font="UO_Subtitle" maxchars="64" textalign="center" autoresize="true">
+									<Size>
+										<AbsPoint x="200" y="20"/>
+									</Size>
+									<Anchors>
+										<Anchor point="topleft" relativePoint="topleft">
+											<AbsPoint x="0" y="20" />
+										</Anchor>
+										<Anchor point="topright" relativePoint="topright">
+											<AbsPoint x="0" y="20" />
+										</Anchor>
+									</Anchors>
+								</Label>
+
+								<Window name="Strength" inherits="SliderItemTemplate">
+									<Anchors>
+										<Anchor point="bottomleft" relativePoint="topleft" relativeTo="$parentTitle">
+											<AbsPoint x="15" y="0" />
+										</Anchor>
+										<Anchor point="bottomright" relativePoint="topright" relativeTo="$parentTitle">
+											<AbsPoint x="-15" y="0" />
+										</Anchor>
+									</Anchors>
+								</Window>
+
+								<Window name="Dexterity" inherits="SliderItemTemplate">
+									<Anchors>
+										<Anchor point="bottomleft" relativePoint="topleft" relativeTo="Strength"/>
+										<Anchor point="bottomright" relativePoint="topright" relativeTo="Strength"/>
+									</Anchors>
+								</Window>
+
+								<Window name="Intelligence" inherits="SliderItemTemplate">
+									<Anchors>
+										<Anchor point="bottomleft" relativePoint="topleft" relativeTo="Dexterity"/>
+										<Anchor point="bottomright" relativePoint="topright" relativeTo="Dexterity"/>
+									</Anchors>
+								</Window>
+							</Windows>
+						</Window>
+
+						<Window name="SkillsWindow" >
+							<Size>
+								<AbsPoint x="420" y="152" />
+							</Size>
+							<Anchors>
+								<Anchor point="bottomleft" relativePoint="topleft" relativeTo="StatsWindow">
+									<AbsPoint x="0" y="20" />
+								</Anchor>
+								<Anchor point="bottomright" relativePoint="topright" relativeTo="StatsWindow">
+									<AbsPoint x="0" y="20" />
+								</Anchor>
+							</Anchors>
+
+							<Windows>
+								<Window name="$parentFrame" inherits="CCWindowFrameTemplate" />
+
+								<Label name="$parentTitle" font="UO_Subtitle" maxchars="64" textalign="center" >
+									<Size>
+										<AbsPoint x="200" y="20"/>
+									</Size>
+									<Anchors>
+										<Anchor point="topleft" relativePoint="topleft">
+											<AbsPoint x="0" y="20" />
+										</Anchor>
+										<Anchor point="topright" relativePoint="topright">
+											<AbsPoint x="0" y="20" />
+										</Anchor>
+									</Anchors>
+								</Label>
+
+								<Window name="Skill1" inherits="SliderItemTemplate" >
+									<Anchors>
+										<Anchor point="bottomleft" relativePoint="topleft" relativeTo="$parentTitle">
+											<AbsPoint x="15" y="5" />
+										</Anchor>
+										<Anchor point="bottomright" relativePoint="topright" relativeTo="$parentTitle">
+											<AbsPoint x="-15" y="5" />
+										</Anchor>
+									</Anchors>
+								</Window>
+
+								<Window name="Skill2" inherits="SliderItemTemplate" >
+									<Anchors>
+										<Anchor point="bottomleft" relativePoint="topleft" relativeTo="Skill1"/>
+										<Anchor point="bottomright" relativePoint="topright" relativeTo="Skill1"/>
+									</Anchors>
+								</Window>
+
+								<Window name="Skill3" inherits="SliderItemTemplate" >
+									<Anchors>
+										<Anchor point="bottomleft" relativePoint="topleft" relativeTo="Skill2"/>
+										<Anchor point="bottomright" relativePoint="topright" relativeTo="Skill2"/>
+									</Anchors>
+								</Window>
+
+								<Window name="Skill4" inherits="SliderItemTemplate" >
+									<Anchors>
+										<Anchor point="bottomleft" relativePoint="topleft" relativeTo="Skill3"/>
+										<Anchor point="bottomright" relativePoint="topright" relativeTo="Skill3"/>
+									</Anchors>
+								</Window>
+							</Windows>
+						</Window>
+
+						<Button name="CustomProfessionButton" inherits="UO_Login_Medium_Select_Button" layer="popup">
+							<Anchors>
+								<Anchor point="bottom" relativePoint="bottom" relativeTo="ProfessionList">
+									<AbsPoint x="0" y="-15" />
+								</Anchor>
+							</Anchors>
+							<EventHandlers>
+								<EventHandler event="OnLButtonUp" function="CharacterCreation.ToggleCustomProfession" />
+							</EventHandlers>
+						</Button>
+
+						<Button name="DefaultProfessionButton" inherits="CustomProfessionButton" >
+							<EventHandlers>
+								<EventHandler event="OnLButtonUp" function="CharacterCreation.ToggleDefaultProfessions" />
+							</EventHandlers>
+						</Button>
+				
+						<Window name="ProfessionDescriptionWindow" >
+							<Size>
+								<AbsPoint x="0" y="170" />
+							</Size>
+							<Anchors>
+								<Anchor point="bottomright" relativePoint="topright" relativeTo="SkillsWindow">
+									<AbsPoint x="0" y="20" />
+								</Anchor>
+								<Anchor point="bottomright" relativePoint="bottomleft" relativeTo="ProfessionList">
+									<AbsPoint x="20" y="0" />
+								</Anchor>
+							</Anchors>
+							<Windows>
+								<Window name="$parentFrame" inherits="CCWindowFrameTemplate" />
+
+								<ScrollWindow name="$parentScrollWindow" childscrollwindow="ProfessionDescriptionChildWindow" scrollbar="ProfessionDescriptionScrollbar" lineheight="18" autoHideScrollBar="true">
+									<Anchors>
+										<Anchor point="topleft" relativePoint="topleft">
+											<AbsPoint x="0" y="20" />
+										</Anchor>
+										<Anchor point="bottomright" relativePoint="bottomright">
+											<AbsPoint x="-5" y="-20" />
+										</Anchor>
+									</Anchors>
+
+									<Windows>
+										<VerticalScrollbar name="ProfessionDescriptionScrollbar" inherits="LoginVertScroll" layer="popup" />
+
+										<Window name="ProfessionDescriptionChildWindow" >
+											<Size>
+												<AbsPoint x="0" y="0" />
+											</Size>
+											<Anchors>
+												<Anchor point="topleft" relativePoint="topleft" >
+													<AbsPoint x="20" y="0" />
+												</Anchor>
+												<Anchor point="bottomright" relativePoint="bottomright" >
+													<AbsPoint x="-20" y="0" />
+												</Anchor>
+											</Anchors>
+											<Windows>												
+												<Label name="ProfessionDescriptionWindowText" font="UO_DefaultText" linespacing="20" maxchars="1000" textalign="left" autoresize="true" handleinput="false" wordwrap="true" >
+													<Size>
+														<AbsPoint x="0" y="0" />
+													</Size>
+													<Anchors>
+														<Anchor point="topleft" relativePoint="topleft">
+															<AbsPoint x="0" y="0" />
+														</Anchor>
+														<Anchor point="bottomright" relativePoint="bottomright">
+															<AbsPoint x="0" y="0" />
+														</Anchor>
+													</Anchors>
+													<Color r="255" g="255" b="255" a="255" />
+												</Label>
+											</Windows>
+										</Window>
+
+									</Windows>
+								</ScrollWindow>
+
+							</Windows>
+						</Window>
+
+					</Windows>
+				</Window>
+
+				<Window name="AppearanceWindow" inherits="RaceWindow" >
+
+					<Windows>
+						<Window name="Skin" inherits="CCAppearanceItemTemplate">
+							<Anchors>
+								<Anchor point="center" relativePoint="center" >
+									<AbsPoint x="" y="-120" />
+								</Anchor>
+							</Anchors>
+						</Window>
+
+						<Window name="Hair" inherits="CCAppearanceItemTemplate">
+							<Anchors>
+								<Anchor point="center" relativePoint="center" relativeTo="Skin">
+									<AbsPoint x="0" y="90" />
+								</Anchor>
+							</Anchors>
+						</Window>
+
+						<Window name="FacialHair" inherits="CCAppearanceItemTemplate">
+							<Anchors>
+								<Anchor point="center" relativePoint="center" relativeTo="Hair">
+									<AbsPoint x="0" y="90" />
+								</Anchor>
+							</Anchors>
+						</Window>
+
+					</Windows>
+				</Window>
+
+				<Window name="LocationWindow" inherits="RaceWindow" >
+					<Windows>
+						<Window name="$parentMap" inherits="CCWorldMapTemplate">
+							<Anchors>
+								<Anchor point="topleft" relativePoint="topleft">
+									<AbsPoint x="30" y="30" />
+								</Anchor>
+							</Anchors>
+						</Window>
+
+						<Window name="$parentFacetWindow" handleinput="true" popable="false">
+							<Size>
+								<AbsPoint x="100" y="90" />
+							</Size>
+							<Anchors>
+								<Anchor point="topright" relativePoint="topright">
+									<AbsPoint x="-30" y="100" />
+								</Anchor>
+								<Anchor point="topright" relativePoint="topleft" relativeTo="$parentMap">
+									<AbsPoint x="20" y="100" />
+								</Anchor>
+							</Anchors>
+
+							<Windows>	
+								<Window name="$parentFrame" inherits="CCWindowFrameTemplate" />
+
+								<Label name="$parentFacetLabel" font="UO_Subtitle" maxchars="32" textalign="center" handleinput="false" autoresize="true">
+									<Size>
+										<AbsPoint x="120" y="20" />
+									</Size>
+									<Anchors>
+										<Anchor point="topleft" relativePoint="topleft">
+											<AbsPoint x="15" y="20" />
+										</Anchor>
+										<Anchor point="topright" relativePoint="topright">
+											<AbsPoint x="-15" y="20" />
+										</Anchor>
+									</Anchors>
+								</Label>
+
+								<Button name="$parentFacetSelectNext" inherits="UO_Login_SmallNextButton" >
+									<Anchors>
+										<Anchor point="bottomright" relativePoint="bottomright" >
+											<AbsPoint x="-10" y="-17" />
+										</Anchor>
+									</Anchors>
+									<EventHandlers>
+										<EventHandler event="OnLButtonUp" function="CharacterCreation.NextFacet" />
+									</EventHandlers>
+								</Button>
+
+								<Button name="$parentFacetSelectPrev" inherits="UO_Login_SmallPreviousButton" >
+									<Anchors>
+										<Anchor point="bottomleft" relativePoint="bottomleft" >
+											<AbsPoint x="10" y="-17" />
+										</Anchor>
+									</Anchors>
+									<EventHandlers>
+										<EventHandler event="OnLButtonUp" function="CharacterCreation.PrevFacet" />
+									</EventHandlers>
+								</Button>
+
+								<Label name="$parentFacetName" inherits="$parentFacetLabel" font="UO_DefaultText" maxchars="64" wordwrap="false" autoresize="true">
+									<Anchors>
+										<Anchor point="bottom" relativePoint="top" relativeTo="$parentFacetLabel">
+											<AbsPoint x="0" y="10" />
+										</Anchor>
+									</Anchors>
+								</Label>
+							</Windows>
+						</Window>
+
+						<Window name="$parentCityWindow" handleinput="true" popable="false">
+							<Size>
+								<AbsPoint x="100" y="120" />
+							</Size>
+
+							<Anchors>
+								<Anchor point="bottomleft" relativePoint="topleft" relativeTo="$parentFacetWindow">
+									<AbsPoint x="0" y="20" />
+								</Anchor>
+								<Anchor point="bottomright" relativePoint="topright" relativeTo="$parentFacetWindow">
+									<AbsPoint x="0" y="20" />
+								</Anchor>
+							</Anchors>
+
+							<Windows>	
+								<Window name="$parentFrame" inherits="CCWindowFrameTemplate" />
+
+								<Label name="$parentCityLabel" font="UO_Subtitle" maxchars="32" textalign="center" handleinput="false" autoresize="true">
+									<Size>
+										<AbsPoint x="140" y="20" />
+									</Size>
+									<Anchors>
+										<Anchor point="topleft" relativePoint="topleft" >
+											<AbsPoint x="15" y="20" />
+										</Anchor>
+										<Anchor point="topright" relativePoint="topright" >
+											<AbsPoint x="-15" y="20" />
+										</Anchor>
+									</Anchors>
+								</Label>
+
+								<Label name="$parentCityName" inherits="$parentCityLabel" font="UO_DefaultText" wordwrap="true">
+									<Size>
+										<AbsPoint x="130" y="20" />
+									</Size>
+									<Anchors>
+										<Anchor point="bottom" relativePoint="top" relativeTo="$parentCityLabel" >
+											<AbsPoint x="0" y="10" />
+										</Anchor>
+									</Anchors>
+								</Label>
+
+								<Label name="$parentPlaceName" inherits="$parentCityName">
+									<Anchors>
+										<Anchor point="bottomleft" relativePoint="topleft" relativeTo="$parentCityName">
+											<AbsPoint x="0" y="5" />
+										</Anchor>
+										<Anchor point="bottomright" relativePoint="topright" relativeTo="$parentCityName">
+											<AbsPoint x="0" y="5" />
+										</Anchor>
+									</Anchors>
+								</Label>
+
+							</Windows>
+						</Window>
+
+						<Window name="$parentDescriptionWindow" inherits="CCWindowTemplate">
+							<Anchors>
+								<Anchor point="bottomleft" relativePoint="topleft" relativeTo="$parentMap">
+									<AbsPoint x="0" y="20" />
+								</Anchor>
+								<Anchor point="bottomright" relativePoint="bottomright" >
+									<AbsPoint x="-30" y="-30" />
+								</Anchor>
+							</Anchors>
+							<Windows>
+								<Window name="$parentFrame" inherits="CCWindowFrameTemplate" />
+
+								<ScrollWindow name="$parentScrollWindow" childscrollwindow="LocationWindowDescriptionWindowScrollWindowChild" scrollbar="LocationWindowDescriptionWindowScrollWindowScrollbar" autoHideScrollBar="true" lineheight="18">
+									<Anchors>
+										<Anchor point="topleft" relativePoint="topleft" >
+											<AbsPoint x="0" y="2" />
+										</Anchor>
+										<Anchor point="bottomright" relativePoint="bottomright" >
+											<AbsPoint x="-5" y="-2" />
+										</Anchor>
+									</Anchors>
+
+									<Windows>
+										<VerticalScrollbar name="LocationWindowDescriptionWindowScrollWindowScrollbar" inherits="LoginVertScroll" layer="popup" />
+
+										<Window name="LocationWindowDescriptionWindowScrollWindowChild" >
+											<Anchors>
+												<Anchor point="topleft" relativePoint="topleft" >
+													<AbsPoint x="20" y="0" />
+												</Anchor>
+												<Anchor point="bottomright" relativePoint="bottomright" >
+													<AbsPoint x="-20" y="0" />
+												</Anchor>
+											</Anchors>
+
+											<Windows>
+												<Label name="$parentText" font="UO_DefaultText" maxchars="2000" textalign="left" handleinput="false" wordwrap="true" autoresize="true">
+													<Anchors>
+														<Anchor point="topleft" relativePoint="topleft" />
+														<Anchor point="bottomright" relativePoint="bottomright" />
+													</Anchors>
+												</Label>
+											</Windows>
+										</Window>
+
+									</Windows>
+								</ScrollWindow>
+							</Windows>
+						</Window>
+
+
+					</Windows>
+				</Window>
+
+				<Window name="ApproveWindow" inherits="RaceWindow" >
+					<Windows>	
+						<Window name="ApproveNameWindow" >
+							<Size>
+								<AbsPoint x="300" y="460" />
+							</Size>
+							<Anchors>
+								<Anchor point="left" relativePoint="left">
+									<AbsPoint x="30" y="0" />
+								</Anchor>
+							</Anchors>
+
+							<Windows>
+								<Window name="$parentFrame" inherits="CCWindowFrameTemplate" />
+
+								<Label name="$parentNameLabel" font="UO_Subtitle" maxchars="64" textalign="center" autoresize="true">
+									<Size>
+										<AbsPoint x="300" y="20"/>
+									</Size>
+									<Anchors>
+										<Anchor point="topleft" relativePoint="topleft">
+											<AbsPoint x="0" y="20" />
+										</Anchor>
+										<Anchor point="topright" relativePoint="topright">
+											<AbsPoint x="0" y="20" />
+										</Anchor>
+									</Anchors>
+								</Label>
+
+								<Window name="$parentNameEditBackground" inherits="CCItemBackground" layer="background">
+									<Anchors>
+										<Anchor point="bottom" relativePoint="top" relativeTo="$parentNameLabel" >
+											<AbsPoint x="0" y="5" />
+										</Anchor>
+									</Anchors>
+								</Window>
+
+								<EditBox name="$parentNameVal" font="UO_DefaultText" taborder="0" maxchars="16" scrolling="horz" history="true" >
+									<Size>
+										<AbsPoint x="1" y="1"/>
+									</Size>
+									<Anchors>
+										<Anchor point="topleft" relativePoint="topleft" relativeTo="$parentNameEditBackground">
+											<AbsPoint x="10" y="10" />
+										</Anchor>
+										<Anchor point="bottomright" relativePoint="bottomright" relativeTo="$parentNameEditBackground">
+											<AbsPoint x="-10" y="-6" />
+										</Anchor>
+									</Anchors>
+									<EventHandlers>
+										<EventHandler event="OnKeyEnter" function="CharacterCreation.CreateCharacter" />
+									</EventHandlers>
+								</EditBox>
+
+								<Label name="$parentGenderLabel" inherits="$parentNameLabel">
+									<Anchors>
+										<Anchor point="topleft" relativePoint="topleft" relativeTo="$parentNameLabel">
+											<AbsPoint x="0" y="90" />
+										</Anchor>
+										<Anchor point="topright" relativePoint="topright" relativeTo="$parentNameLabel">
+											<AbsPoint x="0" y="90" />
+										</Anchor>
+									</Anchors>
+								</Label>
+
+								<Label name="$parentGenderVal" inherits="$parentGenderLabel" font="UO_DefaultText" textalign="center">
+									<Anchors>
+										<Anchor point="bottomleft" relativePoint="topleft" relativeTo="$parentGenderLabel">
+											<AbsPoint x="0" y="3" />
+										</Anchor>
+										<Anchor point="bottomright" relativePoint="topright" relativeTo="$parentGenderLabel">
+											<AbsPoint x="0" y="3" />
+										</Anchor>
+									</Anchors>
+								</Label>
+
+								<Label name="$parentRaceLabel" inherits="$parentGenderLabel">
+									<Anchors>
+										<Anchor point="topleft" relativePoint="topleft" relativeTo="$parentNameLabel">
+											<AbsPoint x="0" y="160" />
+										</Anchor>
+										<Anchor point="topright" relativePoint="topright" relativeTo="$parentNameLabel">
+											<AbsPoint x="0" y="160" />
+										</Anchor>
+									</Anchors>
+								</Label>
+
+								<Label name="$parentRaceVal" inherits="$parentRaceLabel" font="UO_DefaultText" textalign="center">
+									<Anchors>
+										<Anchor point="bottomleft" relativePoint="topleft" relativeTo="$parentRaceLabel">
+											<AbsPoint x="0" y="3" />
+										</Anchor>
+										<Anchor point="bottomright" relativePoint="topright" relativeTo="$parentRaceLabel">
+											<AbsPoint x="0" y="3" />
+										</Anchor>
+									</Anchors>
+								</Label>
+
+								<Label name="$parentLocationLabel" inherits="$parentRaceLabel">
+									<Anchors>
+										<Anchor point="topleft" relativePoint="topleft" relativeTo="$parentNameLabel">
+											<AbsPoint x="0" y="230" />
+										</Anchor>
+										<Anchor point="topright" relativePoint="topright" relativeTo="$parentNameLabel">
+											<AbsPoint x="0" y="230" />
+										</Anchor>
+									</Anchors>
+								</Label>
+
+								<Window name="$parentLocationMap" inherits="CCWorldMapTemplate">
+									<Size>
+										<AbsPoint x="150" y="150" />
+									</Size>
+									<Anchors>
+										<Anchor point="bottom" relativePoint="top" relativeTo="$parentLocationLabel">
+											<AbsPoint x="0" y="10" />
+										</Anchor>
+									</Anchors>
+								</Window>
+
+								<Button name="$parentLocationMarker" inherits="CCStartingLocationButton">
+									<EventHandlers>
+										<EventHandler event="OnMouseOver" function="CharacterCreation.StartingLocation_OnMouseOver" />										
+									</EventHandlers>
+								</Button>
+							</Windows>
+						</Window>     
+
+
+						<Window name="ApproveStatsWindow">
+							<Size>
+								<AbsPoint x="300" y="330" />
+							</Size>
+							<Anchors>
+								<Anchor point="topright" relativePoint="topleft" relativeTo="ApproveNameWindow">
+									<AbsPoint x="20" y="-30" />
+								</Anchor>
+								<Anchor point="topright" relativePoint="topright">
+									<AbsPoint x="-30" y="-30" />
+								</Anchor>
+							</Anchors>
+
+							<Windows>
+								<Window name="$parentFrame" inherits="CCWindowFrameTemplate" />
+
+								<Label name="$parentProfessionLabel" font="UO_Subtitle" maxchars="64" textalign="center" autoresize="true">
+									<Size>
+										<AbsPoint x="230" y="20"/>
+									</Size>
+									<Anchors>
+										<Anchor point="topleft" relativePoint="topleft">
+											<AbsPoint x="15" y="20" />
+										</Anchor>
+										<Anchor point="topright" relativePoint="topright">
+											<AbsPoint x="-15" y="20" />
+										</Anchor>
+									</Anchors>
+								</Label>
+
+								<Label name="$parentProfessionText" inherits="$parentProfessionLabel" font="UO_DefaultText" textalign="center">
+									<Anchors>
+										<Anchor point="bottomleft" relativePoint="topleft" relativeTo="$parentProfessionLabel">
+											<AbsPoint x="0" y="3" />
+										</Anchor>
+										<Anchor point="bottomright" relativePoint="topright" relativeTo="$parentProfessionLabel">
+											<AbsPoint x="0" y="3" />
+										</Anchor>
+									</Anchors>
+								</Label>
+
+								<Label name="$parentStatsLabel" inherits="$parentProfessionLabel">
+									<Anchors>
+										<Anchor point="topleft" relativePoint="topleft" relativeTo="$parentProfessionLabel">
+											<AbsPoint x="0" y="70" />
+										</Anchor>
+										<Anchor point="topright" relativePoint="topright" relativeTo="$parentProfessionLabel">
+											<AbsPoint x="0" y="70" />
+										</Anchor>
+									</Anchors>
+								</Label>
+
+								<Label name="ApproveWindowStrengthText" inherits="$parentStatsLabel" font="UO_DefaultText" textalign="left">
+									<Anchors>
+										<Anchor point="bottomleft" relativePoint="topleft" relativeTo="$parentStatsLabel">
+											<AbsPoint x="4" y="5" />
+										</Anchor>
+										<Anchor point="bottomright" relativePoint="topright" relativeTo="$parentStatsLabel">
+											<AbsPoint x="-4" y="5" />
+										</Anchor>
+									</Anchors>
+								</Label>
+
+								<Label name="ApproveWindowStrengthVal" inherits="ApproveWindowStrengthText" textalign="right">
+									<Anchors>
+										<Anchor point="topleft" relativePoint="topleft" relativeTo="ApproveWindowStrengthText" />
+										<Anchor point="bottomright" relativePoint="bottomright" relativeTo="ApproveWindowStrengthText" />
+									</Anchors>
+								</Label>
+
+								<Label name="ApproveWindowDexterityText" inherits="ApproveWindowStrengthText">
+									<Anchors>
+										<Anchor point="bottomleft" relativePoint="topleft" relativeTo="ApproveWindowStrengthText">
+											<AbsPoint x="0" y="3" />
+										</Anchor>
+										<Anchor point="bottomright" relativePoint="topright" relativeTo="ApproveWindowStrengthText">
+											<AbsPoint x="0" y="3" />
+										</Anchor>
+									</Anchors>
+								</Label>
+
+								<Label name="ApproveWindowDexterityVal" inherits="ApproveWindowStrengthVal">
+									<Anchors>
+										<Anchor point="topleft" relativePoint="topleft" relativeTo="ApproveWindowDexterityText" />
+										<Anchor point="bottomright" relativePoint="bottomright" relativeTo="ApproveWindowDexterityText" />
+									</Anchors>
+								</Label>
+
+								<Label name="ApproveWindowIntelligenceText" inherits="ApproveWindowStrengthText">
+									<Anchors>
+										<Anchor point="bottomleft" relativePoint="topleft" relativeTo="ApproveWindowDexterityText">
+											<AbsPoint x="0" y="3" />
+										</Anchor>
+										<Anchor point="bottomright" relativePoint="topright" relativeTo="ApproveWindowDexterityText">
+											<AbsPoint x="0" y="3" />
+										</Anchor>
+									</Anchors>
+								</Label>
+
+								<Label name="ApproveWindowIntelligenceVal" inherits="ApproveWindowStrengthVal">
+									<Anchors>
+										<Anchor point="topleft" relativePoint="topleft" relativeTo="ApproveWindowIntelligenceText" />
+										<Anchor point="bottomright" relativePoint="bottomright" relativeTo="ApproveWindowIntelligenceText" />
+									</Anchors>
+								</Label>
+
+								<Label name="$parentSkillsLabel" inherits="$parentStatsLabel">
+									<Anchors>
+										<Anchor point="bottomleft" relativePoint="topleft" relativeTo="$parentStatsLabel">
+											<AbsPoint x="0" y="90" />
+										</Anchor>
+										<Anchor point="bottomright" relativePoint="topright" relativeTo="$parentStatsLabel">
+											<AbsPoint x="0" y="90" />
+										</Anchor>
+									</Anchors>
+								</Label>
+
+								<Label name="ApproveWindowSkill1Text" inherits="$parentSkillsLabel" font="UO_DefaultText" textalign="left">
+									<Anchors>
+										<Anchor point="bottomleft" relativePoint="topleft" relativeTo="$parentSkillsLabel">
+											<AbsPoint x="4" y="5" />
+										</Anchor>
+										<Anchor point="bottomright" relativePoint="topright" relativeTo="$parentSkillsLabel">
+											<AbsPoint x="-4" y="5" />
+										</Anchor>
+									</Anchors>
+								</Label>
+
+								<Label name="ApproveWindowSkill1Val" inherits="ApproveWindowSkill1Text" textalign="right">
+									<Anchors>
+										<Anchor point="topleft" relativePoint="topleft" relativeTo="ApproveWindowSkill1Text">
+											<AbsPoint x="0" y="3" />
+										</Anchor>
+										<Anchor point="bottomright" relativePoint="bottomright" relativeTo="ApproveWindowSkill1Text">
+											<AbsPoint x="0" y="3" />
+										</Anchor>
+									</Anchors>
+								</Label>
+
+								<Label name="ApproveWindowSkill2Text" inherits="ApproveWindowSkill1Text" >
+									<Anchors>
+										<Anchor point="bottomleft" relativePoint="topleft" relativeTo="ApproveWindowSkill1Text">
+											<AbsPoint x="0" y="3" />
+										</Anchor>
+										<Anchor point="bottomright" relativePoint="topright" relativeTo="ApproveWindowSkill1Text">
+											<AbsPoint x="0" y="3" />
+										</Anchor>
+									</Anchors>
+								</Label>
+
+								<Label name="ApproveWindowSkill2Val" inherits="ApproveWindowSkill1Val" >
+									<Anchors>
+										<Anchor point="topleft" relativePoint="topleft" relativeTo="ApproveWindowSkill2Text" />
+										<Anchor point="bottomright" relativePoint="bottomright" relativeTo="ApproveWindowSkill2Text" />
+									</Anchors>
+								</Label>
+
+								<Label name="ApproveWindowSkill3Text" inherits="ApproveWindowSkill1Text" >
+									<Anchors>
+										<Anchor point="bottomleft" relativePoint="topleft" relativeTo="ApproveWindowSkill2Text">
+											<AbsPoint x="0" y="3" />
+										</Anchor>
+										<Anchor point="bottomright" relativePoint="topright" relativeTo="ApproveWindowSkill2Text">
+											<AbsPoint x="0" y="3" />
+										</Anchor>
+									</Anchors>
+								</Label>
+
+								<Label name="ApproveWindowSkill3Val" inherits="ApproveWindowSkill1Val" >
+									<Anchors>
+										<Anchor point="topleft" relativePoint="topleft" relativeTo="ApproveWindowSkill3Text" />
+										<Anchor point="bottomright" relativePoint="bottomright" relativeTo="ApproveWindowSkill3Text" />
+									</Anchors>
+								</Label>
+
+								<Label name="ApproveWindowSkill4Text" inherits="ApproveWindowSkill1Text" >
+									<Anchors>
+										<Anchor point="bottomleft" relativePoint="topleft" relativeTo="ApproveWindowSkill3Text">
+											<AbsPoint x="0" y="3" />
+										</Anchor>
+										<Anchor point="bottomright" relativePoint="topright" relativeTo="ApproveWindowSkill3Text">
+											<AbsPoint x="0" y="3" />
+										</Anchor>
+									</Anchors>
+								</Label>
+
+								<Label name="ApproveWindowSkill4Val" inherits="ApproveWindowSkill1Val" >
+									<Anchors>
+										<Anchor point="topleft" relativePoint="topleft" relativeTo="ApproveWindowSkill4Text" />
+										<Anchor point="bottomright" relativePoint="bottomright" relativeTo="ApproveWindowSkill4Text" />
+									</Anchors>
+								</Label>				
+							</Windows>
+						</Window>     
+
+						<Window name="ApproveDescriptionWindow" >
+							<Anchors>
+								<Anchor point="bottomleft" relativePoint="topleft" relativeTo="ApproveStatsWindow">
+									<AbsPoint x="0" y="20" />
+								</Anchor>
+								<Anchor point="bottomright" relativePoint="bottomright" relativeTo="ApproveWindow">
+									<AbsPoint x="-30" y="-30" />
+								</Anchor>
+							</Anchors>
+
+							<Windows>                
+								<Window name="$parentFrame" inherits="CCWindowFrameTemplate" />
+
+								<Label name="$parentText" font="UO_DefaultText" textalign="left" autoresize="false" wordwrap="true">
+									<Anchors>
+										<Anchor point="topleft" relativePoint="topleft">
+											<AbsPoint x="15" y="20" />
+										</Anchor>
+										<Anchor point="bottomright" relativePoint="bottomright">
+											<AbsPoint x="-15" y="-20" />
+										</Anchor>
+									</Anchors>
+								</Label>
+
+							</Windows>
+						</Window>
+					</Windows>
+				</Window>
+
+				<Window name="PaperdollWindow" >
+					<Size>
+						<AbsPoint x="290" y="600" />
+					</Size>
+					<Anchors>
+						<Anchor point="topright" relativePoint="topright" relativeTo="CharacterCreationFrame">
+							<AbsPoint x="-3" y="15" />
+						</Anchor>
+					</Anchors>
+
+					<Windows>
+						<DynamicImage name="$parentImage" texture="" handleinput="false" sticky="false">
+							<Size>
+								<AbsPoint x="0" y="0"/>
+							</Size>
+							<Anchors>
+								<Anchor point="center" relativePoint="center" />
+							</Anchors>
+							<TexCoords x="0" y="0"/>
+
+						</DynamicImage>
+					</Windows>
+				</Window>
+
+			</Windows>
+		</Window>
+
+	</Windows>
+</Interface>

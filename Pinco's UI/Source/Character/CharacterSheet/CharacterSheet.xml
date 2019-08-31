@@ -1,0 +1,315 @@
+<Interface xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../Interface.xsd">
+	<Windows>
+		<DynamicImage name="HRLine" texturescale="3" layer="secondary" popable="false" texture="HLine">
+			<TexCoords x="0" y="0" />
+			<TintColor r="0" g="0" b="0" />
+		</DynamicImage>
+		<DynamicImage name="TabFrameBG" texture="disabled" texturescale="3.125" layer="background">
+			<Anchors>
+				<Anchor point="topleft" relativePoint="topleft" relativeTo="$parent"/>
+				<Anchor point="bottomright" relativePoint="bottomright" relativeTo="$parent"/>
+			</Anchors>
+			<TexCoords x="0" y="0" />
+			<TintColor r="0" g="0" b="0" />
+		</DynamicImage>
+
+		<Button name="CategoryTag" drawchildrenfirst="true" font="Arial_Black_14" >
+			<Size>
+				<AbsPoint x="200" y="24" />
+			</Size>
+			<TextColors>
+				<Normal r="15" g="15" b="15" a="255"/>
+				<NormalHighlit r="15" g="15" b="15" a="255" />
+				<Pressed r="15" g="15" b="15" a="255" />
+				<PressedHighlit r="15" g="15" b="15" a="255" />
+				<Disabled r="15" g="15" b="15" a="255"/>
+			</TextColors>
+			<Windows>
+				<HorizontalResizeImage name="$parentTab" texture="SimpleTab" texturescale="1.0" handleinput="false">
+					<Size>
+						<AbsPoint x="1" y="25" />
+					</Size>
+					<Anchors>
+						<Anchor point="topleft" relativePoint="topleft"/>
+						<Anchor point="bottomright" relativePoint="bottomright" />
+					</Anchors>
+					<Sizes left="27" middle="20" right="27" />
+					<TexCoords>
+						<Left x="0" y="0" />
+						<Middle x="29" y="0" />
+						<Right x="51" y="0" />
+					</TexCoords>
+				</HorizontalResizeImage>
+
+				<Button name="$parentShowCategory" inherits="UO_Default_Plus_Button" texturescale="0.8" layer="overlay">
+					<Size>
+						<AbsPoint x="22" y="22" />
+					</Size>
+					<Anchors>
+						<Anchor point="topleft" relativePoint="topleft" relativeTo="$parent">
+							<AbsPoint x="5" y="5" />
+						</Anchor>
+					</Anchors>
+					<EventHandlers>
+						<EventHandler event="OnLButtonUp" function="CharacterSheet.ShowCategory" />
+						<EventHandler event="OnMouseOver" function="CharacterSheet.ShowCategoryOver" />
+					</EventHandlers>
+				</Button>
+				<Button name="$parentHideCategory" inherits="UO_Default_Minus_Button" texturescale="0.8" layer="overlay">
+					<Size>
+						<AbsPoint x="22" y="22" />
+					</Size>
+					<Anchors>
+						<Anchor point="topleft" relativePoint="topleft" relativeTo="$parentShowCategory">
+							<AbsPoint x="0" y="0" />
+						</Anchor>
+					</Anchors>
+					<EventHandlers>
+						<EventHandler event="OnLButtonUp" function="CharacterSheet.HideCategory" />
+						<EventHandler event="OnMouseOver" function="CharacterSheet.HideCategoryOver" />
+					</EventHandlers>
+				</Button>
+			</Windows>
+		</Button>
+
+		<Window name="AttributeTemplate" >
+			<Size>
+				<AbsPoint x="379" y="24"/>
+			</Size>
+			<Windows>
+
+				<DynamicImage name="$parentSquareIcon" texturescale="0.78" handleinput="true">
+					<Size>
+						<AbsPoint x="27" y="27" />
+					</Size>
+					<Anchors>
+						<Anchor point="left" relativePoint="left">
+							<AbsPoint x="6" y="0" />
+						</Anchor>
+					</Anchors>
+					<EventHandlers>
+						<EventHandler event="OnLButtonDown" function="CharacterSheet.StatLButtonDown" />
+						<EventHandler event="OnMouseOver" function="CharacterSheet.StatMouseOver" />
+						<EventHandler event="OnMouseOverEnd" function="ItemProperties.ClearMouseOverItem" />
+					</EventHandlers>
+				</DynamicImage>
+				<Label name="$parentAttributeName" font="MyriadPro_16" maxchars="128" textalign="left" autoresize="true" handleinput="false" >
+					<Size>
+						<AbsPoint x="270" y="20"/>
+					</Size>
+					<Anchors>
+						<Anchor point="right" relativePoint="left"  relativeTo="$parentSquareIcon">
+							<AbsPoint x="10" y="0"/>
+						</Anchor>
+					</Anchors>
+					<Color r="15" g="15" b="15" a="255"/>
+				</Label>
+				<Label name="$parentAttributeValue" font="MyriadPro_16" maxchars="64" textalign="left" autoresize="true" handleinput="false" >
+					<Size>
+						<AbsPoint x="80" y="20"/>
+					</Size>
+					<Anchors>
+						<Anchor point="right" relativePoint="right" relativeTo="$parent">
+							<AbsPoint x="0" y="0"/>
+						</Anchor>
+					</Anchors>
+				</Label>
+				<DynamicImage name="$parentLockButton" texturescale="0.78">
+					<!--inherits="UpArrow"-->
+					<Size>
+						<AbsPoint x="15" y="15" />
+					</Size>
+					<Anchors>
+						<Anchor point="left" relativePoint="right" relativeTo="$parentAttributeValue">
+							<AbsPoint x="-5" y="0"/>
+						</Anchor>
+					</Anchors>
+					<EventHandlers>
+						<EventHandler event="OnLButtonDown" function="CharacterSheet.ClickStatLock"/>
+						<EventHandler event="OnMouseOver" function="CharacterSheet.LockMouseOver" />
+					</EventHandlers>
+				</DynamicImage>
+				<Label name="$parentExtra" font="MyriadPro_16" maxchars="32" textalign="left" autoresize="true" handleinput="false" >
+					<Size>
+						<AbsPoint x="110" y="20"/>
+					</Size>
+					<Anchors>
+						<Anchor point="left" relativePoint="right" relativeTo="$parentAttributeValue">
+							<AbsPoint x="-5" y="0"/>
+						</Anchor>
+					</Anchors>
+				</Label>
+			</Windows>
+		</Window>
+
+		<Window name="CityLoyaltyTemplate" >
+			<Size>
+				<AbsPoint x="379" y="24"/>
+			</Size>
+			<Windows>
+
+				<DynamicImage name="$parentSquareIcon" texturescale="1" handleinput="true" texture="SmallRoundButton">
+					<Size>
+						<AbsPoint x="14" y="14" />
+					</Size>
+					<Anchors>
+						<Anchor point="left" relativePoint="left">
+							<AbsPoint x="13" y="0" />
+						</Anchor>
+					</Anchors>
+					<EventHandlers>
+						<EventHandler event="OnLButtonDown" function="CharacterSheet.StatLButtonDown" />
+						<EventHandler event="OnMouseOver" function="CharacterSheet.StatMouseOver" />
+						<EventHandler event="OnMouseOverEnd" function="ItemProperties.ClearMouseOverItem" />
+					</EventHandlers>
+				</DynamicImage>
+				<Label name="$parentAttributeName" font="MyriadPro_16" maxchars="128" textalign="left" autoresize="true" handleinput="false" >
+					<Size>
+						<AbsPoint x="250" y="20"/>
+					</Size>
+					<Anchors>
+						<Anchor point="right" relativePoint="left"  relativeTo="$parentSquareIcon">
+							<AbsPoint x="10" y="-2"/>
+						</Anchor>
+					</Anchors>
+					<Color r="15" g="15" b="15" a="255"/>
+				</Label>
+				<Label name="$parentAttributeValue" font="MyriadPro_16" maxchars="64" textalign="left" autoresize="true" handleinput="false" >
+					<Size>
+						<AbsPoint x="129" y="20"/>
+					</Size>
+					<Anchors>
+						<Anchor point="right" relativePoint="right" relativeTo="$parent">
+							<AbsPoint x="0" y="-2"/>
+						</Anchor>
+					</Anchors>
+				</Label>				
+			</Windows>
+		</Window>
+
+		<Window name="CharacterSheet" movable="true" >
+			<Size>
+				<AbsPoint x="430" y="630" />
+			</Size>
+			<Anchors>
+				<Anchor point="topleft" relativePoint="topleft" >
+					<AbsPoint x="620" y="0" />
+				</Anchor>
+			</Anchors>
+			<EventHandlers>
+				<EventHandler event="OnInitialize" function="CharacterSheet.Initialize" />
+				<EventHandler event="OnShutdown" function="CharacterSheet.Shutdown" />
+				<EventHandler event="OnShown" function="CharacterSheet.OnShown" />
+				<EventHandler event="OnHidden" function="CharacterSheet.OnHidden" />
+				<EventHandler event="OnRButtonDown" function="CharacterSheet.OnRButtonDown" />
+				<EventHandler event="OnUpdate" function="CharacterSheet.UpdateStatus" />
+			</EventHandlers>
+			<Windows>
+				<!-- Default chrome. Alter this at your own peril. 
+			  <Window name="$parentChrome" inherits="UO_DefaultWindow">
+				  <Anchors>
+					  <Anchor point="topleft" relativePoint="topleft"/>
+					  <Anchor point="bottomright" relativePoint="bottomright"/>
+				  </Anchors>
+			  </Window>
+			   End of default chrome boilerplate code -->
+
+				<FullResizeImage name="$parentBg" texture="TMapBG" handleinput="false" layer="background">
+					<Anchors>
+						<Anchor point="topleft" relativePoint="topleft"/>
+						<Anchor point="bottomright" relativePoint="bottomright"/>
+					</Anchors>
+					<Sizes>
+						<TopLeft x="70" y="70" />
+						<BottomRight x="70" y="70" />
+						<Middle x="70" y="70" />
+					</Sizes>
+					<TexCoords>
+						<TopLeft x="0" y="0" />
+						<TopCenter x="70" y="0" />
+						<TopRight x="140" y="0" />
+						<MiddleLeft x="0" y="70" />
+						<MiddleCenter x="70" y="70" />
+						<MiddleRight x="140" y="70" />
+						<BottomLeft x="0" y="140" />
+						<BottomCenter x="70" y="140" />
+						<BottomRight x="140" y="140" />
+					</TexCoords>
+				</FullResizeImage>
+				<HorizontalResizeImage name="$parentTop" texture="TMapOverlay" handleinput="false" layer="background">
+					<Size>
+						<AbsPoint x="229" y="43" />
+					</Size>
+					<Anchors>
+						<Anchor point="topleft" relativePoint="topleft" relativeTo="$parentBg">
+							<AbsPoint x="-5" y="-2" />
+						</Anchor>
+						<Anchor point="topright" relativePoint="topright" relativeTo="$parentBg" />
+					</Anchors>
+					<Sizes left="70" middle="70" right="70"/>
+					<TexCoords>
+						<Left x="0" y="213" />
+						<Middle x="70" y="213" />
+						<Right x="155" y="215" />
+					</TexCoords>
+				</HorizontalResizeImage>
+				<HorizontalResizeImage name="$parentBottom" texture="TMapBG" handleinput="false" layer="background">
+					<Size>
+						<AbsPoint x="218" y="18" />
+					</Size>
+					<Anchors>
+						<Anchor point="bottomleft" relativePoint="bottomleft" relativeTo="$parentBg">
+							<AbsPoint x="2" y="4" />
+						</Anchor>
+						<Anchor point="bottomright" relativePoint="bottomright" relativeTo="$parentBg" />
+					</Anchors>
+					<Sizes left="70" middle="70" right="70"/>
+					<TexCoords>
+						<Left x="0" y="212" />
+						<Middle x="70" y="212" />
+						<Right x="150" y="210" />
+					</TexCoords>
+				</HorizontalResizeImage>
+
+				<Label name="$parentTitle" font="Arial_Black_16" maxchars="64" textalign="center" autoresize="true" handleinput="false" >
+					<Size>
+						<AbsPoint x="300" y="20"/>
+					</Size>
+					<Anchors>
+						<Anchor point="top" relativePoint="top" relativeTo="$parent">
+							<AbsPoint x="0" y="20"/>
+						</Anchor>
+					</Anchors>
+					<Color r="15" g="15" b="15" a="255"/>
+				</Label>
+
+				<ScrollWindow name="$parentScrollArea" childscrollwindow="$parentScrollChild" scrollbar="$parentScrollbar" lineheight="18" autoHideScrollBar="true" >
+					<Size>
+						<AbsPoint x="385" y="200" />
+					</Size>
+					<Anchors>
+						<Anchor point="topleft" relativePoint="topleft" relativeTo="$parent" >
+							<AbsPoint x="15" y="55" />
+						</Anchor>
+						<Anchor point="bottomright" relativePoint="bottomright" relativeTo="$parent" >
+							<AbsPoint x="-10" y="-15" />
+						</Anchor>
+					</Anchors>
+
+					<Windows>
+						<VerticalScrollbar name="$parentScrollbar" inherits="StandardVertScroll" layer="secondary"/>
+
+						<Window name="$parentScrollChild" popable="false">
+							<Size>
+								<AbsPoint x="385" y="0"/>
+							</Size>
+						</Window>
+					</Windows>
+				</ScrollWindow>
+
+
+			</Windows>
+		</Window>
+
+	</Windows>
+</Interface>

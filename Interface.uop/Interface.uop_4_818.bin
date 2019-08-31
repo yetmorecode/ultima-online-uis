@@ -1,0 +1,267 @@
+
+----------------------------------------------------------------
+-- Global Variables/Functions
+----------------------------------------------------------------
+
+-- static declaration for the basic TwoButtonDialog class.
+--   objects (or subclasses) created by its new function are designed to hold
+--   data and provide methods for the TwoButtonDialog.xml template
+--
+TwoButtonDialog = {}
+
+TwoButtonDialogManager = GGManager
+
+ 
+-- Creates a new table or uses the passed in table, and causes all functions of 
+--   TwoButtonDialog to be inherited by it. If the table overrides these functions
+--   then that new version will be used instead. 
+--
+-- The normal method of using this is for your new class/Lua file to call something like
+--   "NewClassName = TwoButtonDialog:new()" at the top of the file
+--   then to declare an object of that class you can call "MyNewWindow = NewClassName:new()"
+--   in your initialize function. 
+--
+-- If you then call the "MyNewWindow:Init()" function the default version will map
+--   the window's name (static or dynamic) to your MyNewWindow data for retrieval 
+--   by any class functions.
+--
+function TwoButtonDialog:new( newWindow )
+	newWindow = newWindow or {}
+	setmetatable(newWindow, self)
+	self.__index = self
+	
+	return newWindow
+end
+
+
+-- Init does the following:
+--   1. retrieves data from the server
+--   2. calls the object specific setDataFunction() to put the server data into standard fields
+--   3. assigns those fields to the actual button/window names in setFields
+--
+-- TwoButtonDialogs have a default setDataFunction and setFields functions, but
+--   either or both can be overwritten for different behavior. In some cases you may
+--   wish to ignore the setFields function, e.g. set "self:setFields = nil" and
+--   directly set the incoming data to the windows in the self:setDataFunction
+--
+function TwoButtonDialog:Init()
+	
+	if not UO_GenericGump.retrieveWindowData( self ) then
+		return false
+	end
+	
+	if self.setDataFunction then
+		self:setDataFunction()
+	end
+
+	if self.setFields then
+		self:setFields()
+	end
+
+	TwoButtonDialogManager.knownWindows[self.windowName] = self
+	WindowSetId( self.windowName.."Chrome_UO_WindowCloseButton", UO_GenericGump.DEFAULT_CLOSE_BUTTON_ID )	
+	Interface.OnCloseCallBack[self.windowName] = function()
+		local self = TwoButtonDialog.getActiveWindowData()
+		self:DefaultButtonFunction()
+	end
+	
+	Debug.PrintToDebugConsole( L"Initialize "..self.name )
+end
+
+
+----------------------------------------------------------------
+
+
+
+-- requires that gumpData.descData is already set and contains at least 1 values
+--
+function TwoButtonDialog.parseDescAsText(gumpData)
+	UO_GenericGump.debug( L"parseDescAsTextAndTwoButtons - setting data for = "..gumpData.name )
+
+	gumpData.text = GGManager.translateTID(gumpData.descData[1])
+	if gumpData.descDataCount > 1 then
+		gumpData.text = gumpData.text..L"\n\n"..GGManager.translateTID(gumpData.descData[2])
+	end 
+
+	gumpData.leftButtonName = GGManager.translateTID(GGManager.OKAY_TID)
+	gumpData.rightButtonName = GGManager.translateTID(GGManager.CANCEL_TID)
+	
+	gumpData.leftButtonID = gumpData.buttonIDs[1]
+	gumpData.rightButtonID = gumpData.buttonIDs[2]
+	
+end
+
+
+-- requires that gumpData.descData is already set and contains at least 3 values
+--
+function TwoButtonDialog.parseDescAsTextAndTwoButtons(gumpData)
+	UO_GenericGump.debug( L"parseDescAsTextAndTwoButtons - setting data for = "..gumpData.name )
+	gumpData.text = GGManager.translateTID(gumpData.descData[1])
+	gumpData.leftButtonName = GGManager.translateTID(gumpData.descData[2])
+	gumpData.rightButtonName = GGManager.translateTID(gumpData.descData[3])
+	
+	gumpData.leftButtonID = gumpData.buttonIDs[1]
+	gumpData.rightButtonID = gumpData.buttonIDs[2]
+	
+end
+
+
+-- requires that gumpData.descData is already set and contains 4 values
+--
+function TwoButtonDialog.parseDescAsTitleTextAndTwoButtons(gumpData)
+	UO_GenericGump.debug( L"parseDescAsTitleTextAndTwoButtons - setting data for = "..gumpData.name )
+	gumpData.title = GGManager.translateTID(gumpData.descData[1])
+	gumpData.text = GGManager.translateTID(gumpData.descData[2])
+	gumpData.leftButtonName = GGManager.translateTID(gumpData.descData[3])
+	gumpData.rightButtonName = GGManager.translateTID(gumpData.descData[4])
+	
+	gumpData.leftButtonID = gumpData.buttonIDs[1]
+	gumpData.rightButtonID = gumpData.buttonIDs[2]
+	
+end
+
+-- requires that gumpData.descData is already set and contains at least 5 values
+--
+function TwoButtonDialog.parseDescAsTitleSubtitleTextAndTwoButtons(gumpData)
+	UO_GenericGump.debug( L"parseDescAsTitleTextAndTwoButtons - setting data for = "..gumpData.name )
+	gumpData.title = GGManager.translateTID(gumpData.descData[1])
+	gumpData.subtitle = GGManager.translateTID(gumpData.descData[2])
+	gumpData.text = GGManager.translateTID(gumpData.descData[3])
+	gumpData.leftButtonName = GGManager.translateTID(gumpData.descData[4])
+	gumpData.rightButtonName = GGManager.translateTID(gumpData.descData[5])
+	
+	gumpData.leftButtonID = gumpData.buttonIDs[1]
+	gumpData.rightButtonID = gumpData.buttonIDs[2]
+	
+end
+
+
+-- Data expected in the gumpData is buttonIDs[1] and buttonIDs[2] (for the two button return values)
+--   and from 1 to 5 descData[]
+--   if descDataCount = 5 - descData[1] is title, descData[2] is subtitle, descData[3] is text, descData[4] and descData[5] are button labels
+--   if descDataCount = 4 - descData[1] is title, descData[2] is text, descData[3] and descData[4] are button labels
+--   if descDataCount = 3 - descData[1] is text, descData[2] and descData[3] are button labels
+--   if descDataCount = 2 - descData[1] and descData[2] are text, button labels are set to OK and Cancel
+--   if descDataCount = 1 - descData[1] is text, button labels are set to OK and Cancel
+--
+-- With descDataCount 1 or 2, we must make sure that the buttonIDs sent from the server sends the
+--   Cancel button last 
+--
+function TwoButtonDialog.parseData(gumpData)
+	UO_GenericGump.debug( L"TwoButtonDialog.parseData(gumpData) - setting data for = "..gumpData.name )
+	if gumpData.descDataCount > 4 then
+		TwoButtonDialog.parseDescAsTitleSubtitleTextAndTwoButtons(gumpData)
+	elseif gumpData.descDataCount > 3 then
+		TwoButtonDialog.parseDescAsTitleTextAndTwoButtons(gumpData)
+	elseif gumpData.descDataCount > 2 then
+		TwoButtonDialog.parseDescAsTextAndTwoButtons(gumpData)
+	else
+		TwoButtonDialog.parseDescAsText(gumpData)
+	end
+end
+
+
+function TwoButtonDialog:setFields()
+
+	if self.title then
+		WindowUtils.SetActiveDialogTitle( self.title )
+    end
+	if self.subtitle then
+		LabelSetText( self.windowName.."Subtitle", self.subtitle )
+    end
+    LabelSetText( self.windowName.."ScrollChildText", self.text )
+	ButtonSetText(self.windowName.."LeftButtonName", self.leftButtonName )
+	WindowSetId( self.windowName.."LeftButtonName", self.leftButtonID )	
+	ButtonSetText(self.windowName.."RightButtonName", self.rightButtonName )
+	WindowSetId( self.windowName.."RightButtonName", self.rightButtonID )	
+	
+	-- *** KLUDGE - the size of the subtitle was causing the text to not scroll
+	--   to the bottom.
+	local subtitle_width, subtitle_height = WindowGetDimensions( self.windowName.."Subtitle" )
+	local text_width, text_height = WindowGetDimensions( self.windowName.."ScrollChildText" )	
+	WindowSetDimensions( self.windowName.."ScrollChildText", text_width, text_height+subtitle_height )
+end
+
+
+
+
+function TwoButtonDialog.getActiveWindowData()
+	local windowName = WindowUtils.GetActiveDialog()
+	return TwoButtonDialogManager.knownWindows[windowName]
+end
+
+
+----------------------------------------------------------------
+-- TwoButtonDialog Functions
+----------------------------------------------------------------
+
+
+
+-- OnInitialize Handler
+function TwoButtonDialog.Initialize()
+	local newWindow = TwoButtonDialog:new()
+
+	newWindow.setDataFunction = TwoButtonDialog.parseData
+	newWindow:Init()
+end 
+
+
+function TwoButtonDialog.LeftButtonPressed()
+	
+	local self = TwoButtonDialog.getActiveWindowData()
+	
+	-- specialized windows can declare their own RightButtonFunction() or else 
+	--   use the DefaultButtonFunction assuming the button's ID has been set.
+	if  self.LeftButtonFunction then
+		self:LeftButtonFunction()
+	else
+		self:DefaultButtonFunction()
+	end	
+end
+
+
+--
+function TwoButtonDialog.RightButtonPressed()
+	
+	local self = TwoButtonDialog.getActiveWindowData()
+	
+	-- specialized windows can declare their own RightButtonFunction() or else 
+	--   use the DefaultButtonFunction assuming the button's ID has been set.
+	if  self.RightButtonFunction then
+		self:RightButtonFunction()
+	else
+		self:DefaultButtonFunction()
+	end	
+end
+
+
+
+function TwoButtonDialog:DefaultButtonFunction()
+	UO_GenericGump.debug( L"TwoButtonDialog:DefaultButtonFunction called. ")
+	
+	local buttonID = WindowGetId( SystemData.ActiveWindow.name )
+
+	-- NOTE: this may need to be changed. Currently WindowGetId seems to return 0,
+	--  if a value is not set (and 0 is a valid value). May change C++ to return negative value
+	--  when no value is set
+	if not buttonID then	
+		Debug.PrintToDebugConsole( L"ERROR in TwoButtonDialog.DefaultButtonFunction: no ID set for button pressed." )
+		return
+	end
+
+	UO_GenericGump.debug( L"called TwoButtonDialog.DefaultButtonFunction(). Sending button value of "..buttonID )
+
+	UO_GenericGump.broadcastButtonPress( buttonID, self )
+	self.OnCloseWindow()
+end
+
+
+--
+function TwoButtonDialog.OnCloseWindow()
+	UO_GenericGump.debug( L"TwoButtonDialog.OnCloseWindow called. ")
+
+	GGManager.destroyActiveWindow()
+end
+
+
+

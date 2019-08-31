@@ -1,0 +1,893 @@
+<Interface xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../Interface.xsd">
+  <Windows>
+    <DynamicImage name="ListLine" texture="HLine" layer="overlay" popable ="false" handleInput="false" >
+      <TexCoords x="0" y="0" />
+      <TintColor r="125" g="125" b="125" a="125" />
+    </DynamicImage>
+    <!-- For bank -->
+    <Window name="ContainerBankMaskTemplate" layer="ovarlay" draganddrop="false" handleinput="true">
+      <Size>
+        <AbsPoint x="300" y="164" />
+      </Size>
+      <Windows>
+        <!-- Inner Frame Boilerplate -->
+        <FullResizeImage name="$parentBG" inherits="UO_Simple_Black_Background">
+          <Anchors>
+            <Anchor point="topleft" relativePoint="topleft" />
+            <Anchor point="bottomright" relativePoint="bottomright" />
+          </Anchors>
+        </FullResizeImage>
+        <FullResizeImage name="$parentFrame" inherits="UO_Default_Inner_Window_Frame">
+          <Anchors>
+            <Anchor point="topleft" relativePoint="topleft" />
+            <Anchor point="bottomright" relativePoint="bottomright" />
+          </Anchors>
+        </FullResizeImage>
+        <!-- End of Inner Frame Boilerplate -->
+        
+        <!-- LABELS -->
+        <Label name="$parentTotalGold" font="Arial_Black_Shadow_14" maxchars="64" textalign="left" draganddrop="true" handleinput="false" autoresizewidth="false"  autoresize="true" wordwrap="true">
+          <Size>
+            <AbsPoint x="150" y="14" />
+          </Size>
+          <Anchors>
+            <Anchor point="topleft" relativePoint="topleft" relativeTo="$parent" >
+              <AbsPoint x="5" y="5" />
+            </Anchor>
+          </Anchors>
+          <Color r="255" g="255" b="255" a="255" />
+        </Label>
+
+        <Label name="$parentTotalGoldValue" font="Arial_Black_Shadow_14" maxchars="64" textalign="left" draganddrop="true" handleinput="false" autoresizewidth="false"  autoresize="true" wordwrap="true">
+          <Size>
+            <AbsPoint x="150" y="14" />
+          </Size>
+          <Anchors>
+            <Anchor point="topright" relativePoint="topleft" relativeTo="$parentTotalGold" >
+              <AbsPoint x="5" y="0" />
+            </Anchor>
+          </Anchors>
+          <Color r="243" g="227" b="49" a="255" />
+        </Label>
+
+        <Label name="$parentTotalPlatinum" font="Arial_Black_Shadow_14" maxchars="64" textalign="left" draganddrop="true" handleinput="false" autoresizewidth="false"  autoresize="true" wordwrap="true">
+          <Size>
+            <AbsPoint x="150" y="14" />
+          </Size>
+          <Anchors>
+            <Anchor point="bottomleft" relativePoint="topleft" relativeTo="$parentTotalGold" >
+              <AbsPoint x="0" y="5" />
+            </Anchor>
+          </Anchors>
+          <Color r="255" g="255" b="255" a="255" />
+        </Label>
+
+        <Label name="$parentTotalPlatinumValue" font="Arial_Black_Shadow_14" maxchars="64" textalign="left" draganddrop="true" handleinput="false" autoresizewidth="false"  autoresize="true" wordwrap="true">
+          <Size>
+            <AbsPoint x="150" y="14" />
+          </Size>
+          <Anchors>
+            <Anchor point="topright" relativePoint="topleft" relativeTo="$parentTotalPlatinum" >
+              <AbsPoint x="5" y="0" />
+            </Anchor>
+          </Anchors>
+          <Color r="195" g="195" b="195" a="255" />
+        </Label>
+
+        <Label name="$parentTotalSecure" font="Arial_Black_Shadow_14" maxchars="64" textalign="left" draganddrop="true" handleinput="false" autoresizewidth="false"  autoresize="true" wordwrap="true">
+          <Size>
+            <AbsPoint x="150" y="14" />
+          </Size>
+          <Anchors>
+            <Anchor point="bottomleft" relativePoint="topleft" relativeTo="$parentTotalPlatinum" >
+              <AbsPoint x="0" y="5" />
+            </Anchor>
+          </Anchors>
+          <Color r="255" g="255" b="255" a="255" />
+        </Label>
+
+        <Label name="$parentTotalSecureValue" font="Arial_Black_Shadow_14" maxchars="64" textalign="left" draganddrop="true" handleinput="false" autoresizewidth="false"  autoresize="true" wordwrap="true">
+          <Size>
+            <AbsPoint x="150" y="14" />
+          </Size>
+          <Anchors>
+            <Anchor point="topright" relativePoint="topleft" relativeTo="$parentTotalSecure" >
+              <AbsPoint x="5" y="0" />
+            </Anchor>
+          </Anchors>
+          <Color r="243" g="227" b="49" a="255" />
+        </Label>
+
+        <Label name="$parentTotalTransferGold" font="Arial_Black_Shadow_14" maxchars="64" textalign="left" draganddrop="true" handleinput="false" autoresizewidth="false"  autoresize="true" wordwrap="true">
+          <Size>
+            <AbsPoint x="150" y="14" />
+          </Size>
+          <Anchors>
+            <Anchor point="bottomleft" relativePoint="topleft" relativeTo="$parentTotalSecure" >
+              <AbsPoint x="0" y="5" />
+            </Anchor>
+          </Anchors>
+          <Color r="255" g="255" b="255" a="255" />
+        </Label>
+
+        <Label name="$parentTotalTransferGoldValue" font="Arial_Black_Shadow_14" maxchars="64" textalign="left" draganddrop="true" handleinput="false" autoresizewidth="false"  autoresize="true" wordwrap="true">
+          <Size>
+            <AbsPoint x="150" y="14" />
+          </Size>
+          <Anchors>
+            <Anchor point="topright" relativePoint="topleft" relativeTo="$parentTotalTransferGold" >
+              <AbsPoint x="5" y="0" />
+            </Anchor>
+          </Anchors>
+          <Color r="243" g="227" b="49" a="255" />
+        </Label>
+
+        <Label name="$parentTotalTransferPlatinum" font="Arial_Black_Shadow_14" maxchars="64" textalign="left" draganddrop="true" handleinput="false" autoresizewidth="false"  autoresize="true" wordwrap="true">
+          <Size>
+            <AbsPoint x="150" y="14" />
+          </Size>
+          <Anchors>
+            <Anchor point="bottomleft" relativePoint="topleft" relativeTo="$parentTotalTransferGold" >
+              <AbsPoint x="0" y="5" />
+            </Anchor>
+          </Anchors>
+          <Color r="255" g="255" b="255" a="255" />
+        </Label>
+
+        <Label name="$parentTotalTransferPlatinumValue" font="Arial_Black_Shadow_14" maxchars="64" textalign="left" draganddrop="true" handleinput="false" autoresizewidth="false"  autoresize="true" wordwrap="true">
+          <Size>
+            <AbsPoint x="150" y="14" />
+          </Size>
+          <Anchors>
+            <Anchor point="topright" relativePoint="topleft" relativeTo="$parentTotalTransferPlatinum" >
+              <AbsPoint x="5" y="0" />
+            </Anchor>
+          </Anchors>
+          <Color r="195" g="195" b="195" a="255" />
+        </Label>
+
+        <!-- BUTTONS -->
+        <Window name="$parentDepositGoldTransfer" layer="ovarlay" draganddrop="false" handleinput="true">
+          <Size>
+            <AbsPoint x="48" y="48" />
+          </Size>
+          <Anchors>
+            <Anchor point="bottomleft" relativePoint="topleft" relativeTo="$parentTotalTransferPlatinum" >
+              <AbsPoint x="0" y="15" />
+            </Anchor>
+          </Anchors>
+          <EventHandlers>
+            <EventHandler event="OnMouseOver" function="ContainerWindow.BankMaskButtonTooltip" />
+            <EventHandler event="OnLButtonDown" function="ContainerWindow.BankMaskButtonClicked" />
+          </EventHandlers>
+          <Windows>
+            <DynamicImage name="$parentIMG" layer="popup" handleinput="false">
+              <Size>
+                <AbsPoint x="48" y="48" />
+              </Size>
+              <Anchors>
+                <Anchor point="topleft" relativePoint="topleft" relativeTo="$parent" >
+                  <AbsPoint x="0" y="0" />
+                </Anchor>
+              </Anchors>
+            </DynamicImage>
+            <DynamicImage name="$parentArrow" layer="popup" handleinput="false"  texture="Resize_Up_Left">
+              <Size>
+                <AbsPoint x="18" y="18" />
+              </Size>
+              <Anchors>
+                <Anchor point="bottomright" relativePoint="bottomright" relativeTo="$parentIMG" >
+                  <AbsPoint x="0" y="0" />
+                </Anchor>
+              </Anchors>
+              <TexCoords x="1" y="1" />
+            </DynamicImage>
+          </Windows>
+        </Window>
+        
+        <Window name="$parentDepositPlatinumTransfer" layer="ovarlay" draganddrop="false" handleinput="true">
+          <Size>
+            <AbsPoint x="48" y="48" />
+          </Size>
+          <Anchors>
+            <Anchor point="topright" relativePoint="topleft" relativeTo="$parentDepositGoldTransfer" >
+              <AbsPoint x="0" y="0" />
+            </Anchor>
+          </Anchors>
+          <EventHandlers>
+            <EventHandler event="OnMouseOver" function="ContainerWindow.BankMaskButtonTooltip" />
+            <EventHandler event="OnLButtonDown" function="ContainerWindow.BankMaskButtonClicked" />
+          </EventHandlers>
+          <Windows>
+            <DynamicImage name="$parentIMG" layer="popup" handleinput="false">
+              <Size>
+                <AbsPoint x="48" y="48" />
+              </Size>
+              <Anchors>
+                <Anchor point="topleft" relativePoint="topleft" relativeTo="$parent" >
+                  <AbsPoint x="0" y="0" />
+                </Anchor>
+              </Anchors>
+            </DynamicImage>
+            <DynamicImage name="$parentArrow" layer="popup" handleinput="false"  texture="Resize_Up_Left">
+              <Size>
+                <AbsPoint x="18" y="18" />
+              </Size>
+              <Anchors>
+                <Anchor point="bottomright" relativePoint="bottomright" relativeTo="$parentIMG" >
+                  <AbsPoint x="0" y="0" />
+                </Anchor>
+              </Anchors>
+              <TexCoords x="1" y="1" />
+            </DynamicImage>
+          </Windows>
+        </Window>
+
+        <Window name="$parentWithdrawGoldTransfer" layer="ovarlay" draganddrop="false" handleinput="true">
+          <Size>
+            <AbsPoint x="48" y="48" />
+          </Size>
+          <Anchors>
+            <Anchor point="topright" relativePoint="topleft" relativeTo="$parentDepositPlatinumTransfer" >
+              <AbsPoint x="5" y="0" />
+            </Anchor>
+          </Anchors>
+          <EventHandlers>
+            <EventHandler event="OnMouseOver" function="ContainerWindow.BankMaskButtonTooltip" />
+            <EventHandler event="OnLButtonDown" function="ContainerWindow.BankMaskButtonClicked" />
+          </EventHandlers>
+          <Windows>
+            <DynamicImage name="$parentIMG" layer="popup" handleinput="false">
+              <Size>
+                <AbsPoint x="48" y="48" />
+              </Size>
+              <Anchors>
+                <Anchor point="topleft" relativePoint="topleft" relativeTo="$parent" >
+                  <AbsPoint x="0" y="0" />
+                </Anchor>
+              </Anchors>
+            </DynamicImage>
+            <DynamicImage name="$parentArrow" layer="popup" handleinput="false"  texture="Resize_Top_Left">
+              <Size>
+                <AbsPoint x="18" y="18" />
+              </Size>
+              <Anchors>
+                <Anchor point="bottomright" relativePoint="bottomright" relativeTo="$parentIMG" >
+                  <AbsPoint x="0" y="0" />
+                </Anchor>
+              </Anchors>
+              <TexCoords x="1" y="1" />
+            </DynamicImage>
+          </Windows>
+        </Window>
+
+        <Window name="$parentWithdrawPlatinumTransfer" layer="ovarlay" draganddrop="false" handleinput="true">
+          <Size>
+            <AbsPoint x="48" y="48" />
+          </Size>
+          <Anchors>
+            <Anchor point="topright" relativePoint="topleft" relativeTo="$parentWithdrawGoldTransfer" >
+              <AbsPoint x="0" y="0" />
+            </Anchor>
+          </Anchors>
+          <EventHandlers>
+            <EventHandler event="OnMouseOver" function="ContainerWindow.BankMaskButtonTooltip" />
+            <EventHandler event="OnLButtonDown" function="ContainerWindow.BankMaskButtonClicked" />
+          </EventHandlers>
+          <Windows>
+            <DynamicImage name="$parentIMG" layer="popup" handleinput="false">
+              <Size>
+                <AbsPoint x="48" y="48" />
+              </Size>
+              <Anchors>
+                <Anchor point="topleft" relativePoint="topleft" relativeTo="$parent" >
+                  <AbsPoint x="0" y="0" />
+                </Anchor>
+              </Anchors>
+            </DynamicImage>
+            <DynamicImage name="$parentArrow" layer="popup" handleinput="false"  texture="Resize_Top_Left">
+              <Size>
+                <AbsPoint x="18" y="18" />
+              </Size>
+              <Anchors>
+                <Anchor point="bottomright" relativePoint="bottomright" relativeTo="$parentIMG" >
+                  <AbsPoint x="0" y="0" />
+                </Anchor>
+              </Anchors>
+              <TexCoords x="1" y="1" />
+            </DynamicImage>
+          </Windows>
+        </Window>
+
+        <Window name="$parentDepositGoldSecure" layer="ovarlay" draganddrop="false" handleinput="true">
+          <Size>
+            <AbsPoint x="44" y="44" />
+          </Size>
+          <Anchors>
+            <Anchor point="topright" relativePoint="topleft" relativeTo="$parentWithdrawPlatinumTransfer" >
+              <AbsPoint x="5" y="10" />
+            </Anchor>
+          </Anchors>
+          <EventHandlers>
+            <EventHandler event="OnMouseOver" function="ContainerWindow.BankMaskButtonTooltip" />
+            <EventHandler event="OnLButtonDown" function="ContainerWindow.BankMaskButtonClicked" />
+          </EventHandlers>
+          <Windows>
+            <DynamicImage name="$parentIMG" layer="popup" handleinput="false">
+              <Size>
+                <AbsPoint x="44" y="44" />
+              </Size>
+              <Anchors>
+                <Anchor point="topleft" relativePoint="topleft" relativeTo="$parent" >
+                  <AbsPoint x="0" y="0" />
+                </Anchor>
+              </Anchors>
+            </DynamicImage>
+            <DynamicImage name="$parentArrow" layer="popup" handleinput="false"  texture="Resize_Up_Left">
+              <Size>
+                <AbsPoint x="18" y="18" />
+              </Size>
+              <Anchors>
+                <Anchor point="bottomright" relativePoint="bottomright" relativeTo="$parentIMG" >
+                  <AbsPoint x="0" y="0" />
+                </Anchor>
+              </Anchors>
+              <TexCoords x="1" y="1" />
+            </DynamicImage>
+          </Windows>
+        </Window>
+
+        <Window name="$parentWithdrawGoldSecure" layer="ovarlay" draganddrop="false" handleinput="true">
+          <Size>
+            <AbsPoint x="44" y="44" />
+          </Size>
+          <Anchors>
+            <Anchor point="topright" relativePoint="topleft" relativeTo="$parentDepositGoldSecure" >
+              <AbsPoint x="0" y="0" />
+            </Anchor>
+          </Anchors>
+          <EventHandlers>
+            <EventHandler event="OnMouseOver" function="ContainerWindow.BankMaskButtonTooltip" />
+            <EventHandler event="OnLButtonDown" function="ContainerWindow.BankMaskButtonClicked" />
+          </EventHandlers>
+          <Windows>
+            <DynamicImage name="$parentIMG" layer="popup" handleinput="false">
+              <Size>
+                <AbsPoint x="44" y="44" />
+              </Size>
+              <Anchors>
+                <Anchor point="topleft" relativePoint="topleft" relativeTo="$parent" >
+                  <AbsPoint x="0" y="0" />
+                </Anchor>
+              </Anchors>
+            </DynamicImage>
+            <DynamicImage name="$parentArrow" layer="popup" handleinput="false"  texture="Resize_Top_Left">
+              <Size>
+                <AbsPoint x="18" y="18" />
+              </Size>
+              <Anchors>
+                <Anchor point="bottomright" relativePoint="bottomright" relativeTo="$parentIMG" >
+                  <AbsPoint x="0" y="0" />
+                </Anchor>
+              </Anchors>
+              <TexCoords x="1" y="1" />
+            </DynamicImage>
+          </Windows>
+        </Window>
+
+        <Button name="$parentHelpButton" sticky="false" backgroundtexture="Help" highlighttexture="Help" layer="secondary">
+          <Size>
+            <AbsPoint x="28" y="30" />
+          </Size>
+          <Anchors>
+            <Anchor point="topright" relativePoint="topright">
+              <AbsPoint x="-5" y="5" />
+            </Anchor>
+          </Anchors>
+          <TexCoords>
+            <Normal x="0" y="0" />
+            <NormalHighlit x="84" y="0" />
+            <Pressed x="0" y="0" />
+            <PressedHighlit x="0" y="0" />
+            <Disabled x="112" y="0" />
+          </TexCoords>
+          <EventHandlers>
+            <EventHandler event="OnLButtonUp" function="ContainerWindow.BankMaskButtonClicked" />
+            <EventHandler event="OnMouseOver" function="ContainerWindow.BankMaskButtonTooltip" />
+          </EventHandlers>
+        </Button>
+        
+      </Windows>
+    </Window>
+
+    <!-- For list view -->
+    <Window name="ContainerItemTemplate"  draganddrop="true">
+
+      <EventHandlers>
+        <EventHandler event="OnLButtonDown" function="ContainerWindow.OnItemClicked" />
+        <EventHandler event="OnLButtonDblClk" function="ContainerWindow.OnItemDblClicked" />
+        <EventHandler event="OnLButtonUp" function="ContainerWindow.OnItemRelease" />
+        <EventHandler event="OnRButtonDown" function="ContainerWindow.OnItemGet" />
+        <EventHandler event="OnRButtonUp" function="ContainerWindow.OnItemRButtonUp" />
+        <EventHandler event="OnMouseOver" function="ContainerWindow.ItemMouseOver"/>
+        <EventHandler event="OnMouseOverEnd" function="ContainerWindow.OnMouseOverEnd"/>
+      </EventHandlers>
+      <Windows>
+        <DynamicImage name="$parentIcon" texture=""  texturescale="2.0" draganddrop="true" handleinput="false">
+          <Size>
+            <AbsPoint x="45" y="45" />
+          </Size>
+          <Anchors>
+            <Anchor point="topleft" relativePoint="topleft">
+              <AbsPoint x="0" y="0" />
+            </Anchor>
+          </Anchors>
+        </DynamicImage>
+
+        <Label name="$parentName" font="Arial_Black_Shadow_14" maxchars="64" textalign="left" draganddrop="true" handleinput="false" autoresizewidth="false"  autoresize="true" wordwrap="true">
+          <Anchors>
+
+            <Anchor point="topleft" relativePoint="topleft" relativeTo="$parent" >
+              <AbsPoint x="65" y="5" />
+            </Anchor>
+            <Anchor point="topright" relativePoint="topright" relativeTo="$parent" >
+              <AbsPoint x="-10" y="5" />
+            </Anchor>
+          </Anchors>
+          <Color r="255" g="255" b="255" a="255" />
+        </Label>
+
+        <Label name="$parentUses" font="Arial_Black_Shadow_11" maxchars="64" textalign="right" draganddrop="true" handleinput="false" autoresizewidth="true"  autoresize="true" wordwrap="true">
+          <Anchors>
+            <Anchor point="bottomright" relativePoint="bottomright" relativeTo="$parent" >
+              <AbsPoint x="-10" y="-10" />
+            </Anchor>
+          </Anchors>
+          <Color r="255" g="255" b="255" a="255" />
+        </Label>
+      </Windows>
+
+    </Window>
+
+    <!-- For grid view -->
+
+    <Button name="GridViewSocketBaseTemplate" texturescale="1.125" draganddrop="true">
+      <Size>
+        <AbsPoint x="56" y="56" />
+        <!-- if changed, ContainerWindow.lua must be updated -->
+      </Size>
+      <TexCoords>
+        <Normal texture="default_grid_backpack" x="0" y="0" />
+        <NormalHighlit texture="default_grid_backpack" x="50" y="0" />
+        <Disabled texture="default_grid_backpack" x="0" y="0" />
+        <Pressed texture="default_grid_backpack" x="0" y="0" />
+        <PressedHighlit texture="default_grid_backpack" x="50" y="0" />
+      </TexCoords>
+    </Button>
+
+    <Button name="GridViewSocketTemplate" inherits="GridViewSocketBaseTemplate" draganddrop="true">
+      <Windows>
+        <DynamicImage name="$parentBG" texturescale="1.125" texture="colored_grid_backpack" handleinput="false" layer="background">
+          <Size>
+            <AbsPoint x="56" y="56" />
+          </Size>
+          <Anchors>
+            <Anchor point="topleft" relativePoint="topleft" relativeTo="$parent">
+              <AbsPoint x="0" y="0" />
+            </Anchor>
+          </Anchors>
+          <TexCoords x="0" y="50"/>
+        </DynamicImage>
+        <DynamicImage name="$parentIcon" texturescale="1.125" handleinput="false" layer="default">
+          <Size>
+            <AbsPoint x="48" y="48" />
+          </Size>
+          <Anchors>
+            <Anchor point="center" relativePoint="center" relativeTo="">
+              <AbsPoint x="0" y="0" />
+            </Anchor>
+          </Anchors>
+        </DynamicImage>
+        <DynamicImage name="$parentIconMulti" texturescale="1.125" handleinput="false" layer="secondary">
+          <Size>
+            <AbsPoint x="48" y="48" />
+          </Size>
+          <Anchors>
+            <Anchor point="center" relativePoint="center" relativeTo="$parentIcon">
+              <AbsPoint x="6" y="6" />
+            </Anchor>
+          </Anchors>
+        </DynamicImage>
+        <Label name="$parentQuantity" font="MyriadPro_15" maxchars="6" textalign="left" autoresize="true" wordwrap="false" layer="popup" handleinput="false">
+          <Size>
+            <AbsPoint x="60" y="15" />
+          </Size>
+          <Anchors>
+            <Anchor point="bottomleft" relativePoint="bottomleft">
+              <AbsPoint x="2" y="-2" />
+            </Anchor>
+          </Anchors>
+          <Color r="255" g="255" b="255" a="255" />
+        </Label>
+        <Label name="$parentUses" font="MyriadPro_15" maxchars="6" textalign="right" autoresize="true" wordwrap="false" layer="popup" handleinput="false">
+          <Size>
+            <AbsPoint x="60" y="15" />
+          </Size>
+          <Anchors>
+            <Anchor point="topright" relativePoint="topright">
+              <AbsPoint x="-6" y="4" />
+            </Anchor>
+          </Anchors>
+          <Color r="255" g="255" b="255" a="255" />
+        </Label>
+      </Windows>
+      <TexCoords>
+        <Normal texture="default_grid_backpack" x="0" y="0" />
+        <NormalHighlit texture="default_grid_backpack" x="50" y="0" />
+        <Disabled texture="default_grid_backpack" x="0" y="0" />
+        <Pressed texture="default_grid_backpack" x="0" y="0" />
+        <PressedHighlit texture="default_grid_backpack" x="50" y="0" />
+      </TexCoords>
+      <EventHandlers>
+        <EventHandler event="OnLButtonDown" function="ContainerWindow.OnItemClicked" />
+        <EventHandler event="OnLButtonDblClk" function="ContainerWindow.OnItemDblClicked" />
+        <EventHandler event="OnLButtonUp" function="ContainerWindow.OnItemRelease" />
+        <EventHandler event="OnMouseOver" function="ContainerWindow.ItemMouseOver" />
+        <EventHandler event="OnMouseOverEnd" function="ContainerWindow.OnMouseOverEnd" />
+        <EventHandler event="OnRButtonDown" function="ContainerWindow.OnItemGet" />
+        <EventHandler event="OnRButtonUp" function="ContainerWindow.OnItemRButtonUp" />
+      </EventHandlers>
+    </Button>
+    
+    <Button name="ColoredGridViewSocketTemplate" texturescale="1.125" draganddrop="true">
+      <Size>
+        <AbsPoint x="56" y="56" />
+      </Size>
+      <Windows>
+        <DynamicImage name="$parentIcon" texturescale="1.125" handleinput="false" layer="default">
+          <Size>
+            <AbsPoint x="48" y="48" />
+          </Size>
+          <Anchors>
+            <Anchor point="center" relativePoint="center" relativeTo="">
+              <AbsPoint x="0" y="0" />
+            </Anchor>
+          </Anchors>
+        </DynamicImage>
+        <DynamicImage name="$parentIconMulti" texturescale="1.125" handleinput="false" layer="background">
+          <Size>
+            <AbsPoint x="48" y="48" />
+          </Size>
+          <Anchors>
+            <Anchor point="center" relativePoint="center" relativeTo="$parentIcon">
+              <AbsPoint x="5" y="5" />
+            </Anchor>
+          </Anchors>
+        </DynamicImage>
+        <Label name="$parentQuantity" font="MyriadPro_15" maxchars="6" textalign="left" autoresize="true" wordwrap="false" layer="popup" handleinput="false">
+          <Size>
+            <AbsPoint x="60" y="15" />
+          </Size>
+          <Anchors>
+            <Anchor point="bottomleft" relativePoint="bottomleft">
+              <AbsPoint x="2" y="-2" />
+            </Anchor>
+          </Anchors>
+          <Color r="255" g="255" b="255" a="255" />
+        </Label>
+        <Label name="$parentUses" font="MyriadPro_15" maxchars="6" textalign="right" autoresize="true" wordwrap="false" layer="popup" handleinput="false">
+          <Size>
+            <AbsPoint x="60" y="15" />
+          </Size>
+          <Anchors>
+            <Anchor point="topright" relativePoint="topright">
+              <AbsPoint x="-2" y="-2" />
+            </Anchor>
+          </Anchors>
+          <Color r="255" g="255" b="255" a="255" />
+        </Label>
+      </Windows>
+      <TexCoords>
+        <Normal texture="colored_grid_backpack" x="0" y="0" />
+        <NormalHighlit texture="colored_grid_backpack" x="50" y="0" />
+        <Disabled texture="colored_grid_backpack" x="0" y="0" />
+        <Pressed texture="colored_grid_backpack" x="0" y="0" />
+        <PressedHighlit texture="colored_grid_backpack" x="50" y="0" />
+      </TexCoords>
+      <EventHandlers>
+        <EventHandler event="OnLButtonDown" function="ContainerWindow.OnItemClicked" />
+        <EventHandler event="OnLButtonDblClk" function="ContainerWindow.OnItemDblClicked" />
+        <EventHandler event="OnLButtonUp" function="ContainerWindow.OnItemRelease" />
+        <EventHandler event="OnMouseOver" function="ContainerWindow.ItemMouseOver" />
+        <EventHandler event="OnMouseOverEnd" function="ContainerWindow.OnMouseOverEnd" />
+        <EventHandler event="OnRButtonDown" function="ContainerWindow.OnItemGet" />
+        <EventHandler event="OnRButtonUp" function="ContainerWindow.OnItemRButtonUp" />
+      </EventHandlers>
+    </Button>
+    <Button name="GridViewSocketLegacyTemplate" inherits="GridViewSocketTemplate">
+      <TexCoords>
+        <Normal texture="" x="0" y="0" />
+        <NormalHighlit texture="" x="0" y="0" />
+        <Disabled texture="" x="0" y="0" />
+        <Pressed texture="" x="0" y="0" />
+        <PressedHighlit texture="" x="0" y="0" />
+      </TexCoords>
+    </Button>
+
+    <!-- Main container window -->
+    <Window name="ContainerWindow" movable="true"  draganddrop="true" >
+      <Size>
+        <AbsPoint x="313" y="313" />
+      </Size>
+      <Anchors>
+        <Anchor point="bottomright" relativePoint="bottomright" >
+          <AbsPoint x="0" y="-60"/>
+        </Anchor>
+      </Anchors>
+      <EventHandlers>
+        <EventHandler event="OnInitialize" function="ContainerWindow.Initialize" />
+        <EventHandler event="OnShutdown" function="ContainerWindow.Shutdown" />
+        <EventHandler event="OnSetMoving" function="ContainerWindow.OnSetMoving" />
+        <EventHandler event="OnRButtonUp" function="ContainerWindow.CloseDialog" />
+        <EventHandler event="OnMouseWheel" function="WindowUtils.Scale" />
+        <EventHandler event="OnLButtonUp" function="ContainerWindow.OnContainerRelease" />
+        <EventHandler event="OnLButtonDown" function="ContainerWindow.TargetContainer" />
+        <EventHandler event="OnUpdate" function="ContainerWindow.UpdateContainerTimer" />
+      </EventHandlers>
+      <Windows>
+        <!-- Default chrome. Alter this at your own peril. -->
+        <Window name="$parentChrome" inherits="UO_DefaultWindow">
+          <Anchors>
+            <Anchor point="topleft" relativePoint="topleft"/>
+            <Anchor point="bottomright" relativePoint="bottomright"/>
+          </Anchors>
+        </Window>
+        <!-- End of default chrome boilerplate code -->
+
+        <CircleImage name="$parentContImageBG" texture="faceFrame" numsegments="16" texturescale="1.2" layer="secondary" popable="false" handleinput="false">
+          <Size>
+            <AbsPoint x="100" y="100" />
+          </Size>
+          <Anchors>
+            <Anchor point="topleft" relativePoint="topleft"  relativeTo="$parentChrome">
+              <AbsPoint x="-35" y="-30" />
+            </Anchor>
+          </Anchors>
+          <TexCoords x="40" y="40" />
+        </CircleImage>
+
+        <CircleImage name="$parentContImageBlackBG" texture="hbblackBg" numsegments="16" texturescale="100" layer="default" popable="false" handleinput="false">
+          <Size>
+            <AbsPoint x="90" y="90" />
+          </Size>
+          <Anchors>
+            <Anchor point="center" relativePoint="center"  relativeTo="$parentContImageBG">
+              <AbsPoint x="0" y="0" />
+            </Anchor>
+          </Anchors>
+          <TexCoords x="40" y="40" />
+        </CircleImage>
+
+        <DynamicImage name="$parentContImage" layer="overlay" popable="false" handleinput="false">
+          <Anchors>
+            <Anchor point="center" relativePoint="center"  relativeTo="$parentContImageBlackBG">
+              <AbsPoint x="3" y="3" />
+            </Anchor>
+          </Anchors>
+        </DynamicImage>
+
+        <DynamicImage name="$parentLegacyContainerArt" layer="background" popable="false" handleinput="false">
+          <Anchors>
+            <Anchor point="topleft" relativePoint="topleft"  relativeTo="$parent"/>
+          </Anchors>
+        </DynamicImage>
+
+        <Button name="$parentViewButton" inherits="UO_Default_Spring_Button" layer="overlay">
+          <EventHandlers>
+            <EventHandler event="OnLButtonUp" function="ContainerWindow.ToggleView" />
+            <EventHandler event="OnMouseOver" function="ContainerWindow.ViewButtonMouseOver" />
+            <EventHandler event="OnMouseOverEnd" function="ItemProperties.ClearMouseOverItem" />
+          </EventHandlers>
+        </Button>
+
+        <Label name="$parentContent" font="MyriadPro_16" maxchars="100" textalign="center" autoresize="true" autoresizewidth="true" wordwrap="false" layer="overlay" handleinput="false">
+          <Size>
+            <AbsPoint x="150" y="30" />
+          </Size>
+          <Anchors>
+            <Anchor point="bottom" relativePoint="top" relativeTo="$parent">
+              <AbsPoint x="5" y="5" />
+            </Anchor>
+          </Anchors>
+          <Color r="255" g="255" b="255" a="30" />
+        </Label>
+
+        <Button name="$parentLock" backgroundtexture="Lock" highlighttexture="Lock" texturescale="1" layer="overlay">
+          <Size>
+            <AbsPoint x="32" y="32" />
+          </Size>
+          <TexCoords>
+            <Normal x="0" y="0" />
+            <NormalHighlit x="0" y="0" />
+            <Pressed x="0" y="0"  />
+            <PressedHighlit x="0" y="0" />
+          </TexCoords>
+          <EventHandlers>
+            <EventHandler event="OnLButtonUp" function="ContainerWindow.Lock" />
+            <EventHandler event="OnMouseOver" function="ContainerWindow.LockTooltip" />
+          </EventHandlers>
+        </Button>
+
+        <Button name="$parentOrganize" backgroundtexture="Organizer" highlighttexture="Organizer" texturescale="1" layer="overlay">
+          <Size>
+            <AbsPoint x="32" y="32" />
+          </Size>
+          <TexCoords>
+            <Normal x="0" y="0" />
+            <NormalHighlit x="0" y="0" />
+            <Pressed x="0" y="0"  />
+            <PressedHighlit x="0" y="0" />
+          </TexCoords>
+          <EventHandlers>
+            <EventHandler event="OnLButtonUp" function="ContainerWindow.Organizes" />
+            <EventHandler event="OnRButtonUp" function="ContainerWindow.OrganizerContext" />
+            <EventHandler event="OnMouseOver" function="ContainerWindow.OrganizeTooltip" />
+          </EventHandlers>
+        </Button>
+
+        <Button name="$parentRestock" backgroundtexture="Restock" highlighttexture="Restock" texturescale="1" layer="overlay">
+          <Size>
+            <AbsPoint x="32" y="32" />
+          </Size>
+          <TexCoords>
+            <Normal x="0" y="0" />
+            <NormalHighlit x="0" y="0" />
+            <Pressed x="0" y="0"  />
+            <PressedHighlit x="0" y="0" />
+          </TexCoords>
+          <EventHandlers>
+            <EventHandler event="OnLButtonUp" function="ContainerWindow.Restocks" />
+            <EventHandler event="OnRButtonUp" function="ContainerWindow.RestockContext" />
+            <EventHandler event="OnMouseOver" function="ContainerWindow.RestockTooltip" />
+          </EventHandlers>
+        </Button>
+
+        <Button name="$parentLootAll" backgroundtexture="Loot_ALL" highlighttexture="Loot_ALL" layer="overlay">
+          <Size>
+            <AbsPoint x="32" y="32" />
+          </Size>
+          <TexCoords>
+            <Normal  x="0" y="0" />
+            <NormalHighlit x="0" y="0" />
+            <Pressed x="0" y="0" />
+            <PressedHighlit x="0" y="0" />
+            <Disabled x="0" y="0" />
+          </TexCoords>
+          <EventHandlers>
+            <EventHandler event="OnLButtonUp" function="ContainerWindow.LootAllBtn" />
+            <EventHandler event="OnMouseOver" function="ContainerWindow.LootAllTooltip" />
+          </EventHandlers>
+        </Button>
+
+        <Button name="$parentLootSort" backgroundtexture="Loot_Sort" highlighttexture="Loot_Sort" layer="overlay">
+          <Size>
+            <AbsPoint x="32" y="30" />
+          </Size>
+          <TexCoords>
+            <Normal  x="0" y="0" />
+            <NormalHighlit x="0" y="32" />
+            <Pressed x="0" y="32" />
+            <PressedHighlit x="0" y="32" />
+            <Disabled x="0" y="0" />
+          </TexCoords>
+
+          <EventHandlers>
+            <EventHandler event="OnLButtonUp" function="ContainerWindow.LootSortBtn" />
+            <EventHandler event="OnMouseOver" function="ContainerWindow.LootSortTooltip" />
+          </EventHandlers>
+        </Button>
+
+        <Button name="$parentSearch" layer="overlay" backgroundtexture="Search" highlighttexture="Search">
+          <Size>
+            <AbsPoint x="32" y="32" />
+          </Size>
+          <TexCoords>
+            <Normal  x="0" y="0" />
+            <NormalHighlit x="0" y="0" />
+            <Pressed x="0" y="0" />
+            <PressedHighlit x="0" y="0" />
+            <Disabled x="0" y="0" />
+          </TexCoords>
+          <EventHandlers>
+            <EventHandler event="OnLButtonUp" function="ContainerWindow.SearchItem" />
+            <EventHandler event="OnMouseOver" function="ContainerWindow.SearchAllTooltip" />
+          </EventHandlers>
+        </Button>
+
+        <Label name="$parentTitle" inherits="UO_Default_Label_Color" font="Arial_Black_18" maxchars="256" textalign="center" handleinput="false" layer="popup" autoresizewidth="false">
+          <Size>
+            <AbsPoint x="215" y="30"/>
+          </Size>
+          <Anchors>
+            <Anchor point="top" relativePoint="top">
+              <AbsPoint x="0" y="-7" />
+            </Anchor>
+          </Anchors>
+        </Label>
+
+        <!-- LIST VIEW -->
+        <ScrollWindow name="$parentListView" childscrollwindow="$parentScrollChild" scrollbar="$parentScrollbar" lineheight="51" draganddrop="true" autoHideScrollBar="true" popable="false">
+          <Windows>
+            <Window name ="$parentScrollChild" popable="false">
+              <Size>
+                <AbsPoint x="270" y="0"/>
+              </Size>
+            </Window>
+            <VerticalScrollbar name="$parentScrollbar" inherits="StandardVertScroll" >
+              <EventHandlers>
+                <EventHandler event="OnScrollPosChanged" function="ContainerWindow.Scrolling" />
+                <EventHandler event="OnRButtonUp" function="ContainerWindow.CloseDialog" />
+              </EventHandlers>
+            </VerticalScrollbar>
+          </Windows>
+        </ScrollWindow>
+
+        <!-- Grid view -->
+        <ScrollWindow name="$parentGridView" childscrollwindow="$parentScrollChild" scrollbar="$parentScrollbar" lineheight="39"  draganddrop="false" autoHideScrollBar="true" popable="false" layer="overlay">
+          <Windows>
+            <Window name ="$parentScrollChild" popable="false">
+              <Size>
+                <AbsPoint x="270" y="0"/>
+              </Size>
+            </Window>
+            <VerticalScrollbar name="$parentScrollbar" inherits="StandardVertScroll">
+              <EventHandlers>
+                <EventHandler event="OnScrollPosChanged" function="ContainerWindow.Scrolling" />
+                <EventHandler event="OnRButtonUp" function="ContainerWindow.CloseDialog" />
+                <EventHandler event="OnLButtonUp" function="ContainerWindow.OnNothing" />
+              </EventHandlers>
+            </VerticalScrollbar>
+          </Windows>
+        </ScrollWindow>
+
+        <Window name="$parentBlockDropUnderGrid" layer="secondary" handleinput="false">
+
+          <Anchors>
+            <Anchor point="topleft" relativePoint="topleft"  relativeTo="$parentGridView">
+              <AbsPoint x="0" y="0" />
+            </Anchor>
+
+            <Anchor point="bottomright" relativePoint="bottomright"  relativeTo="$parentGridView">
+              <AbsPoint x="0" y="0" />
+            </Anchor>
+          </Anchors>
+        </Window>
+
+        <!-- Legacy view -->
+        <DynamicImage name="$parentFreeformView" layer="popup" handleinput="true">
+          <Size>
+            <AbsPoint x="262" y="262" />
+          </Size>
+          <TexCoords x="0" y="0"/>
+          <Anchors>
+            <Anchor point="topleft" relativePoint="topleft">
+              <AbsPoint x="0" y="0" />
+            </Anchor>
+          </Anchors>
+        </DynamicImage>
+
+        <Button name="$parentResizeButton" inherits="CoreWindowResizeButtonBottomRight" layer="popup" >
+          <Anchors>
+            <Anchor point="bottomright" relativePoint="bottomright" relativeTo="" >
+              <AbsPoint x="0" y="0" />
+            </Anchor>
+          </Anchors>
+          <EventHandlers>
+            <EventHandler event="OnLButtonDown" function="ContainerWindow.OnResizeBegin" />
+          </EventHandlers>
+        </Button>
+
+      </Windows>
+    </Window>
+  </Windows>
+</Interface>

@@ -1,0 +1,234 @@
+----------------------------------------------------------------
+-- Global Variables
+----------------------------------------------------------------
+
+
+NewPlayerInstruction = {}
+NewPlayerInstructionManager = GGManager
+
+local NextButtonID = 1
+local GoodByeButtonID = 2
+local NextButtonTID = 1073997
+local GoodByeButtonTID = 1079000
+local AlternateTextTID = 1113733
+
+----------------------------------------------------------------
+-- Local Variables
+----------------------------------------------------------------
+
+function NewPlayerInstruction:new( newWindow )
+	newWindow = newWindow or {}
+	setmetatable(newWindow, self)
+	self.__index = self
+	
+	UO_GenericGump.debug( L"finished NewPlayerInstruction:new()" )
+	return newWindow
+end
+
+function NewPlayerInstruction:Init()
+	if not UO_GenericGump.retrieveWindowData( self ) then
+		return false
+	end
+	
+	if self.setDataFunction then
+		self:setDataFunction()
+	end
+	
+	if self.setFields then
+		self:setFields()
+	end
+	
+	
+	NewPlayerInstructionManager.knownWindows[self.windowName] = self
+	WindowSetId( self.windowName.."Chrome_UO_WindowCloseButton", UO_GenericGump.DEFAULT_CLOSE_BUTTON_ID )
+	Interface.OnCloseCallBack[self.windowName] = self.ButtonPressed
+	
+	self.broadcastHasBeenSent = false
+	
+	--Debug.PrintToDebugConsole( L"Initialize "..self.name )
+end
+
+
+function NewPlayerInstruction:setDataFunction()
+
+    local curDescNum = 1
+    if self.descDataCount > 1 then
+		if GGManager.translateTID( self.descData[curDescNum] ) == L"" then
+			self.title = nil
+		else
+			self.title = GGManager.translateTID( self.descData[curDescNum] )
+		end
+		curDescNum = curDescNum + 1
+	end
+    if self.descDataCount > 2 then
+		if GGManager.translateTID( self.descData[curDescNum] ) == L"" then
+			self.subtitle = nil
+		else
+			self.subtitle = GGManager.translateTID( self.descData[curDescNum] )
+		end
+		curDescNum = curDescNum + 1
+	end
+	
+	-- NOTE: Detect if "Shift-Right Click to Open Context Menus" is enabled and substitute alternate text into this particular step
+	local textTID = self.descData[curDescNum]
+	if ( textTID == 1077652 and SystemData.Settings.GameOptions.shiftRightClickContextMenus == false ) then
+		textTID = AlternateTextTID
+	end
+	
+	self.text = GGManager.translateTID(textTID)
+	--self.buttonName = GGManager.translateTID(GGManager.OKAY_TID) --"OK"
+	self.closeButtonID = self.buttonIDs[1]
+	self.nextButtonID = self.buttonIDs[2]
+	--Debug.Print("Close Button ID: "..self.closeButtonID)
+	--if self.nextButtonID then
+	--	Debug.Print("Next Button ID: "..self.nextButtonID)
+	--end
+	
+	-- get the picure
+	if self.ImageNum[1] then
+		self.picture = self.ImageNum[1]
+	end
+	-- get the picture's hue
+	if self.textHueData[1] then
+		self.pictureHue = self.textHueData[1]
+	end
+end -- setDataFunction()
+
+-- set the data
+function NewPlayerInstruction:setFields()
+	if self.nextButtonID then
+		if(self.nextButtonID == GoodByeButtonID) then
+			self.buttonName = GGManager.translateTID(GoodByeButtonTID)
+		else
+			self.buttonName = GGManager.translateTID(NextButtonTID)
+		end	
+			
+		CreateWindowFromTemplate(self.windowName.."ButtonName", "BottomButtonName", self.windowName)
+	end
+	
+	--Use a default picture if the picture is not in the gump's message.
+	if not self.picture then
+		self.picture = 1002
+	end
+
+	if self.title and self.title ~= "" then
+		WindowUtils.SetActiveDialogTitle( self.title )
+	end
+	if self.subtitle and self.subtitle ~= "" then
+		LabelSetText( self.windowName.."Subtitle", self.subtitle )
+    end
+    
+    if self.text and self.text ~= "" then
+	    LabelSetText( self.windowName.."ScrollChildText", self.text )
+	    --Debug.Print(L"text: "..self.text)
+	end
+	if self.buttonName then
+		ButtonSetText(self.windowName.."ButtonName", self.buttonName )
+		WindowSetId( self.windowName.."ButtonName", self.nextButtonID )	
+	end
+	
+	if self.closeButtonID then
+		WindowSetId( self.windowName.."Chrome_UO_WindowCloseButton", self.closeButtonID )	
+	end
+	
+	if self.picture then
+
+		local testWidth = 512
+		local testHeight = 512
+		
+		local defaultImage, x, y, scale, newWidth, newHeight = RequestTexture(self.picture, testWidth, testHeight)
+		
+		DynamicImageSetTextureDimensions( self.windowName.."Icon", newWidth, newHeight)
+		WindowSetDimensions( self.windowName.."Icon", newWidth, newHeight)
+		DynamicImageSetTexture( self.windowName.."Icon", defaultImage, 0, 0 )
+		DynamicImageSetTextureScale( self.windowName.."Icon", 1.0 )	 --We should not scale it anyways.
+	end
+
+
+	if self.pictureHue and self.pictureHue ~= 0 then
+		local r, g, b, a = HueRGBAValue(self.pictureHue)
+		WindowSetTintColor( self.windowName.."Icon", r, g, b )
+	end 
+		
+	--Looks like mythic code doesn't allow part of texture out of application window. So I have to readjust the window position in run-time.
+	WindowClearAnchors(self.windowName)
+	WindowAddAnchor(self.windowName,"left","Root","left", 110, -50)			
+end -- setFields()
+
+----------------------------------------------------------------
+-- NewPlayerInstruction Functions
+----------------------------------------------------------------
+
+-- OnInitialize Handler
+function NewPlayerInstruction.Initialize()
+	local newWindow = NewPlayerInstruction:new()
+	newWindow:Init()
+end
+
+
+function NewPlayerInstruction.ButtonPressed()
+
+	local self = NewPlayerInstruction.getActiveWindowData()	
+	UO_GenericGump.debug( "called NewPlayerInstruction.ButtonPressed() on "..self.windowName )
+	
+	self:ButtonFunction()
+end
+
+
+function NewPlayerInstruction:ButtonFunction()
+	UO_GenericGump.debug( L"called NewPlayerInstruction.ButtonFunction" )
+	
+	local buttonID = WindowGetId( SystemData.ActiveWindow.name )
+	
+	-- NOTE: this may need to be changed. Currently WindowGetId seems to return 0,
+	--  if a value is not set (and 0 is a valid value). May change C++ to return negative value
+	--  when no value is set
+	if not buttonID then	
+		Debug.PrintToDebugConsole( L"ERROR in NewPlayerInstruction.ButtonFunction: no ID set for button pressed." )
+		return
+	end
+
+	UO_GenericGump.debug( L"called NewPlayerInstruction.ButtonFunction(). Sending button value of "..buttonID )
+	
+	UO_GenericGump.broadcastButtonPress( buttonID, self )
+	
+	self.broadcastHasBeenSent = true
+	self.OnCloseWindow()
+end
+
+function NewPlayerInstruction.getActiveWindowData()
+
+	local windowName = WindowUtils.GetActiveDialog()	
+	return NewPlayerInstructionManager.knownWindows[windowName]
+end
+
+
+
+function NewPlayerInstruction.OnCloseWindow()	
+
+	GGManager.destroyActiveWindow( GGManager.DONT_DELETE_DATA_YET )
+end
+
+
+-- OnShutdownHandler
+function NewPlayerInstruction.Shutdown()
+	local self = GGManager.knownWindows[SystemData.ActiveWindow.name]	
+	if self == nil then
+		UO_GenericGump.debug( StringToWString( "Shutdown hander called for "..SystemData.ActiveWindow.name.." but data already deleted" ) )
+		return
+	end	
+
+	-- added a notify the server message to Shutdown handlers for the New Player Instruction
+	-- and several other gumps that would not come back up if the user changed languages or
+	-- scaled the UI while those gumps were open.
+	if self.broadcastHasBeenSent == false then
+		UO_GenericGump.broadcastButtonPress( UO_GenericGump.DEFAULT_CLOSE_BUTTON_ID, self )
+	end
+	
+	if self.picture then
+		ReleaseTexture(self.picture)
+		UO_GenericGump.debug( StringToWString( "ReleaseTexture(self.picture)" ) )
+	end
+	
+	GGManager.unregisterActiveWindow()
+end

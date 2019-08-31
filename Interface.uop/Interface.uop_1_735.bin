@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- edited by Corey Johnson -->
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified" attributeFormDefault="unqualified">
+
+<!-- Attributes -->
+  <xs:attribute name="id">
+    <xs:simpleType>
+      <xs:restriction base="xs:integer">
+        <xs:minInclusive value="0"/>
+      </xs:restriction>
+    </xs:simpleType>
+  </xs:attribute>
+  <xs:attribute name="typeid">
+    <xs:simpleType>
+      <xs:restriction base="xs:integer">
+        <xs:minInclusive value="0"/>
+      </xs:restriction>
+    </xs:simpleType>
+  </xs:attribute>
+  <xs:attribute name="file">
+    <xs:simpleType>
+      <xs:restriction base="xs:string">
+        <xs:maxLength value="128"/>
+      </xs:restriction>
+    </xs:simpleType>
+  </xs:attribute>
+  <xs:attribute name="name">
+    <xs:simpleType>
+      <xs:restriction base="xs:string">
+        <xs:maxLength value="128"/>
+      </xs:restriction>
+    </xs:simpleType>
+  </xs:attribute>
+
+<!-- Types -->
+	<xs:complexType name="TextureType">
+    <xs:attribute ref="id"      use="required"/>
+		<xs:attribute ref="typeid"  use="required"/>
+    <xs:attribute ref="file"    use="required"/>
+    <xs:attribute ref="name"    use="optional"/>
+	</xs:complexType>
+  <xs:complexType name="TexturesType">
+    <xs:sequence maxOccurs="unbounded">
+      <xs:element ref="Texture" minOccurs="0" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="TextureTypeType">
+    <xs:attribute ref="typeid"  use="required"/>
+    <xs:attribute ref="name"    use="required"/>
+  </xs:complexType>
+  <xs:complexType name="TextureTypesType">
+    <xs:sequence maxOccurs="unbounded">
+      <xs:element ref="TextureType" minOccurs="0" />
+    </xs:sequence>
+  </xs:complexType>
+	<xs:complexType name="ManagedTexturesType">
+    <xs:sequence>
+      <xs:element ref="TextureTypes"  minOccurs="1" maxOccurs="1" />
+			<xs:element ref="Textures"      minOccurs="1" maxOccurs="1" />
+		</xs:sequence>
+	</xs:complexType>
+
+<!-- Elements -->
+	<xs:element name="Texture"          type="TextureType" />
+	<xs:element name="Textures"         type="TexturesType" />
+  <xs:element name="TextureType"      type="TextureTypeType" />
+  <xs:element name="TextureTypes"     type="TextureTypesType" />
+	<xs:element name="ManagedTextures"  type="ManagedTexturesType">
+		<xs:annotation>
+			<xs:documentation>Root element</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+
+</xs:schema>

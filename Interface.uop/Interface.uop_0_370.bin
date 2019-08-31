@@ -1,0 +1,88 @@
+<Interface xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../Interface.xsd">
+	<Scripts>
+		<Script file="InternalLogin.lua" />
+	</Scripts>
+	<Windows>
+		<!--<Button name="LoginServerButtonTemplate" backgroundtexture="UO_Common" font="UO_DefaultText" textalign="left" highlighttexture="UO_Common">-->
+      <Button name="LoginServerButtonTemplate" backgroundtexture="UO_Common" font="UO_DefaultText" textalign="left" layer="popup" >
+	        <Size>
+		        <AbsPoint x="250" y="25" />
+	        </Size>
+	        <!--<TexCoords>
+		        <NormalHighlit x="264" y="259" />
+		        <PressedHighlit x="264" y="259" />
+	        </TexCoords>-->
+	        <TextColors>
+	        	<Normal r="255" g="255" b="255" a="255"/>
+	        	<NormalHighlit r="243" g="227" b="49" a="255"/>
+	        	<Pressed r="255" g="0" b="0" a="255"/>
+	        	<PressedHighlit r="255" g="0" b="0" a="255"/>
+	        	<Disabled r="128" g="128" b="128" a="128"/>
+	        </TextColors>
+	        <TextOffset x="4" y="4" />
+	        <EventHandlers>
+	        	<EventHandler event="OnLButtonUp" function="InternalLoginConfig.ItemLButtonUp"/>
+	        </EventHandlers>
+        </Button>
+        
+        <Window name="InternalLoginConfig" movable="true" >
+			<Size>
+				<AbsPoint x="280" y="125"/>
+			</Size>
+			<Anchors>
+				<Anchor point="center" relativePoint="center">
+					<AbsPoint x="0" y="-200" />
+				</Anchor>
+			</Anchors>
+			<EventHandlers>
+				<EventHandler event="OnInitialize" function="InternalLoginConfig.Initialize" />
+			</EventHandlers>			
+			<Windows>
+				<!-- Inner Frame Boilerplate -->
+				<FullResizeImage name="$parentBackground" inherits="UO_Simple_Black_Background" > 
+					<Size>
+						<AbsPoint x="0" y="0" />
+					</Size>
+					<Anchors>
+						<Anchor point="topleft" relativePoint="topleft" />
+						<Anchor point="bottomright" relativePoint="bottomright" />
+					</Anchors>					
+					<Windows>
+						<FullResizeImage name="$parentFrame" inherits="UO_Default_Inner_Window_Frame">
+							<Size>
+								<AbsPoint x="10" y="10"/>
+							</Size>
+							<Anchors>
+								<Anchor point="topleft" relativePoint="topleft" />
+								<Anchor point="bottomright" relativePoint="bottomright" />
+							</Anchors>					
+						</FullResizeImage>
+					</Windows>
+				</FullResizeImage>
+				<!-- End of Inner Frame Boilerplate -->			
+				<ScrollWindow name="$parentView" childscrollwindow="$parentScrollChild" scrollbar="$parentScrollbar" lineheight="60"  draganddrop="true" autoHideScrollBar="true">
+					<Anchors>
+						<Anchor point="topleft" relativePoint="topleft">
+							<AbsPoint x="4" y="4" />
+						</Anchor>
+						<Anchor point="bottomright" relativePoint="bottomright">
+							<AbsPoint x="-4" y="-4" />
+						</Anchor>
+					</Anchors>    
+					<EventHandlers>
+						<EventHandler event="OnLButtonUp" function="ContainerWindow.OnContainerRelease" />
+					</EventHandlers>                
+					<Windows>
+						<VerticalScrollbar name="$parentScrollbar" inherits="StandardVertScroll" />
+
+						<Window name ="$parentScrollChild" >
+							<Size>
+								<AbsPoint x="250" y="0"/>
+							</Size>
+						</Window>
+					</Windows>
+				</ScrollWindow>
+			</Windows>			
+        </Window>
+	</Windows>
+</Interface>

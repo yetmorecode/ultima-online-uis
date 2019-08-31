@@ -1,0 +1,266 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Interface xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../Interface.xsd">
+	<Windows>
+		<Label name="DyeTubs_ItemTitle" font="Arial_Black_15" linespacing="20" autoresize="true" wordwrap="true" maxchars="256" textalign="left">
+			<Color r="255" g="231" b="132" a="255" />
+
+		</Label>
+		<Window name="DyeTubs_IconCheckButton">
+			<Size>
+				<AbsPoint x="40" y="100" />
+			</Size>
+			<Windows>
+				<DynamicImage name="$parentSquareIcon" layer="default">
+					<Size>
+						<AbsPoint x="40" y="40" />
+					</Size>
+					<Anchors>
+						<Anchor point="top" relativePoint="top" relativeTo="$parent">
+							<AbsPoint x="0" y="0" />
+						</Anchor>
+					</Anchors>
+					<EventHandlers>
+						<EventHandler event="OnLButtonDown" function="DyeTubs.CheckItem" />
+					</EventHandlers>
+				</DynamicImage>
+				<Button name="$parentButton" inherits="UO_Default_Check_Button">
+					<Anchors>
+						<Anchor point="bottom" relativePoint="top" relativeTo="$parentSquareIcon">
+							<AbsPoint x="0" y="0"/>
+						</Anchor>
+					</Anchors>
+					<EventHandlers>
+						<EventHandler event="OnLButtonDown" function="DyeTubs.CheckItem" />
+						<EventHandler event="OnMouseOver" function="" />
+					</EventHandlers>
+				</Button>
+
+			</Windows>
+		</Window>
+
+		<Window name="DyeTubs" movable="true" layer="default">
+			<Size>
+				<AbsPoint x="980" y="800" />
+			</Size>
+			<Anchors>
+				<Anchor point="center" relativePoint="center" relativeTo="ResizeWindow">
+					<AbsPoint x="0" y="0"/>
+				</Anchor>
+			</Anchors>
+			<EventHandlers>
+				<EventHandler event="OnInitialize" function="DyeTubs.Initialize" />
+				<EventHandler event="OnShown" function="DyeTubs.OnShown" />
+				<EventHandler event="OnHidden" function="DyeTubs.OnHidden" />
+				<EventHandler event="OnShutdown" function="DyeTubs.Shutdown" />
+				<EventHandler event="OnUpdate" function="DyeTubs.OnUpdate" />
+				<EventHandler event="OnMouseWheel" function="WindowUtils.Scale" />
+			</EventHandlers>
+			<Windows>
+				<!-- Default chrome. Alter this at your own peril. -->
+				<Window name="$parentChrome" inherits="UO_DefaultWindow" frameonly="false">
+					<Anchors>
+						<Anchor point="topleft" relativePoint="topleft" />
+						<Anchor point="bottomright" relativePoint="bottomright"/>
+					</Anchors>
+				</Window>
+
+				<ScrollWindow name="DyeTubsSW" childscrollwindow="DyeTubsSWScrollChild" scrollbar="DyeTubsSWScrollbar" lineheight="18" autoHideScrollBar="true" >
+					<Size>
+						<AbsPoint x="980" y="0" />
+					</Size>
+					<Anchors>
+						<Anchor point="topleft" relativePoint="topleft" relativeTo="$parent" >
+							<AbsPoint x="15" y="32" />
+						</Anchor>
+						<Anchor point="bottomright" relativePoint="bottomright" relativeTo="$parent" >
+							<AbsPoint x="-15" y="-170" />
+						</Anchor>
+					</Anchors>
+					<Windows>
+						<VerticalScrollbar name="$parentScrollbar" inherits="StandardVertScroll" layer="secondary"/>
+						<FullResizeImage name="$parentBackground" inherits="UO_Simple_Black_Background" layer="background" alpha="0.2">
+							<Anchors>
+								<Anchor point="topleft" relativePoint="topleft" />
+								<Anchor point="bottomright" relativePoint="bottomright" />
+							</Anchors>
+						</FullResizeImage>
+						<FullResizeImage name="$parentFrame" inherits="UO_Simple_Frame" layer="background" frameonly="false">
+							<Anchors>
+								<Anchor point="topleft" relativePoint="topleft" />
+								<Anchor point="bottomright" relativePoint="bottomright" />
+							</Anchors>
+						</FullResizeImage>
+						<Window name="$parentScrollChild" popable="false">
+							<Size>
+								<AbsPoint x="980" y="0"/>
+							</Size>
+							<Anchors>
+								<Anchor point="topleft" relativePoint="topleft">
+									<AbsPoint x="5" y="5" />
+								</Anchor>
+							</Anchors>
+							<Windows>
+
+
+								<Window name="DyeTubsData" >
+									<Size>
+										<AbsPoint x="980" y="3000" />
+									</Size>
+									<Anchors>
+										<Anchor point="top" relativePoint="top">
+											<AbsPoint x="0" y="0" />
+										</Anchor>
+									</Anchors>
+									<Windows>
+									</Windows>
+								</Window>
+							</Windows>
+						</Window>
+					</Windows>
+				</ScrollWindow>
+
+				<Button name="$parentOk" inherits="UO_Default_Medium_Select_Button" >
+					<Anchors>
+						<Anchor point="bottomleft" relativePoint="bottomleft" relativeTo="$parent">
+							<AbsPoint x="50" y="-120" />
+						</Anchor>
+					</Anchors>
+					<EventHandlers>
+						<EventHandler event="OnLButtonUp" function="DyeTubs.OkClick"/>
+					</EventHandlers>
+				</Button>
+
+				<Button name="$parentDefault" inherits="UO_Default_Medium_Select_Button" >
+					<Anchors>
+						<Anchor point="bottomleft" relativePoint="topleft" relativeTo="$parentOk">
+							<AbsPoint x="0" y="5" />
+						</Anchor>
+					</Anchors>
+					<EventHandlers>
+						<EventHandler event="OnLButtonUp" function="DyeTubs.DefaultClick"/>
+					</EventHandlers>
+				</Button>
+
+				<Button name="$parentPickColorTarget" inherits="UO_Default_Medium_Select_Button" >
+					<Anchors>
+						<Anchor point="bottomleft" relativePoint="topleft" relativeTo="$parentDefault">
+							<AbsPoint x="0" y="5" />
+						</Anchor>
+					</Anchors>
+					<EventHandlers>
+						<EventHandler event="OnLButtonUp" function="DyeTubs.PickColorTarget" />
+					</EventHandlers>
+				</Button>
+
+				<Label name="$parentKnownLabel" inherits="DyeTubs_ItemTitle" >
+					<Size>
+						<AbsPoint x="160" y="20" />
+					</Size>
+					<Anchors>
+						<Anchor point="right" relativePoint="left" relativeTo="$parentOk">
+							<AbsPoint x="30" y="0" />
+						</Anchor>
+					</Anchors>
+					<Color r="255" g="255" b="255" a="255" />
+				</Label>
+				<ComboBox name="$parentKnownCombo" inherits="UO_Default_LongComboBox" >
+					<Anchors>
+						<Anchor point="topright" relativePoint="topleft" relativeTo="$parentKnownLabel">
+							<AbsPoint x="0" y="-3" />
+						</Anchor>
+					</Anchors>
+					<EventHandlers>
+						<EventHandler event="OnSelChanged" function="DyeTubs.KnownColorChanged" />
+					</EventHandlers>
+				</ComboBox>
+
+
+				<Label name="$parentSavedLabel" inherits="DyeTubs_ItemTitle" >
+					<Size>
+						<AbsPoint x="160" y="20" />
+					</Size>
+					<Anchors>
+						<Anchor point="bottomleft" relativePoint="topleft" relativeTo="$parentKnownLabel">
+							<AbsPoint x="0" y="20" />
+						</Anchor>
+					</Anchors>
+					<Color r="255" g="255" b="255" a="255" />
+				</Label>
+				<ComboBox name="$parentSavedCombo" inherits="UO_Default_LongComboBox" >
+					<Anchors>
+						<Anchor point="topright" relativePoint="topleft" relativeTo="$parentSavedLabel">
+							<AbsPoint x="0" y="-3" />
+						</Anchor>
+					</Anchors>
+					<EventHandlers>
+						<EventHandler event="OnSelChanged" function="DyeTubs.SaveColorChanged" />
+					</EventHandlers>
+				</ComboBox>
+
+
+
+				<Label name="$parentSelectedLabel" inherits="DyeTubs_ItemTitle" textalign="center">
+					<Size>
+						<AbsPoint x="200" y="20" />
+					</Size>
+					<Anchors>
+						<Anchor point="topright" relativePoint="topleft" relativeTo="$parentKnownCombo">
+							<AbsPoint x="100" y="-10" />
+						</Anchor>
+					</Anchors>
+					<Color r="255" g="255" b="255" a="255" />
+				</Label>
+
+				<DynamicImage name="$parentSelectedIcon" layer="default">
+					<Size>
+						<AbsPoint x="40" y="40" />
+					</Size>
+					<Anchors>
+						<Anchor point="bottom" relativePoint="top" relativeTo="$parentSelectedLabel">
+							<AbsPoint x="0" y="20" />
+						</Anchor>
+					</Anchors>
+					<EventHandlers>
+						<EventHandler event="OnLButtonUp" function="DyeTubs.ChangeType" />
+						<EventHandler event="OnMouseOver" function="DyeTubs.TypeTooltip" />
+					</EventHandlers>
+				</DynamicImage>
+
+				<Label name="$parentInfoLabel" inherits="DyeTubs_ItemTitle" textalign="center">
+					<Size>
+						<AbsPoint x="400" y="20" />
+					</Size>
+					<Anchors>
+						<Anchor point="bottom" relativePoint="top" relativeTo="$parentSelectedIcon">
+							<AbsPoint x="0" y="0" />
+						</Anchor>
+					</Anchors>
+					<Color r="255" g="255" b="255" a="255" />
+				</Label>
+
+				<Button name="$parentSaveSelected" inherits="UO_Default_GumpButton" >
+					<Anchors>
+						<Anchor point="right" relativePoint="left" relativeTo="$parentSelectedIcon">
+							<AbsPoint x="60" y="0" />
+						</Anchor>
+					</Anchors>
+					<EventHandlers>
+						<EventHandler event="OnLButtonDown" function="DyeTubs.SaveColor" />
+					</EventHandlers>
+				</Button>
+				<Button name="$parentDeleteSelected" inherits="UO_Default_GumpButton" >
+					<Anchors>
+						<Anchor point="left" relativePoint="right" relativeTo="$parentSelectedIcon">
+							<AbsPoint x="-60" y="0" />
+						</Anchor>
+					</Anchors>
+					<EventHandlers>
+						<EventHandler event="OnLButtonDown" function="DyeTubs.DeleteColor" />
+					</EventHandlers>
+				</Button>
+				
+			</Windows>
+		</Window>
+
+	</Windows>
+</Interface>

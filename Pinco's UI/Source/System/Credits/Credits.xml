@@ -1,0 +1,127 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Interface xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../Interface.xsd">
+ 
+  <Windows>
+    <DynamicImage name="WreathTemplate" texturescale="1.0" texture="Wreath" handleinput="false" >
+      <Size>
+        <AbsPoint x="110" y="93" />
+      </Size>
+      <TexCoords x="0" y="0" />
+      <Windows>
+        <Label name="$parentText" font="Arial_Black_Shadow_10" maxchars="16383" linespacing="20" textalign="center" autoresize="true" handleinput="false" wordwrap="true" >
+          <Size>
+            <AbsPoint x="110" y="0" />
+          </Size>
+          <Anchors>
+            <Anchor point="bottom" relativePoint="bottom" >
+              <AbsPoint x="0" y="-12" />
+            </Anchor>
+          </Anchors>
+          <Color r="255" g="255" b="255" a="255" />
+        </Label>
+      </Windows>
+    </DynamicImage>
+    
+    <Label name="SectionTitle" font="MyriadPro_16" maxchars="64" textalign="left">
+      <Color r="255" g="255" b="255" a="255" />
+    </Label>
+
+    <Label name="Settings_ItemTitle" font="MyriadPro_16" linespacing="20" autoresize="true" wordwrap="true" maxchars="64" textalign="left">
+      <Color r="255" g="255" b="255" a="255" />
+      <EventHandlers>
+       
+      </EventHandlers>
+    </Label>
+   
+    <!-- Settings Window -->
+    <Window name="CreditsWindow" movable="true" >
+      <Size>
+        <AbsPoint x="740" y="620" />
+      </Size>
+      <Anchors>
+        <Anchor point="center" relativePoint="center" />
+      </Anchors>
+      <EventHandlers>
+        <EventHandler event="OnInitialize" function="CreditsWindow.Initialize" />
+		    <EventHandler event="OnShutdown" function="CreditsWindow.Shutdown"/>
+        <EventHandler event="OnUpdate" function="CreditsWindow.OnUpdate" />
+        <EventHandler event="OnShown" function="CreditsWindow.OnShown" />
+        <EventHandler event="OnHidden" function="CreditsWindow.Close" />
+      </EventHandlers>
+      <Windows>
+        <!-- Default chrome. Alter this at your own peril. -->
+        <Window name="$parentChrome" inherits="UO_DefaultWindow">
+          <Anchors>
+            <Anchor point="topleft" relativePoint="topleft"/>
+            <Anchor point="bottomright" relativePoint="bottomright"/>
+          </Anchors>
+        </Window>
+        <!-- End of default chrome boilerplate code -->
+
+        <!-- Scrolling Window-->
+        <ScrollWindow name="CreditsContentWindow" childscrollwindow="CreditsContentWindowScrollChild" scrollbar="CreditsContentWindowScrollbar" lineheight="18" autoHideScrollBar="true">
+          <Size>
+            <AbsPoint x="720" y="570" />
+          </Size>
+          <Anchors>
+            <Anchor point="topleft" relativePoint="topleft" relativeTo="$parent">
+              <AbsPoint x="15" y="35" />
+            </Anchor>
+          </Anchors>
+          <Windows>
+            <!--<VerticalScrollbar name="$parentScrollbar" inherits="StandardVertScroll" /> -->
+
+            <Window name="$parentScrollChild" >
+              <Size>
+                <AbsPoint x="720" y="2500"/>
+              </Size>
+              <Anchors>
+                <Anchor point="topleft" relativePoint="topleft"/>
+              </Anchors>
+              <Windows>
+
+                
+                <Window name="CreditsContent" >
+                  <Size>
+                    <AbsPoint x="695" y="3500" />
+                  </Size>
+                  <Windows>
+                    <DynamicImage name="AnimLogo" texturescale="1.0" texture="Logo" handleinput="false" >
+                      <Size>
+                        <AbsPoint x="427" y="292" />
+                      </Size>
+                      <Anchors>
+                        <Anchor point="top" relativePoint="top" >
+                          <AbsPoint x="0" y="570" />
+                        </Anchor>
+                      </Anchors>
+                      <TexCoords x="0" y="0" />
+                    </DynamicImage>
+                   
+                    
+                    <Label name="CreditsWindowText1" font="MyriadPro_16" maxchars="16383" linespacing="20" textalign="center" autoresize="true" handleinput="false" wordwrap="true" >
+                      <Size>
+                        <AbsPoint x="685" y="0" />
+                      </Size>
+                      <Anchors>
+                        <Anchor point="topleft" relativePoint="topleft" >
+                          <AbsPoint x="10" y="890" />
+                        </Anchor>
+                      </Anchors>
+                      <Color r="255" g="255" b="255" a="255" />
+                    </Label>
+
+
+                  </Windows>
+                </Window>
+              </Windows>
+            </Window>
+          </Windows>
+        </ScrollWindow>
+
+
+
+      </Windows>
+    </Window>
+  </Windows>
+</Interface>

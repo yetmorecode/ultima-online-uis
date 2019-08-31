@@ -1,0 +1,292 @@
+<Interface xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../Interface.xsd">
+  <Windows>
+    <Label name="OverheadChatTemplate" font="UO_Overhead_Chat" maxchars="1024" wordwrap="true" autoresize="true" textalign="center" handleinput="false" layer="background" ignoreFormattingTags="true">
+      <Size>
+        <AbsPoint x="400" y="1" />
+      </Size>
+      <EventHandlers>
+        <EventHandler event="OnShutdown" function="OverheadText.OnOverheadChatShutdown" />
+      </EventHandlers>
+      <Color r="255" g="255" b="255" a="255" />
+    </Label>
+
+    <Window name="OverheadTextWindow" layer="background" autoresize="true" handleinput="true">
+      <Size>
+        <AbsPoint x="300" y="50" />
+      </Size>
+      <EventHandlers>
+        <EventHandler event="OnInitialize" function="OverheadText.Initialize" />
+        <EventHandler event="OnShutdown" function="OverheadText.Shutdown" />
+        <EventHandler event="OnShown" function="OverheadText.OnShown" />
+      </EventHandlers>
+      <Windows>
+        <Label name="$parentName" sticky="false" font="UO_Overhead_Chat" maxchars="1024" textalign="center" autoresize="true" wordwrap="true" handleinput="true" linespacing="20" layer="background" draganddrop="true">
+          <Size>
+            <AbsPoint x="300" y="30" />
+          </Size>
+          <Anchors>
+            <Anchor point="bottom" relativePoint="bottom" relativeTo="$parent" />
+          </Anchors>
+          <EventHandlers>
+            <EventHandler event="OnLButtonDown" function="OverheadText.NameOnLClick" />
+            <EventHandler event="OnLButtonUp" function="OverheadText.OnLButtonUp" />
+            <EventHandler event="OnLButtonDblClk" function="OverheadText.NameOnDblClick" />
+            <EventHandler event="OnMouseOver" function="OverheadText.NameOnMouseOver" />
+            <EventHandler event="OnMouseOverEnd" function="OverheadText.NameOnMouseOverEnd" />
+          </EventHandlers>
+        </Label>
+        <Label name="$parentChat1" inherits="OverheadChatTemplate">
+          <Anchors>
+            <Anchor point="bottom" relativePoint="bottom" relativeTo="$parentName" />
+          </Anchors>
+        </Label>
+        <Label name="$parentChat2" inherits="OverheadChatTemplate">
+          <Anchors>
+            <Anchor point="top" relativePoint="bottom" relativeTo="$parentChat1" />
+          </Anchors>
+        </Label>
+        <Label name="$parentChat3" inherits="OverheadChatTemplate">
+          <Anchors>
+            <Anchor point="top" relativePoint="bottom" relativeTo="$parentChat2" />
+          </Anchors>
+        </Label>
+      </Windows>
+    </Window>
+
+    <Window name="OverheadHealthbar" layer="background" autoresize="true" handleinput="true">
+      <Size>
+        <AbsPoint x="150" y="70" />
+      </Size>
+      <EventHandlers>
+        <EventHandler event="OnLButtonDown" function="OverheadText.HoverbarOnLClick" />
+        <EventHandler event="OnLButtonDblClk" function="OverheadText.HoverbarOnDblClick" />
+        <EventHandler event="OnMouseOver" function="OverheadText.HoverbarOnMouseOver" />
+        <EventHandler event="OnMouseOverEnd" function="OverheadText.HoverbarOnMouseOverEnd" />
+        <EventHandler event="OnUpdate" function="OverheadText.UpdateStatusTimer" />
+        <EventHandler event="OnMouseWheel" function="OverheadText.ShiftHoverbar" />
+      </EventHandlers>
+      <Windows>
+        <Label name="$parentName" sticky="false" font="Arial_Black_Shadow_14" maxchars="1024" textalign="center" autoresize="false" wordwrap="true" handleinput="false" linespacing="20" layer="background" draganddrop="true">
+          <Size>
+            <AbsPoint x="150" y="30" />
+          </Size>
+          <Anchors>
+            <Anchor point="top" relativePoint="top" relativeTo="$parent" />
+          </Anchors>
+        </Label>
+        <StatusBar name="$parentHealthBar" foreground="RedLine" handleinput="false">
+          <Size>
+            <AbsPoint x="130" y="10" />
+          </Size>
+          <Anchors>
+            <Anchor point="bottom" relativePoint="top" relativeTo="$parentName">
+              <AbsPoint x="0" y="5" />
+            </Anchor>
+          </Anchors>
+        </StatusBar>
+
+        <StatusBar name="$parentBG" foreground="RedLine" handleinput="false" layer="background" >
+          <Size>
+            <AbsPoint x="130" y="10" />
+          </Size>
+          <Anchors>
+            <Anchor point="center" relativePoint="center" relativeTo="$parentHealthBar">
+              <AbsPoint x="0" y="0" />
+            </Anchor>
+          </Anchors>
+        </StatusBar>
+
+        <Label name="$parentPerc" font="Arial_Black_Shadow_12" maxchars="50" textalign="center" handleinput="false" wordwrap="false" linespacing="18" popable="false" layer="overlay">
+          <Size>
+            <AbsPoint x="130" y="12" />
+          </Size>
+          <Anchors>
+            <Anchor point="topleft" relativePoint="topleft" relativeTo="$parentHealthBar">
+              <AbsPoint x="5" y="-5" />
+            </Anchor>
+          </Anchors>
+          <Color r="255" g="255" b="255" a="255" />
+        </Label>
+        
+      </Windows>
+    </Window>
+
+    <Window name="PlayerOverheadHealthbar" layer="background" autoresize="true" handleinput="true">
+      <Size>
+        <AbsPoint x="150" y="70" />
+      </Size>
+      <EventHandlers>
+        <EventHandler event="OnLButtonDown" function="OverheadText.HoverbarOnLClick" />
+        <EventHandler event="OnLButtonDblClk" function="OverheadText.HoverbarOnDblClick" />
+        <EventHandler event="OnMouseOver" function="OverheadText.HoverbarOnMouseOver" />
+        <EventHandler event="OnMouseOverEnd" function="OverheadText.HoverbarOnMouseOverEnd" />
+        <EventHandler event="OnUpdate" function="OverheadText.UpdateStatusTimer" />
+        <EventHandler event="OnMouseWheel" function="OverheadText.ShiftHoverbar" />
+      </EventHandlers>
+      <Windows>
+        <Label name="$parentName" sticky="false" font="Arial_Black_Shadow_14" maxchars="1024" textalign="center" autoresize="false" wordwrap="true" handleinput="false" linespacing="20" layer="background" draganddrop="true">
+          <Size>
+            <AbsPoint x="150" y="30" />
+          </Size>
+          <Anchors>
+            <Anchor point="top" relativePoint="top" relativeTo="$parent" />
+          </Anchors>
+        </Label>
+        
+        <!-- HEALTH -->
+        <StatusBar name="$parentHealthBar" foreground="RedLine" handleinput="false">
+          <Size>
+            <AbsPoint x="130" y="10" />
+          </Size>
+          <Anchors>
+            <Anchor point="bottom" relativePoint="top" relativeTo="$parentName">
+              <AbsPoint x="0" y="2" />
+            </Anchor>
+          </Anchors>
+        </StatusBar>
+
+        <StatusBar name="$parentHealthBarPoison" foreground="RedLine" handleinput="false">
+          <Size>
+            <AbsPoint x="130" y="10" />
+          </Size>
+          <Anchors>
+            <Anchor point="bottom" relativePoint="top" relativeTo="$parentName">
+              <AbsPoint x="0" y="2" />
+            </Anchor>
+          </Anchors>
+        </StatusBar>
+
+        <StatusBar name="$parentHealthBG" foreground="RedLine" handleinput="false" layer="background" >
+          <Size>
+            <AbsPoint x="130" y="10" />
+          </Size>
+          <Anchors>
+            <Anchor point="center" relativePoint="center" relativeTo="$parentHealthBar">
+              <AbsPoint x="0" y="0" />
+            </Anchor>
+          </Anchors>
+        </StatusBar>
+
+        <Label name="$parentHealthValue" font="Arial_Black_Shadow_10" maxchars="10" textalign="left" handleinput="false" wordwrap="false" linespacing="18" popable="false" layer="overlay">
+          <Size>
+            <AbsPoint x="80" y="12" />
+          </Size>
+          <Anchors>
+            <Anchor point="topleft" relativePoint="topleft" relativeTo="$parentHealthBar">
+              <AbsPoint x="5" y="-5" />
+            </Anchor>
+          </Anchors>
+          <Color r="255" g="255" b="255" a="255" />
+        </Label>
+
+        <Label name="$parentHealthPerc" font="Arial_Black_Shadow_10" maxchars="4" textalign="right" handleinput="false" wordwrap="false" linespacing="18" popable="false" layer="overlay">
+          <Size>
+            <AbsPoint x="50" y="12" />
+          </Size>
+          <Anchors>
+            <Anchor point="topright" relativePoint="topright" relativeTo="$parentHealthBar">
+              <AbsPoint x="-5" y="-5" />
+            </Anchor>
+          </Anchors>
+          <Color r="255" g="255" b="255" a="255" />
+        </Label>
+
+        <!-- MANA -->
+        <StatusBar name="$parentManaBar" foreground="RedLine" handleinput="false">
+          <Size>
+            <AbsPoint x="130" y="10" />
+          </Size>
+          <Anchors>
+            <Anchor point="bottom" relativePoint="top" relativeTo="$parentHealthBar">
+              <AbsPoint x="0" y="2" />
+            </Anchor>
+          </Anchors>
+        </StatusBar>
+
+        <StatusBar name="$parentManaBG" foreground="RedLine" handleinput="false" layer="background" >
+          <Size>
+            <AbsPoint x="130" y="10" />
+          </Size>
+          <Anchors>
+            <Anchor point="center" relativePoint="center" relativeTo="$parentManaBar">
+              <AbsPoint x="0" y="0" />
+            </Anchor>
+          </Anchors>
+        </StatusBar>
+
+        <Label name="$parentManaValue" font="Arial_Black_Shadow_10" maxchars="10" textalign="left" handleinput="false" wordwrap="false" linespacing="18" popable="false" layer="overlay">
+          <Size>
+            <AbsPoint x="80" y="12" />
+          </Size>
+          <Anchors>
+            <Anchor point="topleft" relativePoint="topleft" relativeTo="$parentManaBar">
+              <AbsPoint x="5" y="-5" />
+            </Anchor>
+          </Anchors>
+          <Color r="255" g="255" b="255" a="255" />
+        </Label>
+
+        <Label name="$parentManaPerc" font="Arial_Black_Shadow_10" maxchars="4" textalign="right" handleinput="false" wordwrap="false" linespacing="18" popable="false" layer="overlay">
+          <Size>
+            <AbsPoint x="50" y="12" />
+          </Size>
+          <Anchors>
+            <Anchor point="topright" relativePoint="topright" relativeTo="$parentManaBar">
+              <AbsPoint x="-5" y="-5" />
+            </Anchor>
+          </Anchors>
+          <Color r="255" g="255" b="255" a="255" />
+        </Label>
+
+        <!-- STAMINA -->
+        <StatusBar name="$parentStaminaBar" foreground="RedLine" handleinput="false">
+          <Size>
+            <AbsPoint x="130" y="10" />
+          </Size>
+          <Anchors>
+            <Anchor point="bottom" relativePoint="top" relativeTo="$parentManaBar">
+              <AbsPoint x="0" y="2" />
+            </Anchor>
+          </Anchors>
+        </StatusBar>
+
+        <StatusBar name="$parentStaminaBG" foreground="RedLine" handleinput="false" layer="background" >
+          <Size>
+            <AbsPoint x="130" y="10" />
+          </Size>
+          <Anchors>
+            <Anchor point="center" relativePoint="center" relativeTo="$parentStaminaBar">
+              <AbsPoint x="0" y="0" />
+            </Anchor>
+          </Anchors>
+        </StatusBar>
+
+        <Label name="$parentStaminaValue" font="Arial_Black_Shadow_10" maxchars="10" textalign="left" handleinput="false" wordwrap="false" linespacing="18" popable="false" layer="overlay">
+          <Size>
+            <AbsPoint x="80" y="12" />
+          </Size>
+          <Anchors>
+            <Anchor point="topleft" relativePoint="topleft" relativeTo="$parentStaminaBar">
+              <AbsPoint x="5" y="-5" />
+            </Anchor>
+          </Anchors>
+          <Color r="255" g="255" b="255" a="255" />
+        </Label>
+
+        <Label name="$parentStaminaPerc" font="Arial_Black_Shadow_10" maxchars="4" textalign="right" handleinput="false" wordwrap="false" linespacing="18" popable="false" layer="overlay">
+          <Size>
+            <AbsPoint x="50" y="12" />
+          </Size>
+          <Anchors>
+            <Anchor point="topright" relativePoint="topright" relativeTo="$parentStaminaBar">
+              <AbsPoint x="-5" y="-5" />
+            </Anchor>
+          </Anchors>
+          <Color r="255" g="255" b="255" a="255" />
+        </Label>
+
+      </Windows>
+    </Window>
+    
+  </Windows>
+</Interface>

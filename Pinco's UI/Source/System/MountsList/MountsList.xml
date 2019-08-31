@@ -1,0 +1,186 @@
+<Interface xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../Interface.xsd">
+  <Windows>
+    <Window name="MountTemplate"  draganddrop="true" handleinput="true">
+      <Size>
+        <AbsPoint x="600" y="60" />
+      </Size>
+      <EventHandlers>
+        <EventHandler event="OnRButtonDown" function="MountsList.OnItemClicked" />
+      </EventHandlers>
+      <Windows>
+        <DynamicImage name="$parentIcon" texture=""  texturescale="2.0" draganddrop="true">
+          <Size>
+            <AbsPoint x="45" y="45" />
+          </Size>
+          <TexCoords x="399" y="32"/>
+          <Anchors>
+            <Anchor point="topleft" relativePoint="topleft" >
+              <AbsPoint x="5" y="5" />
+            </Anchor>
+          </Anchors>
+        </DynamicImage>
+        
+        <Label name="$parentName" font="MyriadPro_16" maxchars="64" textalign="left" draganddrop="true" wordwrap="true">
+          <Size>
+            <AbsPoint x="370" y="16" />
+          </Size>
+          <Anchors>
+            <Anchor point="topright" relativePoint="topleft" relativeTo="$parentIcon">
+              <AbsPoint x="10" y="0" />
+            </Anchor>
+          </Anchors>
+          <Color r="255" g="255" b="255" a="255" />
+        </Label>
+
+        <DynamicImage name="$parentNotAMount" texture="MapX" texturescale="1.5" layer="overlay" handleinput="true">
+          <Size>
+            <AbsPoint x="27" y="27" />
+          </Size>
+          <Anchors>
+            <Anchor point="right" relativePoint="left" relativeTo="$parentName">
+              <AbsPoint x="0" y="17" />
+            </Anchor>
+          </Anchors>
+          <TexCoords x="0" y="0"/>
+
+          <EventHandlers>
+            <EventHandler event="OnMouseOver" function="MountsList.NotAMountTooltip" />
+            <EventHandler event="OnLButtonDown" function="MountsList.NotMount" />
+          </EventHandlers>
+        </DynamicImage>
+
+        <Label name="$parentType" font="MyriadPro_16" maxchars="64" textalign="left" draganddrop="true" wordwrap="true">
+          <Size>
+            <AbsPoint x="250" y="16" />
+          </Size>
+          <Anchors>
+            <Anchor point="bottomleft" relativePoint="topleft" relativeTo="$parentName">
+              <AbsPoint x="10" y="10" />
+            </Anchor>
+          </Anchors>
+          <Color r="255" g="255" b="255" a="255" />
+        </Label>
+
+        <FullResizeImage name="$parentBackground" inherits="UO_Default_Inner_Window_Frame" layer="default" alpha="0.8" handleinput="false">
+          <Anchors>
+            <Anchor point="topleft" relativePoint="topleft" />
+            <Anchor point="bottomright" relativePoint="bottomright" />
+          </Anchors>
+        </FullResizeImage>
+      </Windows>
+    </Window>
+
+    <Window name="MountsListWindow" movable="true" handleinput="true">
+      <Size>
+        <AbsPoint x="500" y="600" />
+      </Size>
+      <Anchors>
+        <Anchor point="center" relativePoint="center" relativeTo="ResizeWindow">
+          <AbsPoint x="0" y="0" />
+        </Anchor>
+      </Anchors>
+      <EventHandlers>
+        <EventHandler event="OnInitialize" function="MountsList.Initialize" />
+        <EventHandler event="OnShutdown" function="MountsList.Shutdown" />
+        <EventHandler event="OnShown" function="MountsList.OnShown" />
+        <EventHandler event="OnRButtonDown" function="UO_DefaultWindow.CloseDialog" />
+      </EventHandlers>
+      <Windows>
+        <FullResizeImage name="$parentBackground" inherits="UO_Simple_Black_Background" layer="background" alpha="0.2">
+          <Anchors>
+            <Anchor point="topleft" relativePoint="topleft" />
+            <Anchor point="bottomright" relativePoint="bottomright" />
+          </Anchors>
+        </FullResizeImage>
+        <FullResizeImage name="$parentFrame" inherits="UO_Simple_Frame" layer="background" frameonly="false">
+          <Anchors>
+            <Anchor point="topleft" relativePoint="topleft" />
+            <Anchor point="bottomright" relativePoint="bottomright" />
+          </Anchors>
+        </FullResizeImage>
+
+        <Label name="$parentInfoText" font="Arial_Black_24" textalign="center" wordwrap="true">
+          <Size>
+            <AbsPoint x="500" y="20" />
+          </Size>
+          <Anchors>
+            <Anchor point="top" relativePoint="top" relativeTo="$parent" >
+              <AbsPoint x="0" y="10" />
+            </Anchor>
+          </Anchors>
+          <Color r="255" g="255" b="0" a="255" />
+        </Label>
+        
+        <ScrollWindow name="MountsListSW" childscrollwindow="MountsListSWScrollChild" scrollbar="MountsListSWScrollbar" lineheight="18" autoHideScrollBar="true" >
+          <Size>
+            <AbsPoint x="500" y="200" />
+          </Size>
+          <Anchors>
+            <Anchor point="topleft" relativePoint="topleft" relativeTo="$parent" >
+              <AbsPoint x="5" y="50" />
+            </Anchor>
+            <Anchor point="bottomright" relativePoint="bottomright" relativeTo="$parent" >
+              <AbsPoint x="-5" y="-80" />
+            </Anchor>
+          </Anchors>
+          <EventHandlers>
+            <!--
+						<EventHandler event="OnLButtonDown" function="NewChatWindow.OnLButtonDownJW" />
+						<EventHandler event="OnLButtonUp" function="NewChatWindow.OnLButtonUpJW" />
+						<EventHandler event="OnMouseOver" function="NewChatWindow.ShowAgain" />-->
+          </EventHandlers>
+          <Windows>
+            <VerticalScrollbar name="$parentScrollbar" inherits="StandardVertScroll" layer="secondary"/>
+            <FullResizeImage name="$parentBackground" inherits="UO_Simple_Black_Background" layer="background" alpha="0.2">
+              <Anchors>
+                <Anchor point="topleft" relativePoint="topleft" />
+                <Anchor point="bottomright" relativePoint="bottomright" />
+              </Anchors>
+            </FullResizeImage>
+            <FullResizeImage name="$parentFrame" inherits="UO_Simple_Frame" layer="background" frameonly="false">
+              <Anchors>
+                <Anchor point="topleft" relativePoint="topleft" />
+                <Anchor point="bottomright" relativePoint="bottomright" />
+              </Anchors>
+            </FullResizeImage>
+            <Window name="$parentScrollChild" popable="false">
+              <Size>
+                <AbsPoint x="500" y="200"/>
+              </Size>
+              <Anchors>
+                <Anchor point="topleft" relativePoint="topleft">
+                  <AbsPoint x="5" y="5" />
+                </Anchor>
+              </Anchors>
+
+            </Window>
+          </Windows>
+        </ScrollWindow>
+
+        <Button name="$parentResetButton" inherits="UO_Default_Medium_Select_Button" >
+          <Anchors>
+            <Anchor point="bottom" relativePoint="bottom" relativeTo="$parent">
+              <AbsPoint x="20" y="-20" />
+            </Anchor>
+          </Anchors>
+          <EventHandlers>
+            <EventHandler event="OnLButtonUp" function="MountsList.Reset" />
+            <EventHandler event="OnMouseOver" function="MountsList.ResetMouseOver" />
+          </EventHandlers>
+        </Button>
+        
+        <Label name="$parentNoMounts" font="MyriadPro_16" linespacing="20" maxchars="600" textalign="center" autoresize="true" handleinput="false" wordwrap="true" >
+          <Size>
+            <AbsPoint x="400" y="30" />
+          </Size>
+          <Anchors>
+            <Anchor point="topleft" relativePoint="topleft" relativeTo="MountsListSW">
+              <AbsPoint x="10" y="10" />
+            </Anchor>
+          </Anchors>
+          <Color r="255" g="255" b="255" a="255" />
+        </Label>
+      </Windows>
+    </Window>
+  </Windows>
+</Interface>

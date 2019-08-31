@@ -8,8 +8,8 @@ this.ZoomMax = 20
 
 
 function this.Hook()
-	this.OriginalInitialize = CourseMapWindow.Initialize
-	CourseMapWindow.Initialize = LeanCourseMapWindow.Initialize
+	--this.OriginalInitialize = CourseMapWindow.Initialize
+	--CourseMapWindow.Initialize = LeanCourseMapWindow.Initialize
 end
 
 function this.Unhook()

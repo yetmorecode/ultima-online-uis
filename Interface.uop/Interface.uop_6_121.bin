@@ -1,0 +1,33 @@
+----------------------------------------------------------------
+-- Global Variables
+----------------------------------------------------------------
+
+----------------------------------------------------------------
+-- Local Variables
+----------------------------------------------------------------
+
+Credits = {}
+Credits.creditText = {}
+Credits.endFound = false
+Credits.TopLabelIndex = 1
+Credits.BottomLabelIndex = 1
+Credits.CREDIT_SPEED = 1000
+Credits.TID = { OK=1006044, Credits=3000123 }
+----------------------------------------------------------------
+-- Functions
+----------------------------------------------------------------
+
+function Credits.Initialize()
+	local text = LoadTextFile("credits.txt")
+	
+	LabelSetText("CreditsTitle",GetStringFromTid(Credits.TID.Credits))
+	LabelSetText("CreditsWindowText1",text)
+
+	ScrollWindowUpdateScrollRect("CreditsScrollWindow")
+	ScrollWindowSetOffset("CreditsScrollWindow", 0)
+	ButtonSetText("CreditsOkButton", GetStringFromTid(Credits.TID.OK))
+end
+
+function Credits.OnOk()
+	Login.ShowCredits()
+end

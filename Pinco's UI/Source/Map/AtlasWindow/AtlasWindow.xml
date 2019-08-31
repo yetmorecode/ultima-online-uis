@@ -1,0 +1,1037 @@
+<Interface xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../Interface.xsd">
+  <Windows>
+
+    <Window name="TMapPoint" popable="false" layer="overlay" scaleAnchor="center">
+      <Size>
+        <AbsPoint x="20" y="20"/>
+      </Size>
+      <Windows>
+        <DynamicImage name="$parentPoint" texture="MapX" >
+          <Size>
+            <AbsPoint x="18" y="18"/>
+          </Size>
+          <Anchors>
+            <Anchor point="center" relativePoint="center" relativeTo="">
+              <AbsPoint x="0" y="0" />
+            </Anchor>
+          </Anchors>
+          <EventHandlers>
+            <EventHandler event="OnLButtonDown" function="AtlasWindow.TmapLocationOnLButtonDown" />
+            <EventHandler event="OnMouseOver" function="AtlasWindow.TmapLocationTooltip" />
+          </EventHandlers>
+          <TexCoords x="0" y="0"/>
+        </DynamicImage>
+      </Windows>
+    </Window>
+
+    <Window name="AtlasWeapontSearchResultItem" draganddrop="false">
+      <Size>
+        <AbsPoint x="250" y="60" />
+      </Size>
+      <EventHandlers>
+        <EventHandler event="OnLButtonUp" function="AtlasWindow.LocateWaypoint" />
+      </EventHandlers>
+      <Windows>
+
+        <Label name="$parentName" font="Arial_Black_16" maxchars="64" textalign="left" draganddrop="true" wordwrap="true" handleinput="false" autoresize="true">
+          <Size>
+            <AbsPoint x="170" y="48" />
+          </Size>
+          <Anchors>
+            <Anchor point="left" relativePoint="left" relativeTo="$parent">
+              <AbsPoint x="55" y="-10" />
+            </Anchor>
+          </Anchors>
+          <Color r="0" g="0" b="0" a="255" />
+        </Label>
+        
+        <DynamicImage name="$parentIcon" texture="" handleinput="false" texturescale="2.0" draganddrop="true">
+          <Size>
+            <AbsPoint x="45" y="45" />
+          </Size>
+          <TexCoords x="399" y="32"/>
+          <Anchors>
+            <Anchor point="left" relativePoint="right" relativeTo="$parentName">
+              <AbsPoint x="-10" y="10" />
+            </Anchor>
+          </Anchors>
+        </DynamicImage>
+        
+        <Label name="$parentLocation" font="Arial_Black_12" maxchars="64" textalign="left" draganddrop="true" wordwrap="true" handleinput="false"autoresize="true">
+          <Size>
+            <AbsPoint x="150" y="16" />
+          </Size>
+          <Anchors>
+            <Anchor point="bottom" relativePoint="top" relativeTo="$parentName">
+              <AbsPoint x="20" y="5" />
+            </Anchor>
+          </Anchors>
+          <Color r="31" g="53" b="30" a="255" />
+        </Label>
+
+        <DynamicImage name="$parentSeparator" texturescale="3" popable="false" texture="HLine" sticky="false">
+          <Size>
+            <AbsPoint x="150" y="2" />
+          </Size>
+          <TexCoords x="0" y="0"/>
+          <Anchors>
+            <Anchor point="bottom" relativePoint="bottom" relativeTo="$parentLocation">
+              <AbsPoint x="-30" y="10" />
+            </Anchor>
+          </Anchors>
+          <TintColor r="31" g="53" b="30" a="255"/>
+        </DynamicImage>
+      </Windows>
+    </Window>
+
+    <Window name="AtlasCoordsCheckButton">
+      <Size>
+        <AbsPoint x="200" y="32" />
+      </Size>
+      <Windows>
+
+        <Button name="$parentButton" inherits="UO_Parch_Check_Button">
+          <Anchors>
+            <Anchor point="left" relativePoint="left">
+              <AbsPoint x="5" y="0"/>
+            </Anchor>
+          </Anchors>
+          <EventHandlers>
+            <EventHandler event="OnLButtonDown" function="AtlasWindow.CoordinatesCheck" />
+          </EventHandlers>
+        </Button>
+
+        <Label name="$parentLabel" font="Arial_Black_14" linespacing="20" maxchars="64" textalign="left" autoresizewidth="true" handleinput="true" wordwrap="false">
+          <Size>
+            <AbsPoint x="700" y="20" />
+          </Size>
+          <Anchors>
+            <Anchor point="right" relativePoint="left" relativeTo="$parentButton">
+              <AbsPoint x="5" y="0" />
+            </Anchor>
+          </Anchors>
+          <Color r="0" g="0" b="0" a="255" />
+          <EventHandlers>
+            <EventHandler event="OnLButtonDown" function="AtlasWindow.CoordinatesCheck" />
+          </EventHandlers>
+        </Label>
+      </Windows>
+    </Window>
+
+    <Window name="AtlasWaypointTextEntryFieldTemplate" handleinput="true">
+      <Size>
+        <AbsPoint x="350" y="40" />
+      </Size>
+      <Windows>
+
+        <Label name="$parentLabel" font="Arial_Black_14" linespacing="20" maxchars="64" textalign="right" autoresize="false" handleinput="false" wordwrap="true">
+          <Size>
+            <AbsPoint x="130" y="30" />
+          </Size>
+          <Anchors>
+            <Anchor point="topleft" relativePoint="topleft" relativeTo="$parent">
+              <AbsPoint x="0" y="10" />
+            </Anchor>
+          </Anchors>
+          <Color r="0" g="0" b="0" a="255" />
+        </Label>
+
+        <Window name="$parentText" handleinput="true">
+          <Size>
+            <AbsPoint x="200" y="30" />
+          </Size>
+          <Anchors>
+            <Anchor point="topright" relativePoint="topleft" relativeTo="$parentLabel">
+              <AbsPoint x="10" y="-5" />
+            </Anchor>
+          </Anchors>
+          <Windows>
+            <FullResizeImage name="$parentBG" inherits="UO_TXT_Parch_Background">
+              <Anchors>
+                <Anchor point="topleft" relativePoint="topleft" />
+                <Anchor point="bottomright" relativePoint="bottomright" />
+              </Anchors>
+            </FullResizeImage>
+
+            <EditBox name="$parentEditBox" font="Arial_Black_14" taborder="1" maxchars="100" scrolling="horz">
+              <Size>
+                <AbsPoint x="200" y="20" />
+              </Size>
+              <TextOffset x="5" y="2" />
+              <Anchors>
+                <Anchor point="topleft" relativePoint="topleft" relativeTo="">
+                  <AbsPoint x="0" y="2" />
+                </Anchor>
+              </Anchors>
+              <EventHandlers>
+                <EventHandler event="OnKeyEnter" function="AtlasWindow.CreateEditWaypoint"/>
+                <EventHandler event="OnKeyTab" function="AtlasWindow.OnKeyTab"/>
+              </EventHandlers>
+              <TextColor r="0" g="0" b="0" a="255" />
+            </EditBox>
+
+          </Windows>
+        </Window>
+      </Windows>
+    </Window>
+
+    <Window name="AtlasWaypointIconComboTemplate" handleinput="true">
+      <Size>
+        <AbsPoint x="450" y="80" />
+      </Size>
+      <Windows>
+
+        <Label name="$parentLabel" font="Arial_Black_14" linespacing="20" maxchars="64" textalign="right" autoresize="false" handleinput="false" wordwrap="true">
+          <Size>
+            <AbsPoint x="130" y="30" />
+          </Size>
+          <Anchors>
+            <Anchor point="topleft" relativePoint="topleft" relativeTo="$parent">
+              <AbsPoint x="0" y="30" />
+            </Anchor>
+          </Anchors>
+          <Color r="0" g="0" b="0" a="255" />
+        </Label>
+
+        <ComboBox name="$parentCombo" inherits="UO_Default_Parch_ComboBox" >
+          <Anchors>
+            <Anchor point="topright" relativePoint="topleft" relativeTo="$parentLabel">
+              <AbsPoint x="10" y="-5" />
+            </Anchor>
+          </Anchors>
+          <EventHandlers>
+            <EventHandler event="OnSelChanged" function="AtlasWindow.IconOnSelChanged" />
+          </EventHandlers>
+        </ComboBox>
+
+        <DynamicImage name="$parentIcon" layer="default">
+          <Size>
+            <AbsPoint x="30" y="30" />
+          </Size>
+          <Anchors>
+            <Anchor point="right" relativePoint="left" relativeTo="$parentCombo">
+              <AbsPoint x="10" y="0" />
+            </Anchor>
+          </Anchors>
+        </DynamicImage>
+
+        <Button name="$parentScaleUp" inherits="UO_Default_Parch_Plus_Button" texturescale="0.5" layer="overlay">
+          <Size>
+            <AbsPoint x="20" y="20" />
+          </Size>
+          <Anchors>
+            <Anchor point="right" relativePoint="left" relativeTo="$parentIcon">
+              <AbsPoint x="10" y="-10" />
+            </Anchor>
+          </Anchors>
+          <EventHandlers>
+            <EventHandler event="OnLButtonUp" function="AtlasWindow.IconScaleUp" />
+            <EventHandler event="OnMouseOver" function="AtlasWindow.ScaleUpOnMouseOver" />
+          </EventHandlers>
+        </Button>
+
+        <Button name="$parentScaleDown" inherits="UO_Default_Parch_Minus_Button" texturescale="0.5" layer="overlay">
+          <Size>
+            <AbsPoint x="20" y="20" />
+          </Size>
+          <Anchors>
+            <Anchor point="bottom" relativePoint="top" relativeTo="$parentScaleUp">
+              <AbsPoint x="0" y="5" />
+            </Anchor>
+          </Anchors>
+          <EventHandlers>
+            <EventHandler event="OnLButtonUp" function="AtlasWindow.IconScaleDown" />
+            <EventHandler event="OnMouseOver" function="AtlasWindow.ScaleDownOnMouseOver" />
+          </EventHandlers>
+        </Button>
+
+      </Windows>
+    </Window>
+
+    <Window name="AtlasWaypointMapComboTemplate" handleinput="true">
+      <Size>
+        <AbsPoint x="400" y="40" />
+      </Size>
+      <Windows>
+
+        <Label name="$parentLabel" font="Arial_Black_14" linespacing="20" maxchars="64" textalign="right" autoresize="false" handleinput="false" wordwrap="true">
+          <Size>
+            <AbsPoint x="130" y="30" />
+          </Size>
+          <Anchors>
+            <Anchor point="topleft" relativePoint="topleft" relativeTo="$parent">
+              <AbsPoint x="0" y="10" />
+            </Anchor>
+          </Anchors>
+          <Color r="0" g="0" b="0" a="255" />
+        </Label>
+
+        <ComboBox name="$parentCombo" inherits="UO_Default_Parch_ComboBox" >
+          <Anchors>
+            <Anchor point="topright" relativePoint="topleft" relativeTo="$parentLabel">
+              <AbsPoint x="10" y="-5" />
+            </Anchor>
+          </Anchors>
+        </ComboBox>
+
+      </Windows>
+    </Window>
+
+    <Window name="AtlasWaypointNumEntryFieldTemplate" handleinput="true">
+      <Size>
+        <AbsPoint x="200" y="50" />
+      </Size>
+      <Windows>
+
+        <Label name="$parentLabel" font="Arial_Black_12" linespacing="20" maxchars="64" textalign="right" autoresize="false" handleinput="false" wordwrap="true">
+          <Size>
+            <AbsPoint x="70" y="30" />
+          </Size>
+          <Anchors>
+            <Anchor point="topleft" relativePoint="topleft" relativeTo="$parent">
+              <AbsPoint x="0" y="16" />
+            </Anchor>
+          </Anchors>
+          <Color r="0" g="0" b="0" a="255" />
+        </Label>
+
+        <Window name="$parentText" handleinput="true">
+          <Size>
+            <AbsPoint x="70" y="30" />
+          </Size>
+          <Anchors>
+            <Anchor point="topright" relativePoint="topleft" relativeTo="$parentLabel">
+              <AbsPoint x="10" y="-5" />
+            </Anchor>
+          </Anchors>
+          <Windows>
+            <FullResizeImage name="$parentBG" inherits="UO_TXT_Parch_Background">
+              <Anchors>
+                <Anchor point="topleft" relativePoint="topleft" />
+                <Anchor point="bottomright" relativePoint="bottomright" />
+              </Anchors>
+            </FullResizeImage>
+
+            <EditBox name="$parentEditBox" font="Arial_Black_12" taborder="1" maxchars="6" scrolling="horz" input="nospaces">
+              <Size>
+                <AbsPoint x="70" y="20" />
+              </Size>
+              <TextOffset x="5" y="2" />
+              <Anchors>
+                <Anchor point="topleft" relativePoint="topleft" relativeTo="">
+                  <AbsPoint x="0" y="2" />
+                </Anchor>
+              </Anchors>
+              <EventHandlers>
+                <EventHandler event="OnKeyEnter" function="AtlasWindow.CreateEditWaypoint"/>
+                <EventHandler event="OnKeyTab" function="AtlasWindow.OnKeyTab"/>
+                <EventHandler event="OnTextChanged" function="AtlasWindow.CheckNumbers"/>
+              </EventHandlers>
+              <TextColor r="0" g="0" b="0" a="255" />
+            </EditBox>
+
+          </Windows>
+        </Window>
+      </Windows>
+    </Window>
+
+    <Window name="AtlasWaypointDegreesEntryFieldTemplate" handleinput="true">
+      <Size>
+        <AbsPoint x="230" y="50" />
+      </Size>
+      <Windows>
+
+        <Label name="$parentLabel" font="Arial_Black_12" linespacing="20" maxchars="64" textalign="right" autoresize="false" handleinput="false" wordwrap="true">
+          <Size>
+            <AbsPoint x="90" y="30" />
+          </Size>
+          <Anchors>
+            <Anchor point="topleft" relativePoint="topleft" relativeTo="$parent">
+              <AbsPoint x="0" y="16" />
+            </Anchor>
+          </Anchors>
+          <Color r="0" g="0" b="0" a="255" />
+        </Label>
+
+        <Window name="$parentText" handleinput="true">
+          <Size>
+            <AbsPoint x="70" y="30" />
+          </Size>
+          <Anchors>
+            <Anchor point="topright" relativePoint="topleft" relativeTo="$parentLabel">
+              <AbsPoint x="10" y="-5" />
+            </Anchor>
+          </Anchors>
+          <Windows>
+            <FullResizeImage name="$parentBG" inherits="UO_TXT_Parch_Background">
+              <Anchors>
+                <Anchor point="topleft" relativePoint="topleft" />
+                <Anchor point="bottomright" relativePoint="bottomright" />
+              </Anchors>
+            </FullResizeImage>
+
+            <EditBox name="$parentEditBox" font="Arial_Black_12" taborder="1" maxchars="6" scrolling="horz" input="nospaces">
+              <Size>
+                <AbsPoint x="70" y="20" />
+              </Size>
+              <TextOffset x="5" y="2" />
+              <Anchors>
+                <Anchor point="topleft" relativePoint="topleft" relativeTo="">
+                  <AbsPoint x="0" y="2" />
+                </Anchor>
+              </Anchors>
+              <EventHandlers>
+                <EventHandler event="OnKeyEnter" function="AtlasWindow.CreateEditWaypoint"/>
+                <EventHandler event="OnKeyTab" function="AtlasWindow.OnKeyTab"/>
+                <EventHandler event="OnTextChanged" function="AtlasWindow.CheckNumbers"/>
+              </EventHandlers>
+              <TextColor r="0" g="0" b="0" a="255" />
+            </EditBox>
+
+          </Windows>
+        </Window>
+
+        <Window name="$parentDirection" handleinput="true">
+          <Size>
+            <AbsPoint x="50" y="30" />
+          </Size>
+          <Anchors>
+            <Anchor point="topright" relativePoint="topleft" relativeTo="$parentText">
+              <AbsPoint x="5" y="0" />
+            </Anchor>
+          </Anchors>
+          <Windows>
+            <FullResizeImage name="$parentBG" inherits="UO_TXT_Parch_Background">
+              <Anchors>
+                <Anchor point="topleft" relativePoint="topleft" />
+                <Anchor point="bottomright" relativePoint="bottomright" />
+              </Anchors>
+            </FullResizeImage>
+
+            <Button name="$parentButton" maxchars="1" wordwrap="false" font="Arial_Black_12"  textalign="center" >
+              <Size>
+                <AbsPoint x="50" y="30" />
+              </Size>
+              <Anchors>
+                <Anchor point="center" relativePoint="center" relativeTo="$parent">
+                  <AbsPoint x="0" y="-2" />
+                </Anchor>
+              </Anchors>
+              <TextColors>
+                <Normal             r="55"  g="49"  b="34"  />
+                <NormalHighlit      r="10"  g="80"  b="140" />
+                <Pressed            r="10"  g="80"  b="140" />
+                <PressedHighlit     r="10"  g="120" b="180" />
+                <Disabled           r="119" g="111" b="98"  />
+                <DisabledPressed    r="119" g="111" b="98"  />
+              </TextColors>
+
+              <EventHandlers>
+                <EventHandler event="OnLButtonUp" function="AtlasWindow.ChangeDirection" />
+              </EventHandlers>
+            </Button>
+
+          </Windows>
+        </Window>
+      </Windows>
+    </Window>
+
+    <!-- ATLAS WINDOW -->
+    <Window name="AtlasWindow" movable="false" sticky="false" popable="true" >
+      <Size>
+        <AbsPoint x="800" y="750" />
+      </Size>
+      <Anchors>
+        <Anchor point="center" relativePoint="center" relativeTo="ResizeWindow">
+          <AbsPoint x="0" y="0" />
+        </Anchor>
+      </Anchors>
+      <EventHandlers>
+        <EventHandler event="OnInitialize" function="AtlasWindow.Initialize" />
+        <EventHandler event="OnShutdown" function="AtlasWindow.Shutdown" />
+        <EventHandler event="OnShown" function="AtlasWindow.OnShown" />
+        <EventHandler event="OnHidden" function="AtlasWindow.OnHidden" />
+        <EventHandler event="OnUpdate" function="AtlasWindow.OnUpdate" />
+      </EventHandlers>
+      <Windows>
+
+        <FullResizeImage name="$parentBg" texture="TMapBG" handleinput="true" layer="background" popable="false">
+          <Anchors>
+            <Anchor point="topleft" relativePoint="topleft"/>
+            <Anchor point="bottomright" relativePoint="bottomright">
+              <AbsPoint x="0" y="-250" />
+            </Anchor>
+          </Anchors>
+          <Sizes>
+            <TopLeft x="70" y="70" />
+            <BottomRight x="70" y="70" />
+            <Middle x="70" y="70" />
+          </Sizes>
+          <TexCoords>
+            <TopLeft x="0" y="0" />
+            <TopCenter x="70" y="0" />
+            <TopRight x="140" y="0" />
+            <MiddleLeft x="0" y="70" />
+            <MiddleCenter x="70" y="70" />
+            <MiddleRight x="140" y="70" />
+            <BottomLeft x="0" y="140" />
+            <BottomCenter x="70" y="140" />
+            <BottomRight x="140" y="140" />
+          </TexCoords>
+          <EventHandlers>
+            <EventHandler event="OnLButtonUp" function="AtlasWindow.StopMoving" />
+            <EventHandler event="OnLButtonDown" function="AtlasWindow.StartMoving" />
+            <EventHandler event="OnRButtonUp" function="UO_DefaultWindow.CloseDialog" />
+          </EventHandlers>
+        </FullResizeImage>
+
+        <VerticalResizeImage name="$parentLeft" texture="MapVerticalBorders" handleinput="false" layer="background" >
+          <Size>
+            <AbsPoint x="45" y="526" />
+          </Size>
+          <Anchors>
+            <Anchor point="topleft" relativePoint="topleft" relativeTo="$parentBg">
+              <AbsPoint x="-5" y="-2" />
+            </Anchor>
+            <Anchor point="bottomleft" relativePoint="bottomleft" relativeTo="$parentBg">
+              <AbsPoint x="-5" y="8" />
+            </Anchor>
+          </Anchors>
+          <Sizes top="60" middle="65" bottom="55"/>
+          <TexCoords>
+            <Top x="1" y="0" />
+            <Middle x="1" y="60" />
+            <Bottom x="2" y="175" />
+          </TexCoords>
+        </VerticalResizeImage>
+
+        <VerticalResizeImage name="$parentRight" texture="MapVerticalBorders" textureScale="1.5" handleinput="false" layer="background">
+          <Size>
+            <AbsPoint x="28" y="526" />
+          </Size>
+          <Anchors>
+            <Anchor point="topright" relativePoint="topright" relativeTo="$parentBg">
+              <AbsPoint x="7" y="-5" />
+            </Anchor>
+            <Anchor point="bottomright" relativePoint="bottomright" relativeTo="$parentBg">
+              <AbsPoint x="7" y="12" />
+            </Anchor>
+          </Anchors>
+          <Sizes top="60" middle="55" bottom="55"/>
+          <TexCoords>
+            <Top x="68" y="0" />
+            <Middle x="68" y="60" />
+            <Bottom x="68" y="175" />
+          </TexCoords>
+        </VerticalResizeImage>
+
+        <MaskWindow name="$parentMap" movable="false" popable="false" layer="background" handleinput="true">
+          <Size>
+            <!--AbsPoint x="690" y="665" /-->
+            <AbsPoint x="420" y="420" />
+          </Size>
+          <Anchors>
+            <Anchor point="topleft" relativePoint="topleft" relativeTo="$parent">
+              <AbsPoint x="30" y="70" />
+            </Anchor>
+          </Anchors>
+          <EventHandlers>
+            <EventHandler event="OnMouseWheel" function="MapCommon.MapOnMouseWheel" />
+          </EventHandlers>
+          <Windows>
+            <DynamicImage name="$parentImage" handleinput="true" layer="default" scaleAnchor="center" texturescale ="20">
+              <Size>
+                <AbsPoint x="1100" y="1100" />
+              </Size>
+              <Anchors>
+                <Anchor point="center" relativePoint="center"/>
+              </Anchors>
+              <EventHandlers>
+                <EventHandler event="OnLButtonUp" function="AtlasWindow.MapOnLButtonUp" />
+                <EventHandler event="OnLButtonDblClk" function="AtlasWindow.MapOnLButtonDblClk" />
+                <EventHandler event="OnMouseDrag" function="AtlasWindow.MapMouseDrag" />
+                <EventHandler event="OnRButtonUp" function="AtlasWindow.MapOnRButtonUp" />
+              </EventHandlers>
+            </DynamicImage>
+
+            <DynamicImage name="$parentTMapImage" handleinput="true" layer="secondary" >
+              <Size>
+                <AbsPoint x="300" y="300" />
+              </Size>
+              <Anchors>
+                <Anchor point="center" relativePoint="center" relativeTo="$parent"/>
+              </Anchors>
+              <EventHandlers>
+                <EventHandler event="OnLButtonUp" function="AtlasWindow.MapOnLButtonUp" />
+                <EventHandler event="OnLButtonDblClk" function="AtlasWindow.MapOnLButtonDblClk" />
+                <EventHandler event="OnMouseDrag" function="AtlasWindow.MapMouseDrag" />
+              </EventHandlers>
+            </DynamicImage>
+          </Windows>
+        </MaskWindow>
+
+        <DynamicImage name="$parentCompass" texture="CompassTexture" texturescale="0.64" popable="false">
+          <Size>
+            <AbsPoint x="85" y="85" />
+          </Size>
+          <TexCoords x="0" y="0"/>
+          <Anchors>
+            <Anchor point="bottomright" relativePoint="bottomright" relativeTo="$parentMap">
+              <AbsPoint x="0" y="0" />
+            </Anchor>
+          </Anchors>
+          <EventHandlers>
+            <EventHandler event="OnLButtonUp" function="MapCommon.TiltMap" />
+            <EventHandler event="OnMouseOver" function="MapCommon.TiltMapTooltip" />
+          </EventHandlers>
+        </DynamicImage>
+
+        <FullResizeImage name="$parentOverlay" texture="TMapOverlay" handleinput="false">
+          <Anchors>
+            <Anchor point="topleft" relativePoint="topleft" relativeTo="$parentMap">
+              <AbsPoint x="-8" y="-8" />
+            </Anchor>
+            <Anchor point="bottomright" relativePoint="bottomright" relativeTo="$parentMap">
+              <AbsPoint x="8" y="8" />
+            </Anchor>
+          </Anchors>
+          <Sizes>
+            <TopLeft x="70" y="70" />
+            <BottomRight x="70" y="70" />
+            <Middle x="70" y="70" />
+          </Sizes>
+          <TexCoords>
+            <TopLeft x="0" y="0" />
+            <TopCenter x="70" y="0" />
+            <TopRight x="140" y="0" />
+            <MiddleLeft x="0" y="70" />
+            <MiddleCenter x="70" y="70" />
+            <MiddleRight x="140" y="70" />
+            <BottomLeft x="0" y="140" />
+            <BottomCenter x="70" y="140" />
+            <BottomRight x="140" y="140" />
+          </TexCoords>
+        </FullResizeImage>
+
+        <Label name="$parentOverlayModeInfo" font="Arial_Black_12" maxchars="1024" textalign="center" handleinput="false" wordwrap ="true">
+          <Size>
+            <AbsPoint x="420" y="60" />
+          </Size>
+          <Anchors>
+            <Anchor point="topleft" relativePoint="topleft" relativeTo="$parent">
+              <AbsPoint x="30" y="10" />
+            </Anchor>
+          </Anchors>
+          <Color r="0" g="0" b="0" a="255" />
+        </Label>
+
+        <ComboBox name="$parentFacetCombo" inherits="UO_Default_Parch_ComboBox" maxvisibleitems="5">
+          <Anchors>
+            <Anchor point="topleft" relativePoint="topleft" relativeTo="$parentMap">
+              <AbsPoint x="-7" y="-40" />
+            </Anchor>
+          </Anchors>
+          <EventHandlers>
+            <EventHandler event="OnSelChanged" function="AtlasWindow.SelectFacet"/>
+          </EventHandlers>
+        </ComboBox>
+
+        <ComboBox name="$parentAreaCombo" inherits="UO_Default_Parch_LongComboBox" maxvisibleitems="5">
+          <Anchors>
+            <Anchor point="right" relativePoint="left" relativeTo="$parentFacetCombo">
+              <AbsPoint x="5" y="0" />
+            </Anchor>
+          </Anchors>
+          <EventHandlers>
+            <EventHandler event="OnSelChanged" function="AtlasWindow.SelectArea"/>
+          </EventHandlers>
+        </ComboBox>
+
+        <Label name="$parentPlayerCoordsText" font="Arial_Black_12" maxchars="128" textalign="left" handleinput="true" wordwrap ="false">
+          <Size>
+            <AbsPoint x="350" y="15" />
+          </Size>
+          <Anchors>
+            <Anchor point="bottomleft" relativePoint="topleft" relativeTo="$parentMap">
+              <AbsPoint x="10" y="10" />
+            </Anchor>
+          </Anchors>
+          <Color r="0" g="0" b="0" a="255" />
+          <EventHandlers>
+            <EventHandler event="OnLButtonUp" function="AtlasWindow.CenterOnPlayer" />
+            <EventHandler event="OnMouseOver" function="AtlasWindow.CenterOnPlayerOnMouseOver" />
+          </EventHandlers>
+        </Label>
+
+        <Button name="$parentWPOnPlayerLocButton" inherits="UO_Default_Parch_Plus_Button" texturescale="0.5" layer="overlay">
+          <Size>
+            <AbsPoint x="20" y="20" />
+          </Size>
+          <Anchors>
+            <Anchor point="topleft" relativePoint="topright" relativeTo="$parentPlayerCoordsText">
+              <AbsPoint x="0" y="0" />
+            </Anchor>
+          </Anchors>
+          <EventHandlers>
+            <EventHandler event="OnLButtonUp" function="AtlasWindow.WPOnPlayerLocation" />
+            <EventHandler event="OnMouseOver" function="MapCommon.WPPlayerLocOnMouseOver" />
+          </EventHandlers>
+        </Button>
+
+        <Label name="$parentCoordsText" font="Arial_Black_12" maxchars="64" textalign="left" handleinput="false" wordwrap ="false">
+          <Size>
+            <AbsPoint x="350" y="15" />
+          </Size>
+          <Anchors>
+            <Anchor point="bottomleft" relativePoint="topleft" relativeTo="$parentPlayerCoordsText">
+              <AbsPoint x="0" y="5" />
+            </Anchor>
+          </Anchors>
+          <Color r="0" g="0" b="0" a="255" />
+        </Label>
+
+        <Button name="$parentZoomInButton" inherits="UO_Default_Parch_Plus_Button" texturescale="0.5" layer="default">
+          <Size>
+            <AbsPoint x="20" y="20" />
+          </Size>
+          <Anchors>
+            <Anchor point="topright" relativePoint="topright" relativeTo="$parentMap">
+              <AbsPoint x="0" y="0" />
+            </Anchor>
+          </Anchors>
+          <EventHandlers>
+            <EventHandler event="OnLButtonUp" function="MapCommon.ZoomInOnLButtonUp" />
+            <EventHandler event="OnMouseOver" function="MapCommon.ZoomInOnMouseOver" />
+          </EventHandlers>
+        </Button>
+
+        <Button name="$parentZoomOutButton" inherits="UO_Default_Parch_Minus_Button" texturescale="0.5" layer="default">
+          <Size>
+            <AbsPoint x="20" y="20" />
+          </Size>
+          <Anchors>
+            <Anchor point="bottom" relativePoint="top" relativeTo="$parentZoomInButton">
+              <AbsPoint x="0" y="0" />
+            </Anchor>
+          </Anchors>
+          <EventHandlers>
+            <EventHandler event="OnLButtonUp" function="MapCommon.ZoomOutOnLButtonUp" />
+            <EventHandler event="OnMouseOver" function="MapCommon.ZoomOutOnMouseOver" />
+          </EventHandlers>
+        </Button>
+
+        <Button name="$parentWPFiltertButton" inherits="UO_Default_Parch_Tick_Button" texturescale="0.6" layer="default">
+          <Size>
+            <AbsPoint x="20" y="20" />
+          </Size>
+          <Anchors>
+            <Anchor point="bottom" relativePoint="top" relativeTo="$parentZoomOutButton">
+              <AbsPoint x="2" y="2" />
+            </Anchor>
+          </Anchors>
+          <EventHandlers>
+            <EventHandler event="OnLButtonUp" function="MapCommon.WPFilterOnLButtonUp" />
+            <EventHandler event="OnMouseOver" function="MapCommon.WPFilterTooltip" />
+          </EventHandlers>
+        </Button>
+
+        <DynamicImage name="$parentSeparator" texturescale="3" popable="false" texture="VLine" sticky="false">
+          <Size>
+            <AbsPoint x="2" y="500" />
+          </Size>
+          <TexCoords x="0" y="0"/>
+          <Anchors>
+            <Anchor point="topright" relativePoint="topright" relativeTo="$parentMap">
+              <AbsPoint x="20" y="-40" />
+            </Anchor>
+          </Anchors>
+          <TintColor r="31" g="53" b="30" a="255"/>
+        </DynamicImage>
+
+        <Window name="$parentWaypointFinder" >
+          <Size>
+            <AbsPoint x="250" y="500" />
+          </Size>
+          <Anchors>
+            <Anchor point="topright" relativePoint="topleft" relativeTo="$parentSeparator">
+              <AbsPoint x="15" y="0" />
+            </Anchor>
+          </Anchors>
+          <Windows>
+
+            <Window name="$parentSearchBox" inherits="SearchBoxNoNext_Parch_MEDIUM" >
+              <Anchors>
+                <Anchor point="topleft" relativePoint="topleft" relativeTo="$parent">
+                  <AbsPoint x="0" y="5" />
+                </Anchor>
+              </Anchors>
+            </Window>
+
+            <ScrollWindow name="AtlasMapFindSW" childscrollwindow="AtlasMapFindSWScrollChild" scrollbar="AtlasMapFindSWScrollbar" lineheight="18" autoHideScrollBar="true" >
+              <Size>
+                <AbsPoint x="350" y="200" />
+              </Size>
+              <Anchors>
+                <Anchor point="topleft" relativePoint="topleft" relativeTo="$parent" >
+                  <AbsPoint x="0" y="35" />
+                </Anchor>
+                <Anchor point="bottomright" relativePoint="bottomright" relativeTo="$parent" >
+                  <AbsPoint x="-5" y="-30" />
+                </Anchor>
+              </Anchors>
+              <Windows>
+                <Label name="$parentNothingFound" font="Arial_Black_16" maxchars="64" textalign="left" draganddrop="true" wordwrap="true" handleinput="false" autoresize="true">
+                  <Size>
+                    <AbsPoint x="200" y="48" />
+                  </Size>
+                  <Anchors>
+                    <Anchor point="top" relativePoint="top" relativeTo="$parent">
+                      <AbsPoint x="0" y="10" />
+                    </Anchor>
+                  </Anchors>
+                  <Color r="140" g="0" b="0" a="255" />
+                </Label>
+                
+                <VerticalScrollbar name="$parentScrollbar" inherits="ParchVertScroll" layer="secondary"/>
+                
+                <Window name="$parentScrollChild" popable="false">
+                  <Size>
+                    <AbsPoint x="290" y="200"/>
+                  </Size>
+                  <Anchors>
+                    <Anchor point="topleft" relativePoint="topleft">
+                      <AbsPoint x="5" y="5" />
+                    </Anchor>
+                  </Anchors>
+                  <EventHandlers>
+                    <EventHandler event="OnRButtonUp" function="UO_DefaultWindow.CloseDialog" />
+                  </EventHandlers>
+                </Window>
+              </Windows>
+            </ScrollWindow>
+
+            <DynamicImage name="$parentSeparator" texturescale="3" popable="false" texture="HLine" sticky="false">
+              <Size>
+                <AbsPoint x="200" y="2" />
+              </Size>
+              <TexCoords x="0" y="0"/>
+              <Anchors>
+                <Anchor point="bottom" relativePoint="bottom" relativeTo="$parent">
+                  <AbsPoint x="-10" y="-20" />
+                </Anchor>
+              </Anchors>
+              <TintColor r="31" g="53" b="30" a="255"/>
+            </DynamicImage>
+
+            <Label name="$parentTotal" font="Arial_Black_12" maxchars="64" textalign="left" draganddrop="true" wordwrap="true" handleinput="false" autoresize="true">
+              <Size>
+                <AbsPoint x="200" y="48" />
+              </Size>
+              <Anchors>
+                <Anchor point="top" relativePoint="bottom" relativeTo="$parentSeparator">
+                  <AbsPoint x="0" y="20" />
+                </Anchor>
+              </Anchors>
+              <Color r="0" g="0" b="0" a="255" />
+            </Label>
+            
+          </Windows>
+        </Window>
+
+        <Window name="$parentWaypointEditor" >
+          <Size>
+            <AbsPoint x="460" y="330" />
+          </Size>
+          <Anchors>
+            <Anchor point="bottomleft" relativePoint="topleft" relativeTo="$parentCoordsText">
+              <AbsPoint x="350" y="-200" />
+            </Anchor>
+          </Anchors>
+          <EventHandlers>
+            <EventHandler event="OnLButtonUp" function="AtlasWindow.StopMoving" />
+            <EventHandler event="OnLButtonDown" function="AtlasWindow.StartMoving" />
+            <EventHandler event="OnRButtonUp" function="AtlasWindow.HideWaypointEditor" />
+          </EventHandlers>
+          <Windows>
+
+            <FullResizeImage name="$parentBG" inherits="UO_Simple_Parch_Background">
+              <Anchors>
+                <Anchor point="topleft" relativePoint="topleft" />
+                <Anchor point="bottomright" relativePoint="bottomright" />
+              </Anchors>
+            </FullResizeImage>
+
+            <Window name="$parentName" inherits="AtlasWaypointTextEntryFieldTemplate">
+              <Anchors>
+                <Anchor point="topleft" relativePoint="topleft" relativeTo="">
+                  <AbsPoint x="10" y="10" />
+                </Anchor>
+              </Anchors>
+            </Window>
+
+            <Window name="$parentMap" inherits="AtlasWaypointMapComboTemplate" handleinput="false">
+              <Anchors>
+                <Anchor point="bottomleft" relativePoint="topleft" relativeTo="$parentName">
+                  <AbsPoint x="0" y="0" />
+                </Anchor>
+              </Anchors>
+            </Window>
+
+            <Window name="$parentIcon" inherits="AtlasWaypointIconComboTemplate">
+              <Anchors>
+                <Anchor point="bottomleft" relativePoint="topleft" relativeTo="$parentMap">
+                  <AbsPoint x="0" y="-15" />
+                </Anchor>
+              </Anchors>
+            </Window>
+
+            <Window name="$parentCoordsTypeLatLong" inherits="AtlasCoordsCheckButton">
+              <Anchors>
+                <Anchor point="bottomleft" relativePoint="topleft" relativeTo="$parentIcon">
+                  <AbsPoint x="70" y="-10" />
+                </Anchor>
+              </Anchors>
+            </Window>
+
+            <Window name="$parentCoordsTypeXY" inherits="AtlasCoordsCheckButton">
+              <Anchors>
+                <Anchor point="right" relativePoint="left" relativeTo="$parentCoordsTypeLatLong">
+                  <AbsPoint x="0" y="0" />
+                </Anchor>
+              </Anchors>
+            </Window>
+
+            <Window name="$parentCoordsXY" >
+              <Size>
+                <AbsPoint x="400" y="50" />
+              </Size>
+
+              <Anchors>
+                <Anchor point="bottomleft" relativePoint="topleft" relativeTo="$parentCoordsTypeLatLong">
+                  <AbsPoint x="-60" y="10" />
+                </Anchor>
+              </Anchors>
+              <Windows>
+                <Window name="$parentX" inherits="AtlasWaypointNumEntryFieldTemplate">
+                  <Anchors>
+                    <Anchor point="topleft" relativePoint="topleft" relativeTo="$parent">
+                      <AbsPoint x="0" y="0" />
+                    </Anchor>
+                  </Anchors>
+                </Window>
+
+                <Window name="$parentY" inherits="AtlasWaypointNumEntryFieldTemplate">
+                  <Anchors>
+                    <Anchor point="right" relativePoint="left" relativeTo="$parentX">
+                      <AbsPoint x="0" y="0" />
+                    </Anchor>
+                  </Anchors>
+                </Window>
+              </Windows>
+            </Window>
+
+            <Window name="$parentCoordsLatLong" >
+              <Size>
+                <AbsPoint x="470" y="50" />
+              </Size>
+
+              <Anchors>
+                <Anchor point="bottomleft" relativePoint="topleft" relativeTo="$parentCoordsTypeLatLong">
+                  <AbsPoint x="-90" y="10" />
+                </Anchor>
+              </Anchors>
+              <Windows>
+
+                <Window name="$parentLat" inherits="AtlasWaypointDegreesEntryFieldTemplate">
+                  <Anchors>
+                    <Anchor point="topleft" relativePoint="topleft" relativeTo="$parent">
+                      <AbsPoint x="0" y="0" />
+                    </Anchor>
+                  </Anchors>
+                </Window>
+
+                <Window name="$parentLong" inherits="AtlasWaypointDegreesEntryFieldTemplate">
+                  <Anchors>
+                    <Anchor point="right" relativePoint="left" relativeTo="$parentLat">
+                      <AbsPoint x="0" y="0" />
+                    </Anchor>
+                  </Anchors>
+                </Window>
+              </Windows>
+            </Window>
+
+            <Label name="$parentErrorLabel" font="Arial_Black_12" maxchars="1024" textalign="center" handleinput="false" wordwrap ="true">
+              <Size>
+                <AbsPoint x="420" y="60" />
+              </Size>
+              <Anchors>
+                <Anchor point="bottom" relativePoint="bottom" relativeTo="$parent">
+                  <AbsPoint x="0" y="-50" />
+                </Anchor>
+              </Anchors>
+              <Color r="140" g="0" b="0" a="255" />
+            </Label>
+
+            <Button name="$parentCreateEdit" maxchars="255" wordwrap="false" font="UO_NeueText_16" texturescale="0.8" textalign="center" backgroundtexture="map_parchment_widgets"  highlighttexture="map_parchment_widgets">
+              <Size>
+                <AbsPoint x="150" y="30" />
+              </Size>
+              <Anchors>
+                <Anchor point="bottom" relativePoint="bottomright" relativeTo="$parent">
+                  <AbsPoint x="-40" y="-20" />
+                </Anchor>
+              </Anchors>
+              <TexCoords>
+                <Normal x="0" y="4" />
+                <NormalHighlit x="0" y="51" />
+                <Pressed x="0" y="51" />
+                <PressedHighlit x="0" y="51" />
+              </TexCoords>
+              <TextColors>
+                <Normal             r="55"  g="49"  b="34"  />
+                <NormalHighlit      r="10"  g="80"  b="140" />
+                <Pressed            r="10"  g="80"  b="140" />
+                <PressedHighlit     r="10"  g="120" b="180" />
+                <Disabled           r="119" g="111" b="98"  />
+                <DisabledPressed    r="119" g="111" b="98"  />
+              </TextColors>
+              <EventHandlers>
+                <EventHandler event="OnLButtonUp" function="AtlasWindow.CreateEditWaypoint" />
+              </EventHandlers>
+            </Button>
+
+            <Button name="$parentCancel" maxchars="255" wordwrap="false" font="UO_NeueText_16" texturescale="0.8" textalign="center" backgroundtexture="map_parchment_widgets"  highlighttexture="map_parchment_widgets">
+              <Size>
+                <AbsPoint x="150" y="30" />
+              </Size>
+              <Anchors>
+                <Anchor point="bottom" relativePoint="bottomleft" relativeTo="$parent">
+                  <AbsPoint x="40" y="-20" />
+                </Anchor>
+              </Anchors>
+              <TexCoords>
+                <Normal x="0" y="4" />
+                <NormalHighlit x="0" y="51" />
+                <Pressed x="0" y="51" />
+                <PressedHighlit x="0" y="51" />
+              </TexCoords>
+              <TextColors>
+                <Normal             r="55"  g="49"  b="34"  />
+                <NormalHighlit      r="10"  g="80"  b="140" />
+                <Pressed            r="10"  g="80"  b="140" />
+                <PressedHighlit     r="10"  g="120" b="180" />
+                <Disabled           r="119" g="111" b="98"  />
+                <DisabledPressed    r="119" g="111" b="98"  />
+              </TextColors>
+              <EventHandlers>
+                <EventHandler event="OnLButtonUp" function="AtlasWindow.HideWaypointEditor" />
+              </EventHandlers>
+            </Button>
+
+          </Windows>
+        </Window>
+
+      </Windows>
+    </Window>
+  </Windows>
+</Interface>

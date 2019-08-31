@@ -1,0 +1,23 @@
+
+----------------------------------------------------------------
+-- Global Variables
+----------------------------------------------------------------
+
+InterfaceLogin = {}
+
+----------------------------------------------------------------
+-- Local Variables
+----------------------------------------------------------------
+
+----------------------------------------------------------------
+-- InterfaceLogin Functions
+----------------------------------------------------------------
+
+function InterfaceLogin.Update(timePassed)
+    Login.UpdateTime(timePassed)
+end
+
+function InterfaceLogin.CreateLoginWindowSet()
+    CreateWindow( "CharacterCreation", false )
+    CreateWindow( "Login", true )
+end

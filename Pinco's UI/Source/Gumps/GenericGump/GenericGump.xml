@@ -1,0 +1,240 @@
+<Interface xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../Interface.xsd">
+  <Windows>
+    <DynamicImage name="JewelryBoxAlert" texture="disabled" texturescale="1" handleinput="false" layer="background" alpha="0.8">
+      <Size>
+        <AbsPoint x="50" y="50" />
+      </Size>
+      <Anchors>
+        <Anchor point="center" relativePoint="center" relativeTo="">
+          <AbsPoint x="0" y="0" />
+        </Anchor>
+      </Anchors>
+      <TexCoords x="0" y="0" />
+      <TintColor r="0" g="255" b="0" />
+    </DynamicImage>
+    
+    <Window name ="JewelryBox" handleinput="true" >
+      <Size>
+        <AbsPoint x="360" y="20" />
+      </Size>
+      <Windows>
+        <Window name="$parentSearchBox" inherits="SearchBoxNext" >
+          <Anchors>
+            <Anchor point="topleft" relativePoint="topleft" relativeTo="$parent">
+              <AbsPoint x="0" y="0" />
+            </Anchor>
+          </Anchors>
+        </Window>
+        <FullResizeImage name="$parentFrame" inherits="UO_Simple_Frame" layer="background" frameonly="false">
+          <Anchors>
+            <Anchor point="topleft" relativePoint="topleft" relativeTo="$parentSearchBoxFrame" />
+            <Anchor point="bottomright" relativePoint="bottomright" relativeTo="$parentSearchBoxFrame" />
+          </Anchors>
+        </FullResizeImage>
+      </Windows>
+    </Window>
+
+    <Window name ="CraftingTool" handleinput="true" >
+      <Size>
+        <AbsPoint x="561" y="90" />
+      </Size>
+      <Windows>
+        <DynamicImage name="$parentBG" texture="craftingGumpBG" texturescale="1.18" layer="background" popable="false" skipinput="true">
+          <Size>
+            <AbsPoint x="561" y="90" />
+          </Size>
+          <TexCoords x="0" y="0" />
+        </DynamicImage>
+        
+        <Window name="$parentSearchBox" inherits="SearchBoxNext_PARCH" >
+          <Anchors>
+            <Anchor point="topleft" relativePoint="topleft" relativeTo="$parent">
+              <AbsPoint x="30" y="40" />
+            </Anchor>
+          </Anchors>
+        </Window>
+
+        <Label name="$parentWarning" font="google_noto_16" maxchars="256" textalign="leftcenter" draganddrop="false" wordwrap="true" layer="overlay" skipinput="true">
+          <Size>
+            <AbsPoint x="370" y="40" />
+          </Size>
+          <Anchors>
+            <Anchor point="topright" relativePoint="topright" relativeTo="$parent">
+              <AbsPoint x="0" y="-200" />
+            </Anchor>
+          </Anchors>
+          <Color r="255" g="255" b="255" a="255" />
+        </Label>
+
+        <Button name="$parentScanRecipes"  draganddrop="false" texturescale="0.8">
+          <Size>
+            <AbsPoint x="40" y="40" />
+          </Size>
+          <Anchors>
+            <Anchor point="right" relativePoint="left" relativeTo="$parentSearchBox">
+              <AbsPoint x="30" y="0" />
+            </Anchor>
+          </Anchors>
+          <EventHandlers>
+            <EventHandler event="OnLButtonUp" function="GumpsParsing.CraftingToolScanMissingRecipes" />
+            <EventHandler event="OnMouseOver" function="GumpsParsing.CraftingToolScanMissingRecipesTooltip" />
+          </EventHandlers>
+          <TexCoords>
+            <Normal texture="hud_image" x="0" y="754" />
+            <NormalHighlit texture="hud_image" x="50" y="754" />
+            <Disabled texture="hud_image" x="0" y="754" />
+            <Pressed texture="hud_image" x="0" y="754" />
+            <PressedHighlit texture="hud_image" x="50" y="754" />
+          </TexCoords>
+          <Windows>
+
+            <DynamicImage name="$parentIcon" skipinput="true">
+              <Size>
+                <AbsPoint x="40" y="40" />
+              </Size>
+              <Anchors>
+                <Anchor point="center" relativePoint="center" >
+                  <AbsPoint x="3" y="8" />
+                </Anchor>
+              </Anchors>
+            </DynamicImage>
+
+          </Windows>
+        </Button>
+
+        <Button name="$parentRebuildToolData"  draganddrop="false" texturescale="0.8">
+          <Size>
+            <AbsPoint x="40" y="40" />
+          </Size>
+          <Anchors>
+            <Anchor point="right" relativePoint="left" relativeTo="$parentScanRecipes">
+              <AbsPoint x="30" y="0" />
+            </Anchor>
+          </Anchors>
+          <EventHandlers>
+            <EventHandler event="OnLButtonUp" function="GumpsParsing.CraftingToolRebuildToolData" />
+            <EventHandler event="OnMouseOver" function="GumpsParsing.CraftingToolRebuildToolDataTooltip" />
+          </EventHandlers>
+          <TexCoords>
+            <Normal texture="hud_image" x="0" y="754" />
+            <NormalHighlit texture="hud_image" x="50" y="754" />
+            <Disabled texture="hud_image" x="0" y="754" />
+            <Pressed texture="hud_image" x="0" y="754" />
+            <PressedHighlit texture="hud_image" x="50" y="754" />
+          </TexCoords>
+          <Windows>
+
+            <DynamicImage name="$parentIcon" skipinput="true">
+              <Size>
+                <AbsPoint x="40" y="40" />
+              </Size>
+              <Anchors>
+                <Anchor point="center" relativePoint="center" >
+                  <AbsPoint x="3" y="8" />
+                </Anchor>
+              </Anchors>
+            </DynamicImage>
+
+          </Windows>
+        </Button>
+        
+      </Windows>
+    </Window>
+    
+    <DynamicImage name="AnniversaryPartyImage" texture="AnniversaryParty" texturescale="1.2" layer="overlay" popable="false" handleinput="false">
+      <Size>
+        <AbsPoint x="591" y="397" />
+      </Size>
+      <TexCoords x="0" y="0" />
+    </DynamicImage>
+
+    <EditBox name="GenericGumpTextEntryTemplate" font="google_noto_15" maxchars="1024">
+    </EditBox>
+
+    <Button name="GenericGumpButtonTemplate" layer="popup" handleinput="true">
+      <EventHandlers>
+        <EventHandler event="OnLButtonUp" function="GenericGump.OnClicked" />
+        <EventHandler event="OnMouseOver" function="GenericGump.OnMouseOver" />
+        <EventHandler event="OnMouseOverEnd" function="ItemProperties.ClearMouseOverItem" />
+
+      </EventHandlers>
+    </Button>
+
+    <ScrollWindow name="GenericGumpScrolledLabelTemplate" childscrollwindow="$parentChild" scrollbar="$parentScrollbar" lineheight="18" handleinput="true" autoHideScrollBar="true" >
+      <Size>
+        <AbsPoint x="100" y="100" />
+      </Size>
+      <Windows>
+        <VerticalScrollbar name="$parentScrollbar" inherits="StandardVertScroll" />
+
+        <Window name ="$parentChild" handleinput="true" >
+          <Windows>
+            <Label name="$parentLabel" font="google_noto_15" layer="default" autoresize="true" handleinput="true" wordwrap="true" maxchars="3072">
+              <Size>
+                <AbsPoint x="0" y="20"/>
+              </Size>
+              <EventHandlers>
+                <EventHandler event="OnHyperLinkLButtonUp" function="GenericGump.OnHyperLinkClicked"/>
+                <EventHandler event="OnInitialize" function="GenericGump.OnLabelInit"/>
+                <EventHandler event="OnMouseOverEnd" function="GenericGump.OnMouseOverEnd" />
+                <EventHandler event="OnMouseOver" function="GenericGump.OnMouseOver" />
+              </EventHandlers>
+            </Label>
+          </Windows>
+        </Window>
+      </Windows>
+    </ScrollWindow>
+
+    <Label name="GenericGumpLabelTemplate" font="google_noto_15" layer="default" autoresize="true" handleinput="true" wordwrap="true" maxchars="2048">
+      <Size>
+        <AbsPoint x="0" y="20"/>
+      </Size>
+      <EventHandlers>
+        <EventHandler event="OnInitialize" function="GenericGump.OnLabelInit"/>
+        <EventHandler event="OnMouseOver" function="GenericGump.OnMouseOver" />
+      </EventHandlers>
+    </Label>
+
+    <Label name="GenericGumpLabelFixedTemplate" font="google_noto_15" layer="default" handleinput="true" wordwrap="true" maxchars="2048">
+      <Size>
+        <AbsPoint x="0" y="20"/>
+      </Size>
+      <EventHandlers>
+        <EventHandler event="OnHyperLinkLButtonUp" function="GenericGump.OnHyperLinkClicked"/>
+        <EventHandler event="OnInitialize" function="GenericGump.OnLabelInit"/>
+        <EventHandler event="OnLButtonUp" function="GenericGump.LabelClicked" />
+        <EventHandler event="OnMouseOver" function="GenericGump.OnMouseOver" />
+        <EventHandler event="OnMouseOverEnd" function="GenericGump.OnMouseOverEnd" />
+      </EventHandlers>
+    </Label>
+
+    <Label name="GenericGumpLabelResizeTemplate" font="google_noto_15" layer="default" autoresize="true" autoresizewidth="true" handleinput="true" wordwrap="true" maxchars="2048">
+      <Size>
+        <AbsPoint x="0" y="20"/>
+      </Size>
+      <EventHandlers>
+        <EventHandler event="OnInitialize" function="GenericGump.OnLabelInit"/>
+        <EventHandler event="OnMouseOver" function="GenericGump.OnMouseOver" />
+        <EventHandler event="OnMouseOverEnd" function="GenericGump.OnMouseOverEnd" />
+      </EventHandlers>
+    </Label>
+
+    <DynamicImage name="GenericGumpImageTemplate" layer="default" popable="false">
+      <EventHandlers>
+        <EventHandler event="OnLButtonDblClk" function="GenericGump.OnDoubleClicked" />
+        <EventHandler event="OnMouseOver" function="GenericGump.OnMouseOver" />
+        <EventHandler event="OnMouseOverEnd" function="GenericGump.OnMouseOverEnd" />
+      </EventHandlers>
+    </DynamicImage>
+
+    <Window name="GenericGumpTemplate" layer="default" handleinput="true" movable="true" >
+      <EventHandlers>
+        <EventHandler event="OnMouseWheel" function="WindowUtils.Scale" />
+        <EventHandler event="OnRButtonUp" function="GenericGump.OnRClicked" />
+        <EventHandler event="OnLButtonDown" function="GenericGump.OnItemRelease" />
+        <EventHandler event="OnInitialize" function="GenericGump.Initialize"/>
+        <EventHandler event="OnShutdown" function="GenericGump.Shutdown"/>
+      </EventHandlers>
+    </Window>
+  </Windows>
+</Interface>

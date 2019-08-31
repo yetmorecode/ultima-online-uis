@@ -1,0 +1,107 @@
+<Interface xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../Interface.xsd">
+  <Windows>
+    <Window name="MacroPickerItemTemplate" movable="false" layer="popup">
+      <Size>
+        <AbsPoint x="50" y="50" />
+      </Size>
+      <EventHandlers>
+        <EventHandler event="OnLButtonUp" function="MacroPickerWindow.SetMacro" />
+        <EventHandler event="OnMouseWheel" function="MacroPickerWindow.ScrollPage" />
+      </EventHandlers>
+      <Windows>
+        <DynamicImage name="$parentIcon" texturescale="0.78" handleinput="true" layer="default">
+          <Size>
+            <AbsPoint x="50" y="50" />
+          </Size>
+          <Anchors>
+            <Anchor point="topleft" relativePoint="topleft">
+              <AbsPoint x="0" y="0" />
+            </Anchor>
+          </Anchors>
+        </DynamicImage>
+        <DynamicImage name="$parentBG" texturescale="0.78" handleinput="false" layer="background">
+          <Size>
+            <AbsPoint x="50" y="50" />
+          </Size>
+          <Anchors>
+            <Anchor point="topleft" relativePoint="topleft">
+              <AbsPoint x="0" y="0" />
+            </Anchor>
+          </Anchors>
+        </DynamicImage>
+      </Windows>
+    </Window>
+
+    <Window name="MacroPickerWindowTemplate" movable="false" layer="popup">
+      <Size>
+        <AbsPoint x="210" y="240" />
+      </Size>
+      <EventHandlers>
+        <EventHandler event="OnInitialize" function="MacroPickerWindow.Initialize" />
+        <EventHandler event="OnMouseWheel" function="MacroPickerWindow.ScrollPage" />
+      </EventHandlers>
+      <Windows>
+        
+        <!-- Inner Frame Boilerplate -->
+        <FullResizeImage name="$parentBackground" inherits="UO_Simple_Black_Background">
+          <Size>
+            <AbsPoint x="0" y="0" />
+          </Size>
+          <Anchors>
+            <Anchor point="topleft" relativePoint="topleft" />
+            <Anchor point="bottomright" relativePoint="bottomright" />
+          </Anchors>
+          <Windows>
+            <FullResizeImage name="$parentFrame" inherits="UO_Default_Inner_Window_Frame">
+              <Size>
+                <AbsPoint x="10" y="10"/>
+              </Size>
+              <Anchors>
+                <Anchor point="topleft" relativePoint="topleft" />
+                <Anchor point="bottomright" relativePoint="bottomright" />
+              </Anchors>
+            </FullResizeImage>
+          </Windows>
+        </FullResizeImage>
+        <!-- End of Inner Frame Boilerplate -->
+
+        <Button name="$parentNextButton" inherits="UO_Default_SmallNextButton">
+          <Anchors>
+            <Anchor point="bottomright" relativePoint="bottomright" relativeTo="$parent">
+              <AbsPoint x="-10" y="-5" />
+            </Anchor>
+          </Anchors>
+          <EventHandlers>
+            <EventHandler event="OnLButtonUp" function="MacroPickerWindow.NextPage" />
+            <EventHandler event="OnMouseWheel" function="MacroPickerWindow.ScrollPage" />
+          </EventHandlers>
+        </Button>
+
+        <Button name="$parentPrevButton" inherits="UO_Default_SmallPreviousButton">
+          <Anchors>
+            <Anchor point="bottomleft" relativePoint="bottomleft" relativeTo="$parent">
+              <AbsPoint x="10" y="-5" />
+            </Anchor>
+          </Anchors>
+          <EventHandlers>
+            <EventHandler event="OnLButtonUp" function="MacroPickerWindow.PreviousPage" />
+            <EventHandler event="OnMouseWheel" function="MacroPickerWindow.ScrollPage" />
+          </EventHandlers>
+        </Button>
+
+        <Label name="$parentPage" font="Arial_Black_16" textalign="center" autoresize="false" handleinput="false" wordwrap="false">
+          <Size>
+            <AbsPoint x="130" y="20" />
+          </Size>
+          <Anchors>
+            <Anchor point="right" relativePoint="left" relativeTo="$parentPrevButton" >
+              <AbsPoint x="0" y="-3" />
+            </Anchor>
+          </Anchors>
+          <Color r="255" g="255" b="255" a="255" />
+        </Label>
+        
+      </Windows>
+    </Window>
+  </Windows>
+</Interface>

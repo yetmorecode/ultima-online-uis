@@ -1,0 +1,1186 @@
+<Interface xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../Interface.xsd">
+	<Windows>
+		<!-- Default Title Bar -->
+		<HorizontalResizeImage name="UO_Default_Title_Bar" texture="WindowTitle">
+			<Size>
+				<!-- <AbsPoint x="10" y="44" /> -->
+				<AbsPoint x="10" y="26" />
+			</Size>
+			<!--<Sizes left="49" middle="48" right="60" />-->
+			<Sizes left="8" middle="80" right="8" />
+			<TexCoords>
+				<Left x="0" y="0" />
+				<Middle x="55" y="0" />
+				<Right x="152" y="0" />
+			</TexCoords>
+		</HorizontalResizeImage>
+
+    <!-- NEW Title Bar -->
+    <HorizontalResizeImage name="UO_Default_Title_BarNEW" texture="WindowTitleNEW">
+      <Size>
+        <!-- <AbsPoint x="10" y="44" /> -->
+        <AbsPoint x="10" y="26" />
+      </Size>
+      <!--<Sizes left="49" middle="48" right="60" />-->
+      <Sizes left="10" middle="80" right="10" />
+      <TexCoords>
+        <Left x="0" y="0" />
+        <Middle x="55" y="0" />
+        <Right x="146" y="0" />
+      </TexCoords>
+    </HorizontalResizeImage>
+
+		<!--Default Close Button -->
+		<Button name="UO_Default_Close_Button" backgroundtexture="CloseButton" highlighttexture="CloseButton" texturescale="1.15" layer="popup">
+			<Size>
+				<AbsPoint x="22" y="22" />
+			</Size>
+			<EventHandlers>
+				<EventHandler event="OnLButtonUp" function="UO_DefaultWindow.CloseDialog" />
+				<EventHandler event="OnMouseOver" function="UO_DefaultWindow.CloseTooltip" />
+			</EventHandlers>
+			<TexCoords>
+				<Normal x="21" y="0" />
+				<NormalHighlit x="63" y="0" />
+				<Pressed x="42" y="0"  />
+				<PressedHighlit x="42" y="0" />
+				<Disabled x="0" y="0" />
+			</TexCoords>
+		</Button>
+
+    <!-- NEW Close Button -->
+    <Button name="UO_Default_Close_ButtonNEW" backgroundtexture="CloseButtonNEW" highlighttexture="CloseButtonNEW" texturescale="1.15" layer="popup">
+      <Size>
+        <AbsPoint x="24" y="24" />
+      </Size>
+      <EventHandlers>
+        <EventHandler event="OnLButtonUp" function="UO_DefaultWindow.CloseDialog" />
+        <EventHandler event="OnMouseOver" function="UO_DefaultWindow.CloseTooltip" />
+      </EventHandlers>
+      <TexCoords>
+        <Normal x="21" y="0" />
+        <NormalHighlit x="63" y="0" />
+        <Pressed x="42" y="0"  />
+        <PressedHighlit x="42" y="0" />
+        <Disabled x="0" y="0" />
+      </TexCoords>
+    </Button>
+
+		<!-- Default Black Background -->
+		<FullResizeImage name="UO_Default_Black_Background" layer="background" handleinput="false" texture="UO_Background">
+			<Sizes>
+				<TopLeft x="42" y="48" />
+				<Middle x="42" y="36" />
+				<BottomRight x="42" y="48" />
+			</Sizes>
+			<TexCoords>
+				<TopLeft x="0" y="0" />
+				<TopCenter x="42" y="0" />
+				<TopRight x="85" y="0" />
+				<MiddleLeft x="0" y="48" />
+				<MiddleCenter x="42" y="48" />
+				<MiddleRight x="85" y="48" />
+				<BottomLeft x="0" y="85" />
+				<BottomCenter x="42" y="85" />
+				<BottomRight x="85" y="85" />
+			</TexCoords>
+		</FullResizeImage>
+
+    <!-- NEW Black Background -->
+    <FullResizeImage name="UO_Default_Black_BackgroundNEW" layer="background" handleinput="false" texture="UO_BackgroundNEW">
+      <Sizes>
+        <TopLeft x="42" y="48" />
+        <Middle x="42" y="36" />
+        <BottomRight x="42" y="48" />
+      </Sizes>
+      <TexCoords>
+        <TopLeft x="0" y="0" />
+        <TopCenter x="42" y="0" />
+        <TopRight x="85" y="0" />
+        <MiddleLeft x="0" y="48" />
+        <MiddleCenter x="42" y="48" />
+        <MiddleRight x="85" y="48" />
+        <BottomLeft x="0" y="80" />
+        <BottomCenter x="42" y="80" />
+        <BottomRight x="85" y="80" />
+      </TexCoords>
+    </FullResizeImage>
+
+		<!-- Plain black background, used for e.g. context menus & tooltips -->
+		<FullResizeImage name="UO_Simple_Black_Background" layer="background" handleinput="false" texture="Simple_Background">
+			<Sizes>
+				<TopLeft x="0" y="0" />
+				<Middle x="59" y="59" />
+				<BottomRight x="0" y="0" />
+			</Sizes>
+			<TexCoords>
+				<TopLeft x="0" y="1" />
+				<TopCenter x="3" y="1" />
+				<TopRight x="50" y="1" />
+				<MiddleLeft x="0" y="1" />
+				<MiddleCenter x="3" y="1" />
+				<MiddleRight x="50" y="1" />
+				<BottomLeft x="0" y="59" />
+				<BottomCenter x="3" y="59" />
+				<BottomRight x="50" y="59" />
+			</TexCoords>
+		</FullResizeImage>
+
+    <!-- Parchment Background -->
+    <FullResizeImage name="UO_Simple_Parch_Background" layer="background" handleinput="false" texture="map_parchment_widgets">
+      <Sizes>
+        <TopLeft x="45" y="45" />
+        <Middle x="90" y="90" />
+        <BottomRight x="45" y="45" />
+      </Sizes>
+      <TexCoords>
+        <TopLeft x="343" y="285" />
+        <TopCenter x="387" y="285" />
+        <TopRight x="467" y="285" />
+        <MiddleLeft x="343" y="330" />
+        <MiddleCenter x="387" y="330" />
+        <MiddleRight x="467" y="330" />
+        <BottomLeft x="343" y="467" />
+        <BottomCenter x="392" y="467" />
+        <BottomRight x="465" y="467" />
+      </TexCoords>
+    </FullResizeImage>
+
+    <!-- Parchment NoCorners Background -->
+    <FullResizeImage name="UO_Simple_Parch_NO_CORNERS_Background" layer="background" handleinput="false" texture="map_parchment_widgets">
+      <Sizes>
+        <TopLeft x="0" y="0" />
+        <Middle x="90" y="90" />
+        <BottomRight x="0" y="0" />
+      </Sizes>
+      <TexCoords>
+        <TopLeft x="343" y="285" />
+        <TopCenter x="387" y="285" />
+        <TopRight x="467" y="285" />
+        <MiddleLeft x="343" y="330" />
+        <MiddleCenter x="387" y="330" />
+        <MiddleRight x="467" y="330" />
+        <BottomLeft x="343" y="467" />
+        <BottomCenter x="387" y="467" />
+        <BottomRight x="467" y="467" />
+      </TexCoords>
+    </FullResizeImage>
+
+    <!-- Parchment Background (used for parchment combo) -->
+    <FullResizeImage name="UO_Cutted_Parch_Background" layer="background" handleinput="false" texture="map_parchment_widgets">
+      <Sizes>
+        <TopLeft x="45" y="45" />
+        <Middle x="90" y="90" />
+        <BottomRight x="45" y="45" />
+      </Sizes>
+      <TexCoords>
+        <TopLeft x="343" y="305" />
+        <TopCenter x="387" y="305" />
+        <TopRight x="467" y="305" />
+        <MiddleLeft x="343" y="330" />
+        <MiddleCenter x="387" y="330" />
+        <MiddleRight x="467" y="330" />
+        <BottomLeft x="343" y="467" />
+        <BottomCenter x="387" y="467" />
+        <BottomRight x="467" y="467" />
+      </TexCoords>
+    </FullResizeImage>
+
+    <!-- Parchment Background (used for textboxes) -->
+    <FullResizeImage name="UO_TXT_Parch_Background" layer="background" handleinput="false" texture="map_parchment_widgets">
+      <Sizes>
+        <TopLeft x="10" y="15" />
+        <Middle x="5" y="5" />
+        <BottomRight x="10" y="15" />
+      </Sizes>
+      <TexCoords>
+        <TopLeft x="110" y="390" />
+        <TopCenter x="120" y="390" />
+        <TopRight x="279" y="390" />
+        <MiddleLeft x="120" y="400" />
+        <MiddleCenter x="150" y="400" />
+        <MiddleRight x="180" y="400" />
+        <BottomLeft x="110" y="406" />
+        <BottomCenter x="120" y="406" />
+        <BottomRight x="279" y="406" />
+      </TexCoords>
+    </FullResizeImage>
+
+    <FullResizeImage name="UO_Simple_Parch_Frame" layer="background" handleinput="false" texture="Simple_Parch_Frame" frameonly="true">
+      <Sizes>
+        <TopLeft x="8" y="7" />
+        <Middle x="30" y="4" />
+        <BottomRight x="8" y="7" />
+      </Sizes>
+      <TexCoords>
+        <TopLeft x="2" y="0" />
+        <TopCenter x="10" y="0" />
+        <TopRight x="40" y="0" />
+        <MiddleLeft x="2" y="7" />
+        <MiddleCenter x="10" y="7" />
+        <MiddleRight x="40" y="7" />
+        <BottomLeft x="2" y="9" />
+        <BottomCenter x="10" y="9" />
+        <BottomRight x="40" y="9" />
+      </TexCoords>
+    </FullResizeImage>
+
+		<FullResizeImage name="UO_Simple_Frame" layer="background" handleinput="false" texture="Simple_Frame" frameonly="true">
+			<Sizes>
+				<TopLeft x="8" y="7" />
+				<Middle x="30" y="4" />
+				<BottomRight x="8" y="7" />
+			</Sizes>
+			<TexCoords>
+				<TopLeft x="2" y="0" />
+				<TopCenter x="10" y="0" />
+				<TopRight x="40" y="0" />
+				<MiddleLeft x="2" y="7" />
+				<MiddleCenter x="10" y="7" />
+				<MiddleRight x="40" y="7" />
+				<BottomLeft x="2" y="9" />
+				<BottomCenter x="10" y="9" />
+				<BottomRight x="40" y="9" />
+			</TexCoords>
+		</FullResizeImage>
+
+		<!-- Default Outer Frame Template -->
+		<FullResizeImage name="UO_Default_Outer_Window_Frame" layer="background" handleinput="false" texture="Outer_Frame" frameonly="true">
+			<Sizes>
+				<TopLeft x="20" y="18" />
+				<Middle x="20" y="60" />
+				<BottomRight x="20" y="36" />
+			</Sizes>
+			<TexCoords>
+				<TopLeft x="0" y="0" />
+				<TopCenter x="60" y="0" />
+				<TopRight x="106" y="0" />
+				<MiddleLeft x="0" y="18" />
+				<MiddleCenter x="60" y="18" />
+				<MiddleRight x="106" y="18" />
+				<BottomLeft x="0" y="78" />
+				<BottomCenter x="60" y="78" />
+				<BottomRight x="106" y="78" />
+			</TexCoords>
+		</FullResizeImage>
+
+		<!-- Inner Frame Template -->
+		<FullResizeImage name="UO_Default_Inner_Window_Frame" layer="background" handleinput="false" texture="Inner_Frame" frameonly="true">
+			<Sizes>
+				<TopLeft x="10" y="10" />
+				<Middle x="40" y="10" />
+				<BottomRight x="10" y="10" />
+			</Sizes>
+			<TexCoords>
+				<TopLeft x="0" y="0" />
+				<TopCenter x="11" y="0" />
+				<TopRight x="118" y="0" />
+				<MiddleLeft x="0" y="11" />
+				<MiddleCenter x="11" y="11" />
+				<MiddleRight x="118" y="11" />
+				<BottomLeft x="0" y="98" />
+				<BottomCenter x="11" y="98" />
+				<BottomRight x="118" y="98" />
+			</TexCoords>
+		</FullResizeImage>
+
+		<!-- Main Menu Window Template -->
+		<FullResizeImage name="UO_Default_Main_Menu_Window_Frame" layer="background" handleinput="false" texture="Main_Menu_Frame" frameonly="true">
+			<Sizes>
+				<TopLeft x="18" y="18" />
+				<Middle x="18" y="18" />
+				<BottomRight x="18" y="18" />
+			</Sizes>
+			<TexCoords>
+				<TopLeft x="0" y="0" />
+				<TopCenter x="17" y="0" />
+				<TopRight x="40" y="0" />
+				<MiddleLeft x="0" y="18" />
+				<MiddleCenter x="17" y="18" />
+				<MiddleRight x="40" y="18" />
+				<BottomLeft x="0" y="18" />
+				<BottomCenter x="17" y="36" />
+				<BottomRight x="40" y="36" />
+			</TexCoords>
+		</FullResizeImage>
+
+		<FullResizeImage name="ResizingWindowFrame" layer="overlay" texture="UO_ResizeFrame"  handleinput="true" frameonly="true">
+			<Sizes>
+				<TopLeft x="12" y="12" />
+				<Middle x="40" y="40" />
+				<BottomRight x="12" y="12" />
+			</Sizes>
+			<TexCoords>
+				<TopLeft x="0" y="0" />
+				<TopCenter x="12" y="0" />
+				<TopRight x="52" y="0" />
+				<MiddleLeft x="0" y="12" />
+				<MiddleCenter x="12" y="12" />
+				<MiddleRight x="52" y="12" />
+				<BottomLeft x="0" y="52" />
+				<BottomCenter x="12" y="52" />
+				<BottomRight x="52" y="52" />
+			</TexCoords>
+		</FullResizeImage>
+
+		<Button name="UO_Default_GenericTextButton" textalign="left" font="MyriadPro_16">
+			<Size>
+				<AbsPoint x="140" y="20" />
+			</Size>
+			<TextColors>
+				<Normal r="253" g="210" b="69" a="255" />
+				<NormalHighlit r="253" g="210" b="69" a="255" />
+				<Pressed r="255" g="255" b="255" a="255" />
+				<PressedHighlit r="255" g="255" b="255" a="255" />
+				<Disabled r="73" g="59" b="14" a="255" />
+			</TextColors>
+		</Button>
+
+		<Button name="UO_Default_Medium_Select_Button" sticky="false" backgroundtexture="Medium_Select_Button" highlighttexture="Medium_Select_Button" textalign="top"  font="Arial_Black_16">
+			<Size>
+				<AbsPoint x="169" y="39" />
+			</Size>
+			<TexCoords>
+				<Normal x="0" y="0" />
+				<NormalHighlit x="0" y="0" />
+				<Pressed x="0" y="39" />
+				<PressedHighlit x="0" y="39" />
+			</TexCoords>
+			<TextOffset x="0" y="8"/>
+			<TextColors>
+				<Normal r="2" g="6" b="20" a="255" />
+				<!-- THIS IS USED AS THE UNSELECTED COLOR FOR SOME REASON-->
+				<NormalHighlit  r="255" g="255" b="255" a="255" />
+				<!-- THIS IS USED AS THE MOUSEOVER COLOR -->
+				<Pressed r="206" g="217" b="242" a="255" />
+				<PressedHighlit r="255" g="255" b="255" a="255" />
+				<Disabled r="30" g="30" b="30" a="255"  />
+				<!-- THIS IS USED AS THE SELECTED COLOR FOR SOME REASON -->
+			</TextColors>
+		</Button>
+
+		<Button name="UO_Default_GumpButton" sticky="false" backgroundtexture="Default_Gump_Button" highlighttexture="Default_Gump_Button"   font="Arial_Black_16" textalign="top">
+			<Size>
+				<AbsPoint x="84" y="38" />
+			</Size>
+      <TextColors>
+        <Normal r="2" g="6" b="20" a="255" />
+        <!-- THIS IS USED AS THE UNSELECTED COLOR FOR SOME REASON-->
+        <NormalHighlit  r="255" g="255" b="255" a="255" />
+        <!-- THIS IS USED AS THE MOUSEOVER COLOR -->
+        <Pressed r="206" g="217" b="242" a="255" />
+        <PressedHighlit r="255" g="255" b="255" a="255" />
+        <Disabled r="30" g="30" b="30" a="255"  />
+        <!-- THIS IS USED AS THE SELECTED COLOR FOR SOME REASON -->
+      </TextColors>
+			<TextOffset x="0" y="5" />
+			<TexCoords>
+				<Normal x="0" y="0" />
+				<NormalHighlit x="85" y="0" />
+				<Pressed x="85" y="0" />
+				<PressedHighlit x="85" y="0" />
+			</TexCoords>
+		</Button>
+
+		<Button name="UO_Default_VendorButton" sticky="false" backgroundtexture="Default_Gump_Button" highlighttexture="Default_Gump_Button" autoresizewidth="true"  font="Arial_Black_16" textalign ="middle" textureScale="0.7">
+			<Size>
+				<AbsPoint x="58" y="25" />
+			</Size>
+			<TextColors>
+				<Normal r="2" g="6" b="20" a="255" />
+				<!-- THIS IS USED AS THE UNSELECTED COLOR FOR SOME REASON-->
+				<NormalHighlit  r="255" g="255" b="255" a="255" />
+				<!-- THIS IS USED AS THE MOUSEOVER COLOR -->
+				<Pressed r="206" g="217" b="242" a="255" />
+				<PressedHighlit r="255" g="255" b="255" a="255" />
+				<Disabled r="30" g="30" b="30" a="255"  />
+				<!-- THIS IS USED AS THE SELECTED COLOR FOR SOME REASON -->
+			</TextColors>
+			<TextOffset x="10" y="0" />
+			<TexCoords>
+				<Normal x="0" y="0" />
+				<NormalHighlit x="85" y="0" />
+				<Pressed x="85" y="0" />
+				<PressedHighlit x="85" y="0" />
+				<Disabled x="0" y="0" />
+			</TexCoords>
+		</Button>
+
+		<Button name="UO_Default_SmallPreviousButton" backgroundtexture="Prev_Button" highlighttexture="Prev_Button">
+			<Size>
+				<AbsPoint x="30" y="24" />
+			</Size>
+			<TexCoords>
+				<Normal x="0" y="0" />
+				<NormalHighlit x="0" y="23" />
+				<Pressed x="0" y="23" />
+				<PressedHighlit x="0" y="23" />
+				<Disabled x="0" y="46" />
+			</TexCoords>
+		</Button>
+
+		<Button name="UO_Default_SmallNextButton" backgroundtexture="Next_Button" highlighttexture="Next_Button">
+			<Size>
+				<AbsPoint x="30" y="24" />
+			</Size>
+			<TexCoords>
+				<Normal x="0" y="0" />
+				<NormalHighlit x="0" y="24" />
+				<Pressed x="0" y="24" />
+				<PressedHighlit x="0" y="24" />
+				<Disabled x="0" y="47" />
+			</TexCoords>
+		</Button>
+
+		<Button name="UO_Default_Big_Select_Button" sticky="false" backgroundtexture="Default_Gump_Button" highlighttexture="Default_Gump_Button" textalign="center"  font="Arial_Black_14">
+			<Size>
+				<AbsPoint x="158" y="49" />
+			</Size>
+			<TexCoords>
+				<Normal x="0" y="0" />
+				<NormalHighlit x="85" y="0" />
+				<Pressed x="85" y="0" />
+				<PressedHighlit x="85" y="0" />
+				<Disabled x="0" y="0" />
+			</TexCoords>
+			<TextColors>
+				<Normal  r="23" g="24" b="19" a="255" />
+				<NormalHighlit r="23" g="24" b="19" a="255" />
+				<Pressed r="23" g="24" b="19" a="255" />
+				<PressedHighlit r="23" g="24" b="19" a="255" />
+				<PressedHighlit r="23" g="24" b="19" a="255" />
+				<Disabled r="23" g="24" b="19" a="255" />
+			</TextColors>
+		</Button>
+
+		<Button name="UO_Default_Check_Button" backgroundtexture="CheckBox" highlighttexture="CheckBox" >
+			<Size>
+				<AbsPoint x="16" y="16" />
+			</Size>
+			<TexCoords>
+				<Normal x="0" y="0" />
+				<Pressed x="19" y="0" />
+			</TexCoords>
+		</Button>
+
+    <Button name="UO_Parch_Check_Button" backgroundtexture="map_parchment_widgets" highlighttexture="map_parchment_widgets" texturescale="0.3">
+      <Size>
+        <AbsPoint x="18" y="21" />
+      </Size>
+      <TexCoords>
+        <Normal x="6" y="216" />
+        <Pressed x="67" y="216" />
+      </TexCoords>
+    </Button>
+
+		<Window name="LabelCheckButton">
+			<Size>
+				<AbsPoint x="350" y="32" />
+			</Size>
+			<Windows>
+				<Button name="$parentButton" inherits="UO_Default_Check_Button">
+					<Anchors>
+						<Anchor point="left" relativePoint="left">
+							<AbsPoint x="5" y="0"/>
+						</Anchor>
+					</Anchors>
+				</Button>
+				<Label name="$parentLabel" inherits="ItemTitle">
+					<Size>
+						<AbsPoint x="700" y="16" />
+						<!-- 325 = x -->
+					</Size>
+					<Anchors>
+						<Anchor point="right" relativePoint="left" relativeTo="$parentButton">
+							<AbsPoint x="5" y="0" />
+						</Anchor>
+					</Anchors>
+					<Color r="255" g="255" b="255" a="255" />
+				</Label>
+			</Windows>
+		</Window>
+
+		<Button name="CoreWindowResizeButtonBottomRight" backgroundtexture="Resize_Up_Left" highlighttexture="Resize_Up_Left" textureScale="1">
+			<Size>
+				<AbsPoint x="18" y="18" />
+			</Size>
+			<TexCoords>
+				<Normal x="1" y="1" />
+				<NormalHighlit x="18" y="1" />
+				<Pressed x="18" y="1"  />
+				<PressedHighlit x="18" y="1" />
+			</TexCoords>
+		</Button>
+
+		<Button name="CoreWindowResizeButtonBottomLeft" backgroundtexture="Resize_Up_Right" highlighttexture="Resize_Up_Right" textureScale="1">
+			<Size>
+				<AbsPoint x="18" y="18" />
+			</Size>
+			<TexCoords>
+				<Normal x="1" y="1" />
+				<NormalHighlit x="18" y="1" />
+				<Pressed x="18" y="1"  />
+				<PressedHighlit x="18" y="1" />
+			</TexCoords>
+		</Button>
+
+		<Button name="CoreWindowResizeButtonTopRight" backgroundtexture="Resize_Top_Right" highlighttexture="Resize_Top_Right" textureScale="1">
+			<Size>
+				<AbsPoint x="18" y="18" />
+			</Size>
+			<TexCoords>
+				<Normal x="1" y="1" />
+				<NormalHighlit x="18" y="1" />
+				<Pressed x="18" y="1"  />
+				<PressedHighlit x="18" y="1" />
+			</TexCoords>
+		</Button>
+
+		<Button name="CoreWindowResizeButtonTopLeft" backgroundtexture="Resize_Top_Left" highlighttexture="Resize_Top_Left" textureScale="1">
+			<Size>
+				<AbsPoint x="18" y="18" />
+			</Size>
+			<TexCoords>
+				<Normal x="1" y="1" />
+				<NormalHighlit x="18" y="1" />
+				<Pressed x="18" y="1"  />
+				<PressedHighlit x="18" y="1" />
+			</TexCoords>
+		</Button>
+    
+    <!-- Parchment Combo Box -->
+    <Button name="UO_Default_Parch_ComboBoxSelectedButton" texturescale="1.0" backgroundtexture="map_parchment_widgets" highlighttexture="map_parchment_widgets" font="Arial_Black_14" textalign="left">
+      <Size>
+        <AbsPoint x="172" y="34" />
+      </Size>
+      <TexCoords>
+        <Normal x="5" y="285" />
+        <NormalHighlit x="5" y="285" />
+        <Pressed x="5" y="285" />
+        <PressedHighlit x="5" y="285" />
+        <Disabled x="5" y="285" />
+      </TexCoords>
+      <TextColors>
+        <Normal r="0" g="0" b="0" a="255" />
+        <NormalHighlit r="178" g="0" b="0" a="255" />
+        <Pressed r="178" g="0" b="0" a="255" />
+        <PressedHighlit r="178" g="0" b="0" a="255" />
+        <Disabled r="92" g="92" b="92" a="255" />
+      </TextColors>
+      <TextOffset x="10" y="5" />
+    </Button>
+
+    <Button name="UO_Default_Parch_ComboBoxMenuItemButton" font="Arial_Black_14" textalign="left" >
+      <Size>
+        <AbsPoint x="160" y="25" />
+      </Size>
+      <TextColors>
+        <Normal r="0" g="0" b="0" a="255" />
+        <NormalHighlit r="178" g="0" b="0" a="255" />
+        <Pressed r="178" g="0" b="0" a="255" />
+        <PressedHighlit r="178" g="0" b="0" a="255" />
+        <Disabled r="92" g="92" b="92" a="255" />
+      </TextColors>
+      <TextOffset x="10" y="7" />
+    </Button>
+
+    <ComboBox name="UO_Default_Parch_ComboBox" selectedbutton="UO_Default_Parch_ComboBoxSelectedButton" menubackground="UO_Cutted_Parch_Background" menuitembutton="UO_Default_Parch_ComboBoxMenuItemButton" scrollbar="ComboBoxParchVertScroll" maxvisibleitems="5">
+      <Size>
+        <AbsPoint x="172" y="25" />
+      </Size>
+      <MenuButtonOffset x="0" y="5" />
+    </ComboBox>
+
+
+    <!-- Parchment Long Combo Box -->
+    <Button name="UO_Default_Parch_LongComboBoxSelectedButton" texturescale="1.0" backgroundtexture="map_parchment_widgets" highlighttexture="map_parchment_widgets" font="Arial_Black_14" textalign="left">
+      <Size>
+        <AbsPoint x="256" y="34" />
+      </Size>
+      <TexCoords>
+        <Normal x="5" y="327" />
+        <NormalHighlit x="5" y="327" />
+        <Pressed x="5" y="327" />
+        <PressedHighlit x="5" y="327" />
+        <Disabled x="5" y="327" />
+      </TexCoords>
+      <TextColors>
+        <Normal r="0" g="0" b="0" a="255" />
+        <NormalHighlit r="178" g="0" b="0" a="255" />
+        <Pressed r="178" g="0" b="0" a="255" />
+        <PressedHighlit r="178" g="0" b="0" a="255" />
+        <Disabled r="92" g="92" b="92" a="255" />
+      </TextColors>
+      <TextOffset x="10" y="5" />
+    </Button>
+
+    <Button name="UO_Default_Parch_LongComboBoxMenuItemButton" font="Arial_Black_14" textalign="left" >
+      <Size>
+        <AbsPoint x="240" y="25" />
+      </Size>
+      <TextColors>
+        <Normal r="0" g="0" b="0" a="255" />
+        <NormalHighlit r="178" g="0" b="0" a="255" />
+        <Pressed r="178" g="0" b="0" a="255" />
+        <PressedHighlit r="178" g="0" b="0" a="255" />
+        <Disabled r="92" g="92" b="92" a="255" />
+      </TextColors>
+      <TextOffset x="10" y="7" />
+    </Button>
+
+    <ComboBox name="UO_Default_Parch_LongComboBox" selectedbutton="UO_Default_Parch_LongComboBoxSelectedButton" menubackground="UO_Cutted_Parch_Background" menuitembutton="UO_Default_Parch_LongComboBoxMenuItemButton" scrollbar="ComboBoxParchVertScroll" maxvisibleitems="10">
+      <Size>
+        <AbsPoint x="256" y="25" />
+      </Size>
+      <MenuButtonOffset x="0" y="5" />
+    </ComboBox>
+    
+		<!-- Combo Box -->
+		<Button name="UO_Default_ComboBoxSelectedButton" texturescale="1.0" backgroundtexture="ComboBox_small" highlighttexture="ComboBox_small" font="MyriadPro_16" textalign="left">
+			<Size>
+				<AbsPoint x="181" y="27" />
+			</Size>
+			<TexCoords>
+				<Normal x="0" y="0" />
+				<NormalHighlit x="0" y="0" />
+				<Pressed x="0" y="0" />
+				<PressedHighlit x="0" y="0" />
+				<Disabled x="0" y="0" />
+			</TexCoords>
+			<TextColors>
+				<Normal r="255" g="255" b="255" a="255" />
+				<NormalHighlit r="250" g="213" b="63" a="255" />
+				<Pressed r="250" g="213" b="63" a="255" />
+				<PressedHighlit r="250" g="213" b="63" a="255" />
+				<Disabled r="92" g="92" b="92" a="255" />
+			</TextColors>
+			<TextOffset x="10" y="5" />
+		</Button>
+
+		<Button name="UO_Default_ComboBoxMenuItemButton" font="MyriadPro_16" textalign="left" >
+			<Size>
+				<AbsPoint x="140" y="25" />
+			</Size>
+			<TextColors>
+				<Normal r="255" g="255" b="255" a="255" />
+				<NormalHighlit r="250" g="213" b="63" a="255" />
+				<Pressed r="250" g="213" b="63" a="255" />
+				<PressedHighlit r="250" g="213" b="63" a="255" />
+				<Disabled r="92" g="92" b="92" a="255" />
+			</TextColors>
+			<TextOffset x="10" y="7" />
+		</Button>
+
+		<ComboBox name="UO_Default_ComboBox" selectedbutton="UO_Default_ComboBoxSelectedButton" menubackground="UO_Simple_Black_Background" menuitembutton="UO_Default_ComboBoxMenuItemButton" scrollbar="ComboBoxStandardVertScroll" maxvisibleitems="10">
+			<Size>
+				<AbsPoint x="181" y="27" />
+			</Size>
+			<MenuButtonOffset x="5" y="5" />
+		</ComboBox>
+
+		<!-- Long Combo Box -->
+		<Button name="UO_Default_LongComboBoxSelectedButton" texturescale="1.0" backgroundtexture="ComboBox_long" highlighttexture="ComboBox_long" font="MyriadPro_16" textalign="left">
+			<Size>
+				<AbsPoint x="256" y="27" />
+			</Size>
+			<TexCoords>
+				<Normal x="0" y="0" />
+				<NormalHighlit x="0" y="0" />
+				<Pressed x="0" y="0" />
+				<PressedHighlit x="0" y="0" />
+				<Disabled x="0" y="0" />
+			</TexCoords>
+			<TextColors>
+				<Normal r="255" g="255" b="255" a="255" />
+				<NormalHighlit r="250" g="213" b="63" a="255" />
+				<Pressed r="250" g="213" b="63" a="255" />
+				<PressedHighlit r="250" g="213" b="63" a="255" />
+				<Disabled r="92" g="92" b="92" a="255" />
+			</TextColors>
+			<TextOffset x="10" y="5" />
+		</Button>
+
+		<Button name="UO_Default_LongComboBoxMenuItemButton" font="MyriadPro_16" textalign="left" >
+			<Size>
+				<AbsPoint x="220" y="25" />
+			</Size>
+			<TextColors>
+				<Normal r="255" g="255" b="255" a="255" />
+				<NormalHighlit r="250" g="213" b="63" a="255" />
+				<Pressed r="250" g="213" b="63" a="255" />
+				<PressedHighlit r="250" g="213" b="63" a="255" />
+				<Disabled r="92" g="92" b="92" a="255" />
+			</TextColors>
+			<TextOffset x="10" y="7" />
+		</Button>
+
+		<ComboBox name="UO_Default_LongComboBox" selectedbutton="UO_Default_LongComboBoxSelectedButton" menubackground="UO_Simple_Black_Background" menuitembutton="UO_Default_LongComboBoxMenuItemButton" scrollbar="ComboBoxStandardVertScroll" maxvisibleitems="10">
+			<Size>
+				<AbsPoint x="260" y="27" />
+			</Size>
+			<MenuButtonOffset x="10" y="5" />
+		</ComboBox>
+
+    <!-- Medium Combo Box -->
+    <Button name="UO_Default_MediumComboBoxSelectedButton" texturescale="0.86" backgroundtexture="ComboBox_long" highlighttexture="ComboBox_long" font="MyriadPro_16" textalign="left">
+      <Size>
+        <AbsPoint x="220" y="24" />
+      </Size>
+      <TexCoords>
+        <Normal x="0" y="0" />
+        <NormalHighlit x="0" y="0" />
+        <Pressed x="0" y="0" />
+        <PressedHighlit x="0" y="0" />
+        <Disabled x="0" y="0" />
+      </TexCoords>
+      <TextColors>
+        <Normal r="255" g="255" b="255" a="255" />
+        <NormalHighlit r="250" g="213" b="63" a="255" />
+        <Pressed r="250" g="213" b="63" a="255" />
+        <PressedHighlit r="250" g="213" b="63" a="255" />
+        <Disabled r="92" g="92" b="92" a="255" />
+      </TextColors>
+      <TextOffset x="10" y="5" />
+    </Button>
+
+    <Button name="UO_Default_MediumComboBoxMenuItemButton" font="MyriadPro_16" textalign="left" >
+      <Size>
+        <AbsPoint x="184" y="25" />
+      </Size>
+      <TextColors>
+        <Normal r="255" g="255" b="255" a="255" />
+        <NormalHighlit r="250" g="213" b="63" a="255" />
+        <Pressed r="250" g="213" b="63" a="255" />
+        <PressedHighlit r="250" g="213" b="63" a="255" />
+        <Disabled r="92" g="92" b="92" a="255" />
+      </TextColors>
+      <TextOffset x="10" y="7" />
+    </Button>
+
+    <ComboBox name="UO_Default_MediumComboBox" selectedbutton="UO_Default_MediumComboBoxSelectedButton" menubackground="UO_Simple_Black_Background" menuitembutton="UO_Default_MediumComboBoxMenuItemButton" scrollbar="ComboBoxStandardVertScroll" maxvisibleitems="10">
+      <Size>
+        <AbsPoint x="226" y="27" />
+      </Size>
+      <MenuButtonOffset x="10" y="5" />
+    </ComboBox>
+
+    <!-- PARCHMENT VERTICAL SCROLL BAR !!! -->
+    <VerticalScrollbar name="ParchVertScroll" up="ParchVertScrollUpBtn" down="ParchVertScrollDownBtn" thumb="ParchVertScrollThumb" gutter="ParchVertScrollGutter" >
+      <Anchors>
+        <Anchor point="topright" relativePoint="topleft">
+          <AbsPoint x="-14" y="5"/>
+        </Anchor>
+        <Anchor point="bottomright" relativePoint="bottomright">
+          <AbsPoint x="0" y="-5"/>
+        </Anchor>
+      </Anchors>
+      <ActiveZoneOffset x="500" y="500" />
+      <!--<ThumbOffset x="1" y="1" />-->
+      <ThumbOffset x="0" y="0" />
+    </VerticalScrollbar>
+
+    <VerticalScrollbar name="ComboBoxParchVertScroll" up="ParchVertScrollUpBtn" down="ParchVertScrollDownBtn" thumb="ParchVertScrollThumb" gutter="ParchVertScrollGutter" >
+      <Size>
+        <AbsPoint x="10" y="0" />
+      </Size>
+      <ActiveZoneOffset x="500" y="500" />
+      <ThumbOffset x="-1" y="0" />
+    </VerticalScrollbar>
+
+    <Button name="ParchVertScrollUpBtn" texturescale="0.5" backgroundtexture="map_parchment_widgets" highlighttexture="map_parchment_widgets">
+      <Size>
+        <AbsPoint x="12" y="9" />
+      </Size>
+      <TexCoords>
+        <Normal x="176" y="178" />
+        <NormalHighlit x="209" y="178" />
+        <Pressed x="209" y="178" />
+        <PressedHighlit x="209" y="178" />
+      </TexCoords>
+    </Button>
+    
+    <Button name="ParchVertScrollDownBtn" texturescale="0.5" backgroundtexture="map_parchment_widgets" highlighttexture="map_parchment_widgets">
+      <Size>
+        <AbsPoint x="12" y="9" />
+      </Size>
+      <TexCoords>
+        <Normal x="306" y="159" />
+        <NormalHighlit x="338" y="159" />
+        <Pressed x="338" y="159" />
+        <PressedHighlit x="338" y="159" />
+      </TexCoords>
+    </Button>
+    
+    <VerticalResizeImage name="ParchVertScrollThumb" texturescale="0.7" texture="map_parchment_widgets">
+      <Size>
+        <AbsPoint x="10" y="17" />
+      </Size>
+      <Sizes top="4" middle="26" bottom="4" />
+      <TexCoords>
+        <Top x="244" y="160" />
+        <Middle x="244" y="164" />
+        <Bottom x="244" y="190" />
+      </TexCoords>
+    </VerticalResizeImage>
+    
+    <VerticalResizeImage name="ParchVertScrollGutter" texturescale="1" texture="map_parchment_widgets">
+      <Size>
+        <AbsPoint x="10" y="34" />
+      </Size>
+      <Sizes top="4" middle="26" bottom="4"/>
+      <TexCoords>
+        <Top x="279" y="161" />
+        <Middle x="279" y="165" />
+        <Bottom x="279" y="191" />
+      </TexCoords>
+    </VerticalResizeImage>
+
+		<!-- STANDARD SCROLL BAR !!! -->
+		<VerticalScrollbar name="StandardVertScroll" up="StandardVertScrollUpBtn" down="StandardVertScrollDownBtn" thumb="StandardVertScrollThumb" gutter="StandardVertScrollGutter" >
+			<Anchors>
+				<Anchor point="topright" relativePoint="topleft">
+					<AbsPoint x="-14" y="5"/>
+				</Anchor>
+				<Anchor point="bottomright" relativePoint="bottomright">
+					<AbsPoint x="0" y="-5"/>
+				</Anchor>
+			</Anchors>
+			<ActiveZoneOffset x="500" y="500" />
+			<!--<ThumbOffset x="1" y="1" />-->
+			<ThumbOffset x="0" y="0" />
+		</VerticalScrollbar>
+
+		<VerticalScrollbar name="ComboBoxStandardVertScroll" up="StandardVertScrollUpBtn" down="StandardVertScrollDownBtn" thumb="StandardVertScrollThumb" gutter="StandardVertScrollGutter" >
+			<Size>
+				<AbsPoint x="10" y="0" />
+			</Size>
+			<ActiveZoneOffset x="500" y="500" />
+			<ThumbOffset x="-1" y="0" />
+		</VerticalScrollbar>
+
+		<Button name="StandardVertScrollUpBtn" backgroundtexture="Scrollbar_Up" highlighttexture="Scrollbar_Up">
+			<Size>
+				<!-- <AbsPoint x="17" y="15" /> -->
+				<AbsPoint x="11" y="11" />
+			</Size>
+			<TexCoords>
+				<Normal x="0" y="0" />
+				<NormalHighlit x="13" y="0" />
+				<Pressed x="13" y="0" />
+				<PressedHighlit x="13" y="0" />
+			</TexCoords>
+		</Button>
+		<Button name="StandardVertScrollDownBtn" backgroundtexture="Scrollbar_Down" highlighttexture="Scrollbar_Down">
+			<Size>
+				<AbsPoint x="11" y="11" />
+			</Size>
+			<TexCoords>
+				<Normal x="0" y="0" />
+				<NormalHighlit x="13" y="0" />
+				<Pressed x="13" y="0" />
+				<PressedHighlit x="13" y="0" />
+			</TexCoords>
+		</Button>
+		<VerticalResizeImage name="StandardVertScrollThumb" texture="Scrollbar_Vertical">
+			<Size>
+				<AbsPoint x="12" y="11" />
+			</Size>
+			<Sizes top="2" middle="2" bottom="2" />
+			<TexCoords>
+				<Top x="0" y="0" />
+				<Middle x="0" y="18" />
+				<Bottom x="0" y="37" />
+			</TexCoords>
+		</VerticalResizeImage>
+		<VerticalResizeImage name="StandardVertScrollGutter" texture="Scrollbar_Vertical_BG">
+			<Size>
+				<!--<AbsPoint x="11" y="5" />-->
+				<AbsPoint x="11" y="11" />
+			</Size>
+			<Sizes top="9" middle="5" bottom="9"/>
+			<TexCoords>
+				<Top x="0" y="0" />
+				<Middle x="0" y="18" />
+				<Bottom x="0" y="37" />
+			</TexCoords>
+		</VerticalResizeImage>
+		
+		<!-- HORIZONTAL SCROLL BAR !!! -->
+		<HorizontalScrollbar name="StandardHorizScroll" up="StandardHorizScrollUpBtn" down="StandardHorizScrollDownBtn" thumb="StandardHorizScrollThumb" gutter="StandardHorizScrollGutter" >
+			<Anchors>
+				<Anchor point="bottomleft" relativePoint="topleft">
+					<AbsPoint x="5" y="-25"/>
+				</Anchor>
+				<Anchor point="bottomright" relativePoint="bottomright">
+					<AbsPoint x="-5" y="-14"/>
+				</Anchor>
+			</Anchors>
+			<ThumbOffset x="0" y="-1" />
+			<ActiveZoneOffset x="500" y="500" />
+		</HorizontalScrollbar>
+
+		<Button name="StandardHorizScrollUpBtn" backgroundtexture="Scrollbar_Left" highlighttexture="Scrollbar_Left">
+			<Size>
+				<AbsPoint x="11" y="11" />
+			</Size>
+			<TexCoords>
+				<Normal x="0" y="0" />
+				<NormalHighlit x="0" y="13" />
+				<Pressed x="0" y="13" />
+				<PressedHighlit x="0" y="13" />
+				<!--<Disabled x="420" y="0" />-->
+			</TexCoords>
+		</Button>
+		<Button name="StandardHorizScrollDownBtn" backgroundtexture="Scrollbar_Right" highlighttexture="Scrollbar_Right">
+			<Size>
+				<AbsPoint x="11" y="11" />
+			</Size>
+			<TexCoords>
+				<Normal x="0" y="0" />
+				<NormalHighlit x="0" y="13" />
+				<Pressed x="0" y="13" />
+				<PressedHighlit x="0" y="13" />
+				<!--<Disabled x="420" y="0" />-->
+			</TexCoords>
+		</Button>
+		<HorizontalResizeImage name="StandardHorizScrollThumb" texture="Scrollbar_Horizontal">
+			<Size>
+				<AbsPoint x="12" y="12" />
+			</Size>
+			<Sizes left="2" middle="2" right="2" />
+			<TexCoords>
+				<Left x="0" y="0" />
+				<Middle x="10" y="0" />
+				<Right x="37" y="0" />
+			</TexCoords>
+		</HorizontalResizeImage>
+		<HorizontalResizeImage name="StandardHorizScrollGutter" texture="Scrollbar_Horizontal_BG">
+			<Size>
+				<AbsPoint x="8" y="8" />
+			</Size>
+			<Sizes left="6" middle="6" right="6"/>
+			<TexCoords>
+				<Left x="0" y="0" />
+				<Middle x="6" y="0" />
+				<Right x="30" y="0" />
+			</TexCoords>
+		</HorizontalResizeImage>
+
+		<!-- Horizontal Slider Bar Definitions -->
+		<HorizontalResizeImage name="UO_Default_SliderBackground" texture="Scrollbar_Horizontal_BG">
+			<Size>
+				<AbsPoint x="8" y="8" />
+			</Size>
+			<Sizes left="6" middle="6" right="6" />
+			<TexCoords>
+				<Left x="0" y="0" />
+				<Middle x="6" y="0" />
+				<Right x="30" y="0" />
+			</TexCoords>
+		</HorizontalResizeImage>
+
+		<DynamicImage name="UO_Default_SliderTick" texture="Scrollbar_Horizontal">
+			<Size>
+				<AbsPoint x="6" y="10" />
+			</Size>
+			<TexCoords x="10" y="0" />
+		</DynamicImage>
+
+		<Button name="UO_Default_SliderButton" backgroundtexture="Scrollbar_Horizontal" highlighttexture="Scrollbar_Horizontal" >
+			<Size>
+				<AbsPoint x="12" y="12" />
+			</Size>
+			<TexCoords>
+				<Normal x="10" y="0" />
+			</TexCoords>
+		</Button>
+
+		<SliderBar name="UO_Default_Horizontal_SliderBar" background="UO_Default_SliderBackground" sliderbutton="UO_Default_SliderButton" numticks="50">
+			<Size>
+				<AbsPoint x="160" y="16" />
+			</Size>
+		</SliderBar>
+
+		<SliderBar name="UO_Default_Horizontal_SliderBar_With_Ticks" background="UO_Default_SliderBackground" sliderbutton="UO_Default_SliderButton" tickmark="UO_Default_SliderTick" numticks="4">
+			<Size>
+				<AbsPoint x="160" y="16" />
+			</Size>
+		</SliderBar>
+
+		<Label name="ItemTitle" font="MyriadPro_16" linespacing="20" autoresize="true" wordwrap="true" maxchars="64" textalign="left">
+			<Color r="255" g="255" b="255" a="255" />
+		</Label>
+
+		<Window name="SnapWindowTemplate" movable="false" layer="default" handleinput="false">
+			<Windows>
+				<FullResizeImage name="$parentFrame" inherits="UO_Default_Inner_Window_Frame" >
+					<Anchors>
+						<Anchor point="topleft" relativePoint="topleft" />
+						<Anchor point="bottomright" relativePoint="bottomright" />
+					</Anchors>
+				</FullResizeImage>
+				<DynamicImage name="$parentBG" texture="CC_Widgets" alpha="1.0">
+					<TintColor r="0" g="255" b="0" />
+					<Anchors>
+						<Anchor point="topleft" relativePoint="topleft" />
+						<Anchor point="bottomright" relativePoint="bottomright" />
+					</Anchors>
+					<TexCoords x="502" y="306" />
+				</DynamicImage>
+			</Windows>
+		</Window>
+
+		<EditBox name="TextEntrySingleLineEditBox" font="MyriadPro_16" background="UO_Simple_Black_Background"  maxchars="200" history="true" >
+			<Size>
+				<AbsPoint x="570" y="40" />
+			</Size>
+			<TextOffset x="5" y="5" />
+			<Windows>
+				<!-- Inner Frame Boilerplate -->
+				<FullResizeImage name="$parentFrame" inherits="UO_Default_Inner_Window_Frame" layer="popup">
+					<Anchors>
+						<Anchor point="topleft" relativePoint="topleft" />
+						<Anchor point="bottomright" relativePoint="bottomright" />
+					</Anchors>
+				</FullResizeImage>
+				<!-- End of Inner Frame Boilerplate -->
+			</Windows>
+		</EditBox>
+
+		<FullResizeImage name="UO_Context_Item_Selection" texture="Context_Item_Selection" layer="background">
+			<Sizes>
+				<TopLeft x="0" y="0" />
+				<Middle x="33" y="33" />
+				<BottomRight x="0" y="0" />
+			</Sizes>
+			<TexCoords>
+				<TopLeft x="0" y="0" />
+				<TopCenter x="0" y="0" />
+				<TopRight x="0" y="0" />
+				<MiddleLeft x="0" y="0" />
+				<MiddleCenter x="0" y="0" />
+				<MiddleRight x="0" y="0" />
+				<BottomLeft x="0" y="0" />
+				<BottomCenter x="0" y="0" />
+				<BottomRight x="0" y="0" />
+			</TexCoords>
+		</FullResizeImage>
+
+    <!-- LEGACY BOOK STANDARD SCROLL BAR !!! -->
+    <VerticalScrollbar name="StandardLegacyBookVertScroll" up="StandardLegacyBookVertScrollUpBtn" down="StandardLegacyBookVertScrollDownBtn" thumb="StandardLegacyBookVertScrollThumb" gutter="StandardLegacyBookVertScrollGutter" >
+      <Size>
+        <AbsPoint x="11" y="11" />
+      </Size>
+      <ThumbOffset x="-1" y="0" />
+      <ActiveZoneOffset x="500" y="500" />
+    </VerticalScrollbar>
+
+    <Button name="StandardLegacyBookVertScrollUpBtn" backgroundtexture="UO_Legacy_Book" highlighttexture="UO_Legacy_Book">
+      <Size>
+        <AbsPoint x="11" y="11" />
+      </Size>
+      <TexCoords>
+        <Normal x="270" y="30" />
+        <NormalHighlit x="283" y="30" />
+        <Pressed x="283" y="30" />
+        <PressedHighlit x="283" y="30" />
+      </TexCoords>
+    </Button>
+    <Button name="StandardLegacyBookVertScrollDownBtn" backgroundtexture="UO_Legacy_Book" highlighttexture="UO_Legacy_Book">
+      <Size>
+        <AbsPoint x="11" y="11" />
+      </Size>
+      <TexCoords>
+        <Normal x="270" y="42" />
+        <NormalHighlit x="283" y="42" />
+        <Pressed x="283" y="42" />
+        <PressedHighlit x="283" y="42" />
+      </TexCoords>
+    </Button>
+    <VerticalResizeImage name="StandardLegacyBookVertScrollThumb" texture="UO_Legacy_Book">
+      <Size>
+        <AbsPoint x="12" y="12" />
+      </Size>
+      <Sizes top="2" middle="2" bottom="10" />
+      <TexCoords>
+        <Top x="309" y="30" />
+        <Middle x="309" y="42" />
+        <Bottom x="309" y="54" />
+      </TexCoords>
+    </VerticalResizeImage>
+    <VerticalResizeImage name="StandardLegacyBookVertScrollGutter" texture="UO_Legacy_Book">
+      <Size>
+        <!--<AbsPoint x="11" y="5" />-->
+        <AbsPoint x="11" y="11" />
+      </Size>
+      <Sizes top="9" middle="5" bottom="9"/>
+      <TexCoords>
+        <Top x="296" y="30" />
+        <Middle x="296" y="37" />
+        <Bottom x="296" y="59" />
+      </TexCoords>
+    </VerticalResizeImage>
+    <!-- Horizontal Slider Bar Definitions -->
+    <HorizontalResizeImage name="UO_Legacy_Book_SliderBackground" texture="UO_Legacy_Book">
+      <Size>
+        <AbsPoint x="8" y="8" />
+      </Size>
+      <Sizes left="8" middle="8" right="8" />
+      <TexCoords>
+        <Left x="253" y="56" />
+        <Middle x="259" y="56" />
+        <Right x="283" y="56" />
+      </TexCoords>
+    </HorizontalResizeImage>
+
+    <DynamicImage name="UO_Legacy_Book_SliderTick" texture="UO_Legacy_Book">
+      <Size>
+        <AbsPoint x="6" y="10" />
+      </Size>
+      <TexCoords x="269" y="53" />
+    </DynamicImage>
+
+    <Button name="UO_Legacy_Book_SliderButton" backgroundtexture="UO_Legacy_Book" highlighttexture="UO_Legacy_Book" >
+      <Size>
+        <AbsPoint x="12" y="12" />
+      </Size>
+      <TexCoords>
+        <Normal x="283" y="68" />
+      </TexCoords>
+    </Button>
+
+    <DynamicImage name="UO_Default_Legacy_Book" texture="UO_Legacy_Book" layer="background" handleinput="false">
+      <Size>
+        <AbsPoint x="529" y="308" />
+      </Size>
+      <TexCoords x="22" y="120" />
+    </DynamicImage>
+
+    <Button name="UO_Default_Legacy_Book_PreviousButton" backgroundtexture="UO_Legacy_Book" highlighttexture="UO_Legacy_Book">
+      <Size>
+        <AbsPoint x="94" y="58" />
+      </Size>
+      <TexCoords>
+        <Normal x="22" y="23" />
+        <NormalHighlit x="22" y="23" />
+        <Pressed x="22" y="23" />
+        <PressedHighlit x="22" y="23" />
+        <Disabled x="22" y="23" />
+      </TexCoords>
+    </Button>
+
+    <Button name="UO_Default_Legacy_Book_NextButton" backgroundtexture="UO_Legacy_Book" highlighttexture="UO_Legacy_Book">
+      <Size>
+        <AbsPoint x="94" y="58" />
+      </Size>
+      <TexCoords>
+        <Normal x="459" y="23" />
+        <NormalHighlit x="459" y="23" />
+        <Pressed x="459" y="23" />
+        <PressedHighlit x="459" y="23" />
+        <Disabled x="459" y="23" />
+      </TexCoords>
+    </Button>
+
+	</Windows>
+</Interface>

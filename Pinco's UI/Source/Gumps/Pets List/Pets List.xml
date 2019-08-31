@@ -1,0 +1,323 @@
+<Interface xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../Interface.xsd">
+  <Windows>
+    
+    <!-- LIST ITEM -->
+    <Window name="PetListItemTemplate" handleinput="true">
+      <Size>
+        <AbsPoint x="480" y="50" />
+      </Size>
+      <EventHandlers>
+        <EventHandler event="OnLButtonDown" function="PetsList.OnItemClicked" />
+      </EventHandlers>
+      <Windows>
+        
+        <DynamicImage name="$parentBG" texture="VLine" popable="false" layer="background">
+          <Anchors>
+            <Anchor point="topleft" relativePoint="topleft" />
+            <Anchor point="bottomright" relativePoint="bottomright" />
+          </Anchors>
+          <TexCoords x="0" y="0"/>
+          <TintColor r="0" g="0"  b="0" a="125"/>
+        </DynamicImage>
+
+        <Window name="$parentIconHolder" >
+          <Size>
+            <AbsPoint x="40" y="40" />
+          </Size>
+          <Anchors>
+            <Anchor point="left" relativePoint="left">
+              <AbsPoint x="10" y="0" />
+            </Anchor>
+          </Anchors>
+          <Windows>
+            <DynamicImage name="$parentSquareIcon" texture="">
+              <Size>
+                <AbsPoint x="40" y="40" />
+              </Size>
+              <!-- <TexCoords x="399" y="32"/> -->
+              <Anchors>
+                <Anchor point="center" relativePoint="center" />
+              </Anchors>
+     
+            </DynamicImage>
+          </Windows>
+        </Window>
+
+        <Label name="$parentName" font="MyriadPro_16" maxchars="255" textalign="left" wordwrap="true" autoresize="true">
+          <Size>
+            <AbsPoint x="200" y="26" />
+          </Size>
+          <Anchors>
+            <Anchor point="right" relativePoint="left" relativeTo="$parentIconHolder">
+              <AbsPoint x="10" y="0" />
+            </Anchor>
+          </Anchors>
+          <Color r="253" g="210" b="69" a="255" />
+        </Label>
+
+        <ComboBox name="$parentPetType" inherits="UO_Default_ComboBox" >
+          <Anchors>
+            <Anchor point="topright" relativePoint="topleft" relativeTo="$parentName">
+              <AbsPoint x="20" y="-5" />
+            </Anchor>
+          </Anchors>
+          <EventHandlers>
+            <EventHandler event="OnSelChanged" function="PetsList.ChangeType" />
+          </EventHandlers>
+        </ComboBox>
+        
+      </Windows>
+    </Window>
+
+    <!-- ITEM LIST HEADER -->
+    <Window name="PetListHeaderTemplate">
+      <Size>
+        <AbsPoint x="450" y="25" />
+      </Size>
+
+      <Windows>
+        
+        <Label name="$parentPetName" font="Arial_Black_Shadow_14" maxchars="64" textalign="center" >
+          <Size>
+            <AbsPoint x="200" y="10" />
+          </Size>
+          <Anchors>
+            <Anchor point="topleft" relativePoint="topleft" relativeTo="$parent">
+              <AbsPoint x="40" y="0" />
+            </Anchor>
+          </Anchors>
+          <Color r="255" g="204" b="0" a="255" />
+        </Label>
+
+        <Label name="$parentPetType" font="Arial_Black_Shadow_14" maxchars="64" textalign="center" >
+          <Size>
+            <AbsPoint x="200" y="10" />
+          </Size>
+          <Anchors>
+            <Anchor point="topright" relativePoint="topleft" relativeTo="$parentPetName">
+              <AbsPoint x="30" y="0" />
+            </Anchor>
+          </Anchors>
+          <Color r="255" g="204" b="0" a="255" />
+        </Label>
+
+      </Windows>
+    </Window>
+    
+    <!-- ITEM LIST WINDOW -->
+    <Window name="PetsListWindowTemplate" popable="false">
+      <Size>
+        <AbsPoint x="520" y="420" />
+      </Size>
+
+      <Windows>
+        <!--
+				<FullResizeImage name="$parentFrame" inherits="UO_Default_Inner_Window_Frame">
+					<Anchors>
+						<Anchor point="topleft" relativePoint="topleft" />
+						<Anchor point="bottomright" relativePoint="bottomright" />
+					</Anchors>
+				</FullResizeImage>
+-->
+        <Window name="$parentHeader" inherits="PetListHeaderTemplate">
+          <Anchors>
+            <Anchor point="topleft" relativePoint="topleft" >
+              <AbsPoint x="5" y="20" />
+            </Anchor>
+          </Anchors>
+        </Window>
+
+        <ScrollWindow name="$parentScrollWindow" childscrollwindow="$parentScrollChild" scrollbar="$parentScrollbar" lineheight="60" autoHideScrollBar="true">
+          <Size>
+            <AbsPoint x="500" y="340" />
+          </Size>
+          <Anchors>
+            <Anchor point="topleft" relativePoint="topleft">
+              <AbsPoint x="5" y="35" />
+            </Anchor>
+          </Anchors>
+          <Windows>
+            
+            <Window name="$parentScrollChild">
+              <Size>
+                <AbsPoint x="490" y="340"/>
+              </Size>
+              <Windows>
+                <Window name="$parentCont" >
+                  <Size>
+                    <AbsPoint x="490" y="0" />
+                  </Size>
+                  <Windows>
+                  </Windows>
+                </Window>
+              </Windows>
+            </Window>
+            
+            <VerticalScrollbar name="$parentScrollbar" inherits="StandardVertScroll" />
+            
+          </Windows>
+        </ScrollWindow>
+
+        <FullResizeImage name="$parentBg" texture="TMapBG" handleinput="false" layer="background">
+          <Anchors>
+            <Anchor point="topleft" relativePoint="topleft"/>
+            <Anchor point="bottomright" relativePoint="bottomright"/>
+          </Anchors>
+          <Sizes>
+            <TopLeft x="70" y="70" />
+            <BottomRight x="70" y="70" />
+            <Middle x="70" y="70" />
+          </Sizes>
+          <TexCoords>
+            <TopLeft x="0" y="0" />
+            <TopCenter x="70" y="0" />
+            <TopRight x="140" y="0" />
+            <MiddleLeft x="0" y="70" />
+            <MiddleCenter x="70" y="70" />
+            <MiddleRight x="140" y="70" />
+            <BottomLeft x="0" y="140" />
+            <BottomCenter x="70" y="140" />
+            <BottomRight x="140" y="140" />
+          </TexCoords>
+        </FullResizeImage>
+        
+        <HorizontalResizeImage name="$parentTop" texture="TMapOverlay" handleinput="false" layer="background">
+          <Size>
+            <AbsPoint x="525" y="43" />
+          </Size>
+          <Anchors>
+            <Anchor point="topleft" relativePoint="topleft">
+              <AbsPoint x="-5" y="-2" />
+            </Anchor>
+          </Anchors>
+          <Sizes left="75" middle="75" right="75"/>
+          <TexCoords>
+            <Left x="0" y="213" />
+            <Middle x="70" y="213" />
+            <Right x="155" y="215" />
+          </TexCoords>
+        </HorizontalResizeImage>
+        
+        <HorizontalResizeImage name="$parentBottom" texture="TMapBG" handleinput="false" layer="background">
+          <Size>
+            <AbsPoint x="520" y="18" />
+          </Size>
+          <Anchors>
+            <Anchor point="bottomleft" relativePoint="bottomleft">
+              <AbsPoint x="2" y="4" />
+            </Anchor>
+          </Anchors>
+          <Sizes left="45" middle="45" right="45"/>
+          <TexCoords>
+            <Left x="0" y="212" />
+            <Middle x="70" y="212" />
+            <Right x="176" y="210" />
+          </TexCoords>
+        </HorizontalResizeImage>
+
+      </Windows>
+    </Window>
+
+    <!-- MAIN WINDOW -->
+    <Window name="PetsList" movable="true">
+      <Size>
+        <AbsPoint x="800" y="530" />
+      </Size>
+      <Anchors>
+        <Anchor point="center" relativePoint="center"  relativeTo="ResizeWindow">
+          <AbsPoint x="0" y="0"/>
+        </Anchor>
+      </Anchors>
+      <EventHandlers>
+        <EventHandler event="OnInitialize" function="PetsList.Initialize" />
+        <EventHandler event="OnShutdown" function="PetsList.Shutdown" />
+        <EventHandler event="OnRButtonUp" function="UO_DefaultWindow.CloseDialog" />
+      </EventHandlers>
+      <Windows>
+
+        <FullResizeImage name="$parentBackground" inherits="UO_Simple_Black_Background" layer="background" alpha="0.2">
+          <Anchors>
+            <Anchor point="topleft" relativePoint="topleft" />
+            <Anchor point="bottomright" relativePoint="bottomright" />
+          </Anchors>
+        </FullResizeImage>
+        <FullResizeImage name="$parentFrame" inherits="UO_Simple_Frame" layer="background" frameonly="false">
+          <Anchors>
+            <Anchor point="topleft" relativePoint="topleft" />
+            <Anchor point="bottomright" relativePoint="bottomright" />
+          </Anchors>
+        </FullResizeImage>
+
+        <DynamicImage name="$parentTextureBG" texture="PetsListBG" filtering="true" texturescale="1" handleinput="false" sticky="false" popable="false" layer="background"  >
+          <Size>
+            <AbsPoint x="800" y="530" />
+          </Size>
+          <Anchors>
+            <Anchor point="topleft" relativePoint="topleft">
+              <AbsPoint x="0" y="0" />
+            </Anchor>
+          </Anchors>
+          <TexCoords x="0" y="0" />
+        </DynamicImage>
+
+        <Label name="$parentStoreName" font="Arial_Black_Shadow_14" linespacing="20" maxchars="64" textalign="center" autoresize="true" handleinput="false" wordwrap="true" >
+          <Size>
+            <AbsPoint x="520" y="40" />
+          </Size>
+          <Anchors>
+            <Anchor point="topleft" relativePoint="topleft">
+              <AbsPoint x="190" y="20" />
+            </Anchor>
+          </Anchors>
+          <Color r="255" g="204" b="0" a="255" />
+        </Label>
+
+        <Window name="$parentSearchBox" inherits="SearchBoxNoNext" >
+          <Anchors>
+            <Anchor point="bottom" relativePoint="top" relativeTo="$parentStoreName">
+              <AbsPoint x="20" y="15" />
+            </Anchor>
+          </Anchors>
+        </Window>
+        
+        <!-- PetsList Items List -->
+        <Window name="PetsListItems" inherits="PetsListWindowTemplate" >
+          <Size>
+            <AbsPoint x="510" y="385" />
+          </Size>
+
+          <Anchors>
+            <Anchor point="bottomleft" relativePoint="topleft" relativeTo="$parentStoreName">
+              <AbsPoint x="0" y="50" />
+            </Anchor>
+          </Anchors>
+        </Window>
+
+        <Label name="$parentTotalPetsText" font="Arial_Black_Shadow_14" linespacing="20" maxchars="64" textalign="right" autoresizewidth="false" handleinput="false" wordwrap="true" >
+          <Size>
+            <AbsPoint x="120" y="40" />
+          </Size>
+          <Anchors>
+            <Anchor point="bottomleft" relativePoint="topleft" relativeTo="PetsListItems">
+              <AbsPoint x="50" y="15" />
+            </Anchor>
+          </Anchors>
+          <Color r="255" g="204" b="0" a="255" />
+        </Label>
+
+        <Label name="$parentTotalPetsVal" font="Arial_Black_Shadow_14" linespacing="20" maxchars="64" textalign="right" autoresizewidth="true" handleinput="false" wordwrap="true" >
+          <Size>
+            <AbsPoint x="195" y="40" />
+          </Size>
+          <Anchors>
+            <Anchor point="topright" relativePoint="topleft" relativeTo="$parentTotalPetsText">
+              <AbsPoint x="10" y="0" />
+            </Anchor>
+          </Anchors>
+          <Color r="255" g="255" b="255" a="255" />
+        </Label>
+        
+      </Windows>
+    </Window>
+  </Windows>
+</Interface>

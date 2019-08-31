@@ -1,0 +1,159 @@
+<Interface xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../Interface.xsd">
+  <Windows>
+
+
+	<Label name="GItemTemplate" font="GExplorerFont" maxchars="65000" textalign="left" autoresizewidth="false" wordwrap="true" autoresize="false">
+		<Size>
+			<AbsPoint x="800" y="40" />
+		</Size>
+		<Color r="255" g="255" b="255" a="255" />
+		<EventHandlers>
+			<EventHandler event="OnLButtonDown" function="GExplorer.OnItemClicked" />
+		</EventHandlers>
+	</Label>
+
+    <Window name="GExplorerWindow" movable="true">
+      <Size>
+        <AbsPoint x="1200" y="600" />
+      </Size>
+      <Anchors>
+        <Anchor point="center" relativePoint="center" relativeTo="ResizeWindow">
+          <AbsPoint x="0" y="0" />
+        </Anchor>
+      </Anchors>
+      <EventHandlers>
+        <EventHandler event="OnInitialize" function="GExplorer.Initialize" />
+        <EventHandler event="OnShutdown" function="GExplorer.Shutdown" />
+        <EventHandler event="OnRButtonDown" function="GExplorer.Close" />
+		  <EventHandler event="OnShown" function="GExplorer.Show" />
+      </EventHandlers>
+      <Windows>
+        <FullResizeImage name="$parentBackground" inherits="UO_Simple_Black_Background" layer="background" alpha="0.2">
+          <Anchors>
+            <Anchor point="topleft" relativePoint="topleft" />
+            <Anchor point="bottomright" relativePoint="bottomright" />
+          </Anchors>
+        </FullResizeImage>
+        <FullResizeImage name="$parentFrame" inherits="UO_Simple_Frame" layer="background" frameonly="false">
+          <Anchors>
+            <Anchor point="topleft" relativePoint="topleft" />
+            <Anchor point="bottomright" relativePoint="bottomright" />
+          </Anchors>
+        </FullResizeImage>
+        
+        <ScrollWindow name="GExplorerMainSW" childscrollwindow="GExplorerMainSWScrollChild" scrollbar="GExplorerMainSWScrollbar" lineheight="18" autoHideScrollBar="true" >
+          <Size>
+            <AbsPoint x="400" y="200" />
+          </Size>
+          <Anchors>
+            <Anchor point="topleft" relativePoint="topleft" relativeTo="$parent" >
+              <AbsPoint x="5" y="30" />
+            </Anchor>
+            <Anchor point="bottomleft" relativePoint="bottomleft" relativeTo="$parent" >
+              <AbsPoint x="5" y="-30" />
+            </Anchor>
+          </Anchors>
+          <EventHandlers>
+            <!--
+						<EventHandler event="OnLButtonDown" function="NewChatWindow.OnLButtonDownJW" />
+						<EventHandler event="OnLButtonUp" function="NewChatWindow.OnLButtonUpJW" />
+						<EventHandler event="OnMouseOver" function="NewChatWindow.ShowAgain" />-->
+          </EventHandlers>
+          <Windows>
+            <VerticalScrollbar name="$parentScrollbar" inherits="StandardVertScroll" layer="secondary"/>
+            <FullResizeImage name="$parentBackground" inherits="UO_Simple_Black_Background" layer="background" alpha="0.2">
+              <Anchors>
+                <Anchor point="topleft" relativePoint="topleft" />
+                <Anchor point="bottomright" relativePoint="bottomright" />
+              </Anchors>
+            </FullResizeImage>
+            <FullResizeImage name="$parentFrame" inherits="UO_Simple_Frame" layer="background" frameonly="false">
+              <Anchors>
+                <Anchor point="topleft" relativePoint="topleft" />
+                <Anchor point="bottomright" relativePoint="bottomright" />
+              </Anchors>
+            </FullResizeImage>
+            <Window name="$parentScrollChild" popable="false">
+
+              <Anchors>
+                <Anchor point="topleft" relativePoint="topleft">
+                  <AbsPoint x="5" y="5" />
+                </Anchor>
+                <Anchor point="bottomright" relativePoint="bottomright">
+                  <AbsPoint x="-5" y="-5" />
+                </Anchor>
+              </Anchors>
+				<Windows>
+					<Window name="$parentContent" popable="false"/>			
+				</Windows>
+            </Window>
+          </Windows>
+        </ScrollWindow>
+
+
+        <ScrollWindow name="GExplorerSecondSW" childscrollwindow="GExplorerSecondSWScrollChild" scrollbar="GExplorerSecondSWScrollbar" lineheight="18" autoHideScrollBar="true" >
+          <Size>
+            <AbsPoint x="400" y="200" />
+          </Size>
+          <Anchors>
+            <Anchor point="topright" relativePoint="topleft" relativeTo="GExplorerMainSW" >
+              <AbsPoint x="5" y="0" />
+            </Anchor>
+            <Anchor point="bottomright" relativePoint="bottomright" relativeTo="$parent" >
+              <AbsPoint x="-5" y="-30" />
+            </Anchor>
+          </Anchors>
+          <EventHandlers>
+            <!--
+						<EventHandler event="OnLButtonDown" function="NewChatWindow.OnLButtonDownJW" />
+						<EventHandler event="OnLButtonUp" function="NewChatWindow.OnLButtonUpJW" />
+						<EventHandler event="OnMouseOver" function="NewChatWindow.ShowAgain" />-->
+          </EventHandlers>
+          <Windows>
+            <VerticalScrollbar name="$parentScrollbar" inherits="StandardVertScroll" layer="secondary"/>
+
+			  <FullResizeImage name="$parentBackground" inherits="UO_Simple_Black_Background" layer="background" alpha="0.2">
+              <Anchors>
+                <Anchor point="topleft" relativePoint="topleft" />
+                <Anchor point="bottomright" relativePoint="bottomright" />
+              </Anchors>
+            </FullResizeImage>
+            <FullResizeImage name="$parentFrame" inherits="UO_Simple_Frame" layer="background" frameonly="false">
+              <Anchors>
+                <Anchor point="topleft" relativePoint="topleft" />
+                <Anchor point="bottomright" relativePoint="bottomright" />
+              </Anchors>
+            </FullResizeImage>
+            <Window name="$parentScrollChild" popable="false">
+
+              <Anchors>
+                <Anchor point="topleft" relativePoint="topleft">
+                  <AbsPoint x="5" y="5" />
+                </Anchor>
+                <Anchor point="bottomright" relativePoint="bottomright">
+                  <AbsPoint x="-5" y="-5" />
+                </Anchor>
+              </Anchors>
+				<Windows>
+					<Window name="$parentContent" popable="false"/>
+				</Windows>
+            </Window>
+          </Windows>
+        </ScrollWindow>
+
+		  <Button name="$parentReloadData" inherits="UO_Default_Spring_Button" layer="overlay">
+			  <Anchors>
+				  <Anchor point="topright" relativePoint="topright" relativeTo="GExplorerSecondSW">
+					  <AbsPoint x="-10" y="-20" />
+				  </Anchor>
+			  </Anchors>
+			  <EventHandlers>
+				  <EventHandler event="OnLButtonUp" function="GExplorer.UpdateDataList"/>
+				  <EventHandler event="OnMouseOver" function="GExplorer.ReloadDataHover"/>
+			  </EventHandlers>
+		  </Button>
+
+      </Windows>
+    </Window>
+  </Windows>
+</Interface>

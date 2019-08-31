@@ -1,0 +1,155 @@
+<Interface xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../Interface.xsd">
+  <Windows>
+    <Window name="BouyItemTemplate"  draganddrop="true">
+      <Size>
+        <AbsPoint x="475" y="60" />
+      </Size>
+      <EventHandlers>
+        <EventHandler event="OnLButtonDown" function="BuoyTool.OnItemClicked" />
+        <EventHandler event="OnLButtonDblClk" function="BuoyTool.OnItemDblClicked" />
+      </EventHandlers>
+      <Windows>
+        <DynamicImage name="$parentIcon" texture="" draganddrop="false" handleinput="false">
+          <Size>
+            <AbsPoint x="45" y="45" />
+          </Size>
+          <Anchors>
+            <Anchor point="topleft" relativePoint="topleft" >
+              <AbsPoint x="0" y="0" />
+            </Anchor>
+          </Anchors>
+        </DynamicImage>
+
+        <Label name="$parentDistance" font="MyriadPro_16" maxchars="64" textalign="center" draganddrop="false" wordwrap="false" autoresizewidth="false" handleinput="false">
+          <Size>
+            <AbsPoint x="50" y="16" />
+          </Size>
+          <Anchors>
+            <Anchor point="topright" relativePoint="topleft" relativeTo="$parentIcon">
+              <AbsPoint x="15" y="5" />
+            </Anchor>
+          </Anchors>
+          <Color r="255" g="255" b="255" a="255" />
+        </Label>
+
+        <Label name="$parentName" font="MyriadPro_16" maxchars="64" textalign="center" draganddrop="false" wordwrap="true" autoresizewidth="false">
+          <Size>
+            <AbsPoint x="230" y="16" />
+          </Size>
+          <Anchors>
+            <Anchor point="topright" relativePoint="topleft" relativeTo="$parentDistance">
+              <AbsPoint x="15" y="0" />
+            </Anchor>
+          </Anchors>
+          <Color r="255" g="255" b="255" a="255" />
+        </Label>
+
+        <Label name="$parentBobs" font="MyriadPro_16" maxchars="64" textalign="center" draganddrop="false" wordwrap="false" autoresizewidth="false" handleinput="false">
+          <Size>
+            <AbsPoint x="60" y="16" />
+          </Size>
+          <Anchors>
+            <Anchor point="topright" relativePoint="topleft" relativeTo="$parentName">
+              <AbsPoint x="15" y="0" />
+            </Anchor>
+          </Anchors>
+          <Color r="255" g="255" b="255" a="255" />
+        </Label>
+
+        <Label name="$parentLastBob" font="MyriadPro_16" maxchars="64" textalign="center" draganddrop="false" wordwrap="false" autoresizewidth="false" handleinput="false">
+          <Size>
+            <AbsPoint x="90" y="16" />
+          </Size>
+          <Anchors>
+            <Anchor point="topright" relativePoint="topleft" relativeTo="$parentBobs">
+              <AbsPoint x="15" y="0" />
+            </Anchor>
+          </Anchors>
+          <Color r="255" g="255" b="255" a="255" />
+        </Label>
+        
+      </Windows>
+    </Window>
+
+    <Window name="BuoyToolWindow" movable="true">
+      <Size>
+        <AbsPoint x="600" y="330" />
+      </Size>
+      <Anchors>
+        <Anchor point="center" relativePoint="center" relativeTo="ResizeWindow">
+          <AbsPoint x="0" y="0" />
+        </Anchor>
+      </Anchors>
+      <EventHandlers>
+        <EventHandler event="OnInitialize" function="BuoyTool.Initialize" />
+        <EventHandler event="OnShutdown" function="BuoyTool.Shutdown" />
+        <EventHandler event="OnRButtonDown" function="BuoyTool.Close" />
+        <EventHandler event="OnMouseWheel" function="WindowUtils.Scale" />
+      </EventHandlers>
+      <Windows>
+        <FullResizeImage name="$parentBackground" inherits="UO_Simple_Black_Background" layer="background" alpha="0.4">
+          <Anchors>
+            <Anchor point="topleft" relativePoint="topleft" />
+            <Anchor point="bottomright" relativePoint="bottomright" />
+          </Anchors>
+        </FullResizeImage>
+
+        <Label name="$parentInfo" font="MyriadPro_16" maxchars="100" textalign="center" draganddrop="false" wordwrap="true">
+          <Size>
+            <AbsPoint x="500" y="60" />
+          </Size>
+          <Anchors>
+            <Anchor point="center" relativePoint="center" relativeTo="$parent">
+              <AbsPoint x="0" y="0" />
+            </Anchor>
+          </Anchors>
+          <Color r="255" g="255" b="255" a="255" />
+        </Label>
+
+        <Label name="$parentTotal" font="MyriadPro_16" maxchars="100" textalign="right" draganddrop="false">
+          <Size>
+            <AbsPoint x="150" y="16" />
+          </Size>
+          <Anchors>
+            <Anchor point="bottomright" relativePoint="bottomright" relativeTo="$parent">
+              <AbsPoint x="-5" y="-8" />
+            </Anchor>
+          </Anchors>
+          <Color r="255" g="255" b="255" a="255" />
+        </Label>
+        <ScrollWindow name="BuoyToolSW" childscrollwindow="BuoyToolSWScrollChild" scrollbar="BuoyToolSWScrollbar" lineheight="18" autoHideScrollBar="true" >
+          <Size>
+            <AbsPoint x="350" y="200" />
+          </Size>
+          <EventHandlers>
+            <EventHandler event="OnMouseWheel" function="WindowUtils.Scale" />
+          </EventHandlers>
+          <Anchors>
+            <Anchor point="topleft" relativePoint="topleft" relativeTo="$parent" >
+              <AbsPoint x="5" y="30" />
+            </Anchor>
+            <Anchor point="bottomright" relativePoint="bottomright" relativeTo="$parent" >
+              <AbsPoint x="-5" y="-30" />
+            </Anchor>
+          </Anchors>
+          <Windows>
+            <VerticalScrollbar name="$parentScrollbar" inherits="StandardVertScroll" layer="secondary"/>
+            
+            <Window name="$parentScrollChild" popable="false">
+              <Size>
+                <AbsPoint x="290" y="200"/>
+              </Size>
+              <Anchors>
+                <Anchor point="topleft" relativePoint="topleft">
+                  <AbsPoint x="5" y="5" />
+                </Anchor>
+              </Anchors>
+
+            </Window>
+          </Windows>
+        </ScrollWindow>
+
+      </Windows>
+    </Window>
+  </Windows>
+</Interface>

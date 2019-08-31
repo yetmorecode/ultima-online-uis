@@ -1,0 +1,104 @@
+<Interface xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../Interface.xsd">
+  <Windows>
+
+    <!--*******************************************************************-->
+    <!--                              Templates                            -->
+    <!--*******************************************************************-->
+
+    <Button name="FontRowTemplate" id="1" >
+       <EventHandlers>
+        <EventHandler event="OnMouseOver" function="FontSelector.ItemMouseOver" />
+        <EventHandler event="OnMouseOverEnd" function="FontSelector.ClearMouseOverItem" />
+        <EventHandler event="OnLButtonUp" function="FontSelector.SetFontToSelection" />
+      </EventHandlers>
+      <Windows>
+        <Label name="$parentLabel" font="MyriadPro_16" maxchars="256" textalign="leftcenter" autoresize="false"  handleinput="false">
+			<Size>
+				<AbsPoint x="350" y="30" />
+			</Size>
+			<Anchors>
+				<Anchor point="topleft" relativePoint="topleft">
+					<AbsPoint x="25" y="0" />
+				</Anchor>
+			</Anchors>
+		</Label>
+		<DynamicImage name="$parentCheck" texture="Tick" popable="false"  handleinput="false" >
+          <Size>
+            <AbsPoint x="17" y="17" />
+          </Size>
+          <TexCoords x="0" y="0" />
+          <Anchors>
+            <Anchor point="left" relativePoint="center" relativeTo="$parentLabel">
+              <AbsPoint x="0" y="0" />
+            </Anchor>
+          </Anchors>
+        </DynamicImage>
+      </Windows>
+    </Button>
+
+    <!--*******************************************************************-->
+    <!--                      Whole Window Definition                      -->
+    <!--*******************************************************************-->
+    <Window name="FontSelector" movable="true">
+      <Size>
+        <AbsPoint x="400" y="750" />
+      </Size>
+      <Anchors>
+        <Anchor point="topleft" relativePoint="topleft" relativeTo="">
+          <AbsPoint x="30" y="100" />
+        </Anchor>
+      </Anchors>
+      <EventHandlers>
+        <EventHandler event="OnInitialize" function="FontSelector.Initialize"/>
+        <EventHandler event="OnShutdown" function="FontSelector.Shutdown"/>
+        <EventHandler event="OnShown" function="FontSelector.OnShown"/>
+      </EventHandlers>
+      <Windows>
+        <!-- Default chrome. Alter this at your own peril. -->
+        <Window name="$parentChrome" inherits="UO_DefaultWindow" layer ="background">
+          <Anchors>
+            <Anchor point="topleft" relativePoint="topleft"/>
+            <Anchor point="bottomright" relativePoint="bottomright"/>
+          </Anchors>
+        </Window>
+        <!-- End of default chrome boilerplate code -->
+
+		  <ScrollWindow name="FontSelectorSW" childscrollwindow="FontSelectorSWText" scrollbar="FontSelectorSWScrollbar" lineheight="18" autoHideScrollBar="true"  >
+			  <Size>
+				  <AbsPoint x="370" y="700" />
+			  </Size>
+			  <Anchors>
+				  <Anchor point="topleft" relativePoint="topleft" relativeTo="$parent" >
+					  <AbsPoint x="15" y="30" />
+				  </Anchor>
+				  <Anchor point="bottomright" relativePoint="bottomright" relativeTo="$parent" >
+					  <AbsPoint x="-15" y="-20" />
+				  </Anchor>
+			  </Anchors>
+			  <Windows>
+				  <VerticalScrollbar name="$parentScrollbar" inherits="StandardVertScroll" layer="secondary" >
+					  <EventHandlers>
+						  <EventHandler event="OnScrollPosChanged" function="FontSelector.Scrolling" />
+					  </EventHandlers>
+				  </VerticalScrollbar>
+
+				  <Window name="$parentText">
+					  <Size>
+						  <AbsPoint x="370" y="5000"/>
+					  </Size>
+					  <Anchors>
+						  <Anchor point="topleft" relativePoint="topleft">
+							  <AbsPoint x="5" y="5" />
+						  </Anchor>
+					  </Anchors>
+
+				  </Window>
+			  </Windows>
+		  </ScrollWindow>
+		  
+      </Windows>
+
+    </Window>
+
+  </Windows>
+</Interface>

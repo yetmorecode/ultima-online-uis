@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Interface xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../Interface.xsd">
+    
+    <!-- Assets -->
+    <Include file="Textures/LoginTextures.xml" />
+    
+    <!-- Templates -->
+    
+    <!-- Windows -->
+    <Include file="Source/UO_LoginTemplates.xml" />
+    <Include file="Source/UO_LoginWindow.xml" />
+    <Include file="Source/UO_Login_StandardDialog.xml" />
+    <Include file="Source/UO_Login_StandardTextConfirmation.xml" />
+    <Include file="Source/Login.xml" />
+    <Include file="Source/CharacterCreation.xml" />
+    <Include file="Source/Credits.xml" />    
+
+    <Scripts>
+        <Script file="Source/UO_LoginWindow.lua" />
+        <Script file="InterfaceLogin.lua" />        
+    </Scripts>
+</Interface>

@@ -1,0 +1,1264 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Interface xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../Interface.xsd">
+  <Windows>
+    <Label name="SectionTitle" font="MyriadPro_16" maxchars="64" textalign="left">
+      <Color r="255" g="255" b="255" a="255" />
+    </Label>
+
+    <Label name="Settings_ItemTitle" font="MyriadPro_16" linespacing="20" autoresize="true" wordwrap="true" maxchars="64" textalign="left">
+      <Color r="255" g="255" b="255" a="255" />
+      <EventHandlers>
+        <EventHandler event="OnMouseOver" function="SettingsWindow.LabelOnMouseOver" />
+      </EventHandlers>
+    </Label>
+
+    <Window name="SettingsFindersKeepersItem">
+      <Size>
+        <AbsPoint x="600" y="22" />
+      </Size>
+
+      <Windows>
+        <DynamicImage name="$parentIcon" texture=""  texturescale="2.0" draganddrop="true">
+          <Size>
+            <AbsPoint x="45" y="45" />
+          </Size>
+          <TexCoords x="399" y="32"/>
+          <Anchors>
+            <Anchor point="topleft" relativePoint="topleft" >
+              <AbsPoint x="0" y="0" />
+            </Anchor>
+          </Anchors>
+        </DynamicImage>
+
+        <Label name="$parentLabel" font="MyriadPro_16" maxchars="64" textalign="left" autoresizewidth="true">
+          <Size>
+            <AbsPoint x="350" y="16" />
+          </Size>
+          <Color r="255" g="255" b="255" a="255" />
+          <EventHandlers>
+            <EventHandler event="OnMouseOver" function="SettingsWindow.FKItemLabelOnMouseOver" />
+            <EventHandler event="OnMouseOverEnd" function="SettingsWindow.FKItemClearMouseOverItem" />
+            <EventHandler event="OnLButtonUp" function="FindersKeepers.EditItem" />
+          </EventHandlers>
+          <Anchors>
+            <Anchor point="right" relativePoint="left" relativeTo="$parentIcon">
+              <AbsPoint x="10" y="0" />
+            </Anchor>
+          </Anchors>
+        </Label>
+
+        <Button name="$parentDeleteButton" backgroundtexture="CloseButton" highlighttexture="CloseButton" texturescale="1.15" layer="popup">
+          <Size>
+            <AbsPoint x="22" y="22" />
+          </Size>
+          <TexCoords>
+            <Normal x="21" y="0" />
+            <NormalHighlit x="63" y="0" />
+            <Pressed x="42" y="0"  />
+            <PressedHighlit x="42" y="0" />
+            <Disabled x="0" y="0" />
+          </TexCoords>
+          <EventHandlers>
+            <EventHandler event="OnLButtonUp" function="FindersKeepers.RemoveItem" />
+          </EventHandlers>
+          <Anchors>
+            <Anchor point="topright" relativePoint="topleft" relativeTo="$parentLabel">
+              <AbsPoint x="30" y="-3" />
+            </Anchor>
+          </Anchors>
+        </Button>
+
+      </Windows>
+    </Window>
+
+    <DynamicImage name="VerticalLine" texture="VLine">
+			<Size>
+				<AbsPoint x="2" y="80" />
+			</Size>
+			<TexCoords x="0" y="0"/>
+			<TintColor r="50" g="50"  b="50" a="255"/>
+		</DynamicImage>
+    
+    <Button name="FindersKeepersAddButton" inherits="UO_Default_Medium_Select_Button" >
+      <EventHandlers>
+        <EventHandler event="OnLButtonUp" function="SettingsWindow.FindersKeepersAddButton" />
+      </EventHandlers>
+    </Button>
+
+    <Button name="FindersKeepersImportButton" inherits="UO_Default_Medium_Select_Button" >
+      <EventHandlers>
+        <EventHandler event="OnLButtonUp" function="SettingsWindow.FindersKeepersImportButton" />
+        <EventHandler event="OnMouseOver" function="SettingsWindow.FindersKeepersImportMouseOver" />
+      </EventHandlers>
+    </Button>
+
+    <Button name="OverheadTextSizePlus" inherits="UO_Default_Medium_Select_Button" >
+      <EventHandlers>
+        <EventHandler event="OnLButtonUp" function="SettingsWindow.IncreaseTextSize" />
+      </EventHandlers>
+    </Button>
+
+    <Button name="OverheadTextSizeMinus" inherits="UO_Default_Medium_Select_Button" >
+      <EventHandlers>
+        <EventHandler event="OnLButtonUp" function="SettingsWindow.DecreaseTextSize" />
+      </EventHandlers>
+    </Button>
+
+    <Button name="OverheadChatFont" inherits="UO_Default_Medium_Select_Button" >
+      <EventHandlers>
+        <EventHandler event="OnLButtonUp" function="SettingsWindow.ChatFont" />
+      </EventHandlers>
+    </Button>
+
+    <Button name="OverheadNamesFont" inherits="UO_Default_Medium_Select_Button" >
+      <EventHandlers>
+        <EventHandler event="OnLButtonUp" function="SettingsWindow.NamesFont" />
+      </EventHandlers>
+    </Button>
+
+    <Button name="OverheadSpellFont" inherits="UO_Default_Medium_Select_Button" >
+      <EventHandlers>
+        <EventHandler event="OnLButtonUp" function="SettingsWindow.SpellFont" />
+      </EventHandlers>
+    </Button>
+
+    <Button name="OverheadDamageFont" inherits="UO_Default_Medium_Select_Button" >
+      <EventHandlers>
+        <EventHandler event="OnLButtonUp" function="SettingsWindow.DamageFont" />
+      </EventHandlers>
+    </Button>
+    
+    <Button name="IgnoreListsAddButton" inherits="UO_Default_Medium_Select_Button" >
+      <EventHandlers>
+        <EventHandler event="OnLButtonUp" function="SettingsWindow.OnIgnoreListAddButton" />
+      </EventHandlers>
+    </Button>
+    
+    <Button name="IgnoreListsChatListButton" inherits="UO_Default_Medium_Select_Button" >
+      <EventHandlers>
+        <EventHandler event="OnLButtonUp" function="SettingsWindow.OnIgnoreListChatListButton" />
+      </EventHandlers>
+    </Button>
+    
+    <Button name="IgnoreListsDeleteButton" inherits="UO_Default_Medium_Select_Button" >
+      <EventHandlers>
+        <EventHandler event="OnLButtonUp" function="SettingsWindow.OnIgnoreListDeleteButton" />
+      </EventHandlers>
+    </Button>
+    
+    <Button name="IgnoreConfListsAddButton" inherits="UO_Default_Medium_Select_Button" >
+      <EventHandlers>
+        <EventHandler event="OnLButtonUp" function="SettingsWindow.OnIgnoreConfListAddButton" />
+      </EventHandlers>
+    </Button>
+    
+    <Button name="IgnoreConfListsChatListButton" inherits="UO_Default_Medium_Select_Button" >
+      <EventHandlers>
+        <EventHandler event="OnLButtonUp" function="SettingsWindow.OnIgnoreConfListChatListButton" />
+      </EventHandlers>
+    </Button>
+    
+    <Button name="IgnoreConfListsDeleteButton" inherits="UO_Default_Medium_Select_Button" >
+      <EventHandlers>
+        <EventHandler event="OnLButtonUp" function="SettingsWindow.OnIgnoreConfListDeleteButton" />
+      </EventHandlers>
+    </Button>
+    
+    <Window name="EmptyContainerWindow">
+      <Size>
+        <AbsPoint x="700" y="0" />
+      </Size>
+    </Window>
+    
+    <Window name="Settings_HealthbarSpell">
+      <Size>
+        <AbsPoint x="700" y="20" />
+      </Size>
+      <Windows>
+        <DynamicImage name="$parentButton" texture="" texturescale="1.0" handleinput="true" layer="overlay">
+          <Size>
+            <AbsPoint x="17" y="17" />
+          </Size>
+          <Anchors>
+            <Anchor point="left" relativePoint="left" relativeTo="">
+              <AbsPoint x="0" y="0" />
+            </Anchor>
+          </Anchors>
+          <TexCoords x="0" y="0" />
+          <EventHandlers>
+            <EventHandler event="OnMouseOver" function="SettingsWindow.LabelOnMouseOver" />
+          </EventHandlers>
+        </DynamicImage>
+
+        <ComboBox name="$parentCombo1" inherits="UO_Default_ComboBox" >
+          <Anchors>
+            <Anchor point="topright" relativePoint="topleft" relativeTo="$parentButton">
+              <AbsPoint x="20" y="-5" />
+            </Anchor>
+          </Anchors>
+          <EventHandlers>
+            <EventHandler event="OnSelChanged" function="SettingsWindow.OnSelChanged" />
+          </EventHandlers>
+        </ComboBox>
+
+        <ComboBox name="$parentCombo2" inherits="UO_Default_ComboBox" >
+          <Anchors>
+            <Anchor point="topright" relativePoint="topleft" relativeTo="$parentCombo1">
+              <AbsPoint x="20" y="0" />
+            </Anchor>
+          </Anchors>
+          <EventHandlers>
+            <EventHandler event="OnSelChanged" function="SettingsWindow.OnSelChanged" />
+          </EventHandlers>
+        </ComboBox>
+
+        <ComboBox name="$parentCombo3" inherits="UO_Default_ComboBox" >
+          <Anchors>
+            <Anchor point="topright" relativePoint="topleft" relativeTo="$parentCombo2">
+              <AbsPoint x="20" y="0" />
+            </Anchor>
+          </Anchors>
+          <EventHandlers>
+            <EventHandler event="OnSelChanged" function="SettingsWindow.OnSelChanged" />
+          </EventHandlers>
+        </ComboBox>
+        
+      </Windows>
+    </Window>
+    
+    <Window name="SettingsLootItem">
+      <Size>
+        <AbsPoint x="600" y="16" />
+      </Size>
+      <Windows>
+        <Label name="$parentLabel" font="MyriadPro_16" maxchars="64" textalign="left">
+          <Size>
+            <AbsPoint x="350" y="16" />
+          </Size>
+          <Color r="255" g="255" b="255" a="255" />
+          <Anchors>
+            <Anchor point="topleft" relativePoint="topleft" >
+              <AbsPoint x="20" y="0" />
+            </Anchor>
+          </Anchors>
+        </Label>
+        <Button name="$parentUPButton" inherits="OrgRowTemplate" >
+          <Size>
+            <AbsPoint x="20" y="25" />
+          </Size>
+          <Anchors>
+            <Anchor point="topright" relativePoint="topleft" relativeTo="$parentLabel">
+              <AbsPoint x="10" y="3" />
+            </Anchor>
+          </Anchors>
+          <EventHandlers>
+            <EventHandler event="OnLButtonUp" function="SettingsWindow.MoveLootItemUp" />
+            <EventHandler event="OnMouseOver" function="SettingsWindow.ItemMouseOver" />
+            <EventHandler event="OnMouseOverEnd" function="SettingsWindow.LootItemClearMouseOverItem" />
+          </EventHandlers>
+          <Windows>
+            <Label name="$parentLabel" font="MyriadPro_16" maxchars="256" textalign="left" autoresize="true" handleinput="false">
+              <Size>
+                <AbsPoint x="30" y="16" />
+              </Size>
+            </Label>
+          </Windows>
+        </Button>
+        <Button name="$parentDownButton" inherits="OrgRowTemplate" >
+          <Size>
+            <AbsPoint x="20" y="25" />
+          </Size>
+          <Anchors>
+            <Anchor point="topright" relativePoint="topleft" relativeTo="$parentUPButton">
+              <AbsPoint x="10" y="0" />
+            </Anchor>
+          </Anchors>
+          <EventHandlers>
+            <EventHandler event="OnLButtonUp" function="SettingsWindow.MoveLootItemDown" />
+            <EventHandler event="OnMouseOver" function="SettingsWindow.ItemMouseOver" />
+            <EventHandler event="OnMouseOverEnd" function="SettingsWindow.LootItemClearMouseOverItem" />
+          </EventHandlers>
+          <Windows>
+            <Label name="$parentLabel" font="MyriadPro_16" maxchars="256" textalign="left" autoresize="true" handleinput="false">
+              <Size>
+                <AbsPoint x="30" y="16" />
+              </Size>
+            </Label>
+          </Windows>
+        </Button>
+      </Windows>
+    </Window>
+
+    <Window name="LabelCheckButton">
+      <Size>
+        <AbsPoint x="350" y="32" />
+      </Size>
+      <Windows>
+        <Button name="$parentButton" inherits="UO_Default_Check_Button">
+          <Anchors>
+            <Anchor point="left" relativePoint="left">
+              <AbsPoint x="5" y="0"/>
+            </Anchor>
+          </Anchors>
+        </Button>
+        <Label name="$parentLabel" inherits="Settings_ItemTitle">
+          <Size>
+            <AbsPoint x="700" y="16" />
+          </Size>
+          <Anchors>
+            <Anchor point="right" relativePoint="left" relativeTo="$parentButton">
+              <AbsPoint x="5" y="0" />
+            </Anchor>
+          </Anchors>
+          <Color r="255" g="255" b="255" a="255" />
+          <EventHandlers>
+            <EventHandler event="OnLButtonDown" function="SettingsWindow.Check" />
+          </EventHandlers>
+        </Label>
+      </Windows>
+    </Window>
+
+    <Window name="TabLabel">
+      <Size>
+        <AbsPoint x="230" y="20" />
+      </Size>
+      <EventHandlers>
+        <EventHandler event="OnLButtonDown" function="SettingsWindow.SelectTab" />
+        <EventHandler event="OnMouseOver" function="SettingsWindow.TabMouseOver" />
+        <EventHandler event="OnMouseOverEnd" function="SettingsWindow.TabMouseOverEnd" />
+      </EventHandlers>
+      <Windows>
+        <Label name="$parentText" font="MyriadPro_16" linespacing="20" autoresize="false" wordwrap="false" maxchars="64" textalign="left" handleinput="false">
+          <Size>
+            <AbsPoint x="230" y="16" />
+          </Size>
+          <Anchors>
+            <Anchor point="topleft" relativePoint="topleft" relativeTo="$parent">
+              <AbsPoint x="0" y="0" />
+            </Anchor>
+          </Anchors>
+          <Color r="255" g="255" b="255" a="255" />
+        </Label>
+
+        <FullResizeImage name="$parentGoldLine" inherits="UO_Default_Horizontal_Gold_Line" >
+          <Size>
+            <AbsPoint x="240" y="2" />
+          </Size>
+          <Anchors>
+            <Anchor point="bottomleft" relativePoint="topleft" relativeTo="$parentText">
+              <AbsPoint x="-10" y="7" />
+            </Anchor>
+          </Anchors>
+          <TintColor r="40" g="40" b="40" a="255" />
+        </FullResizeImage>
+      </Windows>
+    </Window>
+
+    <Window name="Settings_LabelCheckButton">
+      <Size>
+        <AbsPoint x="350" y="32" />
+      </Size>
+      <Windows>
+        <Button name="$parentButton" inherits="UO_Default_Check_Button">
+          <Anchors>
+            <Anchor point="left" relativePoint="left">
+              <AbsPoint x="5" y="0"/>
+            </Anchor>
+          </Anchors>
+          <EventHandlers>
+            <EventHandler event="OnLButtonDown" function="SettingsWindow.CheckEnable" />
+          </EventHandlers>
+        </Button>
+        <Label name="$parentLabel" inherits="Settings_ItemTitle">
+          <Size>
+            <AbsPoint x="700" y="16" />
+          </Size>
+          <Anchors>
+            <Anchor point="right" relativePoint="left" relativeTo="$parentButton">
+              <AbsPoint x="5" y="0" />
+            </Anchor>
+          </Anchors>
+          <Color r="255" g="255" b="255" a="255" />
+          <EventHandlers>
+            <EventHandler event="OnLButtonDown" function="SettingsWindow.Check" />
+            <EventHandler event="OnMouseOver" function="SettingsWindow.LabelOnMouseOver" />
+          </EventHandlers>
+        </Label>
+      </Windows>
+    </Window>
+    
+    <Window name="Settings_CascadeSettings">
+      <Size>
+        <AbsPoint x="500" y="350" />
+      </Size>
+      <Windows>
+        <Label name="$parentLabel" font="MyriadPro_16" maxchars="64" textalign="left" autoresizewidth="true">
+          <Size>
+            <AbsPoint x="350" y="16" />
+          </Size>
+          <Color r="255" g="231" b="132" a="255" />
+          <Anchors>
+            <Anchor point="topleft" relativePoint="topleft" relativeTo="">
+              <AbsPoint x="0" y="0" />
+            </Anchor>
+          </Anchors>
+        </Label>
+
+        <DynamicImage name="$parentIMG" texture="CascadeSetting"  texturescale="1.0" handleinput="false">
+          <Size>
+            <AbsPoint x="468" y="270" />
+          </Size>
+          <TexCoords x="0" y="0"/>
+          <Anchors>
+            <Anchor point="bottomleft" relativePoint="topleft" relativeTo="$parentLabel">
+              <AbsPoint x="80" y="22" />
+            </Anchor>
+          </Anchors>
+        </DynamicImage>
+
+        <Button name="$parentTOPLEFT" backgroundtexture="RadioButton" highlighttexture="RadioButton" texturescale="1.1">
+          <Size>
+            <AbsPoint x="22" y="22" />
+          </Size>
+          <Anchors>
+            <Anchor point="topleft" relativePoint="topleft" relativeTo="$parentIMG">
+              <AbsPoint x="110" y="80" />
+            </Anchor>
+          </Anchors>
+          <TexCoords>
+            <Normal x="0" y="23" />
+            <NormalHighlit x="0" y="23" />
+            <Pressed x="0" y="0" />
+            <PressedHighlit x="0" y="0" />
+            <Disabled x="0" y="0" />
+          </TexCoords>
+          <EventHandlers>
+            <EventHandler event="OnLButtonDown" function="SettingsWindow.CheckEnable" />
+          </EventHandlers>
+        </Button>
+
+        <Button name="$parentTOPRIGHT" backgroundtexture="RadioButton" highlighttexture="RadioButton" texturescale="1.1">
+          <Size>
+            <AbsPoint x="22" y="22" />
+          </Size>
+          <Anchors>
+            <Anchor point="topright" relativePoint="topright" relativeTo="$parentIMG">
+              <AbsPoint x="-110" y="80" />
+            </Anchor>
+          </Anchors>
+          <TexCoords>
+            <Normal x="0" y="23" />
+            <NormalHighlit x="0" y="23" />
+            <Pressed x="0" y="0" />
+            <PressedHighlit x="0" y="0" />
+            <Disabled x="0" y="0" />
+          </TexCoords>
+          <EventHandlers>
+            <EventHandler event="OnLButtonDown" function="SettingsWindow.CheckEnable" />
+          </EventHandlers>
+        </Button>
+
+        <Button name="$parentBOTTOMLEFT" backgroundtexture="RadioButton" highlighttexture="RadioButton" texturescale="1.1">
+          <Size>
+            <AbsPoint x="22" y="22" />
+          </Size>
+          <Anchors>
+            <Anchor point="bottomleft" relativePoint="bottomleft" relativeTo="$parentIMG">
+              <AbsPoint x="110" y="-80" />
+            </Anchor>
+          </Anchors>
+          <TexCoords>
+            <Normal x="0" y="23" />
+            <NormalHighlit x="0" y="23" />
+            <Pressed x="0" y="0" />
+            <PressedHighlit x="0" y="0" />
+            <Disabled x="0" y="0" />
+          </TexCoords>
+          <EventHandlers>
+            <EventHandler event="OnLButtonDown" function="SettingsWindow.CheckEnable" />
+          </EventHandlers>
+        </Button>
+
+        <Button name="$parentBOTTOMRIGHT" backgroundtexture="RadioButton" highlighttexture="RadioButton" texturescale="1.1">
+          <Size>
+            <AbsPoint x="22" y="22" />
+          </Size>
+          <Anchors>
+            <Anchor point="bottomright" relativePoint="bottomright" relativeTo="$parentIMG">
+              <AbsPoint x="-110" y="-80" />
+            </Anchor>
+          </Anchors>
+          <TexCoords>
+            <Normal x="0" y="23" />
+            <NormalHighlit x="0" y="23" />
+            <Pressed x="0" y="0" />
+            <PressedHighlit x="0" y="0" />
+            <Disabled x="0" y="0" />
+          </TexCoords>
+          <EventHandlers>
+            <EventHandler event="OnLButtonDown" function="SettingsWindow.CheckEnable" />
+          </EventHandlers>
+        </Button>
+
+        <Window name="$parentRANDOM" >
+          <Size>
+            <AbsPoint x="150" y="32" />
+          </Size>
+          <Anchors>
+            <Anchor point="bottomleft" relativePoint="topleft" relativeTo="$parentIMG">
+              <AbsPoint x="30" y="22" />
+            </Anchor>
+          </Anchors>
+          <Windows>
+            <Button name="$parentButton" backgroundtexture="RadioButton" highlighttexture="RadioButton" texturescale="1.1">
+              <Size>
+                <AbsPoint x="22" y="22" />
+              </Size>
+              <Anchors>
+                <Anchor point="left" relativePoint="left">
+                  <AbsPoint x="5" y="0"/>
+                </Anchor>
+              </Anchors>
+              <TexCoords>
+                <Normal x="0" y="23" />
+                <NormalHighlit x="0" y="23" />
+                <Pressed x="0" y="0" />
+                <PressedHighlit x="0" y="0" />
+                <Disabled x="0" y="0" />
+              </TexCoords>
+              <EventHandlers>
+                <EventHandler event="OnLButtonDown" function="SettingsWindow.Check" />
+              </EventHandlers>
+            </Button>
+            <Label name="$parentLabel" inherits="Settings_ItemTitle">
+              <Size>
+                <AbsPoint x="700" y="16" />
+              </Size>
+              <Anchors>
+                <Anchor point="right" relativePoint="left" relativeTo="$parentButton">
+                  <AbsPoint x="10" y="0" />
+                </Anchor>
+              </Anchors>
+              <Color r="255" g="255" b="255" a="255" />
+              <EventHandlers>
+                <EventHandler event="OnLButtonDown" function="SettingsWindow.CheckEnable" />
+              </EventHandlers>
+            </Label>
+          </Windows>
+        </Window>
+      </Windows>
+    </Window>
+    
+    <Window name="Settings_LabelRadioButton">
+      <Size>
+        <AbsPoint x="150" y="32" />
+      </Size>
+      <EventHandlers>
+        <EventHandler event="OnLButtonDown" function="SettingsWindow.CheckEnable" />
+      </EventHandlers>
+      <Windows>
+        <Button name="$parentButton" backgroundtexture="RadioButton" highlighttexture="RadioButton" texturescale="1.1">
+          <Size>
+            <AbsPoint x="22" y="22" />
+          </Size>
+          <Anchors>
+            <Anchor point="left" relativePoint="left">
+              <AbsPoint x="5" y="0"/>
+            </Anchor>
+          </Anchors>
+          <TexCoords>
+            <Normal x="0" y="23" />
+            <NormalHighlit x="0" y="23" />
+            <Pressed x="0" y="0" />
+            <PressedHighlit x="0" y="0" />
+            <Disabled x="0" y="0" />
+          </TexCoords>
+          <EventHandlers>
+            <EventHandler event="OnLButtonDown" function="SettingsWindow.CheckEnable" />
+            <EventHandler event="OnMouseOver" function="SettingsWindow.LabelOnMouseOver" />
+          </EventHandlers>
+        </Button>
+        <Label name="$parentLabel" inherits="Settings_ItemTitle" >
+          <Size>
+            <AbsPoint x="150" y="16" />
+          </Size>
+          <Anchors>
+            <Anchor point="right" relativePoint="left" relativeTo="$parentButton">
+              <AbsPoint x="10" y="0" />
+            </Anchor>
+          </Anchors>
+          <Color r="255" g="255" b="255" a="255" />
+          <EventHandlers>
+            <EventHandler event="OnLButtonDown" function="SettingsWindow.CheckEnable" />
+            <EventHandler event="OnMouseOver" function="SettingsWindow.LabelOnMouseOver" />
+          </EventHandlers>
+        </Label>
+      </Windows>
+    </Window>
+
+    <Window name="Settings_LabelCombo">
+      <Size>
+        <AbsPoint x="600" y="32" />
+      </Size>
+      <Windows>
+        <Label name="$parentLabel" inherits="Settings_ItemTitle" >
+          <Size>
+            <AbsPoint x="300" y="20" />
+          </Size>
+          <Anchors>
+            <Anchor point="left" relativePoint="left">
+              <AbsPoint x="27" y="0"/>
+            </Anchor>
+          </Anchors>
+          <Color r="255" g="255" b="255" a="255" />
+          <EventHandlers>
+            <EventHandler event="OnMouseOver" function="SettingsWindow.LabelOnMouseOver" />
+          </EventHandlers>
+        </Label>
+        <ComboBox name="$parentCombo" inherits="UO_Default_ComboBox" handleinput="true">
+          <Anchors>
+            <Anchor point="right" relativePoint="left" relativeTo="$parentLabel">
+              <AbsPoint x="5" y="0" />
+            </Anchor>
+          </Anchors>
+          <EventHandlers>
+            <EventHandler event="OnSelChanged" function="SettingsWindow.OnSelChanged" />
+          </EventHandlers>
+        </ComboBox>
+      </Windows>
+    </Window>
+
+    <Window name="Settings_LabelComboLong">
+      <Size>
+        <AbsPoint x="600" y="32" />
+      </Size>
+      <Windows>
+        <Label name="$parentLabel" inherits="Settings_ItemTitle" >
+          <Size>
+            <AbsPoint x="300" y="20" />
+          </Size>
+          <Anchors>
+            <Anchor point="left" relativePoint="left">
+              <AbsPoint x="27" y="0"/>
+            </Anchor>
+          </Anchors>
+          <Color r="255" g="255" b="255" a="255" />
+          <EventHandlers>
+            <EventHandler event="OnMouseOver" function="SettingsWindow.LabelOnMouseOver" />
+          </EventHandlers>
+        </Label>
+        <ComboBox name="$parentCombo" inherits="UO_Default_LongComboBox" handleinput="true">
+          <Anchors>
+            <Anchor point="right" relativePoint="left" relativeTo="$parentLabel">
+              <AbsPoint x="5" y="0" />
+            </Anchor>
+          </Anchors>
+          <EventHandlers>
+            <EventHandler event="OnSelChanged" function="SettingsWindow.OnSelChanged" />
+          </EventHandlers>
+        </ComboBox>
+      </Windows>
+    </Window>
+
+    <Window name="Settings_LabelTextureCombo">
+      <Size>
+        <AbsPoint x="600" y="64" />
+      </Size>
+      <Windows>
+        <Label name="$parentLabel" inherits="Settings_ItemTitle" >
+          <Size>
+            <AbsPoint x="300" y="20" />
+          </Size>
+          <Anchors>
+            <Anchor point="left" relativePoint="left">
+              <AbsPoint x="27" y="0"/>
+            </Anchor>
+          </Anchors>
+          <Color r="255" g="255" b="255" a="255" />
+          <EventHandlers>
+            <EventHandler event="OnMouseOver" function="SettingsWindow.LabelOnMouseOver" />
+          </EventHandlers>
+        </Label>
+        <ComboBox name="$parentCombo" inherits="UO_Default_ComboBox" handleinput="true">
+          <Anchors>
+            <Anchor point="right" relativePoint="left" relativeTo="$parentLabel">
+              <AbsPoint x="5" y="0" />
+            </Anchor>
+          </Anchors>
+          <EventHandlers>
+            <EventHandler event="OnSelChanged" function="SettingsWindow.SwitchTP" />
+          </EventHandlers>
+        </ComboBox>
+        <DynamicImage name="$parentImage">
+          <Size>
+            <AbsPoint x="64" y="64" />
+          </Size>
+          <Anchors>
+            <Anchor point="right" relativePoint="left" relativeTo="$parentCombo">
+              <AbsPoint x="50" y="0" />
+            </Anchor>
+          </Anchors>
+        </DynamicImage>
+      </Windows>
+    </Window>
+    
+    <Window name="Settings_ColorLabelCombo">
+      <Size>
+        <AbsPoint x="600" y="32" />
+      </Size>
+      <Windows>
+        <Label name="$parentLabel" inherits="Settings_ItemTitle" >
+          <Size>
+            <AbsPoint x="300" y="20" />
+          </Size>
+          <Anchors>
+            <Anchor point="left" relativePoint="left">
+              <AbsPoint x="27" y="0"/>
+            </Anchor>
+          </Anchors>
+          <Color r="255" g="255" b="255" a="255" />
+          <EventHandlers>
+            <EventHandler event="OnMouseOver" function="SettingsWindow.LabelOnMouseOver" />
+          </EventHandlers>
+        </Label>
+        
+        <ComboBox name="$parentCombo" inherits="UO_Default_ComboBox" handleinput="true">
+          <Anchors>
+            <Anchor point="right" relativePoint="left" relativeTo="$parentLabel">
+              <AbsPoint x="5" y="0" />
+            </Anchor>
+          </Anchors>
+          <EventHandlers>
+            <EventHandler event="OnSelChanged" function="SettingsWindow.OnSelChanged" />
+          </EventHandlers>
+        </ComboBox>
+
+        <DynamicImage name="$parentColor" inherits="ColorPickerWindowColorTemplate" alpha="1.0" texturescale ="0.5">
+          <Size>
+            <AbsPoint x="22" y="22" />
+          </Size>
+          <Anchors>
+            <Anchor point="right" relativePoint="left" relativeTo="$parentCombo">
+              <AbsPoint x="50" y="0" />
+            </Anchor>
+          </Anchors>
+        </DynamicImage>
+      </Windows>
+    </Window>
+
+    <Window name="Settings_ColorButton">
+      <Size>
+        <AbsPoint x="350" y="22" />
+      </Size>
+      <Windows>
+        
+        <Label name="$parentLabel" font="MyriadPro_16" linespacing="20" autoresize="true" wordwrap="true" maxchars="64" textalign="left">
+          <Color r="255" g="255" b="255" a="255" />
+          <EventHandlers>
+            <EventHandler event="OnMouseOver" function="SettingsWindow.LabelOnMouseOver" />
+          </EventHandlers>
+          <Size>
+            <AbsPoint x="230" y="16" />
+          </Size>
+          <Anchors>
+            <Anchor point="left" relativePoint="left">
+              <AbsPoint x="27" y="0"/>
+            </Anchor>
+          </Anchors>
+        </Label>
+
+        <DynamicImage name="$parentButton" inherits="ColorPickerWindowColorTemplate" alpha="1.0" texturescale ="0.5">
+          <Size>
+            <AbsPoint x="22" y="22" />
+          </Size>
+          <EventHandlers>
+            <EventHandler event="OnLButtonDown" function="SettingsWindow.PickColor" />
+          </EventHandlers>
+          <Anchors>
+            <Anchor point="right" relativePoint="left" relativeTo="$parentLabel">
+              <AbsPoint x="5" y="0" />
+            </Anchor>
+          </Anchors>
+        </DynamicImage>
+      </Windows>
+    </Window>
+
+    <Window name="LabelEditBox">
+      <Size>
+        <AbsPoint x="230" y="32" />
+      </Size>
+      <Windows>
+        <EditBox name="$parentEdit" font="MyriadPro_16" taborder="1" maxchars="24" scrolling="horz" input="text">
+          <Size>
+            <AbsPoint x="50" y="40" />
+          </Size>
+          <Anchors>
+            <Anchor point="left" relativePoint="left" relativeTo="">
+              <AbsPoint x="0" y="0"/>
+            </Anchor>
+          </Anchors>
+        </EditBox>
+        <Label name="$parentLabel" font="MyriadPro_16" maxchars="64" textalign="left" layer="background">
+          <Size>
+            <AbsPoint x="175" y="16" />
+          </Size>
+          <Anchors>
+            <Anchor point="right" relativePoint="left" relativeTo="$parentEdit">
+              <AbsPoint x="5" y="3" />
+            </Anchor>
+          </Anchors>
+          <Color r="255" g="255" b="255" a="255" />
+        </Label>
+      </Windows>
+    </Window>
+
+    <Window name="SliderItemTemplate">
+      <Size>
+        <AbsPoint x="600" y="31" />
+      </Size>
+      <Windows>
+        <Label name="$parentLabel" font="MyriadPro_16" maxchars="64" textalign="left">
+          <Size>
+            <AbsPoint x="293" y="16"/>
+          </Size>
+          <Anchors>
+            <Anchor point="left" relativePoint="left" relativeTo="">
+              <AbsPoint x="27" y="0"/>
+            </Anchor>
+          </Anchors>
+          <EventHandlers>
+            <EventHandler event="OnMouseOver" function="SettingsWindow.LabelOnMouseOver" />
+          </EventHandlers>
+          <Color r="255" g="255" b="255" a="255" />
+        </Label>
+        
+         <Label name="$parentMinusButton" font="Arial_Black_16" maxchars="1" textalign="left" autoresizewidth="true" >
+          <Size>
+            <AbsPoint x="16" y="16" />
+          </Size>
+           <Anchors>
+            <Anchor point="right" relativePoint="left" relativeTo="$parentLabel">
+              <AbsPoint x="10" y="-3" />
+            </Anchor>
+          </Anchors>
+         <EventHandlers>
+            <EventHandler event="OnLButtonUp" function="SettingsWindow.AlterSlider" />
+            <EventHandler event="OnMouseOver" function="SettingsWindow.MinusItemMouseOver" />
+            <EventHandler event="OnMouseOverEnd" function="SettingsWindow.ClearMouseOverItem" />
+          </EventHandlers>
+        </Label>
+        
+        <SliderBar name="$parentSliderBar" inherits="UO_Default_Horizontal_SliderBar">
+          <Anchors>
+            <Anchor point="topright" relativePoint="topleft" relativeTo="$parentMinusButton">
+              <AbsPoint x="5" y="3" />
+            </Anchor>
+          </Anchors>
+          <EventHandlers>
+            <EventHandler event="OnSlide" function="SettingsWindow.UpdateSliderSettings" />
+          </EventHandlers>
+        </SliderBar>
+       
+         <Label name="$parentPlusButton" font="Arial_Black_16" maxchars="1" textalign="left" autoresizewidth="true">
+          <Size>
+            <AbsPoint x="16" y="16" />
+          </Size>
+           <Anchors>
+            <Anchor point="right" relativePoint="left" relativeTo="$parentSliderBar">
+              <AbsPoint x="5" y="-5" />
+            </Anchor>
+          </Anchors>
+         <EventHandlers>
+            <EventHandler event="OnLButtonUp" function="SettingsWindow.AlterSlider" />
+            <EventHandler event="OnMouseOver" function="SettingsWindow.PlusItemMouseOver" />
+            <EventHandler event="OnMouseOverEnd" function="SettingsWindow.ClearMouseOverItem" />
+          </EventHandlers>
+        </Label>
+        
+        <Label name="$parentVal" font="MyriadPro_16" maxchars="64" textalign="left">
+          <Size>
+            <AbsPoint x="80" y="20"/>
+          </Size>
+          <Anchors>
+            <Anchor point="topright" relativePoint="topleft" relativeTo="$parentPlusButton">
+              <AbsPoint x="20" y="5" />
+            </Anchor>
+          </Anchors>
+          <Color r="255" g="255" b="255" a="255" />
+        </Label>
+      </Windows>
+    </Window>
+
+    <Window name="VolumeSliderItemTemplate">
+      <Size>
+        <AbsPoint x="600" y="61" />
+      </Size>
+      <Windows>
+        <Window name="$parentToggle" inherits="Settings_LabelCheckButton" handleinput="true">
+          <Size>
+            <AbsPoint x="145" y="32" />
+          </Size>
+          <Anchors>
+            <Anchor point="topleft" relativePoint="topleft"/>
+          </Anchors>
+        </Window>
+        
+        <Label name="$parentLabel" font="MyriadPro_16" maxchars="64" textalign="left" handleinput="true">
+          <Size>
+            <AbsPoint x="293" y="16"/>
+          </Size>
+          <Anchors>
+            <Anchor point="bottomleft" relativePoint="topleft" relativeTo="$parentToggle">
+              <AbsPoint x="26" y="9" />
+            </Anchor>
+          </Anchors>
+          <EventHandlers>
+            <EventHandler event="OnMouseOver" function="SettingsWindow.LabelOnMouseOver" />
+          </EventHandlers>
+          <Color r="255" g="255" b="255" a="255" />
+        </Label>
+
+        <Label name="$parentMinusButton" font="Arial_Black_16" maxchars="1" textalign="left" autoresizewidth="true" >
+          <Size>
+            <AbsPoint x="16" y="16" />
+          </Size>
+          <Anchors>
+            <Anchor point="right" relativePoint="left" relativeTo="$parentLabel">
+              <AbsPoint x="10" y="-3" />
+            </Anchor>
+          </Anchors>
+          <EventHandlers>
+            <EventHandler event="OnLButtonUp" function="SettingsWindow.AlterSlider" />
+            <EventHandler event="OnMouseOver" function="SettingsWindow.MinusItemMouseOver" />
+            <EventHandler event="OnMouseOverEnd" function="SettingsWindow.ClearMouseOverItem" />
+          </EventHandlers>
+        </Label>
+        
+        <SliderBar name="$parentSliderBar" inherits="UO_Default_Horizontal_SliderBar">
+          <Anchors>
+            <Anchor point="topright" relativePoint="topleft" relativeTo="$parentMinusButton">
+              <AbsPoint x="5" y="3" />
+            </Anchor>
+          </Anchors>
+          <EventHandlers>
+            <EventHandler event="OnSlide" function="SettingsWindow.UpdateSliderSettings" />
+          </EventHandlers>
+        </SliderBar>
+
+        <Label name="$parentPlusButton" font="Arial_Black_16" maxchars="1" textalign="left" autoresizewidth="true">
+          <Size>
+            <AbsPoint x="16" y="16" />
+          </Size>
+          <Anchors>
+            <Anchor point="right" relativePoint="left" relativeTo="$parentSliderBar">
+              <AbsPoint x="5" y="-5" />
+            </Anchor>
+          </Anchors>
+          <EventHandlers>
+            <EventHandler event="OnLButtonUp" function="SettingsWindow.AlterSlider" />
+            <EventHandler event="OnMouseOver" function="SettingsWindow.PlusItemMouseOver" />
+            <EventHandler event="OnMouseOverEnd" function="SettingsWindow.ClearMouseOverItem" />
+          </EventHandlers>
+        </Label>
+        
+        <Label name="$parentVal" font="MyriadPro_16" maxchars="64" textalign="right">
+          <Size>
+            <AbsPoint x="40" y="20"/>
+          </Size>
+          <Anchors>
+            <Anchor point="topright" relativePoint="topleft" relativeTo="$parentPlusButton">
+              <AbsPoint x="20" y="0" />
+            </Anchor>
+          </Anchors>
+          <Color r="255" g="255" b="255" a="255" />
+        </Label>
+      </Windows>
+    </Window>
+
+    <Window name="SubSectionLabelTemplate">
+      <Size>
+        <AbsPoint x="650" y="25"/>
+      </Size>
+      <Windows>
+        <Label name="$parentLabel" font="MyriadPro_16">
+          <Size>
+            <AbsPoint x="650" y="20"/>
+          </Size>
+          <Anchors>
+            <Anchor point="topleft" relativePoint="topleft" />
+          </Anchors>
+          <Color r="255" g="231" b="132" a="255" />
+        </Label>
+
+        <FullResizeImage name="$parentGoldLine" inherits="UO_Default_Horizontal_Gold_Line" >
+          <Size>
+            <AbsPoint x="650" y="2" />
+          </Size>
+          <Anchors>
+            <Anchor point="topleft" relativePoint="bottomleft" relativeTo="$parentLabel">
+              <AbsPoint x="0" y="30" />
+            </Anchor>
+          </Anchors>
+        </FullResizeImage>
+      </Windows>
+    </Window>
+
+    <Window name="KeyPicker" >
+      <Size>
+        <AbsPoint x="500" y="16" />
+      </Size>
+      <EventHandlers>
+        <EventHandler event="OnLButtonUp" function="SettingsWindow.OnKeyPicked" />
+      </EventHandlers>
+      <Windows>
+        <Label name="$parentLabel" inherits="Settings_ItemTitle" >
+          <Size>
+            <AbsPoint x="330" y="16" />
+          </Size>
+          <Anchors>
+            <Anchor point="left" relativePoint="left" relativeTo="">
+              <AbsPoint x="5" y="0"/>
+            </Anchor>
+          </Anchors>
+          <Color r="153" g="217" b="234" a="255" />
+        </Label>
+        <Label name="$parentValue" inherits="Settings_ItemTitle" >
+          <Size>
+            <AbsPoint x="200" y="16" />
+          </Size>
+          <Anchors>
+            <Anchor point="topright" relativePoint="topleft" relativeTo="$parentLabel">
+              <AbsPoint x="5" y="0" />
+            </Anchor>
+          </Anchors>
+          <Color r="255" g="255" b="255" a="255" />
+        </Label>
+      </Windows>
+    </Window>
+    
+    <Window name="KeyPickerNoCustom" >
+      <Size>
+        <AbsPoint x="500" y="32" />
+      </Size>
+      <Windows>
+        <Label name="$parentLabel" inherits="Settings_ItemTitle" >
+          <Size>
+            <AbsPoint x="330" y="32" />
+          </Size>
+          <Anchors>
+            <Anchor point="left" relativePoint="left" relativeTo="">
+              <AbsPoint x="5" y="0"/>
+            </Anchor>
+          </Anchors>
+          <Color r="153" g="217" b="234" a="255" />
+        </Label>
+        <Label name="$parentValue" inherits="Settings_ItemTitle" >
+          <Size>
+            <AbsPoint x="200" y="32" />
+          </Size>
+          <Anchors>
+            <Anchor point="topright" relativePoint="topleft" relativeTo="$parentLabel">
+              <AbsPoint x="5" y="0" />
+            </Anchor>
+          </Anchors>
+          <Color r="255" g="255" b="255" a="255" />
+        </Label>
+      </Windows>
+    </Window>
+
+    <Label name="BadWord" inherits="Settings_ItemTitle" >
+      <Size>
+        <AbsPoint x="300" y="32" />
+      </Size>
+      <Color r="255" g="255" b="255" a="255" />
+      <EventHandlers>
+        <EventHandler event="OnLButtonUp" function="SettingsWindow.OnBadWordClicked" />
+      </EventHandlers>
+    </Label>
+
+    <Label name="IgnoreListItem" inherits="Settings_ItemTitle" handleinput="true">
+      <Size>
+        <AbsPoint x="350" y="16" />
+      </Size>
+      <Color r="255" g="255" b="255" a="255" />
+      <EventHandlers>
+        <EventHandler event="OnLButtonUp" function="SettingsWindow.OnIgnoreListItemClicked" />
+      </EventHandlers>
+    </Label>
+
+    <Label name="IgnoreConfListItem" inherits="Settings_ItemTitle" handleinput="true">
+      <Size>
+        <AbsPoint x="350" y="16" />
+      </Size>
+      <Color r="255" g="255" b="255" a="255" />
+      <EventHandlers>
+        <EventHandler event="OnLButtonUp" function="SettingsWindow.OnIgnoreConfListItemClicked" />
+      </EventHandlers>
+    </Label>
+
+    <!-- Settings Window -->
+    <Window name="SettingsWindow" movable="true" >
+      <Size>
+        <AbsPoint x="1000" y="620" />
+      </Size>
+      <Anchors>
+        <Anchor point="center" relativePoint="center" />
+      </Anchors>
+      <EventHandlers>
+        <EventHandler event="OnInitialize" function="SettingsWindow.Initialize" />
+        <EventHandler event="OnKeyEscape" function="SettingsWindow.OnHide" />
+        <EventHandler event="OnShown" function="SettingsWindow.OnShown" />
+        <EventHandler event="OnHidden" function="SettingsWindow.UnloadWindow" />
+      </EventHandlers>
+      <Windows>
+        <!-- Default chrome. Alter this at your own peril. -->
+        <Window name="$parentChrome" inherits="UO_DefaultWindow">
+          <Anchors>
+            <Anchor point="topleft" relativePoint="topleft"/>
+            <Anchor point="bottomright" relativePoint="bottomright"/>
+          </Anchors>
+        </Window>
+        <!-- End of default chrome boilerplate code -->
+
+        <Window name="$parentSearchBox" inherits="SearchBoxNext_MEDIUM" >
+          <Anchors>
+            <Anchor point="topleft" relativePoint="topleft" relativeTo="$parent">
+              <AbsPoint x="20" y="45" />
+            </Anchor>
+          </Anchors>
+        </Window>
+        
+        <ScrollWindow name="SettingsCategories" childscrollwindow="SettingsCategoriesScrollChild" scrollbar="SettingsCategoriesScrollbar" lineheight="18" autoHideScrollBar="true" >
+          <Size>
+            <AbsPoint x="250" y="200" />
+          </Size>
+          <Anchors>
+            <Anchor point="topleft" relativePoint="topleft" relativeTo="$parent" >
+              <AbsPoint x="20" y="80" />
+            </Anchor>
+            <Anchor point="bottomleft" relativePoint="bottomleft" relativeTo="$parent" >
+              <AbsPoint x="20" y="-22" />
+            </Anchor>
+          </Anchors>
+          <Windows>
+            <VerticalScrollbar name="$parentScrollbar" inherits="StandardVertScroll" layer="secondary"/>
+            <FullResizeImage name="$parentFrame" inherits="UO_Default_Inner_Window_Frame">
+              <Anchors>
+                <Anchor point="topleft" relativePoint="topleft" />
+                <Anchor point="bottomright" relativePoint="bottomright" />
+              </Anchors>
+            </FullResizeImage>
+            <Window name="$parentScrollChild" popable="false">
+              <Size>
+                <AbsPoint x="500" y="200"/>
+              </Size>
+              <Anchors>
+                <Anchor point="topleft" relativePoint="topleft">
+                  <AbsPoint x="5" y="5" />
+                </Anchor>
+              </Anchors>
+              <Windows>
+                <Window name="SettingsCategoriesList" >
+                  <Size>
+                    <AbsPoint x="695" y="0" />
+                  </Size>
+                </Window>
+              </Windows>
+            </Window>
+          </Windows>
+        </ScrollWindow>
+
+        <ScrollWindow name="SettingsArea" childscrollwindow="SettingsAreaScrollChild" scrollbar="SettingsAreaScrollbar" lineheight="18" autoHideScrollBar="true" >
+          <Size>
+            <AbsPoint x="710" y="456" />
+          </Size>
+          <Anchors>
+            <Anchor point="topright" relativePoint="topleft" relativeTo="SettingsCategories" >
+              <AbsPoint x="10" y="-40" />
+            </Anchor>
+            <Anchor point="bottomright" relativePoint="bottomright" relativeTo="$parent" >
+              <AbsPoint x="-20" y="-60" />
+            </Anchor>
+          </Anchors>
+          <Windows>
+            <VerticalScrollbar name="$parentScrollbar" inherits="StandardVertScroll" layer="secondary"/>
+            <FullResizeImage name="$parentFrame" inherits="UO_Default_Inner_Window_Frame">
+              <Anchors>
+                <Anchor point="topleft" relativePoint="topleft" />
+                <Anchor point="bottomright" relativePoint="bottomright" />
+              </Anchors>
+            </FullResizeImage>
+            <Window name="$parentScrollChild" popable="false">
+              <Size>
+                <AbsPoint x="695" y="456"/>
+              </Size>
+              <Anchors>
+                <Anchor point="topleft" relativePoint="topleft">
+                  <AbsPoint x="10" y="10" />
+                </Anchor>
+                <Anchor point="bottomright" relativePoint="bottomright">
+                  <AbsPoint x="-10" y="-10" />
+                </Anchor>
+              </Anchors>
+              <Windows>
+                <Window name="SettingsList" >
+                  <Size>
+                    <AbsPoint x="695" y="0" />
+                  </Size>
+                </Window>
+              </Windows>
+            </Window>
+          </Windows>
+        </ScrollWindow>
+
+        <!-- Buttons -->
+        <Button name="$parentResetUILocButton" inherits="UO_Default_Medium_Select_Button" >
+          <Anchors>
+            <Anchor point="bottomleft" relativePoint="bottomleft" relativeTo="SettingsWindow">
+              <AbsPoint x="275" y="-18" />
+            </Anchor>
+          </Anchors>
+          <EventHandlers>
+            <EventHandler event="OnLButtonUp" function="SettingsWindow.OnResetUILocButton" />
+          </EventHandlers>
+        </Button>
+        
+        <Button name="$parentResetButton" inherits="UO_Default_Medium_Select_Button" >
+          <Anchors>
+            <Anchor point="right" relativePoint="left" relativeTo="$parentResetUILocButton">
+              <AbsPoint x="10" y="0" />
+            </Anchor>
+          </Anchors>
+          <EventHandlers>
+            <EventHandler event="OnLButtonUp" function="SettingsWindow.OnResetButton" />
+          </EventHandlers>
+        </Button>
+        
+        <Button name="$parentExportButton" inherits="UO_Default_Medium_Select_Button" >
+          <Anchors>
+            <Anchor point="right" relativePoint="left" relativeTo="$parentResetButton">
+              <AbsPoint x="10" y="0" />
+            </Anchor>
+          </Anchors>
+          <EventHandlers>
+            <EventHandler event="OnLButtonUp" function="SettingsWindow.ExportSettings" />
+          </EventHandlers>
+        </Button>
+        
+        <Button name="$parentImportButton" inherits="UO_Default_Medium_Select_Button" >
+          <Anchors>
+            <Anchor point="right" relativePoint="left" relativeTo="$parentExportButton">
+              <AbsPoint x="10" y="0" />
+            </Anchor>
+          </Anchors>
+          <EventHandlers>
+            <EventHandler event="OnLButtonUp" function="SettingsWindow.ImportSettings" />
+            <EventHandler event="OnMouseOver" function="SettingsWindow.ImportMouseOver" />
+          </EventHandlers>
+        </Button>
+
+
+      </Windows>
+    </Window>
+  </Windows>
+</Interface>

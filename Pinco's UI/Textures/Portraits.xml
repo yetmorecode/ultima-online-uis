@@ -1,0 +1,392 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Interface xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../Interface.xsd">
+  <Assets>
+
+    <!-- Portrait Icons -->
+    <Icon id="100000001" texture="Textures/portraits/ogre.dds" 											name="ogre" />
+    <Icon id="100000002" texture="Textures/portraits/Ettin.dds" 										name="ettin" />
+    <Icon id="100000003" texture="Textures/portraits/Undead_Zombie.dds" 						name="zombie" />
+    <Icon id="100000004" texture="Textures/portraits/Gargoyle.dds" 									name="gargoyle" />
+    <Icon id="100000005" texture="Textures/portraits/Bird_Eagle.dds" 								name="eagle" />
+    <Icon id="100000006" texture="Textures/portraits/Bird_Generic.dds" 							name="bird" />
+    <Icon id="100000007" texture="Textures/portraits/Orc_Captain.dds" 							name="orc captain" />
+    <Icon id="100000008" texture="Textures/portraits/Flail_Corpser.dds" 						name="corpser" />
+    <Icon id="100000009" texture="Textures/portraits/Daemon_Red.dds" 								name="daemon" />
+    <Icon id="100000010" texture="Textures/portraits/Daemon_Red.dds" 								name="daemon" />
+    <Icon id="100000011" texture="Textures/portraits/Spider_Dread.dds" 							name="dread spider" />
+    <Icon id="100000012" texture="Textures/portraits/Dragon_RetroGrey_Drake.dds" 		name="dragon" />
+    <Icon id="100000013" texture="Textures/portraits/Elemental_Air.dds" 						name="air elemental" />
+    <Icon id="100000014" texture="Textures/portraits/Elemental_Earth.dds" 					name="earth elemental" />
+    <Icon id="100000015" texture="Textures/portraits/Elemental_Fire.dds" 						name="fire elemental" />
+    <Icon id="100000016" texture="Textures/portraits/Elemental_Water.dds" 					name="water elemental" />
+    <Icon id="100000017" texture="Textures/portraits/Orc.dds" 											name="orc" />
+    <Icon id="100000018" texture="Textures/portraits/Ettin.dds" 										name="ettin" />
+    <Icon id="100000019" texture="Textures/portraits/Spider_Dread.dds" 							name="dread spider" />
+    <Icon id="100000020" texture="Textures/portraits/Spider_Frost.dds" 							name="frost spider" />
+    <Icon id="100000021" texture="Textures/portraits/Snake_Giant.dds" 							name="giant serpent" />
+    <Icon id="100000022" texture="Textures/portraits/Gazer.dds" 										name="gazer" />
+    <Icon id="100000023" texture="Textures/portraits/Canine_wolf.dds" 							name="dire wolf" />
+    <Icon id="100000024" texture="Textures/portraits/Lich.dds" 											name="lich" />
+    <Icon id="100000025" texture="Textures/portraits/Canine_wolf.dds" 							name="grey wolf" />
+    <Icon id="100000026" texture="Textures/portraits/Spirit_Ghost.dds" 							name="ghost" />
+    <Icon id="100000027" texture="Textures/portraits/Canine_wolf.dds" 							name="grey wolf" />
+    <Icon id="100000028" texture="Textures/portraits/Spider_BlackWidow.dds" 				name="giant spider" />
+    <Icon id="100000029" texture="Textures/portraits/Gorilla_Silverback.dds" 				name="gorilla" />
+    <Icon id="100001308" texture="Textures/portraits/Gorilla_Silverback.dds" 				name="the great ape" />
+    <Icon id="100000030" texture="Textures/portraits/Harpy.dds" 										name="harpy" />
+    <Icon id="100000031" texture="Textures/portraits/Headless_One.dds" 							name="headless" />
+    <Icon id="100000033" texture="Textures/portraits/Lizard_Men.dds" 								name="lizardman" />
+    <Icon id="100000034" texture="Textures/portraits/Canine_wolf.dds" 							name="white wolf" />
+    <Icon id="100000035" texture="Textures/portraits/Lizard_Men.dds" 								name="lizardman" />
+    <Icon id="100000036" texture="Textures/portraits/Lizard_Men.dds" 								name="lizardman" />
+    <Icon id="100000037" texture="Textures/portraits/Canine_wolf.dds" 							name="white wolf" />
+    <Icon id="100000038" texture="Textures/portraits/Daemon_BlackGate.dds" 					name="world devourer" />
+    <Icon id="100000039" texture="Textures/portraits/mongbat.dds" 									name="mongbat" />
+    <Icon id="100000040" texture="Textures/portraits/Daemon_Elder.dds" 							name="balron" />
+    <Icon id="100000041" texture="Textures/portraits/Orc.dds" 											name="orc" />
+    <Icon id="100000042" texture="Textures/portraits/Ratman.dds" 										name="ratman" />
+    <Icon id="100000043" texture="Textures/portraits/Daemon_IceFiend.dds" 					name="ice fiend" />
+    <Icon id="100000044" texture="Textures/portraits/Ratman.dds" 										name="ratman" />
+    <Icon id="100000045" texture="Textures/portraits/Ratman.dds" 										name="ratman" />
+    <Icon id="100000046" texture="Textures/portraits/Dragon_AcientWyrm.dds" 				name="ancient wyrm" />
+    <Icon id="100000047" texture="Textures/portraits/Flail_Reaper.dds" 							name="reaper" />
+    <Icon id="100000048" texture="Textures/portraits/Scorpion_Giant.dds" 						name="giant scorpion" />
+    <Icon id="100000049" texture="Textures/portraits/Dragon_WhiteWyrm.dds" 					name="white wyrm" />
+    <Icon id="100000050" texture="Textures/portraits/skelton.dds" 									name="skeleton" />
+    <Icon id="100000051" texture="Textures/portraits/slime.dds" 										name="slime" />
+    <Icon id="100000052" texture="Textures/portraits/Snake_Giant.dds" 							name="snake" />
+    <Icon id="100000053" texture="Textures/portraits/Troll.dds" 										name="troll" />
+    <Icon id="100000054" texture="Textures/portraits/Troll.dds" 										name="troll" />
+    <Icon id="100000055" texture="Textures/portraits/Troll_Frost.dds" 							name="frost troll" />
+    <Icon id="100000056" texture="Textures/portraits/skelton.dds" 									name="skeleton" />
+    <Icon id="100000057" texture="Textures/portraits/skelton.dds" 									name="skeleton" />
+    <Icon id="100000058" texture="Textures/portraits/wisp.dds" 							        name="wisp" />
+    <Icon id="100000059" texture="Textures/portraits/Dragon_RetroRed.dds" 					name="dragon" />
+    <Icon id="100000060" texture="Textures/portraits/Dragon_RetroGrey_Drake.dds" 		name="drake" />
+    <Icon id="100000061" texture="Textures/portraits/Dragon_RetroGrey_Drake.dds" 		name="drake" />
+    <Icon id="100000062" texture="Textures/portraits/Dragon_Wyvern.dds" 						name="wyvern" />
+    <Icon id="100000063" texture="Textures/portraits/Cat_Cougar.dds" 								name="cougar" />
+    <Icon id="100000064" texture="Textures/portraits/Cat_Cougar.dds" 								name="snow leopard" />
+    <Icon id="100000065" texture="Textures/portraits/Cat_Cougar.dds" 								name="snow leopard" />
+    <Icon id="100000066" texture="Textures/portraits/Flails_Quagmire.dds" 					name="swamp tentacles" />
+    <Icon id="100000067" texture="Textures/portraits/Gargoyle.dds" 									name="stone gargoyle" />
+    <Icon id="100000068" texture="Textures/portraits/Gazer_Elder.dds" 							name="elder gazer" />
+    <Icon id="100000069" texture="Textures/portraits/Gazer_Elder.dds" 							name="elder gazer" />
+    <Icon id="100000070" texture="Textures/portraits/Terathan_Warrior.dds" 					name="terathan warrior" />
+    <Icon id="100000071" texture="Textures/portraits/Terathan_Worker.dds" 					name="terathan drone" />
+    <Icon id="100000072" texture="Textures/portraits/Terrathan_Queen.dds" 					name="terathan matriarch" />
+    <Icon id="100000073" texture="Textures/portraits/Harpy_Stone.dds" 							name="stone harpy" />
+    <Icon id="100000074" texture="Textures/portraits/Imp.dds" 											name="imp" />
+    <Icon id="100000075" texture="Textures/portraits/Cyclopsian_Warrior.dds" 				name="cyclops" />
+    <Icon id="100000076" texture="Textures/portraits/Titan.dds" 										name="titan" />
+    <Icon id="100001405" texture="Textures/portraits/Titan.dds" 										name="zipactriotl" />
+    <Icon id="100000077" texture="Textures/portraits/Kraken.dds" 										name="kraken" />
+    <Icon id="100000078" texture="Textures/portraits/Lich.dds" 											name="ancient lich" />
+    <Icon id="100000079" texture="Textures/portraits/Lich.dds" 											name="lich lord" />
+    <Icon id="100000080" texture="Textures/portraits/Frog_Giant.dds" 								name="giant toad" />
+    <Icon id="100000081" texture="Textures/portraits/Frog_Giant.dds" 								name="bullfrog" />
+    <Icon id="100000082" texture="Textures/portraits/Lich.dds" 											name="lich lord" />
+    <Icon id="100000083" texture="Textures/portraits/Ogre.dds" 											name="ogre lord" />
+    <Icon id="100000084" texture="Textures/portraits/Ogre.dds" 											name="ogre lord" />
+    <Icon id="100000085" texture="Textures/portraits/Ophidian.dds" 									name="ophidian mage" />
+    <Icon id="100000086" texture="Textures/portraits/Ophidian.dds" 									name="ophidian warrior" />
+    <Icon id="100000087" texture="Textures/portraits/Ophidian.dds" 									name="ophidian queen" />
+    <Icon id="100000088" texture="Textures/portraits/Goat_Mountain.dds" 						name="mountain goat" />
+    <Icon id="100000089" texture="Textures/portraits/snake_ice.dds" 								name="ice serpent" />
+    <Icon id="100000090" texture="Textures/portraits/Snake_lava.dds" 								name="lava serpent" />
+    <Icon id="100000091" texture="Textures/portraits/Snake_chrome.dds" 							name="silver serpent" />
+    <Icon id="100000092" texture="Textures/portraits/Snake_chrome.dds" 							name="silver serpent" />
+    <Icon id="100000093" texture="Textures/portraits/Snake_chrome.dds" 							name="silver serpent" />
+    <Icon id="100000094" texture="Textures/portraits/slime.dds" 										name="frost ooze" />
+    <Icon id="100000096" texture="Textures/portraits/slime.dds" 										name="frost ooze" />
+    <Icon id="100000097" texture="Textures/portraits/Canine_Hell_Hound.dds" 				name="hell hound" />
+    <Icon id="100000098" texture="Textures/portraits/Canine_Hell_Hound.dds" 				name="hell hound" />
+    <Icon id="100000099" texture="Textures/portraits/Canine_wolf.dds" 							name="dark wolf" />
+    <Icon id="100000100" texture="Textures/portraits/Canine_wolf.dds" 							name="silver wolf" />
+    <Icon id="100000101" texture="Textures/portraits/Centaur.dds" 									name="centaur" />
+    <Icon id="100000102" texture="Textures/portraits/Daemon_Exodus.dds" 						name="exodus" />
+    <Icon id="100000103" texture="Textures/portraits/Dragon_Asian.dds" 							name="oriental dragon" />
+    <Icon id="100000104" texture="Textures/portraits/Dragon_Skeletal.dds" 					name="skeletal dragon" />
+    <Icon id="100000106" texture="Textures/portraits/Dragon_ShadowWyrm.dds" 				name="shadow wyrm" />
+    <Icon id="100000107" texture="Textures/portraits/Elemental_Agapite.dds" 				name="agapite elementa" />
+    <Icon id="100000108" texture="Textures/portraits/Elemental_Agapite.dds" 				name="bronze elemental" />
+    <Icon id="100000109" texture="Textures/portraits/Elemental_Agapite.dds" 				name="copper elemental" />
+    <Icon id="100000110" texture="Textures/portraits/Elemental_Agapite.dds" 				name="dull copper elemental" />
+    <Icon id="100000111" texture="Textures/portraits/Elemental_Ore.dds" 						name="shadow iron elemental" />
+    <Icon id="100000112" texture="Textures/portraits/Elemental_Agapite.dds" 				name="valorite elemental" />
+    <Icon id="100000113" texture="Textures/portraits/Elemental_Agapite.dds" 				name="verite elemental" />
+    <Icon id="100000114" texture="Textures/portraits/horse.dds" 										name="dark steed" />
+    <Icon id="100000115" texture="Textures/portraits/horse.dds" 										name="ethereal horse" />
+    <Icon id="100000116" texture="Textures/portraits/horse.dds" 										name="nightmare" />
+    <Icon id="100000117" texture="Textures/portraits/horse.dds" 										name="silver steed" />
+    <Icon id="100000118" texture="Textures/portraits/horse.dds" 										name="war horse" />
+    <Icon id="100000119" texture="Textures/portraits/horse.dds" 										name="war horse" />
+    <Icon id="100000120" texture="Textures/portraits/horse.dds" 										name="war horse" />
+    <Icon id="100000121" texture="Textures/portraits/horse.dds" 										name="war horse" />
+    <Icon id="100000122" texture="Textures/portraits/Horse_Unicorn.dds" 						name="unicorn" />
+    <Icon id="100000123" texture="Textures/portraits/Ethereal_Warrior.dds" 					name="ethereal warrior" />
+    <Icon id="100000124" texture="Textures/portraits/Evil_Mage.dds" 								name="evil mage" />
+    <Icon id="100000125" texture="Textures/portraits/Evil_Mage.dds" 								name="evil mage lord" />
+    <Icon id="100000126" texture="Textures/portraits/Evil_Mage.dds" 								name="evil mage lord" />
+    <Icon id="100000127" texture="Textures/portraits/Cat_HellCat.dds" 							name="predator hellcat" />
+    <Icon id="100000128" texture="Textures/portraits/Pixie.dds" 										name="pixies" />
+    <Icon id="100000129" texture="Textures/portraits/Flails_Quagmire.dds" 					name="tentacles of the Harrower" />
+    <Icon id="100000130" texture="Textures/portraits/Gargoyle.dds" 									name="blistering gargoyle" />
+    <Icon id="100000131" texture="Textures/portraits/Efreet.dds" 										name="efreet" />
+    <Icon id="100000132" texture="Textures/portraits/Kirin.dds" 										name="ki-rin" />
+    <Icon id="100000133" texture="Textures/portraits/Alligator_Brown.dds" 					name="small alligator" />
+    <Icon id="100000134" texture="Textures/portraits/Komodo_Dragon.dds" 						name="komodo dragon" />
+    <Icon id="100000135" texture="Textures/portraits/Ogre.dds" 											name="arctic ogre lord" />
+    <Icon id="100000136" texture="Textures/portraits/Ophidian.dds" 									name="ophidian archmag" />
+    <Icon id="100000137" texture="Textures/portraits/Ophidian.dds" 									name="ophidian knight" />
+    <Icon id="100000138" texture="Textures/portraits/Orc_Brute.dds" 								name="orc lord" />
+    <Icon id="100000139" texture="Textures/portraits/Orc_Brute.dds" 								name="orc lord" />
+    <Icon id="100000140" texture="Textures/portraits/Orc_Shaman.dds" 								name="orc mage" />
+    <Icon id="100000141" texture="Textures/portraits/placeholder.dds" 							name="ladin" />
+    <Icon id="100000142" texture="Textures/portraits/Ratman.dds" 										name="ratman archer" />
+    <Icon id="100000143" texture="Textures/portraits/Ratman.dds" 										name="ratman shaman" />
+    <Icon id="100000144" texture="Textures/portraits/Sea_Horse.dds" 								name="sea horse" />
+    <Icon id="100000146" texture="Textures/portraits/Shadow_Knight.dds" 						name="shadowlord body, (Harrower)" />
+    <Icon id="100000147" texture="Textures/portraits/Skeleton_Knight.dds" 					name="skeletal knight" />
+    <Icon id="100000148" texture="Textures/portraits/Skeleton_Mage.dds" 						name="skeletal mage" />
+    <Icon id="100000149" texture="Textures/portraits/Succubus.dds" 									name="succubus" />
+    <Icon id="100000151" texture="Textures/portraits/Dolphin.dds" 									name="dolphin" />
+    <Icon id="100000152" texture="Textures/portraits/Terathan_Warrior.dds" 					name="terathan avenger" />
+    <Icon id="100000153" texture="Textures/portraits/Undead_Ghoul.dds" 							name="ghoul" />
+    <Icon id="100000154" texture="Textures/portraits/Undead_Mummy.dds" 							name="mummy" />
+    <Icon id="100000155" texture="Textures/portraits/Undead_RottingCorpse.dds" 			name="rotting corpse" />
+    <Icon id="100000157" texture="Textures/portraits/Spider_BlackWidow.dds" 				name="giant black widow" />
+    <Icon id="100000158" texture="Textures/portraits/Elemental_Acid.dds" 						name="acid elemental" />
+    <Icon id="100000159" texture="Textures/portraits/Elemental_Blood.dds" 					name="blood elemental" />
+    <Icon id="100000160" texture="Textures/portraits/Elemental_Blood.dds" 					name="blood elemental" />
+    <Icon id="100000161" texture="Textures/portraits/Elemental_Ice.dds" 						name="ice elemental" />
+    <Icon id="100000162" texture="Textures/portraits/Elemental_Poison.dds" 					name="poison elemental" />
+    <Icon id="100000163" texture="Textures/portraits/Elemental_Snow.dds" 						name="snow elemental" />
+    <Icon id="100000165" texture="Textures/portraits/wisp.dds" 							        name="evil wisp" />
+    <Icon id="100000166" texture="Textures/portraits/Elemental_Ore.dds" 						name="gold elemental" />
+    <Icon id="100000167" texture="Textures/portraits/Bear.dds" 											name="brown bear" />
+    <Icon id="100000168" texture="Textures/portraits/Imp.dds" 											name="shadow fiend" />
+    <Icon id="100000170" texture="Textures/portraits/Llama.dds" 										name="ethereal llama" />
+    <Icon id="100000171" texture="Textures/portraits/Ostard_Forest.dds" 						name="ethereal ostard" />
+    <Icon id="100000177" texture="Textures/portraits/horse.dds" 										name="nightmare" />
+    <Icon id="100000178" texture="Textures/portraits/horse.dds" 										name="nightmare" />
+    <Icon id="100000179" texture="Textures/portraits/horse.dds" 										name="nightmare" />
+    <Icon id="100000180" texture="Textures/portraits/Dragon_AcientWyrm.dds" 				name="white wyrm" />
+    <Icon id="100000181" texture="Textures/portraits/Orc_Scout.dds" 								name="Orc Scout" />
+    <Icon id="100000182" texture="Textures/portraits/Orc.dds" 											name="Orc Bomber" />
+    <Icon id="100000183" texture="Textures/portraits/placeholder.dds" 							name="Savage Male Warrior" />
+    <Icon id="100000184" texture="Textures/portraits/placeholder.dds" 							name="Savage Female Warrior" />
+    <Icon id="100000185" texture="Textures/portraits/placeholder.dds" 							name="Savage Rider" />
+    <Icon id="100000186" texture="Textures/portraits/placeholder.dds" 							name="Savage Shaman" />
+    <Icon id="100000187" texture="Textures/portraits/Ridgeback.dds" 								name="Ridgeback" />
+    <Icon id="100000188" texture="Textures/portraits/Ridgeback_flame.dds" 					name="Savage Rideback (painted)" />
+    <Icon id="100000189" texture="Textures/portraits/Orc_Captain.dds" 							name="Orc Brute" />
+    <Icon id="100000190" texture="Textures/portraits/horse.dds" 										name="fire steed" />
+    <Icon id="100000200" texture="Textures/portraits/horse.dds" 										name="horse" />
+    <Icon id="100000201" texture="Textures/portraits/Cat_Cougar.dds" 								name="cat" />
+    <Icon id="100000202" texture="Textures/portraits/Alligator_Brown.dds" 					name="alligator" />
+    <Icon id="100000203" texture="Textures/portraits/Boar.dds" 											name="pig" />
+    <Icon id="100000204" texture="Textures/portraits/horse.dds" 										name="horse" />
+    <Icon id="100000205" texture="Textures/portraits/Rabbit.dds" 										name="rabbit" />
+    <Icon id="100000206" texture="Textures/portraits/lizard_lava.dds" 							name="lava lizard" />
+    <Icon id="100000207" texture="Textures/portraits/Sheep.dds" 										name="sheep" />
+    <Icon id="100000208" texture="Textures/portraits/Bird_Hen.dds" 									name="chicken" />
+    <Icon id="100000209" texture="Textures/portraits/Goat_Billy.dds" 								name="goat" />
+    <Icon id="100000210" texture="Textures/portraits/Ostard_Forest.dds" 						name="ostard" />
+    <Icon id="100000211" texture="Textures/portraits/Bear.dds" 											name="black bear" />
+    <Icon id="100000212" texture="Textures/portraits/Bear.dds" 											name="grizzly bear" />
+    <Icon id="100000213" texture="Textures/portraits/Bear_Polar.dds" 								name="polar bear" />
+    <Icon id="100000214" texture="Textures/portraits/Cat_Cougar.dds" 								name="panther" />
+    <Icon id="100000215" texture="Textures/portraits/Rat_Giant.dds" 								name="giant rat" />
+    <Icon id="100000216" texture="Textures/portraits/Cow_Brown.dds" 								name="cow" />
+    <Icon id="100000217" texture="Textures/portraits/Canine_Dog_Hound.dds" 					name="dog" />
+    <Icon id="100000219" texture="Textures/portraits/Ostard_Forest.dds" 						name="forest ostard" />
+    <Icon id="100000218" texture="Textures/portraits/Ostard_Forest.dds" 						name="frenzied ostard" />
+    <Icon id="100000220" texture="Textures/portraits/Llama.dds" 										name="llama" />
+    <Icon id="100000221" texture="Textures/portraits/Walrus.dds" 										name="walrus" />
+    <Icon id="100000223" texture="Textures/portraits/Sheep.dds" 										name="sheep" />
+    <Icon id="100000225" texture="Textures/portraits/Canine_wolf.dds" 							name="timber wolf" />
+    <Icon id="100000226" texture="Textures/portraits/horse.dds" 										name="horse" />
+    <Icon id="100000228" texture="Textures/portraits/horse.dds" 										name="horse" />
+    <Icon id="100000231" texture="Textures/portraits/Cow_Brown.dds" 								name="cow" />
+    <Icon id="100000232" texture="Textures/portraits/Bull.dds" 											name="bull" />
+    <Icon id="100000233" texture="Textures/portraits/Bull.dds" 											name="bull" />
+    <Icon id="100000234" texture="Textures/portraits/Deer_Stag.dds" 								name="great hart" />
+    <Icon id="100000237" texture="Textures/portraits/Deer_Doe.dds" 									name="doe" />
+    <Icon id="100000238" texture="Textures/portraits/Rat_Giant.dds" 								name="rat" />
+    <Icon id="100000290" texture="Textures/portraits/Boar.dds" 											name="big pig" />
+    <Icon id="100000291" texture="Textures/portraits/horse.dds" 										name="pack horse" />
+    <Icon id="100000292" texture="Textures/portraits/Llama.dds" 										name="pack llama" />
+    <Icon id="100000752" texture="Textures/portraits/Golem_Iron.dds" 								name="golem" />
+    <Icon id="100000753" texture="Textures/portraits/Gargoyle.dds" 									name="enslaved gargoyle" />
+    <Icon id="100000754" texture="Textures/portraits/Gargoyle.dds" 									name="gargoyle enforcer" />
+    <Icon id="100000755" texture="Textures/portraits/Gargoyle.dds" 									name="gargoyle destroyer" />
+    <Icon id="100000756" texture="Textures/portraits/Clockwork_Overseer.dds" 				name="exodus overseer" />
+    <Icon id="100000757" texture="Textures/portraits/Daemon_Exodus.dds" 						name="exodus minion" />
+    <Icon id="100000758" texture="Textures/portraits/Gargoyle.dds" 									name="gargoyle shopkeeper" />
+    <Icon id="100000763" texture="Textures/portraits/Daemon_Exodus.dds" 						name="exodus minion lord" />
+    <Icon id="100000764" texture="Textures/portraits/Juka.dds" 											name="juka warrior" />
+    <Icon id="100000765" texture="Textures/portraits/Juka.dds" 											name="juka mage" />
+    <Icon id="100000766" texture="Textures/portraits/Juka.dds" 							        name="juka lord" />
+    <Icon id="100000767" texture="Textures/portraits/placeholder.dds" 							name="betrayer" />
+    <Icon id="100000768" texture="Textures/portraits/Juggernaut.dds" 								name="juggernaut" />
+    <Icon id="100000769" texture="Textures/portraits/placeholder.dds" 							name="Lord Blackthorn" />
+    <Icon id="100000770" texture="Textures/portraits/placeholder.dds" 							name="meer mage" />
+    <Icon id="100000771" texture="Textures/portraits/placeholder.dds" 							name="meer warrior" />
+    <Icon id="100000772" texture="Textures/portraits/placeholder.dds" 							name="Adranath" />
+    <Icon id="100000773" texture="Textures/portraits/placeholder.dds" 							name="Captain Dasha" />
+    <Icon id="100000774" texture="Textures/portraits/Pixie.dds" 										name="Dawn" />
+    <Icon id="100000775" texture="Textures/portraits/Plague_Beast.dds" 							name="plague beast" />
+    <Icon id="100000776" texture="Textures/portraits/Horde_Demon.dds" 							name="horde demon" />
+    <Icon id="100000777" texture="Textures/portraits/Doppleganger.dds" 							name="doppleganger" />
+    <Icon id="100000778" texture="Textures/portraits/Gazer.dds" 										name="gazer larva" />
+    <Icon id="100000779" texture="Textures/portraits/Bogling.dds" 									name="bogling" />
+    <Icon id="100000780" texture="Textures/portraits/Bogling.dds" 									name="bog thing (and true harrower)" />
+    <Icon id="100000781" texture="Textures/portraits/Solen_Drone.dds" 							name="solen worker" />
+    <Icon id="100000782" texture="Textures/portraits/Solen_Warrior.dds" 						name="solen warrior" />
+    <Icon id="100000783" texture="Textures/portraits/Solen_Queen.dds" 							name="solen queen" />
+    <Icon id="100001404" texture="Textures/portraits/Solen_Queen.dds" 							name="myrmidex queen" />
+    <Icon id="100000784" texture="Textures/portraits/Daemon_Arcane.dds" 						name="arcane demon" />
+    <Icon id="100000785" texture="Textures/portraits/Daemon_FourArmed.dds" 					name="moloch demon" />
+    <Icon id="100000786" texture="Textures/portraits/Spider_Dread.dds" 							name="chariot" />
+    <Icon id="100000787" texture="Textures/portraits/Ant_Lion.dds" 									name="ant lion" />
+    <Icon id="100000788" texture="Textures/portraits/Sphinx.dds" 										name="sphinx" />
+    <Icon id="100000789" texture="Textures/portraits/Flails_Quagmire.dds" 					name="quagmire" />
+    <Icon id="100000790" texture="Textures/portraits/SandVortex.dds" 								name="sand vortex" />
+    <Icon id="100000791" texture="Textures/portraits/Beetle_Giant.dds" 							name="giant beetle" />
+    <Icon id="100000792" texture="Textures/portraits/Daemon_Chaos.dds" 							name="chaos demon" />
+    <Icon id="100000793" texture="Textures/portraits/Horse_SkeletalMount.dds" 			name="skeletal mount" />
+    <Icon id="100000794" texture="Textures/portraits/Dragon_Swamp.dds" 							name="swamp dragon" />
+    <Icon id="100000795" texture="Textures/portraits/Horde_Demon.dds" 							name="horde demon (medium)" />
+    <Icon id="100000796" texture="Textures/portraits/Horde_Demon.dds" 							name="horde demon (large)" />
+    <Icon id="100000799" texture="Textures/portraits/Dragon_Swamp.dds" 							name="armored swamp dragon" />
+    <Icon id="100000312" texture="Textures/portraits/Abysmal_Horror.dds" 						name="abyssmal horror" />
+    <Icon id="100000300" texture="Textures/portraits/Elemental_Crystal.dds" 				name="crystal elemental" />
+    <Icon id="100000301" texture="Textures/portraits/Treefellow.dds" 								name="treefellow" />
+    <Icon id="100000302" texture="Textures/portraits/Skittering_Hopper.dds" 				name="skittering hopper" />
+    <Icon id="100000303" texture="Textures/portraits/placeholder.dds" 							name="devourer of souls" />
+    <Icon id="100000304" texture="Textures/portraits/Golem_Flesh.dds" 							name="flesh golem" />
+    <Icon id="100000305" texture="Textures/portraits/Gore_Fiend_.dds" 							name="gore fiend" />
+    <Icon id="100000306" texture="Textures/portraits/Impaler.dds" 									name="impaler" />
+    <Icon id="100000307" texture="Textures/portraits/Gibberling.dds" 								name="gibberling" />
+    <Icon id="100000308" texture="Textures/portraits/Daemon_Bone.dds" 							name="bone daemon" />
+    <Icon id="100000309" texture="Textures/portraits/Undead_RottingCorpse.dds" 			name="patchwork skeleton" />
+    <Icon id="100000310" texture="Textures/portraits/Banshee.dds" 									name="wailing banshee" />
+    <Icon id="100000311" texture="Textures/portraits/Shadow_Knight.dds" 						name="shadow knight" />
+    <Icon id="100000313" texture="Textures/portraits/Darknight_Creeper.dds" 				name="darknight creeper" />
+    <Icon id="100000314" texture="Textures/portraits/Ravager.dds" 									name="ravager" />
+    <Icon id="100000315" texture="Textures/portraits/Flesh_Renderer.dds" 						name="fleshrenderer" />
+    <Icon id="100000316" texture="Textures/portraits/WandererOfTheVoid.dds" 				name="wanderer of the void" />
+    <Icon id="100000317" texture="Textures/portraits/VampireBat.dds" 								name="vampire bat" />
+    <Icon id="100000318" texture="Textures/portraits/Dark_Father.dds" 							name="daemon knight" />
+    <Icon id="100000319" texture="Textures/portraits/MoundofMaggots.dds" 						name="mound of maggots" />
+    <Icon id="100000804" texture="Textures/portraits/Solen_Avenger.dds" 						name="red solen matriarch" />
+    <Icon id="100000805" texture="Textures/portraits/Solen_Drone.dds" 							name="black solen worker" />
+    <Icon id="100000806" texture="Textures/portraits/Solen_Warrior.dds" 						name="black solen warrior" />
+    <Icon id="100000807" texture="Textures/portraits/Solen_Queen.dds" 							name="black solen queen" />
+    <Icon id="100000808" texture="Textures/portraits/Solen_Avenger.dds" 						name="black solen matriarch" />
+    <Icon id="100000400" texture="Textures/portraits/placeholder.dds" 							name="male human" />
+    <Icon id="100000401" texture="Textures/portraits/placeholder.dds" 							name="female human" />
+    <Icon id="100000605" texture="Textures/portraits/placeholder.dds" 							name="male elf" />
+    <Icon id="100000606" texture="Textures/portraits/placeholder.dds" 							name="female elf" />
+    <Icon id="100000744" texture="Textures/portraits/Evil_Mage.dds" 								name="male vampire (transformed)" />
+    <Icon id="100000745" texture="Textures/portraits/LadyoftheSnows.dds" 						name="female vampire (transformed)" />
+    <Icon id="100000746" texture="Textures/portraits/Daemon_FourArmed.dds" 					name="4-armed daemon (transformed)" />
+    <Icon id="100000747" texture="Textures/portraits/Banshee.dds" 									name="banshee (transformed)" />
+    <Icon id="100000748" texture="Textures/portraits/Spirit_Ghost.dds" 							name="wraith (transformed)" />
+    <Icon id="100000749" texture="Textures/portraits/Lich.dds" 										  name="lich (transformed)" />
+    <Icon id="100000750" texture="Textures/portraits/placeholder.dds" 						  name="Male Player wBody Paint" />
+    <Icon id="100000751" texture="Textures/portraits/placeholder.dds" 						  name="Female Player wBody Paint" />
+    <Icon id="100000240" texture="Textures/portraits/Kappa.dds" 									  name="Kappa" />
+    <Icon id="100000241" texture="Textures/portraits/Oni.dds" 										  name="Oni" />
+    <Icon id="100000242" texture="Textures/portraits/Beetle_Deathwatch.dds" 			  name="Bimbomushi" />
+    <Icon id="100000243" texture="Textures/portraits/Hiryu.dds" 									  name="Hiryu" />
+    <Icon id="100000244" texture="Textures/portraits/Beetle_Rune.dds" 						  name="Rune Beetle" />
+    <Icon id="100000245" texture="Textures/portraits/Tengu_Warrior.dds" 					  name="Yomotsu Warrior" />
+    <Icon id="100000246" texture="Textures/portraits/Bake_Kitsune.dds" 						  name="Bake-Kitsune" />
+    <Icon id="100000247" texture="Textures/portraits/Fan_Dancer.dds" 							  name="Fan Dancer" />
+    <Icon id="100000248" texture="Textures/portraits/Gamam.dds" 									  name="Gamam" />
+    <Icon id="100000249" texture="Textures/portraits/Yamandon.dds" 								  name="Yamandon" />
+    <Icon id="100000250" texture="Textures/portraits/Tsuki_Wolf.dds" 							  name="Tri-wolf" />
+    <Icon id="100000251" texture="Textures/portraits/Revenant_Lion_000251.dds" 		  name="Vampiric beast" />
+    <Icon id="100000252" texture="Textures/portraits/LadyoftheSnows.dds" 					  name="Lady of the Snow" />
+    <Icon id="100000253" texture="Textures/portraits/Tengu_Warrior.dds" 					  name="Yomotsu Priest" />
+    <Icon id="100000254" texture="Textures/portraits/Bird_Crane.dds" 							  name="Crane" />
+    <Icon id="100000255" texture="Textures/portraits/Tengu_Warrior.dds" 					  name="Yomotsu Elder" />
+    <Icon id="100000169" texture="Textures/portraits/Beetle_Fire.dds" 						  name="Fire beetle" />
+    <Icon id="100000196" texture="Textures/portraits/Elemental_Earth.dds" 						  name="Kaze Kemono" />
+    <Icon id="100000199" texture="Textures/portraits/placeholder.dds" 						  name="Denkou Yajuu" />
+    <Icon id="100000256" texture="Textures/portraits/Paroxysmus.dds" 							  name="Chief Paroxysmus" />
+    <Icon id="100000257" texture="Textures/portraits/dreadhorn.dds" 							  name="Dread Horn" />
+    <Icon id="100000258" texture="Textures/portraits/Lady_Melisande.dds" 					  name="Lady M" />
+    <Icon id="100000259" texture="Textures/portraits/grizzle.dds" 								  name="Monstrous Interred Grizzle" />
+    <Icon id="100000260" texture="Textures/portraits/Changeling.dds" 						    name="Travesty" />
+    <Icon id="100000261" texture="Textures/portraits/shimmering_effusion.dds" 			name="Shimmering Effusion" />
+    <Icon id="100000262" texture="Textures/portraits/minotaur.dds" 								  name="Tormented Minotaur" />
+    <Icon id="100000263" texture="Textures/portraits/minotaur.dds" 								  name="Minotaur" />
+    <Icon id="100000264" texture="Textures/portraits/Changeling.dds" 							  name="Changeling" />
+    <Icon id="100000265" texture="Textures/portraits/Hydra.dds" 										name="Hydra" />
+    <Icon id="100000266" texture="Textures/portraits/Dryad.dds" 										name="Dryad" />
+    <Icon id="100000267" texture="Textures/portraits/Troglodyte.dds" 								name="Troglodyte" />
+    <Icon id="100000269" texture="Textures/portraits/VampireBat.dds" 								name="Thorn bat" />
+    <Icon id="100000270" texture="Textures/portraits/Bulbous_Putrification.dds" 	  name="Bulbous Putrification" />
+    <Icon id="100000271" texture="Textures/portraits/Satyr.dds" 									  name="Satyr" />
+    <Icon id="100000272" texture="Textures/portraits/grizzle.dds" 								  name="Interred Grizzle" />
+    <Icon id="100000273" texture="Textures/portraits/shimmering_effusion.dds" 			name="Fetid Essence" />
+    <Icon id="100000274" texture="Textures/portraits/shimmering_effusion.dds" 			name="Mantra Effervescence" />
+    <Icon id="100000275" texture="Textures/portraits/shimmering_effusion.dds" 			name="Corporeal Brume" />
+    <Icon id="100000276" texture="Textures/portraits/Reptalon.dds" 								  name="Chimera" />
+    <Icon id="100000277" texture="Textures/portraits/Canine_wolf.dds" 						  name="Cu Sidhe" />
+    <Icon id="100000278" texture="Textures/portraits/Squirrel.dds" 								  name="Squirrel" />
+    <Icon id="100000279" texture="Textures/portraits/Ferret.dds" 									  name="Ferret" />
+    <Icon id="100000281" texture="Textures/portraits/minotaur.dds" 								  name="Minotaur Leather" />
+    <Icon id="100000723" texture="Textures/portraits/greengoblin.dds"               name="GreenGoblin" />
+    <Icon id="100000287" texture="Textures/portraits/Bloodworm.dds"                 name="Bloodworm" />
+    <Icon id="100000051" texture="Textures/portraits/AcidSlug.dds"                  name="AcidSlug" />
+    <Icon id="100000732" texture="Textures/portraits/Rotworm.dds"                   name="Rotworm" />
+    <Icon id="100000574" texture="Textures/portraits/BladeSpirits.dds"              name="BladeSpirits" />
+    <Icon id="100000164" texture="Textures/portraits/energyvortex.dds"              name="energyvortex" />
+    <Icon id="100000714" texture="Textures/portraits/ironbeetle.dds"                name="ironbeetle" />
+    <Icon id="100000736" texture="Textures/portraits/WolfSpider.dds"                name="WolfSpider" />
+    <Icon id="100000713" texture="Textures/portraits/abyssalinfernal.dds"           name="abyssalInfernal"/>
+    <Icon id="100000715" texture="Textures/portraits/boura.dds"                     name="boura" />
+    <Icon id="100000734" texture="Textures/portraits/slith.dds"                     name="slith" />
+    <Icon id="100000716" texture="Textures/portraits/chickenlizard.dds"             name="chickenlizard" />
+    <Icon id="100000717" texture="Textures/portraits/clockworkscorpion.dds"         name="clockworkscorpion" />
+    <Icon id="100000735" texture="Textures/portraits/navrey.dds"                    name="navrey" />
+    <Icon id="100000738" texture="Textures/portraits/fireant.dds"                   name="fireant" />
+    <Icon id="100000721" texture="Textures/portraits/maddeninghorror.dds"           name="maddeninghorror" />
+    <Icon id="100000741" texture="Textures/portraits/slasher.dds"                   name="slasher" />
+    <Icon id="100000098" texture="Textures/portraits/Canine_Hell_Hound.dds"         name="hell hound" />
+    <Icon id="100001068" texture="Textures/portraits/scalis.dds"                    name="scalis" />
+    <Icon id="100000733" texture="Textures/portraits/skree.dds"                     name="skree" />
+    <Icon id="100000720" texture="Textures/portraits/lavaelemental.dds"             name="lavaelemental" />
+    <Icon id="100000826" texture="Textures/portraits/stygiandragon.dds"             name="stygiandragon" />
+    <Icon id="100000728" texture="Textures/portraits/medusa.dds"                    name="medusa" />
+    <Icon id="100000830" texture="Textures/portraits/primevallich.dds"              name="primevallich" />
+    <Icon id="100000739" texture="Textures/portraits/leatherwolf.dds"               name="leatherwolf" />
+    <Icon id="100000740" texture="Textures/portraits/dreamwraith.dds"               name="dreamwraith" />
+    <Icon id="100000737" texture="Textures/portraits/trapdoorspider.dds"            name="trapdoorspider" />
+    <Icon id="100000718" texture="Textures/portraits/faerydragon.dds"               name="faerydragon" />
+    <Icon id="100000730" texture="Textures/portraits/raptor.dds"                    name="raptor" />
+    <Icon id="100000724" texture="Textures/portraits/gremlin.dds"                   name="gremlin" />
+    <Icon id="100000726" texture="Textures/portraits/kepetch.dds"                   name="kepetch" />
+    <Icon id="100000722" texture="Textures/portraits/undeadgargoyle.dds"            name="undeadgargoyle"  />
+    <Icon id="100000293" texture="Textures/portraits/vollem.dds"                    name="vollem" />
+    <Icon id="100000829" texture="Textures/portraits/colossus.dds"                  name="colossus" />
+    <Icon id="100001244" texture="Textures/portraits/charybdis.dds"                 name="charybdis" />
+    <Icon id="100001245" texture="Textures/portraits/gianttentacle.dds"             name="gianttentacle" />
+    <Icon id="100000150" texture="Textures/portraits/seaserpent.dds"                name="seaserpent" />
+    <Icon id="100000046" texture="Textures/portraits/Dragon_AcientWyrm.dds"         name="sudiva" />
+    <Icon id="100001400" texture="Textures/portraits/t-rex.dds"                     name="t-rex" />
+    <Icon id="100001288" texture="Textures/portraits/dragon_turtle.dds"             name="dragon turtle" />
+    <Icon id="100001425" texture="Textures/portraits/ram.dds"                       name="ram" />
+    <Icon id="100001417" texture="Textures/portraits/Dragon_Rust.dds"               name="dragon rust" />
+    <Icon id="100001418" texture="Textures/portraits/Dragon_Rust.dds"               name="dragon rust" />
+    <Icon id="100001422" texture="Textures/portraits/Dragon_Fire.dds"               name="stygian drake" />
+    <Icon id="100001415" texture="Textures/portraits/triceratops.dds"               name="triceratops" />
+    <Icon id="100000095" texture="Textures/portraits/Bird_Turkey.dds"               name="turkey" />
+    <Icon id="100001026" texture="Textures/portraits/Bird_Turkey.dds"               name="giant turkey" />
+    <Icon id="100001423" texture="Textures/portraits/Bake_Kitsune.dds"              name="blood fox" />
+  </Assets>
+</Interface>

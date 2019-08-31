@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Interface xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../Interface.xsd">
+	<Windows>
+		<HorizontalResizeImage name="CastBarWindowFillTemplate" texture="CastBarFill"  handleinput="false">
+			<Size>
+				<AbsPoint x="88" y="24" />
+			</Size>
+			<Sizes left="80" middle="0" right="0" />
+			<TexCoords>
+				<Left x="8" y="0" />
+				<Middle x="52" y="0" />
+				<Right x="80" y="0" />
+			</TexCoords>
+		</HorizontalResizeImage>
+
+    <Window name="TargetProtectionData" movable="false" layer="overlay" handleinput="false">
+      <Windows>
+        
+        <Label name="$parentName" font="Arial_Black_Shadow_12" maxchars="60" textalign="center" handleinput="false" wordwrap="false" popable="false" autoresize="false" autoresizewidth="true">
+          <Size>
+            <AbsPoint x="130" y="24" />
+          </Size>
+          <Anchors>
+            <Anchor point="top" relativePoint="top" relativeTo="$parent">
+              <AbsPoint x="0" y="0" />
+            </Anchor>
+          </Anchors>
+          <Color r="255" g="255" b="255" a="255" />
+        </Label>
+
+        <Label name="$parentRangeCheck" font="Arial_Black_Shadow_12" maxchars="60" textalign="center" handleinput="false" wordwrap="false" popable="false" autoresize="true" autoresizewidth="true">
+          <Size>
+            <AbsPoint x="130" y="12" />
+          </Size>
+          <Anchors>
+            <Anchor point="bottom" relativePoint="top" relativeTo="$parentName">
+              <AbsPoint x="0" y="5" />
+            </Anchor>
+          </Anchors>
+          <Color r="255" g="255" b="255" a="255" />
+        </Label>
+        
+      </Windows>
+    </Window>
+    
+		<Window name="CastBarWindow" movable="false" layer="overlay" handleinput="false">
+			<Size>
+				<AbsPoint x="118" y="26" />
+			</Size>
+			<Windows>
+				<DynamicImage name="$parentBG" texture="CastBar" handleinput="false" >
+					<Size>
+						<AbsPoint x="118" y="26" />
+					</Size>
+					<Anchors>
+						<Anchor point="topleft" relativePoint="topleft">
+							<AbsPoint x="0" y="0" />
+						</Anchor>
+					</Anchors>
+					<TexCoords x="0" y="0" />
+				</DynamicImage>
+				
+				<StatusBar name="$parentFill" foreground="CastBarWindowFillTemplate" handleinput="false">
+					<Size>
+						<AbsPoint x="88" y="24" />
+					</Size>
+					<Anchors>
+						<Anchor point="topleft" relativePoint="topleft" relativeTo="$parentBG">
+							<AbsPoint x="23" y="1" />
+						</Anchor>
+					</Anchors>
+				</StatusBar>
+
+			</Windows>
+		</Window>
+	</Windows>
+</Interface>

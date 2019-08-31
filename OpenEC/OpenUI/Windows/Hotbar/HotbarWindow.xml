@@ -1,0 +1,25 @@
+<Interface xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../Interface.xsd">
+  <Scripts>
+    <Script file="OpenUI/OpenUI.lua" />
+    <Script file="OpenUI/Windows/Hotbar/HotbarWindow.lua" />
+  </Scripts>
+  <Windows>
+    <Window name="OpenUI.HotbarWindow" movable="false" layer="default" sticky="false">
+      <Size>
+        <AbsPoint x="300" y="50" />
+      </Size>
+      <Anchors>
+        <Anchor point="center" relativePoint="center" relativeTo="">
+          <AbsPoint x="0" y="0" />
+        </Anchor>
+      </Anchors>
+      <EventHandlers>
+        <EventHandler event="OnInitialize" function="OpenUI.HotbarWindow.OnInitialize" />
+        <EventHandler event="OnShutdown" function="OpenUI.HotbarWindow.OnShutdown" />
+      </EventHandlers>
+      <Windows>
+        <FullResizeImage name="$parent.Background" alpha="0.5" inherits="OpenUI.Window.Background.Black" />
+      </Windows>
+    </Window>
+  </Windows>
+</Interface>

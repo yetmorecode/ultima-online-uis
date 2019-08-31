@@ -1,0 +1,300 @@
+<Interface xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../Interface.xsd">
+  <Windows>
+    <Window name="MapPoint" popable="false">
+      <Size>
+        <AbsPoint x="20" y="20"/>
+      </Size>
+      <Windows>
+        <DynamicImage name="$parentPoint" texture="MapX" >
+          <Size>
+            <AbsPoint x="18" y="18"/>
+          </Size>
+          <Anchors>
+            <Anchor point="center" relativePoint="center" relativeTo="">
+              <AbsPoint x="0" y="0" />
+            </Anchor>
+          </Anchors>
+          <EventHandlers>
+            <EventHandler event="OnLButtonDown" function="CourseMapWindow.MapPoint_OnLButtonDown" />
+          </EventHandlers>
+          <TexCoords x="0" y="0"/>
+        </DynamicImage>
+        <Label name="$parentName" font="MyriadPro_16" maxchars="2" textalign="right">
+          <Size>
+            <AbsPoint x="20" y="20"/>
+          </Size>
+          <Anchors>
+            <Anchor point="left" relativePoint="right" relativeTo="$parentPoint"/>
+          </Anchors>
+        </Label>
+      </Windows>
+    </Window>
+
+    <Window name="CourseMapWindow" movable="true"  >
+      <Size>
+        <AbsPoint x="10" y="10" />
+      </Size>
+      <Anchors>
+        <Anchor point="center" relativePoint="center" relativeTo="">
+          <AbsPoint x="0" y="0" />
+        </Anchor>
+      </Anchors>
+      <EventHandlers>
+        <EventHandler event="OnInitialize" function="CourseMapWindow.Initialize" />
+        <EventHandler event="OnShutdown" function="CourseMapWindow.Shutdown" />
+        <EventHandler event="OnUpdate" function="CourseMapWindow.OnUpdate" />
+        <EventHandler event="OnRButtonUp" function="UO_DefaultWindow.CloseDialog" />
+        <EventHandler event="OnMouseWheel" function="WindowUtils.Scale" />
+      </EventHandlers>
+      <Windows>
+        <FullResizeImage name="$parentBg" texture="TMapBG" handleinput="false">
+          <Anchors>
+            <Anchor point="topleft" relativePoint="topleft"/>
+            <Anchor point="bottomright" relativePoint="bottomright"/>
+          </Anchors>
+          <Sizes>
+            <TopLeft x="70" y="70" />
+            <BottomRight x="70" y="70" />
+            <Middle x="70" y="70" />
+          </Sizes>
+          <TexCoords>
+            <TopLeft x="0" y="0" />
+            <TopCenter x="70" y="0" />
+            <TopRight x="140" y="0" />
+            <MiddleLeft x="0" y="70" />
+            <MiddleCenter x="70" y="70" />
+            <MiddleRight x="140" y="70" />
+            <BottomLeft x="0" y="140" />
+            <BottomCenter x="70" y="140" />
+            <BottomRight x="140" y="140" />
+          </TexCoords>
+        </FullResizeImage>
+
+        <DynamicImage name="$parentTexture" popable="false">
+          <Size>
+            <AbsPoint x="10" y="10" />
+          </Size>
+          <Anchors>
+            <Anchor point="topleft" relativePoint="topleft">
+              <AbsPoint x="8" y="48" />
+            </Anchor>
+          </Anchors>
+          <EventHandlers>
+            <EventHandler event="OnLButtonDown" function="CourseMapWindow.Map_OnLButtonDown" />
+            <EventHandler event="OnLButtonUp" function="CourseMapWindow.Map_OnLButtonUp" />
+            <EventHandler event="OnMouseWheel" function="CourseMapWindow.ZoomMap" />
+          </EventHandlers>
+          <TexCoords x="0" y="0"/>
+        </DynamicImage>
+
+        <DynamicImage name="$parentTargetVLine" texturescale="3" popable="false" texture="VLine">
+          <Size>
+            <AbsPoint x="1" y="300" />
+          </Size>
+          <TexCoords x="0" y="0"/>
+          <TintColor r="255" g="0" b="0" a="255"/>
+        </DynamicImage>
+
+        <DynamicImage name="$parentTargetHLine" texturescale="3" popable="false" texture="HLine">
+          <Size>
+            <AbsPoint x="300" y="1" />
+          </Size>
+          <TexCoords x="0" y="0" />
+          <TintColor r="255" g="0" b="0" a="255"/>
+        </DynamicImage>
+
+        <FullResizeImage name="$parentOverlay" texture="TMapOverlay" handleinput="false">
+          <Anchors>
+            <Anchor point="topleft" relativePoint="topleft" relativeTo="$parentTexture">
+              <AbsPoint x="-8" y="-8" />
+            </Anchor>
+            <Anchor point="bottomright" relativePoint="bottomright" relativeTo="$parentTexture">
+              <AbsPoint x="8" y="8" />
+            </Anchor>
+          </Anchors>
+          <Sizes>
+            <TopLeft x="70" y="70" />
+            <BottomRight x="70" y="70" />
+            <Middle x="70" y="70" />
+          </Sizes>
+          <TexCoords>
+            <TopLeft x="0" y="0" />
+            <TopCenter x="70" y="0" />
+            <TopRight x="140" y="0" />
+            <MiddleLeft x="0" y="70" />
+            <MiddleCenter x="70" y="70" />
+            <MiddleRight x="140" y="70" />
+            <BottomLeft x="0" y="140" />
+            <BottomCenter x="70" y="140" />
+            <BottomRight x="140" y="140" />
+          </TexCoords>
+        </FullResizeImage>
+
+        <VerticalResizeImage name="$parentLeft" texture="MapVerticalBorders" handleinput="false">
+          <Size>
+            <AbsPoint x="45" y="526" />
+          </Size>
+          <Anchors>
+            <Anchor point="topleft" relativePoint="topleft" relativeTo="$parent">
+              <AbsPoint x="-7" y="-2" />
+            </Anchor>
+            <Anchor point="bottomleft" relativePoint="bottomleft" relativeTo="$parent">
+              <AbsPoint x="-7" y="8" />
+            </Anchor>
+          </Anchors>
+          <Sizes top="60" middle="65" bottom="55"/>
+          <TexCoords>
+            <Top x="1" y="0" />
+            <Middle x="1" y="60" />
+            <Bottom x="2" y="175" />
+          </TexCoords>
+        </VerticalResizeImage>
+
+        <VerticalResizeImage name="$parentRight" texture="MapVerticalBorders" textureScale="1.5" handleinput="false">
+          <Size>
+            <AbsPoint x="28" y="526" />
+          </Size>
+          <Anchors>
+            <Anchor point="topright" relativePoint="topright" relativeTo="$parentBg">
+              <AbsPoint x="7" y="-5" />
+            </Anchor>
+            <Anchor point="bottomright" relativePoint="bottomright" relativeTo="$parentBg">
+              <AbsPoint x="7" y="12" />
+            </Anchor>
+          </Anchors>
+          <Sizes top="60" middle="60" bottom="55"/>
+          <TexCoords>
+            <Top x="68" y="0" />
+            <Middle x="68" y="60" />
+            <Bottom x="68" y="175" />
+          </TexCoords>
+        </VerticalResizeImage>
+
+        <Button name="$parentZoomIn" inherits="UO_Default_Parch_Plus_Button" texturescale="0.5" layer="overlay">
+          <Size>
+            <AbsPoint x="20" y="20" />
+          </Size>
+          <Anchors>
+            <Anchor point="topright" relativePoint="topright" relativeTo="$parent">
+              <AbsPoint x="-10" y="50" />
+            </Anchor>
+          </Anchors>
+          <EventHandlers>
+            <EventHandler event="OnLButtonUp" function="CourseMapWindow.ZoomIn" />
+            <EventHandler event="OnMouseOver" function="MapCommon.ZoomInOnMouseOver" />
+          </EventHandlers>
+        </Button>
+
+        <Button name="$parentZoomOut" inherits="UO_Default_Parch_Minus_Button" texturescale="0.5" layer="overlay">
+          <Size>
+            <AbsPoint x="20" y="20" />
+          </Size>
+          <Anchors>
+            <Anchor point="bottom" relativePoint="top" relativeTo="$parentZoomIn">
+              <AbsPoint x="0" y="0" />
+            </Anchor>
+          </Anchors>
+          <EventHandlers>
+            <EventHandler event="OnLButtonUp" function="CourseMapWindow.ZoomOut" />
+            <EventHandler event="OnMouseOver" function="MapCommon.ZoomOutOnMouseOver" />
+          </EventHandlers>
+        </Button>
+        
+        <Label name="$parentPlotToggle" font="UO_NeueText_18" linespacing="20" maxchars="64" textalign="center">
+          <Size>
+            <AbsPoint x="150" y="32" />
+          </Size>
+          <Anchors>
+            <Anchor point="top" relativePoint="top" relativeTo="$parent">
+              <AbsPoint x="0" y="10" />
+            </Anchor>
+          </Anchors>
+          <EventHandlers>
+            <EventHandler event="OnLButtonUp" function="CourseMapWindow.PlotToggle_OnLButtonUp" />
+          </EventHandlers>
+          <Color r="0" g="50" b="0" a="255" />
+        </Label>
+        
+        <Label name="$parentTMapName" font="UO_NeueText_18" linespacing="20" maxchars="64" textalign="center" handleinput="false">
+          <Size>
+            <AbsPoint x="400" y="32" />
+          </Size>
+          <Anchors>
+            <Anchor point="top" relativePoint="top" relativeTo="$parent">
+              <AbsPoint x="0" y="15" />
+            </Anchor>
+          </Anchors>
+          <Color r="0" g="50" b="0" a="255" />
+        </Label>
+
+        <Label name="$parentClearCourse" font="UO_NeueText_18" linespacing="20" maxchars="64" textalign="center">
+          <Size>
+            <AbsPoint x="160" y="32" />
+          </Size>
+          <Anchors>
+            <Anchor point="bottom" relativePoint="bottom" relativeTo="$parent">
+              <AbsPoint x="0" y="0" />
+            </Anchor>
+          </Anchors>
+          <EventHandlers>
+            <EventHandler event="OnLButtonUp" function="CourseMapWindow.ClearCourse_OnLButtonUp" />
+          </EventHandlers>
+          <Color r="0" g="0" b="50" a="255" />
+        </Label>
+        
+        <Button name="$parentMapName" maxchars="255" wordwrap="false" font="UO_NeueText_18" texturescale="1.2" textalign="center" backgroundtexture="map_parchment_widgets"  highlighttexture="map_parchment_widgets">
+          <Size>
+            <AbsPoint x="218" y="53" />
+          </Size>
+          <Anchors>
+            <Anchor point="bottom" relativePoint="bottom" relativeTo="$parent">
+              <AbsPoint x="0" y="-5" />
+            </Anchor>
+          </Anchors>
+          <TexCoords>
+            <Normal x="0" y="4" />
+            <NormalHighlit x="0" y="51" />
+            <Pressed x="0" y="51" />
+            <PressedHighlit x="0" y="51" />
+          </TexCoords>
+          <TextColors>
+            <Normal             r="55"  g="49"  b="34"  />
+            <NormalHighlit      r="10"  g="80"  b="140" />
+            <Pressed            r="10"  g="80"  b="140" />
+            <PressedHighlit     r="10"  g="120" b="180" />
+            <Disabled           r="119" g="111" b="98"  />
+            <DisabledPressed    r="119" g="111" b="98"  />
+          </TextColors>
+          <EventHandlers>
+            <EventHandler event="OnMouseOver" function="CourseMapWindow.OnMapNameOver"/>
+            <EventHandler event="OnMouseOverEnd" function="ItemProperties.ClearMouseOverItem"/>
+            <EventHandler event="OnLButtonUp" function="CourseMapWindow.OnMapNameLClick" />
+            <EventHandler event="OnRButtonUp" function="CourseMapWindow.OnMapNameRClick" />
+          </EventHandlers>
+        </Button>
+
+        <Button name="$parentAtlasOverlay" sticky="false" backgroundtexture="map_parchment_widgets" highlighttexture="map_parchment_widgets" >
+          <Size>
+            <AbsPoint x="58" y="54" />
+          </Size>
+          <TexCoords>
+            <Normal x="209" y="227" />
+            <NormalHighlit x="264" y="227" />
+            <Pressed x="264" y="227" />
+            <PressedHighlit x="264" y="227" />
+          </TexCoords>
+          <Anchors>
+            <Anchor point="topleft" relativePoint="topleft" relativeTo="$parent">
+              <AbsPoint x="5" y="10" />
+            </Anchor>
+          </Anchors>
+          <EventHandlers>
+            <EventHandler event="OnLButtonUp" function="AtlasWindow.AtlasOverlayOnLButtonUp" />
+            <EventHandler event="OnMouseOver" function="AtlasWindow.AtlasOverlayOnMouseOver" />
+          </EventHandlers>
+        </Button>
+        
+      </Windows>
+    </Window>
+  </Windows>
+</Interface>

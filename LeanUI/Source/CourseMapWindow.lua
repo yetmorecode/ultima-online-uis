@@ -42,7 +42,15 @@ this.TreasureMaps = {
 	[1041520] = true; -- a cleverly drawn treasure map
 	[1041521] = true; -- a deviously drawn treasure map
 	[1063453] = true; -- an ingeniously drawn treasure map
+	[1116773] = true; -- diabolically
+	[1158980] = true; -- Stash tram
+	[1158981] = true; -- Supply tram
+	[1158979] = true; -- Trove fel
+	[1158982] = true; -- Cache tram
+	[1158984] = true; -- Trove tram
 }
+
+
 
 this.isTmap = false
 this.MapLocation = L""
@@ -74,12 +82,13 @@ function this.Initialize()
     this.UpdateTexture()
     
     RegisterWindowData(WindowData.ItemProperties.Type, mapId)
-    if WindowData.ItemProperties[mapId] and WindowData.ItemProperties[mapId].PropertiesTids then 
+    if WindowData.ItemProperties[mapId] and WindowData.ItemProperties[mapId].PropertiesTids then
 		  this.isTmap = this.TreasureMaps[WindowData.ItemProperties[mapId].PropertiesTids[1]]
 		  this.Title = GetStringFromTid(WindowData.ItemProperties[mapId].PropertiesTids[1])
 		  if this.isTmap then
 		    this.MapLocation = GetStringFromTid(WindowData.ItemProperties[mapId].PropertiesTids[4])
 		  else
+		    Debug.DumpToChat("WindowData.ItemProperties["..mapId.."]", WindowData.ItemProperties[mapId])
 		    this.MapLocation = L""
 		  end
 	  end

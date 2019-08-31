@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Interface xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="Interface.xsd">
+	<Assets>
+		<Font name="UO_Title" face="Arial Black" file="fonts/ariblk.ttf" height="18" texsize="256" antialias="true" hinting="false" autohinting="true" outline="false" shadow="false"/>
+		<Font name="UO_Title_Large" face="Arial Black" file="fonts/ariblk.ttf" height="20" texsize="256" antialias="true" hinting="false" autohinting="true" outline="false" shadow="false"/>
+		<Font name="UO_GoldButtonText" face="Arial Black" file="fonts/ariblk.ttf" height="15" texsize="256" antialias="true" hinting="false" autohinting="true" outline="false" shadow="false"/>
+        <Font name="UO_DefaultText" face="MyriadPro" file="fonts/MyriadPro-Regular.ttf" height="18" texsize="256" antialias="true" hinting="false" autohinting="true" outline="false" shadow="false"/>
+        <Font name="UO_ChatText" face="Arial Black" file="fonts/ARIALUNI.ttf" height="18" texsize="512" antialias="true" hinting="true" autohinting="true" outline="false" shadow="true" shadowsize="1" />
+        <Font name="UO_Subtitle" face="Albertus" file="fonts/AlbertusMTStd.ttf" height="22" texsize="256" antialias="true" hinting="false" autohinting="true" outline="false" shadow="true"/>
+        <Font name="UO_Subtitle_large" face="Albertus" file="fonts/AlbertusMTStd.ttf" height="30" texsize="256" antialias="true" hinting="false" autohinting="true" outline="false" shadow="true"/>
+        <Font name="UO_Title_large" face="Omnia LT Std" file="fonts/OmniaLTStd.ttf" height="48" texsize="512" />
+        <Font name="Runic" face="Ultima Runes" file="fonts/Runes.ttf" height="24" texsize="512" />
+        <Font name="UO_NeueText" face="NeueHammerUnzialeLTStd" file="fonts/NeueHammerUnzialeLTStd.ttf" height="20" texsize="512" antialias="true" hinting="true" autohinting="false" outline="true" shadow="false" shadowsize="1"/>
+		<Font name="UO_Default_Outline_Text" face="MyriadPro" file="fonts/MyriadPro-Regular.ttf" height="16" texsize="256" antialias="true" hinting="false" autohinting="true" outline="true" shadow="false"/>
+        <Font name="UO_Subtitle_2" face="Albertus" file="fonts/AlbertusMTStd.ttf" height="26" texsize="256" antialias="true" hinting="false" autohinting="true" outline="false" shadow="false"/>
+    </Assets>
+</Interface>
+

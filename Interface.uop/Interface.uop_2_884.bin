@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Interface xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../Interface.xsd">
+	<Assets>
+	
+		<!--  *************** Examples ( These are defined in the CoreInterface ) ***************  -->
+		<!-- <Texture name="chat_bg_texture" file="Textures/ChatWindow.dds" /> -->
+		<!-- <Texture name="shield_texture" file="Textures/ShieldButton.dds" /> -->
+		<!-- <Texture name="buttons" file="Textures/Buttons.dds" />	-->
+		<!--  *********************************************************************************** -->
+		
+		<!-- UOKR Specific Textures -->
+        <Texture name="EnglishSplash" file="Textures/splash_large.dds" />
+        <Texture name="JapaneseSplash" file="Textures/splash_large_jp.dds" />        
+		    <Texture name="login_background1" file="Textures/Login_01.dds" />
+        <Texture name="login_background1_jp" file="Textures/Login_01_jp.dds" />
+        <Texture name="left_border" file="Textures/UpperLeft_border.dds" />
+        <Texture name="CC_Background" file="Textures/CC_background.dds" />
+        <Texture name="CC_Frame" file="Textures/box_background_new.dds" />
+        <Texture name="UO_Login" file="Textures/LoginTextures.dds" />
+        <Texture name="Ankh" file="Textures/ankh.dds" />
+        <Texture name="UO_Stone" file="Textures/UO_Stone_Circle.dds" />
+		<Texture name="Login_Buttons" file="Textures/Login_Buttons.dds" />
+		<Texture name="Login_Character_Widgets" file="Textures/login_character_widgets.dds" />
+		<Texture name="Login_CoreTextures" file="Textures/Login_CoreTextures.dds" />
+		<Texture name="LoginTextures" file="Textures/LoginTextures.dds" />
+		<Texture name="UO_Login_Background" file="Textures/window_background.dds" />
+		
+		
+	</Assets>
+</Interface>

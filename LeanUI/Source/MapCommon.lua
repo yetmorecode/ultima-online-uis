@@ -379,8 +379,11 @@ function MapCommon.DrawPlayer(displayMode, visibleFunc, parentWindow)
     playerY = 550 + dy
     
     WindowAddAnchor(windowName, "topleft", parentWindow, "center", playerX, playerY)
-    local iconId = WindowData.WaypointDisplay.displayTypes[displayMode][MapCommon.WaypointPlayerType].iconId
-    MapCommon.UpdateWaypointIcon(iconId,windowName,displayMode)
+    if WindowData.WaypointDisplay.displayTypes then
+      local iconId = WindowData.WaypointDisplay.displayTypes[displayMode][MapCommon.WaypointPlayerType].iconId
+      MapCommon.UpdateWaypointIcon(iconId,windowName,displayMode)
+    end
+    
     CreateWindowFromTemplate(windowName .. "Text", "WPText", windowName)
     WindowAddAnchor(windowName .. "Text", "top", windowName, "bottom", 0, -5)
     LabelSetText(windowName .. "Text", GetStringFromTid(1154864))
@@ -475,33 +478,36 @@ function MapCommon.CreateWPOnLocation(wname, wtype, wfacet, wx, wy, displayMode,
     WindowClearAnchors(windowName)
     WindowAddAnchor(windowName, "topleft", parentWindow, "center", waypointX, waypointY)
 
-    local iconId = WindowData.WaypointDisplay.displayTypes[displayMode][wtype].iconId
-    if (MapCommon.WaypointsIcon[waypointId] ~= nil) then
-      iconId = tonumber(MapCommon.WaypointsIcon[waypointId])
-    end
-    if (wname == L"Sea Market" and (wfacet == 1 or wfacet == 0)) then
-      iconId = 100042
-    end
-    if (wtype == 4) then
-      iconId = 100122
-    end
-    local color = nil
-    if wtype == 6 then
-      if wstring.find(wstring.lower(wname), L"priest of mondain") then
-        color = {r=255,g=0,b=0}
-      end
-    end
-
-    if(iconId == nil )then
-      iconId = 100002
-      Debug.Print("WP iconId was nil:"..windowName)
-    end
-
-    MapCommon.UpdateWaypointIcon(iconId,windowName,displayMode, waypointId, color)
+    if WindowData.WaypointDisplay.displayTypes then
+        local iconId = WindowData.WaypointDisplay.displayTypes[displayMode][wtype].iconId
+        if (MapCommon.WaypointsIcon[waypointId] ~= nil) then
+          iconId = tonumber(MapCommon.WaypointsIcon[waypointId])
+        end
+        if (wname == L"Sea Market" and (wfacet == 1 or wfacet == 0)) then
+          iconId = 100042
+        end
+        if (wtype == 4) then
+          iconId = 100122
+        end
+        local color = nil
+        if wtype == 6 then
+          if wstring.find(wstring.lower(wname), L"priest of mondain") then
+            color = {r=255,g=0,b=0}
+          end
+        end
     
-    CreateWindowFromTemplate(windowName .. "Text", "WPText", windowName)
-    WindowAddAnchor(windowName .. "Text", "bottom", windowName, "top", 0, 0)
-    LabelSetText(windowName .. "Text", wname)
+        if(iconId == nil )then
+          iconId = 100002
+          Debug.Print("WP iconId was nil:"..windowName)
+        end
+    
+        MapCommon.UpdateWaypointIcon(iconId,windowName,displayMode, waypointId, color)
+        
+        CreateWindowFromTemplate(windowName .. "Text", "WPText", windowName)
+        WindowAddAnchor(windowName .. "Text", "bottom", windowName, "top", 0, 0)
+        LabelSetText(windowName .. "Text", wname)
+    end
+    
   end
 end
 

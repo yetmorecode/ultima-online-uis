@@ -1,0 +1,1238 @@
+----------------------------------------------------------------
+-- Global Variables
+----------------------------------------------------------------
+
+Login = {}
+
+Login.TID = {}
+Login.TID.LABEL_1 = 1077841     -- Login to Ultima Online
+Login.TID.LABEL_2 = 1077842     -- Account Name
+Login.TID.LABEL_3 = 3000103     -- Password
+Login.TID.LABEL_4 = 1077843     -- LOGIN
+Login.TID.LABEL_5 = 1077844     -- SELECT SERVER
+Login.TID.LABEL_6 = 3005087     -- Shard
+Login.TID.LABEL_7 = 1077845     -- Latency
+Login.TID.LABEL_8 = 1113984     -- Population
+Login.TID.LABEL_9 = 1006044     -- OK
+Login.TID.LABEL_10 = 1153390    -- CONTINUE
+Login.TID.LABEL_11 = 1060051    -- CANCEL
+Login.TID.LABEL_12 = 1077849    -- SELECT CHARACTER
+Login.TID.LABEL_13 = 1077850    -- PLAY NOW
+Login.TID.LABEL_14 = 1077851    -- DELETE
+Login.TID.LABEL_15 = 1077852    -- CREATE
+Login.TID.LABEL_16 = 1077900    -- Your account has been blocked.
+Login.TID.LABEL_17 = 1077853    -- You do not have any free character slots.
+Login.TID.LABEL_18 = 3000012    -- Another character from this account is currently online in this world.  You must either log in as that character or wait for it to time out.
+Login.TID.LABEL_19 = 1077854    -- You used an invalid name.
+Login.TID.LABEL_20 = 1077855    -- YOU MUST SELECT A SERVER!
+Login.TID.LABEL_21 = 1077856    -- No character to login with.
+Login.TID.LABEL_22 = 1077857    -- YOU CANNOT CREATE ANY MORE CHARACTERS!
+Login.TID.LABEL_23 = 3002002    -- DELETE CONFIRM WINDOW TITLE
+Login.TID.LABEL_24 = 3001033    -- CHARACTER DELETE WINDOW TEXT
+Login.TID.LABEL_QUIT = 3000124      -- Quit
+Login.TID.LABEL_CREDITS = 3000123             -- Credits
+Login.TID.LABEL_ACCOUNT = 3000099             -- Account
+Login.TID.LABEL_UOCOM = 1078985               -- uo.com
+Login.TID.LABEL_NETWORK_ERROR = 1077864       -- Network Error
+Login.TID.LABEL_CUSTOMUI = 1079522            -- Unload Custom UI
+Login.TID.LABEL_HELP = 1061037                -- Help
+Login.TID.LABEL_ORDER_PLAYERS = 1079813       -- Order list by most players online
+Login.TID.LABEL_CHARTRANSFER_LOGIN_ERROR = 1062849     -- You cannot currently log into this shard because a character transfer is in progress...
+Login.TID.LABEL_OUTOFSYNC_LOGIN_ERROR = 3000013        -- An error has occurred in the synchronization between the login servers and this world.  Please close your client and try again.
+Login.TID.LABEL_SERVERCOMM_LOGIN_ERROR = 3000037       -- There is some problem communicating with Origin. Please restart Ultima Online and try again.
+Login.TID.LABEL_ALREADYPLAYING_LOGIN_ERROR = 3000006   -- This character already exists.\nPlaying...
+Login.TID.LABEL_CHARDOESNTEXIST_LOGIN_ERROR = 3000009  -- This character does not exist anymore.  You will have to recreate it.
+Login.TID.LABEL_CHGCHAR_NOT_OLD_ENOUGH = 3000021  -- That character is not old enough to delete. The character must be 7 days old before it can be deleted.
+Login.TID.LABEL_CHGCHAR_BACKING_UP = 3000021      -- That character is currently queued for backup and cannot be deleted.
+Login.TID.LABEL_CHGCHAR_OTHER_PROBLEM = 3000023   -- Couldn't carry out your request.
+Login.TID.LABEL_CHGCHAR_CHAR_IN_USE = 3000020     -- That character is being played right now.
+Login.TID.LABEL_CHGCHAR_DOESNT_EXIST = 3000019    -- That character does not exist.
+Login.TID.LABEL_AUTOSELECTSHARD = 1114033 -- Help me pick a shard!
+Login.TID.LABEL_SELECTLOCATION = 1114060 -- SELECT A LOCATION
+Login.TID.LABEL_RECOMMENDEDSHARD = 1114056 -- Based on your location and shard populations, we have selected the following shard for you.  Be sure to remember the shard name for future reference.
+Login.TID.LABEL_EJ_CHAR_CAP = 1158412 -- Endless Journey accounts may only create up to two characters per server. 
+
+-- *** TODO - The Japanese Login Error Message was changed while KR is still in Beta
+---           they may want to change it back to 3000033 when we are ready for general release to Japan.
+--Login.TID.LABEL_GENERAL_LOGIN_ERROR = 3000033 -- We were unable to authenticate your login. Usually this..
+Login.TID.LABEL_GENERAL_LOGIN_ERROR = 1078991 -- We were unable to authenticate your login. Usually this..
+
+Login.TID.LABEL_TIME_OUT = 1078859            -- Log in time out.
+Login.TID.LABEL_CONNECTION_FAILED = 3000016   -- Couldn't connect to Ultima Online. Please try again in a few moments.
+Login.TID.LABEL_CONNECTION_LOST = 3000004     -- Connection lost
+
+Login.STAGE_SPLASH            = 1
+Login.STAGE_ACCOUNTPASSWORD   = 2
+Login.STAGE_EULA              = 3
+Login.STAGE_SERVERSELECT      = 4
+Login.STAGE_CHARACTERSELECT   = 5
+Login.STAGE_CHARACTERCREATION = 6
+Login.STAGE_CREDITS           = 7
+Login.STAGE_AUTOSELECTSHARD   = 8
+
+-- Used for the return values in the PKT_CHG_CHAR_RESULT
+Login.CHGCHAR_DOESNT_EXIST  = 0x01
+Login.CHGCHAR_CHAR_IN_USE   = 0x02
+Login.CHGCHAR_NOT_OLD_ENOUGH= 0x03
+Login.CHGCHAR_BACKING_UP    = 0x04
+Login.CHGCHAR_OTHER_PROBLEM = 0xFF
+
+Login.LoginStages = {}
+Login.LoginStages[Login.STAGE_SPLASH] = {}
+Login.LoginStages[Login.STAGE_SPLASH].VisibleWindows = { "Splash" }
+Login.LoginStages[Login.STAGE_SPLASH].SplashImages = {}
+Login.LoginStages[Login.STAGE_SPLASH].SplashImages.CurImage = "EnglishSplash"
+Login.LoginStages[Login.STAGE_SPLASH].SplashImages[SystemData.Settings.Language.LANGUAGE_JPN] = "JapaneseSplash"
+Login.LoginStages[Login.STAGE_SPLASH].Delay = 4.0 -- time splash screen is displayed in seconds
+Login.LoginStages[Login.STAGE_SPLASH].Timer = 0.0 -- timer for splash screen
+
+-- USERNAME/ACCOUNT STAGE VALUES
+Login.LoginStages[Login.STAGE_ACCOUNTPASSWORD] = {}
+Login.LoginStages[Login.STAGE_ACCOUNTPASSWORD].VisibleWindows = { "Login", "LoginWindow", "InternalLoginConfig", "LoginBuild" }
+if (SystemData.Settings.Language.type == SystemData.Settings.Language.LANGUAGE_JPN) then
+    Login.LoginStages[Login.STAGE_ACCOUNTPASSWORD].LoginBG = "login_background1_jp"    
+else
+    Login.LoginStages[Login.STAGE_ACCOUNTPASSWORD].LoginBG = "login_background1"
+end
+Login.LoginStages[Login.STAGE_ACCOUNTPASSWORD].Account = ""
+Login.LoginStages[Login.STAGE_ACCOUNTPASSWORD].Password = ""
+Login.LoginStages[Login.STAGE_ACCOUNTPASSWORD].SortedShardList = {}
+
+-- SERVER SELECT STAGE VALUES
+Login.LoginStages[Login.STAGE_SERVERSELECT] = {}
+Login.LoginStages[Login.STAGE_SERVERSELECT].VisibleWindows = { "Login", "ServerSelectWindow" }
+if (SystemData.Settings.Language.type == SystemData.Settings.Language.LANGUAGE_JPN) then
+    Login.LoginStages[Login.STAGE_SERVERSELECT].LoginBG = "login_background1_jp"   
+else
+    Login.LoginStages[Login.STAGE_SERVERSELECT].LoginBG = "login_background1"
+end
+
+Login.LoginStages[Login.STAGE_SERVERSELECT].CurShardNum = nil
+Login.LoginStages[Login.STAGE_SERVERSELECT].NumShards = 0
+Login.LoginStages[Login.STAGE_SERVERSELECT].Timer = 0.0
+Login.LoginStages[Login.STAGE_SERVERSELECT].ShardUpdateDelay = 2.0
+
+Login.LoginStages[Login.STAGE_EULA] = {}
+Login.LoginStages[Login.STAGE_EULA].VisibleWindows = { "EULAWindow" }
+Login.LoginStages[Login.STAGE_EULA].LoginBG = "login_background1"
+Login.LoginStages[Login.STAGE_EULA].Accepted = false
+
+-- CHARACTER SELECT STAGE VALUES
+Login.LoginStages[Login.STAGE_CHARACTERSELECT] = {}
+Login.LoginStages[Login.STAGE_CHARACTERSELECT].VisibleWindows = { "Login", "CharacterSelectWindow" }
+if (SystemData.Settings.Language.type == SystemData.Settings.Language.LANGUAGE_JPN) then
+    Login.LoginStages[Login.STAGE_CHARACTERSELECT].LoginBG = "login_background1_jp"    
+else
+    Login.LoginStages[Login.STAGE_CHARACTERSELECT].LoginBG = "login_background1"
+end
+Login.LoginStages[Login.STAGE_CHARACTERSELECT].CurCharNum = nil
+Login.LoginStages[Login.STAGE_CHARACTERSELECT].NumChars = 0
+Login.LoginStages[Login.STAGE_CHARACTERSELECT].MaxChars = 7
+Login.MaxPossibleChars = 7
+
+-- CHARACTER CREATION STAGE VALUES
+Login.LoginStages[Login.STAGE_CHARACTERCREATION] = {}
+Login.LoginStages[Login.STAGE_CHARACTERCREATION].VisibleWindows = { "CharacterCreation" }
+if (SystemData.Settings.Language.type == SystemData.Settings.Language.LANGUAGE_JPN) then
+    Login.LoginStages[Login.STAGE_CHARACTERCREATION].LoginBG = "login_background1_jp"  
+else
+    Login.LoginStages[Login.STAGE_CHARACTERCREATION].LoginBG = "login_background1"
+end
+
+-- CREDITS STAGE VALUES
+Login.LoginStages[Login.STAGE_CREDITS] = {}
+Login.LoginStages[Login.STAGE_CREDITS].VisibleWindows = { "Credits" }
+Login.LoginStages[Login.STAGE_CREDITS].LastStage = nil
+
+-- AUTO SELECT SHARD STAGE VALUES
+Login.LoginStages[Login.STAGE_AUTOSELECTSHARD] = {}
+Login.LoginStages[Login.STAGE_AUTOSELECTSHARD].VisibleWindows = { "AutoSelectShardWindow" }
+Login.LoginStages[Login.STAGE_AUTOSELECTSHARD].SelectedLocation = 1
+Login.LoginStages[Login.STAGE_AUTOSELECTSHARD].ShardLocations = { "US East", "US West", "Japan", "Europe", "Korea", "Taiwan", "Australia" }
+
+Login.EnglishProductionShardTimeZones = {0,5,8}
+Login.JapaneseProductionShardTimeZones = {246,247}
+Login.TestShardTimeZones = {50}
+
+Login.ProductionShards = {}
+Login.ProductionShards[1] = { 0, 1, 3, 6, 8, 14 }               -- US East (excluding 12)
+Login.ProductionShards[2] = { 2, 5, 7, 9, 10 }                  -- US West (excluding 45)
+Login.ProductionShards[3] = { 16, 18, 20, 21, 22, 23, 27, 31 }  -- Japan
+Login.ProductionShards[4] = { 24, 25 }                          -- Europe
+Login.ProductionShards[5] = { 28, 29 }                          -- Korea
+Login.ProductionShards[6] = { 26 }                              -- Taiwan
+Login.ProductionShards[7] = { 19 }                              -- Australia
+
+Login.SEVENTH_ANNIVERSARY_ENTITLEMENT = 32
+Login.TENTH_ANNIVERSARY_SEVENTH_CHARACTER_SLOT_ENTITLEMENT = 4096
+
+Login.TipoftheDayIndex = 0
+
+Login.CurLoginStage = nil
+Login.LastLoginStage = nil
+Login.CurStageData = nil
+
+Login.TermsAccepted = false
+
+function Login.Initialize()
+    if( IsInternalBuild() ) then
+        LoadResources( "Data/Interface/Login/Source", "", "InternalLogin.xml" )
+        CreateWindow("InternalLoginConfig",true)
+        Login.LoginStages[Login.STAGE_SPLASH].Delay = 1.0
+    end
+
+    WindowRegisterEventHandler("Login", SystemData.Events.LOGIN_REJECT, "Login.HandleLoginRejected")
+    WindowRegisterEventHandler("Login", SystemData.Events.LOGIN_FAILED, "Login.HandleLoginFailed")
+    WindowRegisterEventHandler("Login", SystemData.Events.LOGIN_CONNECT_FAILED, "Login.HandleLoginConnectFailed")
+    WindowRegisterEventHandler("Login", SystemData.Events.LOGIN_CONNECT_LOST, "Login.HandleLoginConnectLost")    
+    WindowRegisterEventHandler("Login", SystemData.Events.UPDATE_SHARDLIST, "Login.HandleUpdateShardList")
+    WindowRegisterEventHandler("Login", SystemData.Events.UPDATE_CHARLIST, "Login.HandleUpdateCharList")
+    WindowRegisterEventHandler("Login", SystemData.Events.CHG_CHAR_RESULT, "Login.HandleChangeCharResult")
+       
+    CreateWindow("LoginBackground",false)    
+    CreateWindow("Login_QuitButton",false)
+    CreateWindow("CreditsButton",false)  
+    CreateWindow("AccountButton",false)
+    CreateWindow("UOComButton",false)    
+    CreateWindow("CustomUiButton",false)
+    CreateWindow("HelpButton",false)
+    CreateWindow("CustomUiWindow",false)
+    CreateWindow("LoginBuild", false)
+    CreateWindow("AutoSelectShardWindow", false)
+    
+    CreateWindow("Splash",false)
+    CreateWindow("Credits",false)
+    CreateWindow("EULAWindow",false)
+
+    WindowSetAlpha("LoginWindow", 0.8)  
+
+    ButtonSetDisabledFlag("EULAWindowAgreeButton", true)
+    ButtonSetStayDownFlag("EULAWindowCheckButton", true)
+    Login.TermsAccepted = false
+    -- EULA WINDOW TEXT
+    local buffer, buffer2, buffer3, buffer4  
+    if (SystemData.Login.isEU)then
+
+        LabelSetText("EULAWindowTextHeader",GetStringFromTid(1158469)..GetStringFromTid(1158472))
+        LabelSetText("EULAWindowCheckButtonText",GetStringFromTid(1158467))
+        
+    else
+
+        LabelSetText("EULAWindowTextHeader",GetStringFromTid(1158469)..GetStringFromTid(1158470)..GetStringFromTid(1158472))
+        LabelSetText("EULAWindowCheckButtonText",GetStringFromTid(1158468))
+    end
+    
+    -- CUSTOM UI INIT
+    Interface.OnCloseCallBack["CustomUiWindow"] = Login.ResetCustomUiComboBox
+    WindowUtils.SetWindowTitle("CustomUiWindow",GetStringFromTid(Login.TID.LABEL_CUSTOMUI))
+    LabelSetText( "CustomUiWindowCustomSkinsLabel", GetStringFromTid(1079523) ) -- "Use Custom UI:"
+    local skinItr
+    for skinItr = 1, #SystemData.CustomUIList do
+        local text = SystemData.CustomUIList[skinItr]
+        if text == "" then
+            ComboBoxAddMenuItem( "CustomUiWindowCustomSkinsCombo", GetStringFromTid(3000094) ) -- "Default"
+        else
+            ComboBoxAddMenuItem( "CustomUiWindowCustomSkinsCombo", StringToWString(text) )
+        end
+        
+        if( SystemData.Settings.Interface.customUiName == SystemData.CustomUIList[skinItr] ) then
+            ComboBoxSetSelectedMenuItem("CustomUiWindowCustomSkinsCombo", skinItr )
+        end     
+    end   
+    ButtonSetText("CustomUiWindowOkayButton",GetStringFromTid(UO_Login_StandardDialog.TID_OKAY))
+    ButtonSetText("CustomUiWindowCancelButton",GetStringFromTid(UO_Login_StandardDialog.TID_CANCEL))
+    
+    -- LOGIN WINDOW ELEMENTS
+    LabelSetText ("LoginWindowUsernamePrompt", GetStringFromTid(Login.TID.LABEL_2))
+    LabelSetText ("LoginWindowPasswordPrompt", GetStringFromTid(Login.TID.LABEL_3))
+    ButtonSetText("LoginWindowLoginButton", GetStringFromTid(Login.TID.LABEL_4))
+
+
+     
+    if (UserData.Settings.Login.lastUserName) then
+        TextEditBoxSetText("Username", StringToWString(UserData.Settings.Login.lastUserName))
+    end
+    ButtonSetText("Login_QuitButton",GetStringFromTid(Login.TID.LABEL_QUIT))
+    ButtonSetText("CreditsButton",GetStringFromTid(Login.TID.LABEL_CREDITS))
+    ButtonSetText("AccountButton",GetStringFromTid(Login.TID.LABEL_ACCOUNT))
+    ButtonSetText("UOComButton",GetStringFromTid(Login.TID.LABEL_UOCOM))
+    ButtonSetText("HelpButton",GetStringFromTid(Login.TID.LABEL_HELP))
+    ButtonSetText("CustomUiButton",GetStringFromTid(Login.TID.LABEL_CUSTOMUI))
+    
+    local  verMajor, verMinor, verSub, verBuild = GetBuildVersion()
+    LabelSetText("LoginBuildVersion", L"Build Version: "..verMajor..L"."..verMinor..L"."..verSub..L"."..verBuild)
+    
+    UOBuildTableFromCSV("Data/GameData/tipoftheday.csv", "TipoftheDayCSV")
+    Login.TipoftheDayIndex = GetRandomNumber( table.getn( WindowData.TipoftheDayCSV ) ) + 1
+    --LabelSetText( "LoginTipoftheDayText", L"Helpful Hint:  "..GetStringFromTid( WindowData.TipoftheDayCSV[Login.TipoftheDayIndex].TipTID ) )
+    UOUnloadCSVTable("TipoftheDayCSV")
+
+    -- SERVER SELECT WINDOW ELEMENTS
+    LabelSetText("ServerSelectWindowTitle", GetStringFromTid(Login.TID.LABEL_5))
+    LabelSetText("ServerSelectWindowNameHeader", GetStringFromTid(Login.TID.LABEL_6))
+    LabelSetText("ServerSelectWindowLatencyHeader", GetStringFromTid(Login.TID.LABEL_7))
+    LabelSetText("ServerSelectWindowPopulationHeader", GetStringFromTid(Login.TID.LABEL_8))
+    ButtonSetText("ServerSelectWindowOKButton", GetStringFromTid(Login.TID.LABEL_9))
+
+    -- NDA WINDOW ELEMENTS
+    ButtonSetText("EULAWindowAgreeButton", GetStringFromTid(Login.TID.LABEL_10))
+    ButtonSetText("EULAWindowDisagreeButton", GetStringFromTid(Login.TID.LABEL_11))
+
+    -- CHARACTER SELECT WINDOW ELEMENTS
+    LabelSetText("CharacterSelectWindowTitle", GetStringFromTid(Login.TID.LABEL_12))
+    ButtonSetText("CharacterSelectWindowPlayNowButton", GetStringFromTid(Login.TID.LABEL_13))
+    ButtonSetText("CharacterSelectWindowDeleteCharacterButton", GetStringFromTid(Login.TID.LABEL_14))
+    ButtonSetText("CharacterSelectWindowCreateCharacterButton", GetStringFromTid(Login.TID.LABEL_15))
+    ButtonSetDisabledFlag("CharacterSelectWindowCreateCharacterButton", true)
+    
+    -- AUTO SELECT SHARD WINDOW ELEMENTS
+    LabelSetText("AutoSelectShardWindowTitle", GetStringFromTid(Login.TID.LABEL_SELECTLOCATION))
+    ButtonSetText("AutoSelectShardWindowOkayButton",GetStringFromTid(UO_Login_StandardDialog.TID_OKAY))
+    ButtonSetText("AutoSelectShardWindowCancelButton",GetStringFromTid(UO_Login_StandardDialog.TID_CANCEL))
+
+    -- Create the initial character items and hide them
+    for i=1, Login.LoginStages[Login.STAGE_CHARACTERSELECT].MaxChars + 1 do
+        local currentCharacterWindowName = "Character_"..i
+        CreateWindowFromTemplate( currentCharacterWindowName, "CharacterListItemTemplate", "CharacterSelectContent" )
+        WindowSetShowing(currentCharacterWindowName, false)
+    end
+
+    -- if the current resolution is taller than the height of the background then stretch the image
+    local maxWidth, maxHeight = WindowGetDimensions("LoginBackground")
+    
+    local textureHeight = SystemData.screenResolution.y/InterfaceCore.scale
+    local textureWidth = textureHeight*maxWidth/maxHeight
+    
+    DynamicImageSetTextureDimensions("LoginBackground",textureWidth,textureHeight)
+    WindowSetDimensions("LoginBackground",textureWidth,textureHeight)
+    DynamicImageSetTextureScale("LoginBackground",textureHeight/maxHeight)
+
+    if( IsLoginBefore() ) then
+        Login.ShowCommonBackground()
+        Login.SetStage(Login.STAGE_ACCOUNTPASSWORD)
+    else
+        Login.SetStage(Login.STAGE_SPLASH)
+    end
+    
+   -- CJT - this gets recalculated after you actually log in each time
+   Login.MaxPossibleChars = 5
+
+
+end
+
+function Login.SetStage(curStage)
+--    Debug.Print("Login.SetStage: "..curStage)
+    
+    if( Login.CurStageData ~= nil and Login.CurStageData.Shutdown ~= nil ) then
+        Login.CurStageData.Shutdown()
+    end    
+    
+    Login.LastLoginStage = Login.CurLoginStage
+    Login.CurLoginStage = curStage
+    Login.CurStageData = Login.LoginStages[Login.CurLoginStage]
+    
+    WindowSetShowing("Splash", false)
+    WindowSetShowing("Login", false)
+    WindowSetShowing("LoginWindow", false)
+    WindowSetShowing("EULAWindow", false)
+    WindowSetShowing("ServerSelectWindow", false)
+    WindowSetShowing("CharacterSelectWindow", false)
+    WindowSetShowing("CharacterCreation", false)
+    CharacterCreation.HideColorPickerWindows()
+    WindowSetShowing("Credits", false)    
+    WindowSetShowing("AutoSelectShardWindow", false)
+    
+    if( DoesWindowNameExist("InternalLoginConfig") ) then
+        WindowSetShowing("InternalLoginConfig", false)
+    end    
+    
+    for index, windowName in pairs(Login.CurStageData.VisibleWindows) do
+        if( DoesWindowNameExist(windowName) ) then
+            WindowSetShowing(windowName, true)
+        end
+    end
+    
+    if( Login.CurStageData.Initialize ~= nil ) then
+        Login.CurStageData.Initialize()
+    end
+    
+    if( Login.LoginStages[curStage].LoginBG ~= nil ) then
+        DynamicImageSetTexture("LoginBackground", Login.LoginStages[curStage].LoginBG, 0, 0) 
+    end
+end
+
+function Login.ShowErrorMessage(bodyText,focusOnClose,callback)
+    local okayButton = { textTid=UO_Login_StandardDialog.TID_OKAY, callback=callback }
+    local windowData = 
+    {
+        windowName = "Login",
+        titleTid = Login.TID.LABEL_NETWORK_ERROR,
+        body = bodyText,
+        focusOnClose = focusOnClose,
+        buttons = { okayButton }
+    }    
+    UO_Login_StandardDialog.CreateDialog(windowData)
+end
+
+function Login.HandleLoginFailed()    
+    ButtonSetDisabledFlag("LoginWindowLoginButton", false)
+
+    if (SystemData.Login.statusCode == 2) then
+        local curString = WindowUtils.translateMarkup(GetStringFromTid(Login.TID.LABEL_16))
+        Login.ShowErrorMessage(curString,"Username")
+    elseif (SystemData.Login.statusCode == 9) then
+        local callback = function () Login.SetStage(Login.STAGE_ACCOUNTPASSWORD) end
+        Login.ShowErrorMessage(GetStringFromTid(Login.TID.LABEL_CHARTRANSFER_LOGIN_ERROR),"Username",callback)
+    elseif (SystemData.Login.statusCode == 254) then
+        local callback = function () Login.SetStage(Login.STAGE_ACCOUNTPASSWORD) end
+        Login.ShowErrorMessage(GetStringFromTid(Login.TID.LABEL_TIME_OUT),"Username",callback)
+    elseif (SystemData.Login.statusCode == 255) then
+        local callback = function () Login.SetStage(Login.STAGE_ACCOUNTPASSWORD) end
+        Login.ShowErrorMessage(GetStringFromTid(Login.TID.LABEL_SERVERCOMM_LOGIN_ERROR),"Username",callback)
+    else
+        TextEditBoxSetText("Password", L"")
+        Login.ShowErrorMessage(GetStringFromTid(Login.TID.LABEL_GENERAL_LOGIN_ERROR), "Password")
+    end
+end
+
+function Login.HandleLoginRejected()    
+    ButtonSetDisabledFlag("LoginWindowLoginButton", false)
+
+    if (SystemData.Login.statusCode == 1) then
+        local callback = function () Login.SetStage(Login.STAGE_ACCOUNTPASSWORD) end
+        Login.ShowErrorMessage(GetStringFromTid(Login.TID.LABEL_CHARDOESNTEXIST_LOGIN_ERROR),"Username",callback)
+    elseif (SystemData.Login.statusCode == 2) then
+        local callback = function () Login.SetStage(Login.STAGE_ACCOUNTPASSWORD) end
+        Login.ShowErrorMessage(GetStringFromTid(Login.TID.LABEL_ALREADYPLAYING_LOGIN_ERROR),"Username",callback)
+    elseif (SystemData.Login.statusCode == 3) then
+        local callback = function () Login.SetStage(Login.STAGE_ACCOUNTPASSWORD) end
+        Login.ShowErrorMessage(GetStringFromTid(Login.TID.LABEL_17),"Username",callback)
+    elseif (SystemData.Login.statusCode == 5) then
+        local callback = function () Login.SetStage(Login.STAGE_ACCOUNTPASSWORD) end
+        Login.ShowErrorMessage(GetStringFromTid(Login.TID.LABEL_18),"Username",callback)
+    elseif (SystemData.Login.statusCode == 10) then
+        --local callback = function () WindowSetShowing ( "CharacterCreation", true); CharacterCreation.ShowApproveWindow() end
+        local callback = function () Login.SetStage(Login.STAGE_ACCOUNTPASSWORD) end
+        WindowSetShowing ( "CharacterCreation", false)
+        Login.ShowErrorMessage(GetStringFromTid(Login.TID.LABEL_19),"ApproveNameWindowVal", callback)
+        TextEditBoxSetText("ApproveNameWindowVal", L"")
+    elseif (SystemData.Login.statusCode == 6) then
+        local callback = function () Login.SetStage(Login.STAGE_ACCOUNTPASSWORD) end
+        Login.ShowErrorMessage(GetStringFromTid(Login.TID.LABEL_OUTOFSYNC_LOGIN_ERROR),"Username",callback)
+    elseif(SystemData.Login.statusCode == 12)then
+        local callback = function () Login.SetStage(Login.STAGE_ACCOUNTPASSWORD) end
+        Login.ShowErrorMessage(GetStringFromTid(Login.TID.LABEL_EJ_CHAR_CAP),"Username",callback)
+    else
+        TextEditBoxSetText("Password", L"")
+        Login.ShowErrorMessage(GetStringFromTid(Login.TID.LABEL_GENERAL_LOGIN_ERROR), "Password")
+    end
+end
+
+function Login.HandleLoginConnectFailed()    
+    local callback = function () Login.SetStage(Login.STAGE_ACCOUNTPASSWORD) end
+    Login.ShowErrorMessage(GetStringFromTid(Login.TID.LABEL_CONNECTION_FAILED),"Username",callback)
+end
+
+function Login.HandleLoginConnectLost()    
+    local callback = function () Login.SetStage(Login.STAGE_ACCOUNTPASSWORD) end
+    Login.ShowErrorMessage(GetStringFromTid(Login.TID.LABEL_CONNECTION_LOST),"Username",callback)
+end
+
+function Login.UpdateTime(timePassed)
+    if( Login.CurLoginStage == Login.STAGE_SPLASH ) then
+        Login.CurStageData.Timer = Login.CurStageData.Timer + timePassed
+        if ( Login.CurStageData.Timer > Login.CurStageData.Delay ) then
+            Login.SetStage(Login.STAGE_ACCOUNTPASSWORD)
+        end
+    elseif( Login.CurLoginStage == Login.STAGE_SERVERSELECT ) then
+        Login.CurStageData.Timer = Login.CurStageData.Timer + timePassed
+        if ( Login.CurStageData.Timer > Login.CurStageData.ShardUpdateDelay ) then
+            Login.UpdateServerPings()
+            Login.CurStageData.Timer = 0.0
+        end
+    end
+end
+
+------------- SPLASH STAGE BEGIN ---------------
+
+Login.LoginStages[Login.STAGE_SPLASH].Initialize = function ()
+    WindowSetShowing("LoginBackground",false)   
+    WindowSetShowing("Login_QuitButton",false)
+    WindowSetShowing("CreditsButton",false)  
+    WindowSetShowing("AccountButton",false)    
+    WindowSetShowing("UOComButton",false)
+    WindowSetShowing("CustomUiButton",false)
+    WindowSetShowing("HelpButton",false)
+
+    -- set the splash image based on language
+    if( Login.CurStageData.SplashImages[SystemData.Settings.Language.type] ~= nil ) then
+        Login.CurStageData.SplashImages.CurImage = Login.CurStageData.SplashImages[SystemData.Settings.Language.type]
+    end
+    
+    local maxWidth = 2048
+    local maxHeight = 1024
+    
+    local textureHeight = SystemData.screenResolution.y/InterfaceCore.scale
+    local textureWidth = textureHeight*maxWidth/maxHeight
+    
+    DynamicImageSetTextureDimensions("Splash",textureWidth,textureHeight)
+    WindowSetDimensions("Splash",textureWidth,textureHeight)
+    DynamicImageSetTexture("Splash", Login.CurStageData.SplashImages.CurImage, 0, 0 )
+    DynamicImageSetTextureScale("Splash",textureHeight/maxHeight)
+        
+    Login.CurStageData.Timer = 0.0
+end
+
+Login.LoginStages[Login.STAGE_SPLASH].Shutdown = function ()
+    --Loads the buttons and the back ground, quit button and left dragon image
+    Login.ShowCommonBackground()
+end
+
+function Login.ShowCommonBackground()
+    WindowSetShowing("LoginBackground",true)    
+    WindowSetShowing("Login_QuitButton",true)
+    WindowSetShowing("CreditsButton",true)      
+    WindowSetShowing("AccountButton",true)    
+    WindowSetShowing("UOComButton",true)
+    WindowSetShowing("CustomUiButton",true)
+    WindowSetShowing("HelpButton",true)
+end
+
+--------  ACCOUNTPASSWORD STAGE BEGIN --------
+
+Login.LoginStages[Login.STAGE_ACCOUNTPASSWORD].Initialize = function ()
+    UndoLogin()
+
+    ButtonSetDisabledFlag("LoginWindowLoginButton", false)
+    
+    if (UserData.Settings.Login.lastUserName ~= nil and
+        UserData.Settings.Login.lastUserName ~= L"" and
+        TextEditBoxGetText("Username") ~= nil and
+        TextEditBoxGetText("Username") ~= L"") then
+        WindowAssignFocus("Password", true)
+    else
+        WindowAssignFocus("Username", true)
+    end
+end
+
+function Login.ToggleLogin()    
+    ButtonSetDisabledFlag("LoginWindowLoginButton", true)
+    Login.CurStageData.Account = WStringToString(Username.Text)
+    Login.CurStageData.Password = WStringToString(Password.Text)
+
+    --Debug.Print("login request with username = "..username)
+    TryLogin(Login.CurStageData.Account, Login.CurStageData.Password)        
+    -- login progress resumes with either HandleLoginFailed, or UpdateShardList events
+end
+
+function Login.HandleUpdateShardList()
+    if( SystemData.Login.accepted == true ) then
+        Login.SetStage(Login.STAGE_SERVERSELECT)
+    else
+        Login.SetStage(Login.STAGE_EULA)
+    end    
+end
+
+function Login.GoBackToSplash()
+    Login.SetStage(Login.STAGE_SPLASH)
+end
+
+-------------- EULA STAGE BEGIN ----------------
+
+Login.LoginStages[Login.STAGE_EULA].Initialize = function ()
+    if( SystemData.Login.accepted == true ) then
+        Login.SetStage(Login.STAGE_SERVERSELECT)
+    end
+end
+
+function Login.ToggleEULAAgree()
+    SetAgreementAccepted()
+    SystemData.Login.accepted = true
+    Login.SetStage(Login.STAGE_SERVERSELECT)        
+end
+
+--------- SERVER SELECT STAGE BEGIN -------------
+
+--------- SERVER SELECT STAGE BEGIN -------------
+
+Login.LoginStages[Login.STAGE_SERVERSELECT].Initialize = function ()
+    Login.CurStageData.CurShardNum = nil
+    Login.CurStageData.NumShards = 0
+    Login.CurStageData.Timer = 0.0
+    Login.CurStageData.SortedShardList = {}
+    
+    WindowAssignFocus("ServerSelectWindow",true)
+    
+    LabelSetText("ServerSelectWindowAutoSelectShard", GetStringFromTid(Login.TID.LABEL_AUTOSELECTSHARD) ) -- "Help me pick a shard!"
+
+    ButtonSetDisabledFlag("ServerSelectWindowOKButton", true)
+
+    for index, shard in pairs(SystemData.Login.shardList) do
+        
+        local serverId = SystemData.Login.shardList[index].shardNum
+        local shardName =  SystemData.Login.shardList[index].shardName
+        
+        if ((shardName ~= nil) and (serverId ~= -1)) then      
+            Login.CurStageData.SortedShardList[Login.CurStageData.NumShards + 1] = shard
+            Login.CurStageData.NumShards = Login.CurStageData.NumShards + 1
+            local currentServerListItem = "shard_"..Login.CurStageData.NumShards
+            CreateWindowFromTemplate( currentServerListItem, "ServerListItemTemplate", "ServerSelectContent" )
+        end
+    end
+    
+    Login.InitialSort() 
+end
+
+function Login.InitialSort()
+    table.sort (Login.CurStageData.SortedShardList, function (a,b)  return (a.shardName < b.shardName) end)
+    Login.DrawShardList(true)
+    
+    WindowSetShowing("ServerSelectWindowNameHeaderSortButton", false)
+    WindowSetShowing("ServerSelectWindowLatencyHeaderSortButton", false)
+    WindowSetShowing("ServerSelectWindowPopulationHeaderSortButton", false)
+end
+
+function Login.SortByShardName()
+    local isPressed = ButtonGetPressedFlag("ServerSelectWindowNameHeaderSortButton")
+    ButtonSetPressedFlag("ServerSelectWindowNameHeaderSortButton", not isPressed)
+    
+    if (ButtonGetPressedFlag("ServerSelectWindowNameHeaderSortButton") == true) then
+        table.sort (Login.CurStageData.SortedShardList, function (a,b)  return (a.shardName < b.shardName) end)
+    else
+        table.sort (Login.CurStageData.SortedShardList, function (a,b)  return (a.shardName > b.shardName) end)
+    end
+    
+    Login.DrawShardList(false)
+    
+    WindowSetShowing("ServerSelectWindowNameHeaderSortButton", true)
+    WindowSetShowing("ServerSelectWindowLatencyHeaderSortButton", false)
+    WindowSetShowing("ServerSelectWindowPopulationHeaderSortButton", false)
+    
+    ButtonSetPressedFlag("ServerSelectWindowLatencyHeaderSortButton", false)
+    ButtonSetPressedFlag("ServerSelectWindowPopulationHeaderSortButton", false)
+end
+
+function Login.SortByLatency()
+    local isPressed = ButtonGetPressedFlag("ServerSelectWindowLatencyHeaderSortButton")
+    ButtonSetPressedFlag("ServerSelectWindowLatencyHeaderSortButton", not isPressed)
+
+    if (ButtonGetPressedFlag("ServerSelectWindowLatencyHeaderSortButton") == true) then
+        table.sort (Login.CurStageData.SortedShardList, function (a,b)  ashardLatency, apacketLoss = GetShardPingInfo(a.shardNum);
+                                                                bshardLatency, bpacketLoss = GetShardPingInfo(b.shardNum);
+                                                                if (ashardLatency ~= nil and bshardLatency ~= nil) then
+                                                                    return (ashardLatency < bshardLatency)
+                                                                else
+                                                                    return false
+                                                                end
+                                                                end)
+    else
+        table.sort (Login.CurStageData.SortedShardList, function (a,b)  ashardLatency, apacketLoss = GetShardPingInfo(a.shardNum);
+                                                                bshardLatency, bpacketLoss = GetShardPingInfo(b.shardNum);
+                                                                if (ashardLatency ~= nil and bshardLatency ~= nil) then
+                                                                    return (ashardLatency > bshardLatency)
+                                                                else
+                                                                    return false
+                                                                end
+                                                                end)
+    end
+    
+    Login.DrawShardList(false)
+    
+    WindowSetShowing("ServerSelectWindowNameHeaderSortButton", false)
+    WindowSetShowing("ServerSelectWindowLatencyHeaderSortButton", true)
+    WindowSetShowing("ServerSelectWindowPopulationHeaderSortButton", false)
+    
+    ButtonSetPressedFlag("ServerSelectWindowNameHeaderSortButton", false)
+    ButtonSetPressedFlag("ServerSelectWindowPopulationHeaderSortButton", false)
+end
+
+function Login.SortByPopulation()
+    local isPressed = ButtonGetPressedFlag("ServerSelectWindowPopulationHeaderSortButton")
+    ButtonSetPressedFlag("ServerSelectWindowPopulationHeaderSortButton", not isPressed)
+    
+    if (ButtonGetPressedFlag("ServerSelectWindowPopulationHeaderSortButton") == true) then
+        table.sort (Login.CurStageData.SortedShardList, function (a,b)
+                                                            if ( a.population == b.population ) then
+                                                                return (a.shardName < b.shardName )
+                                                            else
+                                                                return (a.population > b.population)
+                                                            end
+                                                        end)
+    else
+        table.sort (Login.CurStageData.SortedShardList, function (a,b)
+                                                            if ( a.population == b.population ) then
+                                                                return (a.shardName > b.shardName )
+                                                            else
+                                                                return (a.population < b.population)
+                                                            end
+                                                        end)
+    end
+    
+    Login.DrawShardList(false)
+    
+    WindowSetShowing("ServerSelectWindowNameHeaderSortButton", false)
+    WindowSetShowing("ServerSelectWindowLatencyHeaderSortButton", false)
+    WindowSetShowing("ServerSelectWindowPopulationHeaderSortButton", true)
+    
+    ButtonSetPressedFlag("ServerSelectWindowNameHeaderSortButton", false)
+    ButtonSetPressedFlag("ServerSelectWindowLatencyHeaderSortButton", false)
+end
+
+function Login.DrawShardList(bOrderByRegion)
+    Login.CurStageData.CurShardNum = nil
+    Login.CurStageData.NumShards = 0
+    Login.CurStageData.Timer = 0.0
+    
+    local sortedShardList = Login.CurStageData.SortedShardList
+    local previousServerListItem = nil  
+    local currentShardWindowName = nil
+    local firstShardDisplayedInList = true
+    local remainingProductionShardList = {}
+    local remainingTestShardList = {}
+    
+    for index, shard in pairs(sortedShardList) do
+        local serverId = sortedShardList[index].shardNum
+        local shardName = sortedShardList[index].shardName
+
+        if ((shardName ~= nil) and (serverId ~= -1)) then
+            local population = L"Low"
+            if (sortedShardList[index].population == SystemData.Login.MEDIUM_POPULATION) then
+                population = L"Medium"
+            elseif (sortedShardList[index].population == SystemData.Login.HIGH_POPULATION) then
+                population = L"High"
+            end
+            
+            Login.CurStageData.NumShards = Login.CurStageData.NumShards + 1
+            local currentServerListItem = "shard_"..Login.CurStageData.NumShards
+
+            WindowClearAnchors(currentServerListItem)
+            ButtonSetText(currentServerListItem.."Name",StringToWString(shardName) )
+            ButtonSetText(currentServerListItem.."Population",population)
+            
+            ButtonSetPressedFlag(currentServerListItem.."Name",false)
+            ButtonSetPressedFlag(currentServerListItem.."Population",false)
+            
+            DynamicImageSetTexture(currentServerListItem.."Latency","Login_CoreTextures", 285, 444)
+        
+            -- If Japanese language settings on, display Japanese shards first. Otherwise, display English productions shards first.
+            if ( ( bOrderByRegion == false and Login.SearchShardTimeZoneTable(Login.TestShardTimeZones, sortedShardList[index].timeZone) == false )
+                    or
+                 ( (SystemData.Settings.Language.type == SystemData.Settings.Language.LANGUAGE_JPN) and
+                 (Login.SearchShardTimeZoneTable(Login.JapaneseProductionShardTimeZones, sortedShardList[index].timeZone)) )
+                    or
+                  Login.SearchShardTimeZoneTable(Login.EnglishProductionShardTimeZones, sortedShardList[index].timeZone) ) then
+            
+                if (firstShardDisplayedInList) then
+                    WindowAddAnchor( currentServerListItem, "topleft", "ServerSelectContent", "topleft", 10, 5)
+                    firstShardDisplayedInList = false
+                else
+                    WindowAddAnchor( currentServerListItem, "bottomleft", previousServerListItem, "topleft", 0, 0)
+                end
+                previousServerListItem = currentServerListItem
+                
+            -- If shard is not a prod shard with language settings matching client, keep in a temporary table for display later.
+            else
+                WindowSetShowing(currentServerListItem, false)
+                if (Login.SearchShardTimeZoneTable(Login.TestShardTimeZones, sortedShardList[index].timeZone)) then
+                    remainingTestShardList[index] = currentServerListItem
+                else
+                    remainingProductionShardList[index] = currentServerListItem
+                end
+            end
+
+            WindowSetId(currentServerListItem, serverId)
+            WindowSetId(currentServerListItem.."Latency", serverId)
+
+            if (serverId == UserData.Settings.Login.lastShardSelected) then
+                Login.CurStageData.CurShardNum = serverId
+                ButtonSetPressedFlag(currentServerListItem.."Name",true)
+                ButtonSetPressedFlag(currentServerListItem.."Population",true)
+                ButtonSetDisabledFlag("ServerSelectWindowOKButton", false)  
+                
+                currentShardWindowName = currentServerListItem
+            end
+        end    
+    end
+    
+    -- Display remaining production shards
+    previousServerListItem = Login.DisplayRemainingShardList(remainingProductionShardList, previousServerListItem)
+    
+    -- Display test shards
+    Login.DisplayRemainingShardList(remainingTestShardList, previousServerListItem)
+    
+    Login.UpdateServerPings()    
+    ScrollWindowUpdateScrollRect("ServerSelectScrollWindow")
+            
+    if currentShardWindowName then
+        WindowUtils.ScrollToElementInScrollWindow( currentShardWindowName, "ServerSelectScrollWindow", "ServerSelectContent" )
+    end
+end
+
+-- Convience method to display remaining items in shard list. Returns the last shardWindowName displayed
+function Login.DisplayRemainingShardList(shardWindowNameList, previousServerListItem)
+    for index, shardWindowName in pairs(shardWindowNameList) do
+        WindowAddAnchor( shardWindowName, "bottomleft", previousServerListItem, "topleft", 0, 0)
+        WindowSetShowing( shardWindowName, true)
+        previousServerListItem = shardWindowName
+    end
+    return previousServerListItem
+end
+
+-- Convenience method to search ShardTimeZone tables
+function Login.SearchShardTimeZoneTable(t, searchValue)
+    for index, value in pairs(t) do
+        if (value == searchValue) then
+            return true
+        end
+    end
+    return false
+end
+
+-- Convenience method to search ShardNum tables
+function Login.SearchShardNumTable(t, searchValue)
+    for index, value in pairs(t) do
+        if (value == searchValue) then
+            return true
+        end
+    end
+    return false
+end
+
+Login.LoginStages[Login.STAGE_SERVERSELECT].Shutdown = function ()
+    for i=1, Login.CurStageData.NumShards do
+        local listItem = "shard_"..i
+        DestroyWindow(listItem)
+    end
+end
+
+function Login.UpdateServerPings()
+    for i=1, Login.CurStageData.NumShards do
+        local currentServerListItem = "shard_"..i
+        if( DoesWindowNameExist(currentServerListItem) == true ) then
+            local serverNum = WindowGetId(currentServerListItem)
+            local shardLatency, packetLoss = GetShardPingInfo(serverNum)
+            if( shardLatency ~= nil and packetLoss ~= nil ) then
+                if( packetLoss == 100 ) then
+                    DynamicImageSetTexture(currentServerListItem.."Latency","Login_CoreTextures", 285, 444)
+                else
+                    if( shardLatency <= 150 ) then
+                        DynamicImageSetTexture(currentServerListItem.."Latency","Login_CoreTextures", 285, 431)
+                    elseif(  shardLatency <= 300 ) then
+                        DynamicImageSetTexture(currentServerListItem.."Latency","Login_CoreTextures", 285, 415)
+                    else
+                        DynamicImageSetTexture(currentServerListItem.."Latency","Login_CoreTextures", 285, 399)
+                    end
+                end
+            end
+        end
+    end
+end
+
+function Login.ServerSelect()
+    for i=1, Login.CurStageData.NumShards do
+        local listItem = "shard_"..i
+        ButtonSetPressedFlag(listItem.."Name",false)
+        ButtonSetPressedFlag(listItem.."Population",false)    
+    end
+    
+    local newServerListItem = SystemData.ActiveWindow.name
+    Login.CurStageData.CurShardNum = WindowGetId(newServerListItem)
+
+    ButtonSetPressedFlag(newServerListItem.."Name",true)
+    ButtonSetPressedFlag(newServerListItem.."Population",true)
+    
+    ButtonSetDisabledFlag("ServerSelectWindowOKButton", false)  
+end
+
+function Login.LoginToSelectedSelect()
+    ButtonSetDisabledFlag("ServerSelectWindowOKButton", true)
+
+    SelectShard(Login.CurStageData.CurShardNum)
+
+    -- login will continue when UpdateCharList event is received, or an error event
+end
+
+function Login.HandleUpdateCharList()
+    -- recalculate Max Possible characters since we are now logged in and have entitlements
+    --Debug.Print("Login.HandleUpdateCharList: Has 10th Anniv Xtra char: "..tostring(HasEntitlement(Login.TENTH_ANNIVERSARY_SEVENTH_CHARACTER_SLOT_ENTITLEMENT)))
+    --Debug.Print("Login.HandleUpdateCharList: Has SEVENTH_ANNIVERSARY_ENTITLEMENT: "..tostring(HasEntitlement(Login.SEVENTH_ANNIVERSARY_ENTITLEMENT)))
+    --Debug.Print("Login.HandleUpdateCharList: Has CharacterCreation.MondainsLegacyEntitlement: "..tostring(HasEntitlement(CharacterCreation.MondainsLegacyEntitlement)))
+
+    Login.MaxPossibleChars = 5
+    
+    if(HasEntitlement(Login.TENTH_ANNIVERSARY_SEVENTH_CHARACTER_SLOT_ENTITLEMENT)) then
+        Login.MaxPossibleChars = 7
+    
+    elseif ((HasEntitlement(Login.SEVENTH_ANNIVERSARY_ENTITLEMENT)) or (HasEntitlement(CharacterCreation.MondainsLegacyEntitlement))) then 
+        Login.MaxPossibleChars = 6
+    end
+        
+    --Debug.Print("Login.HandleUpdateCharList: Login.MaxPossibleChars: "..Login.MaxPossibleChars)
+
+    Login.SetStage(Login.STAGE_CHARACTERSELECT)
+end
+
+function Login.GoBackToLogin()
+    Login.SetStage(Login.STAGE_ACCOUNTPASSWORD)
+end
+
+function Login.GoToAutoSelectShard()
+    Login.SetStage(Login.STAGE_AUTOSELECTSHARD)
+end
+
+function Login.LatencyOnMouseOver()
+    local buttonName = SystemData.ActiveWindow.name
+    local serverId = WindowGetId(buttonName)
+    local shardLatency, packetLoss = GetShardPingInfo(serverId)
+    local text = tostring(shardLatency).."ms"
+    
+    Tooltips.CreateTextOnlyTooltip(buttonName, StringToWString(text))
+    Tooltips.Finalize()
+    Tooltips.AnchorTooltip( Tooltips.ANCHOR_WINDOW_LEFT )
+end
+
+-- Functions to make selectable text light up
+function Login.LitShardName() LabelSetTextColor( "ServerSelectWindowNameHeader", 250, 250, 0   ) end
+function Login.DimShardName() LabelSetTextColor( "ServerSelectWindowNameHeader", 255, 255, 255 ) end
+function Login.LitLatency() LabelSetTextColor( "ServerSelectWindowLatencyHeader", 250, 250, 0   ) end
+function Login.DimLatency() LabelSetTextColor( "ServerSelectWindowLatencyHeader", 255, 255, 255 ) end
+function Login.LitPopulation() LabelSetTextColor( "ServerSelectWindowPopulationHeader", 250, 250, 0   ) end
+function Login.DimPopulation() LabelSetTextColor( "ServerSelectWindowPopulationHeader", 255, 255, 255 ) end
+function Login.LitAutoSelectShard() LabelSetTextColor( "ServerSelectWindowAutoSelectShard", 250, 250, 0   ) end
+function Login.DimAutoSelectShard() LabelSetTextColor( "ServerSelectWindowAutoSelectShard", 255, 255, 255 ) end
+
+--------- CHAR SELECT STAGE BEGIN -------------
+
+Login.LoginStages[Login.STAGE_CHARACTERSELECT].Initialize = function ()
+    Login.CurStageData.CurCharNum = nil
+    Login.CurStageData.NumChars = 0
+
+    WindowAssignFocus("CharacterSelectWindow",true)
+
+    ButtonSetDisabledFlag("CharacterSelectWindowDeleteCharacterButton", true)
+
+    local previousCharacterWindowName=nil
+    
+    -- Create the initial character items and hide them
+    for i=1, Login.CurStageData.MaxChars do
+        local currentCharacterWindowName = "Character_"..i
+        WindowSetShowing(currentCharacterWindowName, false)
+    end    
+    
+    local firstCharacter = true
+    
+    for index, item in pairs(SystemData.Login.charList) do
+        local characterName = StringToWString(item.charName)
+        local characterSlot = item.charSlot
+        
+        -- skip a slot if it's not in use
+        if( characterSlot ~= -1 ) then
+            Login.CurStageData.NumChars = Login.CurStageData.NumChars + 1
+        
+            local currentCharacterWindowName = "Character_"..index
+            
+            WindowSetShowing(currentCharacterWindowName,true)
+            LabelSetText(currentCharacterWindowName.."TextWindowName",characterName )
+            
+            WindowClearAnchors(currentCharacterWindowName)
+            if( firstCharacter ) then
+                WindowAddAnchor( currentCharacterWindowName, "topleft", "CharacterSelectContent", "topleft", 30, 10)
+                firstCharacter = false
+            else
+                WindowAddAnchor( currentCharacterWindowName, "bottomleft", previousCharacterWindowName, "topleft", 0, 5)
+            end
+
+            WindowSetId(currentCharacterWindowName, characterSlot)          
+            previousCharacterWindowName = currentCharacterWindowName
+
+            if ((Login.LoginStages[Login.STAGE_SERVERSELECT].CurShardNum == UserData.Settings.Login.lastShardSelected) and
+                (characterSlot == UserData.Settings.Login.lastCharacterSelected)) then
+                Login.CurStageData.CurCharNum = characterSlot
+                ButtonSetPressedFlag(currentCharacterWindowName.."Background",true )
+                ButtonSetDisabledFlag("CharacterSelectWindowDeleteCharacterButton", false)
+            end
+        end                 
+    end
+
+    --Debug.Print("NumChars: "..Login.CurStageData.NumChars)
+    -- only allow create if they dont already have the max number of character created
+    -- special case for seige (you can only have one char)
+    if ( Login.CurStageData.NumChars < Login.CurStageData.MaxChars and
+        not( (Login.CurStageData.NumChars >= 1) and IsOneCharPerAcct() )) then
+
+        if ( Login.CurStageData.NumChars < Login.MaxPossibleChars) then
+            ButtonSetDisabledFlag("CharacterSelectWindowCreateCharacterButton", false)
+        end
+    else
+        ButtonSetDisabledFlag("CharacterSelectWindowCreateCharacterButton", true)
+    end
+        
+    ScrollWindowUpdateScrollRect("CharacterSelectScrollWindow")
+end
+
+Login.LoginStages[Login.STAGE_CHARACTERSELECT].Shutdown = function ()
+    for i=1, Login.CurStageData.MaxChars do
+        local listItem = "Character_"..i
+        ButtonSetPressedFlag(listItem.."Background",false)
+    end
+end
+
+function Login.CharacterSelect()
+    for i=1, Login.CurStageData.MaxChars do
+        local listItem = "Character_"..i
+        ButtonSetPressedFlag(listItem.."Background",false)
+    end
+    
+    local newCharListItem = SystemData.ActiveWindow.name
+    Login.CurStageData.CurCharNum = WindowGetId(newCharListItem)
+
+    ButtonSetPressedFlag(newCharListItem.."Background",true)
+    
+    ButtonSetDisabledFlag("CharacterSelectWindowDeleteCharacterButton", false)
+end
+
+function Login.GoBackToServerSelect()
+    UndoLogin()
+    TryLogin(Login.LoginStages[Login.STAGE_ACCOUNTPASSWORD].Account, Login.LoginStages[Login.STAGE_ACCOUNTPASSWORD].Password)
+end
+
+function Login.OpenCharacterCreation()
+    if( ButtonGetDisabledFlag("CharacterSelectWindowCreateCharacterButton") == false ) then
+    
+        if (not HasEntitlement(CharacterCreation.MondainsLegacyEntitlement)) then
+            ButtonSetDisabledFlag( "RaceUpButton", true)
+            ButtonSetDisabledFlag( "RaceDownButton", true)
+        end
+
+        CharacterCreation.ResetSelections()
+        Login.SetStage(Login.STAGE_CHARACTERCREATION)
+    end
+end
+
+function Login.DeleteSelectedCharacter()
+    if( ButtonGetDisabledFlag("CharacterSelectWindowDeleteCharacterButton") == false ) then        
+
+        local okayButton = { textTid=UO_Login_StandardDialog.TID_OKAY, callback=Login.DeleteCharacterCallback }
+        local cancelButton = { textTid=UO_Login_StandardDialog.TID_CANCEL }
+        local DeleteConfirmWindow =
+        {
+            windowName = "DeleteConfirmWindow",
+            titleTid = Login.TID.LABEL_23,
+            bodyTid = Login.TID.LABEL_24,
+            hasScrollbar = false,
+            confirmationText = UO_Login_StandardTextConfirmation.ConfirmationText,
+            buttons = { okayButton, cancelButton }
+        }
+
+        UO_Login_StandardTextConfirmation.CreateDialog(DeleteConfirmWindow)
+    end
+end
+
+function Login.DeleteCharacterCallback()
+    DeleteCharacter(Login.CurStageData.CurCharNum)
+end
+
+function Login.StartGameWithSelectedCharacter()
+    if( Login.CurStageData.CurCharNum ~= nil ) then
+        SelectCharacter(Login.CurStageData.CurCharNum)
+        WindowSetShowing ( "CharacterSelectWindow", false)
+    else
+        local NoCharacterWindow =
+        {
+            windowName = "Login",
+            bodyTid = Login.TID.LABEL_21,
+        }
+
+        UO_Login_StandardDialog.CreateDialog(NoCharacterWindow)        
+    end
+end
+
+function Login.PlayNowMouseOut()
+    ButtonSetPressedFlag("CharacterSelectWindowPlayNowButton", false)
+end
+
+
+function Login.HandleChangeCharResult()
+        
+        if(SystemData.Login.statusCode == Login.CHGCHAR_NOT_OLD_ENOUGH) then       
+            Login.ShowErrorMessage(GetStringFromTid(Login.TID.LABEL_CHGCHAR_NOT_OLD_ENOUGH),"Can Not Preform")
+        elseif (SystemData.Login.statusCode == Login.CHGCHAR_BACKING_UP) then
+            Login.ShowErrorMessage(GetStringFromTid(Login.TID.LABEL_CHGCHAR_BACKING_UP ),"Can Not Preform")     
+        elseif (SystemData.Login.statusCode == Login.CHGCHAR_CHAR_IN_USE) then
+            Login.ShowErrorMessage(GetStringFromTid(Login.TID.LABEL_CHGCHAR_CHAR_IN_USE),"Can Not Preform")
+        elseif (SystemData.Login.statusCode == Login.CHGCHAR_DOESNT_EXIST) then
+            Login.ShowErrorMessage(GetStringFromTid(Login.TID.LABEL_CHGCHAR_DOESNT_EXIST),"Can Not Preform")
+        else
+            Login.ShowErrorMessage(GetStringFromTid(Login.TID.LABEL_CHGCHAR_OTHER_PROBLEM),"Can Not Preform")
+        end 
+end
+-------------- CREDITS STAGE BEGIN --------------
+
+function Login.ShowCredits()
+    if( Login.CurLoginStage == Login.STAGE_CREDITS ) then
+        Login.SetStage(Login.LastLoginStage)
+    else
+        Login.SetStage(Login.STAGE_CREDITS)
+    end
+end
+
+function Login.OpenAccountPage()
+    OpenWebBrowser("https://accounts.eamythic.com/")
+end
+
+function Login.OpenUOCom()
+    OpenWebBrowser("https://uo.com")    
+end
+
+function Login.OpenCustomUiWindow()
+    WindowSetShowing("CustomUiWindow",true)
+end
+
+function Login.OpenHelpPage()
+    OpenWebBrowser("https://uo.com/support-welcome/")
+end
+
+function Login.ResetCustomUiComboBox()
+    local skinItr
+    for skinItr = 1, #SystemData.CustomUIList do
+        if( SystemData.Settings.Interface.customUiName == SystemData.CustomUIList[skinItr] ) then
+            ComboBoxSetSelectedMenuItem("CustomUiWindowCustomSkinsCombo", skinItr )
+        end     
+    end   
+end
+
+function Login.OnCustomUiCancel()
+    Login.ResetCustomUiComboBox()
+
+    UO_LoginWindow.CloseDialog()
+end
+
+function Login.OnCustomUiOk()
+    local skinIndex = ComboBoxGetSelectedMenuItem( "CustomUiWindowCustomSkinsCombo" )
+    local skinName = SystemData.CustomUIList[skinIndex]
+    
+    if( skinName ~= SystemData.Settings.Interface.customUiName ) then
+        SystemData.Settings.Interface.customUiName = skinName
+        -- update in code
+        UpdateCustomUI(skinName)
+    end
+    
+    UO_LoginWindow.CloseDialog()
+end
+
+-------------- AUTO SELECT SHARD STAGE BEGIN --------------
+Login.LoginStages[Login.STAGE_AUTOSELECTSHARD].Initialize = function ()
+    Login.LoginStages[Login.STAGE_AUTOSELECTSHARD].SelectedLocation = 1
+    
+    ButtonSetPressedFlag( "AutoSelectShardWindowEastCoastButton", true )
+    ButtonSetPressedFlag( "AutoSelectShardWindowWestCoastButton", false )
+    ButtonSetPressedFlag( "AutoSelectShardWindowJapanButton", false )
+    ButtonSetPressedFlag( "AutoSelectShardWindowEuropeButton", false )
+    ButtonSetPressedFlag( "AutoSelectShardWindowKoreaButton", false )
+    ButtonSetPressedFlag( "AutoSelectShardWindowTaiwanButton", false )
+    ButtonSetPressedFlag( "AutoSelectShardWindowAustraliaButton", false )
+end
+
+Login.LoginStages[Login.STAGE_AUTOSELECTSHARD].Shutdown = function ()
+
+end
+
+function Login.AutoSelectShard_Location_OnLButtonUp()
+    local id = WindowGetId(SystemData.ActiveWindow.name)
+    
+    ButtonSetPressedFlag( "AutoSelectShardWindowEastCoastButton", false )
+    ButtonSetPressedFlag( "AutoSelectShardWindowWestCoastButton", false )
+    ButtonSetPressedFlag( "AutoSelectShardWindowJapanButton", false )
+    ButtonSetPressedFlag( "AutoSelectShardWindowEuropeButton", false )
+    ButtonSetPressedFlag( "AutoSelectShardWindowKoreaButton", false )
+    ButtonSetPressedFlag( "AutoSelectShardWindowTaiwanButton", false )
+    ButtonSetPressedFlag( "AutoSelectShardWindowAustraliaButton", false )
+    
+    if(id == 1) then
+        Login.LoginStages[Login.STAGE_AUTOSELECTSHARD].SelectedLocation = 1
+        ButtonSetPressedFlag( "AutoSelectShardWindowEastCoastButton", true )
+    elseif(id == 2) then
+        Login.LoginStages[Login.STAGE_AUTOSELECTSHARD].SelectedLocation = 2
+        ButtonSetPressedFlag( "AutoSelectShardWindowWestCoastButton", true )
+    elseif(id == 3) then
+        Login.LoginStages[Login.STAGE_AUTOSELECTSHARD].SelectedLocation = 3
+        ButtonSetPressedFlag( "AutoSelectShardWindowJapanButton", true )
+    elseif(id == 4) then
+        Login.LoginStages[Login.STAGE_AUTOSELECTSHARD].SelectedLocation = 4
+        ButtonSetPressedFlag( "AutoSelectShardWindowEuropeButton", true )
+    elseif(id == 5) then
+        Login.LoginStages[Login.STAGE_AUTOSELECTSHARD].SelectedLocation = 5
+        ButtonSetPressedFlag( "AutoSelectShardWindowKoreaButton", true )
+    elseif(id == 6) then
+        Login.LoginStages[Login.STAGE_AUTOSELECTSHARD].SelectedLocation = 6
+        ButtonSetPressedFlag( "AutoSelectShardWindowTaiwanButton", true )
+    elseif(id == 7) then
+        Login.LoginStages[Login.STAGE_AUTOSELECTSHARD].SelectedLocation = 7
+        ButtonSetPressedFlag( "AutoSelectShardWindowAustraliaButton", true )
+    end
+end
+
+function Login.AutoSelectShard_Location_OnMouseOver()
+    local buttonName = SystemData.ActiveWindow.name
+    local id = WindowGetId(buttonName)
+    local text = Login.LoginStages[Login.STAGE_AUTOSELECTSHARD].ShardLocations[id]
+    
+    Tooltips.CreateTextOnlyTooltip(buttonName, StringToWString(text))
+    Tooltips.Finalize()
+    Tooltips.AnchorTooltip( Tooltips.ANCHOR_WINDOW_LEFT )
+end
+
+function Login.OnAutoSelectShardOkayCallback(suggestedShardId)
+    Login.SetStage(Login.STAGE_SERVERSELECT)
+end
+
+function Login.OnAutoSelectShardOkay()
+    local shardList = Login.ProductionShards[Login.LoginStages[Login.STAGE_AUTOSELECTSHARD].SelectedLocation]
+    local suggestedShardId = 0
+    local suggestedShardName = ""
+    local highestPopulation = -1
+
+    for index, shard in pairs(SystemData.Login.shardList) do
+        local serverId = SystemData.Login.shardList[index].shardNum
+        local shardName =  SystemData.Login.shardList[index].shardName
+
+        if ((shardName ~= nil) and (serverId ~= -1) and Login.SearchShardNumTable(shardList, serverId)) then
+            local population = SystemData.Login.shardList[index].percentFull
+            
+            if (population > highestPopulation) then
+                suggestedShardId = serverId
+                suggestedShardName = shardName
+                highestPopulation = population
+            end
+        end
+    end
+    
+    CreateWindow("AutoSelectShardInfoTextWindow", true)
+    LabelSetText("AutoSelectShardInfoTextWindowText", GetStringFromTid(Login.TID.LABEL_RECOMMENDEDSHARD))
+    LabelSetText("AutoSelectShardInfoTextWindowShardName", StringToWString(suggestedShardName))
+    ButtonSetText("AutoSelectShardInfoTextWindowOkayButton", GetStringFromTid(UO_Login_StandardDialog.TID_OKAY))
+    WindowSetId("AutoSelectShardInfoTextWindowOkayButton", suggestedShardId)
+    
+    WindowSetShowing("AutoSelectShardWindow", false)
+end
+
+function Login.OnAutoSelectShardCancel()
+    Login.SetStage(Login.STAGE_SERVERSELECT)
+end
+
+function Login.OnAutoSelectShardInfoTextOkay()
+    local serverId = WindowGetId("AutoSelectShardInfoTextWindowOkayButton")
+    SelectShard(serverId)
+    
+    DestroyWindow("AutoSelectShardInfoTextWindow")
+end
+
+function Login.OnHyperLinkClicked(link)
+    OpenWebBrowser(WStringToString(link))
+end
+
+function Login.OnAccept()
+    Login.TermsAccepted = not Login.TermsAccepted
+    ButtonSetPressedFlag("EULAWindowCheckButton", Login.TermsAccepted )
+    ButtonSetDisabledFlag("EULAWindowAgreeButton", not Login.TermsAccepted)
+end

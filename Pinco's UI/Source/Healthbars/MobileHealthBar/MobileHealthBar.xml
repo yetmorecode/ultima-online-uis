@@ -1,0 +1,1560 @@
+<Interface xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../Interface.xsd">
+  <Windows>
+
+    <Button name="WodIconTemplate" backgroundtexture="WOD" highlighttexture="WOD" texturescale="0.32">
+      <Size>
+        <AbsPoint x="32" y="32" />
+      </Size>
+      <TexCoords>
+        <Normal x="0" y="0" />
+        <NormalHighlit x="0" y="0" />
+        <Pressed x="110" y="0" />
+        <PressedHighlit x="110" y="0" />
+      </TexCoords>
+      <EventHandlers>
+        <EventHandler event="OnLButtonUp" function="MobileHealthBar.OnButtonClick" />
+        <EventHandler event="OnMouseOver" function="MobileHealthBar.OnMouseOver" />
+        <EventHandler event="OnMouseOverEnd" function="MobileHealthBar.Retract" />
+        <EventHandler event="OnUpdate" function="MobileHealthBar.ButtonAvailabilityUpdate"/>
+      </EventHandlers>
+    </Button>
+    
+    <Button name="HonorIconTemplate" backgroundtexture="icon000701" highlighttexture="icon000701" texturescale="0.52">
+      <Size>
+        <AbsPoint x="32" y="32" />
+      </Size>
+      <TexCoords>
+        <Normal x="0" y="0" />
+        <NormalHighlit x="0" y="0" />
+        <Pressed x="0" y="0" />
+        <PressedHighlit x="0" y="0" />
+      </TexCoords>
+      <EventHandlers>
+        <EventHandler event="OnLButtonUp" function="MobileHealthBar.OnButtonClick" />
+        <EventHandler event="OnMouseOver" function="MobileHealthBar.OnMouseOver" />
+        <EventHandler event="OnMouseOverEnd" function="MobileHealthBar.Retract" />
+        <EventHandler event="OnUpdate" function="MobileHealthBar.ButtonAvailabilityUpdate"/>
+      </EventHandlers>
+    </Button>
+    
+    <Button name="ReleaseIconTemplate" backgroundtexture="icon10000138" highlighttexture="icon10000138" texturescale="0.52">
+      <Size>
+        <AbsPoint x="32" y="32" />
+      </Size>
+      <TexCoords>
+        <Normal x="0" y="0" />
+        <NormalHighlit x="0" y="0" />
+        <Pressed x="0" y="0" />
+        <PressedHighlit x="0" y="0" />
+      </TexCoords>
+      <EventHandlers>
+        <EventHandler event="OnLButtonUp" function="MobileHealthBar.OnButtonClick" />
+        <EventHandler event="OnMouseOver" function="MobileHealthBar.OnMouseOver" />
+        <EventHandler event="OnMouseOverEnd" function="MobileHealthBar.Retract" />
+        <EventHandler event="OnUpdate" function="MobileHealthBar.ButtonAvailabilityUpdate"/>
+      </EventHandlers>
+    </Button>
+
+    <Button name="ResurrectionIconTemplate" backgroundtexture="icon000059" highlighttexture="icon000059" texturescale="0.50">
+      <Size>
+        <AbsPoint x="32" y="32" />
+      </Size>
+      <TexCoords>
+        <Normal x="0" y="0" />
+        <NormalHighlit x="0" y="0" />
+        <Pressed x="0" y="0" />
+        <PressedHighlit x="0" y="0" />
+      </TexCoords>
+      <EventHandlers>
+        <EventHandler event="OnLButtonUp" function="MobileHealthBar.OnButtonClick" />
+        <EventHandler event="OnMouseOver" function="MobileHealthBar.OnMouseOver" />
+        <EventHandler event="OnMouseOverEnd" function="MobileHealthBar.Retract" />
+        <EventHandler event="OnUpdate" function="MobileHealthBar.ButtonAvailabilityUpdate"/>
+      </EventHandlers>
+    </Button>
+    
+    <Button name="MassDispelIconTemplate" backgroundtexture="icon000054" highlighttexture="icon000054" texturescale="0.50">
+      <Size>
+        <AbsPoint x="32" y="32" />
+      </Size>
+      <TexCoords>
+        <Normal x="0" y="0" />
+        <NormalHighlit x="0" y="0" />
+        <Pressed x="0" y="0" />
+        <PressedHighlit x="0" y="0" />
+      </TexCoords>
+      <EventHandlers>
+        <EventHandler event="OnLButtonUp" function="MobileHealthBar.OnButtonClick" />
+        <EventHandler event="OnMouseOver" function="MobileHealthBar.OnMouseOver" />
+        <EventHandler event="OnMouseOverEnd" function="MobileHealthBar.Retract" />
+        <EventHandler event="OnUpdate" function="MobileHealthBar.ButtonAvailabilityUpdate"/>
+      </EventHandlers>
+    </Button>
+    
+    <Button name="HealingIconTemplate" backgroundtexture="icon002023" highlighttexture="icon002023" texturescale="0.52">
+      <Size>
+        <AbsPoint x="32" y="32" />
+      </Size>
+      <TexCoords>
+        <Normal x="0" y="0" />
+        <NormalHighlit x="0" y="0" />
+        <Pressed x="0" y="0" />
+        <PressedHighlit x="0" y="0" />
+      </TexCoords>
+      <EventHandlers>
+        <EventHandler event="OnLButtonUp" function="MobileHealthBar.OnButtonClick" />
+        <EventHandler event="OnMouseOver" function="MobileHealthBar.OnMouseOver" />
+        <EventHandler event="OnMouseOverEnd" function="MobileHealthBar.Retract" />
+        <EventHandler event="OnUpdate" function="MobileHealthBar.ButtonAvailabilityUpdate"/>
+      </EventHandlers>
+    </Button>
+    
+    <Button name="VeterinaryIconTemplate" backgroundtexture="icon10002054" highlighttexture="icon10002054" texturescale="0.52">
+      <Size>
+        <AbsPoint x="32" y="32" />
+      </Size>
+      <TexCoords>
+        <Normal x="0" y="0" />
+        <NormalHighlit x="0" y="0" />
+        <Pressed x="0" y="0" />
+        <PressedHighlit x="0" y="0" />
+      </TexCoords>
+      <EventHandlers>
+        <EventHandler event="OnLButtonUp" function="MobileHealthBar.OnButtonClick" />
+        <EventHandler event="OnMouseOver" function="MobileHealthBar.OnMouseOver" />
+        <EventHandler event="OnMouseOverEnd" function="MobileHealthBar.Retract" />
+        <EventHandler event="OnUpdate" function="MobileHealthBar.ButtonAvailabilityUpdate"/>
+      </EventHandlers>
+    </Button>
+    
+    <Button name="RenameIconTemplate" backgroundtexture="icon875122" highlighttexture="icon875122" texturescale="0.52">
+      <Size>
+        <AbsPoint x="32" y="32" />
+      </Size>
+      <TexCoords>
+        <Normal x="0" y="0" />
+        <NormalHighlit x="0" y="0" />
+        <Pressed x="0" y="0" />
+        <PressedHighlit x="0" y="0" />
+      </TexCoords>
+      <EventHandlers>
+        <EventHandler event="OnLButtonUp" function="MobileHealthBar.OnButtonClick" />
+        <EventHandler event="OnMouseOver" function="MobileHealthBar.OnMouseOver" />
+        <EventHandler event="OnMouseOverEnd" function="MobileHealthBar.Retract" />
+        <EventHandler event="OnUpdate" function="MobileHealthBar.ButtonAvailabilityUpdate"/>
+      </EventHandlers>
+    </Button>
+    
+    <Button name="AnimalLoreIconTemplate" backgroundtexture="icon10002003" highlighttexture="icon10002003" texturescale="0.52">
+      <Size>
+        <AbsPoint x="32" y="32" />
+      </Size>
+      <TexCoords>
+        <Normal x="0" y="0" />
+        <NormalHighlit x="0" y="0" />
+        <Pressed x="0" y="0" />
+        <PressedHighlit x="0" y="0" />
+      </TexCoords>
+      <EventHandlers>
+        <EventHandler event="OnLButtonUp" function="MobileHealthBar.OnButtonClick" />
+        <EventHandler event="OnMouseOver" function="MobileHealthBar.OnMouseOver" />
+        <EventHandler event="OnMouseOverEnd" function="MobileHealthBar.Retract" />
+        <EventHandler event="OnUpdate" function="MobileHealthBar.ButtonAvailabilityUpdate"/>
+      </EventHandlers>
+    </Button>
+    
+    <Button name="GuardIconTemplate" backgroundtexture="icon10000130" highlighttexture="icon10000130" texturescale="0.52">
+      <Size>
+        <AbsPoint x="32" y="32" />
+      </Size>
+      <TexCoords>
+        <Normal x="0" y="0" />
+        <NormalHighlit x="0" y="0" />
+        <Pressed x="0" y="0" />
+        <PressedHighlit x="0" y="0" />
+      </TexCoords>
+      <EventHandlers>
+        <EventHandler event="OnLButtonUp" function="MobileHealthBar.OnButtonClick" />
+        <EventHandler event="OnMouseOver" function="MobileHealthBar.OnMouseOver" />
+        <EventHandler event="OnMouseOverEnd" function="MobileHealthBar.Retract" />
+        <EventHandler event="OnUpdate" function="MobileHealthBar.ButtonAvailabilityUpdate"/>
+      </EventHandlers>
+    </Button>
+    
+    <Button name="KillIconTemplate" backgroundtexture="icon10000134" highlighttexture="icon10000134" texturescale="0.52">
+      <Size>
+        <AbsPoint x="32" y="32" />
+      </Size>
+      <TexCoords>
+        <Normal x="0" y="0" />
+        <NormalHighlit x="0" y="0" />
+        <Pressed x="0" y="0" />
+        <PressedHighlit x="0" y="0" />
+      </TexCoords>
+      <EventHandlers>
+        <EventHandler event="OnLButtonUp" function="MobileHealthBar.OnButtonClick" />
+        <EventHandler event="OnMouseOver" function="MobileHealthBar.OnMouseOver" />
+        <EventHandler event="OnMouseOverEnd" function="MobileHealthBar.Retract" />
+        <EventHandler event="OnUpdate" function="MobileHealthBar.ButtonAvailabilityUpdate"/>
+      </EventHandlers>
+    </Button>
+    
+    <Button name="FollowIconTemplate" backgroundtexture="icon10000131" highlighttexture="icon10000131" texturescale="0.52">
+      <Size>
+        <AbsPoint x="32" y="32" />
+      </Size>
+      <TexCoords>
+        <Normal x="0" y="0" />
+        <NormalHighlit x="0" y="0" />
+        <Pressed x="0" y="0" />
+        <PressedHighlit x="0" y="0" />
+      </TexCoords>
+      <EventHandlers>
+        <EventHandler event="OnLButtonUp" function="MobileHealthBar.OnButtonClick" />
+        <EventHandler event="OnMouseOver" function="MobileHealthBar.OnMouseOver" />
+        <EventHandler event="OnMouseOverEnd" function="MobileHealthBar.Retract" />
+        <EventHandler event="OnUpdate" function="MobileHealthBar.ButtonAvailabilityUpdate"/>
+      </EventHandlers>
+    </Button>
+    
+    <Button name="StayIconTemplate" backgroundtexture="icon10000137" highlighttexture="icon10000137" texturescale="0.52">
+      <Size>
+        <AbsPoint x="32" y="32" />
+      </Size>
+      <TexCoords>
+        <Normal x="0" y="0" />
+        <NormalHighlit x="0" y="0" />
+        <Pressed x="0" y="0" />
+        <PressedHighlit x="0" y="0" />
+      </TexCoords>
+      <EventHandlers>
+        <EventHandler event="OnLButtonUp" function="MobileHealthBar.OnButtonClick" />
+        <EventHandler event="OnMouseOver" function="MobileHealthBar.OnMouseOver" />
+        <EventHandler event="OnMouseOverEnd" function="MobileHealthBar.Retract" />
+        <EventHandler event="OnUpdate" function="MobileHealthBar.ButtonAvailabilityUpdate"/>
+      </EventHandlers>
+    </Button>
+    
+    <Button name="StopIconTemplate" backgroundtexture="icon10000135" highlighttexture="icon10000135" texturescale="0.52">
+      <Size>
+        <AbsPoint x="32" y="32" />
+      </Size>
+      <TexCoords>
+        <Normal x="0" y="0" />
+        <NormalHighlit x="0" y="0" />
+        <Pressed x="0" y="0" />
+        <PressedHighlit x="0" y="0" />
+      </TexCoords>
+      <EventHandlers>
+        <EventHandler event="OnLButtonUp" function="MobileHealthBar.OnButtonClick" />
+        <EventHandler event="OnMouseOver" function="MobileHealthBar.OnMouseOver" />
+        <EventHandler event="OnMouseOverEnd" function="MobileHealthBar.Retract" />
+        <EventHandler event="OnUpdate" function="MobileHealthBar.ButtonAvailabilityUpdate"/>
+      </EventHandlers>
+    </Button>
+    
+    <Button name="StableIconTemplate" backgroundtexture="icon855012" highlighttexture="icon855012" texturescale="0.52">
+      <Size>
+        <AbsPoint x="32" y="32" />
+      </Size>
+      <TexCoords>
+        <Normal x="0" y="0" />
+        <NormalHighlit x="0" y="0" />
+        <Pressed x="0" y="0" />
+        <PressedHighlit x="0" y="0" />
+      </TexCoords>
+      <EventHandlers>
+        <EventHandler event="OnLButtonUp" function="MobileHealthBar.OnButtonClick" />
+        <EventHandler event="OnMouseOver" function="MobileHealthBar.OnMouseOver" />
+        <EventHandler event="OnMouseOverEnd" function="MobileHealthBar.Retract" />
+        <EventHandler event="OnUpdate" function="MobileHealthBar.ButtonAvailabilityUpdate"/>
+      </EventHandlers>
+    </Button>
+    
+    <Button name="BuyIconTemplate" backgroundtexture="icon10000110" highlighttexture="icon10000110" texturescale="0.6">
+      <Size>
+        <AbsPoint x="32" y="32" />
+      </Size>
+      <TexCoords>
+        <Normal x="0" y="0" />
+        <NormalHighlit x="0" y="0" />
+        <Pressed x="0" y="0" />
+        <PressedHighlit x="0" y="0" />
+      </TexCoords>
+      <EventHandlers>
+        <EventHandler event="OnLButtonUp" function="MobileHealthBar.OnButtonClick" />
+        <EventHandler event="OnMouseOver" function="MobileHealthBar.OnMouseOver" />
+        <EventHandler event="OnMouseOverEnd" function="MobileHealthBar.Retract" />
+        <EventHandler event="OnUpdate" function="MobileHealthBar.ButtonAvailabilityUpdate"/>
+      </EventHandlers>
+    </Button>
+
+    <Button name="SellIconTemplate" backgroundtexture="icon10000111" highlighttexture="icon10000111" texturescale="0.6">
+      <Size>
+        <AbsPoint x="32" y="32" />
+      </Size>
+      <TexCoords>
+        <Normal x="0" y="0" />
+        <NormalHighlit x="0" y="0" />
+        <Pressed x="0" y="0" />
+        <PressedHighlit x="0" y="0" />
+      </TexCoords>
+      <EventHandlers>
+        <EventHandler event="OnLButtonUp" function="MobileHealthBar.OnButtonClick" />
+        <EventHandler event="OnMouseOver" function="MobileHealthBar.OnMouseOver" />
+        <EventHandler event="OnMouseOverEnd" function="MobileHealthBar.Retract" />
+        <EventHandler event="OnUpdate" function="MobileHealthBar.ButtonAvailabilityUpdate"/>
+      </EventHandlers>
+    </Button>
+
+    <Button name="BankIconTemplate" backgroundtexture="bank" highlighttexture="bank" texturescale="0.5">
+      <Size>
+        <AbsPoint x="32" y="32" />
+      </Size>
+      <TexCoords>
+        <Normal x="0" y="0" />
+        <NormalHighlit x="0" y="0" />
+        <Pressed x="0" y="0" />
+        <PressedHighlit x="0" y="0" />
+      </TexCoords>
+      <EventHandlers>
+        <EventHandler event="OnLButtonUp" function="MobileHealthBar.OnButtonClick" />
+        <EventHandler event="OnMouseOver" function="MobileHealthBar.OnMouseOver" />
+        <EventHandler event="OnMouseOverEnd" function="MobileHealthBar.Retract" />
+        <EventHandler event="OnUpdate" function="MobileHealthBar.ButtonAvailabilityUpdate"/>
+      </EventHandlers>
+    </Button>
+
+    <Button name="TalkIconTemplate" backgroundtexture="talk" highlighttexture="talk" texturescale="0.5">
+      <Size>
+        <AbsPoint x="32" y="32" />
+      </Size>
+      <TexCoords>
+        <Normal x="0" y="0" />
+        <NormalHighlit x="0" y="0" />
+        <Pressed x="0" y="0" />
+        <PressedHighlit x="0" y="0" />
+      </TexCoords>
+      <EventHandlers>
+        <EventHandler event="OnLButtonUp" function="MobileHealthBar.OnButtonClick" />
+        <EventHandler event="OnMouseOver" function="MobileHealthBar.OnMouseOver" />
+        <EventHandler event="OnMouseOverEnd" function="MobileHealthBar.Retract" />
+        <EventHandler event="OnUpdate" function="MobileHealthBar.ButtonAvailabilityUpdate"/>
+      </EventHandlers>
+    </Button>
+
+    <Button name="BodIconTemplate" backgroundtexture="bod" highlighttexture="bod" texturescale="0.5">
+      <Size>
+        <AbsPoint x="32" y="32" />
+      </Size>
+      <TexCoords>
+        <Normal x="0" y="0" />
+        <NormalHighlit x="0" y="0" />
+        <Pressed x="0" y="0" />
+        <PressedHighlit x="0" y="0" />
+      </TexCoords>
+      <EventHandlers>
+        <EventHandler event="OnLButtonUp" function="MobileHealthBar.OnButtonClick" />
+        <EventHandler event="OnMouseOver" function="MobileHealthBar.OnMouseOver" />
+        <EventHandler event="OnMouseOverEnd" function="MobileHealthBar.Retract" />
+        <EventHandler event="OnUpdate" function="MobileHealthBar.ButtonAvailabilityUpdate"/>
+      </EventHandlers>
+    </Button>
+
+    <Button name="BribeIconTemplate" backgroundtexture="icon10000419" highlighttexture="icon10000419" texturescale="0.6">
+      <Size>
+        <AbsPoint x="32" y="32" />
+      </Size>
+      <TexCoords>
+        <Normal x="0" y="0" />
+        <NormalHighlit x="0" y="0" />
+        <Pressed x="0" y="0" />
+        <PressedHighlit x="0" y="0" />
+      </TexCoords>
+      <EventHandlers>
+        <EventHandler event="OnLButtonUp" function="MobileHealthBar.OnButtonClick" />
+        <EventHandler event="OnMouseOver" function="MobileHealthBar.OnMouseOver" />
+        <EventHandler event="OnMouseOverEnd" function="MobileHealthBar.Retract" />
+        <EventHandler event="OnUpdate" function="MobileHealthBar.ButtonAvailabilityUpdate"/>
+      </EventHandlers>
+    </Button>
+
+    <Button name="PetInventoryIconTemplate" backgroundtexture="bpack" highlighttexture="bpack" texturescale="0.5">
+      <Size>
+        <AbsPoint x="32" y="32" />
+      </Size>
+      <TexCoords>
+        <Normal x="0" y="0" />
+        <NormalHighlit x="0" y="0" />
+        <Pressed x="0" y="0" />
+        <PressedHighlit x="0" y="0" />
+      </TexCoords>
+      <EventHandlers>
+        <EventHandler event="OnLButtonUp" function="MobileHealthBar.OnButtonClick" />
+        <EventHandler event="OnMouseOver" function="MobileHealthBar.OnMouseOver" />
+        <EventHandler event="OnMouseOverEnd" function="MobileHealthBar.Retract" />
+        <EventHandler event="OnUpdate" function="MobileHealthBar.ButtonAvailabilityUpdate"/>
+      </EventHandlers>
+    </Button>
+
+    <Button name="MobilePropertiesIconTemplate" backgroundtexture="Help" highlighttexture="Help" texturescale="0.5">
+      <Size>
+        <AbsPoint x="14" y="15" />
+      </Size>
+      <TexCoords>
+        <Normal x="0" y="0" />
+        <NormalHighlit x="84" y="0" />
+        <Pressed x="0" y="0" />
+        <PressedHighlit x="0" y="0" />
+        <Disabled x="112" y="0" />
+      </TexCoords>
+      <EventHandlers>
+        <EventHandler event="OnMouseOver" function="MobileHealthBar.OnMouseOver" />
+        <EventHandler event="OnMouseOverEnd" function="MobileHealthBar.Retract" />
+        <EventHandler event="OnUpdate" function="MobileHealthBar.ButtonAvailabilityUpdate"/>
+      </EventHandlers>
+    </Button>
+
+    <Button name="QuestGiverIconTemplate" backgroundtexture="icon100122" highlighttexture="icon100122" texturescale="0.5">
+      <Size>
+        <AbsPoint x="5" y="14" />
+      </Size>
+      <TexCoords>
+        <Normal x="0" y="0" />
+        <NormalHighlit x="84" y="0" />
+        <Pressed x="0" y="0" />
+        <PressedHighlit x="0" y="0" />
+        <Disabled x="112" y="0" />
+      </TexCoords>
+      <EventHandlers>
+        <EventHandler event="OnMouseOver" function="MobileHealthBar.OnMouseOver" />
+        <EventHandler event="OnMouseOverEnd" function="MobileHealthBar.Retract" />
+        <EventHandler event="OnUpdate" function="MobileHealthBar.ButtonAvailabilityUpdate"/>
+      </EventHandlers>
+    </Button>
+
+    <Button name="CrownIconTemplate" backgroundtexture="leader" highlighttexture="leader"  texturescale="0.2" >
+      <Size>
+        <AbsPoint x="15" y="15" />
+      </Size>
+      <TexCoords>
+        <Normal x="0" y="0" />
+        <NormalHighlit x="0" y="0" />
+        <Pressed x="0" y="0" />
+        <PressedHighlit x="0" y="0" />
+        <Disabled x="0" y="0" />
+      </TexCoords>
+      <EventHandlers>
+        <EventHandler event="OnMouseOver" function="MobileHealthBar.OnMouseOver" />
+        <EventHandler event="OnMouseOverEnd" function="MobileHealthBar.Retract" />
+        <EventHandler event="OnUpdate" function="MobileHealthBar.ButtonAvailabilityUpdate"/>
+      </EventHandlers>
+    </Button>
+
+    <Button name="PinIconTemplate" backgroundtexture="PinGreen" highlighttexture="PinGreen" texturescale="0.75" layer="overlay">
+      <Size>
+        <AbsPoint x="14" y="15" />
+      </Size>
+      <TexCoords>
+        <Normal x="0" y="0" />
+        <NormalHighlit x="0" y="0" />
+        <Pressed x="0" y="0" />
+        <PressedHighlit x="0" y="0" />
+        <Disabled x="0" y="0" />
+      </TexCoords>
+      <EventHandlers>
+        <EventHandler event="OnLButtonUp" function="MobileHealthBar.OnButtonClick" />
+        <EventHandler event="OnMouseOver" function="MobileHealthBar.OnMouseOver" />
+        <EventHandler event="OnMouseOverEnd" function="MobileHealthBar.Retract" />
+        <EventHandler event="OnUpdate" function="MobileHealthBar.ButtonAvailabilityUpdate"/>
+      </EventHandlers>
+    </Button>
+
+    <Button name="RedButtonTemplate">
+      <Size>
+        <AbsPoint x="36" y="36" />
+      </Size>
+      <EventHandlers>
+        <EventHandler event="OnRButtonUp" function="MobileHealthBar.SpellChangeContext" />       
+        <EventHandler event="OnLButtonUp" function="MobileHealthBar.OnButtonClick" />
+        <EventHandler event="OnMouseOver" function="MobileHealthBar.OnMouseOver" />
+        <EventHandler event="OnMouseOverEnd" function="MobileHealthBar.Retract" />
+        <EventHandler event="OnUpdate" function="MobileHealthBar.ButtonAvailabilityUpdate"/>
+      </EventHandlers>
+
+      <Windows>
+        <DynamicImage name="$parentSquareIconBG" texturescale="0.60" texture="BloodRedIcon" handleinput="false" layer="background" alpha="0.5">
+          <Size>
+            <AbsPoint x="36" y="36" />
+          </Size>
+          <Anchors>
+            <Anchor point="center" relativePoint="center" relativeTo="$parent">
+              <AbsPoint x="0" y="0" />
+            </Anchor>
+          </Anchors>
+        </DynamicImage>
+
+        <DynamicImage name="$parentSquareIcon" texturescale="0.46" handleinput="false" layer="default">
+          <Size>
+            <AbsPoint x="30" y="30" />
+          </Size>
+          <Anchors>
+            <Anchor point="center" relativePoint="center" relativeTo="$parent">
+              <AbsPoint x="1" y="1" />
+            </Anchor>
+          </Anchors>
+        </DynamicImage>
+      </Windows>
+    </Button>
+
+    <Button name="GreenButtonTemplate">
+      <Size>
+        <AbsPoint x="36" y="36" />
+      </Size>
+      <EventHandlers>
+        <EventHandler event="OnRButtonUp" function="MobileHealthBar.SpellChangeContext" />
+        <EventHandler event="OnLButtonUp" function="MobileHealthBar.OnButtonClick" />
+        <EventHandler event="OnMouseOver" function="MobileHealthBar.OnMouseOver" />
+        <EventHandler event="OnMouseOverEnd" function="MobileHealthBar.Retract" />
+        <EventHandler event="OnUpdate" function="MobileHealthBar.ButtonAvailabilityUpdate"/>
+      </EventHandlers>
+
+      <Windows>
+        <DynamicImage name="$parentSquareIconBG" texturescale="0.60" texture="NoxGreenIcon" handleinput="false" layer="background" alpha="0.5">
+          <Size>
+            <AbsPoint x="36" y="36" />
+          </Size>
+          <Anchors>
+            <Anchor point="center" relativePoint="center" relativeTo="$parent">
+              <AbsPoint x="0" y="0" />
+            </Anchor>
+          </Anchors>
+        </DynamicImage>
+
+        <DynamicImage name="$parentSquareIcon" texturescale="0.46" handleinput="false" layer="default">
+          <Size>
+            <AbsPoint x="30" y="30" />
+          </Size>
+          <Anchors>
+            <Anchor point="center" relativePoint="center" relativeTo="$parent">
+              <AbsPoint x="1" y="1" />
+            </Anchor>
+          </Anchors>
+        </DynamicImage>
+      </Windows>
+    </Button>
+
+    <Button name="BlueButtonTemplate">
+      <Size>
+        <AbsPoint x="36" y="36" />
+      </Size>
+      <EventHandlers>
+        <EventHandler event="OnRButtonUp" function="MobileHealthBar.SpellChangeContext" />
+        <EventHandler event="OnLButtonUp" function="MobileHealthBar.OnButtonClick" />
+        <EventHandler event="OnMouseOver" function="MobileHealthBar.OnMouseOver" />
+        <EventHandler event="OnMouseOverEnd" function="MobileHealthBar.Retract" />
+        <EventHandler event="OnUpdate" function="MobileHealthBar.ButtonAvailabilityUpdate"/>
+      </EventHandlers>
+
+      <Windows>
+        <DynamicImage name="$parentSquareIconBG" texturescale="0.60" texture="NightBlueIcon" handleinput="false" layer="background" alpha="0.5">
+          <Size>
+            <AbsPoint x="36" y="36" />
+          </Size>
+          <Anchors>
+            <Anchor point="center" relativePoint="center" relativeTo="$parent">
+              <AbsPoint x="0" y="0" />
+            </Anchor>
+          </Anchors>
+        </DynamicImage>
+
+        <DynamicImage name="$parentSquareIcon" texturescale="0.46" handleinput="false" layer="default">
+          <Size>
+            <AbsPoint x="30" y="30" />
+          </Size>
+          <Anchors>
+            <Anchor point="center" relativePoint="center" relativeTo="$parent">
+              <AbsPoint x="1" y="1" />
+            </Anchor>
+          </Anchors>
+        </DynamicImage>
+      </Windows>
+    </Button>
+
+    <HorizontalResizeImage name="RedLine" texture="mobileBar" texturescale="1">
+      <Size>
+        <AbsPoint x="130" y="10" />
+      </Size>
+      <Sizes left="170" middle="0" right="0" />
+      <TexCoords>
+        <Left x="0" y="0" />
+        <Middle x="65" y="0" />
+        <Right x="130" y="0" />
+      </TexCoords>
+    </HorizontalResizeImage>
+
+    <HorizontalResizeImage name="WhiteLine" texture="mobileBar" texturescale="1">
+      <Size>
+        <AbsPoint x="130" y="10" />
+      </Size>
+      <Sizes left="170" middle="0" right="0" />
+      <TexCoords>
+        <Left x="0" y="0" />
+        <Middle x="65" y="0" />
+        <Right x="130" y="0" />
+      </TexCoords>
+    </HorizontalResizeImage>
+
+    <Window name="ButtonsBarTemplate" handleinput="true" layer="secondary">
+      <Size>
+        <AbsPoint x="130" y="20" />
+      </Size>
+      <EventHandlers>
+        <EventHandler event="OnMouseOver" function="MobileHealthBar.Expand" />
+        <EventHandler event="OnMouseOverEnd" function="MobileHealthBar.Retract" />
+      </EventHandlers>
+      <Windows>
+        
+        <Button name="$parentRedButton" backgroundtexture="redButton" highlighttexture="redButton" texturescale="1">
+          <Size>
+            <AbsPoint x="17" y="17" />
+          </Size>
+          <Anchors>
+            <Anchor point="left" relativePoint="left" relativeTo="$parent">
+              <AbsPoint x="15" y="1" />
+            </Anchor>
+          </Anchors>
+          <TexCoords>
+            <Normal  x="0" y="0" />
+            <NormalHighlit x="18" y="0" />
+            <Pressed x="18" y="0" />
+            <PressedHighlit x="18" y="0" />
+          </TexCoords>
+          <EventHandlers>
+            <EventHandler event="OnRButtonUp" function="MobileHealthBar.SpellChangeContext" />
+            <EventHandler event="OnLButtonUp" function="MobileHealthBar.OnButtonClick" />
+            <EventHandler event="OnMouseOver" function="MobileHealthBar.OnMouseOver" />
+            <EventHandler event="OnMouseOverEnd" function="MobileHealthBar.Retract" />
+          </EventHandlers>
+        </Button>
+        
+        <Button name="$parentGreenButton" backgroundtexture="greenButton" highlighttexture="greenButton" texturescale="1">
+          <Size>
+            <AbsPoint x="17" y="17" />
+          </Size>
+          <Anchors>
+            <Anchor point="right" relativePoint="left" relativeTo="$parentRedButton">
+              <AbsPoint x="3" y="0" />
+            </Anchor>
+          </Anchors>
+          <TexCoords>
+            <Normal  x="0" y="0" />
+            <NormalHighlit x="18" y="0" />
+            <Pressed x="18" y="0" />
+            <PressedHighlit x="18" y="0" />
+          </TexCoords>
+          <EventHandlers>
+            <EventHandler event="OnRButtonUp" function="MobileHealthBar.SpellChangeContext" />
+            <EventHandler event="OnLButtonUp" function="MobileHealthBar.OnButtonClick" />
+            <EventHandler event="OnMouseOver" function="MobileHealthBar.OnMouseOver" />
+            <EventHandler event="OnMouseOverEnd" function="MobileHealthBar.Retract" />
+          </EventHandlers>
+        </Button>
+        
+        <Button name="$parentBlueButton" backgroundtexture="blueButton" highlighttexture="blueButton" texturescale="1">
+          <Size>
+            <AbsPoint x="17" y="17" />
+          </Size>
+          <Anchors>
+            <Anchor point="right" relativePoint="left" relativeTo="$parentGreenButton">
+              <AbsPoint x="3" y="0" />
+            </Anchor>
+          </Anchors>
+          <TexCoords>
+            <Normal  x="0" y="0" />
+            <NormalHighlit x="18" y="0" />
+            <Pressed x="18" y="0" />
+            <PressedHighlit x="18" y="0" />
+          </TexCoords>
+          <EventHandlers>
+            <EventHandler event="OnRButtonUp" function="MobileHealthBar.SpellChangeContext" />
+            <EventHandler event="OnLButtonUp" function="MobileHealthBar.OnButtonClick" />
+            <EventHandler event="OnMouseOver" function="MobileHealthBar.OnMouseOver" />
+            <EventHandler event="OnMouseOverEnd" function="MobileHealthBar.Retract" />
+          </EventHandlers>
+        </Button>
+        
+        <Button name="$parentGoldButton" backgroundtexture="goldButton" highlighttexture="goldButton" texturescale="1">
+          <Size>
+            <AbsPoint x="17" y="17" />
+          </Size>
+          <Anchors>
+            <Anchor point="right" relativePoint="left" relativeTo="$parentBlueButton">
+              <AbsPoint x="3" y="0" />
+            </Anchor>
+          </Anchors>
+          <TexCoords>
+            <Normal  x="0" y="0" />
+            <NormalHighlit x="18" y="0" />
+            <Pressed x="18" y="0" />
+            <PressedHighlit x="18" y="0" />
+          </TexCoords>
+          <EventHandlers>
+            <EventHandler event="OnRButtonUp" function="MobileHealthBar.SpellChangeContext" />
+            <EventHandler event="OnLButtonUp" function="MobileHealthBar.OnButtonClick" />
+            <EventHandler event="OnMouseOver" function="MobileHealthBar.OnMouseOver" />
+            <EventHandler event="OnMouseOverEnd" function="MobileHealthBar.Retract" />
+          </EventHandlers>
+        </Button>
+
+        <Button name="$parentPurpleButton" backgroundtexture="purpleButton" highlighttexture="purpleButton" texturescale="1">
+          <Size>
+            <AbsPoint x="17" y="17" />
+          </Size>
+          <Anchors>
+            <Anchor point="right" relativePoint="left" relativeTo="$parentGoldButton">
+              <AbsPoint x="3" y="0" />
+            </Anchor>
+          </Anchors>
+          <TexCoords>
+            <Normal  x="0" y="0" />
+            <NormalHighlit x="18" y="0" />
+            <Pressed x="18" y="0" />
+            <PressedHighlit x="18" y="0" />
+          </TexCoords>
+          <EventHandlers>
+            <EventHandler event="OnRButtonUp" function="MobileHealthBar.SpellChangeContext" />
+            <EventHandler event="OnLButtonUp" function="MobileHealthBar.OnButtonClick" />
+            <EventHandler event="OnMouseOver" function="MobileHealthBar.OnMouseOver" />
+            <EventHandler event="OnMouseOverEnd" function="MobileHealthBar.Retract" />
+          </EventHandlers>
+        </Button>
+      </Windows>
+    </Window>
+    
+    <Window name="MobileHealthBar_INVULNERABLE" movable="false" draganddrop="true" sticky="true">
+      <Size>
+        <AbsPoint x="160" y="35" />
+      </Size>
+
+      <EventHandlers>
+        <EventHandler event="OnMouseOver" function="MobileHealthBar.Expand" />
+        <EventHandler event="OnMouseOverEnd" function="MobileHealthBar.Retract" />
+        <EventHandler event="OnMouseWheel" function="WindowUtils.Scale" />
+        <EventHandler event="OnShutdown" function="MobileHealthBar.Shutdown" />
+        <EventHandler event="OnRButtonUp" function="MobileHealthBar.OnRButtonUp" />
+        <EventHandler event="OnLButtonUp" function="MobileHealthBar.OnLButtonUp" />
+        <EventHandler event="OnLButtonDblClk" function="MobileHealthBar.OnLButtonDblClk" />
+        <EventHandler event="OnUpdate" function="MobileHealthBar.BarUpdate"/>
+      </EventHandlers>
+
+      <Windows>
+        <FullResizeImage name="$parentFrame" inherits="UO_Simple_Frame" layer="background" frameonly="false">
+          <Anchors>
+            <Anchor point="topleft" relativePoint="topleft" />
+            <Anchor point="bottomright" relativePoint="bottomright" />
+          </Anchors>
+        </FullResizeImage>
+
+        <FullResizeImage name="$parentFrameHighlight" inherits="UO_Default_Inner_Window_Frame" layer="overlay" frameonly="false">
+          <Anchors>
+            <Anchor point="topleft" relativePoint="topleft" >
+              <AbsPoint x="-2" y="-2" />
+            </Anchor>
+            <Anchor point="bottomright" relativePoint="bottomright" >
+              <AbsPoint x="1" y="2" />
+            </Anchor>
+          </Anchors>
+        </FullResizeImage>
+
+        <DynamicImage name="$parentDisabled" texture="disabled" texturescale="3.125" layer="secondary">
+          <Anchors>
+            <Anchor point="topleft" relativePoint="topleft" >
+              <AbsPoint x="-2" y="-2" />
+            </Anchor>
+            <Anchor point="bottomright" relativePoint="bottomright" >
+              <AbsPoint x="1" y="2" />
+            </Anchor>
+          </Anchors>
+          <TintColor r="50" g="50" b="50" a="255"/>
+          <EventHandlers>
+            <EventHandler event="OnMouseOver" function="MobileHealthBar.TogglePin" />
+            <EventHandler event="OnMouseOverEnd" function="MobileHealthBar.TogglePin" />
+          </EventHandlers>
+        </DynamicImage>
+
+        <Label name="$parentName" font="Arial_Black_Shadow_12" maxchars="60" textalign="center" handleinput="false" wordwrap="false" popable="false">
+          <Size>
+            <AbsPoint x="130" y="12" />
+          </Size>
+          <Anchors>
+            <Anchor point="top" relativePoint="center" relativeTo="$parent">
+              <AbsPoint x="0" y="5" />
+            </Anchor>
+          </Anchors>
+          <Color r="255" g="255" b="255" a="255" />
+        </Label>
+
+        <Label name="$parentTitle" font="Arial_Black_Shadow_12" maxchars="60" textalign="center" handleinput="false" wordwrap="false" popable="false">
+          <Size>
+            <AbsPoint x="130" y="12" />
+          </Size>
+          <Anchors>
+            <Anchor point="bottom" relativePoint="top" relativeTo="$parentName">
+              <AbsPoint x="0" y="5" />
+            </Anchor>
+          </Anchors>
+          <Color r="255" g="255" b="255" a="255" />
+        </Label>
+
+        <Button name="$parentMobileProperties" inherits="MobilePropertiesIconTemplate">
+          <Anchors>
+            <Anchor point="topleft" relativePoint="topleft" >
+              <AbsPoint x="3" y="3" />
+            </Anchor>
+          </Anchors>
+        </Button>
+        
+        <Button name="$parentPinBar" inherits="PinIconTemplate">
+          <Anchors>
+            <Anchor point="bottomleft" relativePoint="topleft" relativeTo="$parentMobileProperties" >
+              <AbsPoint x="-2" y="1" />
+            </Anchor>
+          </Anchors>
+        </Button>
+
+        <Button name="$parentQuestGiver" inherits="QuestGiverIconTemplate">
+          <Anchors>
+            <Anchor point="topright" relativePoint="topright" >
+              <AbsPoint x="-10" y="3" />
+            </Anchor>
+          </Anchors>
+        </Button>
+
+        <Window name="$parentButtons">
+          <Size>
+            <AbsPoint x="160" y="40" />
+          </Size>
+          <Anchors>
+            <Anchor point="topleft" relativePoint="topleft" relativeTo="$parent">
+              <AbsPoint x="-2" y="35" />
+            </Anchor>
+            <Anchor point="bottomright" relativePoint="bottomright" />
+          </Anchors>
+
+          <EventHandlers>
+            <EventHandler event="OnMouseOver" function="MobileHealthBar.Expand" />
+            <EventHandler event="OnMouseOverEnd" function="MobileHealthBar.Retract" />
+          </EventHandlers>
+
+        </Window>
+      </Windows>
+    </Window>
+
+    <Window name="MobileHealthBar_PET" movable="false" draganddrop="true" sticky="true">
+      <Size>
+        <AbsPoint x="160" y="35" />
+      </Size>
+
+      <EventHandlers>
+        <EventHandler event="OnMouseOver" function="MobileHealthBar.Expand" />
+        <EventHandler event="OnMouseOverEnd" function="MobileHealthBar.Retract" />
+        <EventHandler event="OnMouseWheel" function="WindowUtils.Scale" />
+        <EventHandler event="OnShutdown" function="MobileHealthBar.Shutdown" />
+        <EventHandler event="OnRButtonUp" function="MobileHealthBar.OnRButtonUp" />
+        <EventHandler event="OnLButtonUp" function="MobileHealthBar.OnLButtonUp" />
+        <EventHandler event="OnLButtonDblClk" function="MobileHealthBar.OnLButtonDblClk" />
+        <EventHandler event="OnUpdate" function="MobileHealthBar.BarUpdate"/>
+      </EventHandlers>
+
+      <Windows>
+        <FullResizeImage name="$parentFrame" inherits="UO_Simple_Frame" layer="background" frameonly="false">
+          <Anchors>
+            <Anchor point="topleft" relativePoint="topleft" />
+            <Anchor point="bottomright" relativePoint="bottomright" />
+          </Anchors>
+        </FullResizeImage>
+
+        <FullResizeImage name="$parentFrameHighlight" inherits="UO_Default_Inner_Window_Frame" layer="overlay" frameonly="false">
+          <Anchors>
+            <Anchor point="topleft" relativePoint="topleft" >
+              <AbsPoint x="-2" y="-2" />
+            </Anchor>
+            <Anchor point="bottomright" relativePoint="bottomright" >
+              <AbsPoint x="1" y="2" />
+            </Anchor>
+          </Anchors>
+        </FullResizeImage>
+
+        <DynamicImage name="$parentDisabled" texture="disabled" texturescale="3.125" layer="secondary">
+          <Anchors>
+            <Anchor point="topleft" relativePoint="topleft" >
+              <AbsPoint x="-2" y="-2" />
+            </Anchor>
+            <Anchor point="bottomright" relativePoint="bottomright" >
+              <AbsPoint x="1" y="2" />
+            </Anchor>
+          </Anchors>
+          <TintColor r="50" g="50" b="50" a="255"/>
+          <EventHandlers>
+            <EventHandler event="OnMouseOver" function="MobileHealthBar.TogglePin" />
+            <EventHandler event="OnMouseOverEnd" function="MobileHealthBar.TogglePin" />
+          </EventHandlers>
+        </DynamicImage>
+
+        <Label name="$parentName" font="Arial_Black_Shadow_12" maxchars="60" textalign="center" handleinput="false" wordwrap="false" popable="false">
+          <Size>
+            <AbsPoint x="130" y="12" />
+          </Size>
+          <Anchors>
+            <Anchor point="top" relativePoint="center" relativeTo="$parent">
+              <AbsPoint x="0" y="5" />
+            </Anchor>
+          </Anchors>
+          <Color r="255" g="255" b="255" a="255" />
+        </Label>
+
+        <!-- HEALTHBAR -->
+        <StatusBar name="$parentHealthBar" foreground="RedLine" background="WhiteLine" handleinput="false">
+          <Size>
+            <AbsPoint x="130" y="10" />
+          </Size>
+          <Anchors>
+            <Anchor point="bottom" relativePoint="top" relativeTo="$parentName">
+              <AbsPoint x="0" y="10" />
+            </Anchor>
+          </Anchors>
+        </StatusBar>
+
+        <Label name="$parentHealthBarPerc" font="Arial_Black_Shadow_12" maxchars="50" textalign="center" handleinput="false" wordwrap="false" linespacing="18" popable="false" layer="secondary">
+          <Size>
+            <AbsPoint x="130" y="10" />
+          </Size>
+          <Anchors>
+            <Anchor point="topleft" relativePoint="topleft" relativeTo="$parentHealthBar">
+              <AbsPoint x="5" y="-5" />
+            </Anchor>
+          </Anchors>
+          <Color r="255" g="255" b="255" a="255" />
+        </Label>
+
+        <!-- PET PROGRESS BAR -->        
+        <StatusBar name="$parentPetProgress" foreground="WhiteLine"  background="WhiteLine" handleinput="false">
+          <Size>
+            <AbsPoint x="130" y="10" />
+          </Size>
+          <Anchors>
+            <Anchor point="bottomleft" relativePoint="topleft" relativeTo="$parentHealthBar">
+              <AbsPoint x="0" y="5" />
+            </Anchor>
+          </Anchors>
+        </StatusBar>
+        
+        <Label name="$parentPetProgressPerc" font="Arial_Black_Shadow_12" maxchars="50" textalign="center" handleinput="false" wordwrap="false" linespacing="18" popable="false" layer ="secondary">
+          <Size>
+            <AbsPoint x="130" y="10" />
+          </Size>
+          <Anchors>
+            <Anchor point="center" relativePoint="center" relativeTo="$parentPetProgress">
+              <AbsPoint x="5" y="-5" />
+            </Anchor>
+          </Anchors>
+          <Color r="255" g="255" b="255" a="255" />
+        </Label>
+
+        <!-- SUMMON TIME BAR -->
+        <StatusBar name="$parentSummonTimer" foreground="WhiteLine" background="WhiteLine" handleinput="false">
+          <Size>
+            <AbsPoint x="130" y="10" />
+          </Size>
+          <Anchors>
+            <Anchor point="bottomleft" relativePoint="topleft" relativeTo="$parentHealthBar">
+              <AbsPoint x="0" y="5" />
+            </Anchor>
+          </Anchors>
+        </StatusBar>
+
+        <Label name="$parentSummonTimerPerc" font="Arial_Black_Shadow_12" maxchars="50" textalign="center" handleinput="false" wordwrap="false" linespacing="18" popable="false" layer ="secondary">
+          <Size>
+            <AbsPoint x="130" y="10" />
+          </Size>
+          <Anchors>
+            <Anchor point="center" relativePoint="center" relativeTo="$parentPetProgress">
+              <AbsPoint x="5" y="-5" />
+            </Anchor>
+          </Anchors>
+          <Color r="255" g="255" b="255" a="255" />
+        </Label>
+
+        <Button name="$parentMobileProperties" inherits="MobilePropertiesIconTemplate">
+          <Anchors>
+            <Anchor point="topleft" relativePoint="topleft" >
+              <AbsPoint x="3" y="3" />
+            </Anchor>
+          </Anchors>
+        </Button>
+
+        <DynamicImage name="$parentStar" texture="Star" layer="popup">
+          <Size>
+            <AbsPoint x="15" y="15" />
+          </Size>
+          <Anchors>
+            <Anchor point="topright" relativePoint="topright" >
+              <AbsPoint x="-5" y="3" />
+            </Anchor>
+          </Anchors>
+          <EventHandlers>
+            <EventHandler event="OnMouseOver" function="MobileHealthBar.Star_OnMouseOver" />
+          </EventHandlers>
+        </DynamicImage>
+
+        <Button name="$parentQuestGiver" inherits="QuestGiverIconTemplate">
+          <Anchors>
+            <Anchor point="topright" relativePoint="topright" >
+              <AbsPoint x="-10" y="3" />
+            </Anchor>
+          </Anchors>
+        </Button>
+
+        <Window name="$parentButtons">
+          <Size>
+            <AbsPoint x="160" y="45" />
+          </Size>
+          <Anchors>
+            <Anchor point="topleft" relativePoint="topleft" relativeTo="$parent">
+              <AbsPoint x="-2" y="50" />
+            </Anchor>
+            <Anchor point="bottomright" relativePoint="bottomright" />
+          </Anchors>
+
+          <EventHandlers>
+            <EventHandler event="OnMouseOver" function="MobileHealthBar.Expand" />
+            <EventHandler event="OnMouseOverEnd" function="MobileHealthBar.Retract" />
+          </EventHandlers>
+        </Window>
+      </Windows>
+    </Window>
+
+    <Window name="MobileHealthBar_PARTY" movable="false" draganddrop="true" sticky="true">
+      <Size>
+        <AbsPoint x="160" y="65" />
+      </Size>
+
+      <EventHandlers>
+        <EventHandler event="OnMouseOver" function="MobileHealthBar.Expand" />
+        <EventHandler event="OnMouseOverEnd" function="MobileHealthBar.Retract" />
+        <EventHandler event="OnMouseWheel" function="WindowUtils.Scale" />
+        <EventHandler event="OnShutdown" function="MobileHealthBar.Shutdown" />
+        <EventHandler event="OnRButtonUp" function="MobileHealthBar.OnRButtonUp" />
+        <EventHandler event="OnLButtonUp" function="MobileHealthBar.OnLButtonUp" />
+        <EventHandler event="OnLButtonDblClk" function="MobileHealthBar.OnLButtonDblClk" />
+        <EventHandler event="OnUpdate" function="MobileHealthBar.BarUpdate"/>
+      </EventHandlers>
+
+      <Windows>
+        <FullResizeImage name="$parentFrame" inherits="UO_Simple_Frame" layer="background" frameonly="false">
+          <Anchors>
+            <Anchor point="topleft" relativePoint="topleft" />
+            <Anchor point="bottomright" relativePoint="bottomright" />
+          </Anchors>
+        </FullResizeImage>
+
+        <FullResizeImage name="$parentFrameHighlight" inherits="UO_Default_Inner_Window_Frame" layer="overlay" frameonly="false">
+          <Anchors>
+            <Anchor point="topleft" relativePoint="topleft" >
+              <AbsPoint x="-2" y="-2" />
+            </Anchor>
+            <Anchor point="bottomright" relativePoint="bottomright" >
+              <AbsPoint x="1" y="2" />
+            </Anchor>
+          </Anchors>
+        </FullResizeImage>
+
+        <DynamicImage name="$parentDisabled" texture="disabled" texturescale="3.125" layer="secondary">
+          <Anchors>
+            <Anchor point="topleft" relativePoint="topleft" >
+              <AbsPoint x="-2" y="-2" />
+            </Anchor>
+            <Anchor point="bottomright" relativePoint="bottomright" >
+              <AbsPoint x="1" y="2" />
+            </Anchor>
+          </Anchors>
+          <TintColor r="50" g="50" b="50" a="255"/>
+          <EventHandlers>
+            <EventHandler event="OnMouseOver" function="MobileHealthBar.TogglePin" />
+            <EventHandler event="OnMouseOverEnd" function="MobileHealthBar.TogglePin" />
+          </EventHandlers>
+        </DynamicImage>
+
+        <Label name="$parentName" font="Arial_Black_Shadow_12" maxchars="60" textalign="center" handleinput="false" wordwrap="false" popable="false">
+          <Size>
+            <AbsPoint x="130" y="12" />
+          </Size>
+          <Anchors>
+            <Anchor point="top" relativePoint="center" relativeTo="$parent">
+              <AbsPoint x="0" y="5" />
+            </Anchor>
+          </Anchors>
+          <Color r="255" g="255" b="255" a="255" />
+        </Label>
+
+        <!-- HEALTHBAR -->
+        <StatusBar name="$parentHealthBar" foreground="RedLine" background="WhiteLine" handleinput="false">
+          <Size>
+            <AbsPoint x="130" y="10" />
+          </Size>
+          <Anchors>
+            <Anchor point="bottom" relativePoint="top" relativeTo="$parentName">
+              <AbsPoint x="0" y="10" />
+            </Anchor>
+          </Anchors>
+        </StatusBar>
+
+        <Label name="$parentHealthBarPerc" font="Arial_Black_Shadow_12" maxchars="50" textalign="center" handleinput="false" wordwrap="false" linespacing="18" popable="false" layer="secondary">
+          <Size>
+            <AbsPoint x="130" y="10" />
+          </Size>
+          <Anchors>
+            <Anchor point="topleft" relativePoint="topleft" relativeTo="$parentHealthBar">
+              <AbsPoint x="5" y="-5" />
+            </Anchor>
+          </Anchors>
+          <Color r="255" g="255" b="255" a="255" />
+        </Label>
+
+        <!-- MANA BAR -->
+        <StatusBar name="$parentManaBar" foreground="RedLine"  background="WhiteLine" handleinput="false">
+          <Size>
+            <AbsPoint x="130" y="10" />
+          </Size>
+          <Anchors>
+            <Anchor point="bottomleft" relativePoint="topleft" relativeTo="$parentHealthBar">
+              <AbsPoint x="0" y="5" />
+            </Anchor>
+          </Anchors>
+        </StatusBar>
+
+        <Label name="$parentManaBarPerc" font="Arial_Black_Shadow_12" maxchars="50" textalign="center" handleinput="false" wordwrap="false" linespacing="18" popable="false" layer="secondary">
+          <Size>
+            <AbsPoint x="130" y="10" />
+          </Size>
+          <Anchors>
+            <Anchor point="topleft" relativePoint="topleft" relativeTo="$parentManaBar">
+              <AbsPoint x="5" y="-5" />
+            </Anchor>
+          </Anchors>
+          <Color r="255" g="255" b="255" a="255" />
+        </Label>
+
+        <!-- STAMINA BAR -->
+        <StatusBar name="$parentStaminaBar" foreground="RedLine"  background="WhiteLine" handleinput="false">
+          <Size>
+            <AbsPoint x="130" y="10" />
+          </Size>
+          <Anchors>
+            <Anchor point="bottomleft" relativePoint="topleft" relativeTo="$parentManaBar">
+              <AbsPoint x="0" y="5" />
+            </Anchor>
+          </Anchors>
+        </StatusBar>
+
+        <Label name="$parentStaminaBarPerc" font="Arial_Black_Shadow_12" maxchars="50" textalign="center" handleinput="false" wordwrap="false" linespacing="18" popable="false" layer="secondary">
+          <Size>
+            <AbsPoint x="130" y="10" />
+          </Size>
+          <Anchors>
+            <Anchor point="topleft" relativePoint="topleft" relativeTo="$parentStaminaBar">
+              <AbsPoint x="5" y="-5" />
+            </Anchor>
+          </Anchors>
+          <Color r="255" g="255" b="255" a="255" />
+        </Label>
+
+        <Button name="$parentCrown" inherits="CrownIconTemplate">
+          <Anchors>
+            <Anchor point="topright" relativePoint="topright">
+              <AbsPoint x="-5" y="3" />
+            </Anchor>
+          </Anchors>
+        </Button>
+
+        <Button name="$parentMobileProperties" inherits="MobilePropertiesIconTemplate">
+          <Anchors>
+            <Anchor point="topleft" relativePoint="topleft" >
+              <AbsPoint x="3" y="3" />
+            </Anchor>
+          </Anchors>
+        </Button>
+
+        <Window name="$parentButtons">
+          <Size>
+            <AbsPoint x="160" y="45" />
+          </Size>
+          <Anchors>
+            <Anchor point="topleft" relativePoint="topleft" relativeTo="$parent">
+              <AbsPoint x="-2" y="70" />
+            </Anchor>
+            <Anchor point="bottomright" relativePoint="bottomright" />
+          </Anchors>
+
+          <EventHandlers>
+            <EventHandler event="OnMouseOver" function="MobileHealthBar.Expand" />
+            <EventHandler event="OnMouseOverEnd" function="MobileHealthBar.Retract" />
+          </EventHandlers>
+          
+        </Window>
+      </Windows>
+    </Window>
+
+    <Window name="MobileHealthBar_PLAYER" movable="false" draganddrop="true" sticky="true">
+      <Size>
+        <AbsPoint x="160" y="65" />
+      </Size>
+
+      <EventHandlers>
+        <EventHandler event="OnMouseOver" function="MobileHealthBar.Expand" />
+        <EventHandler event="OnMouseOverEnd" function="MobileHealthBar.Retract" />
+        <EventHandler event="OnMouseWheel" function="WindowUtils.Scale" />
+        <EventHandler event="OnShutdown" function="MobileHealthBar.Shutdown" />
+        <EventHandler event="OnRButtonUp" function="MobileHealthBar.OnRButtonUp" />
+        <EventHandler event="OnLButtonUp" function="MobileHealthBar.OnLButtonUp" />
+        <EventHandler event="OnLButtonDblClk" function="MobileHealthBar.OnLButtonDblClk" />
+        <EventHandler event="OnUpdate" function="MobileHealthBar.BarUpdate"/>
+      </EventHandlers>
+
+      <Windows>
+        <FullResizeImage name="$parentFrame" inherits="UO_Simple_Frame" layer="background" frameonly="false">
+          <Anchors>
+            <Anchor point="topleft" relativePoint="topleft" />
+            <Anchor point="bottomright" relativePoint="bottomright" />
+          </Anchors>
+        </FullResizeImage>
+
+        <FullResizeImage name="$parentFrameHighlight" inherits="UO_Default_Inner_Window_Frame" layer="overlay" frameonly="false">
+          <Anchors>
+            <Anchor point="topleft" relativePoint="topleft" >
+              <AbsPoint x="-2" y="-2" />
+            </Anchor>
+            <Anchor point="bottomright" relativePoint="bottomright" >
+              <AbsPoint x="1" y="2" />
+            </Anchor>
+          </Anchors>
+        </FullResizeImage>
+
+        <DynamicImage name="$parentDisabled" texture="disabled" texturescale="3.125" layer="secondary">
+          <Anchors>
+            <Anchor point="topleft" relativePoint="topleft" >
+              <AbsPoint x="-2" y="-2" />
+            </Anchor>
+            <Anchor point="bottomright" relativePoint="bottomright" >
+              <AbsPoint x="1" y="2" />
+            </Anchor>
+          </Anchors>
+          <TintColor r="50" g="50" b="50" a="255"/>
+          <EventHandlers>
+            <EventHandler event="OnMouseOver" function="MobileHealthBar.TogglePin" />
+            <EventHandler event="OnMouseOverEnd" function="MobileHealthBar.TogglePin" />
+          </EventHandlers>
+        </DynamicImage>
+
+        <Label name="$parentName" font="Arial_Black_Shadow_12" maxchars="60" textalign="center" handleinput="false" wordwrap="false" popable="false">
+          <Size>
+            <AbsPoint x="130" y="12" />
+          </Size>
+          <Anchors>
+            <Anchor point="top" relativePoint="center" relativeTo="$parent">
+              <AbsPoint x="0" y="5" />
+            </Anchor>
+          </Anchors>
+          <Color r="255" g="255" b="255" a="255" />
+        </Label>
+
+        <!-- HEALTHBAR -->
+        <StatusBar name="$parentHealthBar" foreground="RedLine"  background="WhiteLine" handleinput="false">
+          <Size>
+            <AbsPoint x="130" y="10" />
+          </Size>
+          <Anchors>
+            <Anchor point="bottom" relativePoint="top" relativeTo="$parentName">
+              <AbsPoint x="0" y="10" />
+            </Anchor>
+          </Anchors>
+        </StatusBar>
+
+        <Label name="$parentHealthBarValue" font="Arial_Black_Shadow_12" maxchars="50" textalign="left" handleinput="false" wordwrap="false" linespacing="18" popable="false" layer="secondary">
+          <Size>
+            <AbsPoint x="80" y="10" />
+          </Size>
+          <Anchors>
+            <Anchor point="topleft" relativePoint="topleft" relativeTo="$parentHealthBar">
+              <AbsPoint x="5" y="-5" />
+            </Anchor>
+          </Anchors>
+          <Color r="255" g="255" b="255" a="255" />
+        </Label>
+        
+        <Label name="$parentHealthBarPerc" font="Arial_Black_Shadow_12" maxchars="50" textalign="right" handleinput="false" wordwrap="false" linespacing="18" popable="false" layer="secondary">
+          <Size>
+            <AbsPoint x="50" y="10" />
+          </Size>
+          <Anchors>
+            <Anchor point="topright" relativePoint="topright" relativeTo="$parentHealthBar">
+              <AbsPoint x="-5" y="-5" />
+            </Anchor>
+          </Anchors>
+          <Color r="255" g="255" b="255" a="255" />
+        </Label>
+
+        <!-- MANA BAR -->
+        <StatusBar name="$parentManaBar" foreground="RedLine"  background="WhiteLine" handleinput="false">
+          <Size>
+            <AbsPoint x="130" y="10" />
+          </Size>
+          <Anchors>
+            <Anchor point="bottomleft" relativePoint="topleft" relativeTo="$parentHealthBar">
+              <AbsPoint x="0" y="5" />
+            </Anchor>
+          </Anchors>
+        </StatusBar>
+
+        <Label name="$parentManaBarValue" font="Arial_Black_Shadow_12" maxchars="50" textalign="left" handleinput="false" wordwrap="false" linespacing="18" popable="false" layer="secondary">
+          <Size>
+            <AbsPoint x="80" y="10" />
+          </Size>
+          <Anchors>
+            <Anchor point="topleft" relativePoint="topleft" relativeTo="$parentManaBar">
+              <AbsPoint x="5" y="-5" />
+            </Anchor>
+          </Anchors>
+          <Color r="255" g="255" b="255" a="255" />
+        </Label>
+
+        <Label name="$parentManaBarPerc" font="Arial_Black_Shadow_12" maxchars="50" textalign="right" handleinput="false" wordwrap="false" linespacing="18" popable="false" layer="secondary">
+          <Size>
+            <AbsPoint x="50" y="10" />
+          </Size>
+          <Anchors>
+            <Anchor point="topright" relativePoint="topright" relativeTo="$parentManaBar">
+              <AbsPoint x="-5" y="-5" />
+            </Anchor>
+          </Anchors>
+          <Color r="255" g="255" b="255" a="255" />
+        </Label>
+
+        <!-- STAMINA BAR -->
+        <StatusBar name="$parentStaminaBar" foreground="RedLine" background="WhiteLine" handleinput="false">
+          <Size>
+            <AbsPoint x="130" y="10" />
+          </Size>
+          <Anchors>
+            <Anchor point="bottomleft" relativePoint="topleft" relativeTo="$parentManaBar">
+              <AbsPoint x="0" y="5" />
+            </Anchor>
+          </Anchors>
+        </StatusBar>
+
+        <Label name="$parentStaminaBarValue" font="Arial_Black_Shadow_12" maxchars="50" textalign="left" handleinput="false" wordwrap="false" linespacing="18" popable="false" layer="secondary">
+          <Size>
+            <AbsPoint x="80" y="10" />
+          </Size>
+          <Anchors>
+            <Anchor point="topleft" relativePoint="topleft" relativeTo="$parentStaminaBar">
+              <AbsPoint x="5" y="-5" />
+            </Anchor>
+          </Anchors>
+          <Color r="255" g="255" b="255" a="255" />
+        </Label>
+
+        <Label name="$parentStaminaBarPerc" font="Arial_Black_Shadow_12" maxchars="50" textalign="right" handleinput="false" wordwrap="false" linespacing="18" popable="false" layer="secondary">
+          <Size>
+            <AbsPoint x="50" y="10" />
+          </Size>
+          <Anchors>
+            <Anchor point="topright" relativePoint="topright" relativeTo="$parentStaminaBar">
+              <AbsPoint x="-5" y="-5" />
+            </Anchor>
+          </Anchors>
+          <Color r="255" g="255" b="255" a="255" />
+        </Label>
+
+        <Button name="$parentCrown" inherits="CrownIconTemplate">
+          <Anchors>
+            <Anchor point="topright" relativePoint="topright">
+              <AbsPoint x="-5" y="3" />
+            </Anchor>
+          </Anchors>
+        </Button>
+
+        <Button name="$parentMobileProperties" inherits="MobilePropertiesIconTemplate">
+          <Anchors>
+            <Anchor point="topleft" relativePoint="topleft" >
+              <AbsPoint x="3" y="3" />
+            </Anchor>
+          </Anchors>
+        </Button>
+
+        <Window name="$parentButtons">
+          <Size>
+            <AbsPoint x="160" y="45" />
+          </Size>
+          <Anchors>
+            <Anchor point="topleft" relativePoint="topleft" relativeTo="$parent">
+              <AbsPoint x="-2" y="70" />
+            </Anchor>
+            <Anchor point="bottomright" relativePoint="bottomright" />
+          </Anchors>
+
+          <EventHandlers>
+            <EventHandler event="OnMouseOver" function="MobileHealthBar.Expand" />
+            <EventHandler event="OnMouseOverEnd" function="MobileHealthBar.Retract" />
+          </EventHandlers>
+
+        </Window>
+      </Windows>
+    </Window>
+
+    <Window name="MobileHealthBar_OTHERS" movable="false" draganddrop="true" sticky="true">
+      <Size>
+        <AbsPoint x="160" y="35" />
+      </Size>
+
+      <EventHandlers>
+        <EventHandler event="OnMouseOver" function="MobileHealthBar.Expand" />
+        <EventHandler event="OnMouseOverEnd" function="MobileHealthBar.Retract" />
+        <EventHandler event="OnMouseWheel" function="WindowUtils.Scale" />
+        <EventHandler event="OnShutdown" function="MobileHealthBar.Shutdown" />
+        <EventHandler event="OnRButtonUp" function="MobileHealthBar.OnRButtonUp" />
+        <EventHandler event="OnLButtonUp" function="MobileHealthBar.OnLButtonUp" />
+        <EventHandler event="OnLButtonDblClk" function="MobileHealthBar.OnLButtonDblClk" />
+        <EventHandler event="OnUpdate" function="MobileHealthBar.BarUpdate"/>
+      </EventHandlers>
+
+      <Windows>
+        <FullResizeImage name="$parentFrame" inherits="UO_Simple_Frame" layer="background" frameonly="false">
+          <Anchors>
+            <Anchor point="topleft" relativePoint="topleft" />
+            <Anchor point="bottomright" relativePoint="bottomright" />
+          </Anchors>
+        </FullResizeImage>
+
+        <FullResizeImage name="$parentFrameHighlight" inherits="UO_Default_Inner_Window_Frame" layer="overlay" frameonly="false">
+          <Anchors>
+            <Anchor point="topleft" relativePoint="topleft" >
+              <AbsPoint x="-2" y="-2" />
+            </Anchor>
+            <Anchor point="bottomright" relativePoint="bottomright" >
+              <AbsPoint x="1" y="2" />
+            </Anchor>
+          </Anchors>
+        </FullResizeImage>
+
+        <DynamicImage name="$parentDisabled" texture="disabled" texturescale="3.125" layer="secondary">
+          <Anchors>
+            <Anchor point="topleft" relativePoint="topleft" >
+              <AbsPoint x="-2" y="-2" />
+            </Anchor>
+            <Anchor point="bottomright" relativePoint="bottomright" >
+              <AbsPoint x="1" y="2" />
+            </Anchor>
+          </Anchors>
+          <TintColor r="50" g="50" b="50" a="255"/>
+          <EventHandlers>
+            <EventHandler event="OnMouseOver" function="MobileHealthBar.TogglePin" />
+            <EventHandler event="OnMouseOverEnd" function="MobileHealthBar.TogglePin" />
+          </EventHandlers>
+        </DynamicImage>
+
+        <Label name="$parentName" font="Arial_Black_Shadow_12" maxchars="60" textalign="center" handleinput="false" wordwrap="false" popable="false">
+          <Size>
+            <AbsPoint x="130" y="12" />
+          </Size>
+          <Anchors>
+            <Anchor point="top" relativePoint="center" relativeTo="$parent">
+              <AbsPoint x="0" y="5" />
+            </Anchor>
+          </Anchors>
+          <Color r="255" g="255" b="255" a="255" />
+        </Label>
+        
+        <Label name="$parentTitle" font="Arial_Black_Shadow_12" maxchars="60" textalign="center" handleinput="false" wordwrap="false" popable="false">
+          <Size>
+            <AbsPoint x="130" y="12" />
+          </Size>
+          <Anchors>
+            <Anchor point="bottom" relativePoint="top" relativeTo="$parentName">
+              <AbsPoint x="0" y="5" />
+            </Anchor>
+          </Anchors>
+          <Color r="255" g="255" b="255" a="255" />
+        </Label>
+
+        <!-- HEALTHBAR -->
+        <StatusBar name="$parentHealthBar" foreground="RedLine" background="WhiteLine" handleinput="false">
+          <Size>
+            <AbsPoint x="130" y="10" />
+          </Size>
+          <Anchors>
+            <Anchor point="bottom" relativePoint="top" relativeTo="$parentName">
+              <AbsPoint x="0" y="10" />
+            </Anchor>
+          </Anchors>
+        </StatusBar>
+
+        <Label name="$parentHealthBarPerc" font="Arial_Black_Shadow_12" maxchars="50" textalign="center" handleinput="false" wordwrap="false" linespacing="18" popable="false" layer="secondary">
+          <Size>
+            <AbsPoint x="130" y="10" />
+          </Size>
+          <Anchors>
+            <Anchor point="topleft" relativePoint="topleft" relativeTo="$parentHealthBar">
+              <AbsPoint x="5" y="-5" />
+            </Anchor>
+          </Anchors>
+          <Color r="255" g="255" b="255" a="255" />
+        </Label>
+
+        <Button name="$parentMobileProperties" inherits="MobilePropertiesIconTemplate">
+          <Anchors>
+            <Anchor point="topleft" relativePoint="topleft" >
+              <AbsPoint x="3" y="3" />
+            </Anchor>
+          </Anchors>
+        </Button>
+
+        <Button name="$parentPinBar" inherits="PinIconTemplate">
+          <Anchors>
+            <Anchor point="bottomleft" relativePoint="topleft" relativeTo="$parentMobileProperties" >
+              <AbsPoint x="-2" y="1" />
+            </Anchor>
+          </Anchors>
+        </Button>
+
+        <Button name="$parentQuestGiver" inherits="QuestGiverIconTemplate">
+          <Anchors>
+            <Anchor point="topright" relativePoint="topright" >
+              <AbsPoint x="-10" y="3" />
+            </Anchor>
+          </Anchors>
+        </Button>
+
+        <Window name="$parentButtons">
+          <Size>
+            <AbsPoint x="160" y="40" />
+          </Size>
+          <Anchors>
+            <Anchor point="topleft" relativePoint="topleft" relativeTo="$parent">
+              <AbsPoint x="-2" y="35" />
+            </Anchor>
+            <Anchor point="bottomright" relativePoint="bottomright" />
+          </Anchors>
+
+          <EventHandlers>
+            <EventHandler event="OnMouseOver" function="MobileHealthBar.Expand" />
+            <EventHandler event="OnMouseOverEnd" function="MobileHealthBar.Retract" />
+          </EventHandlers>
+          
+        </Window>
+      </Windows>
+    </Window>
+
+  </Windows>
+</Interface>

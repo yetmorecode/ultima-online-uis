@@ -1,0 +1,1716 @@
+<Interface xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../Interface.xsd">
+  <Windows>
+
+    <HorizontalResizeImage name="AnimalLoreBar" texture="mobileBar" texturescale="1">
+      <Size>
+        <AbsPoint x="130" y="10" />
+      </Size>
+      <Sizes left="170" middle="0" right="0" />
+      <TexCoords>
+        <Left x="0" y="0" />
+        <Middle x="65" y="0" />
+        <Right x="130" y="0" />
+      </TexCoords>
+    </HorizontalResizeImage>
+    
+    <Label name="AnimalLoreSpecialsTemplate" font="Arial_Black_Shadow_12" maxchars="50" textalign="center" autoresize="false" handleinput="true">
+      <Size>
+        <AbsPoint x="160" y="38"/>
+      </Size>
+      <EventHandlers>
+        <EventHandler event="OnMouseOver" function="SettingsWindow.LabelOnMouseOver" />
+      </EventHandlers>
+    </Label>
+
+    <HorizontalResizeImage name="AnimalLoreSpecialsTemplateLine" inherits="UO_Default_Horizontal_Rule" alpha="0.6">
+      <Size>
+        <AbsPoint x="655" y="3"/>
+      </Size>
+    </HorizontalResizeImage>
+    
+    <HorizontalResizeImage name="PetRatingTemplate" texture="rating" alpha="1" texturescale ="0.75">
+      <Size>
+        <AbsPoint x="135" y="23" />
+      </Size>
+      <Sizes left="180" middle="0" right="0" />
+      <TexCoords>
+        <Left x="0" y="0" />
+        <Middle x="90" y="0" />
+        <Right x="180" y="0" />
+      </TexCoords>
+    </HorizontalResizeImage>
+
+    <HorizontalResizeImage name="PetRatingBGTemplate" texture="ratingBG" alpha="1" texturescale ="0.75">
+      <Size>
+        <AbsPoint x="135" y="23" />
+      </Size>
+      <Sizes left="180" middle="0" right="0" />
+      <TexCoords>
+        <Left x="0" y="0" />
+        <Middle x="90" y="0" />
+        <Right x="180" y="0" />
+      </TexCoords>
+    </HorizontalResizeImage>
+    
+    <Window name="AnimalLore_DamageBarTemplate" id="">
+      <Size>
+        <AbsPoint x="30" y="20" />
+      </Size>
+      <EventHandlers>
+        <EventHandler event="OnMouseOver" function="SettingsWindow.LabelOnMouseOver" />
+      </EventHandlers>
+      <Windows>
+
+        <HorizontalResizeImage name="$parentBarBG" texture="damageBar" alpha="0.5" texturescale ="0.8" handleinput="false">
+          <Sizes left="10" middle="10" right="10" />
+          <TexCoords>
+            <Left x="0" y="0" />
+            <Middle x="10" y="0" />
+            <Right x="190" y="0" />
+          </TexCoords>
+          <Anchors>
+            <Anchor point="topleft" relativePoint="topleft" relativeTo="$parent">
+              <AbsPoint x="0" y="0" />
+            </Anchor>
+            <Anchor point="bottomright" relativePoint="bottomright" relativeTo="$parent">
+              <AbsPoint x="0" y="0" />
+            </Anchor>
+          </Anchors>
+        </HorizontalResizeImage>
+
+        <DynamicImage name="$parentIcon" texture="icon000748" alpha="1.0" texturescale ="0.8" handleinput="false">
+          <Size>
+            <AbsPoint x="20" y="20" />
+          </Size>
+          <Anchors>
+            <Anchor point="topleft" relativePoint="topleft" relativeTo="$parent">
+              <AbsPoint x="-3" y="-16" />
+            </Anchor>
+          </Anchors>
+        </DynamicImage>
+
+        <Label name="$parentLabel" font="Arial_Black_Shadow_10" maxchars="5" textalign="left" autoresize="false" handleinput="false">
+          <Size>
+            <AbsPoint x="40" y="15"/>
+          </Size>
+          <Anchors>
+            <Anchor point="left" relativePoint="left" relativeTo="$parentBarBG">
+              <AbsPoint x="0" y="5"/>
+            </Anchor>
+          </Anchors>
+        </Label>
+      </Windows>
+    </Window>
+    
+    <Window name="AnimalLore_ColorButton">
+      <Size>
+        <AbsPoint x="250" y="22" />
+      </Size>
+      <Windows>
+
+        <DynamicImage name="$parentButton" inherits="ColorPickerWindowColorTemplate" alpha="1.0" texturescale ="0.5">
+          <Size>
+            <AbsPoint x="15" y="15" />
+          </Size>
+          <EventHandlers>
+            <EventHandler event="OnLButtonDown" function="AnimalLore.ColorsTooltip" />
+          </EventHandlers>
+          <Anchors>
+            <Anchor point="topleft" relativePoint="topleft" relativeTo="$parent">
+              <AbsPoint x="0" y="0" />
+            </Anchor>
+          </Anchors>
+        </DynamicImage>
+
+        <Label name="$parentLabel" font="Arial_Black_Shadow_12" linespacing="20" autoresize="true" wordwrap="true" maxchars="64" textalign="left">
+          <EventHandlers>
+            <EventHandler event="OnMouseOver" function="AnimalLore.ColorsTooltip" />
+          </EventHandlers>
+          <Size>
+            <AbsPoint x="235" y="16" />
+          </Size>
+          <Anchors>
+            <Anchor point="right" relativePoint="left" relativeTo="$parentButton">
+              <AbsPoint x="5" y="-3"/>
+            </Anchor>
+          </Anchors>
+
+          <Color r="255" g="255" b="255" a="255" />
+        </Label>
+      </Windows>
+    </Window>
+    
+    <!-- Templates for dynamically added items -->
+    <HorizontalResizeImage name="HRDef" inherits="UO_Default_Horizontal_Rule">
+      <Size>
+        <AbsPoint x="660" y="4"/>
+      </Size>
+    </HorizontalResizeImage>
+    <HorizontalResizeImage name="VRDef" inherits="UO_Default_Horizontal_Rule">
+      <Size>
+        <AbsPoint x="4" y="660"/>
+      </Size>
+    </HorizontalResizeImage>
+
+    <!-- Use this template to display a label + a value -->
+    <Window name="LabeledDataTemplate"  >
+      <Size>
+        <AbsPoint x="310" y="15"/>
+      </Size>
+      <Windows>
+        
+        <Label name="$parentLabel" font="Arial_Black_Shadow_12" maxchars="128" textalign="left" autoresizewidth="false" handleinput="true" >
+          <Size>
+            <AbsPoint x="170" y="15"/>
+          </Size>
+          <Anchors>
+            <Anchor point="topleft" relativePoint="topleft"  relativeTo="$parent">
+              <AbsPoint x="0" y="0"/>
+            </Anchor>
+          </Anchors>
+        </Label>
+        
+        <Label name="$parentValue" font="Arial_Black_Shadow_12" maxchars="64" textalign="left" autoresizewidth="true" handleinput="false" >
+          <Size>
+            <AbsPoint x="50" y="15"/>
+          </Size>
+          <Anchors>
+            <Anchor point="topright" relativePoint="topleft" relativeTo="$parentLabel">
+              <AbsPoint x="5" y="0"/>
+            </Anchor>
+          </Anchors>
+        </Label>
+        
+        <Label name="$parentCap" font="Arial_Black_Shadow_10" maxchars="8" textalign="right" autoresizewidth="true" id="474">
+          <Size>
+            <AbsPoint x="30" y="15"/>
+          </Size>
+          <Anchors>
+            <Anchor point="right" relativePoint="left" relativeTo="$parentValue">
+              <AbsPoint x="5" y="2"/>
+            </Anchor>
+          </Anchors>
+          <Color r="150" g="150" b="150" a="255" />
+          <EventHandlers>
+            <EventHandler event="OnMouseOver" function="SettingsWindow.LabelOnMouseOver" />
+          </EventHandlers>
+        </Label>
+      </Windows>
+    </Window>
+
+    <!-- MAIN WINDOW DEFINITION -->
+    <Window name="AnimalLore" movable="true" layer="default">
+      <Size>
+        <AbsPoint x="714" y="718"/>
+      </Size>
+
+      <Anchors>
+        <Anchor point="topleft" relativePoint="topleft" relativeTo="">
+          <AbsPoint x="16" y="400"/>
+        </Anchor>
+      </Anchors>
+      
+      <EventHandlers>
+        <EventHandler event="OnRButtonUp" function="UO_DefaultWindow.CloseDialog" />
+        <EventHandler event="OnShutdown" function="AnimalLore.Shutdown"/>
+        <EventHandler event="OnMouseWheel" function="WindowUtils.Scale" />
+      </EventHandlers>
+      
+      <Windows>
+        
+        <!-- Window Background-->
+        <Window name="$parentChrome" inherits="UO_DefaultWindow">
+          <Anchors>
+            <Anchor point="topleft" relativePoint="topleft"/>
+            <Anchor point="bottomright" relativePoint="bottomright"/>
+          </Anchors>
+        </Window>
+
+        <CircleImage name="$parentPortraitImageBG" texture="faceFrame" numsegments="16" texturescale="0.8" layer="secondary" popable="false" handleinput="false">
+          <Size>
+            <AbsPoint x="60" y="60" />
+          </Size>
+          <Anchors>
+            <Anchor point="topleft" relativePoint="topleft"  relativeTo="$parentChrome">
+              <AbsPoint x="-15" y="-25" />
+            </Anchor>
+          </Anchors>
+          <TexCoords x="40" y="40" />
+        </CircleImage>
+
+        <CircleImage name="$parentPortraitImageBlackBG" texture="hbblackBg" numsegments="16" texturescale="100" layer="default" popable="false" handleinput="false">
+          <Size>
+            <AbsPoint x="50" y="50" />
+          </Size>
+          <Anchors>
+            <Anchor point="center" relativePoint="center"  relativeTo="$parentPortraitImageBG">
+              <AbsPoint x="0" y="0" />
+            </Anchor>
+          </Anchors>
+          <TexCoords x="40" y="40" />
+        </CircleImage>
+
+        <CircleImage name="$parentPortrait" numsegments="16" texturescale="1.0" layer="secondary">
+          <Size>
+            <AbsPoint x="50" y="50" />
+          </Size>
+          <Anchors>
+            <Anchor point="center" relativePoint="center" relativeTo="$parentPortraitImageBlackBG">
+              <AbsPoint x="0" y="0" />
+            </Anchor>
+          </Anchors>
+        </CircleImage>
+
+        <Button name="$parentSaveData" layer="overlay" backgroundtexture="Save" highlighttexture="Save" texturescale="0.8" id="479">
+          <Size>
+            <AbsPoint x="22" y="22" />
+          </Size>
+          <TexCoords>
+            <Normal  x="0" y="0" />
+            <NormalHighlit x="0" y="0" />
+            <Pressed x="0" y="0" />
+            <PressedHighlit x="0" y="0" />
+            <Disabled x="0" y="0" />
+          </TexCoords>
+          <Anchors>
+            <Anchor point="left" relativePoint="right" relativeTo="$parentChrome_UO_WindowCloseButton">
+              <AbsPoint x="-5" y="0" />
+            </Anchor>
+          </Anchors>
+          <EventHandlers>
+            <EventHandler event="OnLButtonUp" function="AnimalLore.SaveLog" />
+            <EventHandler event="OnMouseOver" function="SettingsWindow.LabelOnMouseOver" />
+          </EventHandlers>
+        </Button>
+
+        <!-- TRAINING BUTTON -->
+        <Button name="$parentTrainingBTN" inherits="UO_Default_Small_Right_Left_Arrow_Button" texturescale="1.2" layer="overlay">
+          <Size>
+            <AbsPoint x="32" y="32" />
+          </Size>
+          <Anchors>
+            <Anchor point="topright" relativePoint="topleft" relativeTo="$parent">
+              <AbsPoint x="-240" y="33"/>
+            </Anchor>
+          </Anchors>
+          <EventHandlers>
+            <EventHandler event="OnLButtonUp" function="AnimalLore.PetTrainingButton" />
+          </EventHandlers>
+        </Button>
+
+        <Label name="$parentTrainingLabel" font="Arial_Black_Shadow_12" maxchars="60" textalign="left" autoresizewidth="false">
+          <Size>
+            <AbsPoint x="180" y="15"/>
+          </Size>
+          <Anchors>
+            <Anchor point="right" relativePoint="left" relativeTo="$parentTrainingBTN">
+              <AbsPoint x="8" y="-2"/>
+            </Anchor>
+          </Anchors>
+          <EventHandlers>
+            <EventHandler event="OnMouseOver" function="SettingsWindow.LabelOnMouseOver" />
+          </EventHandlers>
+        </Label>
+
+        <Label name="$parentCanelTrainingLabel" font="Arial_Black_Shadow_10" maxchars="64" textalign="left" autoresizewidth="false" id="1158013">
+          <Size>
+            <AbsPoint x="180" y="15"/>
+          </Size>
+          <Anchors>
+            <Anchor point="bottomleft" relativePoint="topleft" relativeTo="$parentTrainingLabel">
+              <AbsPoint x="30" y="2"/>
+            </Anchor>
+          </Anchors>
+          <Color r="255" g="0" b="0" a="255" />
+          <EventHandlers>
+            <EventHandler event="OnMouseOver" function="SettingsWindow.LabelOnMouseOver" />
+            <EventHandler event="OnLButtonUp" function="AnimalLore.CancelPetTrainingButton" />
+          </EventHandlers>
+        </Label>
+
+        <DynamicImage name="$parentCapsIcon" texture="cap" alpha="1.0" texturescale ="1">
+          <Size>
+            <AbsPoint x="30" y="30" />
+          </Size>
+          <Anchors>
+            <Anchor point="left" relativePoint="right" relativeTo="$parentTrainingBTN">
+              <AbsPoint x="-10" y="0" />
+            </Anchor>
+          </Anchors>
+          <EventHandlers>
+            <EventHandler event="OnMouseOver" function="AnimalLore.CapsTooltip" />
+          </EventHandlers>
+        </DynamicImage>
+
+        <DynamicImage name="$parentWeightIcon" texture="icon000754" alpha="1.0" texturescale ="1">
+          <Size>
+            <AbsPoint x="30" y="30" />
+          </Size>
+          <Anchors>
+            <Anchor point="left" relativePoint="right" relativeTo="$parentCapsIcon">
+              <AbsPoint x="-10" y="0" />
+            </Anchor>
+          </Anchors>
+          <EventHandlers>
+            <EventHandler event="OnMouseOver" function="AnimalLore.WeightsTooltip" />
+          </EventHandlers>
+        </DynamicImage>
+        
+        <DynamicImage name="$parentLoyaltyRatingIcon" texture="" alpha="1.0" texturescale ="1" id="">
+          <Size>
+            <AbsPoint x="32" y="32" />
+          </Size>
+          <Anchors>
+            <Anchor point="topleft" relativePoint="topleft" relativeTo="$parent">
+              <AbsPoint x="40" y="33" />
+            </Anchor>
+          </Anchors>
+          <EventHandlers>
+            <EventHandler event="OnMouseOver" function="SettingsWindow.LabelOnMouseOver" />
+          </EventHandlers>
+        </DynamicImage>
+
+        <!-- PET TYPE -->
+        <Label name="$parentPetTypeTitle" font="Arial_Black_Shadow_12" maxchars="64" textalign="right" autoresize="false" handleinput="false" >
+          <Size>
+            <AbsPoint x="50" y="15"/>
+          </Size>
+          <Anchors>
+            <Anchor point="topleft" relativePoint="topleft" relativeTo="$parent">
+              <AbsPoint x="80" y="30"/>
+            </Anchor>
+          </Anchors>
+        </Label>
+
+        <Label name="$parentPetTypeText" font="Arial_Black_Shadow_12" maxchars="64" textalign="left" autoresizewidth="true" handleinput="true" id="478" >
+          <Size>
+            <AbsPoint x="320" y="15"/>
+          </Size>
+          <Anchors>
+            <Anchor point="right" relativePoint="left" relativeTo="$parentPetTypeTitle">
+              <AbsPoint x="10" y="0"/>
+            </Anchor>
+          </Anchors>
+          <EventHandlers>
+            <EventHandler event="OnLButtonUp" function="AnimalLore.TypeSelectionMenu" />
+            <EventHandler event="OnMouseOver" function="SettingsWindow.LabelOnMouseOver" />
+          </EventHandlers>
+        </Label>
+
+        <!-- PET COLOR -->
+        <Label name="$parentPetColorTitle" font="Arial_Black_Shadow_12" maxchars="64" textalign="right" autoresize="false" handleinput="false" >
+          <Size>
+            <AbsPoint x="50" y="15"/>
+          </Size>
+          <Anchors>
+            <Anchor point="bottomleft" relativePoint="topleft" relativeTo="$parentPetTypeTitle">
+              <AbsPoint x="0" y="5"/>
+            </Anchor>
+          </Anchors>
+        </Label>
+
+        <Window name="$parentPetColorValue" inherits="AnimalLore_ColorButton">
+          <Anchors>
+            <Anchor point="right" relativePoint="left" relativeTo="$parentPetColorTitle">
+              <AbsPoint x="10" y="5"/>
+            </Anchor>
+          </Anchors>
+        </Window>
+
+        <!-- top line over stats -->
+        <HorizontalResizeImage name="$parentHLine1" inherits="UO_Default_Horizontal_Rule">
+          <Size>
+            <AbsPoint x="215" y="3"/>
+          </Size>
+          <Anchors>
+            <Anchor point="bottomleft" relativePoint="topleft" relativeTo="$parentPetColorTitle">
+              <AbsPoint x="-50" y="10"/>
+            </Anchor>
+          </Anchors>
+        </HorizontalResizeImage>
+
+        <!-- STRENGTH//HP -->
+        <DynamicImage name="$parentStrIcon" texture="icon000751" alpha="1.0" texturescale ="1.2" id="1015014">
+          <Size>
+            <AbsPoint x="36" y="36" />
+          </Size>
+          <Anchors>
+            <Anchor point="bottomleft" relativePoint="topleft" relativeTo="$parentHLine1">
+              <AbsPoint x="10" y="2" />
+            </Anchor>
+          </Anchors>
+          <EventHandlers>
+            <EventHandler event="OnMouseOver" function="SettingsWindow.LabelOnMouseOver" />
+          </EventHandlers>
+        </DynamicImage>
+
+        <Label name="$parentStrLabel" font="Arial_Black_Shadow_12" maxchars="64" textalign="right" autoresizewidth="false" id="1015014">
+          <Size>
+            <AbsPoint x="50" y="15"/>
+          </Size>
+          <Anchors>
+            <Anchor point="right" relativePoint="left" relativeTo="$parentStrIcon">
+              <AbsPoint x="10" y="0"/>
+            </Anchor>
+          </Anchors>
+          <EventHandlers>
+            <EventHandler event="OnMouseOver" function="SettingsWindow.LabelOnMouseOver" />
+          </EventHandlers>
+        </Label>
+
+        <Label name="$parentStrCapLabel" font="Arial_Black_Shadow_10" maxchars="64" textalign="left" autoresizewidth="false" id="459">
+          <Size>
+            <AbsPoint x="50" y="15"/>
+          </Size>
+          <Anchors>
+            <Anchor point="right" relativePoint="left" relativeTo="$parentStrLabel">
+              <AbsPoint x="0" y="2"/>
+            </Anchor>
+          </Anchors>
+          <Color r="150" g="150" b="150" a="255" />
+          <EventHandlers>
+            <EventHandler event="OnMouseOver" function="SettingsWindow.LabelOnMouseOver" />
+          </EventHandlers>
+        </Label>
+        
+        <StatusBar name="$parentHitPointsBar" foreground="AnimalLoreBar"  background="AnimalLoreBar" handleinput="false">
+          <Size>
+            <AbsPoint x="130" y="10" />
+          </Size>
+          <Anchors>
+            <Anchor point="bottomright" relativePoint="topleft" relativeTo="$parentStrIcon">
+              <AbsPoint x="-10" y="5" />
+            </Anchor>
+          </Anchors>
+        </StatusBar>
+
+        <Label name="$parentHitPointsLabel" font="Arial_Black_Shadow_12" maxchars="64" textalign="center" autoresize="false" id="3010051">
+          <Size>
+            <AbsPoint x="130" y="15"/>
+          </Size>
+          <Anchors>
+            <Anchor point="center" relativePoint="center" relativeTo="$parentHitPointsBar">
+              <AbsPoint x="0" y="-5"/>
+            </Anchor>
+          </Anchors>
+          <EventHandlers>
+            <EventHandler event="OnMouseOver" function="SettingsWindow.LabelOnMouseOver" />
+          </EventHandlers>
+        </Label>
+        
+        <Label name="$parentHitPointsCapLabel" font="Arial_Black_Shadow_10" maxchars="64" textalign="center" autoresize="false" id="460">
+          <Size>
+            <AbsPoint x="130" y="15"/>
+          </Size>
+          <Anchors>
+            <Anchor point="bottom" relativePoint="top" relativeTo="$parentHitPointsLabel">
+              <AbsPoint x="0" y="0"/>
+            </Anchor>
+          </Anchors>
+          <Color r="150" g="150" b="150" a="255" />
+          <EventHandlers>
+            <EventHandler event="OnMouseOver" function="SettingsWindow.LabelOnMouseOver" />
+          </EventHandlers>
+        </Label>
+
+        <DynamicImage name="$parentHitPointsRegenIcon" texture="hpr" alpha="1.0" texturescale ="1.5" id="1075627">
+          <Size>
+            <AbsPoint x="30" y="37" />
+          </Size>
+          <Anchors>
+            <Anchor point="right" relativePoint="left" relativeTo="$parentHitPointsBar">
+              <AbsPoint x="5" y="-10" />
+            </Anchor>
+          </Anchors>
+          <EventHandlers>
+            <EventHandler event="OnMouseOver" function="SettingsWindow.LabelOnMouseOver" />
+          </EventHandlers>
+        </DynamicImage>
+
+        <Label name="$parentHitPointsRegenLabel" font="Arial_Black_Shadow_12" maxchars="2" textalign="center" autoresize="false" handleinput="false" >
+          <Size>
+            <AbsPoint x="30" y="15"/>
+          </Size>
+          <Anchors>
+            <Anchor point="center" relativePoint="center" relativeTo="$parentHitPointsRegenIcon">
+              <AbsPoint x="5" y="-2"/>
+            </Anchor>
+          </Anchors>
+        </Label>
+
+        <!-- line under str -->
+        <HorizontalResizeImage name="$parentHLine2" inherits="UO_Default_Horizontal_Rule">
+          <Size>
+            <AbsPoint x="215" y="3"/>
+          </Size>
+          <Anchors>
+            <Anchor point="bottomleft" relativePoint="topleft" relativeTo="$parentStrIcon">
+              <AbsPoint x="-10" y="35"/>
+            </Anchor>
+          </Anchors>
+        </HorizontalResizeImage>
+
+        <!-- DEXTERITY//STAMINA -->
+        <DynamicImage name="$parentDexIcon" texture="icon000738" alpha="1.0" texturescale ="1.1" id="477">
+          <Size>
+            <AbsPoint x="36" y="36" />
+          </Size>
+          <Anchors>
+            <Anchor point="bottomleft" relativePoint="topleft" relativeTo="$parentHLine2">
+              <AbsPoint x="10" y="5" />
+            </Anchor>
+          </Anchors>
+          <EventHandlers>
+            <EventHandler event="OnMouseOver" function="SettingsWindow.LabelOnMouseOver" />
+          </EventHandlers>
+        </DynamicImage>
+
+        <Label name="$parentDexLabel" font="Arial_Black_Shadow_12" maxchars="64" textalign="right" autoresizewidth="false" id="477">
+          <Size>
+            <AbsPoint x="50" y="15"/>
+          </Size>
+          <Anchors>
+            <Anchor point="right" relativePoint="left" relativeTo="$parentDexIcon">
+              <AbsPoint x="10" y="2"/>
+            </Anchor>
+          </Anchors>
+          <EventHandlers>
+            <EventHandler event="OnMouseOver" function="SettingsWindow.LabelOnMouseOver" />
+          </EventHandlers>
+        </Label>
+
+        <Label name="$parentDexCapLabel" font="Arial_Black_Shadow_10" maxchars="64" textalign="left" autoresizewidth="false" id="461">
+          <Size>
+            <AbsPoint x="50" y="15"/>
+          </Size>
+          <Anchors>
+            <Anchor point="right" relativePoint="left" relativeTo="$parentDexLabel">
+              <AbsPoint x="0" y="2"/>
+            </Anchor>
+          </Anchors>
+          <Color r="150" g="150" b="150" a="255" />
+          <EventHandlers>
+            <EventHandler event="OnMouseOver" function="SettingsWindow.LabelOnMouseOver" />
+          </EventHandlers>
+        </Label>
+
+        <StatusBar name="$parentStaminaBar" foreground="AnimalLoreBar" background="AnimalLoreBar" handleinput="false">
+          <Size>
+            <AbsPoint x="130" y="10" />
+          </Size>
+          <Anchors>
+            <Anchor point="bottomright" relativePoint="topleft" relativeTo="$parentDexIcon">
+              <AbsPoint x="-10" y="5" />
+            </Anchor>
+          </Anchors>
+        </StatusBar>
+
+        <Label name="$parentStaminaLabel" font="Arial_Black_Shadow_12" maxchars="64" textalign="center" autoresize="false" id="3010055">
+          <Size>
+            <AbsPoint x="130" y="15"/>
+          </Size>
+          <Anchors>
+            <Anchor point="center" relativePoint="center" relativeTo="$parentStaminaBar">
+              <AbsPoint x="0" y="-5"/>
+            </Anchor>
+          </Anchors>
+          <EventHandlers>
+            <EventHandler event="OnMouseOver" function="SettingsWindow.LabelOnMouseOver" />
+          </EventHandlers>
+        </Label>
+
+        <Label name="$parentStaminaCapLabel" font="Arial_Black_Shadow_10" maxchars="64" textalign="center" autoresize="false" id="462">
+          <Size>
+            <AbsPoint x="130" y="15"/>
+          </Size>
+          <Anchors>
+            <Anchor point="bottom" relativePoint="top" relativeTo="$parentStaminaLabel">
+              <AbsPoint x="0" y="0"/>
+            </Anchor>
+          </Anchors>
+          <Color r="150" g="150" b="150" a="255" />
+          <EventHandlers>
+            <EventHandler event="OnMouseOver" function="SettingsWindow.LabelOnMouseOver" />
+          </EventHandlers>
+        </Label>
+
+        <DynamicImage name="$parentStaminaRegenIcon" texture="sr" alpha="1.0" texturescale ="1.5" id="1079411">
+          <Size>
+            <AbsPoint x="30" y="37" />
+          </Size>
+          <Anchors>
+            <Anchor point="right" relativePoint="left" relativeTo="$parentStaminaBar">
+              <AbsPoint x="5" y="-10" />
+            </Anchor>
+          </Anchors>
+          <EventHandlers>
+            <EventHandler event="OnMouseOver" function="SettingsWindow.LabelOnMouseOver" />
+          </EventHandlers>
+        </DynamicImage>
+
+        <Label name="$parentStaminaRegenLabel" font="Arial_Black_Shadow_12" maxchars="2" textalign="center" autoresize="false" handleinput="false" >
+          <Size>
+            <AbsPoint x="30" y="15"/>
+          </Size>
+          <Anchors>
+            <Anchor point="center" relativePoint="center" relativeTo="$parentStaminaRegenIcon">
+              <AbsPoint x="5" y="-2"/>
+            </Anchor>
+          </Anchors>
+        </Label>
+
+         <!-- line under stamina -->
+        <HorizontalResizeImage name="$parentHLine3" inherits="UO_Default_Horizontal_Rule">
+          <Size>
+            <AbsPoint x="215" y="4"/>
+          </Size>
+          <Anchors>
+            <Anchor point="bottomleft" relativePoint="topleft" relativeTo="$parentDexIcon">
+              <AbsPoint x="-10" y="35"/>
+            </Anchor>
+          </Anchors>
+        </HorizontalResizeImage>
+
+        <!-- INTELLIGENCE//MANA-->
+        <DynamicImage name="$parentIntIcon" texture="icon000744" alpha="1.0" texturescale ="1.1" id="3000112">
+          <Size>
+            <AbsPoint x="36" y="36" />
+          </Size>
+          <Anchors>
+            <Anchor point="bottomleft" relativePoint="topleft" relativeTo="$parentHLine3">
+              <AbsPoint x="10" y="5" />
+            </Anchor>
+          </Anchors>
+          <EventHandlers>
+            <EventHandler event="OnMouseOver" function="SettingsWindow.LabelOnMouseOver" />
+          </EventHandlers>
+        </DynamicImage>
+
+        <Label name="$parentIntLabel" font="Arial_Black_Shadow_12" maxchars="64" textalign="right" autoresizewidth="false" id="3000112">
+          <Size>
+            <AbsPoint x="50" y="15"/>
+          </Size>
+          <Anchors>
+            <Anchor point="right" relativePoint="left" relativeTo="$parentIntIcon">
+              <AbsPoint x="10" y="2"/>
+            </Anchor>
+          </Anchors>
+          <EventHandlers>
+            <EventHandler event="OnMouseOver" function="SettingsWindow.LabelOnMouseOver" />
+          </EventHandlers>
+        </Label>
+
+        <Label name="$parentIntCapLabel" font="Arial_Black_Shadow_10" maxchars="64" textalign="left" autoresizewidth="false" id="463">
+          <Size>
+            <AbsPoint x="50" y="15"/>
+          </Size>
+          <Anchors>
+            <Anchor point="right" relativePoint="left" relativeTo="$parentIntLabel">
+              <AbsPoint x="0" y="2"/>
+            </Anchor>
+          </Anchors>
+          <Color r="150" g="150" b="150" a="255" />
+          <EventHandlers>
+            <EventHandler event="OnMouseOver" function="SettingsWindow.LabelOnMouseOver" />
+          </EventHandlers>
+        </Label>
+
+        <StatusBar name="$parentManaBar" foreground="AnimalLoreBar" background="AnimalLoreBar" handleinput="false">
+          <Size>
+            <AbsPoint x="130" y="10" />
+          </Size>
+          <Anchors>
+            <Anchor point="bottomright" relativePoint="topleft" relativeTo="$parentIntIcon">
+              <AbsPoint x="-10" y="5" />
+            </Anchor>
+          </Anchors>
+        </StatusBar>
+
+        <Label name="$parentManaLabel" font="Arial_Black_Shadow_12" maxchars="64" textalign="center" autoresize="false" id="3010053">
+          <Size>
+            <AbsPoint x="130" y="15"/>
+          </Size>
+          <Anchors>
+            <Anchor point="center" relativePoint="center" relativeTo="$parentManaBar">
+              <AbsPoint x="0" y="-5"/>
+            </Anchor>
+          </Anchors>
+          <EventHandlers>
+            <EventHandler event="OnMouseOver" function="SettingsWindow.LabelOnMouseOver" />
+          </EventHandlers>
+        </Label>
+
+        <Label name="$parentManaCapLabel" font="Arial_Black_Shadow_10" maxchars="64" textalign="center" autoresize="false" id="464">
+          <Size>
+            <AbsPoint x="130" y="15"/>
+          </Size>
+          <Anchors>
+            <Anchor point="bottom" relativePoint="top" relativeTo="$parentManaLabel">
+              <AbsPoint x="0" y="0"/>
+            </Anchor>
+          </Anchors>
+          <Color r="150" g="150" b="150" a="255" />
+          <EventHandlers>
+            <EventHandler event="OnMouseOver" function="SettingsWindow.LabelOnMouseOver" />
+          </EventHandlers>
+        </Label>
+
+        <DynamicImage name="$parentManaRegenIcon" texture="mr" alpha="1.0" texturescale ="1.5" id="1116540">
+          <Size>
+            <AbsPoint x="30" y="37" />
+          </Size>
+          <Anchors>
+            <Anchor point="right" relativePoint="left" relativeTo="$parentManaBar">
+              <AbsPoint x="5" y="-10" />
+            </Anchor>
+          </Anchors>
+          <EventHandlers>
+            <EventHandler event="OnMouseOver" function="SettingsWindow.LabelOnMouseOver" />
+          </EventHandlers>
+        </DynamicImage>
+
+        <Label name="$parentManaRegenLabel" font="Arial_Black_Shadow_12" maxchars="2" textalign="center" autoresize="false" handleinput="false" >
+          <Size>
+            <AbsPoint x="30" y="15"/>
+          </Size>
+          <Anchors>
+            <Anchor point="center" relativePoint="center" relativeTo="$parentManaRegenIcon">
+              <AbsPoint x="5" y="-2"/>
+            </Anchor>
+          </Anchors>
+        </Label>
+
+        <!-- line under mana -->
+        <HorizontalResizeImage name="$parentHLine4" inherits="UO_Default_Horizontal_Rule">
+          <Size>
+            <AbsPoint x="215" y="3"/>
+          </Size>
+          <Anchors>
+            <Anchor point="bottomleft" relativePoint="topleft" relativeTo="$parentIntIcon">
+              <AbsPoint x="-10" y="35"/>
+            </Anchor>
+          </Anchors>
+        </HorizontalResizeImage>
+
+        <!-- LINES STRUCTURE -->
+        
+        <!-- line at the left of the stats -->
+        <HorizontalResizeImage name="$parentVLine1" inherits="UO_Default_Horizontal_Rule">
+          <Size>
+            <AbsPoint x="3" y="238"/>
+          </Size>
+          <Anchors>
+            <Anchor point="topleft" relativePoint="topleft" relativeTo="$parentHLine1">
+              <AbsPoint x="0" y="0"/>
+            </Anchor>
+          </Anchors>
+        </HorizontalResizeImage>
+
+        <!-- line at the right of the stats -->
+        <HorizontalResizeImage name="$parentVLine2" inherits="UO_Default_Horizontal_Rule">
+          <Size>
+            <AbsPoint x="3" y="238"/>
+          </Size>
+          <Anchors>
+            <Anchor point="topright" relativePoint="topright" relativeTo="$parentHLine1">
+              <AbsPoint x="0" y="0"/>
+            </Anchor>
+          </Anchors>
+        </HorizontalResizeImage>
+
+        <!-- line on top of the resistances -->
+        <HorizontalResizeImage name="$parentHLine5" inherits="UO_Default_Horizontal_Rule">
+          <Size>
+            <AbsPoint x="110" y="3"/>
+          </Size>
+          <Anchors>
+            <Anchor point="topright" relativePoint="topleft" relativeTo="$parentHLine1">
+              <AbsPoint x="0" y="0"/>
+            </Anchor>
+          </Anchors>
+        </HorizontalResizeImage>
+
+        <!-- line under the resistances -->
+        <HorizontalResizeImage name="$parentHLine6" inherits="UO_Default_Horizontal_Rule">
+          <Size>
+            <AbsPoint x="110" y="3"/>
+          </Size>
+          <Anchors>
+            <Anchor point="bottomright" relativePoint="topleft" relativeTo="$parentVLine2">
+              <AbsPoint x="0" y="-55"/>
+            </Anchor>
+          </Anchors>
+        </HorizontalResizeImage>
+
+        <!-- line under the resistances total -->
+        <HorizontalResizeImage name="$parentHLine7" inherits="UO_Default_Horizontal_Rule">
+          <Size>
+            <AbsPoint x="110" y="3"/>
+          </Size>
+          <Anchors>
+            <Anchor point="bottomright" relativePoint="bottomleft" relativeTo="$parentVLine2">
+              <AbsPoint x="0" y="1"/>
+            </Anchor>
+          </Anchors>
+        </HorizontalResizeImage>
+
+        <!-- line at the right of the resistances -->
+        <HorizontalResizeImage name="$parentVLine3" inherits="UO_Default_Horizontal_Rule">
+          <Size>
+            <AbsPoint x="3" y="238"/>
+          </Size>
+          <Anchors>
+            <Anchor point="topright" relativePoint="topright" relativeTo="$parentHLine5">
+              <AbsPoint x="0" y="0"/>
+            </Anchor>
+          </Anchors>
+        </HorizontalResizeImage>
+
+        <!-- line at the left of the damage -->
+        <HorizontalResizeImage name="$parentVLine4" inherits="UO_Default_Horizontal_Rule">
+          <Size>
+            <AbsPoint x="3" y="70"/>
+          </Size>
+          <Anchors>
+            <Anchor point="bottomleft" relativePoint="topleft" relativeTo="$parentVLine1">
+              <AbsPoint x="0" y="0"/>
+            </Anchor>
+          </Anchors>
+        </HorizontalResizeImage>
+
+        <!-- line at the right of the damage -->
+        <HorizontalResizeImage name="$parentVLine5" inherits="UO_Default_Horizontal_Rule">
+          <Size>
+            <AbsPoint x="3" y="195"/>
+          </Size>
+          <Anchors>
+            <Anchor point="bottomleft" relativePoint="topleft" relativeTo="$parentVLine3">
+              <AbsPoint x="0" y="0"/>
+            </Anchor>
+          </Anchors>
+        </HorizontalResizeImage>
+
+        <!-- line under the damage -->
+        <HorizontalResizeImage name="$parentHLine8" inherits="UO_Default_Horizontal_Rule">
+          <Size>
+            <AbsPoint x="324" y="3"/>
+          </Size>
+          <Anchors>
+            <Anchor point="bottomleft" relativePoint="bottomleft" relativeTo="$parentVLine4">
+              <AbsPoint x="0" y="1"/>
+            </Anchor>
+          </Anchors>
+        </HorizontalResizeImage>
+
+        <!-- line on top of the skills -->
+        <HorizontalResizeImage name="$parentHLine9" inherits="UO_Default_Horizontal_Rule">
+          <Size>
+            <AbsPoint x="330" y="3"/>
+          </Size>
+          <Anchors>
+            <Anchor point="topright" relativePoint="topleft" relativeTo="$parentHLine5">
+              <AbsPoint x="0" y="0"/>
+            </Anchor>
+          </Anchors>
+        </HorizontalResizeImage>
+
+        <!-- line at the left of the skills -->
+        <HorizontalResizeImage name="$parentVLine6" inherits="UO_Default_Horizontal_Rule">
+          <Size>
+            <AbsPoint x="3" y="435"/>
+          </Size>
+          <Anchors>
+            <Anchor point="topright" relativePoint="topleft" relativeTo="$parentHLine9">
+              <AbsPoint x="-2" y="0"/>
+            </Anchor>
+          </Anchors>
+        </HorizontalResizeImage>
+
+        <!-- line under the skills -->
+        <HorizontalResizeImage name="$parentHLine10" inherits="UO_Default_Horizontal_Rule">
+          <Size>
+            <AbsPoint x="334" y="4"/>
+          </Size>
+          <Anchors>
+            <Anchor point="bottomleft" relativePoint="topleft" relativeTo="$parentVLine5">
+              <AbsPoint x="0" y="0"/>
+            </Anchor>
+          </Anchors>
+        </HorizontalResizeImage>
+
+        <!-- line at the left of the taming data -->
+        <HorizontalResizeImage name="$parentVLine7" inherits="UO_Default_Horizontal_Rule">
+          <Size>
+            <AbsPoint x="3" y="128"/>
+          </Size>
+          <Anchors>
+            <Anchor point="bottomleft" relativePoint="topleft" relativeTo="$parentHLine8">
+              <AbsPoint x="0" y="0"/>
+            </Anchor>
+          </Anchors>
+        </HorizontalResizeImage>
+
+        <!-- line under the taming data -->
+        <HorizontalResizeImage name="$parentHLine11" inherits="UO_Default_Horizontal_Rule">
+          <Size>
+            <AbsPoint x="323" y="4"/>
+          </Size>
+          <Anchors>
+            <Anchor point="bottomleft" relativePoint="bottomleft" relativeTo="$parentVLine7">
+              <AbsPoint x="0" y="0"/>
+            </Anchor>
+          </Anchors>
+        </HorizontalResizeImage>
+
+        <!-- RESISTANCES -->
+        <DynamicImage name="$parentPhysicalIcon" texture="icon000748" alpha="1.0" texturescale ="1" id="1079764">
+          <Size>
+            <AbsPoint x="30" y="30" />
+          </Size>
+          <Anchors>
+            <Anchor point="bottomleft" relativePoint="topleft" relativeTo="$parentHLine5">
+              <AbsPoint x="5" y="5" />
+            </Anchor>
+          </Anchors>
+          <EventHandlers>
+            <EventHandler event="OnMouseOver" function="SettingsWindow.LabelOnMouseOver" />
+          </EventHandlers>
+        </DynamicImage>
+
+        <Label name="$parentPhysicalLabel" font="Arial_Black_Shadow_12" maxchars="3" textalign="right" autoresize="false" id="1079764">
+          <Size>
+            <AbsPoint x="30" y="15"/>
+          </Size>
+          <Anchors>
+            <Anchor point="right" relativePoint="left" relativeTo="$parentPhysicalIcon">
+              <AbsPoint x="0" y="0"/>
+            </Anchor>
+          </Anchors>
+          <EventHandlers>
+            <EventHandler event="OnMouseOver" function="SettingsWindow.LabelOnMouseOver" />
+          </EventHandlers>
+        </Label>
+
+        <Label name="$parentPhysicalCapLabel" font="Arial_Black_Shadow_10" maxchars="5" textalign="right" autoresize="false" id="469">
+          <Size>
+            <AbsPoint x="35" y="15"/>
+          </Size>
+          <Anchors>
+            <Anchor point="right" relativePoint="left" relativeTo="$parentPhysicalLabel">
+              <AbsPoint x="0" y="1"/>
+            </Anchor>
+          </Anchors>
+          <Color r="150" g="150" b="150" a="255" />
+          <EventHandlers>
+            <EventHandler event="OnMouseOver" function="SettingsWindow.LabelOnMouseOver" />
+          </EventHandlers>
+        </Label>
+
+        <DynamicImage name="$parentFireIcon" texture="icon000740" alpha="1.0" texturescale ="1" id="1079763">
+          <Size>
+            <AbsPoint x="30" y="30" />
+          </Size>
+          <Anchors>
+            <Anchor point="bottomleft" relativePoint="topleft" relativeTo="$parentPhysicalIcon">
+              <AbsPoint x="0" y="5" />
+            </Anchor>
+          </Anchors>
+          <EventHandlers>
+            <EventHandler event="OnMouseOver" function="SettingsWindow.LabelOnMouseOver" />
+          </EventHandlers>
+        </DynamicImage>
+
+        <Label name="$parentFireLabel" font="Arial_Black_Shadow_12" maxchars="3" textalign="right" autoresize="false" id="1079763">
+          <Size>
+            <AbsPoint x="30" y="15"/>
+          </Size>
+          <Anchors>
+            <Anchor point="right" relativePoint="left" relativeTo="$parentFireIcon">
+              <AbsPoint x="0" y="0"/>
+            </Anchor>
+          </Anchors>
+          <EventHandlers>
+            <EventHandler event="OnMouseOver" function="SettingsWindow.LabelOnMouseOver" />
+          </EventHandlers>
+        </Label>
+
+        <Label name="$parentFireCapLabel" font="Arial_Black_Shadow_10" maxchars="5" textalign="right" autoresize="false" id="469">
+          <Size>
+            <AbsPoint x="35" y="15"/>
+          </Size>
+          <Anchors>
+            <Anchor point="right" relativePoint="left" relativeTo="$parentFireLabel">
+              <AbsPoint x="0" y="1"/>
+            </Anchor>
+          </Anchors>
+          <Color r="150" g="150" b="150" a="255" />
+          <EventHandlers>
+            <EventHandler event="OnMouseOver" function="SettingsWindow.LabelOnMouseOver" />
+          </EventHandlers>
+        </Label>
+        
+        <DynamicImage name="$parentColdIcon" texture="icon000735" alpha="1.0" texturescale ="1" id="1079761">
+          <Size>
+            <AbsPoint x="30" y="30" />
+          </Size>
+          <Anchors>
+            <Anchor point="bottomleft" relativePoint="topleft" relativeTo="$parentFireIcon">
+              <AbsPoint x="0" y="5" />
+            </Anchor>
+          </Anchors>
+          <EventHandlers>
+            <EventHandler event="OnMouseOver" function="SettingsWindow.LabelOnMouseOver" />
+          </EventHandlers>
+        </DynamicImage>
+
+        <Label name="$parentColdLabel" font="Arial_Black_Shadow_12" maxchars="3" textalign="right" autoresize="false" id="1079761">
+          <Size>
+            <AbsPoint x="30" y="15"/>
+          </Size>
+          <Anchors>
+            <Anchor point="right" relativePoint="left" relativeTo="$parentColdIcon">
+              <AbsPoint x="0" y="0"/>
+            </Anchor>
+          </Anchors>
+          <EventHandlers>
+            <EventHandler event="OnMouseOver" function="SettingsWindow.LabelOnMouseOver" />
+          </EventHandlers>
+        </Label>
+
+        <Label name="$parentColdCapLabel" font="Arial_Black_Shadow_10" maxchars="5" textalign="right" autoresize="false" id="469">
+          <Size>
+            <AbsPoint x="35" y="15"/>
+          </Size>
+          <Anchors>
+            <Anchor point="right" relativePoint="left" relativeTo="$parentColdLabel">
+              <AbsPoint x="0" y="1"/>
+            </Anchor>
+          </Anchors>
+          <Color r="150" g="150" b="150" a="255" />
+          <EventHandlers>
+            <EventHandler event="OnMouseOver" function="SettingsWindow.LabelOnMouseOver" />
+          </EventHandlers>
+        </Label>
+
+        <DynamicImage name="$parentPoisonIcon" texture="icon000749" alpha="1.0" texturescale ="1" id="1079765">
+          <Size>
+            <AbsPoint x="30" y="30" />
+          </Size>
+          <Anchors>
+            <Anchor point="bottomleft" relativePoint="topleft" relativeTo="$parentColdIcon">
+              <AbsPoint x="0" y="5" />
+            </Anchor>
+          </Anchors>
+          <EventHandlers>
+            <EventHandler event="OnMouseOver" function="SettingsWindow.LabelOnMouseOver" />
+          </EventHandlers>
+        </DynamicImage>
+
+        <Label name="$parentPoisonLabel" font="Arial_Black_Shadow_12" maxchars="3" textalign="right" autoresize="false" id="1079765">
+          <Size>
+            <AbsPoint x="30" y="15"/>
+          </Size>
+          <Anchors>
+            <Anchor point="right" relativePoint="left" relativeTo="$parentPoisonIcon">
+              <AbsPoint x="0" y="0"/>
+            </Anchor>
+          </Anchors>
+          <EventHandlers>
+            <EventHandler event="OnMouseOver" function="SettingsWindow.LabelOnMouseOver" />
+          </EventHandlers>
+        </Label>
+
+        <Label name="$parentPoisonCapLabel" font="Arial_Black_Shadow_10" maxchars="5" textalign="right" autoresize="false" id="469">
+          <Size>
+            <AbsPoint x="35" y="15"/>
+          </Size>
+          <Anchors>
+            <Anchor point="right" relativePoint="left" relativeTo="$parentPoisonLabel">
+              <AbsPoint x="0" y="1"/>
+            </Anchor>
+          </Anchors>
+          <Color r="150" g="150" b="150" a="255" />
+          <EventHandlers>
+            <EventHandler event="OnMouseOver" function="SettingsWindow.LabelOnMouseOver" />
+          </EventHandlers>
+        </Label>
+
+        <DynamicImage name="$parentEnergyIcon" texture="icon000739" alpha="1.0" texturescale ="1" id="1079762">
+          <Size>
+            <AbsPoint x="30" y="30" />
+          </Size>
+          <Anchors>
+            <Anchor point="bottomleft" relativePoint="topleft" relativeTo="$parentPoisonIcon">
+              <AbsPoint x="0" y="5" />
+            </Anchor>
+          </Anchors>
+          <EventHandlers>
+            <EventHandler event="OnMouseOver" function="SettingsWindow.LabelOnMouseOver" />
+          </EventHandlers>
+        </DynamicImage>
+
+        <Label name="$parentEnergyLabel" font="Arial_Black_Shadow_12" maxchars="3" textalign="right" autoresize="false" id="1079762">
+          <Size>
+            <AbsPoint x="30" y="15"/>
+          </Size>
+          <Anchors>
+            <Anchor point="right" relativePoint="left" relativeTo="$parentEnergyIcon">
+              <AbsPoint x="0" y="0"/>
+            </Anchor>
+          </Anchors>
+          <EventHandlers>
+            <EventHandler event="OnMouseOver" function="SettingsWindow.LabelOnMouseOver" />
+          </EventHandlers>
+        </Label>
+
+        <Label name="$parentEnergyCapLabel" font="Arial_Black_Shadow_10" maxchars="5" textalign="right" autoresize="false" id="469">
+          <Size>
+            <AbsPoint x="35" y="15"/>
+          </Size>
+          <Anchors>
+            <Anchor point="right" relativePoint="left" relativeTo="$parentEnergyLabel">
+              <AbsPoint x="0" y="1"/>
+            </Anchor>
+          </Anchors>
+          <Color r="150" g="150" b="150" a="255" />
+          <EventHandlers>
+            <EventHandler event="OnMouseOver" function="SettingsWindow.LabelOnMouseOver" />
+          </EventHandlers>
+        </Label>
+
+        <DynamicImage name="$parentTotalResSumIcon" texture="numberHighlight" alpha="0.35" texturescale ="1" id="472">
+          <Size>
+            <AbsPoint x="30" y="30" />
+          </Size>
+          <Anchors>
+            <Anchor point="bottomleft" relativePoint="topleft" relativeTo="$parentEnergyIcon">
+              <AbsPoint x="5" y="17" />
+            </Anchor>
+          </Anchors>
+          <EventHandlers>
+            <EventHandler event="OnMouseOver" function="SettingsWindow.LabelOnMouseOver" />
+          </EventHandlers>
+        </DynamicImage>
+
+        <Label name="$parentTotalResSumLabel" font="Arial_Black_Shadow_14" maxchars="3" textalign="center" autoresize="false" handleinput="false" >
+          <Size>
+            <AbsPoint x="35" y="15"/>
+          </Size>
+          <Anchors>
+            <Anchor point="center" relativePoint="center" relativeTo="$parentTotalResSumIcon">
+              <AbsPoint x="0" y="-3"/>
+            </Anchor>
+          </Anchors>
+        </Label>
+
+        <Label name="$parentTotalResLabel" font="Arial_Black_Shadow_12" maxchars="3" textalign="right" autoresize="false" id="470">
+          <Size>
+            <AbsPoint x="30" y="15"/>
+          </Size>
+          <Anchors>
+            <Anchor point="right" relativePoint="left" relativeTo="$parentTotalResSumIcon">
+              <AbsPoint x="0" y="0"/>
+            </Anchor>
+          </Anchors>
+          <EventHandlers>
+            <EventHandler event="OnMouseOver" function="SettingsWindow.LabelOnMouseOver" />
+          </EventHandlers>
+        </Label>
+
+        <Label name="$parentTotalResCapLabel" font="Arial_Black_Shadow_10" maxchars="4" textalign="right" autoresize="false" id="471">
+          <Size>
+            <AbsPoint x="30" y="15"/>
+          </Size>
+          <Anchors>
+            <Anchor point="right" relativePoint="left" relativeTo="$parentTotalResLabel">
+              <AbsPoint x="-3" y="1"/>
+            </Anchor>
+          </Anchors>
+          <Color r="150" g="150" b="150" a="255" />
+          <EventHandlers>
+            <EventHandler event="OnMouseOver" function="SettingsWindow.LabelOnMouseOver" />
+          </EventHandlers>
+        </Label>
+
+        <!-- DAMAGE -->
+        <DynamicImage name="$parentDamageIcon" texture="icon000736" alpha="1.0" texturescale ="0.9" id="1061155">
+          <Size>
+            <AbsPoint x="30" y="30" />
+          </Size>
+          <Anchors>
+            <Anchor point="bottomleft" relativePoint="topleft" relativeTo="$parentHLine4">
+              <AbsPoint x="7" y="2" />
+            </Anchor>
+          </Anchors>
+          <EventHandlers>
+            <EventHandler event="OnMouseOver" function="SettingsWindow.LabelOnMouseOver" />
+          </EventHandlers>
+        </DynamicImage>
+
+        <Label name="$parentDamageLabel" font="Arial_Black_Shadow_12" maxchars="10" textalign="left" autoresize="false" id="1061155">
+          <Size>
+            <AbsPoint x="100" y="15"/>
+          </Size>
+          <Anchors>
+            <Anchor point="right" relativePoint="left" relativeTo="$parentDamageIcon">
+              <AbsPoint x="5" y="-2"/>
+            </Anchor>
+          </Anchors>
+          <EventHandlers>
+            <EventHandler event="OnMouseOver" function="SettingsWindow.LabelOnMouseOver" />
+          </EventHandlers>
+        </Label>
+
+        <!-- BARDING DIFFICULTY -->
+        <Label name="$parentBardingDifficultyLabel" font="Arial_Black_Shadow_12" maxchars="10" textalign="left" autoresizewidth="false" id="1070793">
+          <Size>
+            <AbsPoint x="70" y="15"/>
+          </Size>
+          <Anchors>
+            <Anchor point="bottomright" relativePoint="topright" relativeTo="$parentHLine7">
+              <AbsPoint x="0" y="3"/>
+            </Anchor>
+          </Anchors>
+          <EventHandlers>
+            <EventHandler event="OnMouseOver" function="SettingsWindow.LabelOnMouseOver" />
+          </EventHandlers>
+        </Label>
+
+        <DynamicImage name="$parentBardingDifficultyIcon" texture="bdiff" alpha="1.0" texturescale ="1" id="1070793">
+          <Size>
+            <AbsPoint x="30" y="25" />
+          </Size>
+          <Anchors>
+            <Anchor point="left" relativePoint="right" relativeTo="$parentBardingDifficultyLabel" >
+              <AbsPoint x="-3" y="2" />
+            </Anchor>
+          </Anchors>
+          <EventHandlers>
+            <EventHandler event="OnMouseOver" function="SettingsWindow.LabelOnMouseOver" />
+          </EventHandlers>
+        </DynamicImage>
+
+        <!-- FOOD  -->
+        <DynamicImage name="$parentFoodIcon" texture="food" alpha="1.0" texturescale ="0.9" id="1049563">
+          <Size>
+            <AbsPoint x="30" y="30" />
+          </Size>
+          <Anchors>
+            <Anchor point="bottomleft" relativePoint="topleft" relativeTo="$parentHLine8">
+              <AbsPoint x="10" y="0" />
+            </Anchor>
+          </Anchors>
+          <EventHandlers>
+            <EventHandler event="OnMouseOver" function="SettingsWindow.LabelOnMouseOver" />
+          </EventHandlers>
+        </DynamicImage>
+
+        <Label name="$parentFoodLabel" font="Arial_Black_Shadow_12" maxchars="40" textalign="left" autoresizewidth="true" id="1049563">
+          <Size>
+            <AbsPoint x="30" y="15"/>
+          </Size>
+          <Anchors>
+            <Anchor point="right" relativePoint="left" relativeTo="$parentFoodIcon">
+              <AbsPoint x="5" y="-2"/>
+            </Anchor>
+          </Anchors>
+          <EventHandlers>
+            <EventHandler event="OnMouseOver" function="SettingsWindow.LabelOnMouseOver" />
+          </EventHandlers>
+        </Label>
+
+        <!-- PACK INSTINCTS  -->
+        <DynamicImage name="$parentPacksIcon" texture="packInstinct" alpha="1.0" texturescale ="0.9" id="1049569">
+          <Size>
+            <AbsPoint x="27" y="27" />
+          </Size>
+          <Anchors>
+            <Anchor point="bottomleft" relativePoint="topleft" relativeTo="$parentFoodIcon">
+              <AbsPoint x="0" y="-2" />
+            </Anchor>
+          </Anchors>
+          <EventHandlers>
+            <EventHandler event="OnMouseOver" function="SettingsWindow.LabelOnMouseOver" />
+          </EventHandlers>
+        </DynamicImage>
+
+        <Label name="$parentPacksLabel" font="Arial_Black_Shadow_12" maxchars="40" textalign="left" autoresizewidth="true" id="1049569">
+          <Size>
+            <AbsPoint x="30" y="15"/>
+          </Size>
+          <Anchors>
+            <Anchor point="right" relativePoint="left" relativeTo="$parentPacksIcon">
+              <AbsPoint x="8" y="-2"/>
+            </Anchor>
+          </Anchors>
+          <EventHandlers>
+            <EventHandler event="OnMouseOver" function="SettingsWindow.LabelOnMouseOver" />
+          </EventHandlers>
+        </Label>
+
+        <!-- TAMING  -->
+        <DynamicImage name="$parentTamingIcon" texture="icon002004" alpha="1.0" texturescale ="0.5" id="5">
+          <Size>
+            <AbsPoint x="30" y="30" />
+          </Size>
+          <Anchors>
+            <Anchor point="bottomleft" relativePoint="topleft" relativeTo="$parentPacksIcon">
+              <AbsPoint x="0" y="5" />
+            </Anchor>
+          </Anchors>
+          <EventHandlers>
+            <EventHandler event="OnMouseOver" function="SettingsWindow.LabelOnMouseOver" />
+          </EventHandlers>
+        </DynamicImage>
+
+        <Label name="$parentTamingLabel" font="Arial_Black_Shadow_12" maxchars="50" textalign="left" autoresizewidth="false" id="5">
+          <Size>
+            <AbsPoint x="130" y="15"/>
+          </Size>
+          <Anchors>
+            <Anchor point="right" relativePoint="left" relativeTo="$parentTamingIcon">
+              <AbsPoint x="8" y="-2"/>
+            </Anchor>
+          </Anchors>
+          <EventHandlers>
+            <EventHandler event="OnMouseOver" function="SettingsWindow.LabelOnMouseOver" />
+          </EventHandlers>
+        </Label>
+
+        <!-- CONTROL CHANCE  -->
+        <DynamicImage name="$parentControlChanceIcon" texture="controlChance" alpha="1.0" texturescale ="1" id="6">
+          <Size>
+            <AbsPoint x="30" y="30" />
+          </Size>
+          <Anchors>
+            <Anchor point="right" relativePoint="left" relativeTo="$parentTamingLabel">
+              <AbsPoint x="0" y="2" />
+            </Anchor>
+          </Anchors>
+          <EventHandlers>
+            <EventHandler event="OnMouseOver" function="SettingsWindow.LabelOnMouseOver" />
+          </EventHandlers>
+        </DynamicImage>
+
+        <Label name="$parentControlChanceLabel" font="Arial_Black_Shadow_12" maxchars="50" textalign="left" autoresizewidth="false" id="6">
+          <Size>
+            <AbsPoint x="130" y="15"/>
+          </Size>
+          <Anchors>
+            <Anchor point="right" relativePoint="left" relativeTo="$parentControlChanceIcon">
+              <AbsPoint x="8" y="-2"/>
+            </Anchor>
+          </Anchors>
+          <EventHandlers>
+            <EventHandler event="OnMouseOver" function="SettingsWindow.LabelOnMouseOver" />
+          </EventHandlers>
+        </Label>
+
+        <!-- PET RATING  -->  
+        <StatusBar name="$parentPetRatingIcon" foreground="PetRatingTemplate" background="PetRatingBGTemplate" handleinput="true">
+          <Size>
+            <AbsPoint x="135" y="23" />
+          </Size>
+          <Anchors>
+            <Anchor point="bottomleft" relativePoint="topleft" relativeTo="$parentControlChanceIcon">
+              <AbsPoint x="0" y="4" />
+            </Anchor>
+          </Anchors>
+          <EventHandlers>
+            <EventHandler event="OnMouseOver" function="AnimalLore.RatingTooltip" />
+          </EventHandlers>
+        </StatusBar>
+
+        <!-- SLOTS  -->
+        <DynamicImage name="$parentSlotsIcon" texture="petSlots" alpha="1.0" texturescale ="1" id="1115783">
+          <Size>
+            <AbsPoint x="30" y="30" />
+          </Size>
+          <Anchors>
+            <Anchor point="bottomleft" relativePoint="topleft" relativeTo="$parentTamingIcon">
+              <AbsPoint x="0" y="3" />
+            </Anchor>
+          </Anchors>
+          <EventHandlers>
+            <EventHandler event="OnMouseOver" function="SettingsWindow.LabelOnMouseOver" />
+          </EventHandlers>
+        </DynamicImage>
+
+        <Label name="$parentSlotsLabel" font="Arial_Black_Shadow_12" maxchars="40" textalign="left" autoresizewidth="false" id="1115783">
+          <Size>
+            <AbsPoint x="120" y="15"/>
+          </Size>
+          <Anchors>
+            <Anchor point="right" relativePoint="left" relativeTo="$parentSlotsIcon">
+              <AbsPoint x="8" y="-2"/>
+            </Anchor>
+          </Anchors>
+          <EventHandlers>
+            <EventHandler event="OnMouseOver" function="SettingsWindow.LabelOnMouseOver" />
+          </EventHandlers>
+        </Label>
+
+        <Window name="$parentSpecials">
+          <Size>
+            <AbsPoint x="655" y="70"/>
+          </Size>
+          <Anchors>
+            <Anchor point="bottomleft" relativePoint="topleft" relativeTo="$parentHLine11">
+              <AbsPoint x="0" y="0" />
+            </Anchor>
+          </Anchors>
+          <Windows>
+
+            <!-- line on the left of the special abilities -->
+            <HorizontalResizeImage name="$parentVLine8" inherits="UO_Default_Horizontal_Rule">
+              <Size>
+                <AbsPoint x="3" y="70"/>
+              </Size>
+              <Anchors>
+                <Anchor point="topleft" relativePoint="topleft" relativeTo="$parent">
+                  <AbsPoint x="0" y="0"/>
+                </Anchor>
+                <Anchor point="bottomleft" relativePoint="bottomleft" relativeTo="$parent">
+                  <AbsPoint x="0" y="0"/>
+                </Anchor>
+              </Anchors>
+            </HorizontalResizeImage>
+
+            <!-- line on the left of the special abilities -->
+            <HorizontalResizeImage name="$parentVLine9" inherits="UO_Default_Horizontal_Rule">
+              <Size>
+                <AbsPoint x="3" y="70"/>
+              </Size>
+              <Anchors>
+                <Anchor point="topright" relativePoint="topright" relativeTo="$parent">
+                  <AbsPoint x="1" y="0"/>
+                </Anchor>
+                <Anchor point="bottomright" relativePoint="bottomright" relativeTo="$parent">
+                  <AbsPoint x="0" y="0"/>
+                </Anchor>
+              </Anchors>
+            </HorizontalResizeImage>
+
+            <!-- line under the specials -->
+            <HorizontalResizeImage name="$parentHLine12" inherits="UO_Default_Horizontal_Rule">
+              <Size>
+                <AbsPoint x="655" y="4"/>
+              </Size>
+              <Anchors>
+                <Anchor point="bottomleft" relativePoint="bottomleft" relativeTo="$parentVLine8">
+                  <AbsPoint x="0" y="0"/>
+                </Anchor>
+              </Anchors>
+            </HorizontalResizeImage>
+            
+            <Label name="$parentTitle" font="Arial_Black_Shadow_12" maxchars="50" textalign="left" autoresize="false" handleinput="true">
+              <Size>
+                <AbsPoint x="150" y="15"/>
+              </Size>
+              <Anchors>
+                <Anchor point="topleft" relativePoint="topleft" relativeTo="$parent">
+                  <AbsPoint x="15" y="4" />
+                </Anchor>
+              </Anchors>
+            </Label>
+
+            <!-- line under the specials title -->
+            <HorizontalResizeImage name="$parentHLine13" inherits="UO_Default_Horizontal_Rule" alpha="0.6">
+              <Size>
+                <AbsPoint x="655" y="3"/>
+              </Size>
+              <Anchors>
+                <Anchor point="topleft" relativePoint="topleft" relativeTo="$parentVLine8">
+                  <AbsPoint x="0" y="28"/>
+                </Anchor>
+              </Anchors>
+            </HorizontalResizeImage>
+
+            <!-- line between abilities 1 -->
+            <HorizontalResizeImage name="$parentVLine10" inherits="UO_Default_Horizontal_Rule" alpha="0.6">
+              <Size>
+                <AbsPoint x="3" y="42"/>
+              </Size>
+              <Anchors>
+                <Anchor point="topleft" relativePoint="topleft" relativeTo="$parentHLine13">
+                  <AbsPoint x="163" y="0"/>
+                </Anchor>
+                <Anchor point="bottomleft" relativePoint="bottomleft" relativeTo="$parent">
+                  <AbsPoint x="163" y="0"/>
+                </Anchor>
+              </Anchors>
+            </HorizontalResizeImage>
+
+            <!-- line between abilities 2 -->
+            <HorizontalResizeImage name="$parentVLine11" inherits="UO_Default_Horizontal_Rule" alpha="0.6">
+              <Size>
+                <AbsPoint x="3" y="42"/>
+              </Size>
+              <Anchors>
+                <Anchor point="topleft" relativePoint="topleft" relativeTo="$parentHLine13">
+                  <AbsPoint x="326" y="0"/>
+                </Anchor>
+                <Anchor point="bottomleft" relativePoint="bottomleft" relativeTo="$parent">
+                  <AbsPoint x="326" y="0"/>
+                </Anchor>
+              </Anchors>
+            </HorizontalResizeImage>
+
+            <!-- line between abilities 3 -->
+            <HorizontalResizeImage name="$parentVLine12" inherits="UO_Default_Horizontal_Rule" alpha="0.6">
+              <Size>
+                <AbsPoint x="3" y="42"/>
+              </Size>
+              <Anchors>
+                <Anchor point="topleft" relativePoint="topleft" relativeTo="$parentHLine13">
+                  <AbsPoint x="489" y="0"/>
+                </Anchor>
+                <Anchor point="bottomleft" relativePoint="bottomleft" relativeTo="$parent">
+                  <AbsPoint x="489" y="0"/>
+                </Anchor>
+              </Anchors>
+            </HorizontalResizeImage>
+            
+          </Windows>
+        </Window>
+
+        <Window name="$parentAdvancements">
+          <Size>
+            <AbsPoint x="655" y="70"/>
+          </Size>
+          <Anchors>
+            <Anchor point="bottomleft" relativePoint="topleft" relativeTo="$parentSpecialsHLine12">
+              <AbsPoint x="0" y="0" />
+            </Anchor>
+          </Anchors>
+          <Windows>
+
+            <!-- line on the left of the special abilities -->
+            <HorizontalResizeImage name="$parentVLine8" inherits="UO_Default_Horizontal_Rule">
+              <Size>
+                <AbsPoint x="3" y="154"/>
+              </Size>
+              <Anchors>
+                <Anchor point="topleft" relativePoint="topleft" relativeTo="$parent">
+                  <AbsPoint x="0" y="0"/>
+                </Anchor>
+                <Anchor point="bottomleft" relativePoint="bottomleft" relativeTo="$parent">
+                  <AbsPoint x="0" y="0"/>
+                </Anchor>
+              </Anchors>
+            </HorizontalResizeImage>
+
+            <!-- line on the left of the special abilities -->
+            <HorizontalResizeImage name="$parentVLine9" inherits="UO_Default_Horizontal_Rule">
+              <Size>
+                <AbsPoint x="3" y="154"/>
+              </Size>
+              <Anchors>
+                <Anchor point="topright" relativePoint="topright" relativeTo="$parent">
+                  <AbsPoint x="1" y="0"/>
+                </Anchor>
+                <Anchor point="bottomright" relativePoint="bottomright" relativeTo="$parent">
+                  <AbsPoint x="0" y="0"/>
+                </Anchor>
+              </Anchors>
+            </HorizontalResizeImage>
+
+            <!-- line under the specials -->
+            <HorizontalResizeImage name="$parentHLine12" inherits="UO_Default_Horizontal_Rule">
+              <Size>
+                <AbsPoint x="655" y="4"/>
+              </Size>
+              <Anchors>
+                <Anchor point="bottomleft" relativePoint="bottomleft" relativeTo="$parentVLine8">
+                  <AbsPoint x="0" y="0"/>
+                </Anchor>
+              </Anchors>
+            </HorizontalResizeImage>
+
+            <Label name="$parentTitle" font="Arial_Black_Shadow_12" maxchars="50" textalign="left" autoresize="false" handleinput="true">
+              <Size>
+                <AbsPoint x="150" y="15"/>
+              </Size>
+              <Anchors>
+                <Anchor point="topleft" relativePoint="topleft" relativeTo="$parent">
+                  <AbsPoint x="15" y="7" />
+                </Anchor>
+              </Anchors>
+            </Label>
+
+            <!-- line under the specials title -->
+            <HorizontalResizeImage name="$parentHLine13" inherits="UO_Default_Horizontal_Rule" alpha="0.6">
+              <Size>
+                <AbsPoint x="655" y="3"/>
+              </Size>
+              <Anchors>
+                <Anchor point="topleft" relativePoint="topleft" relativeTo="$parentVLine8">
+                  <AbsPoint x="0" y="28"/>
+                </Anchor>
+              </Anchors>
+            </HorizontalResizeImage>
+
+            <!-- line between abilities 1 -->
+            <HorizontalResizeImage name="$parentVLine10" inherits="UO_Default_Horizontal_Rule" alpha="0.6">
+              <Size>
+                <AbsPoint x="3" y="126"/>
+              </Size>
+              <Anchors>
+                <Anchor point="topleft" relativePoint="topleft" relativeTo="$parentHLine13">
+                  <AbsPoint x="163" y="0"/>
+                </Anchor>
+                <Anchor point="bottomleft" relativePoint="bottomleft" relativeTo="$parent">
+                  <AbsPoint x="163" y="0"/>
+                </Anchor>
+              </Anchors>
+            </HorizontalResizeImage>
+
+            <!-- line between abilities 2 -->
+            <HorizontalResizeImage name="$parentVLine11" inherits="UO_Default_Horizontal_Rule" alpha="0.6">
+              <Size>
+                <AbsPoint x="3" y="126"/>
+              </Size>
+              <Anchors>
+                <Anchor point="topleft" relativePoint="topleft" relativeTo="$parentHLine13">
+                  <AbsPoint x="326" y="0"/>
+                </Anchor>
+                <Anchor point="bottomleft" relativePoint="bottomleft" relativeTo="$parent">
+                  <AbsPoint x="326" y="0"/>
+                </Anchor>
+              </Anchors>
+            </HorizontalResizeImage>
+
+            <!-- line between abilities 3 -->
+            <HorizontalResizeImage name="$parentVLine12" inherits="UO_Default_Horizontal_Rule" alpha="0.6">
+              <Size>
+                <AbsPoint x="3" y="126"/>
+              </Size>
+              <Anchors>
+                <Anchor point="topleft" relativePoint="topleft" relativeTo="$parentHLine13">
+                  <AbsPoint x="489" y="0"/>
+                </Anchor>
+                <Anchor point="bottomleft" relativePoint="bottomleft" relativeTo="$parent">
+                  <AbsPoint x="489" y="0"/>
+                </Anchor>
+              </Anchors>
+            </HorizontalResizeImage>
+
+          </Windows>
+        </Window>
+       
+        
+<!--
+        <FullResizeImage name="$parentFrame" inherits="UO_Simple_Frame" layer="background" frameonly="false">
+          <Anchors>
+            <Anchor point="topleft" relativePoint="topleft" relativeTo="$parentPetTypeText" />
+            <Anchor point="bottomright" relativePoint="bottomright" relativeTo="$parentPetTypeText" />
+          </Anchors>
+        </FullResizeImage>
+-->
+
+
+
+      </Windows>
+    </Window>
+  </Windows>
+</Interface>

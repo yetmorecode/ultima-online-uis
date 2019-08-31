@@ -1,0 +1,116 @@
+<Interface xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../Interface.xsd">
+	<Scripts>
+		<Script file="Source/Credits.lua" />
+	</Scripts>
+	
+	<Windows>
+    
+    <Window name="Credits" >
+      <Size>
+        <AbsPoint x="700" y="720" />
+      </Size>
+      <Anchors>
+        <Anchor point="center" relativePoint="center">
+          <AbsPoint x="0" y="0" />
+        </Anchor>
+      </Anchors>
+      <EventHandlers>
+        <EventHandler event="OnInitialize" function="Credits.Initialize" />
+      </EventHandlers>      
+      <Windows>
+        <FullResizeImage name="$parentBackground" inherits="UO_Login_Black_Background" layer="background">
+          <Anchors>
+            <Anchor point="topleft" relativePoint="topleft" />
+            <Anchor point="bottomright" relativePoint="bottomright" />
+          </Anchors>
+        </FullResizeImage>
+        <!-- Inner Frame Boilerplate -->
+        <FullResizeImage name="$parentFrame" inherits="UO_Login_Inner_Window_Frame">
+          <Anchors>
+            <Anchor point="topleft" relativePoint="topleft" />
+            <Anchor point="bottomright" relativePoint="bottomright" />
+          </Anchors>
+        </FullResizeImage>
+        <Label name="$parentTitle" font="UO_Subtitle" linespacing="20" maxchars="64" textalign="center"
+          autoresize="true" handleinput="false" wordwrap="false">
+          <Size>
+            <AbsPoint x="350" y="20" />
+          </Size>
+          <Anchors>
+            <Anchor point="top" relativePoint="top">
+              <AbsPoint x="0" y="20" />
+            </Anchor>
+          </Anchors>
+          <Color r="255" g="255" b="255" a="255" />
+        </Label>        
+        
+        <!-- End of Inner Frame Boilerplate -->        
+        <ScrollWindow name="$parentScrollWindow" childscrollwindow="$parentContent" scrollbar="$parentScrollbar" lineheight="60" >
+          <Size>
+            <AbsPoint x="660" y="610" />
+          </Size>
+          <Anchors>
+            <Anchor point="topleft" relativePoint="topleft">
+              <AbsPoint x="20" y="55" />
+            </Anchor>
+          </Anchors>
+          <Windows>
+            <FullResizeImage name="$parent_UO_DefaultWindowFrame" inherits="UO_Login_Inner_Window_Frame">
+              <Anchors>
+                <Anchor point="topleft" relativePoint="topleft" />
+                <Anchor point="bottomright" relativePoint="bottomright" />
+              </Anchors>
+            </FullResizeImage>
+            <VerticalScrollbar name="$parentScrollbar" inherits="LoginVertScroll" layer="popup">
+              <Size>
+                <AbsPoint x="15" y="370"/>
+              </Size>
+              <Anchors>
+                <Anchor point="topright" relativePoint="topright">
+                  <AbsPoint x="0" y="0" />
+                </Anchor>
+              </Anchors>
+            </VerticalScrollbar>
+            <!-- SCROLL CHILD -->
+            <Window name="$parentContent" >
+              <Anchors>
+                <Anchor point="topleft" relativePoint="topleft">
+                  <AbsPoint x="0" y="5"/>
+                </Anchor>
+              </Anchors>
+              <Size>
+                <AbsPoint x="670" y="390" />
+              </Size>
+              <Windows>
+                <Label name="CreditsWindowText1" font="UO_DefaultText" maxchars="16383" linespacing="20" textalign="center" autoresize="true" handleinput="false" wordwrap="true" >
+                  <Size>
+                    <AbsPoint x="650" y="0" />
+                  </Size>
+                  <Anchors>
+                    <Anchor point="topleft" relativePoint="topleft">
+                      <AbsPoint x="10" y="10" />
+                    </Anchor>
+                  </Anchors>
+                  <Color r="255" g="255" b="255" a="255" />
+                </Label>
+              </Windows>
+            </Window>
+            <!-- SCROLL CHILD -->
+          </Windows>
+        </ScrollWindow>
+        <Button name="CreditsOkButton" inherits="UO_Login_Medium_Select_Button" >
+          <Anchors>
+            <Anchor point="bottom" relativePoint="bottom">
+              <AbsPoint x="0" y="-10" />
+            </Anchor>
+          </Anchors>
+          <EventHandlers>
+            <EventHandler event="OnLButtonUp" function="Credits.OnOk" />
+          </EventHandlers>
+        </Button>
+      </Windows>
+    </Window>
+
+    
+	</Windows>
+</Interface>

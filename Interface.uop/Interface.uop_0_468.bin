@@ -1,0 +1,2362 @@
+----------------------------------------------------------------
+-- Global Variables
+----------------------------------------------------------------
+
+CharacterCreation = {}
+
+					--Character Creation, Race, Profession, Appearance, Create, MALE, FEMALE, STRENGTH, DEXTERITY, INTELLIGENCE, Name
+					--Gender, Strength, Dexterity, Intelligence, APPEARANCE SELECTION IS NOT YET AVAILABLE.,DESCRIPTION FOR SKILL, YOU MUST ENTER A NAME!
+CharacterCreation.TID = {	Creation=3000109 , Race=1077827 , Profession=1077828 , Appearance=1077829 , Create=1077830 ,
+							MALE=1077831 ,FEMALE=1077832, STRENGTH=1077833 , DEXTERITY=1077834 , INTELLIGENCE=1077835 ,
+							Name=1037013 , Gender=3000120, Strength=1027996 , Dexterity=1061147 , Intelligence=1061148 ,
+							notAva=1077836, descrip=1077837, enterName=1077838, Customize=1011355, Custom=1077246,
+							CustomProfessionText=1061226, Defaults=3001015, Shirt=1011359, ShirtColor=3000440, Pants=1015279,
+							PantsColor=3000441, HairStyle=1011395, HairColor=3000184, FacialHairStyle=1015320, HornStyle=1112735, HornColor=1112322,
+							FacialHornStyle=1112736, FacialHornColor=1112512,
+							FacialHairColor=3000446, SelectFace=3000438, SkinTone=3000183, Shoes=1011390, Appearance=1077829,
+							TimeoutWarningMessage=3000005, TimeoutWarning=1078112, ShoeColor=1078150, Stats=3010049, Skills=3000084, 
+							
+							
+							Location=1018327, CurrentFacet=3005088, CurrentLocation=1018327, CitySelection=3000125
+							
+							
+							
+						}
+											 
+CharacterCreation.IsShowing = false
+----------------------------------------------------------------
+-- Local Variables
+----------------------------------------------------------------
+race_id = 1
+race_name = nil
+gender_id = 0
+strength = 0
+dexterity = 0
+intelligence = 0
+name = L""
+
+skill_1_id = -1
+skill_2_id = -1
+skill_3_id = -1
+skill_4_id = -1
+skill_1_name = nil
+skill_2_name = nil
+skill_3_name = nil
+skill_4_name = nil
+skill_1_val = -1
+skill_2_val = -1
+skill_3_val = -1
+skill_4_val = -1
+
+profession_id = 1
+profession_name = nil
+custom_profession_selected = 0
+default_profession_selected = 1
+
+faceStyles = {}
+faceStyle = -1
+skinColor  = -1
+hairStyles  = {}
+hairStyle  = -1
+hairColor = -1
+facialHairStyles = {}
+facialHairStyle = -1
+facialHairColor = -1
+
+profession_righthandStyle =  -1
+profession_lefthandStyle = -1
+profession_feetStyle = -1
+profession_legsStyle = -1
+profession_torsoStyle = -1
+profession_headStyle = -1
+profession_handsStyle = -1
+profession_finger1Style = -1
+profession_talismanStyle = -1
+profession_neckStyle = -1
+profession_waistStyle = -1
+profession_chestStyle = -1
+profession_lwristStyle = -1
+profession_rwristStyle = -1
+profession_abovechestStyle = -1
+profession_earsStyle = -1
+profession_armsStyle = -1
+profession_capeStyle = -1
+profession_backpackStyle = -1
+profession_dressStyle = -1
+profession_skirtStyle = -1
+profession_feetlegsStyle = -1
+
+profession_righthandHue = 0
+profession_lefthandHue = 0
+profession_feetHue = 0
+profession_legsHue = 0
+profession_torsoHue = 0
+profession_headHue = 0
+profession_handsHue = 0
+profession_finger1Hue = 0
+profession_talismanHue = 0
+profession_neckHue = 0
+profession_waistHue = 0
+profession_chestHue = 0
+profession_lwristHue = 0
+profession_rwristHue = 0
+profession_abovechestHue = 0
+profession_earsHue = 0
+profession_armsHue = 0
+profession_capeHue = 0
+profession_backpackHue = 0
+profession_dressHue = 0
+profession_skirtHue = 0
+profession_feetlegsHue = 0
+
+numRaces = 0
+numProfessions = 0
+numSkills = 0
+
+DefaultProfessionsViewOrder = {}
+CustomSkillsViewOrder = {}
+skill_index_being_selected = nil
+allow_custom_selection = false
+
+local defaultHairIndex = 1
+local FaceIndex = 1 
+local HairIndex = defaultHairIndex -- 1 is none
+local FacialHairIndex = 1
+
+CharacterCreation.maxSkillTotal = 120
+CharacterCreation.maxSkillValue = 50
+CharacterCreation.minSkillValue = 0
+CharacterCreation.maxStatTotal = 90
+CharacterCreation.maxStatValue = 60
+CharacterCreation.minStatValue = 10
+
+CharacterCreation.MondainsLegacyEntitlement = 128
+CharacterCreation.StygianAbyssEntitlement = 65536
+
+StartingLocation = {}
+StartingLocation.AvailableFacets = {}
+StartingLocation.LocationMarkers = {}
+StartingLocation.MaxLocations = 20
+StartingLocation.SelectedIndex = nil
+StartingLocation.SelectedFacet = nil
+
+StartingLocation.Facets = {}
+StartingLocation.Facets[1] = { name = "Felucca", 	isAvailable = false, gumpArtId = 5593, worldLeft = 0, 	worldTop = 0, 	worldRight = 5120, worldBottom = 4096 }
+StartingLocation.Facets[2] = { name = "Trammel", 	isAvailable = false, gumpArtId = 5594, worldLeft = 0, 	worldTop = 0, 	worldRight = 5120, worldBottom = 4096 }
+StartingLocation.Facets[3] = { name = "Ilshenar", 	isAvailable = false, gumpArtId = 5595, worldLeft = 0, 	worldTop = 0, 	worldRight = 2304, worldBottom = 1600 }
+StartingLocation.Facets[4] = { name = "Malas", 		isAvailable = false, gumpArtId = 5596, worldLeft = 512, worldTop = 0, 	worldRight = 2560, worldBottom = 2048 }
+StartingLocation.Facets[5] = { name = "Tokuno", 	isAvailable = false, gumpArtId = 5597, worldLeft = 0, 	worldTop = 0,	worldRight = 1448, worldBottom = 1448 }
+StartingLocation.Facets[6] = { name = "Ter-Mur", 	isAvailable = false, gumpArtId = 5598, worldLeft = 256, worldTop = 2752,	worldRight = 1280, worldBottom = 4096 }
+
+-- These tables represent each tab window. They're responsible for showing, hiding, updating
+-- their respective character creation window.
+RaceWindow = {}
+ProfessionWindow = {}
+AppearanceWindow = {}
+LocationWindow = {}
+ApproveWindow = {}
+
+current_window = nil
+
+function RaceWindow:New()
+	local window = { name = "RaceWindow" }
+	setmetatable(window, { __index = RaceWindow })
+	return window
+end
+
+function RaceWindow:Show()
+	WindowSetShowing("RaceWindow", true)
+	ButtonSetPressedFlag("RaceTabButton", true)
+end
+
+function RaceWindow:Hide()
+	WindowSetShowing("RaceWindow", false)
+	ButtonSetPressedFlag("RaceTabButton", false)
+end
+
+function RaceWindow:GetNextWindow()
+	local next_window = ProfessionWindow:New()
+	self.Hide()
+	next_window.Show()
+	return next_window
+end
+
+function RaceWindow:GetPrevWindow()
+
+	Login.HandleUpdateCharList()
+
+	CharacterCreation.IsShowing = false
+	CharacterCreation.secondsSinceInitialize = 0
+	return self
+end
+
+
+function ProfessionWindow:New()
+	local window = { name = "ProfessionWindow" }
+	setmetatable(window, { __index = ProfessionWindow })
+	return window
+end
+
+function ProfessionWindow:Show()
+	WindowSetShowing("ProfessionWindow", true)
+	ButtonSetPressedFlag("ProfessionTabButton", true)
+	
+	if (custom_profession_selected == 1) then
+		CharacterCreation.ToggleCustomProfession()        
+	else
+		CharacterCreation.ToggleDefaultProfessions()
+	end
+end
+
+function ProfessionWindow:Hide()
+	WindowSetShowing("ProfessionWindow", false)
+	ButtonSetPressedFlag("ProfessionTabButton", false)
+end
+
+function ProfessionWindow:GetNextWindow()
+	local next_window = AppearanceWindow:New()
+	self.Hide()
+	next_window.Show()
+	return next_window
+end
+
+function ProfessionWindow:GetPrevWindow()
+	local prev_window = RaceWindow:New()
+	self.Hide()
+	prev_window.Show()
+	return prev_window
+end
+
+
+function AppearanceWindow:New()
+	local window = { name = "AppearanceWindow" }
+	setmetatable(window, { __index = AppearanceWindow })
+	return window
+end
+
+function AppearanceWindow:Show()
+	WindowSetShowing("AppearanceWindow", true)
+	ButtonSetPressedFlag("AppearanceTabButton", true)
+	
+	if (FaceIndex == nil) then
+		FaceIndex = 1
+	end
+
+	--Debug.Print("index = "..FaceIndex)
+	--Debug.Print("tid = "..faceStyles[FaceIndex].tid)
+	--Debug.Print(" id = "..faceStyles[FaceIndex].id)
+	LabelSetText ("SkinStyle", GetStringFromTid(faceStyles[FaceIndex].tid))  -- CJT: this is the face selection box
+	CharacterCreation.InitializeAppearanceWindow() 
+end
+
+function AppearanceWindow:Hide()
+	WindowSetShowing("AppearanceWindow", false)
+	ButtonSetPressedFlag("AppearanceTabButton", false)
+end
+
+function AppearanceWindow:GetNextWindow()
+	local next_window = LocationWindow:New()
+	self.Hide()
+	next_window.Show()
+	return next_window
+end
+
+function AppearanceWindow:GetPrevWindow()
+	local prev_window = ProfessionWindow:New()
+	self.Hide()
+	prev_window.Show()
+	return prev_window
+end
+
+function LocationWindow:New()
+	local window = { name = "LocationWindow" }
+	setmetatable(window, { __index = LocationWindow })
+	return window
+end
+
+function LocationWindow:Show()
+
+	-- Select the first location by default
+	if StartingLocation.SelectedIndex == nil then
+		CharacterCreation.InitializeStartingLocations()
+		CharacterCreation.SelectLocation(1)
+	else
+		CharacterCreation.SelectLocation(StartingLocation.SelectedIndex)
+	end
+	
+	-- Show the facet arrows if we can select locations on more than one facet
+	local numFacets = table.getn(StartingLocation.Facets)
+	local numAvailableFacets = 0
+	for facetIndex = 1, numFacets do
+		local startingFacet = StartingLocation.Facets[facetIndex]
+		if startingFacet.isAvailable then
+			numAvailableFacets = numAvailableFacets + 1
+		end
+	end
+	WindowSetShowing("LocationWindowFacetWindowFacetSelectNext", numAvailableFacets > 1)
+	WindowSetShowing("LocationWindowFacetWindowFacetSelectPrev", numAvailableFacets > 1)
+	
+	WindowSetShowing("LocationWindow", true)
+	ButtonSetPressedFlag("LocationTabButton", true)
+	
+	-- Make sure the selected location is pressed
+	if StartingLocation.SelectedIndex ~= nil then
+		local windowName = StartingLocation.LocationMarkers[StartingLocation.SelectedIndex]
+		ButtonSetPressedFlag( windowName, true )
+	end
+end
+
+function LocationWindow:Hide()
+	WindowSetShowing("LocationWindow", false)
+	ButtonSetPressedFlag("LocationTabButton", false)
+end
+
+function LocationWindow:GetNextWindow()
+	local next_window = ApproveWindow:New()
+	self.Hide()
+	next_window.Show()
+	return next_window
+end
+
+function LocationWindow:GetPrevWindow()
+	local prev_window = AppearanceWindow:New()
+	self.Hide()
+	prev_window.Show()
+	return prev_window
+end
+
+
+function ApproveWindow:New()
+	local window = { name = "ApproveWindow" }
+	setmetatable(window, { __index = ApproveWindow })
+	return window
+end
+
+function ApproveWindow:Show()
+	CharacterCreation.InitializeApproveWindow()
+
+	WindowSetShowing("ApproveWindow", true)
+	ButtonSetPressedFlag("ApproveTabButton", true)
+	WindowAssignFocus ("ApproveNameWindowNameVal", true)
+	
+	if (ApproveNameWindowNameVal.Text ~= L"" and ApproveNameWindowNameVal.Text) then
+		TextEditBoxSetText("ApproveNameWindowNameVal", name)
+	end
+	
+	-- Select the first starting location by default
+	if StartingLocation.SelectedIndex == nil then
+		CharacterCreation.InitializeStartingLocations()
+		CharacterCreation.SelectLocation(1)
+	end
+	
+	-- Update and show the starting location map image based on our selected location
+	local startingLocation = SystemData.Login.locList[StartingLocation.SelectedIndex]
+	local selectedFacet = StartingLocation.Facets[startingLocation.world + 1]
+	local texture, textureWidth, textureHeight = RequestGumpArt( selectedFacet.gumpArtId )
+	WindowSetShowing("ApproveNameWindowLocationMapImage", true)
+	
+	local worldX = startingLocation.worldX - selectedFacet.worldLeft
+	local worldY = startingLocation.worldY - selectedFacet.worldTop
+	
+	local x = worldX * (textureWidth / (selectedFacet.worldRight - selectedFacet.worldLeft))
+	local y = worldY * (textureHeight / (selectedFacet.worldBottom - selectedFacet.worldTop))
+
+	DynamicImageSetTexture("ApproveNameWindowLocationMapImage", texture, x - 75, y - 75)
+	DynamicImageSetTextureDimensions("ApproveNameWindowLocationMapImage", 150, 150)
+
+	WindowClearAnchors("ApproveNameWindowLocationMarker")
+	WindowAddAnchor("ApproveNameWindowLocationMarker", "center", "ApproveNameWindowLocationMapImage", "topleft", -8, -20)
+	WindowSetShowing("ApproveNameWindowLocationMarker", true)
+	WindowSetId("ApproveNameWindowLocationMarker", StartingLocation.SelectedIndex)
+	ButtonSetPressedFlag("ApproveNameWindowLocationMarker", true)
+	ButtonSetStayDownFlag("ApproveNameWindowLocationMarker", true)
+end
+
+function ApproveWindow:Hide()
+	WindowSetShowing("ApproveWindow", false)
+	ButtonSetPressedFlag("ApproveTabButton", false)
+	CharacterCreation.HideColorPickerWindows()
+end
+
+function ApproveWindow:GetNextWindow()
+	CharacterCreation.CreateCharacter()
+	return self
+end
+
+function ApproveWindow:GetPrevWindow()
+	local prev_window = LocationWindow:New()
+	self.Hide()
+	prev_window.Show()
+	return prev_window
+end
+
+----------------------------------------------------------------
+-- MainMenuWindow Functions
+----------------------------------------------------------------
+
+-- OnInitialize Handler
+function CharacterCreation.Initialize()
+	CharacterCreation.IsShowing = false
+	RegisterWindowData(WindowData.CharacterCreation.Type,0)
+	RegisterWindowData(WindowData.SkillList.Type,0)
+	WindowRegisterEventHandler( "Root",  SystemData.Events.CHARACTER_CREATION_PAPERDOLL_UPDATED, "CharacterCreation.UpdatePaperdollTextureSize")
+   
+	UOBuildTableFromCSV ("Data/GameData/charactergender.csv", "GendersCSV")
+	UOBuildTableFromCSV ("Data/GameData/characterrace.csv", "RacesCSV")
+	UOBuildTableFromCSV ("Data/GameData/charactertemplates.csv", "ProfessionsCSV")
+	UOBuildTableFromCSV ("Data/GameData/characterhues.csv", "CharacterHuesCSV")
+	UOBuildTableFromCSV ("Data/GameData/characterfacestyles.csv", "CharacterFaceStylesCSV")
+	UOBuildTableFromCSV ("Data/GameData/elfhairhues.csv", "ElfHairHuesCSV")
+	UOBuildTableFromCSV ("Data/GameData/elfskinhues.csv", "ElfSkinHuesCSV")
+	UOBuildTableFromCSV ("Data/GameData/elffacestyles.csv", "ElfFaceStylesCSV")
+	UOBuildTableFromCSV ("Data/GameData/gargoylehornhues.csv", "GargoyleHornHuesCSV")
+	UOBuildTableFromCSV ("Data/GameData/gargoyleskinhues.csv", "GargoyleSkinHuesCSV")
+	UOBuildTableFromCSV ("Data/GameData/gargoylefacestyles.csv", "GargoyleFaceStylesCSV")
+	UOBuildTableFromCSV ("Data/GameData/femaleelfhairstyle.csv", "FemaleElfHairstylesCSV")
+	UOBuildTableFromCSV ("Data/GameData/femalegargoylehornstyle.csv", "FemaleGargoyleHornstylesCSV")
+	UOBuildTableFromCSV ("Data/GameData/femalehumanhairstyle.csv", "FemaleHumanHairstylesCSV")
+	UOBuildTableFromCSV ("Data/GameData/maleelfhairstyle.csv", "MaleElfHairstylesCSV")
+	UOBuildTableFromCSV ("Data/GameData/malegargoylehornstyle.csv", "MaleGargoyleHornstylesCSV")
+	UOBuildTableFromCSV ("Data/GameData/malegargoylefacialhornstyle.csv", "MaleGargoyleFacialHornstylesCSV")
+	UOBuildTableFromCSV ("Data/GameData/malehumanhairstyle.csv", "MaleHumanHairstylesCSV")
+	UOBuildTableFromCSV ("Data/GameData/malehumanfacialhairstyle.csv", "MaleHumanFacialHairstylesCSV")
+	UOBuildTableFromCSV ("Data/GameData/starting_wearables_elven_female.csv", "FemaleElfProfessionWearablesCSV")
+	UOBuildTableFromCSV ("Data/GameData/starting_wearables_elven_male.csv", "MaleElfProfessionWearablesCSV")
+	UOBuildTableFromCSV ("Data/GameData/starting_wearables_gargoyle_female.csv", "FemaleGargoyleProfessionWearablesCSV")
+	UOBuildTableFromCSV ("Data/GameData/starting_wearables_gargoyle_male.csv", "MaleGargoyleProfessionWearablesCSV")
+	UOBuildTableFromCSV ("Data/GameData/starting_wearables_human_female.csv", "FemaleHumanProfessionWearablesCSV")
+	UOBuildTableFromCSV ("Data/GameData/starting_wearables_human_male.csv", "MaleHumanProfessionWearablesCSV")
+	UOBuildTableFromCSV ("Data/GameData/skilldata.csv", "SkillsCSV")
+
+	-- TO DO: ONLY DISPLAY ACCESSIBLE RACES (ENTITLEMENT)!    
+	numRaces = CSVUtilities.getNumRows(WindowData.RacesCSV)
+
+	-- TO DO: ONLY DISPLAY ACCESSIBLE PROFESSIONS (ENTITLEMENT)!     
+	numProfessions = CSVUtilities.getNumRows(WindowData.ProfessionsCSV)
+	
+	 -- TO DO: ONLY DISPLAY ACCESSIBLE SKILLS (ENTITLEMENT)!     
+	numSkills = CSVUtilities.getNumRows(WindowData.SkillsCSV)
+	
+	strength =          WindowData.CharacterCreation.Current.strength
+	dexterity =         WindowData.CharacterCreation.Current.dexterity
+	intelligence =      WindowData.CharacterCreation.Current.intelligence
+	
+	skinColor =         WindowData.CharacterCreation.Current.skinColor
+	hairStyle =         WindowData.CharacterCreation.Current.equipSlotType[EquipmentData.EQPOS_HAIR]
+	hairColor =         WindowData.CharacterCreation.Current.equipSlotHue[EquipmentData.EQPOS_HAIR]
+	facialHairStyle =   WindowData.CharacterCreation.Current.equipSlotType[EquipmentData.EQPOS_FACIALHAIR]
+	facialHairColor =   WindowData.CharacterCreation.Current.equipSlotHue[EquipmentData.EQPOS_FACIALHAIR]
+	
+	 
+	-- SET GENERAL CHARACTER CREATION WINDOW ELEMENTS    
+	ButtonSetText( "RaceTabButton",GetStringFromTid(CharacterCreation.TID.Race))
+	ButtonSetText( "ProfessionTabButton", GetStringFromTid(CharacterCreation.TID.Profession) )
+	ButtonSetText( "AppearanceTabButton", GetStringFromTid(CharacterCreation.TID.Appearance) )
+	ButtonSetText( "LocationTabButton", GetStringFromTid(CharacterCreation.TID.Location))
+	ButtonSetText( "ApproveTabButton", GetStringFromTid(CharacterCreation.TID.Create) )
+	
+	-- SET RACE WINDOW ELEMENTS     
+	LabelSetText( "MaleText", GetStringFromTid(CharacterCreation.TID.MALE))
+	LabelSetText( "FemaleText", GetStringFromTid(CharacterCreation.TID.FEMALE))
+	ButtonSetPressedFlag( "MaleButton", true )
+	ButtonSetStayDownFlag( "MaleButton", true )
+	ButtonSetPressedFlag( "FemaleButton", false )
+	ButtonSetStayDownFlag( "FemaleButton", true )
+	
+	-- SET PROFESSION WINDOW ELEMENTS
+	LabelSetText( "SkillsWindowTitle", GetStringFromTid(CharacterCreation.TID.Skills))
+	LabelSetText( "StatsWindowTitle", GetStringFromTid(CharacterCreation.TID.Stats))
+	ButtonSetText( "StrengthText", GetStringFromTid(CharacterCreation.TID.Strength))
+	ButtonSetText( "DexterityText", GetStringFromTid(CharacterCreation.TID.Dexterity))
+	ButtonSetText( "IntelligenceText", GetStringFromTid(CharacterCreation.TID.Intelligence))
+	ButtonSetText("CustomProfessionButton", GetStringFromTid(CharacterCreation.TID.Customize))
+	ButtonSetText("DefaultProfessionButton", GetStringFromTid(CharacterCreation.TID.Defaults))
+
+	-- SET Approve WINDOW ELEMENTS
+	LabelSetText( "ApproveNameWindowNameLabel", GetStringFromTid(CharacterCreation.TID.Name))
+	TextEditBoxSetText("ApproveNameWindowNameVal", name )
+	LabelSetText( "ApproveNameWindowRaceLabel", GetStringFromTid(CharacterCreation.TID.Race))
+	LabelSetText( "ApproveNameWindowGenderLabel", GetStringFromTid(CharacterCreation.TID.Gender))    
+	LabelSetText( "ApproveWindowStrengthText", GetStringFromTid(CharacterCreation.TID.Strength))
+	LabelSetText( "ApproveWindowDexterityText", GetStringFromTid(CharacterCreation.TID.Dexterity))
+	LabelSetText( "ApproveWindowIntelligenceText", GetStringFromTid(CharacterCreation.TID.Intelligence))
+	LabelSetText( "ApproveStatsWindowProfessionLabel", GetStringFromTid(CharacterCreation.TID.Profession))
+	LabelSetText( "ApproveStatsWindowStatsLabel", GetStringFromTid(CharacterCreation.TID.Stats))
+	LabelSetText( "ApproveStatsWindowSkillsLabel", GetStringFromTid(CharacterCreation.TID.Skills))
+	LabelSetText( "ApproveNameWindowLocationLabel", GetStringFromTid(CharacterCreation.TID.Location))
+
+	-- SET APPEARANCE WINDOW ELEMENTS    
+	LabelSetText( "AppearanceWindowText", GetStringFromTid(CharacterCreation.TID.Appearance))
+	LabelSetText( "SkinLabel", GetStringFromTid(CharacterCreation.TID.SelectFace))
+	LabelSetText( "SkinColorLabel", GetStringFromTid(CharacterCreation.TID.SkinTone))
+	LabelSetText( "HairLabel", GetStringFromTid(CharacterCreation.TID.HairStyle))
+	LabelSetText( "HairColorLabel", GetStringFromTid(CharacterCreation.TID.HairColor))
+	LabelSetText( "FacialHairLabel", GetStringFromTid(CharacterCreation.TID.FacialHairStyle))
+	LabelSetText( "FacialHairColorLabel", GetStringFromTid(CharacterCreation.TID.FacialHairColor ))
+	
+	-- SET LOCATION WINDOW ELEMENTS
+	LabelSetText( "LocationWindowFacetWindowFacetLabel", GetStringFromTid(CharacterCreation.TID.CurrentFacet ))
+	LabelSetText( "LocationWindowCityWindowCityLabel", GetStringFromTid(CharacterCreation.TID.CitySelection ))
+
+	-- SETUP DEFAULT HUMAN COLOR PICKER WINDOWS
+	-- TO DO: GET HUES FROM RESPECTIVE CSV FILE !!!
+	local colorPickerWindowName = nil
+	local switch = false
+	local colorTable = {}
+	local startHue = nil
+	local maxHue = nil
+	local defaultHue = nil
+	for key, colorPickerName in pairs({"Skin", "Hair", "FacialHair"}) do
+		colorPickerWindowName = colorPickerName.."ColorPicker"
+		CreateWindowFromTemplate( colorPickerWindowName, "ColorPickerWindowTemplate", "Root" )
+		
+		if (colorPickerName == "Skin") then
+			startHue = 1002
+			maxHue = 1057
+			defaultHue =  1010
+		elseif (colorPickerName == "Hair") then
+			startHue = 1102
+			maxHue = 1148
+			defaultHue = 1130
+		elseif (colorPickerName == "FacialHair") then
+			startHue =  1102
+			maxHue = 1148
+			defaultHue =  1123
+		end
+		 
+		colorTable = {} 
+		
+		local i = 1 
+		for hue=startHue,maxHue do
+			colorTable[i]= hue
+			i = i + 1  
+		end
+		
+		ColorPickerWindow.SetColorTable(colorTable, colorPickerWindowName)
+				
+		ColorPickerWindow.SetNumColorsPerRow(7)
+		ColorPickerWindow.DrawColorTable(colorPickerWindowName)
+		WindowAddAnchor( colorPickerWindowName, "bottomleft", "FacialHair", "topleft", 30, 10)
+		--WindowSetShowing( colorPickerWindowName, false)
+		
+		--math.randomseed(math.randomseed(math.random(0,214748364)) )
+		--ColorPickerWindow.SetHue(math.random(startHue,maxHue), colorPickerWindowName)
+	end
+	
+	-- CREATE ELF SKIN & HAIR COLOR PICKER WINDOWS
+	for key, colorPickerName in pairs({"ElfSkin", "ElfHair"}) do
+		colorPickerWindowName = colorPickerName.."ColorPicker"
+		CreateWindowFromTemplate( colorPickerWindowName, "ColorPickerWindowTemplate", "Root" )
+
+		colorTable = {}
+
+		if colorPickerName == "ElfSkin" then
+			defaultHue =  WindowData.ElfSkinHuesCSV[1].ElfSkinHues
+			local numHues = CSVUtilities.getNumRows(WindowData.ElfSkinHuesCSV)
+
+			for hueIndex = 1,numHues do
+				colorTable[hueIndex] = WindowData.ElfSkinHuesCSV[hueIndex].ElfSkinHues
+			end
+		elseif colorPickerName == "ElfHair" then
+			defaultHue =  WindowData.ElfHairHuesCSV[1].ElfHairHues
+			local numHues = CSVUtilities.getNumRows(WindowData.ElfHairHuesCSV)
+			for hueIndex = 1,numHues do
+				if (WindowData.ElfHairHuesCSV[hueIndex].ElfHairHues) then
+					colorTable[hueIndex] = WindowData.ElfHairHuesCSV[hueIndex].ElfHairHues
+				end
+			end
+		end
+		
+		ColorPickerWindow.SetColorTable(colorTable, colorPickerWindowName)
+
+		ColorPickerWindow.SetNumColorsPerRow(7)
+		ColorPickerWindow.DrawColorTable(colorPickerWindowName)
+
+		ColorPickerWindow.SetHue(defaultHue, colorPickerWindowName)
+
+		WindowAddAnchor( colorPickerWindowName, "bottomleft", "Hair", "topleft", 30, 10)
+		--WindowSetShowing( colorPickerWindowName, false)
+	end
+	
+	-- CREATE GARGOYLE SKIN & HAIR COLOR PICKER WINDOWS
+	for key, colorPickerName in pairs({"GargoyleSkin", "GargoyleHair", "GargoyleFacialHair"}) do
+		colorPickerWindowName = colorPickerName.."ColorPicker"
+		CreateWindowFromTemplate( colorPickerWindowName, "ColorPickerWindowTemplate", "Root" )
+
+		colorTable = {}
+
+		if colorPickerName == "GargoyleSkin" then
+			defaultHue =  WindowData.GargoyleSkinHuesCSV[1].GargoyleSkinHues
+			local numHues = CSVUtilities.getNumRows(WindowData.GargoyleSkinHuesCSV)
+
+			for hueIndex = 1,numHues do
+				colorTable[hueIndex] = WindowData.GargoyleSkinHuesCSV[hueIndex].GargoyleSkinHues
+			end
+		elseif colorPickerName == "GargoyleHair" then
+			defaultHue =  WindowData.GargoyleHornHuesCSV[1].GargoyleHornHues
+			local numHues = CSVUtilities.getNumRows(WindowData.GargoyleHornHuesCSV)
+			for hueIndex = 1,numHues do
+				if (WindowData.GargoyleHornHuesCSV[hueIndex].GargoyleHornHues) then
+					colorTable[hueIndex] = WindowData.GargoyleHornHuesCSV[hueIndex].GargoyleHornHues
+				end
+			end
+		elseif colorPickerName == "GargoyleFacialHair" then
+			defaultHue =  WindowData.GargoyleHornHuesCSV[1].GargoyleHornHues
+			local numHues = CSVUtilities.getNumRows(WindowData.GargoyleHornHuesCSV)
+			for hueIndex = 1,numHues do
+				if (WindowData.GargoyleHornHuesCSV[hueIndex].GargoyleHornHues) then
+					colorTable[hueIndex] = WindowData.GargoyleHornHuesCSV[hueIndex].GargoyleHornHues
+				end
+			end
+		end
+		ColorPickerWindow.SetColorTable(colorTable, colorPickerWindowName)
+
+		ColorPickerWindow.SetNumColorsPerRow(7)
+		ColorPickerWindow.DrawColorTable(colorPickerWindowName)
+
+		ColorPickerWindow.SetHue(defaultHue, colorPickerWindowName)
+
+		WindowAddAnchor( colorPickerWindowName, "bottomleft", "Hair", "topleft", 30, 10)
+		--WindowSetShowing( colorPickerWindowName, false)
+	end
+	
+	CharacterCreation.ColorSkin()
+	CharacterCreation.ColorHair()
+	CharacterCreation.ColorFacialHair()
+	
+	-- Create the markers for the starting location map
+	for locIndex = 1,StartingLocation.MaxLocations do
+		local windowName = "Location_"..tostring(locIndex)
+		CreateWindowFromTemplate(windowName, "CCStartingLocationButton", "LocationWindowMap" )
+		ButtonSetStayDownFlag(windowName, true)
+		WindowSetId(windowName, locIndex)
+		WindowSetShowing(windowName, false)
+		StartingLocation.LocationMarkers[locIndex] = windowName
+	end
+
+	-- START WITH THE RACE WINDOW
+	WindowSetShowing ( "RaceWindow", false)
+	WindowSetShowing ( "ProfessionWindow", false)
+	WindowSetShowing ( "AppearanceWindow", false)
+	WindowSetShowing ( "LocationWindow", false)
+	WindowSetShowing ( "ApproveWindow", false)
+
+	ButtonSetPressedFlag( "RaceTabButton", false )
+	ButtonSetPressedFlag( "ProfessionTabButton", false )
+	ButtonSetPressedFlag( "AppearanceTabButton", false )
+	ButtonSetPressedFlag( "LocationTabButton", false )
+	ButtonSetPressedFlag( "ApproveTabButton", false )
+	
+	ButtonSetDisabledFlag("RaceTabButton", false)
+	ButtonSetDisabledFlag("ProfessionTabButton", false)
+	ButtonSetDisabledFlag("AppearanceTabButton", false)
+	ButtonSetDisabledFlag("LocationTabButton", false)  
+	ButtonSetDisabledFlag("ApproveTabButton", false)
+	
+	current_window = RaceWindow:New()
+	current_window:Show()
+
+	CharacterCreation.SetUpDefaultAppearance()
+	CharacterCreation.ToggleRaceDescription()
+
+	CharacterCreation.SetInitialAppearanceLabelValues()
+end
+
+function CharacterCreation.ResetSelections()
+	
+	name = L""
+	race_id = 1
+	race_name = nil
+	gender_id = 0
+	strength = 0
+	dexterity = 0
+	intelligence = 0
+
+	skill_1_id = -1
+	skill_2_id = -1
+	skill_3_id = -1
+	skill_4_id = -1
+	skill_1_name = nil
+	skill_2_name = nil
+	skill_3_name = nil
+	skill_4_name = nil
+	skill_1_val = -1
+	skill_2_val = -1
+	skill_3_val = -1
+	skill_4_val = -1
+
+	profession_id = 1
+	custom_profession_selected = 0
+	default_profession_selected = 1
+	skill_index_being_selected = nil
+	allow_custom_selection = false
+	
+	ButtonSetPressedFlag(StartingLocation.LocationMarkers[StartingLocation.SelectedIndex], false)
+	StartingLocation.SelectedIndex = nil
+	local numFacets = table.getn(StartingLocation.Facets)
+	for index, startingFacet in ipairs(StartingLocation.Facets) do
+		startingFacet.isAvailable = false
+	end
+	StartingLocation.SelectedFacet = nil
+	TextEditBoxSetText("ApproveNameWindowNameVal", name)
+	
+	if current_window ~= nil then
+		current_window:Hide()
+	end
+	CharacterCreation.ToggleMale()
+	CharacterCreation.ResetToDefaultRace()
+	current_window = RaceWindow:New()
+	current_window:Show()
+end
+
+-- OnShutdown Handler
+function CharacterCreation.Shutdown()
+	UnregisterWindowData(WindowData.CharacterCreation.Type,0)
+	UnregisterWindowData(WindowData.SkillList.Type,0)
+	WindowSetShowing ( "CharacterCreation", false)
+	CharacterCreation.IsShowing = false;
+	CharacterCreation.secondsSinceInitialize = 0
+		
+	UOUnloadCSVTable ("GendersCSV")
+	UOUnloadCSVTable ("CharacterHuesCSV")
+	UOUnloadCSVTable ("CharacterFaceStylesCSV")
+	UOUnloadCSVTable ("RacesCSV")
+	UOUnloadCSVTable ("ProfessionsCSV")
+	UOUnloadCSVTable ("ElfHairHuesCSV")
+	UOUnloadCSVTable ("ElfSkinHuesCSV")
+	UOUnloadCSVTable ("ElfFaceStylesCSV")
+	UOUnloadCSVTable ("GargoyleHornHuesCSV")
+	UOUnloadCSVTable ("GargoyleSkinHuesCSV")
+	UOUnloadCSVTable ("GargoyleFaceStylesCSV")
+	UOUnloadCSVTable ("FemaleElfHairstylesCSV")
+	UOUnloadCSVTable ("FemaleGargoyleHornstylesCSV")
+	UOUnloadCSVTable ("FemaleHumanHairstylesCSV")
+	UOUnloadCSVTable ("MaleElfHairstylesCSV")
+	UOUnloadCSVTable ("MaleGargoyleHornstylesCSV")
+	UOUnloadCSVTable ("MaleGargoyleFacialHornstylesCSV")
+	UOUnloadCSVTable ("MaleHumanHairstylesCSV")
+	UOUnloadCSVTable ("MaleHumanFacialHairstylesCSV")
+	UOUnloadCSVTable ("FemaleElfProfessionWearablesCSV")
+	UOUnloadCSVTable ("MaleElfProfessionWearablesCSV")
+	UOUnloadCSVTable ("FemaleGargoyleProfessionWearablesCSV")
+	UOUnloadCSVTable ("MaleGargoyleProfessionWearablesCSV")
+	UOUnloadCSVTable ("FemaleHumanProfessionWearablesCSV")
+	UOUnloadCSVTable ("MaleHumanProfessionWearablesCSV")
+	UOUnloadCSVTable ("SkillsCSV")    
+end
+
+-- Next Button Handler
+function CharacterCreation.ToggleNext()
+--  Debug.PrintToDebugConsole(L"CC Next Button CLICKED:"..StringToWString(SystemData.ActiveWindow.name))
+	current_window = current_window:GetNextWindow()
+end
+
+-- Prev Button Handler
+function CharacterCreation.TogglePrev()
+--  Debug.PrintToDebugConsole(L"CC Prev Button CLICKED:"..StringToWString(SystemData.ActiveWindow.name))
+	current_window = current_window:GetPrevWindow()
+end
+
+function CharacterCreation.ShowRaceWindow()
+	if current_window.name ~= "RaceWindow" then
+		current_window:Hide()
+		current_window = RaceWindow:New()
+		current_window:Show()
+	end
+	
+	name = ApproveNameWindowNameVal.text
+end
+
+function CharacterCreation.ShowProfessionWindow()
+	if current_window.name ~= "ProfessionWindow" then
+		current_window:Hide()
+		current_window = ProfessionWindow:New()
+		current_window:Show()
+	end
+	
+	name = ApproveNameWindowNameVal.text
+end
+
+function CharacterCreation.ShowAppearanceWindow()
+	if current_window.name ~= "AppearanceWindow" then
+		current_window:Hide()
+		current_window = AppearanceWindow:New()
+		current_window:Show()
+	end
+	
+	name = ApproveNameWindowNameVal.text
+end
+
+function CharacterCreation.ShowLocationWindow()
+	if current_window.name ~= "LocationWindow" then
+		current_window:Hide()
+		current_window = LocationWindow:New()
+	end
+	current_window:Show()
+	
+	name = ApproveNameWindowNameVal.text
+end
+
+
+function CharacterCreation.ShowApproveWindow()
+	if current_window.name ~= "ApproveWindow" then
+		current_window:Hide()
+		current_window = ApproveWindow:New()
+		current_window:Show()
+	end
+end
+
+function CharacterCreation.HideColorPickerWindows()
+   WindowSetShowing("SkinColorPicker", false)
+   WindowSetShowing("HairColorPicker", false)
+   WindowSetShowing("FacialHairColorPicker", false)
+   WindowSetShowing("ElfSkinColorPicker", false)
+   WindowSetShowing("ElfHairColorPicker", false)
+   WindowSetShowing("GargoyleSkinColorPicker", false)
+   WindowSetShowing("GargoyleHairColorPicker", false)
+   WindowSetShowing("GargoyleFacialHairColorPicker", false)
+end
+
+function CharacterCreation.ToggleDefaultProfessions()
+	if(skill_index_being_selected) then
+		ButtonSetPressedFlag("Skill"..skill_index_being_selected.."Text", false)
+		WindowSetShowing("Skill"..skill_index_being_selected.."Background", false)
+	end
+
+	skill_index_being_selected = nil
+	allow_custom_selection = false
+
+	WindowSetShowing ( "ProfessionList", true)
+	WindowSetShowing ( "SkillList", false)
+	WindowSetShowing ( "CustomProfessionButton", true)
+	WindowSetShowing ( "DefaultProfessionButton", false)
+
+	if ((custom_profession_selected==0) and (profession_id==1)) then
+		LabelSetText( "ProfessionDescriptionWindowText", GetStringFromTid(WindowData.ProfessionsCSV[1].DescriptionTID))
+	end
+
+	ButtonSetPressedFlag("StrengthText", true)
+	ButtonSetPressedFlag("DexterityText", true)
+	ButtonSetPressedFlag("IntelligenceText", true)
+
+	ButtonSetPressedFlag("Skill1Text", true)
+	ButtonSetPressedFlag("Skill2Text", true)
+	ButtonSetPressedFlag("Skill3Text", true)
+	ButtonSetPressedFlag("Skill4Text", true)
+	
+	WindowSetShowing("StrengthSliderBar", false)
+	WindowSetShowing("DexteritySliderBar", false)
+	WindowSetShowing("IntelligenceSliderBar", false)
+	
+	WindowSetShowing("Skill1SliderBar", false)
+	WindowSetShowing("Skill2SliderBar", false)
+	WindowSetShowing("Skill3SliderBar", false)
+	WindowSetShowing("Skill4SliderBar", false)
+	
+	CharacterCreation.ResetProfessionSkills()
+end
+
+function CharacterCreation.ToggleCustomProfession()
+	-- START WITH SKILL 1 PRESELECTED!
+	skill_index_being_selected = 1
+	allow_custom_selection = true	
+	
+	local previous_skill_window_name = nil
+	local current_skill_window_name = nil
+	local skill_name=nil	
+	local throwing_skill = 57
+	local archery_skill = 31
+	
+	for skill_index = 1, numSkills do
+		local id = WindowData.SkillsCSV[skill_index].ServerId
+		skill_name = GetStringFromTid(WindowData.SkillsCSV[skill_index].NameTid)
+		skill_entitlement = WindowData.SkillsCSV[skill_index].Entitlement
+		-- Create this skill window
+		current_skill_window_name = "skill_"..tostring(id)		
+		-- DO NOT ALLOW PLAYER TO SELECT SA SKILLS WITHOUT SA ENTITLEMENT
+		if (not (HasEntitlement(CharacterCreation.StygianAbyssEntitlement)) and (skill_entitlement == CharacterCreation.StygianAbyssEntitlement)) then
+			ButtonSetPressedFlag(current_skill_window_name, false)
+			WindowSetShowing(current_skill_window_name, false)				
+			continue
+		end			
+		-- Limit Throwing to Gargoyles 
+		if(not (WindowData.RacesCSV[race_id].Race == L"Gargoyle") and (id == throwing_skill)) then
+			ButtonSetPressedFlag(current_skill_window_name, false)
+			WindowSetShowing(current_skill_window_name, false)	
+			continue
+		end
+		-- Limit Archery to Humans and Elfs
+		if((WindowData.RacesCSV[race_id].Race == L"Gargoyle") and (id == archery_skill)) then
+			ButtonSetPressedFlag(current_skill_window_name, false)
+			WindowSetShowing(current_skill_window_name, false)	
+			continue
+		end
+			
+		-- DT #10 - Don't show the following skills in this list: Disarming, Spellweaving, Stealth 
+		if id ~= 48 -- Disarming
+		and id ~= 54 -- Spellweaving
+		and id ~= 47 -- Stealth
+		then -- Show this skill
+			-- Clear Anchors to reorder display
+			WindowClearAnchors(current_skill_window_name)
+			--Debug.Print("SKILL ID = "..id.." & SKILL NAME = "..WStringToString(skill_name))				
+			-- Set it's values
+			ButtonSetText( current_skill_window_name, skill_name )
+			ButtonSetPressedFlag(current_skill_window_name, false)
+			WindowSetId(current_skill_window_name, id)
+			CustomSkillsViewOrder[id] = skill_index		
+			WindowSetShowing(current_skill_window_name,true)	
+			-- If first skill, anchor from the top & initialize the description window, otherwise anchor on bottom of previous skill added
+			if (skill_index == 1)  then   
+				WindowAddAnchor( current_skill_window_name, "topleft", "SkillListScrollChild", "topleft", 10, 5)
+			else
+				WindowAddAnchor( current_skill_window_name, "bottomleft", previous_skill_window_name, "topleft", 0, 0)
+			end				
+			-- Update the last skill added
+			previous_skill_window_name = current_skill_window_name	
+		end -- Of do not show this skill
+	end -- Of for each skill
+	
+	ButtonSetPressedFlag("Skill"..skill_index_being_selected.."Text", true)
+	WindowSetShowing("Skill"..skill_index_being_selected.."Background", true)
+	
+	WindowSetShowing ( "ProfessionList", false)
+	WindowSetShowing ( "SkillList", true)
+	WindowSetShowing ( "CustomProfessionButton", false)
+	WindowSetShowing ( "DefaultProfessionButton", true)
+	
+	LabelSetText( "ProfessionDescriptionWindowText", GetStringFromTid(CharacterCreation.TID.CustomProfessionText))
+	
+	ButtonSetPressedFlag("StrengthText", false)
+	ButtonSetPressedFlag("DexterityText", false)
+	ButtonSetPressedFlag("IntelligenceText", false)
+
+	ButtonSetPressedFlag("Skill2Text", false)
+	ButtonSetPressedFlag("Skill3Text", false)
+	ButtonSetPressedFlag("Skill4Text", false)
+	
+	WindowSetShowing("StrengthSliderBar", true)
+	WindowSetShowing("DexteritySliderBar", true)
+	WindowSetShowing("IntelligenceSliderBar", true)
+	
+	WindowSetShowing("Skill1SliderBar", true)
+	WindowSetShowing("Skill2SliderBar", true)
+	WindowSetShowing("Skill3SliderBar", true)
+	WindowSetShowing("Skill4SliderBar", true)
+	
+	WindowSetShowing("Skill2Background", false)
+	WindowSetShowing("Skill3Background", false)
+	WindowSetShowing("Skill4Background", false)
+end
+
+-- Race Description Text Handler
+function CharacterCreation.ToggleRaceDescription()
+	local row_with_race_info = CSVUtilities.getRowIdWithColumnValue(WindowData.RacesCSV, "ServerId", race_id)
+	raceName = GetStringFromTid(WindowData.RacesCSV[row_with_race_info].StringTID)
+	local raceDescription = WindowUtils.translateMarkup(GetStringFromTid(WindowData.RacesCSV[row_with_race_info].DescriptionTID)) 
+
+	LabelSetText ( "RaceSelectionWindowText", raceName)
+	LabelSetText( "RaceDescriptionWindowText", raceDescription)
+end
+
+-- ONLY TOGGLE DOWN TO MAX RACE ID DEPENDING ON THE SA ENTITLEMENT
+function CharacterCreation.ToggleRaceDown()
+	if HasEntitlement(CharacterCreation.StygianAbyssEntitlement) then
+		max_race_id = WindowData.RacesCSV[numRaces].ServerId
+	else
+		max_race_id = WindowData.RacesCSV[numRaces].ServerId - 1
+	end
+
+	if (race_id == 1) then
+		race_id = max_race_id
+	else
+		race_id = race_id - 1
+	end
+
+	HairIndex = defaultHairIndex
+	FaceIndex = 1
+	FacialHairIndex = 1
+  
+	CharacterCreation.SetUpDefaultAppearance()
+	CharacterCreation.ToggleRaceDescription()
+	CharacterCreation.SetInitialAppearanceLabelValues()
+	CharacterCreation.ResetProfessionSkills()
+end
+
+-- ONLY TOGGLE UP TO MAX RACE ID DEPENDING ON THE SA ENTITLEMENT
+function CharacterCreation.ToggleRaceUp()
+	if HasEntitlement(CharacterCreation.StygianAbyssEntitlement) then
+		max_race_id = WindowData.RacesCSV[numRaces].ServerId
+	else
+		max_race_id = WindowData.RacesCSV[numRaces].ServerId - 1
+	end
+			
+	if (race_id == max_race_id) then
+		race_id = 1
+	else
+		race_id = race_id + 1        
+	end
+
+	HairIndex = defaultHairIndex
+	FaceIndex = 1
+	FacialHairIndex = 1
+	
+	CharacterCreation.SetUpDefaultAppearance()
+	CharacterCreation.ToggleRaceDescription()
+	CharacterCreation.SetInitialAppearanceLabelValues()	
+	CharacterCreation.ResetProfessionSkills()
+end
+
+function CharacterCreation.ToggleMale()
+	ButtonSetPressedFlag( "MaleButton", true )
+	ButtonSetPressedFlag( "FemaleButton", false )	
+	gender_id = 0
+	
+	HairIndex = defaultHairIndex
+	FaceIndex = 1
+	FacialHairIndex = 1
+	
+	CharacterCreation.SetUpDefaultAppearance()
+	CharacterCreation.SetInitialAppearanceLabelValues()	    
+	
+end
+
+function CharacterCreation.ToggleFemale()
+	ButtonSetPressedFlag( "MaleButton", false )
+	ButtonSetPressedFlag( "FemaleButton", true )
+	gender_id = 1
+
+	HairIndex = defaultHairIndex
+	FaceIndex = 1
+	FacialHairIndex = 1
+	
+	CharacterCreation.SetUpDefaultAppearance()
+	CharacterCreation.SetInitialAppearanceLabelValues()	    
+
+end
+
+-- Get all the default professions' skills, and stats and display them in their respective windows
+function CharacterCreation.InitializeDefaultProfessions()
+	local previous_def_prof_window_name = nil
+	local current_def_prof_window_name = nil
+	
+	for profession_index = 1, numProfessions do
+		local id = WindowData.ProfessionsCSV[profession_index].ServerId
+			professionName = GetStringFromTid(WindowData.ProfessionsCSV[profession_index].StringTID)
+			current_def_prof_window_name = "profession_"..tostring(id)
+			CreateWindowFromTemplate( current_def_prof_window_name, "ProfessionButtonTemplate", "ProfessionListScrollChild" )
+			ButtonSetText( current_def_prof_window_name, professionName )
+			ButtonSetPressedFlag(current_def_prof_window_name, false)
+			
+			WindowSetId(current_def_prof_window_name, id)
+			DefaultProfessionsViewOrder[id] = profession_index
+			
+			-- If warrior profession, anchor from the top & initialize the description window, otherwise anchor on bottom of previous element 
+			if (id == 1)  then   
+				WindowAddAnchor( current_def_prof_window_name, "topleft", "ProfessionListScrollChild", "topleft", 10, 5)
+				profession_id = id
+				CharacterCreation.InitializeDefaultProfession()
+				default_profession_selected = 1
+				custom_profession_selected = 0
+				ButtonSetPressedFlag(current_def_prof_window_name, true)
+			else
+				WindowAddAnchor( current_def_prof_window_name, "bottomleft", previous_def_prof_window_name, "topleft", 0, 0)
+			end
+			previous_def_prof_window_name = current_def_prof_window_name
+	end
+end
+
+function CharacterCreation.ToggleProfession()
+	default_profession_selected = 1
+	custom_profession_selected = 0
+
+	local old_profession_id = profession_id
+
+	-- GET THE ID OF THE PROFESSION CLICKED, WHICH SHOULD BE THE ID OF THE BUTTON CLICKED
+	profession_id = WindowGetId (SystemData.ActiveWindow.name)
+	
+	if  (old_profession_id and old_profession_id ~= -1) then
+		ButtonSetPressedFlag("profession_"..tostring(old_profession_id), false)
+	end
+	ButtonSetPressedFlag("profession_"..tostring(profession_id), true)
+	ScrollWindowUpdateScrollRect("ProfessionListWindow")
+	
+	CharacterCreation.InitializeDefaultProfession()                 
+end
+
+function CharacterCreation.InitializeDefaultProfession()
+
+	if DoesWindowNameExist("skill_"..tostring(skill_1_id)) then ButtonSetPressedFlag("skill_"..tostring(skill_1_id), false) end
+	if DoesWindowNameExist("skill_"..tostring(skill_2_id)) then ButtonSetPressedFlag("skill_"..tostring(skill_2_id), false) end
+	if DoesWindowNameExist("skill_"..tostring(skill_3_id)) then ButtonSetPressedFlag("skill_"..tostring(skill_3_id), false) end
+	if DoesWindowNameExist("skill_"..tostring(skill_4_id)) then ButtonSetPressedFlag("skill_"..tostring(skill_4_id), false) end
+
+	local profession_view_order = DefaultProfessionsViewOrder[profession_id]
+
+	professionDescription = GetStringFromTid(WindowData.ProfessionsCSV[profession_view_order].DescriptionTID)
+	profession_name = GetStringFromTid(WindowData.ProfessionsCSV[profession_view_order].StringTID)
+	LabelSetText( "ProfessionDescriptionWindowText", professionDescription)
+
+	skill_1_name = L""..GetStringFromTid(WindowData.ProfessionsCSV[profession_view_order].Skill1TID)
+	skill_1_id = WindowData.ProfessionsCSV[profession_view_order].Skill1Id
+	skill_1_val = WindowData.ProfessionsCSV[profession_view_order].Skill1Val
+			
+	skill_2_name = L""..GetStringFromTid(WindowData.ProfessionsCSV[profession_view_order].Skill2TID)
+	skill_2_id = WindowData.ProfessionsCSV[profession_view_order].Skill2Id
+	skill_2_val = WindowData.ProfessionsCSV[profession_view_order].Skill2Val
+
+	skill_3_name = L""..GetStringFromTid(WindowData.ProfessionsCSV[profession_view_order].Skill3TID)        
+	skill_3_id = WindowData.ProfessionsCSV[profession_view_order].Skill3Id
+	skill_3_val =WindowData.ProfessionsCSV[profession_view_order].Skill3Val
+			
+	skill_4_name = L""..GetStringFromTid(WindowData.ProfessionsCSV[profession_view_order].Skill4TID)
+	skill_4_id = WindowData.ProfessionsCSV[profession_view_order].Skill4Id
+	skill_4_val = WindowData.ProfessionsCSV[profession_view_order].Skill4Val
+			
+	strength = WindowData.ProfessionsCSV[profession_view_order].Strength
+	dexterity = WindowData.ProfessionsCSV[profession_view_order].Dexterity
+	intelligence = WindowData.ProfessionsCSV[profession_view_order].Intelligence
+
+	-- Update the Skill and Stats windows as you click on the default professions
+	CharacterCreation.InitializeStatsWindow()
+	CharacterCreation.InitializeSkillsWindow()
+
+	if DoesWindowNameExist("skill_"..tostring(skill_1_id)) then ButtonSetPressedFlag("skill_"..tostring(skill_1_id), true) end
+	if DoesWindowNameExist("skill_"..tostring(skill_2_id)) then ButtonSetPressedFlag("skill_"..tostring(skill_2_id), true) end
+	if DoesWindowNameExist("skill_"..tostring(skill_3_id)) then ButtonSetPressedFlag("skill_"..tostring(skill_3_id), true) end
+	if DoesWindowNameExist("skill_"..tostring(skill_4_id)) then ButtonSetPressedFlag("skill_"..tostring(skill_4_id), true) end
+	ScrollWindowUpdateScrollRect("SkillListScrollWindow")
+	
+	--Update Paperdoll texture size if the width or height changes
+	CharacterCreation.UpdatePaperdollTextureSize()
+	
+	CharacterCreation.SetUpDefaultAppearance()
+end
+
+function CharacterCreation.UpdatePaperdollTextureSize()
+	-- The id for character creation is hard coded to 0
+	local textureData = SystemData.PaperdollTexture[0]
+	
+	if( textureData ~= nil) then
+		local paperdollName= "PaperdollWindowImage"
+		
+		WindowSetDimensions(paperdollName, textureData.Width, textureData.Height)
+		DynamicImageSetTexture(paperdollName, "paperdoll_special_texture0", 0, 0)
+
+		-- always adjust the offset
+		WindowClearAnchors(paperdollName)
+		WindowAddAnchor(paperdollName,"center","PaperdollWindow","topleft",textureData.xOffset,textureData.yOffset)			
+	end
+end
+
+-- Get all the skills and display them in the skill list scroll window
+function CharacterCreation.InitializeSkillList()
+		
+	profession_name=GetStringFromTid(CharacterCreation.TID.Custom)
+	LabelSetText( "ProfessionDescriptionWindowText", GetStringFromTid(CharacterCreation.TID.CustomProfessionText))
+	ScrollWindowUpdateScrollRect( "ProfessionDescriptionWindowScrollWindow")
+	
+	local current_skill_window_name = nil
+	local skill_name=nil
+
+	for skill_index = 1, numSkills do
+		local id = WindowData.SkillsCSV[skill_index].ServerId
+		skill_name = GetStringFromTid(WindowData.SkillsCSV[skill_index].NameTid)					
+		-- DT #10 - Don't show the following skills in this list: Disarming, Spellweaving, Stealth 
+		if id ~= 48 -- Disarming
+		and id ~= 54 -- Spellweaving
+		and id ~= 47 -- Stealth
+		then -- Show this skill
+			--Debug.Print("SKILL ID = "..id.." & SKILL NAME = "..WStringToString(skill_name))
+			-- Create this skill window
+			current_skill_window_name = "skill_"..tostring(id)
+			CreateWindowFromTemplate( current_skill_window_name, "SkillButtonTemplate", "SkillListScrollChild" )
+			-- Set it's values
+			ButtonSetText( current_skill_window_name, skill_name )
+			ButtonSetPressedFlag(current_skill_window_name, false)
+			WindowSetId(current_skill_window_name, id)
+			CustomSkillsViewOrder[id] = skill_index			
+		end -- Of do not show this skill
+	end -- Of for each skill
+	
+	ButtonSetPressedFlag("skill_"..tostring(skill_1_id), true)
+	ButtonSetPressedFlag("skill_"..tostring(skill_2_id), true)
+	ButtonSetPressedFlag("skill_"..tostring(skill_3_id), true)
+	ButtonSetPressedFlag("skill_"..tostring(skill_4_id), true)
+end
+
+function CharacterCreation.InitializeSkillsWindow()
+	ButtonSetText( "Skill1Text", skill_1_name)
+	ButtonSetText( "Skill2Text", skill_2_name)
+	ButtonSetText( "Skill3Text", skill_3_name)
+	ButtonSetText( "Skill4Text", skill_4_name)
+
+	WindowSetId ("Skill1Text", 1)
+	WindowSetId ("Skill2Text", 2)
+	WindowSetId ("Skill3Text", 3)
+	WindowSetId ("Skill4Text", 4)
+
+	WindowSetShowing("Skill1Background",false)
+	WindowSetShowing("Skill2Background",false)
+	WindowSetShowing("Skill3Background",false)
+	WindowSetShowing("Skill4Background",false)
+
+	LabelSetText( "Skill1Val", L""..skill_1_val)
+	LabelSetText( "Skill2Val", L""..skill_2_val)
+	LabelSetText( "Skill3Val", L""..skill_3_val)
+	LabelSetText( "Skill4Val", L""..skill_4_val)
+
+	SliderBarSetCurrentPosition( "Skill1SliderBar", skill_1_val/CharacterCreation.maxSkillValue )
+	SliderBarSetCurrentPosition( "Skill2SliderBar", skill_2_val/CharacterCreation.maxSkillValue )
+	SliderBarSetCurrentPosition( "Skill3SliderBar", skill_3_val/CharacterCreation.maxSkillValue )
+	SliderBarSetCurrentPosition( "Skill4SliderBar", skill_4_val/CharacterCreation.maxSkillValue )
+end
+
+function CharacterCreation.ToggleSkill()
+	-- GET THE SKILL ID, WHICH IS THE ID OF THE CLICKED SKILL BUTTON.
+	local skill_id = WindowGetId(SystemData.ActiveWindow.name)
+	local row_id = CSVUtilities.getRowIdWithColumnValue(WindowData.SkillsCSV, "ServerId", skill_id)        
+	LabelSetText( "ProfessionDescriptionWindowText", GetStringFromTid(WindowData.SkillsCSV[row_id].DescriptionTid))
+
+	ScrollWindowSetOffset( "ProfessionDescriptionWindowScrollWindow", 0 )
+	ScrollWindowUpdateScrollRect( "ProfessionDescriptionWindowScrollWindow")
+	 
+	if (skill_index_being_selected) then
+		-- IF A NEW SKILL IS SELECTED, DESELECT THE OLD ONE AND SELECT THE NEW ONE.
+		if ((skill_id ~= skill_1_id) and (skill_id ~= skill_2_id) and (skill_id ~= skill_3_id) and (skill_id ~= skill_4_id)) then  
+			if(skill_index_being_selected == 1) then
+				ButtonSetPressedFlag("skill_"..skill_1_id, false)
+				skill_1_id = skill_id
+				skill_1_name = GetStringFromTid(WindowData.SkillsCSV[row_id].NameTid)
+				ButtonSetPressedFlag("skill_"..skill_1_id, true)
+			elseif (skill_index_being_selected == 2) then
+				ButtonSetPressedFlag("skill_"..skill_2_id, false)
+				skill_2_id = skill_id
+				skill_2_name = GetStringFromTid(WindowData.SkillsCSV[row_id].NameTid)
+				ButtonSetPressedFlag("skill_"..skill_2_id, true)
+			elseif (skill_index_being_selected == 3) then
+				ButtonSetPressedFlag("skill_"..skill_3_id, false)
+				skill_3_id = skill_id
+				skill_3_name = GetStringFromTid(WindowData.SkillsCSV[row_id].NameTid)
+				ButtonSetPressedFlag("skill_"..skill_3_id, true)
+			elseif (skill_index_being_selected == 4) then
+				ButtonSetPressedFlag("skill_"..skill_4_id, false)
+				skill_4_id = skill_id
+				skill_4_name = GetStringFromTid(WindowData.SkillsCSV[row_id].NameTid)
+				ButtonSetPressedFlag("skill_"..skill_4_id, true)
+			end
+		-- OTHERWISE, AN PREVIOUSLY SELECTED SKILL IS BEING SELECTED AGAIN. LEAVE IT SELECTED AND DO NOTHING ELSE!
+		else
+			ButtonSetPressedFlag("skill_"..skill_id, true)	
+		end
+		
+		-- IF YOU'RE SELECTING SKILLS, DESELECT ANY CHOSEN PROFESSIONS.
+		if ( default_profession_selected == 1) then
+			ButtonSetPressedFlag("profession_"..tostring(profession_id), false)
+			ScrollWindowUpdateScrollRect("ProfessionListWindow")
+		end
+
+		default_profession_selected = 0
+		custom_profession_selected = 1
+		profession_id = -1
+		profession_name = GetStringFromTid(CharacterCreation.TID.Custom) 
+
+		CharacterCreation.InitializeSkillsWindow()
+		
+		-- REMOVE DEFAULT PROFESSION WEARABLES IF CREATING A CUSTOM CHARACTER!
+		CharacterCreation.SetUpDefaultAppearance()
+		
+		CharacterCreation.UpdateSkillsAndStats()
+		WindowSetShowing("Skill"..skill_index_being_selected.."Background", true)
+	end   
+end
+
+function CharacterCreation.ChangeSkill()  	     
+	-- Check if window clicked is a skill window
+	if (string.find(SystemData.ActiveWindow.name, "Skill") and (allow_custom_selection)) then
+		if(skill_index_being_selected) then
+			ButtonSetPressedFlag("Skill"..skill_index_being_selected.."Text", false)
+			WindowSetShowing("Skill"..skill_index_being_selected.."Background", false)
+		end
+		
+		skill_index_being_selected = tonumber(string.match(SystemData.ActiveWindow.name, "%d+"))
+		ButtonSetPressedFlag("Skill"..skill_index_being_selected.."Text", true)
+		WindowSetShowing("Skill"..skill_index_being_selected.."Background", true)
+	elseif(allow_custom_selection) then 
+		ButtonSetPressedFlag(SystemData.ActiveWindow.name, false)
+	else
+		ButtonSetPressedFlag(SystemData.ActiveWindow.name, true)			
+	end        
+end
+
+function CharacterCreation.UpdateSkillsAndStats()
+	local skill_total = 0
+	local stat_total = 0
+
+	if (allow_custom_selection) then
+	
+		-- UPDATE SKILLS!	
+		if (string.find(SystemData.ActiveWindow.name, "Skill")) then 
+		
+			skill_1_val = math.floor(CharacterCreation.maxSkillValue * SliderBarGetCurrentPosition("Skill1SliderBar"))
+			skill_2_val = math.floor(CharacterCreation.maxSkillValue * SliderBarGetCurrentPosition("Skill2SliderBar"))
+			skill_3_val = math.floor(CharacterCreation.maxSkillValue * SliderBarGetCurrentPosition("Skill3SliderBar"))
+			skill_4_val = math.floor(CharacterCreation.maxSkillValue * SliderBarGetCurrentPosition("Skill4SliderBar"))
+			
+			skill_total = skill_1_val + skill_2_val + skill_3_val + skill_4_val
+			local skill_index_being_selected = tonumber(string.match(SystemData.ActiveWindow.name, "%d+"))
+			
+			while skill_total > CharacterCreation.maxSkillTotal do
+				if ((skill_1_val > CharacterCreation.minSkillValue) and (skill_index_being_selected ~= 1)) then
+					skill_1_val = skill_1_val-1        
+				elseif((skill_2_val > CharacterCreation.minSkillValue) and (skill_index_being_selected ~= 2)) then
+					skill_2_val = skill_2_val-1
+				elseif((skill_3_val > CharacterCreation.minSkillValue) and (skill_index_being_selected ~= 3)) then
+					skill_3_val = skill_3_val-1
+				elseif((skill_4_val > CharacterCreation.minSkillValue) and (skill_index_being_selected ~= 4)) then
+					skill_4_val = skill_4_val-1
+				end
+				
+				skill_total = skill_1_val + skill_2_val + skill_3_val + skill_4_val 
+			end
+
+			 while skill_total < CharacterCreation.maxSkillTotal do
+				if ((skill_1_val < CharacterCreation.maxSkillValue) and (skill_index_being_selected ~= 1)) then
+					skill_1_val = skill_1_val+1        
+				elseif((skill_2_val < CharacterCreation.maxSkillValue) and (skill_index_being_selected ~= 2)) then
+					skill_2_val = skill_2_val+1
+				elseif((skill_3_val < CharacterCreation.maxSkillValue) and (skill_index_being_selected ~= 3)) then
+					skill_3_val = skill_3_val+1
+				elseif((skill_4_val < CharacterCreation.maxSkillValue) and (skill_index_being_selected ~= 4)) then
+					skill_4_val = skill_4_val+1
+				end
+
+				skill_total = skill_1_val + skill_2_val + skill_3_val + skill_4_val 
+			end
+			
+			CharacterCreation.InitializeSkillsWindow()
+			CharacterCreation.ChangeSkill()	
+		
+		-- UPDATE STATS!	
+		elseif (string.find(SystemData.ActiveWindow.name, "Strength") or
+				string.find(SystemData.ActiveWindow.name, "Dexterity") or 
+				string.find(SystemData.ActiveWindow.name, "Intelligence")) then 
+			
+			strength = CharacterCreation.minStatValue + math.floor((CharacterCreation.maxStatValue - CharacterCreation.minStatValue) * SliderBarGetCurrentPosition("StrengthSliderBar"))
+			dexterity = CharacterCreation.minStatValue + math.floor((CharacterCreation.maxStatValue - CharacterCreation.minStatValue) * SliderBarGetCurrentPosition("DexteritySliderBar"))
+			intelligence = CharacterCreation.minStatValue + math.floor((CharacterCreation.maxStatValue - CharacterCreation.minStatValue) * SliderBarGetCurrentPosition("IntelligenceSliderBar"))
+	
+			local strength_selected = string.match(SystemData.ActiveWindow.name, "Strength")
+			local dexterity_selected = string.match(SystemData.ActiveWindow.name, "Dexterity")
+			local intelligence_selected = string.match(SystemData.ActiveWindow.name, "Intelligence") 
+			
+			stat_total = strength + dexterity + intelligence
+			
+			while stat_total > CharacterCreation.maxStatTotal do
+				if ((strength > CharacterCreation.minStatValue) and not(strength_selected)) then
+					strength = strength-1        
+				elseif((dexterity > CharacterCreation.minStatValue) and not(dexterity_selected)) then
+					dexterity = dexterity-1
+				elseif((intelligence > CharacterCreation.minStatValue) and not(intelligence_selected)) then
+					intelligence = intelligence-1
+				end
+				stat_total = strength + dexterity + intelligence 
+			end
+
+			 while stat_total < CharacterCreation.maxStatTotal do
+				if ((strength < CharacterCreation.maxStatValue) and not(strength_selected)) then
+					strength = strength+1        
+				elseif((dexterity < CharacterCreation.maxStatValue) and not(dexterity_selected)) then
+					dexterity = dexterity+1
+				elseif((intelligence < CharacterCreation.maxStatValue) and not(intelligence_selected)) then
+					intelligence = intelligence+1
+				end
+				stat_total = strength + dexterity + intelligence 
+			end
+			
+			CharacterCreation.InitializeStatsWindow()               
+		end
+	end     
+end
+
+function CharacterCreation.InitializeStatsWindow()
+--  Debug.PrintToDebugConsole(L"CharacterCreation.InitializeStatsWindow()!")
+	LabelSetText( "StrengthVal", L""..strength)
+	LabelSetText( "DexterityVal", L""..dexterity)
+	LabelSetText( "IntelligenceVal", L""..intelligence)
+
+	SliderBarSetCurrentPosition( "StrengthSliderBar", (strength - CharacterCreation.minStatValue) / (CharacterCreation.maxStatValue - CharacterCreation.minStatValue) )
+	SliderBarSetCurrentPosition( "DexteritySliderBar", (dexterity - CharacterCreation.minStatValue) / (CharacterCreation.maxStatValue - CharacterCreation.minStatValue) )
+	SliderBarSetCurrentPosition( "IntelligenceSliderBar", (intelligence - CharacterCreation.minStatValue) / (CharacterCreation.maxStatValue - CharacterCreation.minStatValue) )
+	
+	WindowSetShowing("StrengthBackground",false)
+	WindowSetShowing("DexterityBackground",false)
+	WindowSetShowing("IntelligenceBackground",false)        
+end
+
+function CharacterCreation.InitializeAppearanceWindow()
+	if (gender_id == 1) then
+		WindowSetShowing("FacialHair", false)
+	end
+end
+
+function CharacterCreation.ShowColorPicker()    
+	if (SystemData.ActiveWindow.name == "SkinColorBar") then
+		if (WindowData.RacesCSV[race_id].Race == L"Human") then
+			if  (not(WindowGetShowing("SkinColorPicker"))) then
+				WindowSetShowing("SkinColorPicker",true)       
+				ColorPickerWindow.SetAfterColorSelectionFunction(CharacterCreation.ColorSkin)
+			else
+				WindowSetShowing("SkinColorPicker",false)        
+			end
+		elseif (WindowData.RacesCSV[race_id].Race == L"Elf") then
+			if  (not(WindowGetShowing("ElfSkinColorPicker"))) then
+				WindowSetShowing("ElfSkinColorPicker",true)       
+				ColorPickerWindow.SetAfterColorSelectionFunction(CharacterCreation.ColorSkin)
+			else
+				WindowSetShowing("ElfSkinColorPicker",false)        
+			end
+		elseif (WindowData.RacesCSV[race_id].Race == L"Gargoyle") then
+			if  (not(WindowGetShowing("GargoyleSkinColorPicker"))) then
+				WindowSetShowing("GargoyleSkinColorPicker",true)       
+				ColorPickerWindow.SetAfterColorSelectionFunction(CharacterCreation.ColorSkin)
+			else
+				WindowSetShowing("GargoyleSkinColorPicker",false)        
+			end
+		end     
+	elseif (SystemData.ActiveWindow.name == "HairColorBar") then
+		if (WindowData.RacesCSV[race_id].Race == L"Human") then
+			if  (not(WindowGetShowing("HairColorPicker"))) then
+				WindowSetShowing("HairColorPicker",true)
+				ColorPickerWindow.SetAfterColorSelectionFunction(CharacterCreation.ColorHair)
+			else
+				WindowSetShowing("HairColorPicker",false)
+			end
+		elseif (WindowData.RacesCSV[race_id].Race == L"Elf") then
+			if  (not(WindowGetShowing("ElfHairColorPicker"))) then
+				WindowSetShowing("ElfHairColorPicker",true)
+				ColorPickerWindow.SetAfterColorSelectionFunction(CharacterCreation.ColorHair)
+			else
+				WindowSetShowing("ElfHairColorPicker",false)
+			end
+		elseif (WindowData.RacesCSV[race_id].Race == L"Gargoyle") then
+			if  (not(WindowGetShowing("GargoyleHairColorPicker"))) then
+				WindowSetShowing("GargoyleHairColorPicker",true)
+				ColorPickerWindow.SetAfterColorSelectionFunction(CharacterCreation.ColorHair)
+			else
+				WindowSetShowing("GargoyleHairColorPicker",false)
+			end
+		end
+	elseif (SystemData.ActiveWindow.name == "FacialHairColorBar") then
+		if (WindowData.RacesCSV[race_id].Race == L"Human") then
+			if  (not(WindowGetShowing("FacialHairColorPicker"))) then
+				WindowSetShowing("FacialHairColorPicker",true)
+				ColorPickerWindow.SetAfterColorSelectionFunction(CharacterCreation.ColorFacialHair)
+			else
+				WindowSetShowing("FacialHairColorPicker",false)
+			end
+		elseif (WindowData.RacesCSV[race_id].Race == L"Gargoyle") then
+			if  (not(WindowGetShowing("GargoyleFacialHairColorPicker"))) then
+				WindowSetShowing("GargoyleFacialHairColorPicker",true)
+				ColorPickerWindow.SetAfterColorSelectionFunction(CharacterCreation.ColorFacialHair)
+			else
+				WindowSetShowing("GargoyleFacialHairColorPicker",false)
+			end
+		end
+	end
+
+	local colorBarWindowName, colorPickerWindowName = nil
+	for key, colorBarName in pairs({"Skin", "Hair", "FacialHair"}) do
+		colorBarWindowName = colorBarName.."ColorBar"
+		colorPickerWindowName = colorBarName.."ColorPicker"
+		if (SystemData.ActiveWindow.name ~= colorBarWindowName) then   
+			WindowSetShowing( colorPickerWindowName, false)
+		end
+	end
+end
+
+function CharacterCreation.ColorSkin()
+	--Debug.Print("ColorSkin()")
+	local red, green, blue, alpha
+	if (WindowData.RacesCSV[race_id].Race == L"Human") then
+		skinColor = ColorPickerWindow.colorSelected["SkinColorPicker"]
+		red, green, blue, alpha  = HueRGBAValue(ColorPickerWindow.colorSelected["SkinColorPicker"])
+	elseif (WindowData.RacesCSV[race_id].Race == L"Elf") then
+		skinColor = ColorPickerWindow.colorSelected["ElfSkinColorPicker"]
+		red, green, blue, alpha  = HueRGBAValue(ColorPickerWindow.colorSelected["ElfSkinColorPicker"])
+	elseif (WindowData.RacesCSV[race_id].Race == L"Gargoyle") then
+		skinColor = ColorPickerWindow.colorSelected["GargoyleSkinColorPicker"]
+		red, green, blue, alpha  = HueRGBAValue(ColorPickerWindow.colorSelected["GargoyleSkinColorPicker"])
+
+	end
+	WindowSetTintColor("SkinColorBar", red, green, blue)
+	
+	WindowData.CharacterCreation.Current.skinColor = skinColor
+	WindowData.CharacterCreation.Current.equipSlotHue[EquipmentData.EQPOS_RWRIST] = skinColor
+	BroadcastEvent(SystemData.Events.CHARACTER_CREATION_UPDATE_PAPERDOLL)
+end
+
+function CharacterCreation.ColorHair()
+	--Debug.Print("ColorHair() ")
+	local red, green, blue, alpha
+	if (WindowData.RacesCSV[race_id].Race == L"Human") then
+		hairColor = ColorPickerWindow.colorSelected["HairColorPicker"]
+		red, green, blue, alpha  = HueRGBAValue(ColorPickerWindow.colorSelected["HairColorPicker"])
+	elseif (WindowData.RacesCSV[race_id].Race == L"Elf") then
+		hairColor = ColorPickerWindow.colorSelected["ElfHairColorPicker"]
+		red, green, blue, alpha  = HueRGBAValue(ColorPickerWindow.colorSelected["ElfHairColorPicker"])
+	elseif (WindowData.RacesCSV[race_id].Race == L"Gargoyle") then
+		hairColor = ColorPickerWindow.colorSelected["GargoyleHairColorPicker"]
+		red, green, blue, alpha  = HueRGBAValue(ColorPickerWindow.colorSelected["GargoyleHairColorPicker"])
+	end
+	WindowSetTintColor("HairColorBar", red, green, blue)
+	
+	CharacterCreation.UpdateCharacterPaperdoll() 
+end
+
+function CharacterCreation.ColorFacialHair()
+	--Debug.Print("ColorFacialHair()")
+	local red, green, blue, alpha
+	if (WindowData.RacesCSV[race_id].Race == L"Human") then
+		facialHairColor = ColorPickerWindow.colorSelected["FacialHairColorPicker"]
+		red, green, blue, alpha  = HueRGBAValue(ColorPickerWindow.colorSelected["FacialHairColorPicker"])
+	elseif (WindowData.RacesCSV[race_id].Race == L"Gargoyle") then
+		facialHairColor = ColorPickerWindow.colorSelected["GargoyleFacialHairColorPicker"]
+		red, green, blue, alpha  = HueRGBAValue(ColorPickerWindow.colorSelected["GargoyleFacialHairColorPicker"])
+	end
+	WindowSetTintColor("FacialHairColorBar", red, green, blue)
+	
+	CharacterCreation.UpdateCharacterPaperdoll()
+end 
+
+function CharacterCreation.InitializeApproveWindow()
+--        Debug.PrintToDebugConsole(L"NAME = "..name)
+--        Debug.PrintToDebugConsole(L"PROFESSION ID = "..profession_id)
+--        Debug.PrintToDebugConsole(L"custom_profession_selected = "..custom_profession_selected)
+--        Debug.PrintToDebugConsole(L"default_profession_selected = "..default_profession_selected)
+--        Debug.PrintToDebugConsole(L"GENDER ID = "..gender_id)
+
+	local row_with_gender_name = CSVUtilities.getRowIdWithColumnValue(WindowData.GendersCSV, "ServerId", gender_id)
+	local gender_name = L""..GetStringFromTid(WindowData.GendersCSV[row_with_gender_name].StringTID)
+	LabelSetText( "ApproveNameWindowGenderVal", gender_name)
+	LabelSetText( "ApproveNameWindowRaceVal", raceName)
+
+	if skill_1_name == nil then
+		CharacterCreation.InitializeDefaultProfession()	
+	end	
+	local profession_description = GetStringFromTid(CharacterCreation.TID.CustomProfessionText)
+
+	if (default_profession_selected == 1) then
+			local row_with_profession_id = CSVUtilities.getRowIdWithColumnValue(WindowData.ProfessionsCSV, "ServerId", profession_id)
+			profession_name = GetStringFromTid(WindowData.ProfessionsCSV[row_with_profession_id].StringTID)
+			profession_description = GetStringFromTid(WindowData.ProfessionsCSV[row_with_profession_id].DescriptionTID)
+	end
+	LabelSetText( "ApproveStatsWindowProfessionText", profession_name)
+	LabelSetText( "ApproveDescriptionWindowText", profession_description)
+   
+   
+	LabelSetText( "ApproveWindowSkill1Text", skill_1_name)
+	LabelSetText( "ApproveWindowSkill2Text", skill_2_name)
+	LabelSetText( "ApproveWindowSkill3Text", skill_3_name)
+	LabelSetText( "ApproveWindowSkill4Text", skill_4_name)       
+
+	LabelSetText( "ApproveWindowSkill1Val", L""..skill_1_val)
+	LabelSetText( "ApproveWindowSkill2Val", L""..skill_2_val)
+	LabelSetText( "ApproveWindowSkill3Val", L""..skill_3_val)
+	LabelSetText( "ApproveWindowSkill4Val", L""..skill_4_val) 
+
+	LabelSetText( "ApproveWindowStrengthVal", L""..strength)
+	LabelSetText( "ApproveWindowDexterityVal", L""..dexterity)
+	LabelSetText( "ApproveWindowIntelligenceVal", L""..intelligence)
+end
+
+
+-- TO DO: ADD FACES FROM CUSTOM APPEARANCE UI?
+function CharacterCreation.CreateCharacter()
+
+--        Debug.PrintToDebugConsole(L"NAME = "..ApproveNameWindowNameVal.Text)
+--        Debug.PrintToDebugConsole(L"RACE ID = "..race_id)
+--        Debug.PrintToDebugConsole(L"GENDER ID = "..gender_id)
+--        Debug.PrintToDebugConsole(L"PROFESSION ID = "..profession_id)
+--        Debug.PrintToDebugConsole(L"SKILL 1 ID = "..skill_1_id)
+--        Debug.PrintToDebugConsole(L"SKILL 2 ID = "..skill_2_id)
+--        Debug.PrintToDebugConsole(L"SKILL 3 ID = "..skill_3_id)
+--        Debug.PrintToDebugConsole(L"SKILL 4 ID = "..skill_4_id)
+--        Debug.PrintToDebugConsole(L"SKILL 1 VALUE = "..skill_1_val)
+--        Debug.PrintToDebugConsole(L"SKILL 2 VALUE = "..skill_2_val)
+--        Debug.PrintToDebugConsole(L"SKILL 3 VALUE = "..skill_3_val)
+--        Debug.PrintToDebugConsole(L"SKILL 4 VALUE = "..skill_4_val)
+--        Debug.PrintToDebugConsole(L"STRENGTH = "..strength)
+--        Debug.PrintToDebugConsole(L"DEXTERITY = "..dexterity)
+--        Debug.PrintToDebugConsole(L"INTELLIGENCE = "..intelligence)
+--        Debug.PrintToDebugConsole(L"custom_profession_selected = "..custom_profession_selected)
+--        Debug.PrintToDebugConsole(L"default_profession_selected = "..default_profession_selected)
+--        Debug.PrintToDebugConsole(L"skinColor = "..skinColor)
+--        Debug.PrintToDebugConsole(L"hairStyle = "..hairStyle)
+--        Debug.PrintToDebugConsole(L"Current.hairColor = "..hairColor)
+--        Debug.PrintToDebugConsole(L"facialHairStyle = "..facialHairStyle)
+--        Debug.PrintToDebugConsole(L"hairColor = "..hairColor)
+--        Debug.PrintToDebugConsole(L"Current.shirtColor = "..shirtColor)
+--        Debug.PrintToDebugConsole(L"Current.pantsColor = "..pantsColor)
+
+	WindowData.CharacterCreation.Current.name = WStringToString(ApproveNameWindowNameVal.Text)
+	WindowData.CharacterCreation.Current.gender = gender_id
+	WindowData.CharacterCreation.Current.race = race_id       
+	WindowData.CharacterCreation.Current.world = world_id
+	
+	WindowData.CharacterCreation.Current.skinColor = skinColor
+	
+	WindowData.CharacterCreation.Current.skill1Id = skill_1_id
+	WindowData.CharacterCreation.Current.skill2Id = skill_2_id
+	WindowData.CharacterCreation.Current.skill3Id = skill_3_id
+	WindowData.CharacterCreation.Current.skill4Id = skill_4_id
+	WindowData.CharacterCreation.Current.skill1val = skill_1_val
+	WindowData.CharacterCreation.Current.skill2val = skill_2_val
+	WindowData.CharacterCreation.Current.skill3val = skill_3_val
+	WindowData.CharacterCreation.Current.skill4val = skill_4_val
+
+	if (ApproveNameWindowNameVal.Text == L"" or not(ApproveNameWindowNameVal.Text)) then
+			local windowData = 
+			{
+				windowName = "CharacterCreation",
+				bodyTid = CharacterCreation.TID.enterName,
+				focusOnClose = "ApproveNameWindowNameVal",
+			}
+			UO_Login_StandardDialog.CreateDialog(windowData)
+			return 
+	end
+	
+	for index, badWord in ipairs(WindowData.BadWordList) do
+		if( wstring.find( ApproveNameWindowNameVal.Text, badWord ) ~= nil ) then
+			local windowData = 
+			{
+				windowName = "CharacterCreation",
+				titleTid = Login.TID.LABEL_NETWORK_ERROR,
+				bodyTid = Login.TID.LABEL_19,
+				focusOnClose = "ApproveNameWindowNameVal",
+			}
+			UO_Login_StandardDialog.CreateDialog(windowData)
+			return         
+		end
+	end
+
+	if (allow_custom_selection == true) then
+			WindowData.CharacterCreation.Current.strength = strength
+			WindowData.CharacterCreation.Current.dexterity = dexterity
+			WindowData.CharacterCreation.Current.intelligence = intelligence
+			BroadcastEvent(SystemData.Events.CHARACTER_CREATION_RETREIVE_PLAYER)
+	elseif (default_profession_selected == 1) then
+			WindowData.CharacterCreation.Current.characterTemplate = profession_id
+			BroadcastEvent(SystemData.Events.CHARACTER_CREATION_RETREIVE_TEMPLATE)
+	end
+
+	-- KILL THE WINDOW!
+	WindowSetShowing ( "CharacterCreation", false)
+	WindowSetShowing ( "Login", false)
+	CharacterCreation.IsShowing = false;
+end
+
+function CharacterCreation.UpdateCharacterPaperdoll()
+	-- HUGE HACK EquipmentData.EQPOS_RWRIST is used for FACE!!!
+
+	WindowData.CharacterCreation.Current.gender = gender_id
+	WindowData.CharacterCreation.Current.race = race_id       
+	WindowData.CharacterCreation.Current.skinColor = skinColor
+	
+	WindowData.CharacterCreation.Current.equipSlotNum[EquipmentData.EQPOS_RIGHTHAND] = EquipmentData.EQPOS_RIGHTHAND
+	WindowData.CharacterCreation.Current.equipSlotNum[EquipmentData.EQPOS_LEFTHAND] = EquipmentData.EQPOS_LEFTHAND  
+	WindowData.CharacterCreation.Current.equipSlotNum[EquipmentData.EQPOS_FEET] = EquipmentData.EQPOS_FEET 
+	WindowData.CharacterCreation.Current.equipSlotNum[EquipmentData.EQPOS_LEGS] = EquipmentData.EQPOS_LEGS
+	WindowData.CharacterCreation.Current.equipSlotNum[EquipmentData.EQPOS_TORSO] = EquipmentData.EQPOS_TORSO
+	WindowData.CharacterCreation.Current.equipSlotNum[EquipmentData.EQPOS_HEAD] = EquipmentData.EQPOS_HEAD 
+	WindowData.CharacterCreation.Current.equipSlotNum[EquipmentData.EQPOS_HANDS] = EquipmentData.EQPOS_HANDS
+	WindowData.CharacterCreation.Current.equipSlotNum[EquipmentData.EQPOS_FINGER1] = EquipmentData.EQPOS_FINGER1 
+	WindowData.CharacterCreation.Current.equipSlotNum[EquipmentData.EQPOS_TALISMAN] = EquipmentData.EQPOS_TALISMAN 
+	WindowData.CharacterCreation.Current.equipSlotNum[EquipmentData.EQPOS_NECK] = EquipmentData.EQPOS_NECK
+	WindowData.CharacterCreation.Current.equipSlotNum[EquipmentData.EQPOS_HAIR] = EquipmentData.EQPOS_HAIR  
+	WindowData.CharacterCreation.Current.equipSlotNum[EquipmentData.EQPOS_WAIST] = EquipmentData.EQPOS_WAIST
+	WindowData.CharacterCreation.Current.equipSlotNum[EquipmentData.EQPOS_CHEST] = EquipmentData.EQPOS_CHEST 
+	WindowData.CharacterCreation.Current.equipSlotNum[EquipmentData.EQPOS_LWRIST] = EquipmentData.EQPOS_LWRIST 
+	WindowData.CharacterCreation.Current.equipSlotNum[EquipmentData.EQPOS_RWRIST] = EquipmentData.EQPOS_RWRIST
+	WindowData.CharacterCreation.Current.equipSlotNum[EquipmentData.EQPOS_FACIALHAIR] = EquipmentData.EQPOS_FACIALHAIR	
+	WindowData.CharacterCreation.Current.equipSlotNum[EquipmentData.EQPOS_ABOVECHEST] = EquipmentData.EQPOS_ABOVECHEST 
+	WindowData.CharacterCreation.Current.equipSlotNum[EquipmentData.EQPOS_EARS] = EquipmentData.EQPOS_EARS 
+	WindowData.CharacterCreation.Current.equipSlotNum[EquipmentData.EQPOS_ARMS] = EquipmentData.EQPOS_ARMS 
+	WindowData.CharacterCreation.Current.equipSlotNum[EquipmentData.EQPOS_CAPE] = EquipmentData.EQPOS_CAPE 
+	WindowData.CharacterCreation.Current.equipSlotNum[EquipmentData.EQPOS_BACKPACK] = EquipmentData.EQPOS_BACKPACK 
+	WindowData.CharacterCreation.Current.equipSlotNum[EquipmentData.EQPOS_DRESS] = EquipmentData.EQPOS_DRESS 
+	WindowData.CharacterCreation.Current.equipSlotNum[EquipmentData.EQPOS_SKIRT] = EquipmentData.EQPOS_SKIRT
+	WindowData.CharacterCreation.Current.equipSlotNum[EquipmentData.EQPOS_FEETLEGS] = EquipmentData.EQPOS_FEETLEGS	
+	
+	-- PROFESSION-BASED APPEARANCE VALUES
+	WindowData.CharacterCreation.Current.equipSlotType[EquipmentData.EQPOS_RIGHTHAND] = profession_righthandStyle  
+	WindowData.CharacterCreation.Current.equipSlotType[EquipmentData.EQPOS_LEFTHAND] = profession_lefthandStyle  
+	WindowData.CharacterCreation.Current.equipSlotType[EquipmentData.EQPOS_FEET] = profession_feetStyle 
+	WindowData.CharacterCreation.Current.equipSlotType[EquipmentData.EQPOS_LEGS] = profession_legsStyle
+	WindowData.CharacterCreation.Current.equipSlotType[EquipmentData.EQPOS_TORSO] = profession_torsoStyle
+	WindowData.CharacterCreation.Current.equipSlotType[EquipmentData.EQPOS_HEAD] = profession_headStyle 
+	WindowData.CharacterCreation.Current.equipSlotType[EquipmentData.EQPOS_HANDS] = profession_handsStyle
+	WindowData.CharacterCreation.Current.equipSlotType[EquipmentData.EQPOS_FINGER1] = profession_finger1Style 
+	WindowData.CharacterCreation.Current.equipSlotType[EquipmentData.EQPOS_TALISMAN] = profession_talismanStyle 
+	WindowData.CharacterCreation.Current.equipSlotType[EquipmentData.EQPOS_NECK] = profession_neckStyle   
+	WindowData.CharacterCreation.Current.equipSlotType[EquipmentData.EQPOS_WAIST] = profession_waistStyle 
+	WindowData.CharacterCreation.Current.equipSlotType[EquipmentData.EQPOS_CHEST] = profession_chestStyle 
+	WindowData.CharacterCreation.Current.equipSlotType[EquipmentData.EQPOS_LWRIST] = profession_lwristStyle 
+	WindowData.CharacterCreation.Current.equipSlotType[EquipmentData.EQPOS_ABOVECHEST] = profession_abovechestStyle 
+	WindowData.CharacterCreation.Current.equipSlotType[EquipmentData.EQPOS_EARS] = profession_earsStyle 
+	WindowData.CharacterCreation.Current.equipSlotType[EquipmentData.EQPOS_ARMS] = profession_armsStyle 
+	WindowData.CharacterCreation.Current.equipSlotType[EquipmentData.EQPOS_CAPE] = profession_capeStyle 
+	WindowData.CharacterCreation.Current.equipSlotType[EquipmentData.EQPOS_BACKPACK] = profession_backpackStyle 
+	WindowData.CharacterCreation.Current.equipSlotType[EquipmentData.EQPOS_DRESS] = profession_dressStyle 
+	WindowData.CharacterCreation.Current.equipSlotType[EquipmentData.EQPOS_SKIRT] = profession_skirtStyle 
+	WindowData.CharacterCreation.Current.equipSlotType[EquipmentData.EQPOS_FEETLEGS] = profession_feetlegsStyle	
+	-- USER SELECTED APPEARANCE STYLES
+	--Debug.Print("CharCreation: Face Style: "..faceStyle)
+	--Debug.Print("CharCreation: Hair Style: "..hairStyle)
+
+	WindowData.CharacterCreation.Current.equipSlotType[EquipmentData.EQPOS_RWRIST] = faceStyle
+	WindowData.CharacterCreation.Current.equipSlotType[EquipmentData.EQPOS_HAIR] = hairStyle
+	WindowData.CharacterCreation.Current.equipSlotType[EquipmentData.EQPOS_FACIALHAIR] = facialHairStyle
+
+	WindowData.CharacterCreation.Current.equipSlotHue[EquipmentData.EQPOS_RIGHTHAND] = profession_righthandHue
+	WindowData.CharacterCreation.Current.equipSlotHue[EquipmentData.EQPOS_LEFTHAND] = profession_lefthandHue
+	WindowData.CharacterCreation.Current.equipSlotHue[EquipmentData.EQPOS_FEET] = profession_feetHue
+	WindowData.CharacterCreation.Current.equipSlotHue[EquipmentData.EQPOS_LEGS] = profession_legsHue
+	WindowData.CharacterCreation.Current.equipSlotHue[EquipmentData.EQPOS_TORSO] = profession_torsoHue
+	WindowData.CharacterCreation.Current.equipSlotHue[EquipmentData.EQPOS_HEAD] = profession_headHue
+	WindowData.CharacterCreation.Current.equipSlotHue[EquipmentData.EQPOS_HANDS] = profession_handsHue
+	WindowData.CharacterCreation.Current.equipSlotHue[EquipmentData.EQPOS_FINGER1] = profession_finger1Hue
+	WindowData.CharacterCreation.Current.equipSlotHue[EquipmentData.EQPOS_TALISMAN] = profession_talismanHue
+	WindowData.CharacterCreation.Current.equipSlotHue[EquipmentData.EQPOS_NECK] = profession_neckHue
+	WindowData.CharacterCreation.Current.equipSlotHue[EquipmentData.EQPOS_WAIST] = profession_waistHue
+	WindowData.CharacterCreation.Current.equipSlotHue[EquipmentData.EQPOS_CHEST] = profession_chestHue
+	WindowData.CharacterCreation.Current.equipSlotHue[EquipmentData.EQPOS_LWRIST] = profession_lwristHue
+	WindowData.CharacterCreation.Current.equipSlotHue[EquipmentData.EQPOS_ABOVECHEST] = profession_abovechestHue
+	WindowData.CharacterCreation.Current.equipSlotHue[EquipmentData.EQPOS_EARS] = profession_earsHue
+	WindowData.CharacterCreation.Current.equipSlotHue[EquipmentData.EQPOS_ARMS] = profession_armsHue
+	WindowData.CharacterCreation.Current.equipSlotHue[EquipmentData.EQPOS_CAPE] = profession_capeHue
+	WindowData.CharacterCreation.Current.equipSlotHue[EquipmentData.EQPOS_BACKPACK] = profession_backpackHue
+	WindowData.CharacterCreation.Current.equipSlotHue[EquipmentData.EQPOS_DRESS] = profession_dressHue
+	WindowData.CharacterCreation.Current.equipSlotHue[EquipmentData.EQPOS_SKIRT] = profession_skirtHue
+	WindowData.CharacterCreation.Current.equipSlotHue[EquipmentData.EQPOS_FEETLEGS] = profession_feetlegsHue
+	-- USER SELECTED APPEARANCE HUES
+	WindowData.CharacterCreation.Current.equipSlotHue[EquipmentData.EQPOS_RWRIST] = skinColor
+	WindowData.CharacterCreation.Current.equipSlotHue[EquipmentData.EQPOS_HAIR] = hairColor
+	WindowData.CharacterCreation.Current.equipSlotHue[EquipmentData.EQPOS_FACIALHAIR] = facialHairColor
+	
+	BroadcastEvent(SystemData.Events.CHARACTER_CREATION_UPDATE_PAPERDOLL)
+
+--[[
+	Debug.Print("-------------------------------------------------------------------------")
+	Debug.Print ("profession_righthandStyle =  "..tostring(profession_righthandStyle))
+	Debug.Print ("profession_lefthandStyle =  "..tostring(profession_lefthandStyle))
+	Debug.Print ("profession_feetStyle =  "..tostring(profession_feetStyle))
+	Debug.Print ("profession_legsStyle =  "..tostring(profession_legsStyle))
+	Debug.Print ("profession_torsoStyle =  "..tostring(profession_torsoStyle))
+	Debug.Print ("profession_headStyle =  "..tostring(profession_headStyle))
+	Debug.Print ("profession_handsStyle =  "..tostring(profession_handsStyle))
+	Debug.Print ("profession_finger1Style =  "..tostring(profession_finger1Style))
+	Debug.Print ("profession_talismanStyle =  "..tostring(profession_talismanStyle))
+	Debug.Print ("profession_neckStyle =  "..tostring(profession_neckStyle))
+	Debug.Print ("profession_waistStyle =  "..tostring(profession_waistStyle))
+	Debug.Print ("profession_chestStyle =  "..tostring(profession_chestStyle))
+	Debug.Print ("profession_lwristStyle =  "..tostring(profession_lwristStyle))
+	Debug.Print ("profession_rwristStyle =  "..tostring(profession_rwristStyle))
+	Debug.Print ("profession_abovechestStyle =  "..tostring(profession_abovechestStyle))
+	Debug.Print ("profession_earsStyle =  "..tostring(profession_earsStyle))
+	Debug.Print ("profession_armsStyle =  "..tostring(profession_armsStyle))
+	Debug.Print ("profession_capeStyle =  "..tostring(profession_capeStyle))
+	Debug.Print ("profession_backpackStyle =  "..tostring(profession_backpackStyle))
+	Debug.Print ("profession_dressStyle =  "..tostring(profession_dressStyle))
+	Debug.Print ("profession_skirtStyle =  "..tostring(profession_skirtStyle))
+	Debug.Print ("profession_feetlegsStyle =  "..tostring(profession_feetlegsStyle))
+	
+	Debug.Print ("hairStyle =  "..tostring(hairStyle))
+	Debug.Print ("facialHairStyle =  "..tostring(facialHairStyle))
+	Debug.Print("-------------------------------------------------------------------------") --]]
+end
+
+function CharacterCreation.SetUpDefaultAppearance()
+--	Debug.Print("---------------------------------------------------")
+
+	WindowSetShowing("SkinColorPicker", false)
+	WindowSetShowing("ElfSkinColorPicker", false)
+	WindowSetShowing("GargoyleSkinColorPicker", false)
+	WindowSetShowing("HairColorPicker", false)
+	WindowSetShowing("ElfHairColorPicker", false)
+	WindowSetShowing("GargoyleHairColorPicker", false)
+	WindowSetShowing("FacialHairColorPicker", false)
+	WindowSetShowing("GargoyleFacialHairColorPicker", false)
+	
+	if (WindowData.RacesCSV[race_id].Race == L"Human") then
+		if (gender_id == 0) then
+			WindowSetShowing("FacialHair", true)
+			CharacterCreation.SetupHumanMaleDefaultAppearance()
+		elseif(gender_id==1) then
+			WindowSetShowing("FacialHair", false)
+			CharacterCreation.SetupHumanFemaleDefaultAppearance()
+		end
+		LabelSetText( "HairLabel", GetStringFromTid(CharacterCreation.TID.HairStyle))
+		LabelSetText( "HairColorLabel", GetStringFromTid(CharacterCreation.TID.HairColor))
+		LabelSetText( "FacialHairLabel", GetStringFromTid(CharacterCreation.TID.FacialHairStyle))
+		LabelSetText( "FacialHairColorLabel", GetStringFromTid(CharacterCreation.TID.FacialHairColor))
+	elseif (WindowData.RacesCSV[race_id].Race == L"Elf") then
+		if (gender_id == 0) then
+			WindowSetShowing("FacialHair", false)
+			CharacterCreation.SetupElfMaleDefaultAppearance()
+		elseif(gender_id==1) then
+			WindowSetShowing("FacialHair", false)
+			CharacterCreation.SetupElfFemaleDefaultAppearance()
+		end
+		LabelSetText( "HairLabel", GetStringFromTid(CharacterCreation.TID.HairStyle))
+		LabelSetText( "HairColorLabel", GetStringFromTid(CharacterCreation.TID.HairColor))
+		LabelSetText( "FacialHairLabel", GetStringFromTid(CharacterCreation.TID.FacialHairStyle))
+		LabelSetText( "FacialHairColorLabel", GetStringFromTid(CharacterCreation.TID.FacialHairColor))
+	elseif (WindowData.RacesCSV[race_id].Race == L"Gargoyle") then
+		if (gender_id == 0) then
+			WindowSetShowing("FacialHair", true)
+			CharacterCreation.SetupGargoyleMaleDefaultAppearance()
+		elseif(gender_id==1) then
+			WindowSetShowing("FacialHair", false)
+			CharacterCreation.SetupGargoyleFemaleDefaultAppearance()
+		end
+		LabelSetText( "HairLabel", GetStringFromTid(CharacterCreation.TID.HornStyle))
+		LabelSetText( "HairColorLabel", GetStringFromTid(CharacterCreation.TID.HornColor))
+		LabelSetText( "FacialHairLabel", GetStringFromTid(CharacterCreation.TID.FacialHornStyle))
+		LabelSetText( "FacialHairColorLabel", GetStringFromTid(CharacterCreation.TID.FacialHornColor))
+	end
+
+	
+	CharacterCreation.UpdateCharacterPaperdoll()
+	CharacterCreation.ColorSkin()
+	CharacterCreation.ColorHair()
+	CharacterCreation.ColorFacialHair()
+--	Debug.Print("---------------------------------------------------")
+end
+
+function CharacterCreation.SetupHumanMaleDefaultAppearance()
+--    Debug.Print("CharacterCreation.SetupHumanMaleDefaultAppearance() called!")
+	CharacterCreation.setupProfessionWearables(WindowData.MaleHumanProfessionWearablesCSV)
+	
+	faceStyles = CharacterCreation.createWearableTableEntitled(WindowData.CharacterFaceStylesCSV)
+	faceStyle  = WindowData.CharacterFaceStylesCSV[1].TileArtId
+	
+	--Debug.PrintToDebugConsole(L"CharacterCreation.SetupHumanMaleDefaultAppearance: createWearableTable Male Human Hairstyles ")
+	hairStyles = CharacterCreation.createWearableTable(WindowData.MaleHumanHairstylesCSV)
+	hairStyle  = WindowData.MaleHumanHairstylesCSV[1].TileArtId
+
+	--Debug.PrintToDebugConsole(L"CharacterCreation.SetupHumanMaleDefaultAppearance: createWearableTable Male Human FacialHairstyles ")
+	facialHairStyles = CharacterCreation.createWearableTable(WindowData.MaleHumanFacialHairstylesCSV)
+	facialHairStyle = WindowData.MaleHumanFacialHairstylesCSV[1].TileArtId
+	
+	skinColor = 1023
+	hairColor = 1130
+	facialHairColor = 1130
+	ColorPickerWindow.SetHue(skinColor, "SkinColorPicker")
+	ColorPickerWindow.SetHue(hairColor, "HairColorPicker")
+	ColorPickerWindow.SetHue(facialHairColor, "FacialHairColorPicker")
+end
+
+function CharacterCreation.SetupHumanFemaleDefaultAppearance()
+--	--Debug.Print("CharacterCreation.SetupHumanFemaleDefaultAppearance() called!")
+	CharacterCreation.setupProfessionWearables(WindowData.FemaleHumanProfessionWearablesCSV)
+
+	faceStyles = CharacterCreation.createWearableTableEntitled(WindowData.CharacterFaceStylesCSV)
+	faceStyle  = WindowData.CharacterFaceStylesCSV[1].TileArtId
+
+	--Debug.PrintToDebugConsole(L"CharacterCreation.SetupHumanFeMaleDefaultAppearance: createWearableTable feMale Human Hairstyles ")
+	hairStyles = CharacterCreation.createWearableTable(WindowData.FemaleHumanHairstylesCSV)
+	hairStyle  = WindowData.FemaleHumanHairstylesCSV[1].TileArtId
+	
+	facialHairStyle = 0
+	
+	skinColor = 1023
+	hairColor = 1130
+	facialHairColor = 1130
+	ColorPickerWindow.SetHue(skinColor, "SkinColorPicker")
+	ColorPickerWindow.SetHue(hairColor, "HairColorPicker")
+	ColorPickerWindow.SetHue(facialHairColor, "FacialHairColorPicker")
+end
+
+function CharacterCreation.SetupElfMaleDefaultAppearance()
+	CharacterCreation.setupProfessionWearables(WindowData.MaleElfProfessionWearablesCSV)
+
+	faceStyles = CharacterCreation.createWearableTableEntitled(WindowData.ElfFaceStylesCSV)
+	faceStyle  = WindowData.ElfFaceStylesCSV[1].TileArtId
+
+	--Debug.PrintToDebugConsole(L"CharacterCreation.SetupElfMaleDefaultAppearance: createWearableTable elf male Hairstyles ")
+	hairStyles = CharacterCreation.createWearableTable(WindowData.MaleElfHairstylesCSV)
+	hairStyle  = WindowData.MaleElfHairstylesCSV[1].TileArtId
+
+	facialHairStyle  = 0
+	
+	skinColor =  WindowData.ElfSkinHuesCSV[1].ElfSkinHues
+	hairColor = WindowData.ElfHairHuesCSV[1].ElfHairHues
+	facialHairColor = WindowData.ElfHairHuesCSV[1].ElfHairHues
+	ColorPickerWindow.SetHue(skinColor, "ElfSkinColorPicker")
+	ColorPickerWindow.SetHue(hairColor, "ElfHairColorPicker")
+end
+
+function CharacterCreation.SetupElfFemaleDefaultAppearance()
+	CharacterCreation.setupProfessionWearables(WindowData.FemaleElfProfessionWearablesCSV)
+
+	faceStyles = CharacterCreation.createWearableTableEntitled(WindowData.ElfFaceStylesCSV)
+	faceStyle  = WindowData.ElfFaceStylesCSV[1].TileArtId
+
+	--Debug.PrintToDebugConsole(L"CharacterCreation.SetupElffeMaleDefaultAppearance: createWearableTable elf female Hairstyles ")
+	hairStyles = CharacterCreation.createWearableTable(WindowData.FemaleElfHairstylesCSV)
+	hairStyle  = WindowData.FemaleElfHairstylesCSV[1].TileArtId
+	
+	facialHairStyle  = 0
+	
+	skinColor =  WindowData.ElfSkinHuesCSV[1].ElfSkinHues
+	hairColor = WindowData.ElfHairHuesCSV[1].ElfHairHues
+	facialHairColor = WindowData.ElfHairHuesCSV[1].ElfHairHues
+	ColorPickerWindow.SetHue(skinColor, "ElfSkinColorPicker")
+	ColorPickerWindow.SetHue(hairColor, "ElfHairColorPicker")
+end
+
+function CharacterCreation.SetupGargoyleMaleDefaultAppearance()
+	CharacterCreation.setupProfessionWearables(WindowData.MaleGargoyleProfessionWearablesCSV)
+
+	faceStyles = CharacterCreation.createWearableTableEntitled(WindowData.GargoyleFaceStylesCSV)
+	faceStyle  = WindowData.GargoyleFaceStylesCSV[1].TileArtId
+
+	--Debug.PrintToDebugConsole(L"CharacterCreation.SetupGargoyleMaleDefaultAppearance: createWearableTable gargoyle male Hairstyles ")
+	hairStyles = CharacterCreation.createWearableTable(WindowData.MaleGargoyleHornstylesCSV)
+	hairStyle  = WindowData.MaleGargoyleHornstylesCSV[1].TileArtId
+
+	--Debug.PrintToDebugConsole(L"CharacterCreation.SetupGargoyleMaleDefaultAppearance: createWearableTable gargoyle male facial Hairstyles ")
+	facialHairStyles = CharacterCreation.createWearableTable(WindowData.MaleGargoyleFacialHornstylesCSV)
+	facialHairStyle  = WindowData.MaleGargoyleFacialHornstylesCSV[1].TileArtId
+	
+	skinColor =  WindowData.GargoyleSkinHuesCSV[1].GargoyleSkinHues
+	hairColor = WindowData.GargoyleHornHuesCSV[1].GargoyleHornHues	
+	facialHairColor = WindowData.GargoyleHornHuesCSV[1].GargoyleHornHues
+	ColorPickerWindow.SetHue(skinColor, "GargoyleSkinColorPicker")
+	ColorPickerWindow.SetHue(hairColor, "GargoyleHairColorPicker")
+	ColorPickerWindow.SetHue(facialHairColor, "GargoyleFacialHairColorPicker")
+end
+
+function CharacterCreation.SetupGargoyleFemaleDefaultAppearance()
+	CharacterCreation.setupProfessionWearables(WindowData.FemaleGargoyleProfessionWearablesCSV)
+
+	faceStyles = CharacterCreation.createWearableTableEntitled(WindowData.GargoyleFaceStylesCSV)
+	faceStyle  = WindowData.GargoyleFaceStylesCSV[1].TileArtId
+
+	--Debug.PrintToDebugConsole(L"CharacterCreation.SetupGargoylefeMaleDefaultAppearance: createWearableTable gargoyle female Hairstyles ")
+	hairStyles = CharacterCreation.createWearableTable(WindowData.FemaleGargoyleHornstylesCSV)
+	hairStyle  = WindowData.FemaleGargoyleHornstylesCSV[1].TileArtId
+	
+	facialHairStyle  = 0
+	
+	skinColor =  WindowData.GargoyleSkinHuesCSV[1].GargoyleSkinHues
+	hairColor = WindowData.GargoyleHornHuesCSV[1].GargoyleHornHues
+	facialHairColor = WindowData.GargoyleHornHuesCSV[1].GargoyleHornHues
+	ColorPickerWindow.SetHue(skinColor, "GargoyleSkinColorPicker")
+	ColorPickerWindow.SetHue(hairColor, "GargoyleHairColorPicker")
+	ColorPickerWindow.SetHue(facialHairColor, "GargoyleFacialHairColorPicker")
+end
+
+
+function CharacterCreation.SetInitialAppearanceLabelValues()
+
+	LabelSetText ("HairStyle", GetStringFromTid(hairStyles[HairIndex].tid))
+	LabelSetText ("FacialHairStyle", GetStringFromTid(facialHairStyles[FacialHairIndex].tid))
+	LabelSetText ("SkinStyle", GetStringFromTid(faceStyles[FaceIndex].tid))
+
+end
+
+function CharacterCreation.ToggleAppearanceItemUp()
+
+	if SystemData.ActiveWindow.name == "HairUpButton" then
+
+		maxHairTypes = table.getn (hairStyles)
+		if (HairIndex > (maxHairTypes - 1)) then 
+			HairIndex = 1
+		else
+			HairIndex = HairIndex + 1
+		end 
+		--Debug.PrintToDebugConsole(L"HairIndex= "..StringToWString(tostring(HairIndex)))
+		LabelSetText ("HairStyle", GetStringFromTid(hairStyles[HairIndex].tid))
+		hairStyle = hairStyles[HairIndex].id
+	elseif SystemData.ActiveWindow.name == "FacialHairUpButton" then
+		maxFacialHairTypes = table.getn (facialHairStyles)
+		if (FacialHairIndex > (maxFacialHairTypes - 1)) then
+			FacialHairIndex = 1
+		else
+			FacialHairIndex = FacialHairIndex + 1
+		end 
+		
+		LabelSetText ("FacialHairStyle", GetStringFromTid(facialHairStyles[FacialHairIndex].tid))
+		facialHairStyle = facialHairStyles[FacialHairIndex].id
+	elseif SystemData.ActiveWindow.name == "SkinUpButton" then
+		maxFaceTypes = table.getn (faceStyles)
+		if (FaceIndex > (maxFaceTypes - 1)) then
+			FaceIndex = 1
+		else
+			FaceIndex = FaceIndex + 1
+		end
+		LabelSetText ("SkinStyle", GetStringFromTid(faceStyles[FaceIndex].tid))
+		faceStyle = faceStyles[FaceIndex].id
+	end
+	
+	CharacterCreation.UpdateCharacterPaperdoll()
+end
+
+function CharacterCreation.ToggleAppearanceItemDown()
+	local appearanceIndex
+
+	if SystemData.ActiveWindow.name == "HairDownButton" then
+
+		maxHairTypes = table.getn (hairStyles)
+		--Debug.PrintToDebugConsole(L"maxHairTypes= "..StringToWString(tostring(maxHairTypes)))
+		if (HairIndex > (1)) then 
+			HairIndex = HairIndex - 1
+		else
+			HairIndex = maxHairTypes
+		end 
+		LabelSetText ("HairStyle", GetStringFromTid(hairStyles[HairIndex].tid))
+		hairStyle = hairStyles[HairIndex].id
+	elseif SystemData.ActiveWindow.name == "FacialHairDownButton" then
+		maxFacialHairTypes = table.getn (facialHairStyles)
+		if (FacialHairIndex > (1)) then
+			FacialHairIndex = FacialHairIndex - 1
+		else
+			FacialHairIndex = maxFacialHairTypes
+		end 
+		
+		LabelSetText ("FacialHairStyle", GetStringFromTid(facialHairStyles[FacialHairIndex].tid))
+		facialHairStyle = facialHairStyles[FacialHairIndex].id
+	elseif SystemData.ActiveWindow.name == "SkinDownButton" then
+		maxFaceTypes = table.getn (faceStyles)
+		if (FaceIndex > (1)) then
+			FaceIndex = FaceIndex - 1
+		else
+			FaceIndex = maxFaceTypes
+		end 
+
+		LabelSetText ("SkinStyle", GetStringFromTid(faceStyles[FaceIndex].tid))
+		faceStyle = faceStyles[FaceIndex].id
+	end
+
+	CharacterCreation.UpdateCharacterPaperdoll()
+end
+
+
+function CharacterCreation.createWearableTable(CSVTable)
+	local wearableTable = {}
+	local numWearables =  table.getn(CSVTable)
+
+	for i = 1,numWearables do
+		-- HACKY IF STATEMENT CHECK BECAUSE CSV TABLE SEEMS TO CONTAIN NIL VALUES
+		if not ((CSVTable[i].TileArtId == 0) and (CSVTable[i].StringId == 0))  then
+			wearableTable[i] = {id=CSVTable[i].TileArtId, tid=CSVTable[i].StringId}
+
+		end
+	end
+	
+	return wearableTable
+end
+
+function CharacterCreation.createWearableTableEntitled(CSVTable)
+	local wearableTable = {}
+	local numWearables =  table.getn(CSVTable)
+	--Debug.PrintToDebugConsole(L"CharacterCreation.createWearableTable: numWearables = "..StringToWString(tostring(numWearables)))
+
+	for i = 1,numWearables do
+		-- HACKY IF STATEMENT CHECK BECAUSE CSV TABLE SEEMS TO CONTAIN NIL VALUES
+		if not ((CSVTable[i].TileArtId == 0) and (CSVTable[i].StringId == 0))  then
+			if ( ((CSVTable[i].Entitlement) and HasEntitlement(tonumber(CSVTable[i].Entitlement))) or
+				(not(CSVTable[i].Entitlement)) ) then
+					wearableTable[i] = {id=CSVTable[i].TileArtId, tid=CSVTable[i].StringId}
+
+			else
+				wearableTable[i] = nil
+			end
+		end
+	end
+	
+	return wearableTable
+end
+
+function CharacterCreation.setupProfessionWearables(CSVTable)
+	
+	local row_with_profession = CSVUtilities.getRowIdWithColumnValue(CSVTable, "TemplateServerId", profession_id)
+		
+	if (CSVTable[row_with_profession].RIGHTHAND) then profession_righthandStyle =  CSVTable[row_with_profession].RIGHTHAND else profession_righthandStyle = 0 end
+	if (CSVTable[row_with_profession].LEFTHAND) then profession_lefthandStyle = CSVTable[row_with_profession].LEFTHAND else profession_lefthandStyle = 0 end
+	if (CSVTable[row_with_profession].FEET) then profession_feetStyle = CSVTable[row_with_profession].FEET else profession_feetStyle = 0 end
+	if (CSVTable[row_with_profession].LEGS) then profession_legsStyle = CSVTable[row_with_profession].LEGS else profession_legsStyle = 0 end
+	if (CSVTable[row_with_profession].TORSO) then profession_torsoStyle = CSVTable[row_with_profession].TORSO else profession_torsoStyle = 0 end
+
+	-- HACK FOR CC: NOT SHOWING HELMETS SO PLAYERS WILL BE ABLE TO SEE THEIR FACE, HAIR, AND FACIAL HAIR CHOICES!
+	--if (CSVTable[row_with_profession].HEAD) then profession_headStyle = CSVTable[row_with_profession].HEAD else profession_headStyle = 0 end
+	profession_headStyle = 0
+
+	if (CSVTable[row_with_profession].HANDS) then profession_handsStyle = CSVTable[row_with_profession].HANDS else profession_handsStyle = 0 end
+	if (CSVTable[row_with_profession].FINGER1) then profession_finger1Style = CSVTable[row_with_profession].FINGER1 else profession_finger1Style = 0 end
+	if (CSVTable[row_with_profession].TALISMAN) then profession_talismanStyle = CSVTable[row_with_profession].TALISMAN else profession_talismanStyle = 0 end
+	if (CSVTable[row_with_profession].NECK) then profession_neckStyle = CSVTable[row_with_profession].NECK else profession_neckStyle = 0 end
+	if (CSVTable[row_with_profession].WAIST) then profession_waistStyle = CSVTable[row_with_profession].WAIST else profession_waistStyle = 0 end
+	if (CSVTable[row_with_profession].CHEST) then profession_chestStyle = CSVTable[row_with_profession].CHEST else profession_chestStyle = 0 end
+	if (CSVTable[row_with_profession].LWRIST) then profession_lwristStyle = CSVTable[row_with_profession].LWRIST else profession_lwristStyle = 0 end
+	if (CSVTable[row_with_profession].ABOVECHEST) then profession_abovechestStyle = CSVTable[row_with_profession].ABOVECHEST else profession_abovechestStyle = 0 end
+	if (CSVTable[row_with_profession].EARS) then profession_earsStyle = CSVTable[row_with_profession].EARS else profession_earsStyle = 0 end
+	if (CSVTable[row_with_profession].ARMS) then profession_armsStyle = CSVTable[row_with_profession].ARMS else profession_armsStyle = 0 end
+	if (CSVTable[row_with_profession].CAPE) then profession_capeStyle = CSVTable[row_with_profession].CAPE else profession_capeStyle = 0 end
+	if (CSVTable[row_with_profession].BACKPACK) then profession_backpackStyle = CSVTable[row_with_profession].BACKPACK else profession_backpackStyle = 0 end
+	if (CSVTable[row_with_profession].DRESS) then profession_dressStyle = CSVTable[row_with_profession].DRESS else profession_dressStyle = 0 end
+	if (CSVTable[row_with_profession].SKIRT) then profession_skirtStyle = CSVTable[row_with_profession].SKIRT else profession_skirtStyle = 0 end
+	if (CSVTable[row_with_profession].FEETLEGS) then profession_feetlegsStyle = CSVTable[row_with_profession].FEETLEGS else profession_feetlegsStyle = 0 end
+	
+	if (CSVTable[row_with_profession].RIGHTHAND_HUE) then profession_righthandHue =  CSVTable[row_with_profession].RIGHTHAND_HUE else profession_righthandHue = 0 end
+	if (CSVTable[row_with_profession].LEFTHAND_HUE) then profession_lefthandHue = CSVTable[row_with_profession].LEFTHAND_HUE else profession_lefthandHue = 0 end
+	if (CSVTable[row_with_profession].FEET_HUE) then profession_feetHue = CSVTable[row_with_profession].FEET_HUE else profession_feetHue = 0 end
+	if (CSVTable[row_with_profession].LEGS_HUE) then profession_legsHue = CSVTable[row_with_profession].LEGS_HUE else profession_legsHue = 0 end
+	if (CSVTable[row_with_profession].TORSO_HUE) then profession_torsoHue = CSVTable[row_with_profession].TORSO_HUE else profession_torsoHue = 0 end
+	if (CSVTable[row_with_profession].HANDS_HUE) then profession_handsHue = CSVTable[row_with_profession].HANDS_HUE else profession_handsHue = 0 end
+	if (CSVTable[row_with_profession].FINGER1_HUE) then profession_finger1Hue = CSVTable[row_with_profession].FINGER1_HUE else profession_finger1Hue = 0 end
+	if (CSVTable[row_with_profession].TALISMAN_HUE) then profession_talismanHue = CSVTable[row_with_profession].TALISMAN_HUE else profession_talismanHue = 0 end
+	if (CSVTable[row_with_profession].NECK_HUE) then profession_neckHue = CSVTable[row_with_profession].NECK_HUE else profession_neckHue = 0 end
+	if (CSVTable[row_with_profession].WAIST_HUE) then profession_waistHue = CSVTable[row_with_profession].WAIST_HUE else profession_waistHue = 0 end
+	if (CSVTable[row_with_profession].CHEST_HUE) then profession_chestHue = CSVTable[row_with_profession].CHEST_HUE else profession_chestHue = 0 end
+	if (CSVTable[row_with_profession].LWRIST_HUE) then profession_lwristHue = CSVTable[row_with_profession].LWRIST_HUE else profession_lwristHue = 0 end
+	if (CSVTable[row_with_profession].ABOVECHEST_HUE) then profession_abovechestHue = CSVTable[row_with_profession].ABOVECHEST_HUE else profession_abovechestHue = 0 end
+	if (CSVTable[row_with_profession].EARS_HUE) then profession_earsHue = CSVTable[row_with_profession].EARS_HUE else profession_earsHue = 0 end
+	if (CSVTable[row_with_profession].ARMS_HUE) then profession_armsHue = CSVTable[row_with_profession].ARMS_HUE else profession_armsHue = 0 end
+	if (CSVTable[row_with_profession].CAPE_HUE) then profession_capeHue = CSVTable[row_with_profession].CAPE_HUE else profession_capeHue = 0 end
+	if (CSVTable[row_with_profession].BACKPACK_HUE) then profession_backpackHue = CSVTable[row_with_profession].BACKPACK_HUE else profession_backpackHue = 0 end
+	if (CSVTable[row_with_profession].DRESS_HUE) then profession_dressHue = CSVTable[row_with_profession].DRESS_HUE else profession_dressHue = 0 end
+	if (CSVTable[row_with_profession].SKIRT_HUE) then profession_skirtHue = CSVTable[row_with_profession].SKIRT_HUE else profession_skirtHue = 0 end
+	if (CSVTable[row_with_profession].FEETLEGS_HUE) then profession_feetlegsHue = CSVTable[row_with_profession].FEETLEGS_HUE else profession_feetlegsHue = 0 end
+	--[[
+	Debug.Print("-------------------------------------------------------------------------")
+	Debug.DumpToConsole("WindowData.MaleHumanProfessionWearablesCSV", WindowData.MaleHumanProfessionWearablesCSV, "memo")
+	Debug.Print("-------------------------------------------------------------------------")
+	--]]
+	
+	--[[
+	Debug.Print("-------------------------------------------------------------------------")
+	Debug.Print("profession_id  = "..profession_id)
+	Debug.Print("row_with_profession = "..tostring(row_with_profession))
+	
+	Debug.Print ("profession_righthandStyle =  "..tostring(profession_righthandStyle))
+	Debug.Print ("profession_lefthandStyle =  "..tostring(profession_lefthandStyle))
+	Debug.Print ("profession_feetStyle =  "..tostring(profession_feetStyle))
+	Debug.Print ("profession_legsStyle =  "..tostring(profession_legsStyle))
+	Debug.Print ("profession_torsoStyle =  "..tostring(profession_torsoStyle))
+	Debug.Print ("profession_headStyle =  "..tostring(profession_headStyle))
+	Debug.Print ("profession_handsStyle =  "..tostring(profession_handsStyle))
+	Debug.Print ("profession_finger1Style =  "..tostring(profession_finger1Style))
+	Debug.Print ("profession_talismanStyle =  "..tostring(profession_talismanStyle))
+	Debug.Print ("profession_neckStyle =  "..tostring(profession_neckStyle))
+	Debug.Print ("profession_waistStyle =  "..tostring(profession_waistStyle))
+	Debug.Print ("profession_chestStyle =  "..tostring(profession_chestStyle))
+	Debug.Print ("profession_lwristStyle =  "..tostring(profession_lwristStyle))
+	Debug.Print ("profession_rwristStyle =  "..tostring(profession_rwristStyle))
+	Debug.Print ("profession_abovechestStyle =  "..tostring(profession_abovechestStyle))
+	Debug.Print ("profession_earsStyle =  "..tostring(profession_earsStyle))
+	Debug.Print ("profession_armsStyle =  "..tostring(profession_armsStyle))
+	Debug.Print ("profession_capeStyle =  "..tostring(profession_capeStyle))
+	Debug.Print ("profession_backpackStyle =  "..tostring(profession_backpackStyle))
+	Debug.Print ("profession_dressStyle =  "..tostring(profession_dressStyle))
+	Debug.Print ("profession_skirtStyle =  "..tostring(profession_skirtStyle))
+	Debug.Print ("profession_feetlegsStyle =  "..tostring(profession_feetlegsStyle))
+	
+	Debug.Print("-------------------------------------------------------------------------")
+	--]]			
+end
+
+-- RESET PROFESSION SKILLS AND STATS TO DEFAULT PROFESSON ON RACE CHANGE
+function CharacterCreation.ResetProfessionSkills()
+	local old_profession_id = profession_id
+	-- GET THE ID OF THE PROFESSION CLICKED, WHICH SHOULD BE THE ID OF THE BUTTON CLICKED
+	-- SET PROFESSION TO DEFAULT
+	profession_id = 1
+	if  (old_profession_id and old_profession_id ~= -1) then
+		ButtonSetPressedFlag("profession_"..tostring(old_profession_id), false)
+	end
+	ButtonSetPressedFlag("profession_"..tostring(profession_id), true)
+	-- REMOVE CUSTOM SKILL SELECTION
+	allow_custom_selection = false
+	default_profession_selected = 1
+	custom_profession_selected = 0	
+	-- UPDATE PROFESSION
+	CharacterCreation.InitializeDefaultProfession()		
+	CharacterCreation.UpdateSkillsAndStats()
+end
+
+-- RESET BACK TO DEFAULT RACE
+function CharacterCreation.ResetToDefaultRace()
+	race_id = 1	
+	HairIndex = defaultHairIndex
+	FaceIndex = 1
+	FacialHairIndex = 1
+  
+	CharacterCreation.SetUpDefaultAppearance()
+	CharacterCreation.ToggleRaceDescription()
+	CharacterCreation.SetInitialAppearanceLabelValues()
+end
+
+function CharacterCreation.PrevFacet()
+
+	local numFacets = table.getn(StartingLocation.Facets)
+	
+	for relativeIndex = 1, numFacets-1 do
+		local facetIndex = StartingLocation.SelectedFacet - relativeIndex
+		
+		if facetIndex < 1 then
+			facetIndex = facetIndex + numFacets
+		end
+
+		if StartingLocation.Facets[facetIndex].isAvailable then
+			CharacterCreation.SelectFacet(facetIndex)
+			break
+		end
+	end
+	
+end
+
+function CharacterCreation.NextFacet()
+
+	local numFacets = table.getn(StartingLocation.Facets)
+	
+	for relativeIndex = 1, numFacets-1 do
+		local facetIndex = StartingLocation.SelectedFacet + relativeIndex
+		
+		if facetIndex > numFacets then
+			facetIndex = facetIndex - numFacets
+		end
+
+		if StartingLocation.Facets[facetIndex].isAvailable then
+			CharacterCreation.SelectFacet(facetIndex)
+			break
+		end
+	end
+	
+end
+
+function CharacterCreation.SelectFacet(selectedIndex)
+	if StartingLocation.SelectedFacet ~= selectedIndex then
+		local selectedFacet = StartingLocation.Facets[selectedIndex]
+		
+		if selectedFacet ~= nil then
+			LabelSetText("LocationWindowFacetWindowFacetName", StringToWString(selectedFacet.name))
+		
+			local texture, textureWidth, textureHeight = RequestGumpArt( selectedFacet.gumpArtId )
+			WindowSetShowing("LocationWindowMapImage", true)
+			DynamicImageSetTexture("LocationWindowMapImage", texture, 0, 0)
+			DynamicImageSetTextureDimensions("LocationWindowMapImage", textureWidth, textureHeight)
+			local facetWidth = selectedFacet.worldRight - selectedFacet.worldLeft
+			local facetHeight = selectedFacet.worldBottom - selectedFacet.worldTop
+		
+			for locIndex = 1,StartingLocation.MaxLocations do
+			
+				local startingLocation = SystemData.Login.locList[locIndex]
+				if startingLocation ~= nil and startingLocation.id ~= -1 then
+					local windowName = StartingLocation.LocationMarkers[locIndex]
+					WindowClearAnchors(windowName)
+					
+					if startingLocation.world + 1 == selectedIndex then
+						local worldX = startingLocation.worldX - selectedFacet.worldLeft
+						local worldY = startingLocation.worldY - selectedFacet.worldTop
+						local x = worldX * (textureWidth / facetWidth) - 6
+						local y = worldY * (textureHeight / facetHeight) - 20
+
+						WindowAddAnchor( windowName, "topleft", "LocationWindowMap", "topleft", x, y )
+						WindowSetShowing( windowName, true )
+					else
+						WindowSetShowing( windowName, false )
+					end
+				end
+			end
+			
+			-- Debug.Print("Setting facet to "..selectedIndex .."("..selectedFacet.name..")")
+			StartingLocation.SelectedFacet = selectedIndex
+		end
+	end
+	
+	-- Debug.Print("cur selected facet: "..tostring(StartingLocation.SelectedFacet))
+end
+
+function CharacterCreation.StartingLocation_OnMouseOver()
+	local buttonName = SystemData.ActiveWindow.name
+	local locationIndex = WindowGetId(buttonName)
+	local locationData = SystemData.Login.locList[locationIndex]
+	local locationFacet = locationData.world + 1
+	
+	Tooltips.CreateTextOnlyTooltip(buttonName, StringToWString(locationData.cityName))
+	Tooltips.Finalize()
+	Tooltips.AnchorTooltip(Tooltips.ANCHOR_WINDOW_LEFT)
+end
+
+function CharacterCreation.StartingLocation_OnLButtonUp()
+	local windowId = WindowGetId(SystemData.ActiveWindow.name)
+	CharacterCreation.SelectLocation(windowId)
+end
+
+function CharacterCreation.SelectLocation(selectedIndex)
+	--Debug.Print("old selected loc: "..tostring(StartingLocation.SelectedIndex))
+	--Debug.Print("new selected loc: "..tostring(selectedIndex))
+
+	if StartingLocation.SelectedIndex ~= nil then
+		-- Unpress the current location selection
+		local windowName = StartingLocation.LocationMarkers[StartingLocation.SelectedIndex]
+		ButtonSetPressedFlag( windowName, false )
+	end
+	
+	if selectedIndex ~= nil then
+		local selectedLocation = SystemData.Login.locList[selectedIndex]
+		if selectedLocation ~= nil then
+		
+			-- Update the description boxes
+			local placeDescription = GetStringFromTid(selectedLocation.tid_description)
+			placeDescription = placeDescription:gsub(L"</?h2>", L"")
+			placeDescription = placeDescription:gsub(L"\n", L"\n\n")
+
+			LabelSetText("LocationWindowDescriptionWindowScrollWindowChildText", L"\n"..placeDescription..L"\n")
+			ScrollWindowUpdateScrollRect("LocationWindowDescriptionWindowScrollWindow")
+			ScrollWindowSetOffset("LocationWindowDescriptionWindowScrollWindow", 0)
+			
+			LabelSetText("LocationWindowCityWindowCityName", StringToWString(selectedLocation.cityName))
+			LabelSetText("LocationWindowCityWindowPlaceName", StringToWString(selectedLocation.placeName))
+		
+			local windowName = StartingLocation.LocationMarkers[selectedIndex]
+			ButtonSetPressedFlag( windowName, true )
+		
+			StartingLocation.SelectedIndex = selectedIndex
+			WindowData.CharacterCreation.Current.locationId = selectedLocation.id
+			
+			local selectedFacetIndex = selectedLocation.world + 1
+			if StartingLocation.SelectedFacet ~= selectedFacetIndex then
+				CharacterCreation.SelectFacet(selectedFacetIndex)
+			end
+		end
+	end
+
+	--Debug.Print("new selected loc: "..tostring(StartingLocation.SelectedIndex))
+end
+
+function CharacterCreation.InitializeStartingLocations()
+
+	local numFacets = table.getn(StartingLocation.Facets)
+	for facetIndex = 1,numFacets do
+		StartingLocation.Facets[facetIndex].isAvailable = false
+	end
+	
+	for locIndex = 1,StartingLocation.MaxLocations do
+		local startingLocation = SystemData.Login.locList[locIndex]
+		--Debug.Print("loc "..tostring(locIndex)..": world="..tostring(startingLocation.world).." id="..tostring(startingLocation.id))
+		
+		if startingLocation ~= nil and startingLocation.id ~= -1 then
+			local facetIndex = startingLocation.world + 1
+			local startingFacet = StartingLocation.Facets[facetIndex]
+			
+			if startingFacet ~= nil and startingFacet.isAvailable == false then
+				--Debug.Print("facet "..tostring(facetIndex).." is available")
+				startingFacet.isAvailable = true
+			end
+		end
+	end
+end

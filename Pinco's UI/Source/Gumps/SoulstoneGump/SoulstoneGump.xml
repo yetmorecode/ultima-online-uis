@@ -1,0 +1,249 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Interface xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../Interface.xsd">
+  <Windows>
+
+    <Label name="SoulstoneSkillButtonTemplate" font="Arial_Black_Shadow_16" maxchars="80" textalign="center" autoresizewidth="false" layer="popup">
+      <Size>
+        <AbsPoint x="350" y="26"/>
+      </Size>
+      <Color r="0" g="153" b="255" a="255" />
+      <EventHandlers>
+        <EventHandler event="OnLButtonDown" function="SoulstoneGump.StoreSkill" />
+        <EventHandler event="OnMouseOver" function="SoulstoneGump.SkillHighlight" />
+        <EventHandler event="OnMouseOverEnd" function="SoulstoneGump.SkillUnhighlight" />
+      </EventHandlers>
+    </Label>
+
+    <Window name="SoulstoneStoreTemplate">
+      <Anchors>
+        <Anchor point="topleft" relativePoint="topleft" relativeTo="$parent">
+          <AbsPoint x="0" y="20" />
+        </Anchor>
+        <Anchor point="bottomright" relativePoint="bottomright" relativeTo="$parent"/>
+      </Anchors>
+
+      <Windows>
+        <Label name="$parentTitle" font="Arial_Black_20" maxchars="64" textalign="center" >
+          <Size>
+            <AbsPoint x="350" y="16" />
+          </Size>
+          <Anchors>
+            <Anchor point="top" relativePoint="top" relativeTo="$parent" >
+              <AbsPoint x="0" y="10" />
+            </Anchor>
+          </Anchors>
+          <Color r="255" g="255" b="0" a="255" />
+        </Label>
+
+      </Windows>
+    </Window>
+
+    <Window name="SoulstoneAbsorbTemplate">
+      <Anchors>
+        <Anchor point="topleft" relativePoint="topleft" relativeTo="$parent">
+          <AbsPoint x="0" y="20" />
+        </Anchor>
+        <Anchor point="bottomright" relativePoint="bottomright" relativeTo="$parent"/>
+      </Anchors>
+
+      <Windows>
+        <Label name="$parentTitle" font="Arial_Black_20" maxchars="64" textalign="center" >
+          <Size>
+            <AbsPoint x="350" y="16" />
+          </Size>
+          <Anchors>
+            <Anchor point="top" relativePoint="top" relativeTo="$parent" >
+              <AbsPoint x="0" y="10" />
+            </Anchor>
+          </Anchors>
+          <Color r="255" g="255" b="0" a="255" />
+        </Label>
+
+        <Label name="$parentSkillLabel" font="MyriadPro_16" maxchars="64" textalign="left" draganddrop="true" wordwrap="false">
+          <Size>
+            <AbsPoint x="200" y="16" />
+          </Size>
+          <Anchors>
+            <Anchor point="bottomleft" relativePoint="topleft" relativeTo="$parentTitle">
+              <AbsPoint x="0" y="60" />
+            </Anchor>
+          </Anchors>
+          <Color r="255" g="255" b="0" a="255" />
+        </Label>
+
+        <Label name="$parentSkillName" font="MyriadPro_16" maxchars="64" textalign="left" draganddrop="true" wordwrap="false">
+          <Size>
+            <AbsPoint x="200" y="16" />
+          </Size>
+          <Anchors>
+            <Anchor point="right" relativePoint="left" relativeTo="$parentSkillLabel">
+              <AbsPoint x="10" y="0" />
+            </Anchor>
+          </Anchors>
+          <Color r="255" g="255" b="255" a="255" />
+        </Label>
+
+        <Label name="$parentCurrValueLabel" font="MyriadPro_16" maxchars="64" textalign="left" draganddrop="true" wordwrap="false">
+          <Size>
+            <AbsPoint x="200" y="16" />
+          </Size>
+          <Anchors>
+            <Anchor point="bottomleft" relativePoint="topleft" relativeTo="$parentSkillLabel">
+              <AbsPoint x="0" y="20" />
+            </Anchor>
+          </Anchors>
+          <Color r="255" g="255" b="0" a="255" />
+        </Label>
+
+        <Label name="$parentCurrValue" font="MyriadPro_16" maxchars="64" textalign="left" draganddrop="true" wordwrap="false">
+          <Size>
+            <AbsPoint x="200" y="16" />
+          </Size>
+          <Anchors>
+            <Anchor point="right" relativePoint="left" relativeTo="$parentCurrValueLabel">
+              <AbsPoint x="10" y="0" />
+            </Anchor>
+          </Anchors>
+          <Color r="255" g="255" b="255" a="255" />
+        </Label>
+
+        <Label name="$parentCurrCapLabel" font="MyriadPro_16" maxchars="64" textalign="left" draganddrop="true" wordwrap="false">
+          <Size>
+            <AbsPoint x="200" y="16" />
+          </Size>
+          <Anchors>
+            <Anchor point="bottomleft" relativePoint="topleft" relativeTo="$parentCurrValueLabel">
+              <AbsPoint x="0" y="20" />
+            </Anchor>
+          </Anchors>
+          <Color r="255" g="255" b="0" a="255" />
+        </Label>
+
+        <Label name="$parentCurrCap" font="MyriadPro_16" maxchars="64" textalign="left" draganddrop="true" wordwrap="false">
+          <Size>
+            <AbsPoint x="200" y="16" />
+          </Size>
+          <Anchors>
+            <Anchor point="right" relativePoint="left" relativeTo="$parentCurrCapLabel">
+              <AbsPoint x="10" y="0" />
+            </Anchor>
+          </Anchors>
+          <Color r="255" g="255" b="255" a="255" />
+        </Label>
+
+        <Label name="$parentNewValueLabel" font="MyriadPro_16" maxchars="64" textalign="left" draganddrop="true" wordwrap="false">
+          <Size>
+            <AbsPoint x="200" y="16" />
+          </Size>
+          <Anchors>
+            <Anchor point="bottomleft" relativePoint="topleft" relativeTo="$parentCurrCapLabel">
+              <AbsPoint x="0" y="20" />
+            </Anchor>
+          </Anchors>
+          <Color r="255" g="255" b="0" a="255" />
+        </Label>
+
+        <Label name="$parentNewValue" font="MyriadPro_16" maxchars="64" textalign="left" draganddrop="true" wordwrap="false">
+          <Size>
+            <AbsPoint x="200" y="16" />
+          </Size>
+          <Anchors>
+            <Anchor point="right" relativePoint="left" relativeTo="$parentNewValueLabel">
+              <AbsPoint x="10" y="0" />
+            </Anchor>
+          </Anchors>
+          <Color r="255" g="255" b="255" a="255" />
+        </Label>
+
+        <Label name="$parentWarningLabel" font="Arial_Black_20" maxchars="64" textalign="left" >
+          <Size>
+            <AbsPoint x="350" y="16" />
+          </Size>
+          <Anchors>
+            <Anchor point="bottomleft" relativePoint="topleft" relativeTo="$parentNewValueLabel" >
+              <AbsPoint x="0" y="30" />
+            </Anchor>
+          </Anchors>
+          <Color r="255" g="0" b="0" a="255" />
+        </Label>
+
+        <Label name="$parentWarning" font="MyriadPro_16" maxchars="1024" textalign="left" autoresize="true" wordwrap="true" >
+          <Size>
+            <AbsPoint x="360" y="80" />
+          </Size>
+          <Anchors>
+            <Anchor point="bottom" relativePoint="top" relativeTo="$parentWarningLabel" >
+              <AbsPoint x="0" y="20" />
+            </Anchor>
+          </Anchors>
+          <Color r="255" g="255" b="255" a="255" />
+        </Label>
+
+        <Button name="$parentAbsorbButton" inherits="UO_Default_Medium_Select_Button" font="Arial_Black_16" drawchildrenfirst="true" wordwrap="false">
+          <Anchors>
+            <Anchor point="bottom" relativePoint="bottom" relativeTo="$parent">
+              <AbsPoint x="-90" y="-20" />
+            </Anchor>
+          </Anchors>
+
+          <EventHandlers>
+            <EventHandler event="OnMouseOver" function="SoulstoneGump.AbsorbSkillTooltip" />
+            <EventHandler event="OnLButtonDown" function="SoulstoneGump.AbsorbSkill" />
+          </EventHandlers>
+        </Button>
+
+        <Button name="$parentDeleteButton" inherits="UO_Default_Medium_Select_Button" font="Arial_Black_16" drawchildrenfirst="true" wordwrap="false">
+          <Anchors>
+            <Anchor point="right" relativePoint="left" relativeTo="$parentAbsorbButton">
+              <AbsPoint x="10" y="0" />
+            </Anchor>
+          </Anchors>
+
+          <EventHandlers>
+            <EventHandler event="OnMouseOver" function="SoulstoneGump.DeleteSkillTooltip" />
+            <EventHandler event="OnLButtonDown" function="SoulstoneGump.DeleteSkill" />
+          </EventHandlers>
+
+          <TextColors>
+            <Normal r="140" g="0" b="0" a="255" />
+            <!-- THIS IS USED AS THE UNSELECTED COLOR FOR SOME REASON-->
+            <NormalHighlit  r="255" g="0" b="0" a="255" />
+            <!-- THIS IS USED AS THE MOUSEOVER COLOR -->
+            <Pressed r="206" g="217" b="242" a="255" />
+            <PressedHighlit r="255" g="255" b="255" a="255" />
+            <Disabled r="30" g="30" b="30" a="255"  />
+            <!-- THIS IS USED AS THE SELECTED COLOR FOR SOME REASON -->
+          </TextColors>
+        </Button>
+
+      </Windows>
+    </Window>
+
+    <Window name="SoulstoneGump" movable="true" layer="popup">
+      <Size>
+        <AbsPoint x="400" y="500" />
+      </Size>
+      <Anchors>
+        <Anchor point="center" relativePoint="center" relativeTo="ResizeWindow">
+          <AbsPoint x="10" y="-20"/>
+        </Anchor>
+      </Anchors>
+      <EventHandlers>
+        <EventHandler event="OnInitialize" function="SoulstoneGump.Initialize" />
+        <EventHandler event="OnShutdown" function="SoulstoneGump.Shutdown" />
+        <EventHandler event="OnUpdate" function="SoulstoneGump.OnUpdate" />
+      </EventHandlers>
+      <Windows>
+
+        <!-- Default chrome. Alter this at your own peril. -->
+        <Window name="$parentChrome" inherits="UO_DefaultWindow" frameonly="false">
+          <Anchors>
+            <Anchor point="topleft" relativePoint="topleft" />
+            <Anchor point="bottomright" relativePoint="bottomright"/>
+          </Anchors>
+        </Window>
+
+      </Windows>
+    </Window>
+  </Windows>
+</Interface>

@@ -1,0 +1,1225 @@
+<Interface xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../Interface.xsd">
+	<Scripts>
+		<Script file="Source/Login.lua" />		
+	</Scripts>
+	<Windows>
+		<Window name="ServerListItemTemplate" movable="false">
+			<Size>
+				<AbsPoint x="360" y="30" />
+			</Size>
+			<EventHandlers>
+				<EventHandler event="OnLButtonUp" function="Login.ServerSelect" />
+				<EventHandler event="OnLButtonDblClk" function="Login.LoginToSelectedSelect"/>
+			</EventHandlers>
+			<Windows>
+				<Button name="$parentName" inherits="UO_Default_GenericTextButton" font="UO_DefaultText">
+					<Size>
+						<AbsPoint x="170" y="20" />
+					</Size>
+					<Anchors>
+						<Anchor point="topleft" relativePoint="topleft">
+							<AbsPoint x="5" y="5" />
+						</Anchor>
+					</Anchors>
+				</Button>
+				<DynamicImage name="$parentLatency">
+					<Size>
+						<AbsPoint x="44" y="13" />
+					</Size>
+					<Anchors>
+						<Anchor point="right" relativePoint="left" relativeTo="$parentName">
+							<AbsPoint x="5" y="0" />
+						</Anchor>
+					</Anchors>
+					<EventHandlers>
+						<EventHandler event="OnMouseOver" function="Login.LatencyOnMouseOver" />
+					</EventHandlers>
+				</DynamicImage>
+				<Button name="$parentPopulation" inherits="UO_Default_GenericTextButton" font="UO_DefaultText" textalign="center">
+					<Size>
+						<AbsPoint x="80" y="20" />
+					</Size>
+					<Anchors>
+						<Anchor point="right" relativePoint="left" relativeTo="$parentLatency">
+							<AbsPoint x="60" y="0" />
+						</Anchor>
+					</Anchors>
+				</Button>
+			</Windows>
+		</Window>
+		<Window name="CharacterListItemTemplate" movable="false">
+			<Size>
+				<AbsPoint x="346" y="72" />
+			</Size>
+			<EventHandlers>
+				<EventHandler event="OnLButtonUp" function="Login.CharacterSelect" />
+				<EventHandler event="OnLButtonDblClk" function="Login.StartGameWithSelectedCharacter" />
+			</EventHandlers>
+			<Windows>
+				<Button name="$parentBackground" backgroundtexture="UO_Login" highlighttexture="UO_Login" font="UO_Subtitle_2" textalign="left" popable="false">
+					<Size>
+						<AbsPoint x="346" y="72" />
+					</Size>
+					<TextColors>
+						<Normal r="24" g="0" b="0" a="0" />
+						<NormalHighlit r="24" g="0" b="0" a="0" />
+						<Pressed r="0" g="0" b="0" a="0" />
+						<PressedHighlit r="0" g="0" b="0" a="0" />
+						<Disabled r="0" g="0" b="0" a="0" />
+					</TextColors>
+					<TexCoords>
+						<Normal x="0" y="161" />
+						<NormalHighlit x="0" y="161" />
+						<Pressed x="0" y="88" />
+						<PressedHighlit x="0" y="88" />
+						<Disabled x="0" y="161" />
+					</TexCoords>
+					<Anchors>
+						<Anchor point="topleft" relativePoint="topleft">
+							<AbsPoint x="0" y="0" />
+						</Anchor>
+					</Anchors>
+				</Button>
+				<Window name="$parentTextWindow" movable="false">
+					<Size>
+						<AbsPoint x="278" y="44" />
+					</Size>
+					<Anchors>
+						<Anchor point="topleft" relativePoint="topleft">
+							<AbsPoint x="70" y="11" />
+						</Anchor>
+					</Anchors>
+					<Windows>
+						<Label name="$parentName" font="UO_Subtitle_2" linespacing="20" maxchars="64" textalign="center" autoresize="false" handleinput="false" wordwrap="false">
+							<Size>
+								<AbsPoint x="278" y="44" />
+							</Size>
+							<Anchors>
+								<Anchor point="topleft" relativePoint="topleft">
+									<AbsPoint x="0" y="0" />
+								</Anchor>
+							</Anchors>
+							<Color r="24" g="0" b="0" a="0" />
+						</Label>
+					</Windows>
+				</Window>
+
+			</Windows>
+		</Window>
+		<DynamicImage name="Splash" movable="false" handleinput="true" layer="popup">
+			<Size>
+				<AbsPoint x="2048" y="1024" />
+			</Size>
+			<Anchors>
+				<Anchor point="center" relativePoint="center" />
+			</Anchors>
+			<TexCoords x="0" y="0" />
+			<!--<EventHandlers>
+				<EventHandler event="OnLButtonUp" function="Login.RemoveSplash" />
+			</EventHandlers>-->
+		</DynamicImage>
+		<DynamicImage name="LoginBackground" movable="false" handleinput="false" texture="login_background1" layer="background">
+			<Size>
+				<AbsPoint x="2048" y="1024" />
+			</Size>
+			<Anchors>
+				<Anchor point="center" relativePoint="center" />
+			</Anchors>
+			<TexCoords x="0" y="0" />
+		</DynamicImage>		
+		<Button name="Login_QuitButton" inherits="UO_Login_Quit_Button">
+			<Anchors>				
+				<Anchor point="center" relativePoint="center">
+					<AbsPoint x="-600" y="50" />
+				</Anchor>
+			</Anchors>
+			<EventHandlers>
+				<EventHandler event="OnLButtonUp" function="InterfaceCore.OnExitGame" />
+			</EventHandlers>
+		</Button>
+		<Button name="CreditsButton" inherits="UO_Login_Credits_Button">
+			<Anchors>
+				<Anchor point="center" relativePoint="center">
+					<AbsPoint x="600" y="-260" />
+				</Anchor>
+			</Anchors>
+			<EventHandlers>
+				<EventHandler event="OnLButtonUp" function="Login.ShowCredits" />
+			</EventHandlers>
+		</Button>
+		<Button name="CustomUiButton" inherits="UO_Login_CustomUI_Button">
+			<Anchors>
+				<Anchor point="center" relativePoint="center">
+					<AbsPoint x="600" y="-170" />
+				</Anchor>
+			</Anchors>
+			<EventHandlers>
+				<EventHandler event="OnLButtonUp" function="Login.OpenCustomUiWindow" />
+			</EventHandlers>
+		</Button>
+		<Button name="UOComButton" inherits="UO_Login_UO_Button">
+			<Anchors>
+				<Anchor point="center" relativePoint="center">
+					<AbsPoint x="-600" y="-147" />
+				</Anchor>
+			</Anchors>
+			<EventHandlers>
+				<EventHandler event="OnLButtonUp" function="Login.OpenUOCom" />
+			</EventHandlers>
+		</Button>
+		<Button name="AccountButton" inherits="UO_Login_Account_Button">
+			<Anchors>
+				<Anchor point="center" relativePoint="center">
+					<AbsPoint x="-600" y="-369" />
+				</Anchor>
+			</Anchors>
+			<EventHandlers>
+				<EventHandler event="OnLButtonUp" function="Login.OpenAccountPage" />
+			</EventHandlers>
+		</Button>
+		<Button name="HelpButton" inherits="UO_Login_Help_Button">
+			<Anchors>
+				<Anchor point="center" relativePoint="center">
+					<AbsPoint x="600" y="-350" />
+				</Anchor>
+			</Anchors>
+			<EventHandlers>
+				<EventHandler event="OnLButtonUp" function="Login.OpenHelpPage" />
+			</EventHandlers>
+		</Button>
+		<Button name="AutoSelectShardMapLocationButton" backgroundtexture="Login_CoreTextures" highlighttexture="Login_CoreTextures">
+			<Size>
+				<AbsPoint x="24" y="33" />
+			</Size>
+			<TexCoords>
+				<Normal x="271" y="357" />
+				<NormalHighlit x="271" y="357" />
+				<Pressed x="271" y="318" />
+				<PressedHighlit x="271" y="318" />
+				<Disabled x="271" y="357" />
+			</TexCoords>
+			<EventHandlers>
+				<EventHandler event="OnLButtonUp" function="Login.AutoSelectShard_Location_OnLButtonUp" />
+				<EventHandler event="OnMouseOver" function="Login.AutoSelectShard_Location_OnMouseOver" />
+			</EventHandlers>
+		</Button>
+		<Window name="AutoSelectShardInfoTextWindow">
+			<Size>
+				<AbsPoint x="500" y="180" />
+			</Size>
+			<Anchors>
+				<Anchor point="center" relativePoint="center">
+					<AbsPoint x="0" y="0" />
+				</Anchor>
+			</Anchors>
+			<Windows>
+				<!-- Default chrome. Alter this at your own peril. -->
+				<!-- Inner Frame Boilerplate -->
+				<FullResizeImage name="$parentBackground" inherits="UO_Login_Black_Background" layer="background"
+					handleinput="false">
+					<Anchors>
+						<Anchor point="topleft" relativePoint="topleft" />
+						<Anchor point="bottomright" relativePoint="bottomright" />
+					</Anchors>
+				</FullResizeImage>
+				<FullResizeImage name="$parentFrame" inherits="UO_Login_Inner_Window_Frame" layer="background"
+					handleinput="false">
+					<Anchors>
+						<Anchor point="topleft" relativePoint="topleft" />
+						<Anchor point="bottomright" relativePoint="bottomright" />
+					</Anchors>
+				</FullResizeImage>
+				<FullResizeImage name="$parentDefaultWindowFrame" inherits="UO_Login_Outer_Window_Frame" handleinput="false">
+					<Anchors>
+						<Anchor point="topleft" relativePoint="topleft" >
+							<AbsPoint x="-4" y="0"/>
+						</Anchor>
+						<Anchor point="bottomright" relativePoint="bottomright" >
+							<AbsPoint x="5" y="0"/>
+						</Anchor>
+					</Anchors>
+				</FullResizeImage>
+				<!-- End of Inner Frame Boilerplate -->
+				<!-- Inner Frame Boilerplate -->
+				<!-- End of default chrome boilerplate code -->
+				<Label name="$parentText" font="UO_DefaultText" maxchars="256" textalign="left" wordwrap="true">
+					<Size>
+						<AbsPoint x="460" y="60" />
+					</Size>
+					<Anchors>
+						<Anchor point="top" relativePoint="top" relativeTo="$parent">
+							<AbsPoint x="0" y="20" />
+						</Anchor>
+					</Anchors>
+					<Color r="255" g="255" b="255" a="255" />
+				</Label>
+				<Label name="$parentShardName" font="UO_DefaultText" maxchars="64" textalign="center" wordwrap="true">
+					<Size>
+						<AbsPoint x="480" y="20" />
+					</Size>
+					<Anchors>
+						<Anchor point="bottom" relativePoint="top" relativeTo="$parentText">
+							<AbsPoint x="0" y="10" />
+						</Anchor>
+					</Anchors>
+					<Color r="255" g="255" b="255" a="255" />
+				</Label>
+				<Button name="$parentOkayButton" inherits="UO_Login_GumpButton" layer="popup">
+					<Anchors>
+						<Anchor point="bottom" relativePoint="bottom">
+							<AbsPoint x="0" y="-15" />
+						</Anchor>
+					</Anchors>
+					<EventHandlers>
+						<EventHandler event="OnLButtonUp" function="Login.OnAutoSelectShardInfoTextOkay"/>
+					</EventHandlers>
+				</Button>
+			</Windows>
+		</Window>
+
+		<Window name ="LoginBuild" movable="false" layer="popup">
+			<Size>
+				<AbsPoint x="400" y="30" />
+			</Size>
+			<Anchors>
+				<Anchor point="bottomright" relativePoint="bottomright">
+					<AbsPoint x="-20" y="-20" />
+				</Anchor>
+			</Anchors>
+			<Windows>
+				<Label name="$parentVersion" font="UO_Default_Outline_Text" linespacing="20" maxchars="64" textalign="center" autoresize="true" handleinput="false" wordwrap="true">
+					<Size>
+						<AbsPoint x="400" y="30" />
+					</Size>
+					<Color r="255" g="255" b="255" a="255" />
+				</Label>
+			</Windows>
+		</Window>
+		
+		<Window name="AutoSelectShardWindow">
+			<Size>
+				<AbsPoint x="792" y="532" />
+			</Size>
+			<Anchors>
+				<Anchor point="center" relativePoint="center">
+					<AbsPoint x="0" y="0" />
+				</Anchor>
+			</Anchors>
+			<Windows>
+				<!-- Default chrome. Alter this at your own peril. -->
+				<!-- Inner Frame Boilerplate -->
+				<FullResizeImage name="$parentBackground" inherits="UO_Login_Black_Background" layer="background"
+					handleinput="false">
+					<Anchors>
+						<Anchor point="topleft" relativePoint="topleft" />
+						<Anchor point="bottomright" relativePoint="bottomright" />
+					</Anchors>
+				</FullResizeImage>
+				<FullResizeImage name="$parentFrame" inherits="UO_Login_Inner_Window_Frame" layer="background"
+					handleinput="false">
+					<Anchors>
+						<Anchor point="topleft" relativePoint="topleft" />
+						<Anchor point="bottomright" relativePoint="bottomright" />
+					</Anchors>
+				</FullResizeImage>
+				<FullResizeImage name="$parentDefaultWindowFrame" inherits="UO_Login_Outer_Window_Frame" handleinput="false">
+					<Anchors>
+						<Anchor point="topleft" relativePoint="topleft" >
+							<AbsPoint x="-4" y="0"/>
+						</Anchor>
+						<Anchor point="bottomright" relativePoint="bottomright" >
+							<AbsPoint x="5" y="0"/>
+						</Anchor>
+					</Anchors>
+				</FullResizeImage>
+				<!-- End of Inner Frame Boilerplate -->
+				<!-- Inner Frame Boilerplate -->
+				<!-- End of default chrome boilerplate code -->
+				<Label name="$parentTitle" font="UO_Subtitle" linespacing="20" maxchars="64" textalign="center"
+							autoresize="true" handleinput="false" wordwrap="true">
+					<Size>
+						<AbsPoint x="470" y="20" />
+					</Size>
+					<Anchors>
+						<Anchor point="top" relativePoint="bottom">
+							<AbsPoint x="0" y="0" />
+						</Anchor>
+					</Anchors>
+					<Color r="255" g="255" b="255" a="255" />
+				</Label>
+				<DynamicImage name="$parentMap" texture="Shard_Selection" layer="default" handleinput="false" textureScale="0.75">
+					<Size>
+						<AbsPoint x="762" y="462" />
+					</Size>	
+					<Anchors>
+						<Anchor point="topleft" relativePoint="topleft">
+							<AbsPoint x="15" y="15" />
+						</Anchor>
+					</Anchors>
+					<TexCoords x="4" y="2" />
+				</DynamicImage>
+				<Button name="$parentEastCoastButton" inherits="AutoSelectShardMapLocationButton" layer="popup" id="1">
+					<Anchors>
+						<Anchor point="topleft" relativePoint="topleft" relativeTo="$parentMap">
+							<AbsPoint x="200" y="152" />
+						</Anchor>
+					</Anchors>
+				</Button>
+				<Button name="$parentWestCoastButton" inherits="AutoSelectShardMapLocationButton" layer="popup" id="2">
+					<Anchors>
+						<Anchor point="topleft" relativePoint="topleft" relativeTo="$parentMap">
+							<AbsPoint x="110" y="150" />
+						</Anchor>
+					</Anchors>
+				</Button>
+				<Button name="$parentJapanButton" inherits="AutoSelectShardMapLocationButton" layer="popup" id="3">
+					<Anchors>
+						<Anchor point="topleft" relativePoint="topleft" relativeTo="$parentMap">
+							<AbsPoint x="632" y="151" />
+						</Anchor>
+					</Anchors>
+				</Button>
+				<Button name="$parentEuropeButton" inherits="AutoSelectShardMapLocationButton" layer="popup" id="4">
+					<Anchors>
+						<Anchor point="topleft" relativePoint="topleft" relativeTo="$parentMap">
+							<AbsPoint x="360" y="125" />
+						</Anchor>
+					</Anchors>
+				</Button>
+				<Button name="$parentKoreaButton" inherits="AutoSelectShardMapLocationButton" layer="popup" id="5">
+					<Anchors>
+						<Anchor point="topleft" relativePoint="topleft" relativeTo="$parentMap">
+							<AbsPoint x="609" y="148" />
+						</Anchor>
+					</Anchors>
+				</Button>
+				<Button name="$parentTaiwanButton" inherits="AutoSelectShardMapLocationButton" layer="popup" id="6">
+					<Anchors>
+						<Anchor point="topleft" relativePoint="topleft" relativeTo="$parentMap">
+							<AbsPoint x="596" y="182" />
+						</Anchor>
+					</Anchors>
+				</Button>
+				<Button name="$parentAustraliaButton" inherits="AutoSelectShardMapLocationButton" layer="popup" id="7">
+					<Anchors>
+						<Anchor point="topleft" relativePoint="topleft" relativeTo="$parentMap">
+							<AbsPoint x="620" y="310" />
+						</Anchor>
+					</Anchors>
+				</Button>
+				<Button name="$parentOkayButton" inherits="UO_Login_GumpButton" layer="popup">
+					<Anchors>
+						<Anchor point="bottom" relativePoint="bottom">
+							<AbsPoint x="-50" y="-15" />
+						</Anchor>
+					</Anchors>
+					<EventHandlers>
+						<EventHandler event="OnLButtonUp" function="Login.OnAutoSelectShardOkay"/>
+					</EventHandlers>
+				</Button>
+				<Button name="$parentCancelButton" inherits="UO_Login_GumpButton" layer="popup">
+					<Anchors>
+						<Anchor point="bottom" relativePoint="bottom">
+							<AbsPoint x="50" y="-15" />
+						</Anchor>
+					</Anchors>
+					<EventHandlers>
+						<EventHandler event="OnLButtonUp" function="Login.OnAutoSelectShardCancel"/>
+					</EventHandlers>
+				</Button>
+			</Windows>
+		</Window>
+		<!-- EULA WINDOW IS SPECIAL CASE BECUASE IT'S LARGER THAN THE REST -->
+		<Window name="EULAWindow" >
+		  <Size>
+			<AbsPoint x="690" y="566" />
+		  </Size>
+		  <Anchors>
+			<Anchor point="center" relativePoint="center">
+			  <AbsPoint x="0" y="0" />
+			</Anchor>
+		  </Anchors>
+		  <Windows>
+			<!-- Inner Frame Boilerplate -->
+			<FullResizeImage name="$parentFrame" inherits="UO_Login_Inner_Window_Frame" layer="background">
+			  <Anchors>
+				<Anchor point="topleft" relativePoint="topleft" />
+				<Anchor point="bottomright" relativePoint="bottomright" />
+			  </Anchors>
+			</FullResizeImage>
+			<!-- End of Inner Frame Boilerplate -->
+			<!-- Inner Frame Boilerplate -->
+			<FullResizeImage name="$parentBackground" inherits="UO_Login_Black_Background" layer="background">
+			  <Anchors>
+				<Anchor point="topleft" relativePoint="topleft" />
+				<Anchor point="bottomright" relativePoint="bottomright" />
+			  </Anchors>
+			</FullResizeImage>
+			<!-- End of Inner Frame Boilerplate -->
+			<ScrollWindow name="EULAWindowScrollWindow" childscrollwindow="EULAWindowContent" scrollbar="EULAWindowScrollbar" lineheight="60"  handleinput="true">
+			  <Size>
+				<AbsPoint x="690" y="450" />
+			  </Size>
+			  <Anchors>
+				<Anchor point="topleft" relativePoint="topleft">
+				  <AbsPoint x="0" y="5" />
+				</Anchor>
+			  </Anchors>
+			  <Windows>
+				<FullResizeImage name="$parent_UO_DefaultWindowFrame" inherits="UO_Login_Inner_Window_Frame">
+				  <Anchors>
+					<Anchor point="topleft" relativePoint="topleft" />
+					<Anchor point="bottomright" relativePoint="bottomright" />
+				  </Anchors>
+				</FullResizeImage>
+				<VerticalScrollbar name="EULAWindowScrollbar" inherits="StandardVertScroll" layer="popup">
+				  <Size>
+					<AbsPoint x="15" y="370"/>
+				  </Size>
+				  <Anchors>
+					<Anchor point="topright" relativePoint="topright">
+					  <AbsPoint x="0" y="0" />
+					</Anchor>
+				  </Anchors>
+				</VerticalScrollbar>
+				<!-- SCROLL CHILD -->
+				<Window name="EULAWindowContent" handleinput="true">
+				  <Anchors>
+					<Anchor point="topleft" relativePoint="topleft">
+					  <AbsPoint x="0" y="5"/>
+					</Anchor>
+				  </Anchors>
+				  <Size>
+					<AbsPoint x="670" y="390" />
+				  </Size>
+				  <Windows>
+				  	<Label name="EULAWindowTextHeader" font="UO_DefaultText" maxchars="16383" linespacing="20" textalign="left" autoresize="true" wordwrap="true" handleinput="true">
+					  <Size>
+						<AbsPoint x="650" y="0" />
+					  </Size>
+					  <Anchors>
+						<Anchor point="topleft" relativePoint="topleft">
+						  <AbsPoint x="10" y="10" />
+						</Anchor>
+					  </Anchors>
+					  <EventHandlers>
+			  			<EventHandler event="OnHyperLinkLButtonUp" function="Login.OnHyperLinkClicked" />
+		  			  </EventHandlers>					  
+					  <Color r="255" g="255" b="255" a="255" />
+					</Label>					
+				  </Windows>
+				</Window>
+				<!-- SCROLL CHILD -->
+			  </Windows>
+			</ScrollWindow>
+			<Button name="EULAWindowCheckButton" inherits="UO_Default_Check_Button" >
+			  <Anchors>
+				<Anchor point="bottomleft" relativePoint="topleft"  relativeTo="EULAWindow">
+				  <AbsPoint x="10" y="-100" />
+				</Anchor>
+			  </Anchors>
+			  <EventHandlers>
+				<EventHandler event="OnLButtonDown" function="Login.OnAccept" />
+			  </EventHandlers>
+			</Button>
+			<Label name="EULAWindowCheckButtonText" font="UO_DefaultText" maxchars="16383" linespacing="20" textalign="left" autoresize="true" handleinput="true" wordwrap="true" >
+			  <Size>
+				<AbsPoint x="650" y="0" />
+			  </Size>
+			  <Anchors>
+				<Anchor point="topright" relativePoint="topleft" relativeTo="EULAWindowCheckButton">
+				  <AbsPoint x="7" y="0" />
+				</Anchor>
+			  </Anchors>
+			  <EventHandlers>
+	  			<EventHandler event="OnHyperLinkLButtonUp" function="Login.OnHyperLinkClicked" />
+  			  </EventHandlers>
+			  <Color r="255" g="255" b="255" a="255" />
+			</Label>
+
+			<Button name="EULAWindowAgreeButton" inherits="UO_Login_Medium_Select_Button" >
+			  <Anchors>
+				<Anchor point="bottomleft" relativePoint="topleft"  relativeTo="EULAWindow">
+				  <AbsPoint x="200" y="-44" />
+				</Anchor>
+			  </Anchors>
+			  <EventHandlers>
+				<EventHandler event="OnLButtonUp" function="Login.ToggleEULAAgree" />
+			  </EventHandlers>
+			</Button>
+			<Button name="EULAWindowDisagreeButton" inherits="UO_Login_Medium_Select_Button" >
+			  <Anchors>
+				<Anchor point="topright" relativePoint="topleft" relativeTo="EULAWindowAgreeButton">
+				  <AbsPoint x="7" y="0" />
+				</Anchor>
+			  </Anchors>
+			  <EventHandlers>
+				<EventHandler event="OnLButtonUp" function="InterfaceCore.OnExitGame" />
+			  </EventHandlers>
+			</Button>
+		  </Windows>
+		</Window>
+		<!-- MAIN WINDOW STARTS HERE -->
+		<Window name="Login" movable="false">
+			<Size>
+				<!-- All following Windows match this size-->
+				<AbsPoint x="470" y="675" />
+			</Size>
+			<Anchors>
+				<Anchor point="center" relativePoint="center">
+					<AbsPoint x="0" y="50" />
+				</Anchor>
+			</Anchors>
+			<EventHandlers>
+				<EventHandler event="OnInitialize" function="Login.Initialize" />
+				<!--<EventHandler event="OnShutdown" function="Login.Shutdown" />-->
+			</EventHandlers>
+			<Windows>
+				<Window name="LoginWindow">
+					<Size>
+						<AbsPoint x="466" y="550" />
+					</Size>
+					<Anchors>
+						<Anchor point="topleft" relativePoint="topleft">
+							<AbsPoint x="2" y="200" />
+						</Anchor>
+					</Anchors>
+					<Windows>
+						<!-- Inner Frame Boilerplate -->
+						<!--<FullResizeImage name="$parentBackground" inherits="UO_Login_Black_Background" layer="background"
+							handleinput="false">
+							<Anchors>
+								<Anchor point="topleft" relativePoint="topleft" />
+								<Anchor point="bottomright" relativePoint="bottomright" />
+							</Anchors>
+						</FullResizeImage>
+						-->
+						
+						<!-- End of Inner Frame Boilerplate -->
+						<!-- Inner Frame Boilerplate -->
+						<FullResizeImage name="$parentInnerBG" inherits="UO_Login_Black_Background" layer="background"
+							handleinput="false">
+							<Anchors>
+								<Anchor point="topleft" relativePoint="topleft" >
+									<AbsPoint x="80" y="180"/>
+								</Anchor>
+								<Anchor point="bottomright" relativePoint="bottomright" >
+									<AbsPoint x="-80" y="-220"/>
+								</Anchor>
+							</Anchors>
+						</FullResizeImage>
+						<FullResizeImage name="$parentInnerFrame" inherits="UO_Login_Inner_Window_Frame" layer="background"
+							handleinput="false">
+							<Anchors>
+								<Anchor point="topleft" relativePoint="topleft" >
+									<AbsPoint x="80" y="180"/>
+								</Anchor>
+								<Anchor point="bottomright" relativePoint="bottomright" >
+									<AbsPoint x="-80" y="-220"/>
+								</Anchor>
+							</Anchors>
+						</FullResizeImage>						
+						<Window name="UsernameBG" handleinput="false">
+							<Size>
+								<AbsPoint x="200" y="30" />
+							</Size>
+							<Anchors>
+								<Anchor point="bottom" relativePoint="top" relativeTo="$parentUsernamePrompt" >
+									<AbsPoint x="0" y="6" />
+								</Anchor>
+							</Anchors>
+							<Windows>
+								<!-- Inner Frame Boilerplate -->
+								<FullResizeImage name="$parentBG" inherits="UO_Simple_Black_Background">
+									<Anchors>
+										<Anchor point="topleft" relativePoint="topleft" />
+										<Anchor point="bottomright" relativePoint="bottomright" />
+									</Anchors>
+								</FullResizeImage>
+								<FullResizeImage name="$parentFrame" inherits="UO_Login_Inner_Window_Frame">
+									<Anchors>
+										<Anchor point="topleft" relativePoint="topleft" />
+										<Anchor point="bottomright" relativePoint="bottomright" />
+									</Anchors>
+								</FullResizeImage>
+								<!-- End of Inner Frame Boilerplate -->
+							</Windows>
+						</Window>
+						<Window name="PasswordBG" handleinput="false">
+							<Size>
+								<AbsPoint x="200" y="30" />
+							</Size>
+							<Anchors>
+								<Anchor point="bottomleft" relativePoint="topleft" relativeTo="$parentPasswordPrompt" >
+									<AbsPoint x="0" y="6" />
+								</Anchor>
+							</Anchors>
+							<Windows>
+								<!-- Inner Frame Boilerplate -->
+								<FullResizeImage name="$parentBG" inherits="UO_Simple_Black_Background">
+									<Anchors>
+										<Anchor point="topleft" relativePoint="topleft" />
+										<Anchor point="bottomright" relativePoint="bottomright" />
+									</Anchors>
+								</FullResizeImage>
+								<FullResizeImage name="$parentFrame" inherits="UO_Login_Inner_Window_Frame">
+									<Anchors>
+										<Anchor point="topleft" relativePoint="topleft" />
+										<Anchor point="bottomright" relativePoint="bottomright" />
+									</Anchors>
+								</FullResizeImage>
+								<!-- End of Inner Frame Boilerplate -->
+							</Windows>
+						</Window>
+						<Label name="$parentUsernamePrompt" font="UO_DefaultText" linespacing="20" maxchars="64"
+							textalign="center" autoresize="true" handleinput="false" wordwrap="true">
+							<Size>
+								<AbsPoint x="200" y="20" />
+							</Size>
+							<Anchors>
+								<Anchor point="top" relativePoint="top" relativeTo="$parentInnerBG">
+									<AbsPoint x="0" y="16" />
+								</Anchor>
+							</Anchors>
+							<Color r="255" g="255" b="255" a="255" />
+						</Label>
+						<Label name="$parentPasswordPrompt" font="UO_DefaultText" linespacing="20" maxchars="64"
+							textalign="center" autoresize="true" handleinput="false" wordwrap="true">
+							<Size>
+								<AbsPoint x="200" y="30" />
+							</Size>
+							<Anchors>
+								<Anchor point="bottomleft" relativePoint="topleft" relativeTo="$parentUsernamePrompt">
+									<AbsPoint x="0" y="40" />
+								</Anchor>
+							</Anchors>
+							<Color r="255" g="255" b="255" a="255" />
+						</Label>
+						<EditBox name="Username" font="UO_DefaultText" taborder="1" maxchars="20" scrolling="horz"
+							input="nospaces">
+							<Size>
+								<AbsPoint x="200" y="20" />
+							</Size>
+							<Anchors>
+								<Anchor point="topleft" relativePoint="topleft" relativeTo="UsernameBG">
+									<AbsPoint x="10" y="5" />
+								</Anchor>
+							</Anchors>
+							<EventHandlers>
+								<EventHandler event="OnKeyEnter" function="Login.ToggleLogin" />
+							</EventHandlers>
+						</EditBox>
+						<EditBox name="Password" font="UO_DefaultText" taborder="2" maxchars="20" password="true"
+							scrolling="horz" input="nospaces">
+							<Size>
+								<AbsPoint x="200" y="20" />
+							</Size>
+							<Anchors>
+								<Anchor point="topleft" relativePoint="topleft" relativeTo="PasswordBG">
+									<AbsPoint x="10" y="5" />
+								</Anchor>
+							</Anchors>
+							<EventHandlers>
+								<EventHandler event="OnKeyEnter" function="Login.ToggleLogin" />
+							</EventHandlers>
+						</EditBox>
+						<Button name="$parentLoginButton" inherits="UO_Login_Login_Button">
+							<Anchors>
+								<Anchor point="bottom" relativePoint="bottom" >
+									<AbsPoint x="0" y="-160" />
+								</Anchor>
+							</Anchors>
+							<EventHandlers>
+								<EventHandler event="OnLButtonUp" function="Login.ToggleLogin" />
+							</EventHandlers>
+						</Button>
+						<Button name="$parentPreviousButton" inherits="UO_Login_SmallPreviousButton">
+							<Anchors>
+								<Anchor point="bottomleft" relativePoint="bottomleft">
+									<AbsPoint x="10" y="-175" />
+								</Anchor>
+							</Anchors>
+							<EventHandlers>
+								<EventHandler event="OnLButtonUp" function="Login.GoBackToSplash" />
+							</EventHandlers>
+						</Button>						
+					</Windows>
+				</Window>
+				
+				<Window name="ServerSelectWindow">
+					<Size>
+						<AbsPoint x="470" y="675" />
+					</Size>
+					<Anchors>
+						<Anchor point="topleft" relativePoint="topleft">
+							<AbsPoint x="2" y="2" />
+						</Anchor>
+					</Anchors>
+					<EventHandlers>
+						<EventHandler event="OnKeyEnter" function="Login.LoginToSelectedSelect" />
+					</EventHandlers>
+					<Windows>
+						<!-- Inner Frame Boilerplate -->
+						<FullResizeImage name="$parentBackground" inherits="UO_Login_Black_Background" layer="background"
+							handleinput="false">
+							<Anchors>
+								<Anchor point="topleft" relativePoint="topleft" />
+								<Anchor point="bottomright" relativePoint="bottomright" />
+							</Anchors>
+						</FullResizeImage>
+						<FullResizeImage name="$parentFrame" inherits="UO_Login_Inner_Window_Frame" layer="background"
+							handleinput="false">
+							<Anchors>
+								<Anchor point="topleft" relativePoint="topleft" />
+								<Anchor point="bottomright" relativePoint="bottomright" />
+							</Anchors>
+						</FullResizeImage>
+						<FullResizeImage name="$parent_Login_DefaultWindowFrame" inherits="UO_Login_Outer_Window_Frame" handleinput="false">
+							<Anchors>
+								<Anchor point="topleft" relativePoint="topleft" >
+									<AbsPoint x="-4" y="0"/>
+								</Anchor>
+								<Anchor point="bottomright" relativePoint="bottomright" >
+									<AbsPoint x="5" y="0"/>
+								</Anchor>
+							</Anchors>
+						</FullResizeImage>
+						<!-- End of Inner Frame Boilerplate -->
+						<Label name="$parentTitle" font="UO_Subtitle" linespacing="20" maxchars="64" textalign="center"
+							autoresize="true" handleinput="false" wordwrap="true">
+							<Size>
+								<AbsPoint x="470" y="20" />
+							</Size>
+							<Anchors>
+								<Anchor point="topleft" relativePoint="topleft">
+									<AbsPoint x="0" y="10" />
+								</Anchor>
+							</Anchors>
+							<Color r="255" g="255" b="255" a="255" />
+						</Label>
+						<Label name="$parentNameHeader" font="UO_DefaultText" linespacing="20" maxchars="64" textalign="left"
+							autoresizewidth="true" handleinput="true" wordwrap="true">
+							<Size>
+								<AbsPoint x="150" y="20" />
+							</Size>
+							<Anchors>
+								<Anchor point="bottomleft" relativePoint="topleft" relativeTo="$parentTitle">
+									<AbsPoint x="35" y="5" />
+								</Anchor>
+							</Anchors>
+							<Color r="255" g="255" b="255" a="255" />
+							<EventHandlers>
+								<EventHandler event="OnLButtonUp" function="Login.SortByShardName" />
+								<EventHandler event="OnMouseOver" function="Login.LitShardName" />
+								<EventHandler event="OnMouseOverEnd" function="Login.DimShardName" />
+							</EventHandlers>
+						</Label>
+						<Button name="$parentNameHeaderSortButton" backgroundtexture="Login_CoreTextures" highlighttexture="Login_CoreTextures" layer="popup">
+							<Size>
+								<AbsPoint x="14" y="15" />
+							</Size>
+							<Anchors>
+								<Anchor point="right" relativePoint="left" relativeTo="$parentNameHeader">
+									<AbsPoint x="5" y="-1" />
+								</Anchor>
+							</Anchors>
+							<TexCoords>
+								<Normal x="263" y="431" />
+								<NormalHighlit x="263" y="431" />
+								<Pressed x="263" y="412" />
+								<PressedHighlit x="263" y="412" />
+								<Disabled x="263" y="412" />
+							</TexCoords>
+						</Button>
+						<Label name="$parentLatencyHeader" font="UO_DefaultText" linespacing="20" maxchars="64"
+							textalign="left" autoresizewidth="true" handleinput="true" wordwrap="true">
+							<Size>
+								<AbsPoint x="70" y="20" />
+							</Size>
+							<Anchors>
+								<Anchor point="bottomleft" relativePoint="topleft" relativeTo="$parentTitle">
+									<AbsPoint x="200" y="5" />
+								</Anchor>
+							</Anchors>
+							<Color r="255" g="255" b="255" a="255" />
+							<EventHandlers>
+								<EventHandler event="OnLButtonUp" function="Login.SortByLatency" />
+								<EventHandler event="OnMouseOver" function="Login.LitLatency" />
+								<EventHandler event="OnMouseOverEnd" function="Login.DimLatency" />
+							</EventHandlers>
+						</Label>
+						<Button name="$parentLatencyHeaderSortButton" backgroundtexture="Login_CoreTextures" highlighttexture="Login_CoreTextures" layer="popup">
+							<Size>
+								<AbsPoint x="14" y="15" />
+							</Size>
+							<Anchors>
+								<Anchor point="right" relativePoint="left" relativeTo="$parentLatencyHeader">
+									<AbsPoint x="5" y="-1" />
+								</Anchor>
+							</Anchors>
+							<TexCoords>
+								<Normal x="263" y="431" />
+								<NormalHighlit x="263" y="431" />
+								<Pressed x="263" y="412" />
+								<PressedHighlit x="263" y="412" />
+								<Disabled x="263" y="412" />
+							</TexCoords>
+						</Button>
+						<Label name="$parentPopulationHeader" font="UO_DefaultText" linespacing="20" maxchars="64"
+							textalign="left" autoresizewidth="true" handleinput="true" wordwrap="true">
+							<Size>
+								<AbsPoint x="160" y="20" />
+							</Size>
+							<Anchors>
+								<Anchor point="bottomleft" relativePoint="topleft" relativeTo="$parentTitle">
+									<AbsPoint x="310" y="5" />
+								</Anchor>
+							</Anchors>
+							<Color r="255" g="255" b="255" a="255" />
+							<EventHandlers>
+								<EventHandler event="OnLButtonUp" function="Login.SortByPopulation" />
+								<EventHandler event="OnMouseOver" function="Login.LitPopulation" />
+								<EventHandler event="OnMouseOverEnd" function="Login.DimPopulation" />
+							</EventHandlers>
+						</Label>
+						<Button name="$parentPopulationHeaderSortButton" backgroundtexture="Login_CoreTextures" highlighttexture="Login_CoreTextures" layer="popup">
+							<Size>
+								<AbsPoint x="14" y="15" />
+							</Size>
+							<Anchors>
+								<Anchor point="right" relativePoint="left" relativeTo="$parentPopulationHeader">
+									<AbsPoint x="5" y="-1" />
+								</Anchor>
+							</Anchors>
+							<TexCoords>
+								<Normal x="263" y="431" />
+								<NormalHighlit x="263" y="431" />
+								<Pressed x="263" y="412" />
+								<PressedHighlit x="263" y="412" />
+								<Disabled x="263" y="412" />
+							</TexCoords>
+						</Button>
+						<ScrollWindow name="ServerSelectScrollWindow" childscrollwindow="ServerSelectContent" scrollbar="ServerSelectScrollbar" lineheight="60" autoHideScrollBar="true">
+							<Size>
+								<AbsPoint x="430" y="515" />
+							</Size>
+							<Anchors>
+								<Anchor point="bottomleft" relativePoint="topleft" relativeTo="$parentTitle">
+									<AbsPoint x="20" y="30" />
+								</Anchor>
+							</Anchors>
+							<Windows>
+								<FullResizeImage name="$parent_Login_DefaultWindowFrame" inherits="UO_Login_Inner_Window_Frame">
+									<Anchors>
+										<Anchor point="topleft" relativePoint="topleft" >
+											<AbsPoint x="-4" y="-4" />
+											<!-- Ajustment added so the scroll window never gets cut off. -->
+										</Anchor>
+										<Anchor point="bottomright" relativePoint="bottomright" >
+											<AbsPoint x="4" y="4" />
+											<!-- Adjustment added so the scroll window never gets cut off. -->
+										</Anchor>
+									</Anchors>
+								</FullResizeImage>
+
+								<VerticalScrollbar name="ServerSelectScrollbar" inherits="StandardVertScroll" />
+
+								<!-- SCROLL CHILD -->
+								<Window name="ServerSelectContent">
+									<Anchors>
+										<Anchor point="topleft" relativePoint="topleft">
+											<AbsPoint x="0" y="5" />
+										</Anchor>
+									</Anchors>
+									<Size>
+										<AbsPoint x="360" y="0" />
+									</Size>
+								</Window>
+								<!-- SCROLL CHILD -->
+							</Windows>
+						</ScrollWindow>
+						<!-- start select shard for player label -->
+						<Window name="$parentAutoSelectShardBG" handleinput="false">
+							<Size>
+								<AbsPoint x="200" y="30" />
+							</Size>
+							<Anchors>
+								<Anchor point="bottom" relativePoint="top" relativeTo="ServerSelectScrollWindow_Login_DefaultWindowFrame">
+									<AbsPoint x="0" y="5" />
+								</Anchor>
+							</Anchors>
+							<Windows>
+								<!-- Inner Frame Boilerplate -->
+								<FullResizeImage name="$parentBG" inherits="UO_Simple_Black_Background">
+									<Anchors>
+										<Anchor point="topleft" relativePoint="topleft" />
+										<Anchor point="bottomright" relativePoint="bottomright" />
+									</Anchors>
+								</FullResizeImage>
+								<FullResizeImage name="$parentFrame" inherits="UO_Login_Inner_Window_Frame">
+									<Anchors>
+										<Anchor point="topleft" relativePoint="topleft" />
+										<Anchor point="bottomright" relativePoint="bottomright" />
+									</Anchors>
+								</FullResizeImage>
+								<!-- End of Inner Frame Boilerplate -->
+							</Windows>
+						</Window>
+						<Label name="$parentAutoSelectShard" font="UO_DefaultText" linespacing="20" maxchars="64"
+										textalign="center" autoresize="true" handleinput="true" wordwrap="false">
+							<Size>
+								<AbsPoint x="200" y="20" />
+							</Size>
+							<Anchors>
+								<Anchor point="bottom" relativePoint="top" relativeTo="ServerSelectScrollWindow_Login_DefaultWindowFrame">
+									<AbsPoint x="0" y="10" />
+								</Anchor>
+							</Anchors>
+							<EventHandlers>
+								<EventHandler event="OnLButtonUp" function="Login.GoToAutoSelectShard" />
+								<EventHandler event="OnMouseOver" function="Login.LitAutoSelectShard" />
+								<EventHandler event="OnMouseOverEnd" function="Login.DimAutoSelectShard" />
+							</EventHandlers>
+						</Label>
+						<!-- end select shard for player label -->
+						<Button name="$parentPreviousButton" inherits="UO_Login_SmallPreviousButton" layer="popup">
+							<Anchors>
+								<Anchor point="bottomleft" relativePoint="bottomleft">
+									<AbsPoint x="10" y="-15" />
+								</Anchor>
+							</Anchors>
+							<EventHandlers>
+								<EventHandler event="OnLButtonUp" function="Login.GoBackToLogin" />
+							</EventHandlers>
+						</Button>
+						<Button name="$parentOKButton" inherits="UO_Login_GumpButton"  layer="popup">
+							<Anchors>
+								<Anchor point="bottom" relativePoint="bottom">
+									<AbsPoint x="0" y="-15" />
+								</Anchor>
+							</Anchors>
+							<EventHandlers>
+								<EventHandler event="OnLButtonUp" function="Login.LoginToSelectedSelect" />
+							</EventHandlers>
+						</Button>
+						<Button name="$parentNextButton" inherits="UO_Login_SmallNextButton">
+							<Anchors>
+								<Anchor point="bottomright" relativePoint="bottomright">
+									<AbsPoint x="-12" y="-15" />
+								</Anchor>
+							</Anchors>
+							<EventHandlers>
+								<EventHandler event="OnLButtonUp" function="Login.LoginToSelectedSelect" />
+							</EventHandlers>
+						</Button>
+					</Windows>
+				</Window>
+				
+				<Window name="CharacterSelectWindow">
+					<Size>
+						<AbsPoint x="470" y="675" />
+					</Size>
+					<EventHandlers>
+						<EventHandler event="OnKeyEnter" function="Login.StartGameWithSelectedCharacter" />
+					</EventHandlers>
+					<Anchors>
+						<Anchor point="topleft" relativePoint="topleft">
+							<AbsPoint x="2" y="2" />
+						</Anchor>
+					</Anchors>
+					<Windows>
+						<!-- Inner Frame Boilerplate -->
+						<FullResizeImage name="$parentBackground" inherits="UO_Login_Black_Background" layer="background"
+							handleinput="false">
+							<Anchors>
+								<Anchor point="topleft" relativePoint="topleft" />
+								<Anchor point="bottomright" relativePoint="bottomright" />
+							</Anchors>
+						</FullResizeImage>
+						<FullResizeImage name="$parentFrame" inherits="UO_Login_Inner_Window_Frame" layer="background"
+							handleinput="false">
+							<Anchors>
+								<Anchor point="topleft" relativePoint="topleft" />
+								<Anchor point="bottomright" relativePoint="bottomright" />
+							</Anchors>
+						</FullResizeImage>
+						<FullResizeImage name="$parent_Login_DefaultWindowFrame" inherits="UO_Login_Outer_Window_Frame" handleinput="false">
+							<Anchors>
+								<Anchor point="topleft" relativePoint="topleft" >
+									<AbsPoint x="-4" y="0"/>
+								</Anchor>
+								<Anchor point="bottomright" relativePoint="bottomright" >
+									<AbsPoint x="5" y="0"/>
+								</Anchor>
+							</Anchors>
+						</FullResizeImage>
+						<!-- End of Inner Frame Boilerplate -->
+						<Label name="$parentTitle" font="UO_Subtitle" linespacing="20" maxchars="64" textalign="center"
+							autoresize="true" handleinput="false" wordwrap="true">
+							<Size>
+								<AbsPoint x="470" y="20" />
+							</Size>
+							<Anchors>
+								<Anchor point="topleft" relativePoint="topleft">
+									<AbsPoint x="0" y="10" />
+								</Anchor>
+							</Anchors>
+							<Color r="255" g="255" b="255" a="255" />
+						</Label>
+						<ScrollWindow name="CharacterSelectScrollWindow" childscrollwindow="CharacterSelectContent" scrollbar="CharacterSelectScrollbar" lineheight="60" autoHideScrollBar="true">
+							<Size>
+								<AbsPoint x="410" y="535" />
+							</Size>
+							<Anchors>
+								<Anchor point="bottomleft" relativePoint="topleft" relativeTo="$parentTitle">
+									<AbsPoint x="30" y="5" />
+								</Anchor>
+							</Anchors>
+							<Windows>
+								<!-- Frame -->
+								<FullResizeImage name="$parent_Login_DefaultWindowFrame" inherits="UO_Login_Inner_Window_Frame">
+									<Anchors>
+										<Anchor point="topleft" relativePoint="topleft" />
+										<Anchor point="bottomright" relativePoint="bottomright" />
+									</Anchors>
+								</FullResizeImage>
+								<VerticalScrollbar name="CharacterSelectScrollbar" inherits="StandardVertScroll" layer="popup" />
+								<!-- SCROLL CHILD -->
+								<Window name="CharacterSelectContent">
+									<Anchors>
+										<Anchor point="topleft" relativePoint="topleft" />
+									</Anchors>
+									<Size>
+										<AbsPoint x="410" y="0" />
+									</Size>
+								</Window>
+								<!-- SCROLL CHILD -->
+							</Windows>
+						</ScrollWindow>
+						<Button name="$parentPlayNowButton" inherits="UO_Login_Medium_Select_Button" font="UO_Title_Large" texturescale="1.19">
+							<Size>
+								<AbsPoint x="193" y="37" />
+							</Size>
+							<Anchors>
+								<Anchor point="bottom" relativePoint="bottom" >
+									<AbsPoint x="0" y="-20" />
+								</Anchor>
+							</Anchors>
+							<TextColors>
+								<Normal r="255" g="234" b="0" a="255" />
+								<NormalHighlit r="255" g="255" b="255" a="255" />
+								<Pressed r="255" g="255" b="255" a="255" />
+								<PressedHighlit r="255" g="255" b="255" a="255" />
+								<Disabled r="255" g="255" b="255" a="255" />
+							</TextColors>
+							<TextOffset x="5" y="8" />
+							<EventHandlers>
+								<EventHandler event="OnLButtonUp" function="Login.StartGameWithSelectedCharacter" />
+								<EventHandler event="OnMouseOverEnd" function="Login.PlayNowMouseOut" />
+							</EventHandlers>
+						</Button>
+						<Button name="$parentCreateCharacterButton" inherits="UO_Login_GumpButton">
+							<Anchors>
+								<Anchor point="top" relativePoint="bottomright" relativeTo="$parentPlayNowButton">
+									<AbsPoint x="-10" y="0" />
+								</Anchor>
+							</Anchors>
+							<EventHandlers>
+								<EventHandler event="OnLButtonUp" function="Login.OpenCharacterCreation" />
+							</EventHandlers>
+						</Button>
+						<Button name="$parentDeleteCharacterButton" inherits="UO_Login_GumpButton">
+							<Anchors>
+								<Anchor point="topright" relativePoint="topleft" relativeTo="$parentCreateCharacterButton">
+									<AbsPoint x="25" y="0" />
+								</Anchor>
+							</Anchors>
+							<EventHandlers>
+								<EventHandler event="OnLButtonUp" function="Login.DeleteSelectedCharacter" />
+							</EventHandlers>
+						</Button>
+						<Button name="$parentPreviousButton" inherits="UO_Login_SmallPreviousButton">
+							<Anchors>
+								<Anchor point="bottomleft" relativePoint="bottomleft">
+									<AbsPoint x="10" y="-15" />
+								</Anchor>
+							</Anchors>
+							<EventHandlers>
+								<EventHandler event="OnLButtonUp" function="Login.GoBackToServerSelect" />
+							</EventHandlers>
+						</Button>
+						<Button name="$parentNextButton" inherits="UO_Login_SmallNextButton">
+							<Anchors>
+								<Anchor point="bottomright" relativePoint="bottomright">
+									<AbsPoint x="-12" y="-15" />
+								</Anchor>
+							</Anchors>
+							<EventHandlers>
+								<EventHandler event="OnLButtonUp" function="Login.StartGameWithSelectedCharacter" />
+							</EventHandlers>
+						</Button>
+					</Windows>
+				</Window>
+			</Windows>
+		</Window>
+
+		<Window name="CustomUiWindow" movable="true">
+			<Size>
+				<AbsPoint x="400" y="150" />
+			</Size>
+			<Anchors>
+				<Anchor point="center" relativePoint="center"/>
+			</Anchors>
+			<Windows>
+				<!-- Default chrome. Alter this at your own peril. -->
+				<Window name="$parentChrome" inherits="UO_LoginWindow">
+					<Anchors>
+						<Anchor point="topleft" relativePoint="topleft" />
+						<Anchor point="bottomright" relativePoint="bottomright"/>
+					</Anchors>
+				</Window>
+				<!-- End of default chrome boilerplate code -->
+				<Label name="$parentCustomSkinsLabel" inherits="ItemTitle" >
+					<Size>
+						<AbsPoint x="150" y="20" />
+					</Size>
+					<Anchors>
+						<Anchor point="topleft" relativePoint="topleft" relativeTo="">
+							<AbsPoint x="20" y="70" />
+						</Anchor>
+					</Anchors>
+					<Color r="255" g="255" b="255" a="255" />
+				</Label>
+
+				<ComboBox name="$parentCustomSkinsCombo" inherits="UO_Login_ComboBox" >
+					<Anchors>
+						<Anchor point="topright" relativePoint="topleft" relativeTo="$parentCustomSkinsLabel">
+							<AbsPoint x="0" y="-8" />
+						</Anchor>
+					</Anchors>
+				</ComboBox>
+				<Button name="$parentOkayButton" inherits="UO_Login_GumpButton" >
+					<EventHandlers>
+						<EventHandler event="OnLButtonUp" function="Login.OnCustomUiOk"/>
+					</EventHandlers>
+					<Anchors>
+						<Anchor point="bottom" relativePoint="bottom" >
+							<AbsPoint x="-57" y="-10" />
+						</Anchor>
+					</Anchors>
+				</Button>
+				<Button name="$parentCancelButton" inherits="UO_Login_GumpButton" >
+					<EventHandlers>
+						<EventHandler event="OnLButtonUp" function="Login.OnCustomUiCancel"/>
+					</EventHandlers>
+					<Anchors>
+						<Anchor point="bottom" relativePoint="bottom" relativeTo="$parent">
+							<AbsPoint x="46" y="-10" />
+						</Anchor>
+					</Anchors>
+				</Button>
+			</Windows>
+		</Window>
+
+	</Windows>
+</Interface>

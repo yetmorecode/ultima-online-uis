@@ -1,0 +1,51 @@
+----------------------------------------------------------------
+-- Global Variables
+----------------------------------------------------------------
+
+InternalLoginConfig = {}
+
+InternalLoginConfig.numButtons = 0
+
+function InternalLoginConfig.Initialize()
+	local serverList = GetLoginServers()
+	local scrollWindow = "InternalLoginConfigView"
+	local scrollChild = scrollWindow.."ScrollChild"
+	
+	if( serverList ~= nil ) then
+		InternalLoginConfig.numButtons = table.getn(serverList)
+		
+		for index, name in pairs(serverList) do
+			local buttonName = scrollChild.."Button"..index
+			CreateWindowFromTemplate(buttonName,"LoginServerButtonTemplate",scrollChild)
+			WindowSetId(buttonName,index)
+			if( name ~= "" ) then
+				ButtonSetText(buttonName,StringToWString(name))
+			else
+				ButtonSetText(buttonName,L"No Title")
+			end
+			ButtonSetStayDownFlag(buttonName,true)
+			
+			if( index == 1 ) then
+				ButtonSetPressedFlag(buttonName,true)
+				SetLoginServer(name)
+				WindowAddAnchor(buttonName,"topleft",scrollChild,"topleft",0,0)
+			else
+				WindowAddAnchor(buttonName,"bottomleft",scrollChild.."Button"..(index-1),"topleft",0,0)
+			end
+		end
+		
+		ScrollWindowUpdateScrollRect(scrollWindow)
+	end
+end
+
+function InternalLoginConfig.ItemLButtonUp()
+	local index = WindowGetId(SystemData.ActiveWindow.name)
+	local serverName = ButtonGetText("InternalLoginConfigViewScrollChildButton"..index)
+	
+	SetLoginServer(WStringToString(serverName))
+	
+	for i=1, InternalLoginConfig.numButtons do
+		ButtonSetPressedFlag("InternalLoginConfigViewScrollChildButton"..i, false)
+	end
+	ButtonSetPressedFlag("InternalLoginConfigViewScrollChildButton"..index, true)
+end

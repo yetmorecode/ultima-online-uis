@@ -10,6 +10,28 @@ function this.Shutdown()
   
 end
 
+function this.GetGumps()
+  local count = 0
+  
+  if GumpData == nil or GumpData.Gumps == nil then
+    Debug.PrintToChat(L"No open gumps - try opening a generic gump")
+    return
+  end
+  
+  for gumpId, data in pairs(GumpData.Gumps) do 
+    count = count + 1 
+  end
+  
+  if count == 0 then
+    Debug.PrintToChat(L"No open gumps - try opening a generic gump")
+    return
+  end
+  
+  for gumpId, data in pairs(GumpData.Gumps) do
+  
+  end
+end
+
 function this.PrintOpenGumps()
   local count = 0
   
@@ -39,8 +61,15 @@ function this.PrintOpenGumps()
     end
     if data.Labels ~= nil then
       Debug.PrintToChat(L"  Labels:")
+      local labelCount = 0
       for labelId, labelData in pairs(data.Labels) do
-        Debug.PrintToChat(L"    #" .. labelId .. L" - " .. labelData.tid .. L" - " .. GetStringFromTid(labelData.tid))
+        labelCount = labelCount + 1
+        if labelData.tid == nil then
+          Debug.PrintToChat(L"    #" .. labelId .. L" - ")
+        else
+          Debug.PrintToChat(L"    #" .. labelId .. L" - " .. labelData.tid .. L" - " .. GetStringFromTid(labelData.tid))
+        end
+        
       end
     else
       Debug.PrintToChat(L"  No Labels")
@@ -55,7 +84,10 @@ function this.PrintOpenGumps()
       Debug.PrintToChat(L"  No Buttons")
     end
     if data.TextEntry ~= nil then
-      Debug.PrintToChat(L"    " .. textId .. L" - " .. StringToWString(textData) .. L": " .. TextEditBoxGetText(textData))
+      Debug.PrintToChat(L"  TextEntry:")
+      for textId, textData in pairs(data.TextEntry) do
+        Debug.PrintToChat(L"    " .. textId .. L" - " .. StringToWString(textData) .. L": " .. TextEditBoxGetText(textData))
+      end
     else
       Debug.PrintToChat(L"  No TextEntry")
     end

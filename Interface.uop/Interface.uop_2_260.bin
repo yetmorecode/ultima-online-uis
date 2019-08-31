@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ModuleFile xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" >
+
+    <UiMod name="UO_ChatWindow" version="1.1" date="4/1/2009" >
+        <Author name="EAMythic" email="" />
+        <Description text="This is the default UO Default Chat Window Window" />
+        <Dependencies>
+            <Dependency name="EA_ContextMenu" />    
+        </Dependencies>   
+        <Files>
+            <File name="Source/ChatSettings.lua" />
+            <File name="Source/ChatWindow.xml" />
+            <File name="Source/ChatFiltersWindow.xml" />
+            <File name="Source/ChatFontWindow.xml" />
+            <File name="Source/ChatOptionsWindow.xml" />
+        </Files>
+        <OnInitialize>
+            <CreateWindow name="ChatWindow" show="true" />
+            <CreateWindow name="ChatFiltersWindow" show="false" />
+            <CreateWindow name="ChatOptionsWindow" show="false" />
+        </OnInitialize>
+        <SavedVariables>
+            <SavedVariable name="ChatSettings.ChannelColors" />
+            <SavedVariable name="ChatWindow.Settings" />
+        </SavedVariables>
+    </UiMod>
+
+</ModuleFile>

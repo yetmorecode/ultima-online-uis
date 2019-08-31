@@ -1,0 +1,1009 @@
+<Interface xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../Interface.xsd">
+  <Windows>
+    
+    <Window name="PlayerVendor_LabelRadioButton">
+      <Size>
+        <AbsPoint x="230" y="32" />
+      </Size>
+      <EventHandlers>
+        <EventHandler event="OnLButtonDown" function="PlayerVendor.CustomVanity" />
+        <EventHandler event="OnMouseOver" function="PlayerVendor.RadioHighlight" />
+        <EventHandler event="OnMouseOverEnd" function="PlayerVendor.RadioUnhighlight" />
+      </EventHandlers>
+      <Windows>
+        <Button name="$parentButton" backgroundtexture="RadioButton" highlighttexture="RadioButton" texturescale="1.1"  handleInput="false">
+          <Size>
+            <AbsPoint x="22" y="22" />
+          </Size>
+          <Anchors>
+            <Anchor point="left" relativePoint="left">
+              <AbsPoint x="5" y="0"/>
+            </Anchor>
+          </Anchors>
+          <TexCoords>
+            <Normal x="0" y="23" />
+            <NormalHighlit x="0" y="0" />
+            <Pressed x="0" y="0" />
+            <PressedHighlit x="0" y="0" />
+            <Disabled x="0" y="0" />
+          </TexCoords>
+        </Button>
+        <Label name="$parentLabel" font="MyriadPro_16" linespacing="20" autoresize="false" wordwrap="false" maxchars="64" textalign="left" handleInput="false">
+          <Size>
+            <AbsPoint x="200" y="16" />
+          </Size>
+          <Anchors>
+            <Anchor point="right" relativePoint="left" relativeTo="$parentButton">
+              <AbsPoint x="10" y="0" />
+            </Anchor>
+          </Anchors>
+          <Color r="0" g="0" b="0" a="0" />
+        </Label>
+      </Windows>
+    </Window>
+   
+
+    <!-- ITEM LIST WINDOW -->
+    <Window name="PlayerVendorWindowTemplate" popable="false">
+      <Size>
+        <AbsPoint x="520" y="420" />
+      </Size>
+
+      <Windows>
+        <!--
+				<FullResizeImage name="$parentFrame" inherits="UO_Default_Inner_Window_Frame">
+					<Anchors>
+						<Anchor point="topleft" relativePoint="topleft" />
+						<Anchor point="bottomright" relativePoint="bottomright" />
+					</Anchors>
+				</FullResizeImage>
+-->
+
+        <FullResizeImage name="$parentBg" texture="TMapBG" handleinput="false" layer="background">
+          <Anchors>
+            <Anchor point="topleft" relativePoint="topleft"/>
+            <Anchor point="bottomright" relativePoint="bottomright"/>
+          </Anchors>
+          <Sizes>
+            <TopLeft x="70" y="70" />
+            <BottomRight x="70" y="70" />
+            <Middle x="70" y="70" />
+          </Sizes>
+          <TexCoords>
+            <TopLeft x="0" y="0" />
+            <TopCenter x="70" y="0" />
+            <TopRight x="140" y="0" />
+            <MiddleLeft x="0" y="70" />
+            <MiddleCenter x="70" y="70" />
+            <MiddleRight x="140" y="70" />
+            <BottomLeft x="0" y="140" />
+            <BottomCenter x="70" y="140" />
+            <BottomRight x="140" y="140" />
+          </TexCoords>
+        </FullResizeImage>
+
+        <HorizontalResizeImage name="$parentTop" texture="TMapOverlay" handleinput="false" layer="background">
+          <Size>
+            <AbsPoint x="525" y="43" />
+          </Size>
+          <Anchors>
+            <Anchor point="topleft" relativePoint="topleft">
+              <AbsPoint x="-5" y="-2" />
+            </Anchor>
+
+            <Anchor point="topright" relativePoint="topright">
+              <AbsPoint x="5" y="-2" />
+            </Anchor>
+          </Anchors>
+          <Sizes left="75" middle="75" right="75"/>
+          <TexCoords>
+            <Left x="0" y="213" />
+            <Middle x="70" y="213" />
+            <Right x="155" y="215" />
+          </TexCoords>
+        </HorizontalResizeImage>
+
+        <HorizontalResizeImage name="$parentBottom" texture="TMapBG" handleinput="false" layer="background">
+          <Size>
+            <AbsPoint x="520" y="18" />
+          </Size>
+          <Anchors>
+            <Anchor point="bottomleft" relativePoint="bottomleft">
+              <AbsPoint x="2" y="4" />
+            </Anchor>
+            
+            <Anchor point="bottomright" relativePoint="bottomright">
+              <AbsPoint x="2" y="4" />
+            </Anchor>
+          </Anchors>
+          <Sizes left="45" middle="45" right="45"/>
+          <TexCoords>
+            <Left x="0" y="212" />
+            <Middle x="70" y="212" />
+            <Right x="176" y="210" />
+          </TexCoords>
+        </HorizontalResizeImage>
+
+      </Windows>
+    </Window>
+
+    <!-- MAIN WINDOW -->
+    <Window name="PlayerVendor" movable="true" layer="background">
+      <Size>
+        <AbsPoint x="800" y="530" />
+      </Size>
+      <Anchors>
+        <Anchor point="center" relativePoint="center"  relativeTo="ResizeWindow">
+          <AbsPoint x="0" y="0"/>
+        </Anchor>
+      </Anchors>
+      <EventHandlers>
+        <EventHandler event="OnInitialize" function="PlayerVendor.Initialize" />
+        <EventHandler event="OnShutdown" function="PlayerVendor.Shutdown" />
+        <EventHandler event="OnRButtonUp" function="UO_DefaultWindow.CloseDialog" />
+        <EventHandler event="OnUpdate" function="PlayerVendor.OnUpdate" />
+      </EventHandlers>
+      <Windows>
+
+        <FullResizeImage name="$parentBackground" inherits="UO_Simple_Black_Background" layer="background" alpha="0.2">
+          <Anchors>
+            <Anchor point="topleft" relativePoint="topleft" />
+            <Anchor point="bottomright" relativePoint="bottomright" />
+          </Anchors>
+        </FullResizeImage>
+        <FullResizeImage name="$parentFrame" inherits="UO_Simple_Frame" layer="background" frameonly="false">
+          <Anchors>
+            <Anchor point="topleft" relativePoint="topleft" />
+            <Anchor point="bottomright" relativePoint="bottomright" />
+          </Anchors>
+        </FullResizeImage>
+
+        <DynamicImage name="$parentTextureBG" texture="ShopBG" filtering="true" texturescale="1" handleinput="false" sticky="false" popable="false" layer="background"  >
+          <Size>
+            <AbsPoint x="800" y="530" />
+          </Size>
+          <Anchors>
+            <Anchor point="topleft" relativePoint="topleft">
+              <AbsPoint x="0" y="0" />
+            </Anchor>
+          </Anchors>
+          <TexCoords x="0" y="0" />
+        </DynamicImage>
+
+        <DynamicImage name="$parentTexture" texture="" filtering="true" texturescale="1" handleinput="true" sticky="false" draganddrop="true" popable="false" layer="default"  >
+          <Size>
+            <AbsPoint x="5" y="0" />
+          </Size>
+          <Anchors>
+            <Anchor point="topleft" relativePoint="topleft">
+              <AbsPoint x="15" y="40" />
+            </Anchor>
+          </Anchors>
+          <TexCoords x="0" y="0" />
+        </DynamicImage>
+        
+
+        <!-- PlayerVendor Items List -->
+        <Window name="PlayerVendorItems" inherits="PlayerVendorWindowTemplate" >
+          <Size>
+            <AbsPoint x="510" y="430" />
+          </Size>
+          <Anchors>
+            <Anchor point="top" relativePoint="top" relativeTo="$parent">
+              <AbsPoint x="100" y="50" />
+            </Anchor>
+          </Anchors>
+        </Window>
+
+        <Window name="$parentMain">
+          <Anchors>
+            <Anchor point="topleft" relativePoint="topleft" />
+            <Anchor point="bottomright" relativePoint="bottomright" />
+          </Anchors>
+          <Windows>
+
+            <DynamicImage name="$parentShowGoods" texture="icon860011" filtering="true" texturescale="1" handleinput="true" sticky="false" draganddrop="false" popable="false" layer="default"  >
+              <Size>
+                <AbsPoint x="64" y="64" />
+              </Size>
+              <Anchors>
+                <Anchor point="topleft" relativePoint="topleft" relativeTo="PlayerVendorItems">
+                  <AbsPoint x="70" y="30" />
+                </Anchor>
+              </Anchors>
+              <TexCoords x="0" y="0" />
+              <EventHandlers>
+                <EventHandler event="OnLButtonUp" function="PlayerVendor.ShowGoods" />
+                <EventHandler event="OnMouseOver" function="PlayerVendor.ShowGoodsTooltip" />
+              </EventHandlers>
+            </DynamicImage>
+
+            <DynamicImage name="$parentShowEquipment" texture="icon860006" filtering="true" texturescale="1" handleinput="true" sticky="false" draganddrop="false" popable="false" layer="default"  >
+              <Size>
+                <AbsPoint x="64" y="64" />
+              </Size>
+              <Anchors>
+                <Anchor point="topright" relativePoint="topleft" relativeTo="$parentShowGoods">
+                  <AbsPoint x="15" y="0" />
+                </Anchor>
+              </Anchors>
+              <TexCoords x="0" y="0" />
+              <EventHandlers>
+                <EventHandler event="OnLButtonUp" function="PlayerVendor.ShowEquipment" />
+                <EventHandler event="OnMouseOver" function="PlayerVendor.ShowEquipmentTooltip" />
+              </EventHandlers>
+            </DynamicImage>
+
+            <Label name="$parentAuctionLabel" font="Arial_Black_Shadow_16" maxchars="80" textalign="left" autoresizewidth="false" layer="popup">
+              <Size>
+                <AbsPoint x="250" y="26"/>
+              </Size>
+              <Color r="0" g="153" b="255" a="255" />
+              <Anchors>
+                <Anchor point="right" relativePoint="left" relativeTo="$parentShowEquipment">
+                  <AbsPoint x="15" y="0" />
+                </Anchor>
+              </Anchors>
+              <EventHandlers>
+                <EventHandler event="OnLButtonUp" function="PlayerVendor.ToggleSearch" />
+                <EventHandler event="OnMouseOver" function="PlayerVendor.ToggleVendorSearchTooltip" />
+              </EventHandlers>
+            </Label>
+
+            <DynamicImage name="$parentHLine" texture="HLine">
+              <Size>
+                <AbsPoint x="450" y="2" />
+              </Size>
+              <TexCoords x="0" y="0"/>
+              <TintColor r="50" g="50"  b="50" a="255"/>
+              <Anchors>
+                <Anchor point="topleft" relativePoint="topleft" relativeTo="$parent">
+                  <AbsPoint x="280" y="160" />
+                </Anchor>
+              </Anchors>
+            </DynamicImage>
+            
+            <Label name="$parentShopNameLabel" font="Arial_Black_Shadow_16" maxchars="80" textalign="right" autoresizewidth="false" layer="popup">
+              <Size>
+                <AbsPoint x="130" y="26"/>
+              </Size>
+              <Color r="0" g="153" b="255" a="255" />
+              <Anchors>
+                <Anchor point="topleft" relativePoint="topleft" relativeTo="PlayerVendorItems">
+                  <AbsPoint x="25" y="120" />
+                </Anchor>
+              </Anchors>
+            </Label>
+
+            <Label name="$parentShopNameText" font="MyriadPro_16" maxchars="255" textalign="left" autoresizewidth="false" layer="popup">
+              <Size>
+                <AbsPoint x="250" y="26"/>
+              </Size>
+              <Color r="0" g="0" b="0" a="0" />
+              <Anchors>
+                <Anchor point="right" relativePoint="left" relativeTo="$parentShopNameLabel">
+                  <AbsPoint x="7" y="3" />
+                </Anchor>
+              </Anchors>
+              <EventHandlers>
+                <EventHandler event="OnLButtonUp" function="PlayerVendor.RenameShop" />
+                <EventHandler event="OnMouseOver" function="PlayerVendor.RenameShopTooltip" />
+              </EventHandlers>
+            </Label>
+
+            <Window name="$parentShopNameEdit">
+              <Anchors>
+                <Anchor point="topleft" relativePoint="topleft" relativeTo="$parentShopNameText">
+                  <AbsPoint x="-3" y="-3" />
+                </Anchor>
+                <Anchor point="bottomright" relativePoint="bottomright" relativeTo="$parentShopNameText">
+                  <AbsPoint x="3" y="3" />
+                </Anchor>
+              </Anchors>
+              <EventHandlers>
+                <EventHandler event="OnMouseOver" function="PlayerVendor.RenameShopTextboxTooltip" />
+              </EventHandlers>
+              <Windows>
+                
+                <EditBox name="$parentBox" font="MyriadPro_16" taborder="1" maxchars="20" scrolling="horz" layer="popup">
+                  <Size>
+                    <AbsPoint x="250" y="26"/>
+                  </Size>
+                  <TextColor r="0" g="0" b="0" a="0" />
+                  <Anchors>
+                    <Anchor point="topleft" relativePoint="topleft" relativeTo="$parent">
+                      <AbsPoint x="3" y="6" />
+                    </Anchor>
+                  </Anchors>
+                  <EventHandlers>
+                    <EventHandler event="OnKeyEscape" function="PlayerVendor.CancelRenameShop" />
+                    <EventHandler event="OnKeyEnter" function="PlayerVendor.SubmitRenameShop" />
+                    <EventHandler event="OnMouseOver" function="PlayerVendor.RenameShopTextboxTooltip" />
+                  </EventHandlers>
+                </EditBox>
+
+                <!-- Inner Frame Boilerplate -->
+                <FullResizeImage name="$parentFrame" inherits="UO_Default_Inner_Window_Frame">
+                  <Anchors>
+                    <Anchor point="topleft" relativePoint="topleft" />
+                    <Anchor point="bottomright" relativePoint="bottomright" />
+                  </Anchors>
+                </FullResizeImage>
+                <!-- End of Inner Frame Boilerplate -->
+              </Windows>
+            </Window>
+
+            <Label name="$parentVendorNameLabel" font="Arial_Black_Shadow_16" maxchars="80" textalign="right" autoresizewidth="false" layer="popup">
+              <Size>
+                <AbsPoint x="130" y="26"/>
+              </Size>
+              <Color r="0" g="153" b="255" a="255" />
+              <Anchors>
+                <Anchor point="bottomleft" relativePoint="topleft" relativeTo="$parentShopNameLabel">
+                  <AbsPoint x="0" y="10" />
+                </Anchor>
+              </Anchors>
+            </Label>
+
+            <Label name="$parentVendorNameText" font="MyriadPro_16" maxchars="255" textalign="left" autoresizewidth="false" layer="popup">
+              <Size>
+                <AbsPoint x="250" y="26"/>
+              </Size>
+              <Color r="0" g="0" b="0" a="0" />
+              <Anchors>
+                <Anchor point="right" relativePoint="left" relativeTo="$parentVendorNameLabel">
+                  <AbsPoint x="7" y="3" />
+                </Anchor>
+              </Anchors>
+              <EventHandlers>
+                <EventHandler event="OnLButtonUp" function="PlayerVendor.RenameVendor" />
+                <EventHandler event="OnMouseOver" function="PlayerVendor.RenameVendorTooltip" />
+              </EventHandlers>
+            </Label>
+
+            <Window name="$parentVendorNameEdit">
+              <Anchors>
+                <Anchor point="topleft" relativePoint="topleft" relativeTo="$parentVendorNameText">
+                  <AbsPoint x="-3" y="-3" />
+                </Anchor>
+                <Anchor point="bottomright" relativePoint="bottomright" relativeTo="$parentVendorNameText">
+                  <AbsPoint x="3" y="3" />
+                </Anchor>
+              </Anchors>
+              <EventHandlers>
+                <EventHandler event="OnMouseOver" function="PlayerVendor.RenameVendorTextboxTooltip" />
+              </EventHandlers>
+              <Windows>
+
+                <EditBox name="$parentBox" font="MyriadPro_16" taborder="1" maxchars="20" scrolling="horz" layer="popup">
+                  <Size>
+                    <AbsPoint x="250" y="26"/>
+                  </Size>
+                  <TextColor r="0" g="0" b="0" a="0" />
+                  <Anchors>
+                    <Anchor point="topleft" relativePoint="topleft" relativeTo="$parent">
+                      <AbsPoint x="3" y="6" />
+                    </Anchor>
+                  </Anchors>
+                  <EventHandlers>
+                    <EventHandler event="OnKeyEscape" function="PlayerVendor.CancelRenameVendor" />
+                    <EventHandler event="OnKeyEnter" function="PlayerVendor.SubmitRenameVendor" />
+                    <EventHandler event="OnMouseOver" function="PlayerVendor.RenameVendorTextboxTooltip" />
+                  </EventHandlers>
+                </EditBox>
+
+                <!-- Inner Frame Boilerplate -->
+                <FullResizeImage name="$parentFrame" inherits="UO_Default_Inner_Window_Frame">
+                  <Anchors>
+                    <Anchor point="topleft" relativePoint="topleft" />
+                    <Anchor point="bottomright" relativePoint="bottomright" />
+                  </Anchors>
+                </FullResizeImage>
+                <!-- End of Inner Frame Boilerplate -->
+              </Windows>
+            </Window>
+
+            <DynamicImage name="$parentHLine2" texture="HLine">
+              <Size>
+                <AbsPoint x="450" y="2" />
+              </Size>
+              <TexCoords x="0" y="0"/>
+              <TintColor r="50" g="50"  b="50" a="255"/>
+              <Anchors>
+                <Anchor point="topleft" relativePoint="topleft" relativeTo="$parent">
+                  <AbsPoint x="280" y="240" />
+                </Anchor>
+              </Anchors>
+            </DynamicImage>
+
+            <Label name="$parentPlayerGoldLabel" font="Arial_Black_Shadow_16" maxchars="80" textalign="right" autoresizewidth="false" layer="popup">
+              <Size>
+                <AbsPoint x="200" y="26"/>
+              </Size>
+              <Color r="216" g="163" b="0" a="255" />
+              <Anchors>
+                <Anchor point="bottomleft" relativePoint="topleft" relativeTo="$parentHLine2">
+                  <AbsPoint x="-20" y="10" />
+                </Anchor>
+              </Anchors>
+              <EventHandlers>
+                <EventHandler event="OnMouseOver" function="PlayerVendor.SiegeTooltip" />
+              </EventHandlers>
+            </Label>
+
+            <Label name="$parentPlayerGoldText" font="MyriadPro_16" maxchars="255" textalign="right" autoresizewidth="false" layer="popup">
+              <Size>
+                <AbsPoint x="200" y="26"/>
+              </Size>
+              <Color r="0" g="0" b="0" a="0" />
+              <Anchors>
+                <Anchor point="right" relativePoint="left" relativeTo="$parentPlayerGoldLabel">
+                  <AbsPoint x="7" y="3" />
+                </Anchor>
+              </Anchors>
+            </Label>
+
+            <Label name="$parentPlayerInsuranceLabel" font="Arial_Black_Shadow_16" maxchars="80" textalign="right" autoresizewidth="false" layer="popup">
+              <Size>
+                <AbsPoint x="200" y="26"/>
+              </Size>
+              <Color r="216" g="163" b="0" a="255" />
+              <Anchors>
+                <Anchor point="bottomleft" relativePoint="topleft" relativeTo="$parentPlayerGoldLabel">
+                  <AbsPoint x="0" y="0" />
+                </Anchor>
+              </Anchors>
+              <EventHandlers>
+                <EventHandler event="OnMouseOver" function="PlayerVendor.SiegeTooltip" />
+              </EventHandlers>
+            </Label>
+
+            <Label name="$parentPlayerInsuranceText" font="MyriadPro_16" maxchars="255" textalign="right" autoresizewidth="false" layer="popup">
+              <Size>
+                <AbsPoint x="200" y="26"/>
+              </Size>
+              <Color r="0" g="0" b="0" a="0" />
+              <Anchors>
+                <Anchor point="right" relativePoint="left" relativeTo="$parentPlayerInsuranceLabel">
+                  <AbsPoint x="7" y="3" />
+                </Anchor>
+              </Anchors>
+            </Label>
+
+            <Label name="$parentVendorGoldLabel" font="Arial_Black_Shadow_16" maxchars="80" textalign="right" autoresizewidth="false" layer="popup">
+              <Size>
+                <AbsPoint x="200" y="26"/>
+              </Size>
+              <Color r="216" g="163" b="0" a="255" />
+              <Anchors>
+                <Anchor point="bottomleft" relativePoint="topleft" relativeTo="$parentPlayerInsuranceLabel">
+                  <AbsPoint x="0" y="20" />
+                </Anchor>
+              </Anchors>
+            </Label>
+
+            <Label name="$parentVendorGoldText" font="MyriadPro_16" maxchars="255" textalign="right" autoresizewidth="false" layer="popup">
+              <Size>
+                <AbsPoint x="200" y="26"/>
+              </Size>
+              <Color r="0" g="0" b="0" a="0" />
+              <Anchors>
+                <Anchor point="right" relativePoint="left" relativeTo="$parentVendorGoldLabel">
+                  <AbsPoint x="7" y="3" />
+                </Anchor>
+              </Anchors>
+              <EventHandlers>
+                <EventHandler event="OnLButtonUp" function="PlayerVendor.ChangeVendorGold" />
+                <EventHandler event="OnMouseOver" function="PlayerVendor.ChangeVendorGoldTooltip" />
+              </EventHandlers>
+            </Label>
+
+            <Window name="$parentVendorGoldEdit">
+              <Anchors>
+                <Anchor point="topleft" relativePoint="topleft" relativeTo="$parentVendorGoldText">
+                  <AbsPoint x="-3" y="-3" />
+                </Anchor>
+                <Anchor point="bottomright" relativePoint="bottomright" relativeTo="$parentVendorGoldText">
+                  <AbsPoint x="3" y="3" />
+                </Anchor>
+              </Anchors>
+              <EventHandlers>
+                <EventHandler event="OnMouseOver" function="PlayerVendor.ChangeVendorGoldTextboxTooltip" />
+              </EventHandlers>
+              <Windows>
+
+                <EditBox name="$parentBox" font="MyriadPro_16" taborder="1" maxchars="20" scrolling="horz" layer="popup" input="numbers">
+                  <Size>
+                    <AbsPoint x="250" y="26"/>
+                  </Size>
+                  <TextColor r="0" g="0" b="0" a="0" />
+                  <Anchors>
+                    <Anchor point="topleft" relativePoint="topleft" relativeTo="$parent">
+                      <AbsPoint x="3" y="6" />
+                    </Anchor>
+                  </Anchors>
+                  <EventHandlers>
+                    <EventHandler event="OnKeyEscape" function="PlayerVendor.CancelVendorGold" />
+                    <EventHandler event="OnKeyEnter" function="PlayerVendor.SubmitVendorGold" />
+                    <EventHandler event="OnMouseOver" function="PlayerVendor.ChangeVendorGoldTextboxTooltip" />
+                  </EventHandlers>
+                </EditBox>
+
+                <!-- Inner Frame Boilerplate -->
+                <FullResizeImage name="$parentFrame" inherits="UO_Default_Inner_Window_Frame">
+                  <Anchors>
+                    <Anchor point="topleft" relativePoint="topleft" />
+                    <Anchor point="bottomright" relativePoint="bottomright" />
+                  </Anchors>
+                </FullResizeImage>
+                <!-- End of Inner Frame Boilerplate -->
+              </Windows>
+            </Window>
+
+            <Label name="$parentVendorCostLabel" font="Arial_Black_Shadow_16" maxchars="80" textalign="right" autoresizewidth="false" layer="popup">
+              <Size>
+                <AbsPoint x="200" y="26"/>
+              </Size>
+              <Color r="216" g="163" b="0" a="255" />
+              <Anchors>
+                <Anchor point="bottomleft" relativePoint="topleft" relativeTo="$parentVendorGoldLabel">
+                  <AbsPoint x="0" y="0" />
+                </Anchor>
+              </Anchors>
+            </Label>
+
+            <Label name="$parentVendorCostText" font="MyriadPro_16" maxchars="255" textalign="right" autoresizewidth="false" layer="popup">
+              <Size>
+                <AbsPoint x="200" y="26"/>
+              </Size>
+              <Color r="0" g="0" b="0" a="0" />
+              <Anchors>
+                <Anchor point="right" relativePoint="left" relativeTo="$parentVendorCostLabel">
+                  <AbsPoint x="7" y="3" />
+                </Anchor>
+              </Anchors>
+            </Label>
+
+            <Label name="$parentVendorGoldCoverLabel" font="Arial_Black_Shadow_16" maxchars="80" textalign="center" autoresizewidth="false" layer="popup">
+              <Size>
+                <AbsPoint x="490" y="26"/>
+              </Size>
+              <Color r="216" g="163" b="0" a="255" />
+              <Anchors>
+                <Anchor point="bottomleft" relativePoint="topleft" relativeTo="$parentVendorCostLabel">
+                  <AbsPoint x="0" y="10" />
+                </Anchor>
+              </Anchors>
+            </Label>
+
+            <DynamicImage name="$parentHLine4" texture="HLine">
+              <Size>
+                <AbsPoint x="450" y="2" />
+              </Size>
+              <TexCoords x="0" y="0"/>
+              <TintColor r="50" g="50"  b="50" a="255"/>
+              <Anchors>
+                <Anchor point="bottomleft" relativePoint="topleft" relativeTo="$parentVendorGoldCoverLabel">
+                  <AbsPoint x="20" y="10" />
+                </Anchor>
+              </Anchors>
+            </DynamicImage>
+
+            <Label name="$parentDismissVendor" font="Arial_Black_Shadow_16" maxchars="80" textalign="center" autoresizewidth="false" layer="popup">
+              <Size>
+                <AbsPoint x="490" y="26"/>
+              </Size>
+              <Color r="255" g="0" b="0" a="255" />
+              <Anchors>
+                <Anchor point="bottomleft" relativePoint="topleft" relativeTo="$parentHLine4">
+                  <AbsPoint x="-20" y="10" />
+                </Anchor>
+              </Anchors>
+              <EventHandlers>
+                <EventHandler event="OnLButtonDown" function="PlayerVendor.DismissVendor" />
+                <EventHandler event="OnMouseOver" function="PlayerVendor.TextHighlight" />
+                <EventHandler event="OnMouseOverEnd" function="PlayerVendor.TextUnhighlight" />
+              </EventHandlers>
+            </Label>
+            
+          </Windows>
+        </Window>
+       
+
+        <Window name="$parentSecondary">
+          <Anchors>
+            <Anchor point="topleft" relativePoint="topleft" />
+            <Anchor point="bottomright" relativePoint="bottomright" />
+          </Anchors>
+          <EventHandlers>
+            
+          </EventHandlers>
+          <Windows>
+
+            <!-- PlayerVendor Items List -->
+            <Window name="$parentBG" inherits="PlayerVendorWindowTemplate" >
+              <Size>
+                <AbsPoint x="450" y="490" />
+              </Size>
+              <Anchors>
+                <Anchor point="top" relativePoint="top" relativeTo="$parent">
+                  <AbsPoint x="100" y="30" />
+                </Anchor>
+              </Anchors>
+            </Window>
+
+            <Button name="$parentClose" layer="default" backgroundtexture="UO_Core" highlighttexture="UO_Core" texturescale="1.5">
+              <Size>
+                <AbsPoint x="30" y="30" />
+              </Size>
+              <Anchors>
+                <Anchor point="topright" relativePoint="topright" relativeTo="$parentBG">
+                  <AbsPoint x="-10" y="20" />
+                </Anchor>
+              </Anchors>
+              <TexCoords>
+                <Normal x="184" y="0" />
+                <NormalHighlit x="226" y="0" />
+                <Pressed x="205" y="0"  />
+                <PressedHighlit x="205" y="0" />
+                <Disabled x="163" y="0" />
+              </TexCoords>
+              <EventHandlers>
+                <EventHandler event="OnLButtonUp" function="PlayerVendor.CloseCustomize" />
+                <EventHandler event="OnMouseOver" function="PlayerVendor.CloseCustomizeTooltip" />
+              </EventHandlers>
+            </Button>
+
+            <Label name="$parentVendorGenderLabel" font="Arial_Black_Shadow_16" maxchars="80" textalign="right" autoresizewidth="false" layer="popup">
+              <Size>
+                <AbsPoint x="80" y="26"/>
+              </Size>
+              <Color r="0" g="153" b="255" a="255" />
+              <Anchors>
+                <Anchor point="topleft" relativePoint="topleft" relativeTo="$parentBG">
+                  <AbsPoint x="20" y="30" />
+                </Anchor>
+              </Anchors>
+            </Label>
+
+            <Label name="$parentVendorGenderText" font="MyriadPro_16" maxchars="255" textalign="left" autoresizewidth="false" layer="popup">
+              <Size>
+                <AbsPoint x="250" y="26"/>
+              </Size>
+              <Color r="0" g="0" b="0" a="0" />
+              <Anchors>
+                <Anchor point="right" relativePoint="left" relativeTo="$parentVendorGenderLabel">
+                  <AbsPoint x="7" y="3" />
+                </Anchor>
+              </Anchors>
+              <EventHandlers>
+                <EventHandler event="OnLButtonUp" function="PlayerVendor.GenderChange" />
+                <EventHandler event="OnMouseOver" function="PlayerVendor.GenderTooltip" />
+              </EventHandlers>
+            </Label>
+
+            <Label name="$parentVendorRaceLabel" font="Arial_Black_Shadow_16" maxchars="80" textalign="right" autoresizewidth="false" layer="popup">
+              <Size>
+                <AbsPoint x="80" y="26"/>
+              </Size>
+              <Color r="0" g="153" b="255" a="255" />
+              <Anchors>
+                <Anchor point="bottomleft" relativePoint="topleft" relativeTo="$parentVendorGenderLabel">
+                  <AbsPoint x="0" y="0" />
+                </Anchor>
+              </Anchors>
+            </Label>
+
+            <Label name="$parentVendorRaceText" font="MyriadPro_16" maxchars="255" textalign="left" autoresizewidth="false" layer="popup">
+              <Size>
+                <AbsPoint x="250" y="26"/>
+              </Size>
+              <Color r="0" g="0" b="0" a="0" />
+              <Anchors>
+                <Anchor point="right" relativePoint="left" relativeTo="$parentVendorRaceLabel">
+                  <AbsPoint x="7" y="3" />
+                </Anchor>
+              </Anchors>
+              <EventHandlers>
+                <EventHandler event="OnLButtonUp" function="PlayerVendor.RaceChange" />
+                <EventHandler event="OnMouseOver" function="PlayerVendor.RaceTooltip" />
+              </EventHandlers>
+            </Label>
+
+            <DynamicImage name="$parentHLine3" texture="HLine">
+              <Size>
+                <AbsPoint x="390" y="2" />
+              </Size>
+              <TexCoords x="0" y="0"/>
+              <TintColor r="50" g="50"  b="50" a="255"/>
+              <Anchors>
+                <Anchor point="topleft" relativePoint="topleft" relativeTo="$parent">
+                  <AbsPoint x="310" y="120" />
+                </Anchor>
+              </Anchors>
+            </DynamicImage>
+
+            <DynamicImage name="$parentVLine" texture="VLine">
+              <Size>
+                <AbsPoint x="2" y="380" />
+              </Size>
+              <TexCoords x="0" y="0"/>
+              <TintColor r="50" g="50"  b="50" a="255"/>
+              <Anchors>
+                <Anchor point="topleft" relativePoint="topleft" relativeTo="$parent">
+                  <AbsPoint x="450" y="120" />
+                </Anchor>
+              </Anchors>
+            </DynamicImage>
+
+            <Label name="$parentVendorHairLabel" font="Arial_Black_Shadow_16" maxchars="80" textalign="right" autoresizewidth="false" layer="popup">
+              <Size>
+                <AbsPoint x="80" y="26"/>
+              </Size>
+              <Color r="0" g="153" b="255" a="255" />
+              <Anchors>
+                <Anchor point="bottomleft" relativePoint="topleft" relativeTo="$parentHLine3">
+                  <AbsPoint x="10" y="0" />
+                </Anchor>
+              </Anchors>
+            </Label>
+
+            <DynamicImage name="$parentVendorHairHue" texturescale="1" layer="overlay" popable="false" >
+              <Size>
+                <AbsPoint x="32" y="32" />
+              </Size>
+              <Anchors>
+                <Anchor point="topleft" relativePoint="topleft" relativeTo="$parentVendorHairLabel">
+                  <AbsPoint x="5" y="3" />
+                </Anchor>
+              </Anchors>
+              <EventHandlers>
+                <EventHandler event="OnLButtonUp" function="PlayerVendor.HairDye" />
+                <EventHandler event="OnMouseOver" function="PlayerVendor.HairDyeTooltip" />
+              </EventHandlers>
+            </DynamicImage>
+
+            <Window name="$parentBald" inherits="PlayerVendor_LabelRadioButton" handleinput="true" id="11">
+              <Size>
+                <AbsPoint x="145" y="32" />
+              </Size>
+              <Anchors>
+                <Anchor point="bottomleft" relativePoint="topleft" relativeTo="$parentVendorHairLabel">
+                  <AbsPoint x="-10" y="0" />
+                </Anchor>
+              </Anchors>
+            </Window>
+
+            <Window name="$parentShort" inherits="PlayerVendor_LabelRadioButton" handleinput="true" id="2">
+              <Size>
+                <AbsPoint x="145" y="32" />
+              </Size>
+              <Anchors>
+                <Anchor point="bottomleft" relativePoint="topleft" relativeTo="$parentBald">
+                  <AbsPoint x="0" y="0" />
+                </Anchor>
+              </Anchors>
+            </Window>
+
+            <Window name="$parentLong" inherits="PlayerVendor_LabelRadioButton" handleinput="true" id="3">
+              <Size>
+                <AbsPoint x="145" y="32" />
+              </Size>
+              <Anchors>
+                <Anchor point="bottomleft" relativePoint="topleft" relativeTo="$parentShort">
+                  <AbsPoint x="0" y="0" />
+                </Anchor>
+              </Anchors>
+            </Window>
+            
+            <Window name="$parentPonytail" inherits="PlayerVendor_LabelRadioButton" handleinput="true" id="4">
+              <Size>
+                <AbsPoint x="145" y="32" />
+              </Size>
+              <Anchors>
+                <Anchor point="bottomleft" relativePoint="topleft" relativeTo="$parentLong">
+                  <AbsPoint x="0" y="0" />
+                </Anchor>
+              </Anchors>
+            </Window>
+
+            <Window name="$parentMohawk" inherits="PlayerVendor_LabelRadioButton" handleinput="true" id="5">
+              <Size>
+                <AbsPoint x="145" y="32" />
+              </Size>
+              <Anchors>
+                <Anchor point="bottomleft" relativePoint="topleft" relativeTo="$parentPonytail">
+                  <AbsPoint x="0" y="0" />
+                </Anchor>
+              </Anchors>
+            </Window>
+
+            <Window name="$parentPageboy" inherits="PlayerVendor_LabelRadioButton" handleinput="true" id="6">
+              <Size>
+                <AbsPoint x="145" y="32" />
+              </Size>
+              <Anchors>
+                <Anchor point="bottomleft" relativePoint="topleft" relativeTo="$parentMohawk">
+                  <AbsPoint x="0" y="0" />
+                </Anchor>
+              </Anchors>
+            </Window>
+
+            <Window name="$parentTopknot" inherits="PlayerVendor_LabelRadioButton" handleinput="true" id="7">
+              <Size>
+                <AbsPoint x="145" y="32" />
+              </Size>
+              <Anchors>
+                <Anchor point="bottomleft" relativePoint="topleft" relativeTo="$parentPageboy">
+                  <AbsPoint x="0" y="0" />
+                </Anchor>
+              </Anchors>
+            </Window>
+
+            <Window name="$parentCurly" inherits="PlayerVendor_LabelRadioButton" handleinput="true" id="8">
+              <Size>
+                <AbsPoint x="145" y="32" />
+              </Size>
+              <Anchors>
+                <Anchor point="bottomleft" relativePoint="topleft" relativeTo="$parentTopknot">
+                  <AbsPoint x="0" y="0" />
+                </Anchor>
+              </Anchors>
+            </Window>
+
+            <Window name="$parentReceding" inherits="PlayerVendor_LabelRadioButton" handleinput="true" id="9">
+              <Size>
+                <AbsPoint x="145" y="32" />
+              </Size>
+              <Anchors>
+                <Anchor point="bottomleft" relativePoint="topleft" relativeTo="$parentCurly">
+                  <AbsPoint x="0" y="0" />
+                </Anchor>
+              </Anchors>
+            </Window>
+
+            <Window name="$parentTwoTails" inherits="PlayerVendor_LabelRadioButton" handleinput="true" id="10">
+              <Size>
+                <AbsPoint x="145" y="32" />
+              </Size>
+              <Anchors>
+                <Anchor point="bottomleft" relativePoint="topleft" relativeTo="$parentReceding">
+                  <AbsPoint x="0" y="0" />
+                </Anchor>
+              </Anchors>
+            </Window>
+
+            <Window name="$parentVendorBeard">
+              <Anchors>
+                <Anchor point="topleft" relativePoint="topleft" relativeTo="$parentHLine3">
+                  <AbsPoint x="125" y="0" />
+                </Anchor>
+                <Anchor point="bottomright" relativePoint="bottomright"  relativeTo="$parentBG"/>
+              </Anchors>
+              <Windows>
+
+                <Label name="$parentLabel" font="Arial_Black_Shadow_16" maxchars="80" textalign="right" autoresizewidth="false" layer="popup">
+                  <Size>
+                    <AbsPoint x="80" y="26"/>
+                  </Size>
+                  <Color r="0" g="153" b="255" a="255" />
+                  <Anchors>
+                    <Anchor point="topleft" relativePoint="topleft" relativeTo="$parent">
+                      <AbsPoint x="90" y="2" />
+                    </Anchor>
+                  </Anchors>
+                </Label>
+
+                <DynamicImage name="$parentHue" texturescale="1" layer="overlay" popable="false" >
+                  <Size>
+                    <AbsPoint x="32" y="32" />
+                  </Size>
+                  <Anchors>
+                    <Anchor point="topleft" relativePoint="topleft" relativeTo="$parentLabel">
+                      <AbsPoint x="-5" y="3" />
+                    </Anchor>
+                  </Anchors>
+                  <EventHandlers>
+                    <EventHandler event="OnLButtonUp" function="PlayerVendor.BeardDye" />
+                    <EventHandler event="OnMouseOver" function="PlayerVendor.BeardDyeTooltip" />
+                  </EventHandlers>
+                </DynamicImage>
+
+                <Window name="$parentNone" inherits="PlayerVendor_LabelRadioButton" handleinput="true" id="20">
+                  <Size>
+                    <AbsPoint x="200" y="32" />
+                  </Size>
+                  <Anchors>
+                    <Anchor point="bottomleft" relativePoint="topleft" relativeTo="$parentLabel">
+                      <AbsPoint x="-50" y="0" />
+                    </Anchor>
+                  </Anchors>
+                </Window>
+
+                <Window name="$parentMustache" inherits="PlayerVendor_LabelRadioButton" handleinput="true" id="13">
+                  <Size>
+                    <AbsPoint x="200" y="32" />
+                  </Size>
+                  <Anchors>
+                    <Anchor point="bottomleft" relativePoint="topleft" relativeTo="$parentNone">
+                      <AbsPoint x="0" y="0" />
+                    </Anchor>
+                  </Anchors>
+                </Window>
+
+                <Window name="$parentShortbeard" inherits="PlayerVendor_LabelRadioButton" handleinput="true" id="14">
+                  <Size>
+                    <AbsPoint x="200" y="32" />
+                  </Size>
+                  <Anchors>
+                    <Anchor point="bottomleft" relativePoint="topleft" relativeTo="$parentMustache">
+                      <AbsPoint x="0" y="0" />
+                    </Anchor>
+                  </Anchors>
+                </Window>
+
+                <Window name="$parentShortbeardMustache" inherits="PlayerVendor_LabelRadioButton" handleinput="true" id="15">
+                  <Size>
+                    <AbsPoint x="200" y="32" />
+                  </Size>
+                  <Anchors>
+                    <Anchor point="bottomleft" relativePoint="topleft" relativeTo="$parentShortbeard">
+                      <AbsPoint x="0" y="0" />
+                    </Anchor>
+                  </Anchors>
+                </Window>
+
+                <Window name="$parentLongbeard" inherits="PlayerVendor_LabelRadioButton" handleinput="true" id="17">
+                  <Size>
+                    <AbsPoint x="200" y="32" />
+                  </Size>
+                  <Anchors>
+                    <Anchor point="bottomleft" relativePoint="topleft" relativeTo="$parentShortbeardMustache">
+                      <AbsPoint x="0" y="0" />
+                    </Anchor>
+                  </Anchors>
+                </Window>
+
+                <Window name="$parentLongbeardMustache" inherits="PlayerVendor_LabelRadioButton" handleinput="true" id="16">
+                  <Size>
+                    <AbsPoint x="200" y="32" />
+                  </Size>
+                  <Anchors>
+                    <Anchor point="bottomleft" relativePoint="topleft" relativeTo="$parentLongbeard">
+                      <AbsPoint x="0" y="0" />
+                    </Anchor>
+                  </Anchors>
+                </Window>
+
+                <Window name="$parentGoatee" inherits="PlayerVendor_LabelRadioButton" handleinput="true" id="18">
+                  <Size>
+                    <AbsPoint x="200" y="32" />
+                  </Size>
+                  <Anchors>
+                    <Anchor point="bottomleft" relativePoint="topleft" relativeTo="$parentLongbeardMustache">
+                      <AbsPoint x="0" y="0" />
+                    </Anchor>
+                  </Anchors>
+                </Window>
+
+                <Window name="$parentVandyke" inherits="PlayerVendor_LabelRadioButton" handleinput="true" id="19">
+                  <Size>
+                    <AbsPoint x="200" y="32" />
+                  </Size>
+                  <Anchors>
+                    <Anchor point="bottomleft" relativePoint="topleft" relativeTo="$parentGoatee">
+                      <AbsPoint x="0" y="0" />
+                    </Anchor>
+                  </Anchors>
+                </Window>
+                
+              </Windows>
+            </Window>
+            
+          </Windows>
+        </Window>
+
+      </Windows>
+    </Window>
+  </Windows>
+</Interface>

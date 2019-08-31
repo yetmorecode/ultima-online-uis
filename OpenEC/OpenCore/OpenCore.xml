@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Interface
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:noNamespaceSchemaLocation="../Interface.xsd">
+
+    <!-- Script Files -->
+    <Scripts>
+        <Script file="OpenCore/OpenCore.lua" />
+        <Script file="OpenCore/Class.lua" />
+        
+        <!-- Services --> 
+        <Script file="OpenCore/DateTime/DateTimeService.lua" />
+        <Script file="OpenCore/Debug/DebugService.lua" />
+        
+        <Script file="OpenCore/Client/ClientService.lua" />
+        
+        <Script file="OpenCore/MainMenu/MainMenuItem.lua" />
+        <Script file="OpenCore/MainMenu/MainMenuService.lua" />
+        
+        <Script file="OpenCore/ContextMenu/MenuItem.lua" />
+        <Script file="OpenCore/ContextMenu/ContextMenuService.lua" />
+        
+        <Script file="OpenCore/Player/PlayerService.lua" />
+        <Script file="OpenCore/Mobile/MobileService.lua" />
+        <Script file="OpenCore/Hotbar/HotbarService.lua" />
+        
+        <Script file="OpenCore/StaticText/StaticTextService.lua" />
+        <Script file="OpenCore/OverheadText/OverheadTextService.lua" />
+    </Scripts>
+</Interface>

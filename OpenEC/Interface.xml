@@ -2,30 +2,7 @@
 <Interface
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:noNamespaceSchemaLocation="../Interface.xsd">
-
-	<!-- Script Files -->
-	<Scripts>
-		<Script file="Interface.lua" />
-
-		<Script file="Core/Bootstrap/Bootstrap.lua" />
-		<Script file="Core/Bootstrap/Services.lua" />
-		<Script file="Core/Bootstrap/Class.lua" />
-		<Script file="Core/UOObject.lua" />
-		<Script file="Core/EC.lua" />
-		<Script file="Core/OpenEC.lua" />
-
-		<Script file="Core/DebugService/DebugService.lua" />
-		<Script file="Core/UpdateLoopService/UpdateLoop.lua" />
-		<Script file="Core/UpdateLoopService/UpdateLoopService.lua" />
-
-		<Script file="GameServices/StaticTextService/StaticTextService.lua" />
-		<Script file="GameServices/OverheadTextService/OverheadTextService.lua" />
-		<Script file="GameServices/MainMenuService/MainMenuService.lua" />
-		<Script file="GameServices/ClientService/Client.lua" />
-		
-		<!-- from default UI / port it.. -->
-		
 	
-	</Scripts>
-
+	<Include file="OpenCore/OpenCore.xml" />
+    <Include file="OpenUI/OpenUI.xml" />
 </Interface>

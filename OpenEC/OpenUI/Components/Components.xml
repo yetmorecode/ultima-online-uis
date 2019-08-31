@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Interface
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:noNamespaceSchemaLocation="../Interface.xsd">
+
+    <!-- Window backgrounds (resizing images) -->
+    <Include file="OpenUI/Components/Window/Background/Black.xml" />
+    <Include file="OpenUI/Components/Window/Background/Frame.xml" />
+    <Include file="OpenUI/Components/Window/Background/InnerFrame.xml" />
+    <Include file="OpenUI/Components/Window/Background/OuterFrame.xml" />
+    <Include file="OpenUI/Components/Window/Background/ResizingFrame.xml" />
+    <Include file="OpenUI/Components/Window/Background/Simple.xml" />
+    <Include file="OpenUI/Components/Window/Background/MainMenuFrame.xml" />
+</Interface>

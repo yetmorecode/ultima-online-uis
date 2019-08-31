@@ -17,15 +17,15 @@ function Interface.CreatePlayWindowSet()
   OpenCore:Initialize()
   OpenCore:PrintBanner()
   
-  WindowSetShowing("DebugWindow", true)
   
-  OpenCore.MainMenu:AddMenuItem("Settings", "Settings", function () 
-    
+  OpenCore.MainMenu:AddMenuItem("DebugWindow", "Debug Window", function () 
+    WindowSetShowing("DebugWindow", true)
   end)
   
   RegisterWindowData(WindowData.PlayerStatus.Type,0)
   OpenCore.MainMenu:AddMenuItem("Help", "Help", function () 
-    RequestContextMenu(OpenCore.Player:GetPlayerId())
+    --OpenCore.Client:RequestContextMenu(OpenCore.Player:GetPlayerId())
+    OpenCore.Viewport:SetFullscreen()
   end)
   
   OpenCore.ContextMenu:AddListener("test", function (event) 
@@ -94,6 +94,12 @@ function Interface.CreatePlayWindowSet()
   
   --OpenCore.Hotbar:DestroyHotbar(1000)
   --OpenCore.Hotbar:DestroyHotbar(1001)
+  for i, id in pairs(OpenCore.Hotbar:GetHotbarIds()) do
+    OpenUI.WindowData.HotbarId = id
+    CreateWindowFromTemplate("OpenUI.Windows.Hotbar." .. id, "OpenUI.HotbarWindow", "Root")
+  end
+  
+  --OpenCore.Debug:DumpToChat(nil, SystemData.Settings.Interface.WindowPositions, nil, 0)
   
 end
 

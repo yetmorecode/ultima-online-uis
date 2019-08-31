@@ -6,8 +6,20 @@ local ClientService = {
   
   Logout = function (self)
     BroadcastEvent (SystemData.Events.LOG_OUT)
-  end
+  end,
   
+  RequestContextMenu = function (self, id)
+    RequestContextMenu(id)
+  end,
+  
+  GetScreenResolution = function (self)
+    local r = SystemData.screenResolution
+    return r.x, r.y
+  end,
+  
+  GetScale =  function (self)
+    return InterfaceCore.scale
+  end
 }
 
 OpenCore:RegisterServiceClass("Client.ClientService", "Client", ClientService)

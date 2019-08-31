@@ -19,10 +19,14 @@ OpenCore = {
     self.Debug:Chat(...)
   end,
   
+  GetActiveDialog = function (self)
+    return self.Window:GetActiveDialog()
+  end,
+  
   PrintBanner = function (self)
     local now = "[" .. self.DateTime:GetDateString() .. " " .. self.DateTime:GetTimeString() .. "] "
     self:Chat(now.."OpenEC version " .. self.Version)
-    self.Debug:DumpToChat(now.."OpenEC.Classes", self.Classes, {}, 1)
+    --self.Debug:DumpToChat(now.."OpenEC.Classes", self.Classes, {}, 1)
   end,
   
   RegisterClass = function (self, namespace, class)

@@ -13,6 +13,8 @@
         <Script file="OpenCore/Debug/DebugService.lua" />
         
         <Script file="OpenCore/Client/ClientService.lua" />
+        <Script file="OpenCore/Viewport/ViewportService.lua" />
+        <Script file="OpenCore/Window/windowService.lua" />
         
         <Script file="OpenCore/MainMenu/MainMenuItem.lua" />
         <Script file="OpenCore/MainMenu/MainMenuService.lua" />

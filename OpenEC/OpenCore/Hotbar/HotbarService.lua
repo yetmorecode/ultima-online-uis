@@ -1,6 +1,6 @@
 local HotbarService = {
   Initialize = function (self)
-    OpenCore:Chat(SystemData.Hotbar)
+    --OpenCore:Chat(SystemData.Hotbar)
   end,
   
   Shutdown = function (self)

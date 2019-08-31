@@ -20,6 +20,7 @@ local DebugService = {
       local t = type (message);
       if t == "string" then
         TextLogAddEntry (log, filter, StringToWString (message))
+        -- XXX: PrintWStringToChatWindow(message, SystemData.ChatLogFilters.SYSTEM )
       elseif t == "number" then
         TextLogAddEntry (log, filter, StringToWString(tostring(message)))
       elseif t == "wstring" then
@@ -37,6 +38,7 @@ local DebugService = {
   end,
   
   DumpToChat = function (self, name, value, memo, depth)
+    name = name or "table"
     memo = memo or {}
     depth = depth or 4
     if type(name) == "wstring" then

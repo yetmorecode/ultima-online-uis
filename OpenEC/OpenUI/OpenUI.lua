@@ -1,1 +1,3 @@
-OpenUI = OpenUI or {}
+OpenUI = OpenUI or {
+  WindowData = {}
+}

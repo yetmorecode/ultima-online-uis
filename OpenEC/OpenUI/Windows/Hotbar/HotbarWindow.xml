@@ -6,7 +6,7 @@
   <Windows>
     <Window name="OpenUI.HotbarWindow" movable="false" layer="default" sticky="false">
       <Size>
-        <AbsPoint x="300" y="50" />
+        <AbsPoint x="200" y="50" />
       </Size>
       <Anchors>
         <Anchor point="center" relativePoint="center" relativeTo="">
@@ -19,6 +19,20 @@
       </EventHandlers>
       <Windows>
         <FullResizeImage name="$parent.Background" alpha="0.5" inherits="OpenUI.Window.Background.Black" />
+        <DynamicImage name="$parent.Handle" >
+          <Size>
+            <AbsPoint x="20" y="50" />
+          </Size>
+          <Anchors>
+            <Anchor point="topleft" relativePoint="topleft">
+              <AbsPoint x="0" y="0" />
+            </Anchor>
+          </Anchors>
+          <EventHandlers>
+            <EventHandler event="OnLButtonDown" function="OpenUI.HotbarWindow.OnHandleLButtonDown" />
+            <EventHandler event="OnLButtonUp" function="OpenUI.HotbarWindow.OnHandleLButtonUp" />
+          </EventHandlers>
+        </DynamicImage>
       </Windows>
     </Window>
   </Windows>
